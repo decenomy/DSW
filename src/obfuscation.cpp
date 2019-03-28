@@ -48,7 +48,8 @@ CActiveMasternode activeMasternode;
 void CObfuscationPool::ProcessMessageObfuscation(CNode* pfrom, std::string& strCommand, CDataStream& vRecv)
 {
     if (fLiteMode) return; //disable all Obfuscation/Masternode related functionality
-    if (!masternodeSync.IsBlockchainSynced()) return;
+	if (IsSporkActive(SPORK_19_DISABLE_OBFUSCATION_ENFORCEMENT)) return;
+	if (!masternodeSync.IsBlockchainSynced()) return;
 
     if (strCommand == "dsa") { //Obfuscation Accept Into Pool
 

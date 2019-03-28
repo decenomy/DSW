@@ -55,7 +55,15 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("0x000000f5b14f165bb33e98d316ccd8e25d4fba3e761d99c03ff78c9acf6237b1"));
+    (0, uint256("0x000000f5b14f165bb33e98d316ccd8e25d4fba3e761d99c03ff78c9acf6237b1"))
+	(1286, uint256("0x9fde9ff411f3862e798fdb4365620cf89d30f9aac1a006761108073cf0c80bd4"))
+	(65849, uint256("0x0479a27a5672b3c85640ed079962839e15773aafad6536ae3aab5ce5ccedc3e8"))
+	(147816, uint256("0x15832cf53e3a7f56c38c9c227a8cd3fa9b239fe797cf521b6634e3c0e28a89d5"))
+	(298759, uint256("0xa22cc2a1253a36940ed089e6571e439b39915f5df7f28f498abc919e85915bf1"))
+	(300501, uint256("0x7f556f2119fe222b471f811a2c577c24c57ed4f5f5fe9a4afeaad84445b0ca28"))
+	(311785, uint256("0x1ee333b16030886cfd1f8833aeb5899dcb89fdfbe619e1bd9cf233d3c77f63af"))
+	(319170, uint256("0xbfe6b28b2422d5e84fa42e78116f7d8dd26bfdd6264c675e031e68695b242816"))
+	;
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
     1533446237, // * UNIX timestamp of last checkpoint block
@@ -113,6 +121,9 @@ public:
         nMasternodeCollateralLimit = 100000;
         nModifierUpdateBlock = 615800;
         nMaxMoneyOut = 3000000000 * COIN;
+		nEnforceNewSporkKey = 1554076800; //!> Sporks signed after (GMT): Monday, April 1, 2019 12:00:00 AM GMT must use the new spork key
+		nRejectOldSporkKey = 1554163200; //!> Fully reject old spork key after (GMT): Tuesday, April 2, 2019 12:00:00 AM
+
 
         const char* pszTimestamp = "Money is made by sitting, not trading – Jesse Livermore";
         CMutableTransaction txNew;
@@ -133,7 +144,10 @@ public:
         assert(hashGenesisBlock == uint256("0x000000f5b14f165bb33e98d316ccd8e25d4fba3e761d99c03ff78c9acf6237b1"));
         assert(genesis.hashMerkleRoot == uint256("0xa7192a1a1249fe8a3a2a0fae7b51be4de2592bf4f424811f8efba46c4c2a890e"));
 
-        vSeeds.push_back(CDNSSeedData("1", "95.179.133.7"));
+ 
+		vSeeds.push_back(CDNSSeedData("seed1.cryptoflow.co.uk", "seed1.cryptoflow.co.uk"));
+		vSeeds.push_back(CDNSSeedData("seed2.cryptoflow.co.uk", "seed2.cryptoflow.co.uk"));
+		vSeeds.push_back(CDNSSeedData("1", "95.179.133.7"));
         vSeeds.push_back(CDNSSeedData("2", "185.92.222.53"));
         vSeeds.push_back(CDNSSeedData("3", "95.179.144.71"));
         vSeeds.push_back(CDNSSeedData("4", "45.32.185.119"));
@@ -161,8 +175,9 @@ public:
         fHeadersFirstSyncingActive = false;
 
         nPoolMaxTransactions = 3;
-        strSporkKey = "042DD1C992AF5D41B1FE33E8129E954DFCFE91915B17E1BE829309FA10E237B26E261DC381BFFAD3567FF6DE0C74C4F3AC45D03209646155FF9859915D5FFE04AF";
-        strObfuscationPoolDummyAddress = "c3mwfxvM6nV3uFg5dMMRtPxfKQiR4FSWhd";
+		strSporkKey = "046d124652f5f8cd02851cd4370a0c7072b01a933598886eb7dba0de0a4209776aec972b59dc5c614cc42cea8044337fdb6d68527131b9c0c42b5427522207808b";
+		strSporkKeyOld = "042DD1C992AF5D41B1FE33E8129E954DFCFE91915B17E1BE829309FA10E237B26E261DC381BFFAD3567FF6DE0C74C4F3AC45D03209646155FF9859915D5FFE04AF";
+		strObfuscationPoolDummyAddress = "c3mwfxvM6nV3uFg5dMMRtPxfKQiR4FSWhd";
         nStartMasternodePayments = 1533446237;
     }
 
@@ -201,6 +216,8 @@ public:
         nMasternodeCollateralLimit = 100000;
         nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT
         nMaxMoneyOut = 3000000000 * COIN;
+		nEnforceNewSporkKey = 1521604800; //!> Sporks signed after Wednesday, March 21, 2018 4:00:00 AM GMT must use the new spork key
+		nRejectOldSporkKey = 1522454400; //!> Reject old spork key after Saturday, March 31, 2018 12:00:00 AM GMT
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nTime = 1533446237;
@@ -238,7 +255,8 @@ public:
 
         nPoolMaxTransactions = 2;
         strSporkKey = "04cded1204a57acd6280c8499b7a2df052609dbf96546453984d632204d651d72a37013edc9d115e5a385e100eb7e867923fdd0bb7d9dc31aa1eb9d59b00c76697";
-        strObfuscationPoolDummyAddress = "xxVKdbxVogrXrPLMo2qEEyCm1GRv2KZCLy";
+		strSporkKeyOld = "04cded1204a57acd6280c8499b7a2df052609dbf96546453984d632204d651d72a37013edc9d115e5a385e100eb7e867923fdd0bb7d9dc31aa1eb9d59b00c76697";
+		strObfuscationPoolDummyAddress = "xxVKdbxVogrXrPLMo2qEEyCm1GRv2KZCLy";
         nStartMasternodePayments = 1533446237;
     }
     const Checkpoints::CCheckpointData& Checkpoints() const
