@@ -205,16 +205,14 @@ public:
 /*         vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "pivx.seed.fuzzbawls.pw", true));     // Primary DNS Seeder from Fuzzbawls
         vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "pivx.seed2.fuzzbawls.pw", true));    // Secondary DNS Seeder from Fuzzbawls
  */
-	    vSeeds.push_back(CDNSSeedData("seed1.sappcoin.com", "seed1.sappcoin.com"));
-        vSeeds.push_back(CDNSSeedData("seed2.sappcoin.com", "seed2.sappcoin.com"));
-        vSeeds.push_back(CDNSSeedData("seed3.sappcoin.com", "seed3.sappcoin.com"));
-        vSeeds.push_back(CDNSSeedData("seed4.sappcoin.com", "seed4.sappcoin.com"));
-	    vSeeds.push_back(CDNSSeedData("seed5.sappcoin.com", "seed5.sappcoin.com"));
-	    vSeeds.push_back(CDNSSeedData("seed6.sappcoin.com", "seed6.sappcoin.com"));
-	    vSeeds.push_back(CDNSSeedData("seed7.sappcoin.com", "seed7.sappcoin.com"));
-	    vSeeds.push_back(CDNSSeedData("seed8.sappcoin.com", "seed8.sappcoin.com"));
-	    vSeeds.push_back(CDNSSeedData("seed9.sappcoin.com", "seed9.sappcoin.com"));
-	    vSeeds.push_back(CDNSSeedData("seed10.sappcoin.com", "seed10.sappcoin.com"));
+	    vSeeds.push_back(CDNSSeedData("seed1.777coin.win", "seed1.777coin.win"));
+        vSeeds.push_back(CDNSSeedData("seed2.777coin.win", "seed2.777coin.win"));
+        vSeeds.push_back(CDNSSeedData("seed3.777coin.win", "seed3.777coin.win"));
+        vSeeds.push_back(CDNSSeedData("seed4.777coin.win", "seed4.777coin.win"));
+	    vSeeds.push_back(CDNSSeedData("seed5.777coin.win", "seed5.777coin.win"));
+	    vSeeds.push_back(CDNSSeedData("seed6.777coin.win", "seed6.777coin.win"));
+	    vSeeds.push_back(CDNSSeedData("seed7.777coin.win", "seed7.777coin.win"));
+	    vSeeds.push_back(CDNSSeedData("seed8.777coin.win", "seed8.777coin.win"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 15);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 16);
@@ -232,7 +230,7 @@ public:
         bech32HRPs[SAPLING_PAYMENT_ADDRESS]      = "ps";
         bech32HRPs[SAPLING_FULL_VIEWING_KEY]     = "pviews";
         bech32HRPs[SAPLING_INCOMING_VIEWING_KEY] = "pivks";
-        bech32HRPs[SAPLING_EXTENDED_SPEND_KEY]         = "p-secret-spending-key-main";
+        bech32HRPs[SAPLING_EXTENDED_SPEND_KEY]   = "p-secret-spending-key-main";
     }
 
     const Checkpoints::CCheckpointData& Checkpoints() const
