@@ -69,12 +69,12 @@ static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
     (0, uint256("0x000003a77c17296ef80130591b732c9e7f686f6e3687c6d30da7de9377a6634a"))
-    (1000, uint256("0x952c45260ea1727850718c528cfdd0553790eada77cbb740059d64318c359e65")); 
+    (200, uint256("0x00000c21b1856b5f0eb5ef3e6ef66653425107a810bb3f7b1aa10d8f9a3bb9a2")); // last PoW block
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1566456566, // * UNIX timestamp of last checkpoint block
-    0,          // * total number of transactions between genesis and last checkpoint
+    1566400614, // * UNIX timestamp of last checkpoint block
+    207,          // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the UpdateTip debug.log lines)
     2000        // * estimated number of transactions per day after checkpoint
 };
@@ -165,7 +165,7 @@ public:
         // Network upgrades
         consensus.vUpgrades[Consensus::BASE_NETWORK].nActivationHeight          = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
         consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight     = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight           = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight           = 201;
         consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight        = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_ZC].nActivationHeight            = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight         = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
@@ -181,7 +181,7 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].hashActivationBlock   = uint256S("0x0");
         consensus.vUpgrades[Consensus::UPGRADE_V3_4].hashActivationBlock        = uint256S("0x0");
         consensus.vUpgrades[Consensus::UPGRADE_V4_0].hashActivationBlock        = uint256S("0x0");
-        
+
         /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
