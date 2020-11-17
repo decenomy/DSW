@@ -1516,27 +1516,25 @@ int64_t GetBlockValue(int nHeight)
     int64_t nSubsidy = 0;
     if (nHeight == 1) {
         nSubsidy = 700000 * COIN;
-      } else if (nHeight <= 1440 && nHeight > 0) {
-	    nSubsidy = 1 * COIN;
-      } else if (nHeight <= 468490 && nHeight > 1440) {
+    } else if (nHeight <= 1440 && nHeight > 0) {
+        nSubsidy = 1 * COIN;
+    } else if (nHeight <= 468490 && nHeight > 1440) {
         nSubsidy = 25 * COIN;
-      } else if (nHeight <= 600000 && nHeight > 468490) {
+    } else if (nHeight <= 600000 && nHeight > 468490) {
         nSubsidy = 50 * COIN;
-	  } else if (nHeight <= 700000 && nHeight > 600000) {
+    } else if (nHeight <= 700000 && nHeight > 600000) {
         nSubsidy = 75 * COIN;
-	  } else if (nHeight <= 800000 && nHeight > 700000) {
+    } else if (nHeight <= 800000 && nHeight > 700000) {
         nSubsidy = 100 * COIN;
-	  } else if (nHeight <= 900000 && nHeight > 800000) {
+    } else if (nHeight <= 900000 && nHeight > 800000) {
         nSubsidy = 125 * COIN;
-	  } else if (nHeight <= 1000000 && nHeight > 900000) {
+    } else if (nHeight <= 1000000 && nHeight > 900000) {
         nSubsidy = 150 * COIN;
-      } else if (nHeight <= 1100000 && nHeight > 1000000) {
+    } else if (nHeight <= 1100000 && nHeight > 1000000) {
         nSubsidy = 125 * COIN;
-	  } else if (nHeight <= 1000000 && nHeight > 1100000) {
+    } else if (nHeight > 1100000) {
         nSubsidy = 100 * COIN;
-      } else {
-        nSubsidy = 100 * COIN;
-      }
+    } 
     return nSubsidy;
 }
 
@@ -3362,17 +3360,6 @@ bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool f
     // Check proof of work matches claimed amount
     if (fCheckPOW && !CheckProofOfWork(block.GetHash(), block.nBits))
         return state.DoS(50, false, REJECT_INVALID, "high-hash", false, "proof of work failed");
-
-    if (Params().IsRegTestNet()) return true;
-
-    // Version 4 header must be used after consensus.ZC_TimeStart. And never before.
-    if (block.GetBlockTime() > Params().GetConsensus().ZC_TimeStart) {
-        if(block.nVersion < 4)
-            return state.DoS(50,false, REJECT_INVALID, "block-version", "must be above 4 after ZC_TimeStart");
-    } else {
-        if (block.nVersion >= 4)
-            return state.DoS(50,false, REJECT_INVALID, "block-version", "must be below 4 before ZC_TimeStart");
-    }
 
     return true;
 }

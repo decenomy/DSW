@@ -158,7 +158,7 @@ public:
         consensus.ZC_MinMintConfirmations = 20;
         consensus.ZC_MinMintFee = 1 * CENT;
         consensus.ZC_MinStakeDepth = 200;
-        consensus.ZC_TimeStart = 1048576000;        // October 17, 2017 4:30:00 AM
+        consensus.ZC_TimeStart = 1893456000;        // 01/01/2030 @ 12:00am (UTC)
         consensus.ZC_WrappedSerialsSupply = 0; //4131563 * COIN;   // zerocoin supply at height_last_ZC_WrappedSerials
 
         // Network upgrades
