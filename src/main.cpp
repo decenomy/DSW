@@ -3590,37 +3590,37 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
     return true;
 }
 
-bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
-{
-    if (pindexPrev == NULL)
-        return error("%s : null pindexPrev for block %s", __func__, block.GetHash().GetHex());
+// bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
+// {
+//     if (pindexPrev == NULL)
+//         return error("%s : null pindexPrev for block %s", __func__, block.GetHash().GetHex());
 
-    unsigned int nBitsRequired = GetNextWorkRequired(pindexPrev, &block);
+//     unsigned int nBitsRequired = GetNextWorkRequired(pindexPrev, &block);
 
-    if (!Params().IsRegTestNet() && block.IsProofOfWork() && (pindexPrev->nHeight + 1 <= 68589)) {
-        double n1 = ConvertBitsToDouble(block.nBits);
-        double n2 = ConvertBitsToDouble(nBitsRequired);
+//     if (!Params().IsRegTestNet() && block.IsProofOfWork() && (pindexPrev->nHeight + 1 <= 68589)) {
+//         double n1 = ConvertBitsToDouble(block.nBits);
+//         double n2 = ConvertBitsToDouble(nBitsRequired);
 
-        if (std::abs(n1 - n2) > n1 * 0.5)
-            return error("%s : incorrect proof of work (DGW pre-fork) - %f %f %f at %d", __func__, std::abs(n1 - n2), n1, n2, pindexPrev->nHeight + 1);
+//         if (std::abs(n1 - n2) > n1 * 0.5)
+//             return error("%s : incorrect proof of work (DGW pre-fork) - %f %f %f at %d", __func__, std::abs(n1 - n2), n1, n2, pindexPrev->nHeight + 1);
 
-        return true;
-    }
+//         return true;
+//     }
 
-    if (block.nBits != nBitsRequired) {
-        // Pivx Specific reference to the block with the wrong threshold was used.
-        const Consensus::Params& consensus = Params().GetConsensus();
-        if ((block.nTime == (uint32_t) consensus.nPivxBadBlockTime) &&
-                (block.nBits == (uint32_t) consensus.nPivxBadBlockBits)) {
-            // accept PIVX block minted with incorrect proof of work threshold
-            return true;
-        }
+//     if (block.nBits != nBitsRequired) {
+//         // Pivx Specific reference to the block with the wrong threshold was used.
+//         const Consensus::Params& consensus = Params().GetConsensus();
+//         if ((block.nTime == (uint32_t) consensus.nPivxBadBlockTime) &&
+//                 (block.nBits == (uint32_t) consensus.nPivxBadBlockBits)) {
+//             // accept PIVX block minted with incorrect proof of work threshold
+//             return true;
+//         }
 
-        return error("%s : incorrect proof of work at %d", __func__, pindexPrev->nHeight + 1);
-    }
+//         return error("%s : incorrect proof of work at %d", __func__, pindexPrev->nHeight + 1);
+//     }
 
-    return true;
-}
+//     return true;
+// }
 
 bool CheckBlockTime(const CBlockHeader& block, CValidationState& state, CBlockIndex* const pindexPrev)
 {
@@ -3832,8 +3832,9 @@ bool AcceptBlock(const CBlock& block, CValidationState& state, CBlockIndex** ppi
         }
     }
 
-    if (block.GetHash() != consensus.hashGenesisBlock && !CheckWork(block, pindexPrev))
-        return false;
+    // We already know these blocks, a checkpoint have been added
+    // if (block.GetHash() != consensus.hashGenesisBlock && !CheckWork(block, pindexPrev))
+    //     return false;
 
     bool isPoS = block.IsProofOfStake();
     if (isPoS) {
