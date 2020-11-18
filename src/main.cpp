@@ -3361,6 +3361,17 @@ bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool f
     if (fCheckPOW && !CheckProofOfWork(block.GetHash(), block.nBits))
         return state.DoS(50, false, REJECT_INVALID, "high-hash", false, "proof of work failed");
 
+    // if (Params().IsRegTestNet()) return true;
+
+    // // Version 4 header must be used after consensus.ZC_TimeStart. And never before.
+    // if (block.GetBlockTime() > Params().GetConsensus().ZC_TimeStart) {
+    //     if(block.nVersion < 4)
+    //         return state.DoS(50,false, REJECT_INVALID, "block-version", "must be above 4 after ZC_TimeStart");
+    // } else {
+    //     if (block.nVersion >= 4)
+    //         return state.DoS(50,false, REJECT_INVALID, "block-version", "must be below 4 before ZC_TimeStart");
+    // }
+
     return true;
 }
 
