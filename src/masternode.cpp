@@ -514,15 +514,17 @@ bool CMasternodeBroadcast::CheckAndUpdate(int& nDos)
     std::string strError = "";
     if (!CheckSignature())
     {
-        // don't ban for old masternodes, their sigs could be broken because of the bug
-        nDos = protocolVersion < MIN_PEER_MNANNOUNCE ? 0 : 100;
+        // masternodes older than this proto version use old strMessage format for mnannounce
+        nDos = protocolVersion <= MIN_PEER_MNANNOUNCE ? 0 : 100;
         return error("%s : Got bad Masternode address signature", __func__);
     }
 
-    if (Params().NetworkID() == CBaseChainParams::MAIN) {
-        if (addr.GetPort() != 51472) return false;
-    } else if (addr.GetPort() == 51472)
-        return false;
+    if(addr.GetPort() != Params().GetDefaultPort()) {
+        return error(
+            "%s : Invalid port %u for masternode %s, only %d is supported on %s-net.", 
+            __func__, addr.GetPort(), addr.ToString(), Params().GetDefaultPort(), 
+            Params().NetworkIDString());
+    }
 
     //search existing Masternode list, this is where we update existing Masternodes with new mnb broadcasts
     CMasternode* pmn = mnodeman.Find(vin);
