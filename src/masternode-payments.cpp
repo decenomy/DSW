@@ -336,7 +336,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const CBloc
     }
 
     if (hasPayment) {
-        CAmount masternodePayment = GetMasternodePayment();
+        CAmount masternodePayment = GetMasternodePayment(pindexPrev->nHeight + 1);
         if (fProofOfStake) {
             /**For Proof Of Stake vout[0] must be null
              * Stake reward can be split into many different outputs, so we must
@@ -369,7 +369,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const CBloc
             txNew.vout.resize(2);
             txNew.vout[1].scriptPubKey = payee;
             txNew.vout[1].nValue = masternodePayment;
-            txNew.vout[0].nValue = GetBlockValue(pindexPrev->nHeight) - masternodePayment;
+            txNew.vout[0].nValue = GetBlockValue(pindexPrev->nHeight + 1) - masternodePayment;
         }
 
         CTxDestination address1;
@@ -537,7 +537,7 @@ bool CMasternodePayments::AddWinningMasternode(CMasternodePaymentWinner& winnerI
     return true;
 }
 
-bool CMasternodeBlockPayees::IsTransactionValid(const CTransaction& txNew)
+bool CMasternodeBlockPayees::IsTransactionValid(const CTransaction& txNew, int nBlockHeight)
 {
     LOCK(cs_vecPayments);
 
@@ -551,7 +551,7 @@ bool CMasternodeBlockPayees::IsTransactionValid(const CTransaction& txNew)
     if (nMaxSignatures < MNPAYMENTS_SIGNATURES_REQUIRED) return true;
 
     std::string strPayeesPossible = "";
-    CAmount requiredMasternodePayment = GetMasternodePayment();
+    CAmount requiredMasternodePayment = GetMasternodePayment(nBlockHeight);
 
     for (CMasternodePayee& payee : vecPayments) {
         bool found = false;
@@ -616,7 +616,7 @@ bool CMasternodePayments::IsTransactionValid(const CTransaction& txNew, int nBlo
     LOCK(cs_mapMasternodeBlocks);
 
     if (mapMasternodeBlocks.count(nBlockHeight)) {
-        return mapMasternodeBlocks[nBlockHeight].IsTransactionValid(txNew);
+        return mapMasternodeBlocks[nBlockHeight].IsTransactionValid(txNew, nBlockHeight);
     }
 
     return true;

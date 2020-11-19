@@ -145,3 +145,13 @@ ui_*
 build*
 pivxd.*
 pivxd-new-gui.*
+
+# for Visual Studio Code
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+.history/

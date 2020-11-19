@@ -22,9 +22,10 @@ std::vector<CSporkDef> sporkDefs = {
     MAKE_SPORK_DEF(SPORK_13_ENABLE_SUPERBLOCKS,             4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_14_NEW_PROTOCOL_ENFORCEMENT,       4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2,     4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_16_ZEROCOIN_MAINTENANCE_MODE,      4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_16_ZEROCOIN_MAINTENANCE_MODE,      0), // OFF
     MAKE_SPORK_DEF(SPORK_17_COLDSTAKING_ENFORCEMENT,        4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_18_ZEROCOIN_PUBLICSPEND_V4,        4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_19_UPGRADE_CYCLE_FACTOR,           4070908800ULL), // OFF
 };
 
 CSporkManager sporkManager;
@@ -104,11 +105,14 @@ void CSporkManager::ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStr
             LOCK(cs);
             if (mapSporksActive.count(spork.nSporkID)) {
                 // spork is active
-                if (mapSporksActive[spork.nSporkID].nTimeSigned >= spork.nTimeSigned) {
+                if (mapSporksActive[spork.nSporkID].nTimeSigned > spork.nTimeSigned) {
                     // spork in memory has been signed more recently
                     LogPrintf("%s : spork %d (%s) in memory is more recent: %d >= %d\n", __func__,
                             spork.nSporkID, sporkName,
                             mapSporksActive[spork.nSporkID].nTimeSigned, spork.nTimeSigned);
+                    return;
+                } else if(mapSporksActive[spork.nSporkID].nTimeSigned == spork.nTimeSigned) {
+                    // nothing to do
                     return;
                 } else {
                     // update active spork

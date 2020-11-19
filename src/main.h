@@ -63,6 +63,21 @@ struct PrecomputedTransactionData;
 struct CBlockTemplate;
 struct CNodeStateStats;
 
+inline CAmount GetMstrNodCollateral(int nHeight){
+    if (nHeight <= 600000 && nHeight > 500) {
+        return 10000;
+    } else if (nHeight <= 700000 && nHeight > 600000) {
+        return 12500;
+    } else if (nHeight <= 800000 && nHeight > 700000) {
+        return 15000;
+    } else if (nHeight <= 900000 && nHeight > 800000) {
+        return 17500;
+    } else if (nHeight <= 1000000 && nHeight > 900000) {
+        return 20000;
+     }
+    return 20000;
+}
+
 /** Default for -limitancestorcount, max number of in-mempool ancestors */
 static const unsigned int DEFAULT_ANCESTOR_LIMIT = 25;
 /** Default for -limitancestorsize, maximum kilobytes of tx + all in-mempool ancestors */
@@ -242,7 +257,7 @@ bool GetOutput(const uint256& hash, unsigned int index, CValidationState& state,
 
 // ***TODO***
 double ConvertBitsToDouble(unsigned int nBits);
-int64_t GetMasternodePayment();
+int64_t GetMasternodePayment(int nHeight);
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader* pblock, bool fProofOfStake);
 
 bool ActivateBestChain(CValidationState& state, const CBlock* pblock = NULL, bool fAlreadyChecked = false, CConnman* connman = nullptr);

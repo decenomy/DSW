@@ -1499,8 +1499,8 @@ double ConvertBitsToDouble(unsigned int nBits)
 }
 
 int64_t GetBlockValue(int nHeight)
-{
-    if (Params().NetworkID() == CBaseChainParams::TESTNET) {
+{   
+  /*if (Params().NetworkID() == CBaseChainParams::TESTNET) {
         if (nHeight < 200 && nHeight > 0)
             return 250000 * COIN;
     }
@@ -1512,45 +1512,42 @@ int64_t GetBlockValue(int nHeight)
     }
 
     const Consensus::Params& consensus = Params().GetConsensus();
-    const bool isPoSActive = consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_POS);
+    const bool isPoSActive = consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_POS);*/
     int64_t nSubsidy = 0;
-    if (nHeight == 0) {
-        nSubsidy = 60001 * COIN;
-    } else if (nHeight < 86400 && nHeight > 0) {
-        nSubsidy = 250 * COIN;
-    } else if (nHeight < (Params().NetworkID() == CBaseChainParams::TESTNET ? 145000 : 151200) && nHeight >= 86400) {
-        nSubsidy = 225 * COIN;
-    } else if (nHeight >= 151200 && !isPoSActive) {
-        nSubsidy = 45 * COIN;
-    } else if (isPoSActive && nHeight <= 302399) {
-        nSubsidy = 45 * COIN;
-    } else if (nHeight <= 345599 && nHeight >= 302400) {
-        nSubsidy = 40.5 * COIN;
-    } else if (nHeight <= 388799 && nHeight >= 345600) {
-        nSubsidy = 36 * COIN;
-    } else if (nHeight <= 431999 && nHeight >= 388800) {
-        nSubsidy = 31.5 * COIN;
-    } else if (nHeight <= 475199 && nHeight >= 432000) {
-        nSubsidy = 27 * COIN;
-    } else if (nHeight <= 518399 && nHeight >= 475200) {
-        nSubsidy = 22.5 * COIN;
-    } else if (nHeight <= 561599 && nHeight >= 518400) {
-        nSubsidy = 18 * COIN;
-    } else if (nHeight <= 604799 && nHeight >= 561600) {
-        nSubsidy = 13.5 * COIN;
-    } else if (nHeight <= 647999 && nHeight >= 604800) {
-        nSubsidy = 9 * COIN;
-    } else if (!consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_ZC_V2)) {
-        nSubsidy = 4.5 * COIN;
-    } else {
-        nSubsidy = 5 * COIN;
-    }
+    if (nHeight == 1) {
+        nSubsidy = 700000 * COIN;
+    } else if (nHeight <= 1440 && nHeight > 0) {
+        nSubsidy = 1 * COIN;
+    } else if (nHeight <= 468490 && nHeight > 1440) {
+        nSubsidy = 25 * COIN;
+    } else if (nHeight <= 600000 && nHeight > 468490) {
+        nSubsidy = 50 * COIN;
+    } else if (nHeight <= 700000 && nHeight > 600000) {
+        nSubsidy = 75 * COIN;
+    } else if (nHeight <= 800000 && nHeight > 700000) {
+        nSubsidy = 100 * COIN;
+    } else if (nHeight <= 900000 && nHeight > 800000) {
+        nSubsidy = 125 * COIN;
+    } else if (nHeight <= 1000000 && nHeight > 900000) {
+        nSubsidy = 150 * COIN;
+    } else if (nHeight <= 1100000 && nHeight > 1000000) {
+        nSubsidy = 125 * COIN;
+    } else if (nHeight > 1100000) {
+        nSubsidy = 100 * COIN;
+    } 
     return nSubsidy;
 }
 
-int64_t GetMasternodePayment()
+int64_t GetMasternodePayment(int nHeight)
 {
-    return 3 * COIN;
+    int64_t ret = 0;
+
+	if (nHeight <= 600000) {
+		ret = GetBlockValue(nHeight)  * 85 / 100;
+	} else {
+		ret = GetBlockValue(nHeight)  * 95 / 100;
+	}
+        return ret;
 }
 
 bool IsInitialBlockDownload()
@@ -3364,16 +3361,16 @@ bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool f
     if (fCheckPOW && !CheckProofOfWork(block.GetHash(), block.nBits))
         return state.DoS(50, false, REJECT_INVALID, "high-hash", false, "proof of work failed");
 
-    if (Params().IsRegTestNet()) return true;
+    // if (Params().IsRegTestNet()) return true;
 
-    // Version 4 header must be used after consensus.ZC_TimeStart. And never before.
-    if (block.GetBlockTime() > Params().GetConsensus().ZC_TimeStart) {
-        if(block.nVersion < 4)
-            return state.DoS(50,false, REJECT_INVALID, "block-version", "must be above 4 after ZC_TimeStart");
-    } else {
-        if (block.nVersion >= 4)
-            return state.DoS(50,false, REJECT_INVALID, "block-version", "must be below 4 before ZC_TimeStart");
-    }
+    // // Version 4 header must be used after consensus.ZC_TimeStart. And never before.
+    // if (block.GetBlockTime() > Params().GetConsensus().ZC_TimeStart) {
+    //     if(block.nVersion < 4)
+    //         return state.DoS(50,false, REJECT_INVALID, "block-version", "must be above 4 after ZC_TimeStart");
+    // } else {
+    //     if (block.nVersion >= 4)
+    //         return state.DoS(50,false, REJECT_INVALID, "block-version", "must be below 4 before ZC_TimeStart");
+    // }
 
     return true;
 }
@@ -3386,7 +3383,7 @@ bool CheckColdStakeFreeOutput(const CTransaction& tx, const int nHeight)
     const unsigned int outs = tx.vout.size();
     const CTxOut& lastOut = tx.vout[outs-1];
     if (outs >=3 && lastOut.scriptPubKey != tx.vout[outs-2].scriptPubKey) {
-        if (lastOut.nValue == GetMasternodePayment())
+        if (lastOut.nValue == GetMasternodePayment(nHeight))
             return true;
 
         // This could be a budget block.
@@ -3604,37 +3601,37 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
     return true;
 }
 
-bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
-{
-    if (pindexPrev == NULL)
-        return error("%s : null pindexPrev for block %s", __func__, block.GetHash().GetHex());
+// bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
+// {
+//     if (pindexPrev == NULL)
+//         return error("%s : null pindexPrev for block %s", __func__, block.GetHash().GetHex());
 
-    unsigned int nBitsRequired = GetNextWorkRequired(pindexPrev, &block);
+//     unsigned int nBitsRequired = GetNextWorkRequired(pindexPrev, &block);
 
-    if (!Params().IsRegTestNet() && block.IsProofOfWork() && (pindexPrev->nHeight + 1 <= 68589)) {
-        double n1 = ConvertBitsToDouble(block.nBits);
-        double n2 = ConvertBitsToDouble(nBitsRequired);
+//     if (!Params().IsRegTestNet() && block.IsProofOfWork() && (pindexPrev->nHeight + 1 <= 68589)) {
+//         double n1 = ConvertBitsToDouble(block.nBits);
+//         double n2 = ConvertBitsToDouble(nBitsRequired);
 
-        if (std::abs(n1 - n2) > n1 * 0.5)
-            return error("%s : incorrect proof of work (DGW pre-fork) - %f %f %f at %d", __func__, std::abs(n1 - n2), n1, n2, pindexPrev->nHeight + 1);
+//         if (std::abs(n1 - n2) > n1 * 0.5)
+//             return error("%s : incorrect proof of work (DGW pre-fork) - %f %f %f at %d", __func__, std::abs(n1 - n2), n1, n2, pindexPrev->nHeight + 1);
 
-        return true;
-    }
+//         return true;
+//     }
 
-    if (block.nBits != nBitsRequired) {
-        // Pivx Specific reference to the block with the wrong threshold was used.
-        const Consensus::Params& consensus = Params().GetConsensus();
-        if ((block.nTime == (uint32_t) consensus.nPivxBadBlockTime) &&
-                (block.nBits == (uint32_t) consensus.nPivxBadBlockBits)) {
-            // accept PIVX block minted with incorrect proof of work threshold
-            return true;
-        }
+//     if (block.nBits != nBitsRequired) {
+//         // Pivx Specific reference to the block with the wrong threshold was used.
+//         const Consensus::Params& consensus = Params().GetConsensus();
+//         if ((block.nTime == (uint32_t) consensus.nPivxBadBlockTime) &&
+//                 (block.nBits == (uint32_t) consensus.nPivxBadBlockBits)) {
+//             // accept PIVX block minted with incorrect proof of work threshold
+//             return true;
+//         }
 
-        return error("%s : incorrect proof of work at %d", __func__, pindexPrev->nHeight + 1);
-    }
+//         return error("%s : incorrect proof of work at %d", __func__, pindexPrev->nHeight + 1);
+//     }
 
-    return true;
-}
+//     return true;
+// }
 
 bool CheckBlockTime(const CBlockHeader& block, CValidationState& state, CBlockIndex* const pindexPrev)
 {
@@ -3743,14 +3740,14 @@ bool ContextualCheckBlock(const CBlock& block, CValidationState& state, CBlockIn
             return state.DoS(10, false, REJECT_INVALID, "bad-txns-nonfinal", false, "non-final transaction");
         }
 
-    // Enforce block.nVersion=2 rule that the coinbase starts with serialized block height
-    if (pindexPrev) { // pindexPrev is only null on the first block which is a version 1 block.
-        CScript expect = CScript() << nHeight;
-        if (block.vtx[0].vin[0].scriptSig.size() < expect.size() ||
-            !std::equal(expect.begin(), expect.end(), block.vtx[0].vin[0].scriptSig.begin())) {
-            return state.DoS(100, false, REJECT_INVALID, "bad-cb-height", false, "block height mismatch in coinbase");
-        }
-    }
+    // // Enforce block.nVersion=2 rule that the coinbase starts with serialized block height
+    // if (pindexPrev) { // pindexPrev is only null on the first block which is a version 1 block.
+    //     CScript expect = CScript() << nHeight;
+    //     if (block.vtx[0].vin[0].scriptSig.size() < expect.size() ||
+    //         !std::equal(expect.begin(), expect.end(), block.vtx[0].vin[0].scriptSig.begin())) {
+    //         return state.DoS(100, false, REJECT_INVALID, "bad-cb-height", false, "block height mismatch in coinbase");
+    //     }
+    // }
 
     return true;
 }
@@ -3846,8 +3843,9 @@ bool AcceptBlock(const CBlock& block, CValidationState& state, CBlockIndex** ppi
         }
     }
 
-    if (block.GetHash() != consensus.hashGenesisBlock && !CheckWork(block, pindexPrev))
-        return false;
+    // We already know these blocks, a checkpoint have been added
+    // if (block.GetHash() != consensus.hashGenesisBlock && !CheckWork(block, pindexPrev))
+    //     return false;
 
     bool isPoS = block.IsProofOfStake();
     if (isPoS) {
