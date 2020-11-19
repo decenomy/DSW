@@ -307,7 +307,7 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
     uint256 hash;
     if(GetTransaction(vin.prevout.hash, txVin, hash, true)) {
         for (CTxOut out : txVin.vout) {
-            if (out.nValue == 10000 * COIN && out.scriptPubKey == payee) return true;
+            if (out.nValue == GetMstrNodCollateral(chainActive.Height()) * COIN && out.scriptPubKey == payee) return true;
         }
     }
 
@@ -441,17 +441,30 @@ bool CMasternodeBroadcast::Sign(const std::string strSignKey)
     return Sign(key, pubkey);
 }
 
+std::string CMasternodeBroadcast::GetOldStrMessage() const
+{
+    std::string strMessage;
+
+    std::string vchPubKey(pubKeyCollateralAddress.begin(), pubKeyCollateralAddress.end());
+    std::string vchPubKey2(pubKeyMasternode.begin(), pubKeyMasternode.end());
+    strMessage = addr.ToString() + std::to_string(sigTime) + vchPubKey + vchPubKey2 + std::to_string(protocolVersion);
+
+    return strMessage;
+}
+
 bool CMasternodeBroadcast::CheckSignature() const
 {
     std::string strError = "";
-    std::string strMessage = (
+    const std::string strMessage = (
                             nMessVersion == MessageVersion::MESS_VER_HASH ?
                             GetSignatureHash().GetHex() :
                             GetStrMessage()
                             );
 
-    if(!CMessageSigner::VerifyMessage(pubKeyCollateralAddress, vchSig, strMessage, strError))
+    if(!CMessageSigner::VerifyMessage(pubKeyCollateralAddress, vchSig, strMessage, strError) &&
+       !CMessageSigner::VerifyMessage(pubKeyCollateralAddress, vchSig, GetOldStrMessage(), strError)) {
         return error("%s : VerifyMessage (nMessVersion=%d) failed: %s", __func__, nMessVersion, strError);
+    } 
 
     return true;
 }

@@ -1971,8 +1971,8 @@ bool CWallet::GetMasternodeVinAndKeys(CTxIn& txinRet, CPubKey& pubKeyRet, CKey& 
     CTxOut txOut = wtx.vout[nOutputIndex];
 
     // Masternode collateral value
-    if (txOut.nValue != 10000 * COIN) {
-        strError = "Invalid collateral tx value, must be 10,000 PIV";
+    if (txOut.nValue != GetMstrNodCollateral(chainActive.Height()) * COIN) {
+        strError = "Invalid collateral tx value";
         return error("%s: tx %s, index %d not a masternode collateral", __func__, strTxHash, nOutputIndex);
     }
 
