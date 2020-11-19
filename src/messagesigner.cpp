@@ -36,12 +36,7 @@ bool CMessageSigner::SignMessage(const std::string& strMessage, std::vector<unsi
 
 bool CMessageSigner::VerifyMessage(const CPubKey& pubkey, const std::vector<unsigned char>& vchSig, const std::string& strMessage, std::string& strErrorRet)
 {
-    return VerifyMessage(pubkey.GetID(), vchSig, strMessage, strErrorRet);
-}
-
-bool CMessageSigner::VerifyMessage(const CKeyID& keyID, const std::vector<unsigned char>& vchSig, const std::string& strMessage, std::string& strErrorRet)
-{
-    return CHashSigner::VerifyHash(GetMessageHash(strMessage), keyID, vchSig, strErrorRet);
+    return CHashSigner::VerifyHash(GetMessageHash(strMessage), pubkey, vchSig, strErrorRet);
 }
 
 bool CHashSigner::SignHash(const uint256& hash, const CKey& key, std::vector<unsigned char>& vchSigRet)
@@ -51,12 +46,9 @@ bool CHashSigner::SignHash(const uint256& hash, const CKey& key, std::vector<uns
 
 bool CHashSigner::VerifyHash(const uint256& hash, const CPubKey& pubkey, const std::vector<unsigned char>& vchSig, std::string& strErrorRet)
 {
-    return VerifyHash(hash, pubkey.GetID(), vchSig, strErrorRet);
-}
-
-bool CHashSigner::VerifyHash(const uint256& hash, const CKeyID& keyID, const std::vector<unsigned char>& vchSig, std::string& strErrorRet)
-{
     CPubKey pubkeyFromSig;
+    const CKeyID keyID = pubkey.GetID();
+
     if(!pubkeyFromSig.RecoverCompact(hash, vchSig)) {
         strErrorRet = "Error recovering public key.";
         return false;
