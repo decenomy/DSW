@@ -27,6 +27,8 @@ public:
     static bool SignMessage(const std::string& strMessage, std::vector<unsigned char>& vchSigRet, const CKey& key);
     /// Verify the message signature, returns true if successful
     static bool VerifyMessage(const CPubKey& pubkey, const std::vector<unsigned char>& vchSig, const std::string& strMessage, std::string& strErrorRet);
+    /// Verify the message signature, returns true if successful
+    static bool VerifyMessage(const CKeyID& keyID, const std::vector<unsigned char>& vchSig, const std::string& strMessage, std::string& strErrorRet);
 };
 
 /** Helper class for signing hashes and checking their signatures
@@ -38,6 +40,8 @@ public:
     static bool SignHash(const uint256& hash, const CKey& key, std::vector<unsigned char>& vchSigRet);
     /// Verify the hash signature, returns true if successful
     static bool VerifyHash(const uint256& hash, const CPubKey& pubkey, const std::vector<unsigned char>& vchSig, std::string& strErrorRet);
+    /// Verify the hash signature, returns true if successful
+    static bool VerifyHash(const uint256& hash, const CKeyID& keyID, const std::vector<unsigned char>& vchSig, std::string& strErrorRet);
 };
 
 /** Base Class for all signed messages on the network
