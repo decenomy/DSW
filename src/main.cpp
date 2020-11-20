@@ -1498,56 +1498,38 @@ double ConvertBitsToDouble(unsigned int nBits)
     return dDiff;
 }
 
-int64_t GetBlockValue(int nHeight)
+CAmount GetBlockValue(int nHeight)
 {   
-  /*if (Params().NetworkID() == CBaseChainParams::TESTNET) {
-        if (nHeight < 200 && nHeight > 0)
-            return 250000 * COIN;
-    }
-
-    if (Params().IsRegTestNet()) {
-        if (nHeight == 0)
-            return 250 * COIN;
-
-    }
-
-    const Consensus::Params& consensus = Params().GetConsensus();
-    const bool isPoSActive = consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_POS);*/
-    int64_t nSubsidy = 0;
     if (nHeight == 1) {
-        nSubsidy = 700000 * COIN;
-    } else if (nHeight <= 1440 && nHeight > 0) {
-        nSubsidy = 1 * COIN;
-    } else if (nHeight <= 468490 && nHeight > 1440) {
-        nSubsidy = 25 * COIN;
-    } else if (nHeight <= 600000 && nHeight > 468490) {
-        nSubsidy = 50 * COIN;
-    } else if (nHeight <= 700000 && nHeight > 600000) {
-        nSubsidy = 75 * COIN;
-    } else if (nHeight <= 800000 && nHeight > 700000) {
-        nSubsidy = 100 * COIN;
-    } else if (nHeight <= 900000 && nHeight > 800000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight <= 1000000 && nHeight > 900000) {
-        nSubsidy = 150 * COIN;
-    } else if (nHeight <= 1100000 && nHeight > 1000000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 1100000) {
-        nSubsidy = 100 * COIN;
-    } 
-    return nSubsidy;
+        return 700000 * COIN;
+    } else if (nHeight > 0 && nHeight <= 1440) {
+        return 1 * COIN;
+    } else if (nHeight > 1440 && nHeight <= 468490) {
+        return 25 * COIN;
+    } else if (nHeight > 468490 && nHeight <= 600000) {
+        return 50 * COIN;
+    } else if (nHeight > 600000 && nHeight <= 700000) {
+        return 75 * COIN;
+    } else if (nHeight > 700000 && nHeight <= 800000) {
+        return 100 * COIN;
+    } else if (nHeight > 800000 && nHeight <= 900000) {
+        return 125 * COIN;
+    } else if (nHeight > 900000 && nHeight <= 1000000) {
+        return 150 * COIN;
+    } else if (nHeight > 1000000 && nHeight <= 1100000) {
+        return 125 * COIN;
+    } else
+        return 100 * COIN;
+    }
 }
 
-int64_t GetMasternodePayment(int nHeight)
+CAmount GetMasternodePayment(int nHeight)
 {
-    int64_t ret = 0;
-
 	if (nHeight <= 600000) {
-		ret = GetBlockValue(nHeight)  * 85 / 100;
+		return GetBlockValue(nHeight) * 85 / 100;
 	} else {
-		ret = GetBlockValue(nHeight)  * 95 / 100;
+		return GetBlockValue(nHeight) * 95 / 100;
 	}
-        return ret;
 }
 
 bool IsInitialBlockDownload()
