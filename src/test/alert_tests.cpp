@@ -1,5 +1,6 @@
 // Copyright (c) 2013 The Bitcoin Core developers
 // Copyright (c) 2019-2020 The PIVX developers
+// Copyright (c) 2020 The Jackpot 777 developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 

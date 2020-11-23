@@ -5,6 +5,7 @@
 // Copyright (c) 2013-2014 The NovaCoin Developers
 // Copyright (c) 2014-2018 The BlackCoin Developers
 // Copyright (c) 2015-2020 The PIVX developers
+// Copyright (c) 2020 The Jackpot 777 developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -1518,7 +1519,7 @@ CAmount GetBlockValue(int nHeight)
         return 150 * COIN;
     } else if (nHeight > 1000000 && nHeight <= 1100000) {
         return 125 * COIN;
-    } else
+    } else {
         return 100 * COIN;
     }
 }
