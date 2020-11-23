@@ -210,7 +210,7 @@
              </size>
             </property>
             <property name="text">
-             <string>Instead of sharing only a PIVX address, you can create a payment request, bundling up more information</string>
+             <string>Instead of sharing only a Jackpot address, you can create a payment request, bundling up more information</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>

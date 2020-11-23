@@ -69,7 +69,7 @@
             <item>
              <widget class="QLabel" name="labelSubtitle1">
               <property name="text">
-               <string>Encrypt your PIVX addresses (key pair actually) using BIP38 encryption.
+               <string>Encrypt your Jackpot addresses (key pair actually) using BIP38 encryption.
 Using this mechanism you can share your keys without middle-man risk, only need to store your passphrase safely</string>
               </property>
               <property name="wordWrap">
@@ -657,7 +657,7 @@ Using this mechanism you can share your keys without middle-man risk, only need 
                   </size>
                  </property>
                  <property name="text">
-                  <string>PIVX address</string>
+                  <string>Jackpot address</string>
                  </property>
                 </widget>
                </item>

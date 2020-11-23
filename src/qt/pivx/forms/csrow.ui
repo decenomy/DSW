@@ -102,7 +102,7 @@
            <item>
             <widget class="QLabel" name="labelAmount">
              <property name="text">
-              <string>0,00 PIV</string>
+              <string>0,00 777</string>
              </property>
             </widget>
            </item>
