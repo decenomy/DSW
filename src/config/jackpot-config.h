@@ -60,7 +60,7 @@
 #define HAVE_BOOST_THREAD /**/
 
 /* define if the Boost::Unit_Test_Framework library is available */
-#define HAVE_BOOST_UNIT_TEST_FRAMEWORK /**/
+/* #undef HAVE_BOOST_UNIT_TEST_FRAMEWORK */
 
 /* Define to 1 if you have the <byteswap.h> header file. */
 #define HAVE_BYTESWAP_H 1
@@ -322,7 +322,7 @@
 #define HAVE_SYS_TYPES_H 1
 
 /* Define if thread_local is supported. */
-#define HAVE_THREAD_LOCAL 1
+/* #undef HAVE_THREAD_LOCAL */
 
 /* Define to 1 if you have the <unistd.h> header file. */
 #define HAVE_UNISTD_H 1
@@ -362,16 +362,16 @@
 /* #undef QT_QPA_PLATFORM_COCOA */
 
 /* Define this symbol if the minimal Qt platform exists */
-/* #undef QT_QPA_PLATFORM_MINIMAL */
+#define QT_QPA_PLATFORM_MINIMAL 1
 
 /* Define this symbol if the Qt platform is Windows */
 /* #undef QT_QPA_PLATFORM_WINDOWS */
 
 /* Define this symbol if the Qt platform is XCB */
-/* #undef QT_QPA_PLATFORM_XCB */
+#define QT_QPA_PLATFORM_XCB 1
 
 /* Define this symbol if Qt plugins are static */
-/* #undef QT_STATICPLUGIN */
+#define QT_STATICPLUGIN 1
 
 /* Define to 1 if you have the ANSI C header files. */
 #define STDC_HEADERS 1
