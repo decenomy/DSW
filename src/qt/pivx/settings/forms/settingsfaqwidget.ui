@@ -163,7 +163,7 @@
                       <enum>Qt::NoFocus</enum>
                      </property>
                      <property name="text">
-                      <string>1) What is Jackpot?</string>
+                      <string>1) What is 777?</string>
                      </property>
                      <property name="checkable">
                       <bool>true</bool>
@@ -495,7 +495,7 @@
                       <item>
                        <widget class="QLabel" name="labelSubtitle_Intro">
                         <property name="text">
-                         <string>What is Jackpot?</string>
+                         <string>What is 777?</string>
                         </property>
                         <property name="wordWrap">
                          <bool>true</bool>
@@ -523,14 +523,14 @@
                         <property name="text">
                          <string>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;
-                           Jackpot is a form of digital online money using blockchain technology
+                           777 is a form of digital online money using blockchain technology
                            that can be easily transferred globally, instantly, and with near
-                           zero fees. Jackpot incorporates market leading security &amp;
+                           zero fees.  777 incorporates market leading security &amp;
                            privacy and is also the first PoS (Proof of Stake) Cryptocurrency
                            to implement ZeroCoin(z777) and Zerocoin staking.
                            &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;
-                           Jackpot utilizes a Proof of Stake (PoS) consensus system algorithm,
-                           allowing all owners of Jackpot to participate in earning block rewards
+                           777 utilizes a Proof of Stake (PoS) consensus system algorithm,
+                           allowing all owners of 777 to participate in earning block rewards
                            while securing the network with full node wallets, as well as to
                            run Masternodes to create and vote on proposals.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
@@ -632,7 +632,7 @@
                            Newly received 777 requires 6 confirmations on the network
                            to become eligible for spending which can take ~6 minutes.
                            &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;
-                           Your Jackpot wallet also needs to be completely synchronized
+                           Your 777 wallet also needs to be completely synchronized
                            to see and spend balances on the network.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </string>
@@ -818,7 +818,7 @@
                          <string>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;
                            We have support channels in most of our official chat groups, for example
-                           &lt;a style='color: #b088ff' href=' https://discord.com/invite/HNyRevT'&gt;
+                           &lt;a style='color: #b088ff' href='https://discord.com/invite/HNyRevT'&gt;
                            #support in our Discord&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </string>
@@ -913,7 +913,7 @@
                         <property name="text">
                          <string>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;
-                           A masternode is a computer running a full node Jackpot core wallet with a
+                           A masternode is a computer running a full node 777 wallet with a
                            required amount of secured collateral to provide extra services
                            to the network and in return, receive a portion of the block reward
                            regularly.  These services include:
@@ -936,10 +936,10 @@
                            Masternode Perks:
                            &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;Participate in Jackpot Governance&lt;/li&gt;
+                           &lt;li&gt;Participate in 777 Governance&lt;/li&gt;
                            &lt;li&gt;Earn Masternode Rewards&lt;/li&gt;
                            &lt;li&gt;Commodity option for future sale&lt;/li&gt;
-                           &lt;li&gt;Help secure the Jackpot network&lt;/li&gt;
+                           &lt;li&gt;Help secure the 777 network&lt;/li&gt;
                            &lt;/ul&gt;
                            &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;
 
