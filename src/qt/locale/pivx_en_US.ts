@@ -1164,16 +1164,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>version</translation>
     </message>
     <message>
-        <source>Jackpot Core</source>
-        <translation>Jackpot Core</translation>
+        <source>Jackpot</source>
+        <translation>Jackpot</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Jackpot Core</source>
-        <translation>About Jackpot Core</translation>
+        <source>About Jackpot</source>
+        <translation>About Jackpot</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1227,16 +1227,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>Welcome</translation>
     </message>
     <message>
-        <source>Welcome to Jackpot Core.</source>
-        <translation>Welcome to Jackpot Core.</translation>
+        <source>Welcome to Jackpot.</source>
+        <translation>Welcome to Jackpot.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Jackpot Core will store its data.</source>
-        <translation>As this is the first time the program is launched, you can choose where Jackpot Core will store its data.</translation>
+        <source>As this is the first time the program is launched, you can choose where Jackpot will store its data.</source>
+        <translation>As this is the first time the program is launched, you can choose where Jackpot will store its data.</translation>
     </message>
     <message>
-        <source>Jackpot Core will download and store a copy of the 777 block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Jackpot Core will download and store a copy of the 777 block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</translation>
+        <source>Jackpot will download and store a copy of the 777 block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Jackpot will download and store a copy of the 777 block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1255,8 +1255,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>OK</translation>
     </message>
     <message>
-        <source>Jackpot Core</source>
-        <translation>Jackpot Core</translation>
+        <source>Jackpot</source>
+        <translation>Jackpot</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -2083,8 +2083,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>Jackpot Core</source>
-        <translation>Jackpot Core</translation>
+        <source>Jackpot</source>
+        <translation>Jackpot</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -2111,8 +2111,8 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Quit application</translation>
     </message>
     <message>
-        <source>Jackpot Core client</source>
-        <translation>Jackpot Core client</translation>
+        <source>Jackpot client</source>
+        <translation>Jackpot client</translation>
     </message>
     <message>
         <source>Error</source>
@@ -2320,8 +2320,8 @@ Address: %4
         <translation>A fatal error occurred. 777 can no longer continue safely and will quit.</translation>
     </message>
     <message>
-        <source>Jackpot Core</source>
-        <translation>Jackpot Core</translation>
+        <source>Jackpot</source>
+        <translation>Jackpot</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -2340,8 +2340,8 @@ Address: %4
         <translation>Error reading masternode configuration file: %1</translation>
     </message>
     <message>
-        <source>Jackpot Core didn't yet exit safely...</source>
-        <translation>Jackpot Core didn't yet exit safely...</translation>
+        <source>Jackpot didn't yet exit safely...</source>
+        <translation>Jackpot didn't yet exit safely...</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -3977,7 +3977,7 @@ There was an error trying to save the address list to %1. Please try again.</tra
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           A masternode is a computer running a full node Jackpot core wallet with a
+                           A masternode is a computer running a full node 777 wallet with a
                            required amount of secured collateral to provide extra services
                            to the network and in return, receive a portion of the block reward
                            regularly.  These services include:
@@ -4019,7 +4019,7 @@ There was an error trying to save the address list to %1. Please try again.</tra
                          </source>
         <translation>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           A masternode is a computer running a full node Jackpot core wallet with a
+                           A masternode is a computer running a full node 777 wallet with a
                            required amount of secured collateral to provide extra services
                            to the network and in return, receive a portion of the block reward
                            regularly.  These services include:
@@ -4850,8 +4850,8 @@ Are you sure?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Jackpot Core is shutting down...</source>
-        <translation>Jackpot Core is shutting down...</translation>
+        <source>Jackpot is shutting down...</source>
+        <translation>Jackpot is shutting down...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4880,8 +4880,8 @@ Are you sure?
         <translation>Loading…</translation>
     </message>
     <message>
-        <source>Jackpot Core</source>
-        <translation>Jackpot Core</translation>
+        <source>Jackpot</source>
+        <translation>Jackpot</translation>
     </message>
 </context>
 <context>
@@ -5448,9 +5448,9 @@ Select fewer inputs with coin control.</translation>
     </message>
     <message>
         <source>Welcome to
-Jackpot Core Wallet</source>
+Jackpot Wallet</source>
         <translation>Welcome to
-Jackpot Core Wallet</translation>
+Jackpot Wallet</translation>
     </message>
     <message>
         <source>777 is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
@@ -5512,8 +5512,8 @@ Please run 'sapling-fetch-params' or './util/fetch-params.sh' and then restart.<
 Please run 'sapling-fetch-params' or './util/fetch-params.sh' and then restart.</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Jackpot Core is probably already running.</source>
-        <translation>Cannot obtain a lock on data directory %s. Jackpot Core is probably already running.</translation>
+        <source>Cannot obtain a lock on data directory %s. Jackpot is probably already running.</source>
+        <translation>Cannot obtain a lock on data directory %s. Jackpot is probably already running.</translation>
     </message>
     <message>
         <source>Cannot upgrade to Sapling wallet (already running Sapling support). Version: %d</source>
@@ -5680,8 +5680,8 @@ Please run 'sapling-fetch-params' or './util/fetch-params.sh' and then restart.<
         <translation>Total length of network version string (%i) exceeds maximum length (%i). Reduce the number or size of uacomments.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Jackpot Core is probably already running.</source>
-        <translation>Unable to bind to %s on this computer. Jackpot Core is probably already running.</translation>
+        <source>Unable to bind to %s on this computer. Jackpot is probably already running.</source>
+        <translation>Unable to bind to %s on this computer. Jackpot is probably already running.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -5696,8 +5696,8 @@ Please run 'sapling-fetch-params' or './util/fetch-params.sh' and then restart.<
         <translation>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Jackpot Core will not work properly.</source>
-        <translation>Warning: Please check that your computer's date and time are correct! If your clock is wrong Jackpot Core will not work properly.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Jackpot will not work properly.</source>
+        <translation>Warning: Please check that your computer's date and time are correct! If your clock is wrong Jackpot will not work properly.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5912,8 +5912,8 @@ Please run 'sapling-fetch-params' or './util/fetch-params.sh' and then restart.<
         <translation>Information</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Jackpot Core is shutting down.</source>
-        <translation>Initialization sanity check failed. Jackpot Core is shutting down.</translation>
+        <source>Initialization sanity check failed. Jackpot is shutting down.</source>
+        <translation>Initialization sanity check failed. Jackpot is shutting down.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -6276,8 +6276,8 @@ Please run 'sapling-fetch-params' or './util/fetch-params.sh' and then restart.<
         <translation>Minimum positive amount (in 777) allowed by GUI and RPC for the stake split threshold (default: %s)</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong Jackpot Core will not work properly.</source>
-        <translation>Please check that your computer's date and time are correct! If your clock is wrong Jackpot Core will not work properly.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong Jackpot will not work properly.</source>
+        <translation>Please check that your computer's date and time are correct! If your clock is wrong Jackpot will not work properly.</translation>
     </message>
     <message>
         <source>Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect/-noconnect)</source>
@@ -6320,8 +6320,8 @@ Please run 'sapling-fetch-params' or './util/fetch-params.sh' and then restart.<
         <translation>Error loading %s: Wallet corrupted</translation>
     </message>
     <message>
-        <source>Error loading %s: Wallet requires newer version of Jackpot Core</source>
-        <translation>Error loading %s: Wallet requires newer version of Jackpot Core</translation>
+        <source>Error loading %s: Wallet requires newer version of Jackpot</source>
+        <translation>Error loading %s: Wallet requires newer version of Jackpot</translation>
     </message>
     <message>
         <source>Error loading %s
@@ -6724,8 +6724,8 @@ Please run 'sapling-fetch-params' or './util/fetch-params.sh' and then restart.<
         <translation>Wallet debugging/testing options:</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Jackpot Core to complete</source>
-        <translation>Wallet needed to be rewritten: restart Jackpot Core to complete</translation>
+        <source>Wallet needed to be rewritten: restart Jackpot to complete</source>
+        <translation>Wallet needed to be rewritten: restart Jackpot to complete</translation>
     </message>
     <message>
         <source>Wallet options:</source>
