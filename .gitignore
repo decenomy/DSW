@@ -8,12 +8,19 @@ reset-files.bash
 
 *.exe
 src/pivx
+src/jackpot
 src/pivxd
+src/jackpotd
 src/pivx-cli
+src/jackpot-cli
 src/pivx-tx
+src/jackpot-tx
 src/bench/bench_pivx
+src/bench/bench_jackpotx
 src/test/test_pivx
+src/test/test_jackpot
 src/qt/test/test_pivx-qt
+src/qt/test/test_jackpot-qt
 
 # autoreconf
 Makefile.in
@@ -67,6 +74,7 @@ src/qt/test/moc*.cpp
 *.o-*
 *.patch
 .pivx
+.jackpot
 *.a
 *.pb.cc
 *.pb.h
@@ -86,7 +94,8 @@ src/qt/test/moc*.cpp
 *.qm
 Makefile
 pivx-qt
-PIVX-Qt.app
+jackpot-qt
+Jackpot-Qt.app
 background.tiff*
 
 # Rust
@@ -97,6 +106,7 @@ target/
 # Unit-tests
 Makefile.test
 pivx-qt_test
+jackpot-qt_test
 src/test/buildenv.py
 
 # Resources cpp
@@ -113,6 +123,7 @@ build
 *.gcno
 /*.info
 test_pivx.coverage/
+test_jackpot.coverage/
 total.coverage/
 coverage_percent.txt
 
@@ -144,7 +155,9 @@ moc_*
 ui_*
 build*
 pivxd.*
+jackpotd.*
 pivxd-new-gui.*
+jackpotd-new-gui.*
 
 # for Visual Studio Code
 
