@@ -937,7 +937,7 @@
                      </property>
                      <property name="text">
                       <string>Welcome to
-Jackpot Core Wallet</string>
+Jackpot Wallet</string>
                      </property>
                      <property name="alignment">
                       <set>Qt::AlignCenter</set>
