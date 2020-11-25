@@ -136,7 +136,7 @@
                </size>
               </property>
               <property name="text">
-               <string>As this is the first time the program is launched, you can choose where Jackpot Core will store its data.</string>
+               <string>As this is the first time the program is launched, you can choose where Jackpot will store its data.</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
