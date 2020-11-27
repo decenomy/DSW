@@ -1,10 +1,74 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="24px" height="40px" viewBox="0 0 24 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
-    <title>Settings</title>
-    <desc>Created with Sketch.</desc>
-    <g id="Settings" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M14.9,35 L9.1,35 L8.787,31.864 L8.72,31.837 L6.281,33.837 L2.167,29.725 L4.167,27.285 L4.139,27.219 L1,26.9 L1,21.1 L4.135,20.786 L4.163,20.72 L2.163,18.28 L6.276,14.168 L8.715,16.168 L8.782,16.141 L9.1,13 L14.9,13 L15.213,16.136 L15.28,16.163 L17.719,14.163 L21.828,18.27 L19.828,20.71 L19.856,20.776 L23,21.1 L23,26.9 L19.865,27.214 L19.837,27.28 L21.837,29.72 L17.728,33.827 L15.289,31.827 L15.222,31.854 L14.9,35 Z M10.9,33 L13.1,33 L13.361,30.39 L13.987,30.19 C14.3287124,30.08012 14.660554,29.9416296 14.979,29.776 L15.562,29.476 L17.595,31.14 L19.143,29.591 L17.479,27.556 L17.779,26.972 C17.9446037,26.6542337 18.0830952,26.3230586 18.193,25.982 L18.393,25.357 L21,25.1 L21,22.9 L18.39,22.639 L18.19,22.014 C18.0800952,21.6729414 17.9416037,21.3417663 17.776,21.024 L17.476,20.44 L19.138,18.41 L17.59,16.861 L15.557,18.525 L14.974,18.225 C14.655552,18.0593747 14.3237108,17.9208845 13.982,17.811 L13.356,17.611 L13.1,15 L10.9,15 L10.639,17.61 L10.013,17.81 C9.67128919,17.9198845 9.33944799,18.0583747 9.021,18.224 L8.438,18.524 L6.41,16.861 L4.862,18.41 L6.526,20.445 L6.226,21.029 C6.06039627,21.3467663 5.92190485,21.6779414 5.812,22.019 L5.612,22.644 L3,22.9 L3,25.1 L5.61,25.361 L5.81,25.986 C5.91990485,26.3270586 6.05839627,26.6582337 6.224,26.976 L6.524,27.56 L4.862,29.59 L6.41,31.139 L8.443,29.475 L9.026,29.775 C9.34444598,29.9406296 9.67628755,30.07912 10.018,30.189 L10.644,30.389 L10.9,33 Z" id="Path_18871" fill="#FFFFFF" fill-rule="nonzero"></path>
-        <path d="M12,28 C9.790861,28 8,26.209139 8,24 C8,21.790861 9.790861,20 12,20 C14.209139,20 16,21.790861 16,24 C16,25.060866 15.5785726,26.0782816 14.8284271,26.8284271 C14.0782816,27.5785726 13.060866,28 12,28 Z M12,22 C10.8954305,22 10,22.8954305 10,24 C10,25.1045695 10.8954305,26 12,26 C13.1045695,26 14,25.1045695 14,24 C14,22.8954305 13.1045695,22 12,22 Z" id="Path_18872" fill="#FFFFFF" fill-rule="nonzero"></path>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="24px"
+   height="40px"
+   viewBox="0 0 24 40"
+   version="1.1"
+   id="svg9"
+   sodipodi:docname="ic-nav-settings-hover.svg"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
+  <metadata
+     id="metadata15">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Settings</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs13" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="640"
+     inkscape:window-height="480"
+     id="namedview11"
+     showgrid="false"
+     inkscape:zoom="6.65"
+     inkscape:cx="12"
+     inkscape:cy="20"
+     inkscape:current-layer="g6" />
+  <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+  <title
+     id="title2">Settings</title>
+  <desc
+     id="desc4">Created with Sketch.</desc>
+  <g
+     id="Settings"
+     stroke="none"
+     stroke-width="1"
+     fill="none"
+     fill-rule="evenodd">
+    <g
+       id="g6"
+       transform="translate(0,12.4)">
+      <path
+         id="path2"
+         d="M 0,0 H 24 V 24 H 0 Z"
+         inkscape:connector-curvature="0"
+         style="fill:none" />
+      <path
+         style="fill:#ed1c24;fill-opacity:1"
+         id="path4"
+         d="m 19.14,12.94 c 0.04,-0.3 0.06,-0.61 0.06,-0.94 0,-0.32 -0.02,-0.64 -0.07,-0.94 L 21.16,9.48 C 21.34,9.34 21.39,9.07 21.28,8.87 L 19.36,5.55 C 19.24,5.33 18.99,5.26 18.77,5.33 L 16.38,6.29 C 15.88,5.91 15.35,5.59 14.76,5.35 L 14.4,2.81 C 14.36,2.57 14.16,2.4 13.92,2.4 H 10.08 C 9.84,2.4 9.65,2.57 9.61,2.81 L 9.25,5.35 C 8.66,5.59 8.12,5.92 7.63,6.29 L 5.24,5.33 C 5.02,5.25 4.77,5.33 4.65,5.55 L 2.74,8.87 C 2.62,9.08 2.66,9.34 2.86,9.48 l 2.03,1.58 C 4.84,11.36 4.8,11.69 4.8,12 c 0,0.31 0.02,0.64 0.07,0.94 l -2.03,1.58 c -0.18,0.14 -0.23,0.41 -0.12,0.61 l 1.92,3.32 c 0.12,0.22 0.37,0.29 0.59,0.22 l 2.39,-0.96 c 0.5,0.38 1.03,0.7 1.62,0.94 l 0.36,2.54 c 0.05,0.24 0.24,0.41 0.48,0.41 h 3.84 c 0.24,0 0.44,-0.17 0.47,-0.41 l 0.36,-2.54 c 0.59,-0.24 1.13,-0.56 1.62,-0.94 l 2.39,0.96 c 0.22,0.08 0.47,0 0.59,-0.22 l 1.92,-3.32 c 0.12,-0.22 0.07,-0.47 -0.12,-0.61 z M 12,15.6 c -1.98,0 -3.6,-1.62 -3.6,-3.6 0,-1.98 1.62,-3.6 3.6,-3.6 1.98,0 3.6,1.62 3.6,3.6 0,1.98 -1.62,3.6 -3.6,3.6 z"
+         inkscape:connector-curvature="0" />
     </g>
+  </g>
 </svg>
