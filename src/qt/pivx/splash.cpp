@@ -25,7 +25,7 @@
 #include <iostream>
 
 Splash::Splash(Qt::WindowFlags f, const NetworkStyle* networkStyle) :
-    QWidget(0, f), ui(new Ui::Splash)
+    QWidget(0, f | Qt::SplashScreen), ui(new Ui::Splash)
 {
     ui->setupUi(this);
     QString titleText = tr("Jackpot");
@@ -43,7 +43,7 @@ Splash::Splash(Qt::WindowFlags f, const NetworkStyle* networkStyle) :
     ui->frame->setProperty("cssClass", "container-splash");
     ui->layoutProgress->setProperty("cssClass", "bg-progress");
     ui->imgLogo->setProperty("cssClass", "img-splash-logo");
-    ui->lblVersion->setText(QString("v") + QString::fromStdString(FormatVersionFriendly()));
+    ui->lblVersion->setText(QString(tr("VERSION %1")).arg(QString::fromStdString(FormatVersionFriendly())));
 
     // Resize window and move to center of desktop, disallow resizing
     QRect r(QPoint(), size());
