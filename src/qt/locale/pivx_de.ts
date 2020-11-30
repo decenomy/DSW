@@ -1585,7 +1585,7 @@ Please wait few more minutes (masternode collaterals require %1 confirmations).<
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the pivx.conf file
+You will only have to paste the data in the jackpot.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1593,7 +1593,7 @@ this controller wallet (select the Masternode in the list and press "start").
 in die Zwischenablage zu kopieren.
 
 
-SIe müssen lediglich die Daten in die pivx.conf Datei Ihres externen Servers einfügen,
+SIe müssen lediglich die Daten in die jackpot.conf Datei Ihres externen Servers einfügen,
 die Pivx-wallet starten, um dann von der Kontrollwallet aus
 ihren Masternode zu starten (Wählen Sie den Masternode in der Liste aus und drücken SIe "Start").
 </translation>
@@ -1783,8 +1783,8 @@ STAKING</translation>
         <translation>Zu viele Daten zu parsen</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "pivx" prefix</source>
-        <translation>Ungültige URI, sie beginnt nicht mit "pivx"-Präfix</translation>
+        <source>Invalid URI, not starting with "jackpot" prefix</source>
+        <translation>Ungültige URI, sie beginnt nicht mit "jackpot"-Präfix</translation>
     </message>
 </context>
 <context>
@@ -1886,9 +1886,9 @@ STAKING</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+        https://discord.com/invite/HNyRevT</source>
         <translation>Sprache fehlt oder ist unvollständig? Helfe mit und trage zur Übersetzung bei unter:
-https://www.transifex.com/pivx-project/pivx-project-translations</translation>
+        https://discord.com/invite/HNyRevT</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -4118,8 +4118,8 @@ Ein Masternode ist ein Computer, auf dem ein PIVX-Core-Wallet als Node ausgefüh
         <translation>Backup-Ordner konnte nicht geöffnet werden</translation>
     </message>
     <message>
-        <source>Unable to open pivx.conf with default application</source>
-        <translation>pivx.conf konnte mit der Standardanwendung nicht geöffnet werden</translation>
+        <source>Unable to open jackpot.conf with default application</source>
+        <translation>jackpot.conf konnte mit der Standardanwendung nicht geöffnet werden</translation>
     </message>
     <message>
         <source>In:</source>
