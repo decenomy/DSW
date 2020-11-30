@@ -1530,14 +1530,14 @@ Espere unos minutos más (las garantías de masternode requieren %1 confirmacion
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the pivx.conf file
+You will only have to paste the data in the jackpot.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
         <translation>Estás a punto de exportar los datos necesarios para ejecutar un Masternode de un servidor remoto a tu portapapeles.
 
 
-Sólo tendrás que pegar los datos en el archivo pivx.conf de tu servidor remoto e iniciarlo, luego inicia el Masternode usando esta wallet de controladores (selecciona el Masternode en la lista y presione "start").
+Sólo tendrás que pegar los datos en el archivo jackpot.conf de tu servidor remoto e iniciarlo, luego inicia el Masternode usando esta wallet de controladores (selecciona el Masternode en la lista y presione "start").
 </translation>
     </message>
     <message>
@@ -1717,8 +1717,8 @@ STAKING</translation>
         <translation>Los datos analizados son demasiado grandes</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "pivx" prefix</source>
-        <translation>URI inválido, no empezar con el prefijo "pivx"</translation>
+        <source>Invalid URI, not starting with "jackpot" prefix</source>
+        <translation>URI inválido, no empezar con el prefijo "jackpot"</translation>
     </message>
 </context>
 <context>
@@ -1820,9 +1820,9 @@ STAKING</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+        https://discord.com/invite/HNyRevT</source>
         <translation>¿Falta su lenguaje o la traducción está incompleta? Contribuya con las traducciones aquí:
-https://www.transifex.com/pivx-project/pivx-project-translations</translation>
+        https://discord.com/invite/HNyRevT</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -3950,8 +3950,8 @@ Requisitos:
         <translation>No se puede abrir la carpeta de copias de seguridad</translation>
     </message>
     <message>
-        <source>Unable to open pivx.conf with default application</source>
-        <translation>No se puede abrir pivx.conf con la aplicación predeterminada</translation>
+        <source>Unable to open jackpot.conf with default application</source>
+        <translation>No se puede abrir jackpot.conf con la aplicación predeterminada</translation>
     </message>
     <message>
         <source>In:</source>

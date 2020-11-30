@@ -1538,7 +1538,7 @@ Molimo pričekajte nekoliko minuta (zalog za Masternode zahtjeva %1 potvrda).</t
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the pivx.conf file
+You will only have to paste the data in the jackpot.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1546,7 +1546,7 @@ this controller wallet (select the Masternode in the list and press "start").
 na udaljenom poslužitelju u medjuspremnik.
 
 
-Podatke ćete morati zalijepiti u datoteku pivx.conf
+Podatke ćete morati zalijepiti u datoteku jackpot.conf
 na udaljenom poslužitelju i pokrenuti ga, a zatim pokrenite Masternode
 koristeći ovaj controller novčanik (na popisu odaberite Masternode i pritisnite "start").
 </translation>
@@ -1732,8 +1732,8 @@ STAKING</translation>
         <translation>Parsirani podaci preveliki</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "pivx" prefix</source>
-        <translation>Nevažeći URI, ne počinje "pivx" prefiksom</translation>
+        <source>Invalid URI, not starting with "jackpot" prefix</source>
+        <translation>Nevažeći URI, ne počinje "jackpot" prefiksom</translation>
     </message>
 </context>
 <context>
@@ -1835,9 +1835,9 @@ STAKING</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+        https://discord.com/invite/HNyRevT</source>
         <translation>Jezik nedostaje ili prijevod nije potpun? Pomozite s prijevodom ovdje:
-https://www.transifex.com/pivx-project/pivx-project-translations</translation>
+        https://discord.com/invite/HNyRevT</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -4046,8 +4046,8 @@ Zahtjevi:
         <translation>Ne može se otvoriti mapa sigurnosne kopije</translation>
     </message>
     <message>
-        <source>Unable to open pivx.conf with default application</source>
-        <translation>Nije moguće otvoriti pivx.conf sa zadanom aplikacijom</translation>
+        <source>Unable to open jackpot.conf with default application</source>
+        <translation>Nije moguće otvoriti jackpot.conf sa zadanom aplikacijom</translation>
     </message>
     <message>
         <source>In:</source>

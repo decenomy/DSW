@@ -1590,7 +1590,7 @@ Per favore, attendi qualche minuto (il collaterale del masternode richiede %1 co
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the pivx.conf file
+You will only have to paste the data in the jackpot.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1598,7 +1598,7 @@ this controller wallet (select the Masternode in the list and press "start").
 un Masternode su un server remoto .
 
 
-Dovrai solo incollare i dati nel file pivx.conf del server remoto
+Dovrai solo incollare i dati nel file jackpot.conf del server remoto
 e avviarlo, quindi avviare il Masternode utilizzando questo portafoglio
 come controller (selezionare il Masternode nell'elenco e premere "start").
 </translation>
@@ -1788,8 +1788,8 @@ STAKING</translation>
         <translation>Dati analizzati troppo grandi</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "pivx" prefix</source>
-        <translation>URI non valido, che non inizia con il prefisso "pivx"</translation>
+        <source>Invalid URI, not starting with "jackpot" prefix</source>
+        <translation>URI non valido, che non inizia con il prefisso "jackpot"</translation>
     </message>
 </context>
 <context>
@@ -1891,9 +1891,9 @@ STAKING</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+        https://discord.com/invite/HNyRevT</source>
         <translation>Lingua mancante o traduzione incompleta? Aiutaci a contribuire alle traduzioni qui:
-https://www.transifex.com/pivx-project/pivx-project-translations</translation>
+        https://discord.com/invite/HNyRevT</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -4184,8 +4184,8 @@ regolarmente. Questi servizi includono:
         <translation>Impossibile aprire la cartella dei backup</translation>
     </message>
     <message>
-        <source>Unable to open pivx.conf with default application</source>
-        <translation>Impossibile aprire pivx.conf con l'applicazione predefinita</translation>
+        <source>Unable to open jackpot.conf with default application</source>
+        <translation>Impossibile aprire jackpot.conf con l'applicazione predefinita</translation>
     </message>
     <message>
         <source>In:</source>

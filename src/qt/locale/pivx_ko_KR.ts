@@ -1481,7 +1481,7 @@ Please wait few more minutes (masternode collaterals require %1 confirmations).<
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the pivx.conf file
+You will only have to paste the data in the jackpot.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1489,7 +1489,7 @@ this controller wallet (select the Masternode in the list and press "start").
 클립보드로 내보내려고 합니다.
 
 
-그 데이터를 리모트 서버의 pivx.conf 파일에
+그 데이터를 리모트 서버의 jackpot.conf 파일에
 붙여넣고 시작합니다. 그리고 컨트롤러 지갑에서 마스터노드를
 시작합니다. (리스트에서 마스터노드를 선택하고 "시작"을 누르십시오.)
 </translation>
@@ -1628,8 +1628,8 @@ Are you sure?</source>
         <translation>구문 분석된 데이터가 너무 큽니다.</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "pivx" prefix</source>
-        <translation>"pivx"로 시작하지 않아 유효하지 않은 URI</translation>
+        <source>Invalid URI, not starting with "jackpot" prefix</source>
+        <translation>"jackpot"로 시작하지 않아 유효하지 않은 URI</translation>
     </message>
 </context>
 <context>
@@ -1731,9 +1731,9 @@ Are you sure?</source>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+        https://discord.com/invite/HNyRevT</source>
         <translation>지원 언어가 없거나 번역이 불완전한가요? 번역을 도와주세요 :
-https://www.transifex.com/pivx-project/pivx-project-translations</translation>
+        https://discord.com/invite/HNyRevT</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -3507,8 +3507,8 @@ Verify that you have installed a predetermined text editor.</source>
         <translation>백업 폴더를 열 수 없습니다.</translation>
     </message>
     <message>
-        <source>Unable to open pivx.conf with default application</source>
-        <translation>pivx.conf 파일을 기본 앱으로 열 수 없습니다.</translation>
+        <source>Unable to open jackpot.conf with default application</source>
+        <translation>jackpot.conf 파일을 기본 앱으로 열 수 없습니다.</translation>
     </message>
     <message>
         <source>In:</source>
