@@ -210,12 +210,12 @@ bool RecalculatePIVSupply(int nHeightStart, bool fSkipZpiv)
         for (auto& denom : libzerocoin::zerocoinDenomList) mapZerocoinSupply.insert(std::make_pair(denom, 0));
     }
 
-    uiInterface.ShowProgress(_("Recalculating PIV supply..."), 0);
+    uiInterface.ShowProgress(_("Recalculating 777 supply..."), 0);
     while (true) {
         if (pindex->nHeight % 1000 == 0) {
             LogPrintf("%s : block %d...\n", __func__, pindex->nHeight);
             int percent = std::max(1, std::min(99, (int)((double)((pindex->nHeight - nHeightStart) * 100) / (chainHeight - nHeightStart))));
-            uiInterface.ShowProgress(_("Recalculating PIV supply..."), percent);
+            uiInterface.ShowProgress(_("Recalculating 777 supply..."), percent);
         }
 
         CBlock block;

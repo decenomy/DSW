@@ -3717,7 +3717,7 @@ std::string CWallet::GetWalletHelpString(bool showDebug)
     strUsage += HelpMessageOpt("-coldstaking=<n>", strprintf(_("Enable cold staking functionality (0-1, default: %u). Disabled if staking=0"), DEFAULT_COLDSTAKING));
     strUsage += HelpMessageOpt("-gen", strprintf(_("Generate coins (default: %u)"), DEFAULT_GENERATE));
     strUsage += HelpMessageOpt("-genproclimit=<n>", strprintf(_("Set the number of threads for coin generation if enabled (-1 = all cores, default: %d)"), DEFAULT_GENERATE_PROCLIMIT));
-    strUsage += HelpMessageOpt("-minstakesplit=<amt>", strprintf(_("Minimum positive amount (in PIV) allowed by GUI and RPC for the stake split threshold (default: %s)"), FormatMoney(DEFAULT_MIN_STAKE_SPLIT_THRESHOLD)));
+    strUsage += HelpMessageOpt("-minstakesplit=<amt>", strprintf(_("Minimum positive amount (in 777) allowed by GUI and RPC for the stake split threshold (default: %s)"), FormatMoney(DEFAULT_MIN_STAKE_SPLIT_THRESHOLD)));
     strUsage += HelpMessageOpt("-staking=<n>", strprintf(_("Enable staking functionality (0-1, default: %u)"), DEFAULT_STAKING));
     if (showDebug) {
         strUsage += HelpMessageGroup(_("Wallet debugging/testing options:"));
@@ -3907,7 +3907,7 @@ CWallet* CWallet::CreateWalletFromFile(const std::string walletFile)
 
     if (!zwalletInstance->GetMasterSeed().IsNull()) {
         //Inititalize zPIVWallet
-        uiInterface.InitMessage(_("Syncing zPIV wallet..."));
+        uiInterface.InitMessage(_("Syncing z777 wallet..."));
 
         //Load zerocoin mint hashes to memory
         walletInstance->zpivTracker->Init();

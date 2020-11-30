@@ -543,7 +543,7 @@ bool CWallet::CreateZCPublicSpendTransaction(
     }
 
     if (nValue < 1) {
-        receipt.SetStatus(_("Value is below the smallest available denomination (= 1) of zPIV"), nStatus);
+        receipt.SetStatus(_("Value is below the smallest available denomination (= 1) of z777"), nStatus);
         return false;
     }
 
