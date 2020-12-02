@@ -3320,7 +3320,7 @@ bu sayede 777 sahipleri blok ödülü kazanımına katılabilmektedir
                          </source>
         <translation>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           Tam düğüm PIVX core cüzdanını çalıştıran, gereken 10,000 PIV
+                           Tam düğüm 777 cüzdanını çalıştıran, gereken 10,000 PIV
                            teminat bakiyesini barındırarak ağa ekstra hizmetler sunan ve
                            karşılığında da her blok ödülünden düzenli olarak pay alan bir
                            bilgisayardır.Bu hizmetler aşağıdaki gibidir:

@@ -1364,7 +1364,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a 777 Masternode you must dedicate a collateral amount of 777 (the unit of 777) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>Para crear un Masternode de PIVX debes desponer 10.000 PIV (la unidad de PIVX) a la red (sin embargo, estas monedas siguen siendo tuyas y nunca saldrán de tu posesión). Puedes desactivar el nodo y desbloquear las monedas en cualquier momento.</translation>
+        <translation>Para crear un Masternode de 777 debes desponer 10.000 PIV (la unidad de 777) a la red (sin embargo, estas monedas siguen siendo tuyas y nunca saldrán de tu posesión). Puedes desactivar el nodo y desbloquear las monedas en cualquier momento.</translation>
     </message>
     <message>
         <source>Set Masternode Name</source>
@@ -3986,7 +3986,7 @@ Tu cartera 777 también necesita estar completamente sincronizada para que pueda
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-Un Masternode es un ordenador que ejecuta una Core Wallet de PIVX de nodo
+Un Masternode es un ordenador que ejecuta una Core Wallet de 777 de nodo
 completo con un requisito de 10.000 PIV de garantía asegurados para prestar servicios
 adicionales a la red y a cambio, recibir una parte de la recompensa del bloque
 regularmente. Estos servicios incluyen:
