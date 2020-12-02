@@ -61,7 +61,7 @@
 
 
 #if defined(NDEBUG)
-#error "PIVX cannot be compiled without assertions."
+#error "Jackpot cannot be compiled without assertions."
 #endif
 
 /**
@@ -3497,7 +3497,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                 nHeight = (*mi).second->nHeight + 1;
         }
 
-        // PIVX
+        // Jackpot
         // It is entierly possible that we don't have enough data and this could fail
         // (i.e. the block could indeed be valid). Store the block for later consideration
         // but issue an initial reject message.
@@ -3606,7 +3606,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
 //         const Consensus::Params& consensus = Params().GetConsensus();
 //         if ((block.nTime == (uint32_t) consensus.nPivxBadBlockTime) &&
 //                 (block.nBits == (uint32_t) consensus.nPivxBadBlockBits)) {
-//             // accept PIVX block minted with incorrect proof of work threshold
+//             // accept Jackpot block minted with incorrect proof of work threshold
 //             return true;
 //         }
 
@@ -5336,7 +5336,7 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
             pfrom->fDisconnect = true;
         }
 
-        // PIVX: We use certain sporks during IBD, so check to see if they are
+        // Jackpot: We use certain sporks during IBD, so check to see if they are
         // available. If not, ask the first peer connected for them.
         // TODO: Move this to an instant broadcast of the sporks.
         bool fMissingSporks = !pSporkDB->SporkExists(SPORK_14_NEW_PROTOCOL_ENFORCEMENT) ||
