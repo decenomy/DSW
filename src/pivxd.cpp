@@ -114,7 +114,7 @@ bool AppInit(int argc, char* argv[])
                 fCommandLine = true;
 
         if (fCommandLine) {
-            fprintf(stderr, "Error: There is no RPC client functionality in pivxd anymore. Use the pivx-cli utility instead.\n");
+            fprintf(stderr, "Error: There is no RPC client functionality in jackpotd anymore. Use the jackpot-cli utility instead.\n");
             exit(1);
         }
 #ifndef WIN32
