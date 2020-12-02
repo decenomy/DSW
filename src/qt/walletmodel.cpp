@@ -851,7 +851,7 @@ void WalletModel::getOutputs(const std::vector<COutPoint>& vOutpoints, std::vect
     }
 }
 
-// returns a COutPoint of 10000 PIV if found
+// returns a COutPoint of collateral amount if found
 bool WalletModel::getMNCollateralCandidate(COutPoint& outPoint)
 {
     std::vector<COutput> vCoins;
