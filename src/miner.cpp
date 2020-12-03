@@ -563,7 +563,7 @@ void CheckForCoins(CWallet* pwallet, const int minutes, std::vector<COutput>* av
 
 void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
 {
-    LogPrintf("PIVXMiner started\n");
+    LogPrintf("Miner started\n");
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
     util::ThreadRename("pivx-miner");
     const Consensus::Params& consensus = Params().GetConsensus();

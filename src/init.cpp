@@ -966,7 +966,7 @@ void InitLogging()
     LogPrintf("Jackpot version %s (%s)\n", version_string, CLIENT_DATE);
 }
 
-/** Initialize pivx.
+/** Initialize jackpot.
  *  @pre Parameters should be parsed and config file should be read.
  */
 bool AppInit2()
