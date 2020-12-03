@@ -131,7 +131,7 @@ UniValue preparebudget(const JSONRPCRequest& request)
 
     checkBudgetInputs(request.params, strProposalName, strURL, nPaymentCount, nBlockStart, address, nAmount);
 
-    // Parse PIVX address
+    // Parse 777 address
     CScript scriptPubKey = GetScriptForDestination(address);
 
     // create transaction 15 minutes into the future, to allow for confirmation time
@@ -196,7 +196,7 @@ UniValue submitbudget(const JSONRPCRequest& request)
 
     checkBudgetInputs(request.params, strProposalName, strURL, nPaymentCount, nBlockStart, address, nAmount);
 
-    // Parse PIVX address
+    // Parse 777 address
     CScript scriptPubKey = GetScriptForDestination(address);
 
     uint256 hash = ParseHashV(request.params[6], "parameter 1");

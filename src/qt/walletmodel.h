@@ -107,7 +107,7 @@ public:
     }
 };
 
-/** Interface to PIVX wallet from Qt view code. */
+/** Interface to 777 wallet from Qt view code. */
 class WalletModel : public QObject
 {
     Q_OBJECT

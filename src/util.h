@@ -39,7 +39,7 @@ extern const char * const PIVX_PID_FILENAME;
 extern const char * const PIVX_MASTERNODE_CONF_FILENAME;
 extern const char * const DEFAULT_DEBUGLOGFILE;
 
-//PIVX only features
+//777 only features
 
 extern bool fMasterNode;
 extern bool fLiteMode;

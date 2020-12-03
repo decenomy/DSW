@@ -963,7 +963,7 @@ void SendMoney(const CTxDestination& address, CAmount nValue, CWalletTx& wtxNew,
         throw JSONRPCError(RPC_WALLET_ERROR, strError);
     }
 
-    // Parse PIVX address
+    // Parse 777 address
     CScript scriptPubKey = GetScriptForDestination(address);
 
     // Create and send the transaction
@@ -1416,7 +1416,7 @@ UniValue getreceivedbyaddress(const JSONRPCRequest& request)
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
-    // pivx address
+    // 777 address
     CTxDestination address = DecodeDestination(request.params[0].get_str());
     if (!IsValidDestination(address))
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");

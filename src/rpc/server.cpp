@@ -360,7 +360,7 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblock",           &waitforblock,           true },
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true },
 
-        /* PIVX features */
+        /* 777 features */
         {"pivx", "listmasternodes", &listmasternodes, true },
         {"pivx", "getmasternodecount", &getmasternodecount, true },
         {"pivx", "createmasternodebroadcast", &createmasternodebroadcast, true },
