@@ -139,7 +139,7 @@ UniValue getaddressinfo(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() > 1)
         throw std::runtime_error(
                 "getaddressinfo ( \"address\" )\n"
-                "\nReturn information about the given PIVX address.\n"
+                "\nReturn information about the given 777 address.\n"
                 "Some of the information will only be present if the address is in the active wallet.\n"
                 "{Result:\n"
                 "  \"address\" : \"address\",              (string) The bitcoin address validated.\n"
@@ -468,7 +468,7 @@ UniValue getnewaddress(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() > 1)
         throw std::runtime_error(
             "getnewaddress ( \"label\" )\n"
-            "\nReturns a new PIVX address for receiving payments.\n"
+            "\nReturns a new 777 address for receiving payments.\n"
             "If 'label' is specified, it is added to the address book \n"
             "so payments received with the address will be associated with 'label'.\n"
 
@@ -476,7 +476,7 @@ UniValue getnewaddress(const JSONRPCRequest& request)
             "1. \"label\"        (string, optional) The label name for the address to be linked to. if not provided, the default label \"\" is used. It can also be set to the empty string \"\" to represent the default label. The label does not need to exist, it will be created if there is no label by the given name.\n"
 
             "\nResult:\n"
-            "\"pivxaddress\"    (string) The new pivx address\n"
+            "\"777address\"    (string) The new 777 address\n"
 
             "\nExamples:\n" +
             HelpExampleCli("getnewaddress", "") + HelpExampleRpc("getnewaddress", ""));
@@ -497,7 +497,7 @@ UniValue getnewstakingaddress(const JSONRPCRequest& request)
 
 
             "\nResult:\n"
-            "\"pivxaddress\"    (string) The new pivx address\n"
+            "\"777address\"    (string) The new 777 address\n"
 
             "\nExamples:\n" +
             HelpExampleCli("getnewstakingaddress", "") + HelpExampleRpc("getnewstakingaddress", ""));
@@ -556,13 +556,13 @@ UniValue delegatoradd(const JSONRPCRequest& request)
     bool isStakingAddress = false;
     CTxDestination dest = DecodeDestination(request.params[0].get_str(), isStakingAddress);
     if (!IsValidDestination(dest) || isStakingAddress)
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid 777 address");
 
     const std::string strLabel = (request.params.size() > 1 ? request.params[1].get_str() : "");
 
     CKeyID keyID = boost::get<CKeyID>(DecodeDestination(request.params[0].get_str()));
     if (!keyID)
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Unable to get KeyID from PIVX address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Unable to get KeyID from 777 address");
 
     return pwalletMain->SetAddressBook(keyID, strLabel, AddressBook::AddressBookPurpose::DELEGATOR);
 }
@@ -588,14 +588,14 @@ UniValue delegatorremove(const JSONRPCRequest& request)
     bool isStakingAddress = false;
     CTxDestination dest = DecodeDestination(request.params[0].get_str(), isStakingAddress);
     if (!IsValidDestination(dest) || isStakingAddress)
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid 777 address");
 
     CKeyID keyID = *boost::get<CKeyID>(&dest);
     if (!keyID)
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Unable to get KeyID from PIVX address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Unable to get KeyID from 777 address");
 
     if (!pwalletMain->HasAddressBook(keyID))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Unable to get PIVX address from addressBook");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Unable to get 777 address from addressBook");
 
     std::string label = "";
     {
@@ -645,7 +645,7 @@ UniValue listdelegators(const JSONRPCRequest& request)
             "[\n"
             "   {\n"
             "   \"label\": \"yyy\",    (string) Address label\n"
-            "   \"address\": \"xxx\",  (string) PIVX address string\n"
+            "   \"address\": \"xxx\",  (string) 777 address string\n"
             "   }\n"
             "  ...\n"
             "]\n"
@@ -671,7 +671,7 @@ UniValue liststakingaddresses(const JSONRPCRequest& request)
             "[\n"
             "   {\n"
             "   \"label\": \"yyy\",  (string) Address label\n"
-            "   \"address\": \"xxx\",  (string) PIVX address string\n"
+            "   \"address\": \"xxx\",  (string) 777 address string\n"
             "   }\n"
             "  ...\n"
             "]\n"
@@ -759,7 +759,7 @@ UniValue getaccountaddress(const JSONRPCRequest& request)
             "1. \"account\"       (string, required) The account for the address. It can also be set to the empty string \"\" to represent the default account. The account does not need to exist, it will be created and a new address created  if there is no account by the given name.\n"
 
             "\nResult:\n"
-            "\"pivxaddress\"   (string) The account pivx address.\n"
+            "\"777address\"   (string) The account 777 address.\n"
 
             "\nExamples:\n" +
             HelpExampleCli("getaccountaddress", "") + HelpExampleCli("getaccountaddress", "\"\"") +
@@ -782,7 +782,7 @@ UniValue getrawchangeaddress(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() > 1)
         throw std::runtime_error(
             "getrawchangeaddress\n"
-            "\nReturns a new PIVX address, for receiving change.\n"
+            "\nReturns a new 777 address, for receiving change.\n"
             "This is for use with raw transactions, NOT normal use.\n"
 
             "\nResult:\n"
@@ -820,11 +820,11 @@ UniValue setlabel(const JSONRPCRequest& request)
 
     if (request.fHelp || request.params.size() != 2)
         throw std::runtime_error(
-            "setlabel \"pivxaddress\" \"label\"\n"
+            "setlabel \"777address\" \"label\"\n"
             "\nSets the label associated with the given address.\n"
 
             "\nArguments:\n"
-            "1. \"pivxaddress\"   (string, required) The pivx address to be associated with a label.\n"
+            "1. \"777address\"   (string, required) The 777 address to be associated with a label.\n"
             "2. \"label\"         (string, required) The label to assign to the address.\n"
 
             "\nExamples:\n" +
@@ -834,7 +834,7 @@ UniValue setlabel(const JSONRPCRequest& request)
 
     CTxDestination dest = DecodeDestination(request.params[0].get_str());
     if (!IsValidDestination(dest))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid 777 address");
 
     std::string old_label = pwalletMain->mapAddressBook[dest].name;
     std::string label = LabelFromValue(request.params[1]);
@@ -877,11 +877,11 @@ UniValue getaccount(const JSONRPCRequest& request)
 
     if (request.fHelp || request.params.size() != 1)
         throw std::runtime_error(
-            "getaccount \"pivxaddress\"\n"
+            "getaccount \"777address\"\n"
             "\nDEPRECATED. Returns the account associated with the given address.\n"
 
             "\nArguments:\n"
-            "1. \"pivxaddress\"  (string, required) The pivx address for account lookup.\n"
+            "1. \"777address\"  (string, required) The 777 address for account lookup.\n"
 
             "\nResult:\n"
             "\"accountname\"        (string) the account address\n"
@@ -893,7 +893,7 @@ UniValue getaccount(const JSONRPCRequest& request)
 
     CTxDestination address = DecodeDestination(request.params[0].get_str());
     if (!IsValidDestination(address))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid 777 address");
 
     std::string strAccount;
     std::map<CTxDestination, AddressBook::CAddressBookData>::iterator mi = pwalletMain->mapAddressBook.find(address);
@@ -922,7 +922,7 @@ UniValue getaddressesbyaccount(const JSONRPCRequest& request)
 
             "\nResult:\n"
             "[                     (json array of string)\n"
-            "  \"pivxaddress\"  (string) a pivx address associated with the given account\n"
+            "  \"777address\"  (string) a 777 address associated with the given account\n"
             "  ,...\n"
             "]\n"
 
@@ -984,12 +984,12 @@ UniValue sendtoaddress(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 2 || request.params.size() > 4)
         throw std::runtime_error(
-            "sendtoaddress \"pivxaddress\" amount ( \"comment\" \"comment-to\" )\n"
+            "sendtoaddress \"777address\" amount ( \"comment\" \"comment-to\" )\n"
             "\nSend an amount to a given address. The amount is a real and is rounded to the nearest 0.00000001\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"pivxaddress\"  (string, required) The pivx address to send to.\n"
+            "1. \"777address\"  (string, required) The 777 address to send to.\n"
             "2. \"amount\"      (numeric, required) The amount in PIV to send. eg 0.1\n"
             "3. \"comment\"     (string, optional) A comment used to store what the transaction is for. \n"
             "                             This is not part of the transaction, just kept in your wallet.\n"
@@ -1010,7 +1010,7 @@ UniValue sendtoaddress(const JSONRPCRequest& request)
     bool isStaking = false;
     CTxDestination address = DecodeDestination(request.params[0].get_str(), isStaking);
     if (!IsValidDestination(address) || isStaking)
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid 777 address");
 
     // Amount
     CAmount nAmount = AmountFromValue(request.params[1]);
@@ -1134,7 +1134,7 @@ UniValue delegatestake(const JSONRPCRequest& request)
             "\nArguments:\n"
             "1. \"stakingaddress\"      (string, required) The pivx staking address to delegate.\n"
             "2. \"amount\"              (numeric, required) The amount in PIV to delegate for staking. eg 100\n"
-            "3. \"owneraddress\"        (string, optional) The pivx address corresponding to the key that will be able to spend the stake. \n"
+            "3. \"owneraddress\"        (string, optional) The 777 address corresponding to the key that will be able to spend the stake. \n"
             "                               If not provided, or empty string, a new wallet address is generated.\n"
             "4. \"fExternalOwner\"      (boolean, optional, default = false) use the provided 'owneraddress' anyway, even if not present in this wallet.\n"
             "                               WARNING: The owner of the keys to 'owneraddress' will be the only one allowed to spend these coins.\n"
@@ -1179,7 +1179,7 @@ UniValue rawdelegatestake(const JSONRPCRequest& request)
             "\nArguments:\n"
             "1. \"stakingaddress\"      (string, required) The pivx staking address to delegate.\n"
             "2. \"amount\"              (numeric, required) The amount in PIV to delegate for staking. eg 100\n"
-            "3. \"owneraddress\"        (string, optional) The pivx address corresponding to the key that will be able to spend the stake. \n"
+            "3. \"owneraddress\"        (string, optional) The 777 address corresponding to the key that will be able to spend the stake. \n"
             "                               If not provided, or empty string, a new wallet address is generated.\n"
             "4. \"fExternalOwner\"      (boolean, optional, default = false) use the provided 'owneraddress' anyway, even if not present in this wallet.\n"
             "                               WARNING: The owner of the keys to 'owneraddress' will be the only one allowed to spend these coins.\n"
@@ -1213,7 +1213,7 @@ UniValue rawdelegatestake(const JSONRPCRequest& request)
             "         \"reqSigs\" : n,            (numeric) The required sigs\n"
             "         \"type\" : \"pubkeyhash\",  (string) The type, eg 'pubkeyhash'\n"
             "         \"addresses\" : [           (json array of string)\n"
-            "           \"pivxaddress\"        (string) pivx address\n"
+            "           \"777address\"        (string) 777 address\n"
             "           ,...\n"
             "         ]\n"
             "       }\n"
@@ -1244,12 +1244,12 @@ UniValue sendtoaddressix(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 2 || request.params.size() > 4)
         throw std::runtime_error(
-            "sendtoaddressix \"pivxaddress\" amount ( \"comment\" \"comment-to\" )\n"
+            "sendtoaddressix \"777address\" amount ( \"comment\" \"comment-to\" )\n"
             "\nSend an amount to a given address. The amount is a real and is rounded to the nearest 0.00000001\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"pivxaddress\"  (string, required) The pivx address to send to.\n"
+            "1. \"777address\"  (string, required) The 777 address to send to.\n"
             "2. \"amount\"      (numeric, required) The amount in PIV to send. eg 0.1\n"
             "3. \"comment\"     (string, optional) A comment used to store what the transaction is for. \n"
             "                             This is not part of the transaction, just kept in your wallet.\n"
@@ -1270,7 +1270,7 @@ UniValue sendtoaddressix(const JSONRPCRequest& request)
     bool isStaking = false;
     CTxDestination address = DecodeDestination(request.params[0].get_str(), isStaking);
     if (!IsValidDestination(address) || isStaking)
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid 777 address");
 
     // Amount
     CAmount nAmount = AmountFromValue(request.params[1]);
@@ -1302,7 +1302,7 @@ UniValue listaddressgroupings(const JSONRPCRequest& request)
             "[\n"
             "  [\n"
             "    [\n"
-            "      \"pivxaddress\",     (string) The pivx address\n"
+            "      \"777address\",     (string) The 777 address\n"
             "      amount,                 (numeric) The amount in PIV\n"
             "      \"label\"             (string, optional) The label\n"
             "    ]\n"
@@ -1339,12 +1339,12 @@ UniValue signmessage(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 2)
         throw std::runtime_error(
-            "signmessage \"pivxaddress\" \"message\"\n"
+            "signmessage \"777address\" \"message\"\n"
             "\nSign a message with the private key of an address" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"pivxaddress\"  (string, required) The pivx address to use for the private key.\n"
+            "1. \"777address\"  (string, required) The 777 address to use for the private key.\n"
             "2. \"message\"         (string, required) The message to create a signature of.\n"
 
             "\nResult:\n"
@@ -1394,11 +1394,11 @@ UniValue getreceivedbyaddress(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
         throw std::runtime_error(
-            "getreceivedbyaddress \"pivxaddress\" ( minconf )\n"
-            "\nReturns the total amount received by the given pivxaddress in transactions with at least minconf confirmations.\n"
+            "getreceivedbyaddress \"777address\" ( minconf )\n"
+            "\nReturns the total amount received by the given 777address in transactions with at least minconf confirmations.\n"
 
             "\nArguments:\n"
-            "1. \"pivxaddress\"  (string, required) The pivx address for transactions.\n"
+            "1. \"777address\"  (string, required) The 777 address for transactions.\n"
             "2. minconf             (numeric, optional, default=1) Only include transactions confirmed at least this many times.\n"
 
             "\nResult:\n"
@@ -1419,7 +1419,7 @@ UniValue getreceivedbyaddress(const JSONRPCRequest& request)
     // 777 address
     CTxDestination address = DecodeDestination(request.params[0].get_str());
     if (!IsValidDestination(address))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid 777 address");
     CScript scriptPubKey = GetScriptForDestination(address);
     if (!IsMine(*pwalletMain, scriptPubKey))
         throw JSONRPCError(RPC_WALLET_ERROR, "Address not found in wallet");
@@ -1743,14 +1743,14 @@ UniValue sendfrom(const JSONRPCRequest& request)
 
     if (request.fHelp || request.params.size() < 3 || request.params.size() > 7)
         throw std::runtime_error(
-            "sendfrom \"fromaccount\" \"topivxaddress\" amount ( minconf \"comment\" \"comment-to\" includeDelegated)\n"
-            "\nDEPRECATED (use sendtoaddress). Send an amount from an account to a pivx address.\n"
+            "sendfrom \"fromaccount\" \"to777address\" amount ( minconf \"comment\" \"comment-to\" includeDelegated)\n"
+            "\nDEPRECATED (use sendtoaddress). Send an amount from an account to a 777 address.\n"
             "The amount is a real and is rounded to the nearest 0.00000001." +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
             "1. \"fromaccount\"       (string, required) The name of the account to send funds from. May be the default account using \"\".\n"
-            "2. \"topivxaddress\"  (string, required) The pivx address to send funds to.\n"
+            "2. \"to777address\"  (string, required) The 777 address to send funds to.\n"
             "3. amount                (numeric, required) The amount in PIV. (transaction fee is added on top).\n"
             "4. minconf               (numeric, optional, default=1) Only use funds with at least this many confirmations.\n"
             "5. \"comment\"           (string, optional) A comment used to store what the transaction is for. \n"
@@ -1777,7 +1777,7 @@ UniValue sendfrom(const JSONRPCRequest& request)
     bool isStaking = false;
     CTxDestination address = DecodeDestination(request.params[1].get_str(), isStaking);
     if (!IsValidDestination(address) || isStaking)
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid 777 address");
     CAmount nAmount = AmountFromValue(request.params[2]);
     int nMinDepth = 1;
     if (request.params.size() > 3)
@@ -1821,7 +1821,7 @@ UniValue sendmany(const JSONRPCRequest& request)
             "1. \"dummy\"               (string, required) Must be set to \"\" for backwards compatibility.\n"
             "2. \"amounts\"             (string, required) A json object with addresses and amounts\n"
             "    {\n"
-            "      \"address\":amount   (numeric) The pivx address is the key, the numeric amount in PIV is the value\n"
+            "      \"address\":amount   (numeric) The 777 address is the key, the numeric amount in PIV is the value\n"
             "      ,...\n"
             "    }\n"
             "3. minconf                 (numeric, optional, default=1) Only use the balance confirmed at least this many times.\n"
@@ -1849,7 +1849,7 @@ UniValue sendmany(const JSONRPCRequest& request)
             "1. \"fromaccount\"         (string, required) DEPRECATED. The account to send the funds from. Should be \"\" for the default account\n"
             "2. \"amounts\"             (string, required) A json object with addresses and amounts\n"
             "    {\n"
-            "      \"address\":amount   (numeric) The pivx address is the key, the numeric amount in PIV is the value\n"
+            "      \"address\":amount   (numeric) The 777 address is the key, the numeric amount in PIV is the value\n"
             "      ,...\n"
             "    }\n"
             "3. minconf                 (numeric, optional, default=1) Only use the balance confirmed at least this many times.\n"
@@ -1899,7 +1899,7 @@ UniValue sendmany(const JSONRPCRequest& request)
         bool isStaking = false;
         CTxDestination dest = DecodeDestination(name_,isStaking);
         if (!IsValidDestination(dest) || isStaking)
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid PIVX address: ")+name_);
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid 777 address: ")+name_);
 
         if (setAddress.count(dest))
             throw JSONRPCError(RPC_INVALID_PARAMETER, std::string("Invalid parameter, duplicated address: ")+name_);
@@ -1949,20 +1949,20 @@ UniValue addmultisigaddress(const JSONRPCRequest& request)
         throw std::runtime_error(
             "addmultisigaddress nrequired [\"key\",...] ( \"label\" )\n"
             "\nAdd a nrequired-to-sign multisignature address to the wallet.\n"
-            "Each key is a PIVX address or hex-encoded public key.\n"
+            "Each key is a 777 address or hex-encoded public key.\n"
             "If 'label' is specified, assign address to that label.\n"
 
             "\nArguments:\n"
             "1. nrequired        (numeric, required) The number of required signatures out of the n keys or addresses.\n"
-            "2. \"keysobject\"   (string, required) A json array of pivx addresses or hex-encoded public keys\n"
+            "2. \"keysobject\"   (string, required) A json array of 777 addresses or hex-encoded public keys\n"
             "     [\n"
-            "       \"address\"  (string) pivx address or hex-encoded public key\n"
+            "       \"address\"  (string) 777 address or hex-encoded public key\n"
             "       ...,\n"
             "     ]\n"
             "3. \"label\"      (string, optional) A label to assign the addresses to.\n"
 
             "\nResult:\n"
-            "\"pivxaddress\"  (string) A pivx address associated with the keys.\n"
+            "\"777address\"  (string) A 777 address associated with the keys.\n"
 
             "\nExamples:\n"
             "\nAdd a multisig address from 2 addresses\n" +
@@ -2406,7 +2406,7 @@ UniValue listtransactions(const JSONRPCRequest& request)
             "\nResult:\n"
             "[\n"
             "  {\n"
-            "    \"address\":\"pivxaddress\",    (string) The pivx address of the transaction. Not present for \n"
+            "    \"address\":\"777address\",    (string) The 777 address of the transaction. Not present for \n"
             "                                                move transactions (category = move).\n"
             "    \"category\":\"send|receive|move\", (string) The transaction category. 'move' is a local (off blockchain)\n"
             "                                                transaction between accounts, and not associated with an address,\n"
@@ -2461,7 +2461,7 @@ UniValue listtransactions(const JSONRPCRequest& request)
             "  {\n"
             "    \"account\":\"accountname\",       (string) DEPRECATED. The account name associated with the transaction. \n"
             "                                                It will be \"\" for the default account.\n"
-            "    \"address\":\"pivxaddress\",    (string) The pivx address of the transaction. Not present for \n"
+            "    \"address\":\"777address\",    (string) The 777 address of the transaction. Not present for \n"
             "                                                move transactions (category = move).\n"
             "    \"category\":\"send|receive|move\", (string) The transaction category. 'move' is a local (off blockchain)\n"
             "                                                transaction between accounts, and not associated with an address,\n"
@@ -2676,7 +2676,7 @@ UniValue listsinceblock(const JSONRPCRequest& request)
             "{\n"
             "  \"transactions\": [\n"
             "    \"account\":\"accountname\",       (string) DEPRECATED. This field will be removed in v5.0. To see this deprecated field, start pivxd with -deprecatedrpc=accounts. The account name associated with the transaction. Will be \"\" for the default account.\n"
-            "    \"address\":\"pivxaddress\",    (string) The pivx address of the transaction. Not present for move transactions (category = move).\n"
+            "    \"address\":\"777address\",    (string) The 777 address of the transaction. Not present for move transactions (category = move).\n"
             "    \"category\":\"send|receive\",     (string) The transaction category. 'send' has negative amounts, 'receive' has positive amounts.\n"
             "    \"amount\": x.xxx,          (numeric) The amount in PIV. This is negative for the 'send' category, and for the 'move' category for moves \n"
             "                                          outbound. It is positive for the 'receive' category, and for the 'move' category for inbound funds.\n"
@@ -2773,7 +2773,7 @@ UniValue gettransaction(const JSONRPCRequest& request)
             "  \"details\" : [\n"
             "    {\n"
             "      \"account\" : \"accountname\",  (string) DEPRECATED.This field will be removed in v5.0. To see this deprecated field, start pivxd with -deprecatedrpc=accounts. The account name involved in the transaction, can be \"\" for the default account.\n"
-            "      \"address\" : \"pivxaddress\",   (string) The pivx address involved in the transaction\n"
+            "      \"address\" : \"777address\",   (string) The 777 address involved in the transaction\n"
             "      \"category\" : \"send|receive\",    (string) The category, either 'send' or 'receive'\n"
             "      \"amount\" : x.xxx                  (numeric) The amount in PIV\n"
             "      \"vout\" : n,                       (numeric) the vout value\n"
@@ -3097,7 +3097,7 @@ UniValue encryptwallet(const JSONRPCRequest& request)
             "\nNow set the passphrase to use the wallet, such as for signing or sending PIVs\n" +
             HelpExampleCli("walletpassphrase", "\"my pass phrase\"") +
             "\nNow we can so something like sign\n" +
-            HelpExampleCli("signmessage", "\"pivxaddress\" \"test message\"") +
+            HelpExampleCli("signmessage", "\"777address\" \"test message\"") +
             "\nNow lock the wallet again by removing the passphrase\n" +
             HelpExampleCli("walletlock", "") +
             "\nAs a json rpc call\n" +
@@ -3145,9 +3145,9 @@ UniValue listunspent(const JSONRPCRequest& request)
                 "\nArguments:\n"
                 "1. minconf          (numeric, optional, default=1) The minimum confirmations to filter\n"
                 "2. maxconf          (numeric, optional, default=9999999) The maximum confirmations to filter\n"
-                "3. \"addresses\"    (string) A json array of pivx addresses to filter\n"
+                "3. \"addresses\"    (string) A json array of 777 addresses to filter\n"
                 "    [\n"
-                "      \"address\"   (string) pivx address\n"
+                "      \"address\"   (string) 777 address\n"
                 "      ,...\n"
                 "    ]\n"
                 "4. watchonlyconfig  (numeric, optional, default=1) 1 = list regular unspent transactions,  2 = list all unspent transactions (including watchonly)\n"
@@ -3157,7 +3157,7 @@ UniValue listunspent(const JSONRPCRequest& request)
                 "  {\n"
                 "    \"txid\" : \"txid\",        (string) the transaction id\n"
                 "    \"vout\" : n,               (numeric) the vout value\n"
-                "    \"address\" : \"address\",  (string) the pivx address\n"
+                "    \"address\" : \"address\",  (string) the 777 address\n"
                 "    \"label\" : \"label\",      (string) The associated label, or \"\" for the default label\n"
                 "    \"account\" : \"account\",  (string) DEPRECATED.This field will be removed in v5.0. To see this deprecated field, start pivxd with -deprecatedrpc=accounts. Backwards compatible alias for label.\n"
                 "    \"scriptPubKey\" : \"key\", (string) the script key\n"
@@ -3190,7 +3190,7 @@ UniValue listunspent(const JSONRPCRequest& request)
             const UniValue& input = inputs[inx];
             CTxDestination dest = DecodeDestination(input.get_str());
             if (!IsValidDestination(dest))
-                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid PIVX address: ") + input.get_str());
+                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid 777 address: ") + input.get_str());
             if (destinations.count(dest))
                 throw JSONRPCError(RPC_INVALID_PARAMETER, std::string("Invalid parameter, duplicated address: ") + input.get_str());
             destinations.insert(dest);
@@ -3598,7 +3598,7 @@ UniValue autocombinerewards(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() < 1 || (fEnable && request.params.size() != 2) || request.params.size() > 2)
         throw std::runtime_error(
             "autocombinerewards enable ( threshold )\n"
-            "\nWallet will automatically monitor for any coins with value below the threshold amount, and combine them if they reside with the same PIVX address\n"
+            "\nWallet will automatically monitor for any coins with value below the threshold amount, and combine them if they reside with the same 777 address\n"
             "When autocombinerewards runs it will create a transaction, and therefore will be subject to transaction fees.\n"
 
             "\nArguments:\n"
@@ -4295,7 +4295,7 @@ extern UniValue DoZpivSpend(const CAmount nAmount, std::vector<CZerocoinMint>& v
         bool isStaking = false;
         address = DecodeDestination(address_str, isStaking);
         if(!IsValidDestination(address) || isStaking)
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIVX address");
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid 777 address");
         outputs.push_back(std::pair<CTxDestination, CAmount>(address, nAmount));
     }
 
@@ -4964,7 +4964,7 @@ UniValue spendrawzerocoin(const JSONRPCRequest& request)
             "2. \"randomnessHex\"    (string, required) A zerocoin randomness value (hex)\n"
             "3. denom                (numeric, required) A zerocoin denomination (decimal)\n"
             "4. \"priv key\"         (string, required) The private key associated with this coin (hex)\n"
-            "5. \"address\"          (string, optional) PIVX address to spend to. If not specified, "
+            "5. \"address\"          (string, optional) 777 address to spend to. If not specified, "
             "                        or empty string, spend to change address.\n"
             "6. \"mintTxId\"         (string, optional) txid of the transaction containing the mint. If not"
             "                        specified, or empty string, the blockchain will be scanned (could take a while)"
