@@ -80,8 +80,8 @@ void OpenURIDialog::on_selectFileButton_clicked()
         }
 
         QString str = QString::fromStdString(std::string(r.constData(), r.length()));
-        if (!str.startsWith("pivx")) {
-            inform(tr("Invalid URI, not starting with \"pivx\" prefix"));
+        if (!str.startsWith("jackpot")) {
+            inform(tr("Invalid URI, not starting with \"jackpot\" prefix"));
         }
         ui->uriEdit->setText(str);
     }

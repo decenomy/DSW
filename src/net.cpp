@@ -1437,7 +1437,7 @@ void ThreadMapPort()
             }
         }
 
-        std::string strDesc = "PIVX " + FormatFullVersion();
+        std::string strDesc = "Jackpot " + FormatFullVersion();
 
         try {
             while (true) {

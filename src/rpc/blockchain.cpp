@@ -419,7 +419,7 @@ UniValue getrawmempool(const JSONRPCRequest& request)
             "{                           (json object)\n"
             "  \"transactionid\" : {       (json object)\n"
             "    \"size\" : n,             (numeric) transaction size in bytes\n"
-            "    \"fee\" : n,              (numeric) transaction fee in pivx\n"
+            "    \"fee\" : n,              (numeric) transaction fee in 777\n"
             "    \"modifiedfee\" : n,      (numeric) transaction fee with fee deltas used for mining priority\n"
             "    \"time\" : n,             (numeric) local time transaction entered pool in seconds since 1 Jan 1970 GMT\n"
             "    \"height\" : n,           (numeric) block height when transaction entered pool\n"
