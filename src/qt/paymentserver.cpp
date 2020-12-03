@@ -77,7 +77,7 @@ namespace // Anon namespace
 //
 static QString ipcServerName()
 {
-    QString name("PIVXQt");
+    QString name("JackpotQt");
 
     // Append a simple hash of the datadir
     // Note that GetDataDir(true) returns a different path
@@ -284,7 +284,7 @@ PaymentServer::PaymentServer(QObject* parent, bool startLocalServer) : QObject(p
         if (!uriServer->listen(name)) {
             // constructor is called early in init, so don't use "emit message()" here
             QMessageBox::critical(0, tr("Payment request error"),
-                tr("Cannot start pivx: click-to-pay handler"));
+                tr("Cannot start jackpot: click-to-pay handler"));
         } else {
             connect(uriServer, &QLocalServer::newConnection, this, &PaymentServer::handleURIConnection);
             connect(this, &PaymentServer::receivedPaymentACK, this, &PaymentServer::handlePaymentACK);
