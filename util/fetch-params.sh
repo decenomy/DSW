@@ -13,9 +13,9 @@ if [ -n "${1:-}" ]; then
     PARAMS_DIR="$1"
 else
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        PARAMS_DIR="$HOME/Library/Application Support/PIVXParams"
+        PARAMS_DIR="$HOME/Library/Application Support/jackpotParams"
     else
-        PARAMS_DIR="$HOME/.pivx-params"
+        PARAMS_DIR="$HOME/.jackpot-params"
     fi
 fi
 

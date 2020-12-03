@@ -586,7 +586,7 @@ int main(int argc, char* argv[])
     if (!Intro::pickDataDirectory())
         return 0;
 
-    /// 6. Determine availability of data directory and parse pivx.conf
+    /// 6. Determine availability of data directory and parse jackpot.conf
     /// - Do not call GetDataDir(true) before this step finishes
     if (!fs::is_directory(GetDataDir(false))) {
         QMessageBox::critical(0, QObject::tr("Jackpot"),

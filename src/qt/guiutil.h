@@ -137,7 +137,7 @@ bool isObscured(QWidget* w);
 // Open debug.log
 bool openDebugLogfile();
 
-// Open pivx.conf
+// Open jackpot.conf
 bool openConfigfile();
 
 // Open masternode.conf

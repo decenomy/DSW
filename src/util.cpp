@@ -86,12 +86,12 @@
 #include <openssl/crypto.h>
 #include <openssl/rand.h>
 
-const char * const PIVX_CONF_FILENAME = "pivx.conf";
-const char * const PIVX_PID_FILENAME = "pivx.pid";
+const char * const PIVX_CONF_FILENAME = "jackpot.conf";
+const char * const PIVX_PID_FILENAME = "jackpot.pid";
 const char * const PIVX_MASTERNODE_CONF_FILENAME = "masternode.conf";
 
 
-// PIVX only features
+// Jackpot only features
 // Masternode
 bool fMasterNode = false;
 std::string strMasterNodePrivKey = "";
@@ -294,10 +294,10 @@ fs::path GetDefaultDataDir()
 // Windows < Vista: C:\Documents and Settings\Username\Application Data\PIVX
 // Windows >= Vista: C:\Users\Username\AppData\Roaming\PIVX
 // Mac: ~/Library/Application Support/PIVX
-// Unix: ~/.pivx
+// Unix: ~/.jackpot
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "PIVX";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "jackpot";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -309,10 +309,10 @@ fs::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "PIVX";
+    return pathRet / "jackpot";
 #else
     // Unix
-    return pathRet / ".pivx";
+    return pathRet / ".jackpot";
 #endif
 #endif
 }
@@ -325,13 +325,13 @@ static RecursiveMutex csPathCached;
 static fs::path ZC_GetBaseParamsDir()
 {
     // Copied from GetDefaultDataDir and adapter for zcash params.
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\PIVXParams
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\PIVXParams
-    // Mac: ~/Library/Application Support/PIVXParams
-    // Unix: ~/.pivx-params
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\jackpotParams
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\jackpotParams
+    // Mac: ~/Library/Application Support/jackpotParams
+    // Unix: ~/.jackpot-params
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "PIVXParams";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "jackpotParams";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -343,10 +343,10 @@ static fs::path ZC_GetBaseParamsDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "PIVXParams";
+    return pathRet / "jackpotParams";
 #else
     // Unix
-    return pathRet / ".pivx-params";
+    return pathRet / ".jackpot-params";
 #endif
 #endif
 }
@@ -468,7 +468,7 @@ void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet,
 {
     fs::ifstream streamConfig(GetConfigFile());
     if (!streamConfig.good()) {
-        // Create empty pivx.conf if it does not exist
+        // Create empty jackpot.conf if it does not exist
         FILE* configFile = fsbridge::fopen(GetConfigFile(), "a");
         if (configFile != NULL)
             fclose(configFile);
@@ -479,7 +479,7 @@ void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet,
     setOptions.insert("*");
 
     for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it) {
-        // Don't overwrite existing settings so command line settings override pivx.conf
+        // Don't overwrite existing settings so command line settings override jackpot.conf
         std::string strKey = std::string("-") + it->string_key;
         std::string strValue = it->value[0];
         InterpretNegativeSetting(strKey, strValue);
