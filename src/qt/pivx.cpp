@@ -177,7 +177,7 @@ private:
     void handleRunawayException(const std::exception* e);
 };
 
-/** Main PIVX application object */
+/** Main 777 application object */
 class BitcoinApplication : public QApplication
 {
     Q_OBJECT
