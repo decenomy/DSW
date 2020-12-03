@@ -291,9 +291,9 @@ void PrintExceptionContinue(const std::exception* pex, const char* pszThread)
 
 fs::path GetDefaultDataDir()
 {
-// Windows < Vista: C:\Documents and Settings\Username\Application Data\PIVX
-// Windows >= Vista: C:\Users\Username\AppData\Roaming\PIVX
-// Mac: ~/Library/Application Support/PIVX
+// Windows < Vista: C:\Documents and Settings\Username\Application Data\jackpot
+// Windows >= Vista: C:\Users\Username\AppData\Roaming\jackpot
+// Mac: ~/Library/Application Support/jackpot
 // Unix: ~/.jackpot
 #ifdef WIN32
     // Windows
