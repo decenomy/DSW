@@ -327,7 +327,7 @@
                    <item>
                     <widget class="QLabel" name="comboBoxCoin">
                      <property name="text">
-                      <string>PIV</string>
+                      <string>777</string>
                      </property>
                      <property name="alignment">
                       <set>Qt::AlignCenter</set>
