@@ -104,7 +104,7 @@ void UpdateTime(CBlockHeader* pblock, const CBlockIndex* pindexPrev)
 bool CheckForDuplicatedSerials(const CTransaction& tx, const Consensus::Params& consensus,
                                std::vector<CBigNum>& vBlockSerials)
 {
-    // double check that there are no double spent zPIV spends in this block or tx
+    // double check that there are no double spent z777 spends in this block or tx
     if (tx.HasZerocoinSpendInputs()) {
         int nHeightTx = 0;
         if (IsTransactionInChain(tx.GetHash(), nHeightTx)) {
@@ -139,7 +139,7 @@ bool CheckForDuplicatedSerials(const CTransaction& tx, const Consensus::Params& 
                 vBlockSerials.emplace_back(spend->getCoinSerialNumber());
             }
         }
-        //This zPIV serial has already been included in the block, do not add this tx.
+        //This z777 serial has already been included in the block, do not add this tx.
         if (fDoubleSerial) {
             return false;
         }
@@ -306,7 +306,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
 
                 int nConf = nHeight - coin.nHeight;
 
-                // zPIV spends can have very large priority, use non-overflowing safe functions
+                // z777 spends can have very large priority, use non-overflowing safe functions
                 dPriority = double_safe_addition(dPriority, ((double)nValueIn * nConf));
 
             }
@@ -378,7 +378,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
             if (!view.HaveInputs(tx))
                 continue;
 
-            // zPIV check to not include duplicated serials in the same block.
+            // z777 check to not include duplicated serials in the same block.
             if (!CheckForDuplicatedSerials(tx, consensus, vBlockSerials)) {
                 continue;
             }
