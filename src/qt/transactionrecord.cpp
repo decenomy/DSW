@@ -36,7 +36,7 @@ bool TransactionRecord::decomposeCoinStake(const CWallet* wallet, const CWalletT
     TransactionRecord sub(hash, wtx.GetTxTime(), wtx.GetTotalSize());
 
     if (wtx.HasZerocoinSpendInputs() && (fZSpendFromMe || wallet->zpivTracker->HasMintTx(hash))) {
-        //zPIV stake reward
+        //z777 stake reward
         sub.involvesWatchAddress = false;
         sub.type = TransactionRecord::StakeZPIV;
         sub.address = getValueOrReturnEmpty(wtx.mapValue, "zerocoinmint");
@@ -54,7 +54,7 @@ bool TransactionRecord::decomposeCoinStake(const CWallet* wallet, const CWalletT
             sub.debit = -nDebit;
             loadHotOrColdStakeOrContract(wallet, wtx, sub);
         } else {
-            // PIV stake reward
+            // 777 stake reward
             CTxDestination address;
             if (!ExtractDestination(wtx.vout[1].scriptPubKey, address))
                 return true;
