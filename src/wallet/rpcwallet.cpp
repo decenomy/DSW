@@ -990,7 +990,7 @@ UniValue sendtoaddress(const JSONRPCRequest& request)
 
             "\nArguments:\n"
             "1. \"777address\"  (string, required) The 777 address to send to.\n"
-            "2. \"amount\"      (numeric, required) The amount in PIV to send. eg 0.1\n"
+            "2. \"amount\"      (numeric, required) The amount in 777 to send. eg 0.1\n"
             "3. \"comment\"     (string, optional) A comment used to store what the transaction is for. \n"
             "                             This is not part of the transaction, just kept in your wallet.\n"
             "4. \"comment-to\"  (string, optional) A comment to store the name of the person or organization \n"
@@ -1133,7 +1133,7 @@ UniValue delegatestake(const JSONRPCRequest& request)
 
             "\nArguments:\n"
             "1. \"stakingaddress\"      (string, required) The 777 staking address to delegate.\n"
-            "2. \"amount\"              (numeric, required) The amount in PIV to delegate for staking. eg 100\n"
+            "2. \"amount\"              (numeric, required) The amount in 777 to delegate for staking. eg 100\n"
             "3. \"owneraddress\"        (string, optional) The 777 address corresponding to the key that will be able to spend the stake. \n"
             "                               If not provided, or empty string, a new wallet address is generated.\n"
             "4. \"fExternalOwner\"      (boolean, optional, default = false) use the provided 'owneraddress' anyway, even if not present in this wallet.\n"
@@ -1178,7 +1178,7 @@ UniValue rawdelegatestake(const JSONRPCRequest& request)
 
             "\nArguments:\n"
             "1. \"stakingaddress\"      (string, required) The 777 staking address to delegate.\n"
-            "2. \"amount\"              (numeric, required) The amount in PIV to delegate for staking. eg 100\n"
+            "2. \"amount\"              (numeric, required) The amount in 777 to delegate for staking. eg 100\n"
             "3. \"owneraddress\"        (string, optional) The 777 address corresponding to the key that will be able to spend the stake. \n"
             "                               If not provided, or empty string, a new wallet address is generated.\n"
             "4. \"fExternalOwner\"      (boolean, optional, default = false) use the provided 'owneraddress' anyway, even if not present in this wallet.\n"
@@ -1205,7 +1205,7 @@ UniValue rawdelegatestake(const JSONRPCRequest& request)
             "  ],\n"
             "  \"vout\" : [              (array of json objects)\n"
             "     {\n"
-            "       \"value\" : x.xxx,            (numeric) The value in PIV\n"
+            "       \"value\" : x.xxx,            (numeric) The value in 777\n"
             "       \"n\" : n,                    (numeric) index\n"
             "       \"scriptPubKey\" : {          (json object)\n"
             "         \"asm\" : \"asm\",          (string) the asm\n"
@@ -1250,7 +1250,7 @@ UniValue sendtoaddressix(const JSONRPCRequest& request)
 
             "\nArguments:\n"
             "1. \"777address\"  (string, required) The 777 address to send to.\n"
-            "2. \"amount\"      (numeric, required) The amount in PIV to send. eg 0.1\n"
+            "2. \"amount\"      (numeric, required) The amount in 777 to send. eg 0.1\n"
             "3. \"comment\"     (string, optional) A comment used to store what the transaction is for. \n"
             "                             This is not part of the transaction, just kept in your wallet.\n"
             "4. \"comment-to\"  (string, optional) A comment to store the name of the person or organization \n"
@@ -1303,7 +1303,7 @@ UniValue listaddressgroupings(const JSONRPCRequest& request)
             "  [\n"
             "    [\n"
             "      \"777address\",     (string) The 777 address\n"
-            "      amount,                 (numeric) The amount in PIV\n"
+            "      amount,                 (numeric) The amount in 777\n"
             "      \"label\"             (string, optional) The label\n"
             "    ]\n"
             "    ,...\n"
@@ -1402,7 +1402,7 @@ UniValue getreceivedbyaddress(const JSONRPCRequest& request)
             "2. minconf             (numeric, optional, default=1) Only include transactions confirmed at least this many times.\n"
 
             "\nResult:\n"
-            "amount   (numeric) The total amount in PIV received at this address.\n"
+            "amount   (numeric) The total amount in 777 received at this address.\n"
 
             "\nExamples:\n"
             "\nThe amount from transactions with at least 1 confirmation\n" +
@@ -1465,7 +1465,7 @@ UniValue getreceivedbylabel(const JSONRPCRequest& request)
             "2. minconf          (numeric, optional, default=1) Only include transactions confirmed at least this many times.\n"
 
             "\nResult:\n"
-            "amount              (numeric) The total amount in PIV received for this label.\n"
+            "amount              (numeric) The total amount in 777 received for this label.\n"
 
             "\nExamples:\n"
             "\nAmount received by the default label with at least 1 confirmation\n" +
@@ -1529,7 +1529,7 @@ UniValue getbalance(const JSONRPCRequest& request)
             "                    To use this argument, start jackpotd with -deprecatedrpc=accounts. Also include balance delegated to cold stakers\n"
 
             "\nResult:\n"
-            "amount              (numeric) The total amount in PIV received for this account.\n"
+            "amount              (numeric) The total amount in 777 received for this account.\n"
 
             "\nExamples:\n"
             "\nThe total amount in the wallet\n" +
@@ -1583,7 +1583,7 @@ UniValue getcoldstakingbalance(const JSONRPCRequest& request)
             "                        The selected account, or \"*\" for entire wallet. It may be the default account using \"\".\n"
 
             "\nResult:\n"
-            "amount              (numeric) The total amount in PIV received for this account in P2CS contracts.\n"
+            "amount              (numeric) The total amount in 777 received for this account in P2CS contracts.\n"
 
             "\nExamples:\n"
             "\nThe total amount in the wallet\n" +
@@ -1621,7 +1621,7 @@ UniValue getdelegatedbalance(const JSONRPCRequest& request)
             "                        The selected account, or \"*\" for entire wallet. It may be the default account using \"\".\n"
 
             "\nResult:\n"
-            "amount              (numeric) The total amount in PIV received for this account in P2CS contracts.\n"
+            "amount              (numeric) The total amount in 777 received for this account in P2CS contracts.\n"
 
             "\nExamples:\n"
             "\nThe total amount in the wallet\n" +
@@ -1672,7 +1672,7 @@ UniValue movecmd(const JSONRPCRequest& request)
             "\nArguments:\n"
             "1. \"fromaccount\"   (string, required) The name of the account to move funds from. May be the default account using \"\".\n"
             "2. \"toaccount\"     (string, required) The name of the account to move funds to. May be the default account using \"\".\n"
-            "3. amount            (numeric, required) Quantity of PIV to move between accounts.\n"
+            "3. amount            (numeric, required) Quantity of 777 to move between accounts.\n"
             "4. minconf           (numeric, optional, default=1) Only use funds with at least this many confirmations.\n"
             "5. \"comment\"       (string, optional) An optional comment, stored in the wallet only.\n"
 
@@ -1680,9 +1680,9 @@ UniValue movecmd(const JSONRPCRequest& request)
             "true|false           (boolean) true if successful.\n"
 
             "\nExamples:\n"
-            "\nMove 0.01 PIV from the default account to the account named tabby\n" +
+            "\nMove 0.01 777 from the default account to the account named tabby\n" +
             HelpExampleCli("move", "\"\" \"tabby\" 0.01") +
-            "\nMove 0.01 PIV from timotei to akiko with a comment\n" +
+            "\nMove 0.01 777 from timotei to akiko with a comment\n" +
             HelpExampleCli("move", "\"timotei\" \"akiko\" 0.01 1 \"happy birthday!\"") +
             "\nAs a json rpc call\n" +
             HelpExampleRpc("move", "\"timotei\", \"akiko\", 0.01, 1, \"happy birthday!\""));
@@ -1751,7 +1751,7 @@ UniValue sendfrom(const JSONRPCRequest& request)
             "\nArguments:\n"
             "1. \"fromaccount\"       (string, required) The name of the account to send funds from. May be the default account using \"\".\n"
             "2. \"to777address\"  (string, required) The 777 address to send funds to.\n"
-            "3. amount                (numeric, required) The amount in PIV. (transaction fee is added on top).\n"
+            "3. amount                (numeric, required) The amount in 777. (transaction fee is added on top).\n"
             "4. minconf               (numeric, optional, default=1) Only use funds with at least this many confirmations.\n"
             "5. \"comment\"           (string, optional) A comment used to store what the transaction is for. \n"
             "                                     This is not part of the transaction, just kept in your wallet.\n"
@@ -1764,7 +1764,7 @@ UniValue sendfrom(const JSONRPCRequest& request)
             "\"transactionid\"        (string) The transaction id.\n"
 
             "\nExamples:\n"
-            "\nSend 0.01 PIV from the default account to the address, must have at least 1 confirmation\n" +
+            "\nSend 0.01 777 from the default account to the address, must have at least 1 confirmation\n" +
             HelpExampleCli("sendfrom", "\"\" \"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\" 0.01") +
             "\nSend 0.01 from the tabby account to the given address, funds must have at least 6 confirmations\n" +
             HelpExampleCli("sendfrom", "\"tabby\" \"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\" 0.01 6 \"donation\" \"seans outpost\"") +
@@ -1821,7 +1821,7 @@ UniValue sendmany(const JSONRPCRequest& request)
             "1. \"dummy\"               (string, required) Must be set to \"\" for backwards compatibility.\n"
             "2. \"amounts\"             (string, required) A json object with addresses and amounts\n"
             "    {\n"
-            "      \"address\":amount   (numeric) The 777 address is the key, the numeric amount in PIV is the value\n"
+            "      \"address\":amount   (numeric) The 777 address is the key, the numeric amount in 777 is the value\n"
             "      ,...\n"
             "    }\n"
             "3. minconf                 (numeric, optional, default=1) Only use the balance confirmed at least this many times.\n"
@@ -1849,7 +1849,7 @@ UniValue sendmany(const JSONRPCRequest& request)
             "1. \"fromaccount\"         (string, required) DEPRECATED. The account to send the funds from. Should be \"\" for the default account\n"
             "2. \"amounts\"             (string, required) A json object with addresses and amounts\n"
             "    {\n"
-            "      \"address\":amount   (numeric) The 777 address is the key, the numeric amount in PIV is the value\n"
+            "      \"address\":amount   (numeric) The 777 address is the key, the numeric amount in 777 is the value\n"
             "      ,...\n"
             "    }\n"
             "3. minconf                 (numeric, optional, default=1) Only use the balance confirmed at least this many times.\n"
@@ -2165,7 +2165,7 @@ UniValue listreceivedbyaddress(const JSONRPCRequest& request)
             "    \"involvesWatchonly\" : \"true\",    (bool) Only returned if imported addresses were involved in transaction\n"
             "    \"address\" : \"receivingaddress\",  (string) The receiving address\n"
             "    \"account\" : \"accountname\",       (string) DEPRECATED. Backwards compatible alias for label.\n"
-            "    \"amount\" : x.xxx,                  (numeric) The total amount in PIV received by the address\n"
+            "    \"amount\" : x.xxx,                  (numeric) The total amount in 777 received by the address\n"
             "    \"confirmations\" : n                (numeric) The number of confirmations of the most recent transaction included\n"
             "    \"bcconfirmations\" : n              (numeric) The number of blockchain confirmations of the most recent transaction included\n"
             "    \"label\" : \"label\",               (string) The label of the receiving address. The default label is \"\".\n"
@@ -2412,11 +2412,11 @@ UniValue listtransactions(const JSONRPCRequest& request)
             "                                                transaction between accounts, and not associated with an address,\n"
             "                                                transaction id or block. 'send' and 'receive' transactions are \n"
             "                                                associated with an address, transaction id and block details\n"
-            "    \"amount\": x.xxx,          (numeric) The amount in PIV. This is negative for the 'send' category, and for the\n"
+            "    \"amount\": x.xxx,          (numeric) The amount in 777. This is negative for the 'send' category, and for the\n"
             "                                         'move' category for moves outbound. It is positive for the 'receive' category,\n"
             "                                         and for the 'move' category for inbound funds.\n"
             "    \"vout\" : n,               (numeric) the vout value\n"
-            "    \"fee\": x.xxx,             (numeric) The amount of the fee in PIV. This is negative and only available for the \n"
+            "    \"fee\": x.xxx,             (numeric) The amount of the fee in 777. This is negative and only available for the \n"
             "                                         'send' category of transactions.\n"
             "    \"confirmations\": n,       (numeric) The number of confirmations for the transaction. Available for 'send' and \n"
             "                                         'receive' category of transactions.\n"
@@ -2467,11 +2467,11 @@ UniValue listtransactions(const JSONRPCRequest& request)
             "                                                transaction between accounts, and not associated with an address,\n"
             "                                                transaction id or block. 'send' and 'receive' transactions are \n"
             "                                                associated with an address, transaction id and block details\n"
-            "    \"amount\": x.xxx,          (numeric) The amount in PIV. This is negative for the 'send' category, and for the\n"
+            "    \"amount\": x.xxx,          (numeric) The amount in 777. This is negative for the 'send' category, and for the\n"
             "                                         'move' category for moves outbound. It is positive for the 'receive' category,\n"
             "                                         and for the 'move' category for inbound funds.\n"
             "    \"vout\" : n,               (numeric) the vout value\n"
-            "    \"fee\": x.xxx,             (numeric) The amount of the fee in PIV. This is negative and only available for the \n"
+            "    \"fee\": x.xxx,             (numeric) The amount of the fee in 777. This is negative and only available for the \n"
             "                                         'send' category of transactions.\n"
             "    \"confirmations\": n,       (numeric) The number of confirmations for the transaction. Available for 'send' and \n"
             "                                         'receive' category of transactions.\n"
@@ -2678,10 +2678,10 @@ UniValue listsinceblock(const JSONRPCRequest& request)
             "    \"account\":\"accountname\",       (string) DEPRECATED. This field will be removed in v5.0. To see this deprecated field, start jackpotd with -deprecatedrpc=accounts. The account name associated with the transaction. Will be \"\" for the default account.\n"
             "    \"address\":\"777address\",    (string) The 777 address of the transaction. Not present for move transactions (category = move).\n"
             "    \"category\":\"send|receive\",     (string) The transaction category. 'send' has negative amounts, 'receive' has positive amounts.\n"
-            "    \"amount\": x.xxx,          (numeric) The amount in PIV. This is negative for the 'send' category, and for the 'move' category for moves \n"
+            "    \"amount\": x.xxx,          (numeric) The amount in 777. This is negative for the 'send' category, and for the 'move' category for moves \n"
             "                                          outbound. It is positive for the 'receive' category, and for the 'move' category for inbound funds.\n"
             "    \"vout\" : n,               (numeric) the vout value\n"
-            "    \"fee\": x.xxx,             (numeric) The amount of the fee in PIV. This is negative and only available for the 'send' category of transactions.\n"
+            "    \"fee\": x.xxx,             (numeric) The amount of the fee in 777. This is negative and only available for the 'send' category of transactions.\n"
             "    \"confirmations\": n,       (numeric) The number of confirmations for the transaction. Available for 'send' and 'receive' category of transactions.\n"
             "    \"bcconfirmations\" : n,    (numeric) The number of blockchain confirmations for the transaction. Available for 'send' and 'receive' category of transactions.\n"
             "    \"blockhash\": \"hashvalue\",     (string) The block hash containing the transaction. Available for 'send' and 'receive' category of transactions.\n"
@@ -2761,7 +2761,7 @@ UniValue gettransaction(const JSONRPCRequest& request)
 
             "\nResult:\n"
             "{\n"
-            "  \"amount\" : x.xxx,        (numeric) The transaction amount in PIV\n"
+            "  \"amount\" : x.xxx,        (numeric) The transaction amount in 777\n"
             "  \"confirmations\" : n,     (numeric) The number of confirmations\n"
             "  \"bcconfirmations\" : n,   (numeric) The number of blockchain confirmations\n"
             "  \"blockhash\" : \"hash\",  (string) The block hash\n"
@@ -2775,7 +2775,7 @@ UniValue gettransaction(const JSONRPCRequest& request)
             "      \"account\" : \"accountname\",  (string) DEPRECATED.This field will be removed in v5.0. To see this deprecated field, start jackpotd with -deprecatedrpc=accounts. The account name involved in the transaction, can be \"\" for the default account.\n"
             "      \"address\" : \"777address\",   (string) The 777 address involved in the transaction\n"
             "      \"category\" : \"send|receive\",    (string) The category, either 'send' or 'receive'\n"
-            "      \"amount\" : x.xxx                  (numeric) The amount in PIV\n"
+            "      \"amount\" : x.xxx                  (numeric) The amount in 777\n"
             "      \"vout\" : n,                       (numeric) the vout value\n"
             "    }\n"
             "    ,...\n"
@@ -2929,7 +2929,7 @@ UniValue walletpassphrase(const JSONRPCRequest& request)
         throw std::runtime_error(
             "walletpassphrase \"passphrase\" timeout ( stakingonly )\n"
             "\nStores the wallet decryption key in memory for 'timeout' seconds.\n"
-            "This is needed prior to performing transactions related to private keys such as sending PIVs\n"
+            "This is needed prior to performing transactions related to private keys such as sending 777s\n"
 
             "\nArguments:\n"
             "1. \"passphrase\"     (string, required) The wallet passphrase\n"
@@ -3094,7 +3094,7 @@ UniValue encryptwallet(const JSONRPCRequest& request)
             "\nExamples:\n"
             "\nEncrypt you wallet\n" +
             HelpExampleCli("encryptwallet", "\"my pass phrase\"") +
-            "\nNow set the passphrase to use the wallet, such as for signing or sending PIVs\n" +
+            "\nNow set the passphrase to use the wallet, such as for signing or sending 777s\n" +
             HelpExampleCli("walletpassphrase", "\"my pass phrase\"") +
             "\nNow we can so something like sign\n" +
             HelpExampleCli("signmessage", "\"777address\" \"test message\"") +
@@ -3162,7 +3162,7 @@ UniValue listunspent(const JSONRPCRequest& request)
                 "    \"account\" : \"account\",  (string) DEPRECATED.This field will be removed in v5.0. To see this deprecated field, start jackpotd with -deprecatedrpc=accounts. Backwards compatible alias for label.\n"
                 "    \"scriptPubKey\" : \"key\", (string) the script key\n"
                 "    \"redeemScript\" : \"key\", (string) the redeemscript key\n"
-                "    \"amount\" : x.xxx,         (numeric) the transaction amount in PIV\n"
+                "    \"amount\" : x.xxx,         (numeric) the transaction amount in 777\n"
                 "    \"confirmations\" : n,      (numeric) The number of confirmations\n"
                 "    \"spendable\" : true|false  (boolean) Whether we have the private keys to spend this output\n"
                 "    \"solvable\" : xxx          (bool) Whether we know how to spend this output, ignoring the lack of keys\n"
@@ -3275,7 +3275,7 @@ UniValue lockunspent(const JSONRPCRequest& request)
             "lockunspent unlock [{\"txid\":\"txid\",\"vout\":n},...]\n"
             "\nUpdates list of temporarily unspendable outputs.\n"
             "Temporarily lock (unlock=false) or unlock (unlock=true) specified transaction outputs.\n"
-            "A locked transaction output will not be chosen by automatic coin selection, when spending PIVs.\n"
+            "A locked transaction output will not be chosen by automatic coin selection, when spending 777s.\n"
             "Locks are stored in memory only. Nodes start with zero locked outputs, and the locked output list\n"
             "is always cleared (by virtue of process exit) when a node stops or fails.\n"
             "Also see the listunspent call\n"
@@ -3439,7 +3439,7 @@ UniValue settxfee(const JSONRPCRequest& request)
             "\nSet the transaction fee per kB.\n"
 
             "\nArguments:\n"
-            "1. amount         (numeric, required) The transaction fee in PIV/kB rounded to the nearest 0.00000001\n"
+            "1. amount         (numeric, required) The transaction fee in 777/kB rounded to the nearest 0.00000001\n"
 
             "\nResult\n"
             "true|false        (boolean) Returns true if successful\n"
@@ -3467,20 +3467,20 @@ UniValue getwalletinfo(const JSONRPCRequest& request)
             "\nResult:\n"
             "{\n"
             "  \"walletversion\": xxxxx,                  (numeric) the wallet version\n"
-            "  \"balance\": xxxxxxx,                      (numeric) the total PIV balance of the wallet (cold balance excluded)\n"
-            "  \"delegated_balance\": xxxxx,              (numeric) the PIV balance held in P2CS (cold staking) contracts\n"
-            "  \"cold_staking_balance\": xx,              (numeric) the PIV balance held in cold staking addresses\n"
-            "  \"unconfirmed_balance\": xxx,              (numeric) the total unconfirmed balance of the wallet in PIV\n"
-            "  \"immature_delegated_balance\": xxxxxx,    (numeric) the delegated immature balance of the wallet in PIV\n"
-            "  \"immature_cold_staking_balance\": xxxxxx, (numeric) the cold-staking immature balance of the wallet in PIV\n"
-            "  \"immature_balance\": xxxxxx,              (numeric) the total immature balance of the wallet in PIV\n"
+            "  \"balance\": xxxxxxx,                      (numeric) the total 777 balance of the wallet (cold balance excluded)\n"
+            "  \"delegated_balance\": xxxxx,              (numeric) the 777 balance held in P2CS (cold staking) contracts\n"
+            "  \"cold_staking_balance\": xx,              (numeric) the 777 balance held in cold staking addresses\n"
+            "  \"unconfirmed_balance\": xxx,              (numeric) the total unconfirmed balance of the wallet in 777\n"
+            "  \"immature_delegated_balance\": xxxxxx,    (numeric) the delegated immature balance of the wallet in 777\n"
+            "  \"immature_cold_staking_balance\": xxxxxx, (numeric) the cold-staking immature balance of the wallet in 777\n"
+            "  \"immature_balance\": xxxxxx,              (numeric) the total immature balance of the wallet in 777\n"
             "  \"txcount\": xxxxxxx,                      (numeric) the total number of transactions in the wallet\n"
             "  \"keypoololdest\": xxxxxx,                 (numeric) the timestamp (seconds since GMT epoch) of the oldest pre-generated key in the key pool\n"
             "  \"keypoolsize\": xxxx,               (numeric) how many new keys are pre-generated (only counts external keys)\n"
             "  \"keypoolsize_hd_internal\": xxxx,   (numeric) how many new keys are pre-generated for internal use (used for change outputs, only appears if the wallet is using this feature, otherwise external keys are used)\n"
             "  \"keypoolsize_hd_staking\": xxxx,    (numeric) how many new keys are pre-generated for staking use (used for staking contracts, only appears if the wallet is using this feature)\n"
             "  \"unlocked_until\": ttt,                   (numeric) the timestamp in seconds since epoch (midnight Jan 1 1970 GMT) that the wallet is unlocked for transfers, or 0 if the wallet is locked\n"
-            "  \"paytxfee\": x.xxxx                       (numeric) the transaction fee configuration, set in PIV/kB\n"
+            "  \"paytxfee\": x.xxxx                       (numeric) the transaction fee configuration, set in 777/kB\n"
             "  \"hdseedid\": \"<hash160>\"            (string, optional) the Hash160 of the HD seed (only present when HD is enabled)\n"
             "}\n"
 
@@ -3531,11 +3531,11 @@ UniValue setstakesplitthreshold(const JSONRPCRequest& request)
             "Whenever a successful stake is found, the stake amount is split across as many outputs (each with a value\n"
             "higher than the threshold) as possible.\n"
             "E.g. If the coinstake input + the block reward is 2000, and the split threshold is 499, the corresponding\n"
-            "coinstake transaction will have 4 outputs (of 500 PIV each)."
+            "coinstake transaction will have 4 outputs (of 500 777 each)."
             + HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. value                   (numeric, required) Threshold value (in PIV).\n"
+            "1. value                   (numeric, required) Threshold value (in 777).\n"
             "                                     Set to 0 to disable stake-splitting\n"
             "                                     If > 0, it must be >= " + FormatMoney(CWallet::minStakeSplitThreshold) + "\n"
 
@@ -3803,7 +3803,7 @@ UniValue multisend(const JSONRPCRequest& request)
     std::string strAddress = request.params[0].get_str();
     CBitcoinAddress address(strAddress);
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PIV address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid 777 address");
     if (std::stoi(request.params[1].get_str().c_str()) < 0)
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid parameter, expected valid percentage");
     if (pwalletMain->IsLocked())
@@ -3849,11 +3849,11 @@ UniValue getzerocoinbalance(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() != 0)
         throw std::runtime_error(
             "getzerocoinbalance\n"
-            "\nReturn the wallet's total zPIV balance.\n" +
+            "\nReturn the wallet's total z777 balance.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nResult:\n"
-            "amount         (numeric) Total zPIV balance.\n"
+            "amount         (numeric) Total z777 balance.\n"
 
             "\nExamples:\n" +
             HelpExampleCli("getzerocoinbalance", "") + HelpExampleRpc("getzerocoinbalance", ""));
@@ -3877,7 +3877,7 @@ UniValue listmintedzerocoins(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() > 2)
         throw std::runtime_error(
             "listmintedzerocoins (fVerbose) (fMatureOnly)\n"
-            "\nList all zPIV mints in the wallet.\n" +
+            "\nList all z777 mints in the wallet.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
@@ -3896,7 +3896,7 @@ UniValue listmintedzerocoins(const JSONRPCRequest& request)
             "  {\n"
             "    \"serial hash\": \"xxx\",   (string) Mint serial hash in hex format.\n"
             "    \"version\": n,   (numeric) Zerocoin version number.\n"
-            "    \"zPIV ID\": \"xxx\",   (string) Pubcoin in hex format.\n"
+            "    \"z777 ID\": \"xxx\",   (string) Pubcoin in hex format.\n"
             "    \"denomination\": n,   (numeric) Coin denomination.\n"
             "    \"mint height\": n     (numeric) Height of the block containing this mint.\n"
             "    \"confirmations\": n   (numeric) Number of confirmations.\n"
@@ -3929,7 +3929,7 @@ UniValue listmintedzerocoins(const JSONRPCRequest& request)
             UniValue objMint(UniValue::VOBJ);
             objMint.push_back(Pair("serial hash", m.hashSerial.GetHex()));  // Serial hash
             objMint.push_back(Pair("version", m.nVersion));                 // Zerocoin version
-            objMint.push_back(Pair("zPIV ID", m.hashPubcoin.GetHex()));     // PubCoin
+            objMint.push_back(Pair("z777 ID", m.hashPubcoin.GetHex()));     // PubCoin
             int denom = libzerocoin::ZerocoinDenominationToInt(m.denom);
             objMint.push_back(Pair("denomination", denom));                 // Denomination
             objMint.push_back(Pair("mint height", m.nHeight));              // Mint Height
@@ -4006,7 +4006,7 @@ UniValue listspentzerocoins(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() != 0)
         throw std::runtime_error(
             "listspentzerocoins\n"
-            "\nList all the spent zPIV mints in the wallet.\n" +
+            "\nList all the spent z777 mints in the wallet.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nResult:\n"
@@ -4038,11 +4038,11 @@ UniValue mintzerocoin(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
         throw std::runtime_error(
             "mintzerocoin amount ( utxos )\n"
-            "\nMint the specified zPIV amount\n" +
+            "\nMint the specified z777 amount\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. amount      (numeric, required) Enter an amount of Piv to convert to zPIV\n"
+            "1. amount      (numeric, required) Enter an amount of 777 to convert to z777\n"
             "2. utxos       (string, optional) A json array of objects.\n"
             "                   Each object needs the txid (string) and vout (numeric)\n"
             "  [\n"
@@ -4079,7 +4079,7 @@ UniValue mintzerocoin(const JSONRPCRequest& request)
 
 
     if (!Params().IsRegTestNet())
-        throw JSONRPCError(RPC_WALLET_ERROR, "zPIV minting is DISABLED");
+        throw JSONRPCError(RPC_WALLET_ERROR, "z777 minting is DISABLED");
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
@@ -4093,7 +4093,7 @@ UniValue mintzerocoin(const JSONRPCRequest& request)
 
     int64_t nTime = GetTimeMillis();
     if(sporkManager.IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-        throw JSONRPCError(RPC_WALLET_ERROR, "zPIV is currently disabled due to maintenance.");
+        throw JSONRPCError(RPC_WALLET_ERROR, "z777 is currently disabled due to maintenance.");
 
     EnsureWalletIsUnlocked(true);
 
@@ -4158,7 +4158,7 @@ UniValue spendzerocoin(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() > 2 || request.params.size() < 1)
         throw std::runtime_error(
             "spendzerocoin amount ( \"address\" )\n"
-            "\nSpend zPIV to a PIV address.\n" +
+            "\nSpend z777 to a 777 address.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
@@ -4182,8 +4182,8 @@ UniValue spendzerocoin(const JSONRPCRequest& request)
             "  ],\n"
             "  \"outputs\": [                 (array) JSON array of output objects.\n"
             "    {\n"
-            "      \"value\": amount,         (numeric) Value in PIV.\n"
-            "      \"address\": \"xxx\"         (string) PIV address or \"zerocoinmint\" for reminted change.\n"
+            "      \"value\": amount,         (numeric) Value in 777.\n"
+            "      \"address\": \"xxx\"         (string) 777 address or \"zerocoinmint\" for reminted change.\n"
             "    }\n"
             "    ,...\n"
             "  ]\n"
@@ -4196,7 +4196,7 @@ UniValue spendzerocoin(const JSONRPCRequest& request)
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     if(sporkManager.IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-        throw JSONRPCError(RPC_WALLET_ERROR, "zPIV is currently disabled due to maintenance.");
+        throw JSONRPCError(RPC_WALLET_ERROR, "z777 is currently disabled due to maintenance.");
 
     CAmount nAmount = AmountFromValue(request.params[0]);        // Spending amount
     const std::string address_str = (request.params.size() > 1 ? request.params[1].get_str() : "");
@@ -4211,7 +4211,7 @@ UniValue spendzerocoinmints(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
         throw std::runtime_error(
             "spendzerocoinmints mints_list ( \"address\" ) \n"
-            "\nSpend zPIV mints to a PIV address.\n" +
+            "\nSpend z777 mints to a 777 address.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
@@ -4234,8 +4234,8 @@ UniValue spendzerocoinmints(const JSONRPCRequest& request)
             "  ],\n"
             "  \"outputs\": [                 (array) JSON array of output objects.\n"
             "    {\n"
-            "      \"value\": amount,         (numeric) Value in PIV.\n"
-            "      \"address\": \"xxx\"         (string) PIV address or \"zerocoinmint\" for reminted change.\n"
+            "      \"value\": amount,         (numeric) Value in 777.\n"
+            "      \"address\": \"xxx\"         (string) 777 address or \"zerocoinmint\" for reminted change.\n"
             "    }\n"
             "    ,...\n"
             "  ]\n"
@@ -4248,7 +4248,7 @@ UniValue spendzerocoinmints(const JSONRPCRequest& request)
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     if(sporkManager.IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-        throw JSONRPCError(RPC_WALLET_ERROR, "zPIV is currently disabled due to maintenance.");
+        throw JSONRPCError(RPC_WALLET_ERROR, "z777 is currently disabled due to maintenance.");
 
     UniValue arrMints = request.params[0].get_array();
     const std::string address_str = (request.params.size() > 1 ? request.params[1].get_str() : "");
@@ -4536,12 +4536,12 @@ UniValue exportzerocoins(const JSONRPCRequest& request)
 
             "\nArguments:\n"
             "1. \"include_spent\"        (bool, required) Include mints that have already been spent\n"
-            "2. \"denomination\"         (integer, optional) Export a specific denomination of zPIV\n"
+            "2. \"denomination\"         (integer, optional) Export a specific denomination of z777\n"
 
             "\nResult:\n"
             "[                   (array of json object)\n"
             "  {\n"
-            "    \"id\": \"serial hash\",  (string) the mint's zPIV serial hash \n"
+            "    \"id\": \"serial hash\",  (string) the mint's z777 serial hash \n"
             "    \"d\": n,         (numeric) the mint's zerocoin denomination \n"
             "    \"p\": \"pubcoin\", (string) The public coin\n"
             "    \"s\": \"serial\",  (string) The secret serial number\n"
@@ -4549,8 +4549,8 @@ UniValue exportzerocoins(const JSONRPCRequest& request)
             "    \"t\": \"txid\",    (string) The txid that the coin was minted in\n"
             "    \"h\": n,         (numeric) The height the tx was added to the blockchain\n"
             "    \"u\": used,      (boolean) Whether the mint has been spent\n"
-            "    \"v\": version,   (numeric) The version of the zPIV\n"
-            "    \"k\": \"privkey\"  (string) The zPIV private key (V2+ zPIV only)\n"
+            "    \"v\": version,   (numeric) The version of the z777\n"
+            "    \"k\": \"privkey\"  (string) The z777 private key (V2+ z777 only)\n"
             "  }\n"
             "  ,...\n"
             "]\n"
@@ -4619,7 +4619,7 @@ UniValue importzerocoins(const JSONRPCRequest& request)
             "\nResult:\n"
             "{\n"
             "  \"added\": n,        (numeric) The quantity of zerocoin mints that were added\n"
-            "  \"value\": amount    (numeric) The total zPIV value of zerocoin mints that were added\n"
+            "  \"value\": amount    (numeric) The total z777 value of zerocoin mints that were added\n"
             "}\n"
 
             "\nExamples\n" +
@@ -4697,7 +4697,7 @@ UniValue reconsiderzerocoins(const JSONRPCRequest& request)
     if(request.fHelp || !request.params.empty())
         throw std::runtime_error(
             "reconsiderzerocoins\n"
-            "\nCheck archived zPIV list to see if any mints were added to the blockchain.\n" +
+            "\nCheck archived z777 list to see if any mints were added to the blockchain.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nResult:\n"
@@ -4747,19 +4747,19 @@ UniValue setzpivseed(const JSONRPCRequest& request)
 {
     if(request.fHelp || request.params.size() != 1)
         throw std::runtime_error(
-            "setzpivseed \"seed\"\n"
-            "\nSet the wallet's deterministic zpiv seed to a specific value.\n" +
+            "setz777seed \"seed\"\n"
+            "\nSet the wallet's deterministic z777 seed to a specific value.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"seed\"        (string, required) The deterministic zpiv seed.\n"
+            "1. \"seed\"        (string, required) The deterministic z777 seed.\n"
 
             "\nResult\n"
             "\"success\" : b,  (boolean) Whether the seed was successfully set.\n"
 
             "\nExamples\n" +
-            HelpExampleCli("setzpivseed", "63f793e7895dd30d99187b35fbfb314a5f91af0add9e0a4e5877036d1e392dd5") +
-            HelpExampleRpc("setzpivseed", "63f793e7895dd30d99187b35fbfb314a5f91af0add9e0a4e5877036d1e392dd5"));
+            HelpExampleCli("setz777seed", "63f793e7895dd30d99187b35fbfb314a5f91af0add9e0a4e5877036d1e392dd5") +
+            HelpExampleRpc("setz777seed", "63f793e7895dd30d99187b35fbfb314a5f91af0add9e0a4e5877036d1e392dd5"));
 
     EnsureWalletIsUnlocked();
 
@@ -4781,15 +4781,15 @@ UniValue getzpivseed(const JSONRPCRequest& request)
 {
     if(request.fHelp || !request.params.empty())
         throw std::runtime_error(
-            "getzpivseed\n"
-            "\nCheck archived zPIV list to see if any mints were added to the blockchain.\n" +
+            "getz777seed\n"
+            "\nCheck archived z777 list to see if any mints were added to the blockchain.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nResult\n"
-            "\"seed\" : s,  (string) The deterministic zPIV seed.\n"
+            "\"seed\" : s,  (string) The deterministic z777 seed.\n"
 
             "\nExamples\n" +
-            HelpExampleCli("getzpivseed", "") + HelpExampleRpc("getzpivseed", ""));
+            HelpExampleCli("getz777seed", "") + HelpExampleRpc("getz777seed", ""));
 
     EnsureWalletIsUnlocked();
 
@@ -4807,12 +4807,12 @@ UniValue generatemintlist(const JSONRPCRequest& request)
     if(request.fHelp || request.params.size() != 2)
         throw std::runtime_error(
             "generatemintlist\n"
-            "\nShow mints that are derived from the deterministic zPIV seed.\n" +
+            "\nShow mints that are derived from the deterministic z777 seed.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments\n"
-            "1. \"count\"  : n,  (numeric) Which sequential zPIV to start with.\n"
-            "2. \"range\"  : n,  (numeric) How many zPIV to generate.\n"
+            "1. \"count\"  : n,  (numeric) Which sequential z777 to start with.\n"
+            "2. \"range\"  : n,  (numeric) How many z777 to generate.\n"
 
             "\nResult:\n"
             "[\n"
@@ -4854,8 +4854,8 @@ UniValue generatemintlist(const JSONRPCRequest& request)
 UniValue dzpivstate(const JSONRPCRequest& request) {
     if (request.fHelp || request.params.size() != 0)
         throw std::runtime_error(
-                "dzpivstate\n"
-                        "\nThe current state of the mintpool of the deterministic zPIV wallet.\n" +
+                "dz777state\n"
+                        "\nThe current state of the mintpool of the deterministic z777 wallet.\n" +
                 HelpRequiringPassphrase() + "\n"
 
                         "\nExamples\n" +
@@ -4865,7 +4865,7 @@ UniValue dzpivstate(const JSONRPCRequest& request) {
     UniValue obj(UniValue::VOBJ);
     int nCount, nCountLastUsed;
     zwallet->GetState(nCount, nCountLastUsed);
-    obj.push_back(Pair("dzpiv_count", nCount));
+    obj.push_back(Pair("dz777_count", nCount));
     obj.push_back(Pair("mintpool_count", nCountLastUsed));
 
     return obj;
@@ -4906,17 +4906,17 @@ UniValue searchdzpiv(const JSONRPCRequest& request)
 {
     if(request.fHelp || request.params.size() != 3)
         throw std::runtime_error(
-            "searchdzpiv\n"
-            "\nMake an extended search for deterministically generated zPIV that have not yet been recognized by the wallet.\n" +
+            "searchdz777\n"
+            "\nMake an extended search for deterministically generated z777 that have not yet been recognized by the wallet.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments\n"
-            "1. \"count\"       (numeric) Which sequential zPIV to start with.\n"
-            "2. \"range\"       (numeric) How many zPIV to generate.\n"
+            "1. \"count\"       (numeric) Which sequential z777 to start with.\n"
+            "2. \"range\"       (numeric) How many z777 to generate.\n"
             "3. \"threads\"     (numeric) How many threads should this operation consume.\n"
 
             "\nExamples\n" +
-            HelpExampleCli("searchdzpiv", "1, 100, 2") + HelpExampleRpc("searchdzpiv", "1, 100, 2"));
+            HelpExampleCli("searchdz777", "1, 100, 2") + HelpExampleRpc("searchdz777", "1, 100, 2"));
 
     EnsureWalletIsUnlocked();
 
@@ -4979,7 +4979,7 @@ UniValue spendrawzerocoin(const JSONRPCRequest& request)
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     if (sporkManager.IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-            throw JSONRPCError(RPC_WALLET_ERROR, "zPIV is currently disabled due to maintenance.");
+            throw JSONRPCError(RPC_WALLET_ERROR, "z777 is currently disabled due to maintenance.");
 
     const Consensus::Params& consensus = Params().GetConsensus();
 
