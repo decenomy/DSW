@@ -1,6 +1,6 @@
 [Protocol]
 exec=jackpot-qt '%u'
-protocol=pivx
+protocol=jackpot
 input=none
 output=none
 helper=true
