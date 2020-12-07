@@ -643,7 +643,7 @@ int main(int argc, char* argv[])
         exit(0);
 
     // Start up the payment server early, too, so impatient users that click on
-    // pivx: links repeatedly have their payment requests routed to this process:
+    // jackpot: links repeatedly have their payment requests routed to this process:
     app.createPaymentServer();
 #endif
 
