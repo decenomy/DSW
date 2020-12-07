@@ -1363,7 +1363,7 @@ Il commencera automatiquement dès que le portefeuille aura assez de confirmatio
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a 777 Masternode you must dedicate a collateral amount of 777 (the unit of 777) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pour créer un Masternode 777 vous devez dédier 10.000 PIV (l'unité de 777) au réseau (notez que ces monnaies restent les votres et ne quitteront jamais votre portefeuille)&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt; Vous pouvez désactiver votre noeud et libérer vos monnaies en tous temps. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pour créer un Masternode 777 vous devez dédier 10.000 777 (l'unité de 777) au réseau (notez que ces monnaies restent les votres et ne quitteront jamais votre portefeuille)&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt; Vous pouvez désactiver votre noeud et libérer vos monnaies en tous temps. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Set Masternode Name</source>
@@ -1383,7 +1383,7 @@ Il commencera automatiquement dès que le portefeuille aura assez de confirmatio
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of collateral amount will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Une transaction de 10 000 PIV sera effectuée &lt;/p&gt;&lt;p&gt; vers une nouvelle adresse de votre partefeuille.&lt;/p&gt;&lt;p&gt; L'adresse est étiquettée avec le nom de masternode. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Une transaction de 10 000 777 sera effectuée &lt;/p&gt;&lt;p&gt; vers une nouvelle adresse de votre partefeuille.&lt;/p&gt;&lt;p&gt; L'adresse est étiquettée avec le nom de masternode. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Address of the node that must always be online running the actual master node.</source>
@@ -3962,7 +3962,7 @@ pour voir votre solde de monnaie dépensable sur le réseau.
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;A Masternode Controller wallet is where the collateral amount can reside during a Controller-Remote masternode setup. It is a wallet that can activate the remote masternode wallet(s) and allows you to keep your collateral coins offline while the remote masternode remains online. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt; Un contrôleur de masternode est un portefeuille dans lequel le dépôt de garantie de 10 000 PIV réside pendant la configuration d'un masternode contrôleur-distant. C'est un portefeuille qui peut activer le portefeuille masternode distant et vous permet de conserver le dépôt de garantie hors ligne tandis que le masternode restera en ligne.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt; Un contrôleur de masternode est un portefeuille dans lequel le dépôt de garantie de 10 000 777 réside pendant la configuration d'un masternode contrôleur-distant. C'est un portefeuille qui peut activer le portefeuille masternode distant et vous permet de conserver le dépôt de garantie hors ligne tandis que le masternode restera en ligne.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>
@@ -4010,7 +4010,7 @@ pour voir votre solde de monnaie dépensable sur le réseau.
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
 Un masternode est un ordinateur qui exécute un noeud complet du portefeuille 777 core avec une
-exigence de 10 000 PIV déposé en garantie pour fournir au réseau des services aditionnels et recevoir, en retour et régulièrement, une partie des récompense de blocs.
+exigence de 10 000 777 déposé en garantie pour fournir au réseau des services aditionnels et recevoir, en retour et régulièrement, une partie des récompense de blocs.
 Ces services comprennent:
 &lt;/p&gt;&lt;p align="justify"&gt;
 &lt;ul&gt;
@@ -4036,7 +4036,7 @@ Avantages du Masternode:
 Exigences:
 &lt;/p&gt;&lt;p align="justify"&gt;
 &lt;ul&gt;
-&lt;li&gt;10 000 PIV pour chaque instance de masternode&lt;/li&gt;
+&lt;li&gt;10 000 777 pour chaque instance de masternode&lt;/li&gt;
 &lt;li&gt;Montant conservé dans un portefeuille core&lt;/li&gt;
 &lt;li&gt;Nécessite une IP fixe dédiée&lt;/li&gt;
 &lt;li&gt;Le portefeuille masternode doit rester en ligne&lt;/li&gt;
