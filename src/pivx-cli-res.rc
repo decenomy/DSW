@@ -17,7 +17,7 @@ BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
             VALUE "CompanyName",        "Jackpot"
-            VALUE "FileDescription",    "Jackpot-cli (OSS RPC client for Pivx)"
+            VALUE "FileDescription",    "Jackpot-cli (OSS RPC client for Jackpot)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "jackpot-cli"
             VALUE "LegalCopyright",     COPYRIGHT_STR
