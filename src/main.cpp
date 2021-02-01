@@ -1500,37 +1500,39 @@ double ConvertBitsToDouble(unsigned int nBits)
 }
 
 CAmount GetBlockValue(int nHeight)
-{   
-    if (nHeight == 1) {
-        return 700000 * COIN;
-    } else if (nHeight > 0 && nHeight <= 1440) {
-        return 1 * COIN;
-    } else if (nHeight > 1440 && nHeight <= 468490) {
-        return 25 * COIN;
-    } else if (nHeight > 468490 && nHeight <= 600000) {
-        return 50 * COIN;
-    } else if (nHeight > 600000 && nHeight <= 700000) {
-        return 75 * COIN;
-    } else if (nHeight > 700000 && nHeight <= 800000) {
-        return 100 * COIN;
-    } else if (nHeight > 800000 && nHeight <= 900000) {
-        return 125 * COIN;
-    } else if (nHeight > 900000 && nHeight <= 1000000) {
-        return 150 * COIN;
-    } else if (nHeight > 1000000 && nHeight <= 1100000) {
-        return 125 * COIN;
-    } else {
-        return 100 * COIN;
+{
+    CAmount maxMoneyOut= Params().GetConsensus().nMaxMoneyOut;
+
+    if(nMoneySupply >= maxMoneyOut) {
+        return 0;
     }
+
+    CAmount nSubsidy;
+
+    if (nHeight == 1) {
+        nSubsidy = 30000000 * COIN; // previous FUNC+777 coin supply (30M)
+    } else if (nHeight <= 100000) {
+        nSubsidy = 100 * COIN;
+    } else if (nHeight > 100000 && nHeight <= 200000) {
+        nSubsidy = 125 * COIN;
+    } else if (nHeight > 200000 && nHeight <= 300000) {
+        nSubsidy = 150 * COIN;
+    } else if (nHeight > 300000 && nHeight <= 400000) {
+        nSubsidy = 125 * COIN;
+    } else if (nHeight > 400000) {
+        nSubsidy = 100 * COIN;
+    }
+
+    if(nMoneySupply + nSubsidy > maxMoneyOut) {
+        return nMoneySupply + nSubsidy - maxMoneyOut;
+    }
+
+    return nSubsidy;
 }
 
 CAmount GetMasternodePayment(int nHeight)
 {
-	if (nHeight <= 600000) {
-		return GetBlockValue(nHeight) * 85 / 100;
-	} else {
-		return GetBlockValue(nHeight) * 95 / 100;
-	}
+    return GetBlockValue(nHeight) * 95 / 100;
 }
 
 bool IsInitialBlockDownload()

@@ -65,18 +65,14 @@ struct CBlockTemplate;
 struct CNodeStateStats;
 
 inline CAmount GetMstrNodCollateral(int nHeight){
-    if (nHeight <= 600000 && nHeight > 500) {
-        return 10000;
-    } else if (nHeight <= 700000 && nHeight > 600000) {
-        return 12500;
-    } else if (nHeight <= 800000 && nHeight > 700000) {
+    if (nHeight <= 100000 && nHeight > 5000) {
         return 15000;
-    } else if (nHeight <= 900000 && nHeight > 800000) {
+    } else if (nHeight <= 200000 && nHeight > 100000) {
         return 17500;
-    } else if (nHeight <= 1000000 && nHeight > 900000) {
+    } else if (nHeight > 200000) {
         return 20000;
-     }
-    return 20000;
+    }
+    return 0;
 }
 
 /** Default for -limitancestorcount, max number of in-mempool ancestors */
