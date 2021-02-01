@@ -242,6 +242,7 @@ void CMasternodeMan::AskForMN(CNode* pnode, const CTxIn& vin)
 
 void CMasternodeMan::Check()
 {
+    LOCK(cs_main);
     LOCK(cs);
 
     for (CMasternode& mn : vMasternodes) {
@@ -484,6 +485,7 @@ CMasternode* CMasternodeMan::Find(const CPubKey& pubKeyMasternode)
 //
 CMasternode* CMasternodeMan::GetNextMasternodeInQueueForPayment(int nBlockHeight, bool fFilterSigTime, int& nCount)
 {
+    LOCK(cs_main);
     LOCK(cs);
 
     CMasternode* pBestMasternode = NULL;
@@ -847,7 +849,10 @@ void ThreadCheckMasternodes()
             MilliSleep(1000);
             boost::this_thread::interruption_point();
             // try to sync from all available nodes, one step at a time
-            masternodeSync.Process();
+            {
+                LOCK(cs_main);
+                masternodeSync.Process();
+            }
 
             if (masternodeSync.IsBlockchainSynced()) {
                 c++;

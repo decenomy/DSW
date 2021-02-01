@@ -1979,10 +1979,14 @@ bool CWallet::GetMasternodeVinAndKeys(CTxIn& txinRet, CPubKey& pubKeyRet, CKey& 
 
     // Check availability
     int nDepth = 0;
-    if (!CheckTXAvailability(&wtx, true, false, nDepth)) {
-        strError = "Not available collateral transaction";
-        return error("%s: tx %s not available", __func__, strTxHash);
+    {
+        LOCK(cs_main);
+        if (!CheckTXAvailability(&wtx, true, false, nDepth)) {
+            strError = "Not available collateral transaction";
+            return error("%s: tx %s not available", __func__, strTxHash);
+        }
     }
+
     // Skip spent coins
     if (IsSpent(txHash, nOutputIndex)) {
         strError = "Error: collateral already spent";

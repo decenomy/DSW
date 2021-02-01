@@ -464,6 +464,7 @@ public:
 
     void Clear()
     {
+        LOCK(cs);
         std::vector<int>().swap(vRandom);
         nKey = GetRandHash();
         for (size_t bucket = 0; bucket < ADDRMAN_NEW_BUCKET_COUNT; bucket++) {
@@ -481,6 +482,8 @@ public:
         nTried = 0;
         nNew = 0;
         nLastGood = 1; //Initially at 1 so that "never" is strictly worse.
+        mapInfo.clear();
+        mapAddr.clear();
     }
 
     CAddrMan()
