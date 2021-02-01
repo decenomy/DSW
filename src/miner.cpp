@@ -224,10 +224,17 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
     pblocktemplate->vTxSigOps.push_back(-1); // updated at end
 
     // Largest block you're willing to create:
-    unsigned int nBlockMaxSize = GetArg("-blockmaxsize", DEFAULT_BLOCK_MAX_SIZE);
+    unsigned int nBlockMaxSize = std::min((unsigned int)GetArg("-blockmaxsize", DEFAULT_BLOCK_MAX_SIZE), MAX_BLOCK_SIZE_CURRENT);
     // Limit to betweeen 1K and MAX_BLOCK_SIZE-1K for sanity:
-    unsigned int nBlockMaxSizeNetwork = MAX_BLOCK_SIZE_CURRENT;
-    nBlockMaxSize = std::max((unsigned int)1000, std::min((nBlockMaxSizeNetwork - 1000), nBlockMaxSize));
+    unsigned int nBlockMaxSizeSpork = (unsigned int)sporkManager.GetSporkValue(SPORK_105_MAX_BLOCK_SIZE);
+
+    nBlockMaxSize = std::max(
+        (unsigned int)1000, 
+        std::min( 
+            nBlockMaxSizeSpork, 
+            nBlockMaxSize 
+        )
+    );
 
     // How much of the block should be dedicated to high-priority transactions,
     // included regardless of the fees they pay

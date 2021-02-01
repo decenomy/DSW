@@ -3710,14 +3710,29 @@ bool ContextualCheckBlock(const CBlock& block, CValidationState& state, CBlockIn
             return state.DoS(10, false, REJECT_INVALID, "bad-txns-nonfinal", false, "non-final transaction");
         }
 
-    // // Enforce block.nVersion=2 rule that the coinbase starts with serialized block height
-    // if (pindexPrev) { // pindexPrev is only null on the first block which is a version 1 block.
-    //     CScript expect = CScript() << nHeight;
-    //     if (block.vtx[0].vin[0].scriptSig.size() < expect.size() ||
-    //         !std::equal(expect.begin(), expect.end(), block.vtx[0].vin[0].scriptSig.begin())) {
-    //         return state.DoS(100, false, REJECT_INVALID, "bad-cb-height", false, "block height mismatch in coinbase");
-    //     }
-    // }
+    // Enforce block.nVersion=2 rule that the coinbase starts with serialized block height
+    if (pindexPrev) { // pindexPrev is only null on the first block which is a version 1 block.
+        CScript expect = CScript() << nHeight;
+        if (block.vtx[0].vin[0].scriptSig.size() < expect.size() ||
+            !std::equal(expect.begin(), expect.end(), block.vtx[0].vin[0].scriptSig.begin())) {
+            return state.DoS(100, false, REJECT_INVALID, "bad-cb-height", false, "block height mismatch in coinbase");
+        }
+    }
+
+    // Size limits
+    if (nHeight != 0 && !IsInitialBlockDownload()) {
+        unsigned int nMaxBlockSize = std::max(
+            (unsigned int)1000, 
+            std::min(
+                (unsigned int)sporkManager.GetSporkValue(SPORK_105_MAX_BLOCK_SIZE),
+                MAX_BLOCK_SIZE_CURRENT
+            )
+        );
+
+        if (::GetSerializeSize(block, SER_NETWORK, PROTOCOL_VERSION) > nMaxBlockSize) {
+            return state.Invalid(error("%s : size limits failed", __func__), REJECT_INVALID, "bad-blk-length");
+        }
+    }
 
     return true;
 }
