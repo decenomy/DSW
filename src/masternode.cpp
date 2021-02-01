@@ -12,6 +12,7 @@
 #include "masternode-sync.h"
 #include "masternodeman.h"
 #include "netbase.h"
+#include "spork.h"
 #include "sync.h"
 #include "util.h"
 #include "wallet/wallet.h"
@@ -709,7 +710,13 @@ uint256 CMasternodePing::GetHash() const
 
 std::string CMasternodePing::GetStrMessage() const
 {
-    return vin.ToString() + blockHash.ToString() + std::to_string(sigTime);
+    int64_t salt = sporkManager.GetSporkValue(SPORK_103_PING_MESSAGE_SALT);
+
+    if (salt == 4070908800ULL) {
+        return vin.ToString() + blockHash.ToString() + std::to_string(sigTime) + std::to_string(salt);
+    } else {
+        return vin.ToString() + blockHash.ToString() + std::to_string(sigTime);
+    }
 }
 
 bool CMasternodePing::CheckAndUpdate(int& nDos, bool fRequireEnabled, bool fCheckSigTimeOnly)
