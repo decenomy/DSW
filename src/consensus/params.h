@@ -121,10 +121,6 @@ struct Params {
     int height_start_ZC_SerialRangeCheck;
     int height_ZC_RecalcAccumulators;
 
-    // validation by-pass
-    int64_t nPivxBadBlockTime;
-    unsigned int nPivxBadBlockBits;
-
     // Map with network updates
     NetworkUpgrade vUpgrades[MAX_NETWORK_UPGRADES];
 
@@ -158,7 +154,6 @@ struct Params {
         // with stake modifier V2+, we require the utxo to be nStakeMinDepth deep in the chain
         return (contextHeight - utxoFromBlockHeight >= nStakeMinDepth);
     }
-
 
     /*
      * (Legacy) Zerocoin consensus params
