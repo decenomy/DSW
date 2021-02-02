@@ -162,7 +162,7 @@ bool CreateCoinbaseTx(CBlock* pblock, const CScript& scriptPubKeyIn, CBlockIndex
     txNew.vin[0].scriptSig = CScript() << pindexPrev->nHeight + 1 << OP_0;
     // If no payee was detected, then the whole block value goes to the first output.
     if (txNew.vout.size() == 1) {
-        txNew.vout[0].nValue = GetBlockValue(pindexPrev->nHeight);
+        txNew.vout[0].nValue = GetBlockValue(pindexPrev->nHeight + 1);
     }
 
     pblock->vtx.emplace_back(txNew);
@@ -589,21 +589,20 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
     while (fGenerateBitcoins || fProofOfStake) {
         CBlockIndex* pindexPrev = GetChainTip();
         if (!pindexPrev) {
-            MilliSleep(nSpacingMillis);       // sleep a block
+            MilliSleep(nSpacingMillis); // sleep a block
             continue;
         }
         if (fProofOfStake) {
             if (!consensus.NetworkUpgradeActive(pindexPrev->nHeight + 1, Consensus::UPGRADE_POS)) {
                 // The last PoW block hasn't even been mined yet.
-                MilliSleep(nSpacingMillis);       // sleep a block
+                MilliSleep(nSpacingMillis); // sleep a block
                 continue;
             }
 
             // update fStakeableCoins (5 minute check time);
             CheckForCoins(pwallet, 5, &availableCoins);
 
-            while ((g_connman && g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && Params().MiningRequiresPeers())
-                    || pwallet->IsLocked() || !fStakeableCoins || masternodeSync.NotCompleted()) {
+            while ((g_connman && g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && Params().MiningRequiresPeers()) || pwallet->IsLocked() || !fStakeableCoins || masternodeSync.NotCompleted()) {
                 MilliSleep(5000);
                 // Do a separate 1 minute check here to ensure fStakeableCoins is updated
                 if (!fStakeableCoins) CheckForCoins(pwallet, 1, &availableCoins);
@@ -611,17 +610,17 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
 
             //search our map of hashed blocks, see if bestblock has been hashed yet
             if (pwallet->pStakerStatus &&
-                    pwallet->pStakerStatus->GetLastHash() == pindexPrev->GetBlockHash() &&
-                    pwallet->pStakerStatus->GetLastTime() >= GetCurrentTimeSlot()) {
+                pwallet->pStakerStatus->GetLastHash() == pindexPrev->GetBlockHash() &&
+                pwallet->pStakerStatus->GetLastTime() >= GetCurrentTimeSlot()) {
                 MilliSleep(2000);
                 continue;
             }
 
-        } else if (consensus.NetworkUpgradeActive(pindexPrev->nHeight - 6, Consensus::UPGRADE_POS)) {
+        } else if (pindexPrev->nHeight > 6 && consensus.NetworkUpgradeActive(pindexPrev->nHeight - 6, Consensus::UPGRADE_POS)) {
             // Late PoW: run for a little while longer, just in case there is a rewind on the chain.
             LogPrintf("%s: Exiting PoW Mining Thread at height: %d\n", __func__, pindexPrev->nHeight);
             return;
-       }
+        }
 
         //
         // Create new block
@@ -629,8 +628,8 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
         unsigned int nTransactionsUpdatedLast = mempool.GetTransactionsUpdated();
 
         std::unique_ptr<CBlockTemplate> pblocktemplate((fProofOfStake ?
-                                                        CreateNewBlock(CScript(), pwallet, true, &availableCoins) :
-                                                        CreateNewBlockWithKey(*opReservekey, pwallet)));
+                                                            CreateNewBlock(CScript(), pwallet, true, &availableCoins) :
+                                                            CreateNewBlockWithKey(*opReservekey, pwallet)));
         if (!pblocktemplate.get()) continue;
         CBlock* pblock = &pblocktemplate->block;
 
@@ -710,11 +709,10 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
 
             // Check for stop or if block needs to be rebuilt
             boost::this_thread::interruption_point();
-            if (    (g_connman && g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && Params().MiningRequiresPeers()) || // Regtest mode doesn't require peers
-                    (pblock->nNonce >= 0xffff0000) ||
-                    (mempool.GetTransactionsUpdated() != nTransactionsUpdatedLast && GetTime() - nStart > 60) ||
-                    (pindexPrev != chainActive.Tip())
-                ) break;
+            if ((g_connman && g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && Params().MiningRequiresPeers()) || // Regtest mode doesn't require peers
+                (pblock->nNonce >= 0xffff0000) ||
+                (mempool.GetTransactionsUpdated() != nTransactionsUpdatedLast && GetTime() - nStart > 60) ||
+                (pindexPrev != chainActive.Tip())) break;
 
             // Update nTime every few seconds
             UpdateTime(pblock, pindexPrev);
@@ -722,7 +720,6 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
                 // Changing pblock->nTime can change work required on testnet:
                 hashTarget.SetCompact(pblock->nBits);
             }
-
         }
     }
 }
