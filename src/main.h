@@ -65,7 +65,7 @@ struct CBlockTemplate;
 struct CNodeStateStats;
 
 inline CAmount GetMstrNodCollateral(int nHeight){
-    if (nHeight <= 100000 && nHeight > 5000) {
+    if (nHeight <= 100000 && nHeight > 0) {
         return 15000;
     } else if (nHeight <= 200000 && nHeight > 100000) {
         return 17500;

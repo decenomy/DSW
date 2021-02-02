@@ -1532,6 +1532,8 @@ CAmount GetBlockValue(int nHeight)
 
 CAmount GetMasternodePayment(int nHeight)
 {
+    //if(nHeight <= 500) return 0;
+
     return GetBlockValue(nHeight) * 95 / 100;
 }
 
