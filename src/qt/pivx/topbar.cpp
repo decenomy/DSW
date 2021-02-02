@@ -1,4 +1,5 @@
 // Copyright (c) 2019-2020 The PIVX developers
+// Copyright (c) 2020 The Jackpot 777 developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -81,12 +82,14 @@ TopBar::TopBar(PIVXGUI* _mainWindow, QWidget *parent) :
     ui->pushButtonTor->setButtonClassStyle("cssClass", "btn-check-tor-inactive");
     ui->pushButtonTor->setButtonText(tr("Tor Disabled"));
     ui->pushButtonTor->setChecked(false);
+    ui->pushButtonTor->setVisible(false);
 
     ui->pushButtonStack->setButtonClassStyle("cssClass", "btn-check-stack-inactive");
     ui->pushButtonStack->setButtonText(tr("Staking Disabled"));
 
     ui->pushButtonColdStaking->setButtonClassStyle("cssClass", "btn-check-cold-staking-inactive");
     ui->pushButtonColdStaking->setButtonText(tr("Cold Staking Disabled"));
+    ui->pushButtonColdStaking->setVisible(false);
 
     ui->pushButtonSync->setButtonClassStyle("cssClass", "btn-check-sync");
     ui->pushButtonSync->setButtonText(tr(" %54 Synchronizing.."));
@@ -550,7 +553,7 @@ void TopBar::loadWalletModel()
     connect(walletModel, &WalletModel::encryptionStatusChanged, this, &TopBar::refreshStatus);
     // Ask for passphrase if needed
     connect(walletModel, &WalletModel::requireUnlock, this, &TopBar::unlockWallet);
-    // update the display unit, to not use the default ("PIVX")
+    // update the display unit, to not use the default ("777")
     updateDisplayUnit();
 
     refreshStatus();
@@ -628,10 +631,10 @@ void TopBar::updateBalances(const interfaces::WalletBalances& newBalance)
     }
     ui->labelTitle1->setText(nLockedBalance > 0 ? tr("Available (Locked included)") : tr("Available"));
 
-    // PIV Total
+    // 777 Total
     QString totalPiv = GUIUtil::formatBalance(newBalance.balance, nDisplayUnit);
 
-    // PIV
+    // 777
     // Top
     ui->labelAmountTopPiv->setText(totalPiv);
     // Expanded

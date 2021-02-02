@@ -1,5 +1,6 @@
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2020 The PIVX developers
+// Copyright (c) 2020 The Jackpot 777 developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -241,6 +242,7 @@ void CMasternodeMan::AskForMN(CNode* pnode, const CTxIn& vin)
 
 void CMasternodeMan::Check()
 {
+    LOCK(cs_main);
     LOCK(cs);
 
     for (CMasternode& mn : vMasternodes) {
@@ -483,6 +485,7 @@ CMasternode* CMasternodeMan::Find(const CPubKey& pubKeyMasternode)
 //
 CMasternode* CMasternodeMan::GetNextMasternodeInQueueForPayment(int nBlockHeight, bool fFilterSigTime, int& nCount)
 {
+    LOCK(cs_main);
     LOCK(cs);
 
     CMasternode* pBestMasternode = NULL;
@@ -504,7 +507,7 @@ CMasternode* CMasternodeMan::GetNextMasternodeInQueueForPayment(int nBlockHeight
         if (masternodePayments.IsScheduled(mn, nBlockHeight)) continue;
 
         //it's too new, wait for a cycle
-        if (fFilterSigTime && mn.sigTime + (nMnCount * 2.6 * 60) > GetAdjustedTime()) continue;
+        if (fFilterSigTime && mn.sigTime + (nMnCount * 60) > GetAdjustedTime()) continue;
 
         //make sure it has as many confirmations as there are masternodes
         if (pcoinsTip->GetCoinDepthAtHeight(mn.vin.prevout, nBlockHeight) < nMnCount) continue;
@@ -846,7 +849,10 @@ void ThreadCheckMasternodes()
             MilliSleep(1000);
             boost::this_thread::interruption_point();
             // try to sync from all available nodes, one step at a time
-            masternodeSync.Process();
+            {
+                LOCK(cs_main);
+                masternodeSync.Process();
+            }
 
             if (masternodeSync.IsBlockchainSynced()) {
                 c++;

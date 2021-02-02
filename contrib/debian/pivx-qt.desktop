@@ -1,13 +1,13 @@
 [Desktop Entry]
 Version=1.0
-Name=PIVX Core
-Comment=PIVX P2P Cryptocurrency
-Comment[fr]=PIVX, monnaie virtuelle cryptographique pair à pair
-Comment[tr]=PIVX, eşten eşe kriptografik sanal para birimi
-Exec=pivx-qt %u
+Name=Jackpot
+Comment=777 P2P Cryptocurrency
+Comment[fr]=777, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=777, eşten eşe kriptografik sanal para birimi
+Exec=jackpot-qt %u
 Terminal=false
 Type=Application
 Icon=pivx128
 MimeType=x-scheme-handler/pivx;
 Categories=Office;Finance;
-StartupWMClass=Pivx-qt
+StartupWMClass=Jackpot-qt

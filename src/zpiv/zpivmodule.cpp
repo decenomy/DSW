@@ -1,4 +1,5 @@
 // Copyright (c) 2019-2020 The PIVX developers
+// Copyright (c) 2020 The Jackpot 777 developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -158,12 +159,12 @@ namespace ZPIVModule {
         if (!fUseV1Params) {
             CKey key;
             if (!mint.GetKeyPair(key))
-                return error("%s: failed to set zPIV privkey mint.", __func__);
+                return error("%s: failed to set z777 privkey mint.", __func__);
             spend.setPubKey(key.GetPubKey(), true);
 
             std::vector<unsigned char> vchSig;
             if (!key.Sign(spend.signatureHash(), vchSig))
-                return error("%s: ZPIVModule failed to sign signatureHash.", __func__);
+                return error("%s: Z777Module failed to sign signatureHash.", __func__);
             spend.setVchSig(vchSig);
 
         }
@@ -230,7 +231,7 @@ namespace ZPIVModule {
         }
         if (!ZPIVModule::parseCoinSpend(txIn, tx, prevOut, publicSpend)) {
             return state.Invalid(error("%s: invalid public coin spend parse %s\n", __func__,
-                                       tx.GetHash().GetHex()), REJECT_INVALID, "bad-txns-invalid-zpiv");
+                                       tx.GetHash().GetHex()), REJECT_INVALID, "bad-txns-invalid-z777");
         }
         return true;
     }

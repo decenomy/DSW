@@ -81,7 +81,7 @@
             <item>
              <widget class="QLabel" name="labelSubtitle1">
               <property name="text">
-               <string>Send public coins (PIV)</string>
+               <string>Send public coins (777)</string>
               </property>
              </widget>
             </item>
@@ -141,7 +141,7 @@
              <string notr="true">margin-left:8px;</string>
             </property>
             <property name="text">
-             <string>PIVX address or contact label</string>
+             <string>777 address or contact label</string>
             </property>
            </widget>
           </item>
@@ -464,7 +464,7 @@
                      <item>
                       <widget class="QLabel" name="labelAmountSend">
                        <property name="text">
-                        <string notr="true">0.00 PIV</string>
+                        <string notr="true">0.00 7</string>
                        </property>
                       </widget>
                      </item>

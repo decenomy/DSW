@@ -1,6 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2015-2019 The PIVX developers
+// Copyright (c) 2020 The Jackpot 777 developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,10 +13,15 @@
 #include "tinyformat.h"
 #include "utilstrencodings.h"
 #include "util.h"
+#include "crypto/xevan.h"
 
 uint256 CBlockHeader::GetHash() const
 {
-    if (nVersion < 4)  {
+    uint256 thash;
+    xevan_hash(reinterpret_cast<const char*>(this), (char*)&thash, 80);
+    return thash;
+
+/*     if (nVersion < 4)  {
 #if defined(WORDS_BIGENDIAN)
         uint8_t data[80];
         WriteLE32(&data[0], nVersion);
@@ -31,6 +37,7 @@ uint256 CBlockHeader::GetHash() const
     }
     // version >= 4
     return SerializeHash(*this);
+ */
 }
 
 std::string CBlock::ToString() const

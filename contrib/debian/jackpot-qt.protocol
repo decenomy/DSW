@@ -1,0 +1,11 @@
+[Protocol]
+exec=jackpot-qt '%u'
+protocol=jackpot
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false

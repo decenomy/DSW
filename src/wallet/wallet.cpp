@@ -2,6 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2020 The PIVX developers
+// Copyright (c) 2020 The Jackpot 777 developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -38,7 +39,7 @@ bool bSpendZeroConfChange = DEFAULT_SPEND_ZEROCONF_CHANGE;
 const char * DEFAULT_WALLET_DAT = "wallet.dat";
 
 /**
- * Fees smaller than this (in upiv) are considered zero fee (for transaction creation)
+ * Fees smaller than this (in u777) are considered zero fee (for transaction creation)
  * We are ~100 times smaller then bitcoin now (2015-06-23), set minTxFee 10 times higher
  * so it's still 10 times lower comparing to bitcoin.
  * Override with -mintxfee
@@ -379,7 +380,7 @@ bool CWallet::Unlock(const CKeyingMaterial& vMasterKeyIn)
             if (CWalletDB(strWalletFile).ReadCurrentSeedHash(hashSeed)) {
                 uint256 nSeed;
                 if (!GetDeterministicSeed(hashSeed, nSeed)) {
-                    return error("Failed to read zPIV seed from DB. Wallet is probably corrupt.");
+                    return error("Failed to read z777 seed from DB. Wallet is probably corrupt.");
                 }
                 zwallet->SetMasterSeed(nSeed, false);
             }
@@ -1367,7 +1368,7 @@ CAmount CWalletTx::GetLockedCredit() const
         }
 
         // Add masternode collaterals which are handled like locked coins
-        else if (fMasterNode && vout[i].nValue == 10000 * COIN) {
+        else if (fMasterNode && vout[i].nValue == GetMstrNodCollateral(chainActive.Height()) * COIN) {
             nCredit += pwallet->GetCredit(txout, ISMINE_SPENDABLE);
         }
 
@@ -1524,7 +1525,7 @@ int CWallet::ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate, b
                     ret++;
             }
 
-            // Will try to rescan it if zPIV upgrade is active.
+            // Will try to rescan it if z777 upgrade is active.
             doZPivRescan(pindex, block, setAddedToWallet, consensus, fCheckZPIV);
 
             pindex = chainActive.Next(pindex);
@@ -1971,17 +1972,21 @@ bool CWallet::GetMasternodeVinAndKeys(CTxIn& txinRet, CPubKey& pubKeyRet, CKey& 
     CTxOut txOut = wtx.vout[nOutputIndex];
 
     // Masternode collateral value
-    if (txOut.nValue != 10000 * COIN) {
-        strError = "Invalid collateral tx value, must be 10,000 PIV";
+    if (txOut.nValue != GetMstrNodCollateral(chainActive.Height()) * COIN) {
+        strError = "Invalid collateral tx value";
         return error("%s: tx %s, index %d not a masternode collateral", __func__, strTxHash, nOutputIndex);
     }
 
     // Check availability
     int nDepth = 0;
-    if (!CheckTXAvailability(&wtx, true, false, nDepth)) {
-        strError = "Not available collateral transaction";
-        return error("%s: tx %s not available", __func__, strTxHash);
+    {
+        LOCK(cs_main);
+        if (!CheckTXAvailability(&wtx, true, false, nDepth)) {
+            strError = "Not available collateral transaction";
+            return error("%s: tx %s not available", __func__, strTxHash);
+        }
     }
+
     // Skip spent coins
     if (IsSpent(txHash, nOutputIndex)) {
         strError = "Error: collateral already spent";
@@ -2043,7 +2048,7 @@ bool CWallet::AvailableCoins(std::vector<COutput>* pCoins,      // --> populates
             for (unsigned int i = 0; i < pcoin->vout.size(); i++) {
 
                 // Check for only 10k utxo
-                if (nCoinType == ONLY_10000 && pcoin->vout[i].nValue != 10000 * COIN) continue;
+                if (nCoinType == ONLY_10000 && pcoin->vout[i].nValue != GetMstrNodCollateral(chainActive.Height()) * COIN) continue;
 
                 // Check for stakeable utxo
                 if (nCoinType == STAKEABLE_COINS && pcoin->vout[i].IsZerocoinMint()) continue;
@@ -2508,7 +2513,7 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend,
                 if (nChange > 0) {
                     // Fill a vout to ourself
                     // TODO: pass in scriptChange instead of reservekey so
-                    // change transaction isn't always pay-to-pivx-address
+                    // change transaction isn't always pay-to-777-address
                     bool combineChange = false;
 
                     // coin control: send change to custom address
@@ -3716,7 +3721,7 @@ std::string CWallet::GetWalletHelpString(bool showDebug)
     strUsage += HelpMessageOpt("-coldstaking=<n>", strprintf(_("Enable cold staking functionality (0-1, default: %u). Disabled if staking=0"), DEFAULT_COLDSTAKING));
     strUsage += HelpMessageOpt("-gen", strprintf(_("Generate coins (default: %u)"), DEFAULT_GENERATE));
     strUsage += HelpMessageOpt("-genproclimit=<n>", strprintf(_("Set the number of threads for coin generation if enabled (-1 = all cores, default: %d)"), DEFAULT_GENERATE_PROCLIMIT));
-    strUsage += HelpMessageOpt("-minstakesplit=<amt>", strprintf(_("Minimum positive amount (in PIV) allowed by GUI and RPC for the stake split threshold (default: %s)"), FormatMoney(DEFAULT_MIN_STAKE_SPLIT_THRESHOLD)));
+    strUsage += HelpMessageOpt("-minstakesplit=<amt>", strprintf(_("Minimum positive amount (in 777) allowed by GUI and RPC for the stake split threshold (default: %s)"), FormatMoney(DEFAULT_MIN_STAKE_SPLIT_THRESHOLD)));
     strUsage += HelpMessageOpt("-staking=<n>", strprintf(_("Enable staking functionality (0-1, default: %u)"), DEFAULT_STAKING));
     if (showDebug) {
         strUsage += HelpMessageGroup(_("Wallet debugging/testing options:"));
@@ -3764,10 +3769,10 @@ CWallet* CWallet::CreateWalletFromFile(const std::string walletFile)
             UIWarning(strprintf(_("Warning: error reading %s! All keys read correctly, but transaction data"
                          " or address book entries might be missing or incorrect."), walletFile));
         } else if (nLoadWalletRet == DB_TOO_NEW) {
-            UIError(strprintf(_("Error loading %s: Wallet requires newer version of PIVX Core"), walletFile));
+            UIError(strprintf(_("Error loading %s: Wallet requires newer version of Jackpot"), walletFile));
             return nullptr;
         } else if (nLoadWalletRet == DB_NEED_REWRITE) {
-            UIError(_("Wallet needed to be rewritten: restart PIVX Core to complete"));
+            UIError(_("Wallet needed to be rewritten: restart Jackpot to complete"));
             return nullptr;
         } else {
             UIError(strprintf(_("Error loading %s\n"), walletFile));
@@ -3905,8 +3910,8 @@ CWallet* CWallet::CreateWalletFromFile(const std::string walletFile)
     fVerifyingBlocks = false;
 
     if (!zwalletInstance->GetMasterSeed().IsNull()) {
-        //Inititalize zPIVWallet
-        uiInterface.InitMessage(_("Syncing zPIV wallet..."));
+        //Inititalize z777Wallet
+        uiInterface.InitMessage(_("Syncing z777 wallet..."));
 
         //Load zerocoin mint hashes to memory
         walletInstance->zpivTracker->Init();
@@ -4123,7 +4128,7 @@ void CWallet::SetNull()
     // Stake split threshold
     nStakeSplitThreshold = DEFAULT_STAKE_SPLIT_THRESHOLD;
 
-    // User-defined fee PIV/kb
+    // User-defined fee 777/kb
     fUseCustomFee = false;
     nCustomFee = CWallet::minTxFee.GetFeePerK();
 

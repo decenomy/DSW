@@ -2,6 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2020 The PIVX developers
+// Copyright (c) 2020 The Jackpot 777 developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -265,11 +266,11 @@ UniValue stop(const JSONRPCRequest& jsonRequest)
     if (jsonRequest.fHelp || jsonRequest.params.size() > 1)
         throw std::runtime_error(
             "stop\n"
-            "\nStop PIVX server.");
+            "\nStop 777 server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "PIVX server stopping";
+    return "777 server stopping";
 }
 
 
@@ -359,32 +360,32 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblock",           &waitforblock,           true },
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true },
 
-        /* PIVX features */
-        {"pivx", "listmasternodes", &listmasternodes, true },
-        {"pivx", "getmasternodecount", &getmasternodecount, true },
-        {"pivx", "createmasternodebroadcast", &createmasternodebroadcast, true },
-        {"pivx", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
-        {"pivx", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
-        {"pivx", "masternodecurrent", &masternodecurrent, true },
-        {"pivx", "startmasternode", &startmasternode, true },
-        {"pivx", "createmasternodekey", &createmasternodekey, true },
-        {"pivx", "getmasternodeoutputs", &getmasternodeoutputs, true },
-        {"pivx", "listmasternodeconf", &listmasternodeconf, true },
-        {"pivx", "getmasternodestatus", &getmasternodestatus, true },
-        {"pivx", "getmasternodewinners", &getmasternodewinners, true },
-        {"pivx", "getmasternodescores", &getmasternodescores, true },
-        {"pivx", "preparebudget", &preparebudget, true },
-        {"pivx", "submitbudget", &submitbudget, true },
-        {"pivx", "mnbudgetvote", &mnbudgetvote, true },
-        {"pivx", "getbudgetvotes", &getbudgetvotes, true },
-        {"pivx", "getnextsuperblock", &getnextsuperblock, true },
-        {"pivx", "getbudgetprojection", &getbudgetprojection, true },
-        {"pivx", "getbudgetinfo", &getbudgetinfo, true },
-        {"pivx", "mnbudgetrawvote", &mnbudgetrawvote, true },
-        {"pivx", "mnfinalbudget", &mnfinalbudget, true },
-        {"pivx", "checkbudgets", &checkbudgets, true },
-        {"pivx", "mnsync", &mnsync, true },
-        {"pivx", "spork", &spork, true },
+        /* 777 features */
+        {"jackpot", "listmasternodes", &listmasternodes, true },
+        {"jackpot", "getmasternodecount", &getmasternodecount, true },
+        {"jackpot", "createmasternodebroadcast", &createmasternodebroadcast, true },
+        {"jackpot", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
+        {"jackpot", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
+        {"jackpot", "masternodecurrent", &masternodecurrent, true },
+        {"jackpot", "startmasternode", &startmasternode, true },
+        {"jackpot", "createmasternodekey", &createmasternodekey, true },
+        {"jackpot", "getmasternodeoutputs", &getmasternodeoutputs, true },
+        {"jackpot", "listmasternodeconf", &listmasternodeconf, true },
+        {"jackpot", "getmasternodestatus", &getmasternodestatus, true },
+        {"jackpot", "getmasternodewinners", &getmasternodewinners, true },
+        {"jackpot", "getmasternodescores", &getmasternodescores, true },
+        {"jackpot", "preparebudget", &preparebudget, true },
+        {"jackpot", "submitbudget", &submitbudget, true },
+        {"jackpot", "mnbudgetvote", &mnbudgetvote, true },
+        {"jackpot", "getbudgetvotes", &getbudgetvotes, true },
+        {"jackpot", "getnextsuperblock", &getnextsuperblock, true },
+        {"jackpot", "getbudgetprojection", &getbudgetprojection, true },
+        {"jackpot", "getbudgetinfo", &getbudgetinfo, true },
+        {"jackpot", "mnbudgetrawvote", &mnbudgetrawvote, true },
+        {"jackpot", "mnfinalbudget", &mnfinalbudget, true },
+        {"jackpot", "checkbudgets", &checkbudgets, true },
+        {"jackpot", "mnsync", &mnsync, true },
+        {"jackpot", "spork", &spork, true },
 
 #ifdef ENABLE_WALLET
         /* Wallet */
@@ -597,7 +598,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(std::string methodname, std::string args)
 {
-    return "> pivx-cli " + methodname + " " + args + "\n";
+    return "> jackpot-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(std::string methodname, std::string args)

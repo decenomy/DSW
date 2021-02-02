@@ -5,6 +5,7 @@
 // Copyright (c) 2013-2014 The NovaCoin Developers
 // Copyright (c) 2014-2018 The BlackCoin Developers
 // Copyright (c) 2015-2020 The PIVX developers
+// Copyright (c) 2020 The Jackpot 777 developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -41,7 +42,7 @@
 
 //////////////////////////////////////////////////////////////////////////////
 //
-// PIVXMiner
+// Miner
 //
 
 //
@@ -103,7 +104,7 @@ void UpdateTime(CBlockHeader* pblock, const CBlockIndex* pindexPrev)
 bool CheckForDuplicatedSerials(const CTransaction& tx, const Consensus::Params& consensus,
                                std::vector<CBigNum>& vBlockSerials)
 {
-    // double check that there are no double spent zPIV spends in this block or tx
+    // double check that there are no double spent z777 spends in this block or tx
     if (tx.HasZerocoinSpendInputs()) {
         int nHeightTx = 0;
         if (IsTransactionInChain(tx.GetHash(), nHeightTx)) {
@@ -138,7 +139,7 @@ bool CheckForDuplicatedSerials(const CTransaction& tx, const Consensus::Params& 
                 vBlockSerials.emplace_back(spend->getCoinSerialNumber());
             }
         }
-        //This zPIV serial has already been included in the block, do not add this tx.
+        //This z777 serial has already been included in the block, do not add this tx.
         if (fDoubleSerial) {
             return false;
         }
@@ -161,7 +162,7 @@ bool CreateCoinbaseTx(CBlock* pblock, const CScript& scriptPubKeyIn, CBlockIndex
     txNew.vin[0].scriptSig = CScript() << pindexPrev->nHeight + 1 << OP_0;
     // If no payee was detected, then the whole block value goes to the first output.
     if (txNew.vout.size() == 1) {
-        txNew.vout[0].nValue = GetBlockValue(pindexPrev->nHeight);
+        txNew.vout[0].nValue = GetBlockValue(pindexPrev->nHeight + 1);
     }
 
     pblock->vtx.emplace_back(txNew);
@@ -223,10 +224,17 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
     pblocktemplate->vTxSigOps.push_back(-1); // updated at end
 
     // Largest block you're willing to create:
-    unsigned int nBlockMaxSize = GetArg("-blockmaxsize", DEFAULT_BLOCK_MAX_SIZE);
+    unsigned int nBlockMaxSize = std::min((unsigned int)GetArg("-blockmaxsize", DEFAULT_BLOCK_MAX_SIZE), MAX_BLOCK_SIZE_CURRENT);
     // Limit to betweeen 1K and MAX_BLOCK_SIZE-1K for sanity:
-    unsigned int nBlockMaxSizeNetwork = MAX_BLOCK_SIZE_CURRENT;
-    nBlockMaxSize = std::max((unsigned int)1000, std::min((nBlockMaxSizeNetwork - 1000), nBlockMaxSize));
+    unsigned int nBlockMaxSizeSpork = (unsigned int)sporkManager.GetSporkValue(SPORK_105_MAX_BLOCK_SIZE);
+
+    nBlockMaxSize = std::max(
+        (unsigned int)1000, 
+        std::min( 
+            nBlockMaxSizeSpork, 
+            nBlockMaxSize 
+        )
+    );
 
     // How much of the block should be dedicated to high-priority transactions,
     // included regardless of the fees they pay
@@ -305,7 +313,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
 
                 int nConf = nHeight - coin.nHeight;
 
-                // zPIV spends can have very large priority, use non-overflowing safe functions
+                // z777 spends can have very large priority, use non-overflowing safe functions
                 dPriority = double_safe_addition(dPriority, ((double)nValueIn * nConf));
 
             }
@@ -377,7 +385,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
             if (!view.HaveInputs(tx))
                 continue;
 
-            // zPIV check to not include duplicated serials in the same block.
+            // z777 check to not include duplicated serials in the same block.
             if (!CheckForDuplicatedSerials(tx, consensus, vBlockSerials)) {
                 continue;
             }
@@ -522,7 +530,7 @@ bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, Optional<CReserveKey>& r
     {
         WAIT_LOCK(g_best_block_mutex, lock);
         if (pblock->hashPrevBlock != g_best_block)
-            return error("PIVXMiner : generated block is stale");
+            return error("Miner : generated block is stale");
     }
 
     // Remove key from key pool
@@ -535,7 +543,7 @@ bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, Optional<CReserveKey>& r
     // Process this block the same as if we had received it from another node
     CValidationState state;
     if (!ProcessNewBlock(state, nullptr, pblock, nullptr, g_connman.get())) {
-        return error("PIVXMiner : ProcessNewBlock, block not accepted");
+        return error("Miner : ProcessNewBlock, block not accepted");
     }
 
     g_connman->ForEachNode([&pblock](CNode* node)
@@ -562,7 +570,7 @@ void CheckForCoins(CWallet* pwallet, const int minutes, std::vector<COutput>* av
 
 void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
 {
-    LogPrintf("PIVXMiner started\n");
+    LogPrintf("Miner started\n");
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
     util::ThreadRename("pivx-miner");
     const Consensus::Params& consensus = Params().GetConsensus();
@@ -581,21 +589,20 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
     while (fGenerateBitcoins || fProofOfStake) {
         CBlockIndex* pindexPrev = GetChainTip();
         if (!pindexPrev) {
-            MilliSleep(nSpacingMillis);       // sleep a block
+            MilliSleep(nSpacingMillis); // sleep a block
             continue;
         }
         if (fProofOfStake) {
             if (!consensus.NetworkUpgradeActive(pindexPrev->nHeight + 1, Consensus::UPGRADE_POS)) {
                 // The last PoW block hasn't even been mined yet.
-                MilliSleep(nSpacingMillis);       // sleep a block
+                MilliSleep(nSpacingMillis); // sleep a block
                 continue;
             }
 
             // update fStakeableCoins (5 minute check time);
             CheckForCoins(pwallet, 5, &availableCoins);
 
-            while ((g_connman && g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && Params().MiningRequiresPeers())
-                    || pwallet->IsLocked() || !fStakeableCoins || masternodeSync.NotCompleted()) {
+            while ((g_connman && g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && Params().MiningRequiresPeers()) || pwallet->IsLocked() || !fStakeableCoins || masternodeSync.NotCompleted()) {
                 MilliSleep(5000);
                 // Do a separate 1 minute check here to ensure fStakeableCoins is updated
                 if (!fStakeableCoins) CheckForCoins(pwallet, 1, &availableCoins);
@@ -603,17 +610,17 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
 
             //search our map of hashed blocks, see if bestblock has been hashed yet
             if (pwallet->pStakerStatus &&
-                    pwallet->pStakerStatus->GetLastHash() == pindexPrev->GetBlockHash() &&
-                    pwallet->pStakerStatus->GetLastTime() >= GetCurrentTimeSlot()) {
+                pwallet->pStakerStatus->GetLastHash() == pindexPrev->GetBlockHash() &&
+                pwallet->pStakerStatus->GetLastTime() >= GetCurrentTimeSlot()) {
                 MilliSleep(2000);
                 continue;
             }
 
-        } else if (consensus.NetworkUpgradeActive(pindexPrev->nHeight - 6, Consensus::UPGRADE_POS)) {
+        } else if (pindexPrev->nHeight > 6 && consensus.NetworkUpgradeActive(pindexPrev->nHeight - 6, Consensus::UPGRADE_POS)) {
             // Late PoW: run for a little while longer, just in case there is a rewind on the chain.
             LogPrintf("%s: Exiting PoW Mining Thread at height: %d\n", __func__, pindexPrev->nHeight);
             return;
-       }
+        }
 
         //
         // Create new block
@@ -621,8 +628,8 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
         unsigned int nTransactionsUpdatedLast = mempool.GetTransactionsUpdated();
 
         std::unique_ptr<CBlockTemplate> pblocktemplate((fProofOfStake ?
-                                                        CreateNewBlock(CScript(), pwallet, true, &availableCoins) :
-                                                        CreateNewBlockWithKey(*opReservekey, pwallet)));
+                                                            CreateNewBlock(CScript(), pwallet, true, &availableCoins) :
+                                                            CreateNewBlockWithKey(*opReservekey, pwallet)));
         if (!pblocktemplate.get()) continue;
         CBlock* pblock = &pblocktemplate->block;
 
@@ -641,7 +648,7 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
         // POW - miner main
         IncrementExtraNonce(pblock, pindexPrev, nExtraNonce);
 
-        LogPrintf("Running PIVXMiner with %u transactions in block (%u bytes)\n", pblock->vtx.size(),
+        LogPrintf("Running Miner with %u transactions in block (%u bytes)\n", pblock->vtx.size(),
             ::GetSerializeSize(*pblock, SER_NETWORK, PROTOCOL_VERSION));
 
         //
@@ -702,11 +709,10 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
 
             // Check for stop or if block needs to be rebuilt
             boost::this_thread::interruption_point();
-            if (    (g_connman && g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && Params().MiningRequiresPeers()) || // Regtest mode doesn't require peers
-                    (pblock->nNonce >= 0xffff0000) ||
-                    (mempool.GetTransactionsUpdated() != nTransactionsUpdatedLast && GetTime() - nStart > 60) ||
-                    (pindexPrev != chainActive.Tip())
-                ) break;
+            if ((g_connman && g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && Params().MiningRequiresPeers()) || // Regtest mode doesn't require peers
+                (pblock->nNonce >= 0xffff0000) ||
+                (mempool.GetTransactionsUpdated() != nTransactionsUpdatedLast && GetTime() - nStart > 60) ||
+                (pindexPrev != chainActive.Tip())) break;
 
             // Update nTime every few seconds
             UpdateTime(pblock, pindexPrev);
@@ -714,7 +720,6 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
                 // Changing pblock->nTime can change work required on testnet:
                 hashTarget.SetCompact(pblock->nBits);
             }
-
         }
     }
 }
@@ -727,12 +732,12 @@ void static ThreadBitcoinMiner(void* parg)
         BitcoinMiner(pwallet, false);
         boost::this_thread::interruption_point();
     } catch (const std::exception& e) {
-        LogPrintf("PIVXMiner exception");
+        LogPrintf("Miner exception");
     } catch (...) {
-        LogPrintf("PIVXMiner exception");
+        LogPrintf("Miner exception");
     }
 
-    LogPrintf("PIVXMiner exiting\n");
+    LogPrintf("Miner exiting\n");
 }
 
 void GenerateBitcoins(bool fGenerate, CWallet* pwallet, int nThreads)

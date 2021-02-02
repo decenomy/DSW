@@ -1,4 +1,5 @@
 // Copyright (c) 2017-2020 The PIVX developers
+// Copyright (c) 2020 The Jackpot 777 developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,7 +19,7 @@
 
 BOOST_FIXTURE_TEST_SUITE(zerocoin_denom_tests, BasicTestingSetup)
 
-//translation from pivx quantity to zerocoin denomination
+//translation from jackpot quantity to zerocoin denomination
 BOOST_AUTO_TEST_CASE(amount_to_denomination_test)
 {
     std::cout << "Running amount_to_denomination_test...\n";

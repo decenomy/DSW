@@ -1,5 +1,6 @@
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2020 The PIVX developers
+// Copyright (c) 2020 The Jackpot 777 developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,6 +12,7 @@
 #include "masternode-sync.h"
 #include "masternodeman.h"
 #include "netbase.h"
+#include "spork.h"
 #include "sync.h"
 #include "util.h"
 #include "wallet/wallet.h"
@@ -211,7 +213,7 @@ void CMasternode::Check(bool forceCheck)
         CMutableTransaction tx = CMutableTransaction();
         CScript dummyScript;
         dummyScript << ToByteVector(pubKeyCollateralAddress) << OP_CHECKSIG;
-        CTxOut vout = CTxOut(9999.99 * COIN, dummyScript);
+        CTxOut vout = CTxOut((GetMstrNodCollateral(chainActive.Height()) - 0.01) * COIN, dummyScript);
         tx.vin.push_back(vin);
         tx.vout.push_back(vout);
         {
@@ -307,7 +309,7 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
     uint256 hash;
     if(GetTransaction(vin.prevout.hash, txVin, hash, true)) {
         for (CTxOut out : txVin.vout) {
-            if (out.nValue == 10000 * COIN && out.scriptPubKey == payee) return true;
+            if (out.nValue == GetMstrNodCollateral(chainActive.Height()) * COIN && out.scriptPubKey == payee) return true;
         }
     }
 
@@ -441,17 +443,30 @@ bool CMasternodeBroadcast::Sign(const std::string strSignKey)
     return Sign(key, pubkey);
 }
 
+std::string CMasternodeBroadcast::GetOldStrMessage() const
+{
+    std::string strMessage;
+
+    std::string vchPubKey(pubKeyCollateralAddress.begin(), pubKeyCollateralAddress.end());
+    std::string vchPubKey2(pubKeyMasternode.begin(), pubKeyMasternode.end());
+    strMessage = addr.ToString() + std::to_string(sigTime) + vchPubKey + vchPubKey2 + std::to_string(protocolVersion);
+
+    return strMessage;
+}
+
 bool CMasternodeBroadcast::CheckSignature() const
 {
     std::string strError = "";
-    std::string strMessage = (
+    const std::string strMessage = (
                             nMessVersion == MessageVersion::MESS_VER_HASH ?
                             GetSignatureHash().GetHex() :
                             GetStrMessage()
                             );
 
-    if(!CMessageSigner::VerifyMessage(pubKeyCollateralAddress, vchSig, strMessage, strError))
+    if(!CMessageSigner::VerifyMessage(pubKeyCollateralAddress, vchSig, strMessage, strError) &&
+       !CMessageSigner::VerifyMessage(pubKeyCollateralAddress, vchSig, GetOldStrMessage(), strError)) {
         return error("%s : VerifyMessage (nMessVersion=%d) failed: %s", __func__, nMessVersion, strError);
+    } 
 
     return true;
 }
@@ -514,15 +529,17 @@ bool CMasternodeBroadcast::CheckAndUpdate(int& nDos)
     std::string strError = "";
     if (!CheckSignature())
     {
-        // don't ban for old masternodes, their sigs could be broken because of the bug
-        nDos = protocolVersion < MIN_PEER_MNANNOUNCE ? 0 : 100;
+        // masternodes older than this proto version use old strMessage format for mnannounce
+        nDos = protocolVersion <= MIN_PEER_MNANNOUNCE ? 0 : 100;
         return error("%s : Got bad Masternode address signature", __func__);
     }
 
-    if (Params().NetworkID() == CBaseChainParams::MAIN) {
-        if (addr.GetPort() != 51472) return false;
-    } else if (addr.GetPort() == 51472)
-        return false;
+    if(addr.GetPort() != Params().GetDefaultPort()) {
+        return error(
+            "%s : Invalid port %u for masternode %s, only %d is supported on %s-net.", 
+            __func__, addr.GetPort(), addr.ToString(), Params().GetDefaultPort(), 
+            Params().NetworkIDString());
+    }
 
     //search existing Masternode list, this is where we update existing Masternodes with new mnb broadcasts
     CMasternode* pmn = mnodeman.Find(vin);
@@ -582,7 +599,7 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
     CMutableTransaction tx = CMutableTransaction();
     CScript dummyScript;
     dummyScript << ToByteVector(pubKeyCollateralAddress) << OP_CHECKSIG;
-    CTxOut vout = CTxOut(9999.99 * COIN, dummyScript);
+    CTxOut vout = CTxOut((GetMstrNodCollateral(chainActive.Height()) - 0.01) * COIN, dummyScript);
     tx.vin.push_back(vin);
     tx.vout.push_back(vout);
 
@@ -616,13 +633,13 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
     }
 
     // verify that sig time is legit in past
-    // should be at least not earlier than block when 1000 PIV tx got MASTERNODE_MIN_CONFIRMATIONS
+    // should be at least not earlier than block when 1000 777 tx got MASTERNODE_MIN_CONFIRMATIONS
     uint256 hashBlock = UINT256_ZERO;
     CTransaction tx2;
     GetTransaction(vin.prevout.hash, tx2, hashBlock, true);
     BlockMap::iterator mi = mapBlockIndex.find(hashBlock);
     if (mi != mapBlockIndex.end() && (*mi).second) {
-        CBlockIndex* pMNIndex = (*mi).second;                                                        // block for 1000 PIVX tx -> 1 confirmation
+        CBlockIndex* pMNIndex = (*mi).second;                                                        // block for 1000 777 tx -> 1 confirmation
         CBlockIndex* pConfIndex = chainActive[pMNIndex->nHeight + MASTERNODE_MIN_CONFIRMATIONS - 1]; // block where tx got MASTERNODE_MIN_CONFIRMATIONS
         if (pConfIndex->GetBlockTime() > sigTime) {
             LogPrint(BCLog::MASTERNODE,"mnb - Bad sigTime %d for Masternode %s (%i conf block is at %d)\n",
@@ -693,7 +710,13 @@ uint256 CMasternodePing::GetHash() const
 
 std::string CMasternodePing::GetStrMessage() const
 {
-    return vin.ToString() + blockHash.ToString() + std::to_string(sigTime);
+    int64_t salt = sporkManager.GetSporkValue(SPORK_103_PING_MESSAGE_SALT);
+
+    if (salt == 4070908800ULL) {
+        return vin.ToString() + blockHash.ToString() + std::to_string(sigTime) + std::to_string(salt);
+    } else {
+        return vin.ToString() + blockHash.ToString() + std::to_string(sigTime);
+    }
 }
 
 bool CMasternodePing::CheckAndUpdate(int& nDos, bool fRequireEnabled, bool fCheckSigTimeOnly)

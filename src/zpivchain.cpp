@@ -1,4 +1,5 @@
 // Copyright (c) 2018-2020 The PIVX developers
+// Copyright (c) 2020 The Jackpot 777 developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -423,7 +424,7 @@ bool UpdateZPIVSupplyConnect(const CBlock& block, CBlockIndex* pindex, bool fJus
     if (!consensus.NetworkUpgradeActive(pindex->nHeight, Consensus::UPGRADE_ZC))
         return true;
 
-    //Add mints to zPIV supply (mints are forever disabled after last checkpoint)
+    //Add mints to z777 supply (mints are forever disabled after last checkpoint)
     if (pindex->nHeight < consensus.height_last_ZC_AccumCheckpoint) {
         std::list<CZerocoinMint> listMints;
         std::set<uint256> setAddedToWallet;
@@ -454,7 +455,7 @@ bool UpdateZPIVSupplyConnect(const CBlock& block, CBlockIndex* pindex, bool fJus
         }
     }
 
-    //Remove spends from zPIV supply
+    //Remove spends from z777 supply
     std::list<libzerocoin::CoinDenomination> listDenomsSpent = ZerocoinSpendListFromBlock(block, true);
     for (const libzerocoin::CoinDenomination& denom : listDenomsSpent) {
         mapZerocoinSupply.at(denom)--;
@@ -464,7 +465,7 @@ bool UpdateZPIVSupplyConnect(const CBlock& block, CBlockIndex* pindex, bool fJus
     }
 
     // Update Wrapped Serials amount
-    // A one-time event where only the zPIV supply was off (due to serial duplication off-chain on main net)
+    // A one-time event where only the z777 supply was off (due to serial duplication off-chain on main net)
     if (Params().NetworkID() == CBaseChainParams::MAIN && pindex->nHeight == consensus.height_last_ZC_WrappedSerials + 1) {
         for (const libzerocoin::CoinDenomination& denom : libzerocoin::zerocoinDenomList)
             mapZerocoinSupply.at(denom) += GetWrapppedSerialInflation(denom);
@@ -485,19 +486,19 @@ bool UpdateZPIVSupplyDisconnect(const CBlock& block, CBlockIndex* pindex)
         return true;
 
     // Undo Update Wrapped Serials amount
-    // A one-time event where only the zPIV supply was off (due to serial duplication off-chain on main net)
+    // A one-time event where only the z777 supply was off (due to serial duplication off-chain on main net)
     if (Params().NetworkID() == CBaseChainParams::MAIN && pindex->nHeight == consensus.height_last_ZC_WrappedSerials + 1) {
         for (const libzerocoin::CoinDenomination& denom : libzerocoin::zerocoinDenomList)
             mapZerocoinSupply.at(denom) -= GetWrapppedSerialInflation(denom);
     }
 
-    // Re-add spends to zPIV supply
+    // Re-add spends to z777 supply
     std::list<libzerocoin::CoinDenomination> listDenomsSpent = ZerocoinSpendListFromBlock(block, true);
     for (const libzerocoin::CoinDenomination& denom : listDenomsSpent) {
         mapZerocoinSupply.at(denom)++;
     }
 
-    // Remove mints from zPIV supply (mints are forever disabled after last checkpoint)
+    // Remove mints from z777 supply (mints are forever disabled after last checkpoint)
     if (pindex->nHeight < consensus.height_last_ZC_AccumCheckpoint) {
         std::list<CZerocoinMint> listMints;
         std::set<uint256> setAddedToWallet;

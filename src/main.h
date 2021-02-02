@@ -5,6 +5,7 @@
 // Copyright (c) 2013-2014 The NovaCoin Developers
 // Copyright (c) 2014-2018 The BlackCoin Developers
 // Copyright (c) 2015-2020 The PIVX developers
+// Copyright (c) 2020 The Jackpot 777 developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -62,6 +63,17 @@ class CValidationState;
 struct PrecomputedTransactionData;
 struct CBlockTemplate;
 struct CNodeStateStats;
+
+inline CAmount GetMstrNodCollateral(int nHeight){
+    if (nHeight <= 100000 && nHeight > 5000) {
+        return 15000;
+    } else if (nHeight <= 200000 && nHeight > 100000) {
+        return 17500;
+    } else if (nHeight > 200000) {
+        return 20000;
+    }
+    return 0;
+}
 
 /** Default for -limitancestorcount, max number of in-mempool ancestors */
 static const unsigned int DEFAULT_ANCESTOR_LIMIT = 25;
@@ -242,7 +254,7 @@ bool GetOutput(const uint256& hash, unsigned int index, CValidationState& state,
 
 // ***TODO***
 double ConvertBitsToDouble(unsigned int nBits);
-int64_t GetMasternodePayment();
+int64_t GetMasternodePayment(int nHeight);
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader* pblock, bool fProofOfStake);
 
 bool ActivateBestChain(CValidationState& state, const CBlock* pblock = NULL, bool fAlreadyChecked = false, CConnman* connman = nullptr);

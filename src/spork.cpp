@@ -1,5 +1,6 @@
 // Copyright (c) 2014-2016 The Dash developers
 // Copyright (c) 2016-2020 The PIVX developers
+// Copyright (c) 2020 The Jackpot 777 developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -14,17 +15,23 @@
 #define MAKE_SPORK_DEF(name, defaultValue) CSporkDef(name, defaultValue, #name)
 
 std::vector<CSporkDef> sporkDefs = {
-    MAKE_SPORK_DEF(SPORK_2_SWIFTTX,                         0),             // ON
-    MAKE_SPORK_DEF(SPORK_3_SWIFTTX_BLOCK_FILTERING,         0),             // ON
-    MAKE_SPORK_DEF(SPORK_5_MAX_VALUE,                       1000),          // 1000 PIV
+    MAKE_SPORK_DEF(SPORK_2_SWIFTTX,                         4070908800ULL), // ON
+    MAKE_SPORK_DEF(SPORK_3_SWIFTTX_BLOCK_FILTERING,         4070908800ULL), // ON
+    MAKE_SPORK_DEF(SPORK_5_MAX_VALUE,                       1000),          // 1000
     MAKE_SPORK_DEF(SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT,  4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_9_MASTERNODE_BUDGET_ENFORCEMENT,   4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_13_ENABLE_SUPERBLOCKS,             4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_14_NEW_PROTOCOL_ENFORCEMENT,       4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2,     4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_14_MIN_PROTOCOL_ACCEPTED,          4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_15_NOOP,                           4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_16_ZEROCOIN_MAINTENANCE_MODE,      4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_17_COLDSTAKING_ENFORCEMENT,        4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_18_ZEROCOIN_PUBLICSPEND_V4,        4070908800ULL), // OFF
+
+    MAKE_SPORK_DEF(SPORK_101_SERVICES_ENFORCEMENT,          4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_102_FORCE_ENABLED_MASTERNODE ,     4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_103_PING_MESSAGE_SALT,             4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_104_MAX_BLOCK_TIME,                4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_105_MAX_BLOCK_SIZE,                4070908800ULL), // OFF
 };
 
 CSporkManager sporkManager;
@@ -44,7 +51,7 @@ void CSporkManager::Clear()
     mapSporksActive.clear();
 }
 
-// PIVX: on startup load spork values from previous session if they exist in the sporkDB
+// Jackpot: on startup load spork values from previous session if they exist in the sporkDB
 void CSporkManager::LoadSporksFromDB()
 {
     for (const auto& sporkDef : sporkDefs) {
@@ -104,11 +111,14 @@ void CSporkManager::ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStr
             LOCK(cs);
             if (mapSporksActive.count(spork.nSporkID)) {
                 // spork is active
-                if (mapSporksActive[spork.nSporkID].nTimeSigned >= spork.nTimeSigned) {
+                if (mapSporksActive[spork.nSporkID].nTimeSigned > spork.nTimeSigned) {
                     // spork in memory has been signed more recently
                     LogPrintf("%s : spork %d (%s) in memory is more recent: %d >= %d\n", __func__,
                             spork.nSporkID, sporkName,
                             mapSporksActive[spork.nSporkID].nTimeSigned, spork.nTimeSigned);
+                    return;
+                } else if(mapSporksActive[spork.nSporkID].nTimeSigned == spork.nTimeSigned) {
+                    // nothing to do
                     return;
                 } else {
                     // update active spork
@@ -146,7 +156,7 @@ void CSporkManager::ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStr
         }
         spork.Relay();
 
-        // PIVX: add to spork database.
+        // Jackpot: add to spork database.
         pSporkDB->WriteSpork(spork.nSporkID, spork);
     }
     if (strCommand == NetMsgType::GETSPORKS) {

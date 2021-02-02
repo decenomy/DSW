@@ -1,5 +1,6 @@
 // Copyright (c) 2014-2017 The Bitcoin developers
 // Copyright (c) 2017-2020 The PIVX developers
+// Copyright (c) 2020 The Jackpot 777 developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -77,7 +78,7 @@ void AddTimeData(const CNetAddr& ip, int64_t nOffsetSample, int nOffsetLimit)
             strMiscWarning = "";
         } else {
             nTimeOffset = (nMedian > 0 ? 1 : -1) * nOffsetLimit;
-            std::string strMessage = _("Warning: Please check that your computer's date and time are correct! If your clock is wrong PIVX Core will not work properly.");
+            std::string strMessage = _("Warning: Please check that your computer's date and time are correct! If your clock is wrong Jackpot will not work properly.");
             strMiscWarning = strMessage;
             LogPrintf("*** %s\n", strMessage);
             uiInterface.ThreadSafeMessageBox(strMessage, "", CClientUIInterface::MSG_ERROR);

@@ -1,4 +1,5 @@
 // Copyright (c) 2019-2020 The PIVX developers
+// Copyright (c) 2020 The Jackpot 777 developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -36,6 +37,7 @@ NavMenuWidget::NavMenuWidget(PIVXGUI *mainWindow, QWidget *parent) :
     ui->btnMaster->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     ui->btnColdStaking->setProperty("name", "cold-staking");
     ui->btnColdStaking->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+    ui->btnColdStaking->setVisible(false);
     ui->btnSettings->setProperty("name", "settings");
     ui->btnSettings->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     btns = {ui->btnDashboard, ui->btnSend, ui->btnReceive, ui->btnAddress, ui->btnMaster, ui->btnColdStaking, ui->btnSettings, ui->btnColdStaking};
@@ -55,9 +57,9 @@ NavMenuWidget::NavMenuWidget(PIVXGUI *mainWindow, QWidget *parent) :
 }
 
 void NavMenuWidget::loadWalletModel() {
-    if (walletModel && walletModel->getOptionsModel()) {
-        ui->btnColdStaking->setVisible(walletModel->getOptionsModel()->isColdStakingScreenEnabled());
-    }
+    // if (walletModel && walletModel->getOptionsModel()) {
+    //     ui->btnColdStaking->setVisible(walletModel->getOptionsModel()->isColdStakingScreenEnabled());
+    // }
 }
 
 /**
@@ -77,7 +79,7 @@ void NavMenuWidget::connectActions() {
     ui->btnReceive->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_3));
     ui->btnAddress->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_4));
     ui->btnMaster->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_5));
-    ui->btnColdStaking->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_6));
+    //ui->btnColdStaking->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_6));
     ui->btnSettings->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_7));
 }
 
@@ -133,9 +135,9 @@ void NavMenuWidget::selectSettings() {
 }
 
 void NavMenuWidget::onShowHideColdStakingChanged(bool show) {
-    ui->btnColdStaking->setVisible(show);
-    if (show)
-        ui->scrollAreaNav->verticalScrollBar()->setValue(ui->btnColdStaking->y());
+    // ui->btnColdStaking->setVisible(show);
+    // if (show)
+    //     ui->scrollAreaNav->verticalScrollBar()->setValue(ui->btnColdStaking->y());
 }
 
 void NavMenuWidget::showEvent(QShowEvent *event) {

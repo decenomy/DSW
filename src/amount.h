@@ -1,6 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2017-2020 The PIVX developers
+// Copyright (c) 2020 The Jackpot 777 developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -14,14 +15,14 @@
 
 extern const std::string CURRENCY_UNIT;
 
-/** Amount in PIV (Can be negative) */
+/** Amount in 777 (Can be negative) */
 typedef int64_t CAmount;
 
 static const CAmount COIN = 100000000;
 static const CAmount CENT = 1000000;
 
 /**
- * Fee rate in PIV per kilobyte: CAmount / kB
+ * Fee rate in 777 per kilobyte: CAmount / kB
  */
 class CFeeRate
 {
