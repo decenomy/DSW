@@ -566,11 +566,7 @@ void CheckForCoins(CWallet* pwallet, const int minutes, std::vector<COutput>* av
     if ((nTimeNow - nMintableLastCheck > minutes * 60)) {
         nMintableLastCheck = nTimeNow;
         fStakeableCoins = pwallet->StakeableCoins(availableCoins);
-<<<<<<< HEAD
         fMasternodeSync = sporkManager.IsSporkActive(SPORK_106_STAKING_SKIP_MN_SYNC) || !masternodeSync.NotCompleted();
-=======
-        fMasterNodeSync = sporkManager.IsSporkActive(SPORK_106_STAKING_SKIP_MN_SYNC) || !masternodeSync.NotCompleted();
->>>>>>> 1e845b673074867dad4117869d40c14ea24298b6
     }
 }
 
