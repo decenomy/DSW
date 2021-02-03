@@ -31,6 +31,6 @@ fi
     cd ..
 
 # Create zip file of binaries
-    cp 777/src/jackpotd 777/src/jackpot-cli 777/src/jackpot-tx 777/src/qt/jackpot-qt 777/*.dmg .
-    zip Jackpot-MacOS.zip jackpotd jackpot-cli jackpot-tx jackpot-qt *.dmg
-    rm -f jackpotd jackpot-cli jackpot-tx jackpot-qt *.dmg
+    cp 777/src/jackpotd 777/src/jackpot-cli 777/src/jackpot-tx 777/src/qt/jackpot-qt 777/Jackpot-Core.dmg .
+    zip Jackpot-MacOS.zip jackpotd jackpot-cli jackpot-tx jackpot-qt Jackpot-Core.dmg
+    rm -f jackpotd jackpot-cli jackpot-tx jackpot-qt Jackpot-Core.dmg
