@@ -25,7 +25,7 @@ fi
 
 # Compile
     ./autogen.sh
-    ./configure --prefix=$(pwd)/depends/x86_64-apple-darwin14 --enable-cxx --enable-static --disable-shared --disable-debug --disable-tests --disable-bench
+    ./configure --prefix=$(pwd)/depends/x86_64-apple-darwin14 --enable-cxx --enable-static --disable-shared --disable-debug --disable-tests --disable-bench --disable-online-rust
     make -j$(echo $CPU_CORES) HOST=x86_64-apple-darwin14
     make deploy
     cd ..
