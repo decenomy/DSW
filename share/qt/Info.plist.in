@@ -29,16 +29,16 @@
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>jackpot-Qt</string>
+  <string>Jackpot-Qt</string>
 
   <key>CFBundleName</key>
-  <string>jackpot-Qt</string>
+  <string>Jackpot-Qt</string>
 
   <key>LSHasLocalizedDisplayName</key>
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>io.pivx.Pivx-Qt</string>
+  <string>io.jackpot.Jackpot-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
