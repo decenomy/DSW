@@ -30,6 +30,7 @@ enum SporkId : int32_t {
     SPORK_103_PING_MESSAGE_SALT                 = 10102,
     SPORK_104_MAX_BLOCK_TIME                    = 10103,
     SPORK_105_MAX_BLOCK_SIZE                    = 10104,
+    SPORK_106_STAKING_SKIP_MN_SYNC              = 10105,
 
     SPORK_INVALID                               = -1
 };
