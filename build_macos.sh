@@ -3,33 +3,34 @@ echo -e "\033[0;32mHow many CPU cores do you want to be used in compiling proces
 read -e CPU_CORES
 if [ -z "$CPU_CORES" ]
 then
-	CPU_CORES=1
+    CPU_CORES=1
 fi
 
 # Clone code from official Github repository
-	git clone https://github.com/777-project/777
+    rm -rf 777
+    git clone https://github.com/777-project/777
 
 # Entering directory
-	cd 777
+    cd 777
 
 # Compile dependencies
-	cd depends
+    cd depends
     mkdir SDKs
     cd SDKs
     wget https://github.com/phracker/MacOSX-SDKs/releases/download/10.15/MacOSX10.11.sdk.tar.xz
     tar -xf MacOSX10.11.sdk.tar.xz
     cd ..
-	make -j$(echo $CPU_CORES) HOST=x86_64-apple-darwin14
-	cd ..
+    make -j$(echo $CPU_CORES) HOST=x86_64-apple-darwin14
+    cd ..
 
 # Compile
-	./autogen.sh
-	./configure --prefix=$(pwd)/depends/x86_64-apple-darwin14 --enable-cxx --enable-static --disable-shared --disable-debug --disable-tests --disable-bench
-	make -j$(echo $CPU_CORES) HOST=x86_64-apple-darwin14
-	make deploy
-	cd ..
+    ./autogen.sh
+    ./configure --prefix=$(pwd)/depends/x86_64-apple-darwin14 --enable-cxx --enable-static --disable-shared --disable-debug --disable-tests --disable-bench
+    make -j$(echo $CPU_CORES) HOST=x86_64-apple-darwin14
+    make deploy
+    cd ..
 
 # Create zip file of binaries
-	cp 777/src/jackpotd 777/src/jackpot-cli 777/src/jackpot-tx 777/src/qt/jackpot-qt 777/*.dmg .
-	zip Jackpot-MacOS.zip jackpotd jackpot-cli jackpot-tx jackpot-qt *.dmg
-	rm -f jackpotd jackpot-cli jackpot-tx jackpot-qt *.dmg
+    cp 777/src/jackpotd 777/src/jackpot-cli 777/src/jackpot-tx 777/src/qt/jackpot-qt 777/*.dmg .
+    zip Jackpot-MacOS.zip jackpotd jackpot-cli jackpot-tx jackpot-qt *.dmg
+    rm -f jackpotd jackpot-cli jackpot-tx jackpot-qt *.dmg
