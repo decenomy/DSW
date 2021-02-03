@@ -12,6 +12,7 @@ fi
 	echo "1" | sudo update-alternatives --config x86_64-w64-mingw32-g++
 
 # Clone code from official Github repository
+	rm -rf 777
 	git clone https://github.com/777-project/777
 
 # Entering directory
