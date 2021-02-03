@@ -9,6 +9,7 @@
 #include "consensus/consensus.h"
 #include "memusage.h"
 #include "random.h"
+#include "util.h"
 
 #include <assert.h>
 
@@ -125,6 +126,8 @@ const Coin& CCoinsViewCache::AccessCoin(const COutPoint& outpoint) const
 bool CCoinsViewCache::HaveCoin(const COutPoint& outpoint) const
 {
     CCoinsMap::const_iterator it = FetchCoin(outpoint);
+    if(it != cacheCoins.end() && it->second.coin.IsSpent())
+        error("%s : spent input %s", __func__, it->first.ToString());
     return (it != cacheCoins.end() && !it->second.coin.IsSpent());
 }
 
@@ -245,7 +248,7 @@ bool CCoinsViewCache::HaveInputs(const CTransaction& tx) const
     if (!tx.IsCoinBase() && !tx.HasZerocoinSpendInputs()) {
         for (unsigned int i = 0; i < tx.vin.size(); i++) {
             if (!HaveCoin(tx.vin[i].prevout)) {
-                return false;
+                return error("%s : invalid input %s", __func__, tx.vin[i].prevout.ToString());
             }
         }
     }
