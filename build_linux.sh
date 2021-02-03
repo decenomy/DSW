@@ -11,6 +11,7 @@ fi
 	sudo apt install git zip unzip build-essential libtool bsdmainutils autotools-dev autoconf pkg-config automake python3 libqt5svg5-dev -y
 
 # Clone code from official Github repository
+	rm -rf 777
 	git clone https://github.com/777-project/777
 
 # Entering directory
