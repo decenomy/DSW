@@ -3760,7 +3760,7 @@ bool AcceptBlockHeader(const CBlock& block, CValidationState& state, CBlockIndex
         return true;
     }
 
-    if (!CheckBlockHeader(block, state, block.IsProofOfStake())) {
+    if (!CheckBlockHeader(block, state, !block.IsProofOfStake())) {
         return error("%s: CheckBlockHeader failed for block %s: %s", __func__, hash.ToString(), FormatStateMessage(state));
     }
 
