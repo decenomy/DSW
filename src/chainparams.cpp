@@ -110,7 +110,7 @@ public:
         // // This is used inorder to mine the genesis block. Once found, we can use the nonce and block hash found to create a valid genesis block
         // /////////////////////////////////////////////////////////////////
 
-        // uint32_t nGenesisTime = 1612276651; // 2021-02-02T14:37:31+00:00
+        // uint32_t nGenesisTime = 1612360301; // 2021-02-03T13:51:41+00:00
 
         // arith_uint256 test;
         // bool fNegative;
@@ -149,30 +149,17 @@ public:
         // std::cout << "Genesis Nonce to " << genesisNonce << std::endl;
         // std::cout << "Genesis Merkle 0x" << genesis.hashMerkleRoot.GetHex() << std::endl;
 
-        // // std::cout << "\n";
-        // // std::cout << "\n";
-        // // int totalHits = 0;
-        // // double totalTime = 0.0;
-
-        // // for(int x = 0; x < 16; x++) {
-        // // 	totalHits += algoHashHits[x];
-        // // 	totalTime += algoHashTotal[x];
-        // // 	std::cout << "hash algo " << x << " hits " << algoHashHits[x] << " total " << algoHashTotal[x] << " avg " << algoHashTotal[x]/algoHashHits[x] << std::endl;
-        // // }
-
-        // // std::cout << "Totals: hash algo " <<  " hits " << totalHits << " total " << totalTime << " avg " << totalTime/totalHits << std::endl;
-
         // exit(0);
 
         // /////////////////////////////////////////////////////////////////
 
-        genesis = CreateGenesisBlock(1612276651, 173118, 0x1e0ffff0, 1, 0 * COIN);
+        genesis = CreateGenesisBlock(1612360301, 882189, 0x1e0ffff0, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x0000053074aca02c6f06ff9efaf76b1d9fd0b8703e8da000caaaffa981751ca1"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00000366a6d89ece72f3481f4c81e813f17c4512d2cce519c9d869d8eaebf71d"));
         assert(genesis.hashMerkleRoot == uint256S("0xad9cdf0829529533d9ebcda4f6981195860fdc01c7f6d3f14b847695835fc872"));
 
         consensus.fPowAllowMinDifficultyBlocks = false;
-        consensus.powLimit   = ~UINT256_ZERO >> 2;   
+        consensus.powLimit   = ~UINT256_ZERO >> 20;   
         consensus.posLimitV1 = ~UINT256_ZERO >> 24;
         consensus.posLimitV2 = ~UINT256_ZERO >> 20;
         consensus.nBudgetCycleBlocks = 30 * 24 * 60;       // approx. 1 every 30 days
