@@ -559,12 +559,6 @@ bool fStakeableCoins = false;
 bool fMasternodeSync = false;
 int nMintableLastCheck = 0;
 
-bool IsMasternodeSync()
-{
-    fMasternodeSync = sporkManager.IsSporkActive(SPORK_106_STAKING_SKIP_MN_SYNC) || !masternodeSync.NotCompleted();
-    return fMasternodeSync;
-}
-
 void CheckForCoins(CWallet* pwallet, const int minutes, std::vector<COutput>* availableCoins)
 {
     //control the amount of times the client will check for mintable coins
@@ -572,7 +566,7 @@ void CheckForCoins(CWallet* pwallet, const int minutes, std::vector<COutput>* av
     if ((nTimeNow - nMintableLastCheck > minutes * 60)) {
         nMintableLastCheck = nTimeNow;
         fStakeableCoins = pwallet->StakeableCoins(availableCoins);
-        IsMasternodeSync();  //function re-evaluates fMasternodeSync and returns it but we don't need the return value here, so ignore it
+        fMasternodeSync = sporkManager.IsSporkActive(SPORK_106_STAKING_SKIP_MN_SYNC) || !masternodeSync.NotCompleted();
     }
 }
 
@@ -610,10 +604,10 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
             // update fStakeableCoins (5 minute check time);
             CheckForCoins(pwallet, 5, &availableCoins);
 
-            while ((g_connman && g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && Params().MiningRequiresPeers()) || pwallet->IsLocked() || !fStakeableCoins || !IsMasternodeSync()) {
+            while ((g_connman && g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && Params().MiningRequiresPeers()) || pwallet->IsLocked() || !fStakeableCoins || !fMasternodeSync) {
                 MilliSleep(5000);
-                // Do a separate 1 minute check here to ensure fStakeableCoins is updated
-                if (!fStakeableCoins) CheckForCoins(pwallet, 1, &availableCoins);
+                // Do a separate 1 minute check here to ensure fStakeableCoins and fMasternodeSync is updated
+                if (!fStakeableCoins || !fMasternodeSync) CheckForCoins(pwallet, 1, &availableCoins);
             }
 
             //search our map of hashed blocks, see if bestblock has been hashed yet
