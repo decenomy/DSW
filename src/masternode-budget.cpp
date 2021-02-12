@@ -478,7 +478,7 @@ void CBudgetManager::FillBlockPayee(CMutableTransaction& txNew, CAmount nFees, b
         ++it;
     }
 
-    CAmount blockValue = GetBlockValue(pindexPrev->nHeight);
+    CAmount blockValue = GetBlockValue(pindexPrev->nHeight, pindexPrev->nMoneySupply);
 
     if (fProofOfStake) {
         if (nHighestCount > 0) {
@@ -809,7 +809,7 @@ CAmount CBudgetManager::GetTotalBudget(int nHeight)
     }
 
     //get block value and calculate from that
-    CAmount nSubsidy = GetBlockValue(nHeight);
+    CAmount nSubsidy = GetBlockValue(nHeight, chainActive.Tip()->nMoneySupply);
 /*
     CAmount nSubsidy = 0;
     if (nHeight <= Params().LAST_POW_BLOCK() && nHeight >= 151200) {
