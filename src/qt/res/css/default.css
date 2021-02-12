@@ -125,7 +125,7 @@ color:#333;
 /****************************************************************************************/
 
 QLabel { /* Base Text Size & Color */
-font-size:12px;
+font-size: 14px;
 color:#333333;
 }
 
@@ -153,7 +153,7 @@ color:#333333;
 }
 
 .QLineEdit:!focus {
-font-size:12px;
+font-size: 14px;
 }
 
 .QValidatedLineEdit:disabled, .QLineEdit:disabled {
@@ -243,8 +243,8 @@ background:#fff;
 }
 
 QComboBox::item:selected {
-border:0px solid transparent;
-background:#f2f2f2;
+border: 0px solid transparent;
+background: #f2f2f2;
 }
 
 QComboBox::indicator {
@@ -336,7 +336,7 @@ border:1px solid #333;
 
 QTableView::item { /* Table Item */
 background-color:#fcfcfc;
-font-size:12px;
+font-size: 14px;
 }
 
 QTableView::item:selected { /* Table Item Selected */
@@ -674,7 +674,7 @@ border:1px solid #cc9601;
 }
 
 QWidget#AddressBookPage QTableView { /* Address Listing */
-font-size:12px;
+font-size: 14px;
 }
 
 QWidget#AddressBookPage QHeaderView::section { /* Min width for Windows fix */
@@ -831,13 +831,13 @@ margin-left:3px;
 
 QWidget .QFrame#frame .QLabel#labelSpendable { /* Spendable Header */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
-font-size:12px;
+font-size: 14px;
 margin-left:18px;
 }
 
 QWidget .QFrame#frame .QLabel#labelWatchonly { /* Watch-only Header */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
-font-size:12px;
+font-size:14px;
 margin-left:16px;
 }
 
@@ -855,7 +855,7 @@ min-height:35px;
 
 QWidget .QFrame#frame .QLabel#labelBalance { /* Available Balance */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
-font-size:12px;
+font-size:14px;
 font-weight:bold;
 color:#262626;
 margin-left:0px;
@@ -863,14 +863,14 @@ margin-left:0px;
 
 QWidget .QFrame#frame .QLabel#labelWatchAvailable { /* Watch-only Balance */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
-font-size:12px;
+font-size:14px;
 margin-left:16px;
 }
 
 QWidget .QFrame#frame .QLabel#labelPendingText { /* Pending Balance Label */
 qproperty-alignment: 'AlignVCenter | AlignRight';
 min-width:160px;
-font-size:12px;
+font-size:14px;
 background-color:transparent;
 color:#4d4d4d
 ;
@@ -880,20 +880,20 @@ padding-right:5px;
 
 QWidget .QFrame#frame .QLabel#labelUnconfirmed { /* Pending Balance */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
-font-size:12px;
+font-size:14px;
 margin-left:0px;
 }
 
 QWidget .QFrame#frame .QLabel#labelWatchPending { /* Watch-only Pending Balance */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
-font-size:12px;
+font-size:14px;
 margin-left:16px;
 }
 
 QWidget .QFrame#frame .QLabel#labelImmatureText { /* Immature Balance Label */
 qproperty-alignment: 'AlignVCenter | AlignRight';
 min-width:160px;
-font-size:12px;
+font-size:14px;
 background-color:transparent;
 color:#4d4d4d
 ;
@@ -903,20 +903,20 @@ padding-right:5px;
 
 QWidget .QFrame#frame .QLabel#labelImmature { /* Immature Balance */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
-font-size:12px;
+font-size:14px;
 margin-left:0px;
 }
 
 QWidget .QFrame#frame .QLabel#labelWatchImmature { /* Watch-only Immature Balance */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
-font-size:12px;
+font-size:14px;
 margin-left:16px;
 }
 
 QWidget .QFrame#frame .QLabel#labelTotalText { /* Total Balance Label */
 qproperty-alignment: 'AlignVCenter | AlignRight';
 min-width:160px;
-font-size:12px;
+font-size:14px;
 background-color:transparent;
 color:#4d4d4d
 ;
@@ -926,13 +926,13 @@ padding-right:5px;
 
 QWidget .QFrame#frame .QLabel#labelTotal { /* Total Balance */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
-font-size:12px;
+font-size:14px;
 margin-left:0px;
 }
 
 QWidget .QFrame#frame .QLabel#labelWatchTotal { /* Watch-only Total Balance */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
-font-size:12px;
+font-size:14px;
 margin-left:16px;
 }
 
@@ -1164,7 +1164,7 @@ min-height:16px;
 
 QWidget .QFrame#frame_2 QListView { /* Transaction List */
 font-weight:normal;
-font-size:12px;
+font-size:14px;
 max-width:369px;
 margin-top:12px;
 margin-left:0px; /* CSS Voodoo - set to -66px to hide default transaction icons */
@@ -1610,7 +1610,7 @@ QLabel#transactionSumLabel { /* Example of setObjectName for widgets without nam
 color:#333333;
 font-weight:bold;
 }
- 
+
 QLabel#transactionSum { /* Example of setObjectName for widgets without name */
 color:#333333;
 }
