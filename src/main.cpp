@@ -1711,6 +1711,9 @@ double ConvertBitsToDouble(unsigned int nBits)
 
 int64_t GetBlockValue(int nHeight)
 {
+	if(nMoneySupply >= Params().MaxMoneyOut())
+		return 0;
+
 	int64_t nSubsidy = 0;
 
 	if (nHeight < 100) {
@@ -1743,27 +1746,37 @@ int64_t GetBlockValue(int nHeight)
 	else if (nHeight < 1280000) {
 		nSubsidy = 150 * COIN;
 	}
-	else if (nHeight < 2560000) {
+	else if (nHeight < 1320000) {
 		nSubsidy = 140 * COIN;
 	}
-	else if (nHeight < 4000000) {
-		nSubsidy = 130 * COIN;
+	else if (nHeight < 1400000) {
+		nSubsidy = 300 * COIN;
 	}
-	else if (nHeight < 5256000) {
-		nSubsidy = 120 * COIN;
+	else if (nHeight < 1500000) {
+		nSubsidy = 700 * COIN;
 	}
-	else if (nHeight < 7884000) {
-		nSubsidy = 110 * COIN;
+	else if (nHeight < 1600000) {
+		nSubsidy = 650 * COIN;
 	}
-	else if (nHeight < 10512000) {
-		nSubsidy = 70 * COIN;
+	else if (nHeight < 1700000) {
+		nSubsidy = 600 * COIN;
 	}
-	else if (nHeight < 13140000) {
-		nSubsidy = 50 * COIN;
+	else if (nHeight < 1800000) {
+		nSubsidy = 550 * COIN;
+	}
+	else if (nHeight < 1900000) {
+		nSubsidy = 500 * COIN;
+	}
+	else if (nHeight < 2000000) {
+		nSubsidy = 450 * COIN;
 	}
 	else {
-		nSubsidy = 0 * COIN;
+		nSubsidy = 400 * COIN;
 	}
+
+	if(nMoneySupply + nSubsidy >= Params().MaxMoneyOut())
+		return (nMoneySupply + nSubsidy) - Params().MaxMoneyOut();
+
 	return nSubsidy;
 }
 
