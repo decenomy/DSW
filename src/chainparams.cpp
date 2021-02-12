@@ -118,7 +118,6 @@ public:
         nLastPOWBlock = 500;
         nMaturity = 20;
         nMasternodeCountDrift = 20;
-        nMasternodeCollateralLimit = 100000;
         nModifierUpdateBlock = 615800;
         nMaxMoneyOut = 3000000000 * COIN;
 		nEnforceNewSporkKey = 1554076800; //!> Sporks signed after (GMT): Monday, April 1, 2019 12:00:00 AM GMT must use the new spork key
@@ -213,7 +212,6 @@ public:
         nLastPOWBlock = 500;
         nMaturity = 20;
         nMasternodeCountDrift = 4;
-        nMasternodeCollateralLimit = 100000;
         nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT
         nMaxMoneyOut = 3000000000 * COIN;
 		nEnforceNewSporkKey = 1521604800; //!> Sporks signed after Wednesday, March 21, 2018 4:00:00 AM GMT must use the new spork key

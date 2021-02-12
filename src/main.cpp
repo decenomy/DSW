@@ -105,6 +105,8 @@ CScript COINBASE_FLAGS;
 
 const string strMessageMagic = "DarkNet Signed Message:\n";
 
+int MasternodeCollateralLimit() { return GetMasterNodeCollateral(chainActive.Tip()->nHeight + 1); }
+
 // Internal stuff
 namespace
 {
