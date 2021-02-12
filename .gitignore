@@ -46,8 +46,8 @@ confdefs.h
 conftest.cpp
 conftest.err
 libtool
-src/config/pivx-config.h
-src/config/pivx-config.h.in
+src/config/cryptoflow-config.h
+src/config/cryptoflow-config.h.in
 src/config/stamp-h1
 share/setup.nsi
 share/qt/Info.plist
