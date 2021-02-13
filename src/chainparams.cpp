@@ -143,16 +143,14 @@ public:
         assert(hashGenesisBlock == uint256("0x000000f5b14f165bb33e98d316ccd8e25d4fba3e761d99c03ff78c9acf6237b1"));
         assert(genesis.hashMerkleRoot == uint256("0xa7192a1a1249fe8a3a2a0fae7b51be4de2592bf4f424811f8efba46c4c2a890e"));
 
- 
-		vSeeds.push_back(CDNSSeedData("seed1.cryptoflow.co.uk", "seed1.cryptoflow.co.uk"));
-		vSeeds.push_back(CDNSSeedData("seed2.cryptoflow.co.uk", "seed2.cryptoflow.co.uk"));
-		vSeeds.push_back(CDNSSeedData("1", "95.179.133.7"));
-        vSeeds.push_back(CDNSSeedData("2", "185.92.222.53"));
-        vSeeds.push_back(CDNSSeedData("3", "95.179.144.71"));
-        vSeeds.push_back(CDNSSeedData("4", "45.32.185.119"));
-        vSeeds.push_back(CDNSSeedData("5", "95.179.134.152"));
-        vSeeds.push_back(CDNSSeedData("6", "45.32.184.32"));
-        vSeeds.push_back(CDNSSeedData("7", "45.32.236.88"));
+        vSeeds.push_back(CDNSSeedData("seed1", "seed1.cryptoflow.eu"));
+        vSeeds.push_back(CDNSSeedData("seed2", "seed2.cryptoflow.eu"));
+        vSeeds.push_back(CDNSSeedData("seed3", "seed3.cryptoflow.eu"));
+        vSeeds.push_back(CDNSSeedData("seed4", "seed4.cryptoflow.eu"));
+        vSeeds.push_back(CDNSSeedData("seed5", "seed5.cryptoflow.eu"));
+        vSeeds.push_back(CDNSSeedData("seed6", "seed6.cryptoflow.eu"));
+        vSeeds.push_back(CDNSSeedData("seed7", "seed7.cryptoflow.eu"));
+        vSeeds.push_back(CDNSSeedData("seed8", "seed8.cryptoflow.eu"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 87); // c
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 95); // f
