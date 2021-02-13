@@ -36,12 +36,12 @@ SplashScreen::SplashScreen(Qt::WindowFlags f, const NetworkStyle* networkStyle) 
 
     // define text to place
     QString titleText = tr("CryptoFlow Core");
-    QString versionText = QString(tr("Version v1.2.1.0-MAIN")).arg(QString::fromStdString(FormatFullVersion()));
+    QString versionText = QString(tr("Version v1.3.0.0-MAIN")).arg(QString::fromStdString(FormatFullVersion()));
     QString copyrightTextBtc = QChar(0xA9) + QString(" 2009-%1 ").arg(COPYRIGHT_YEAR) + QString(tr("The Bitcoin Core developers"));
     QString copyrightTextDash = QChar(0xA9) + QString(" 2014-%1 ").arg(COPYRIGHT_YEAR) + QString(tr("The Dash Core developers"));
     QString copyrightTextPivx = QChar(0xA9) + QString(" 2015-%1 ").arg(COPYRIGHT_YEAR) + QString(tr("The PIVX Core developers"));
     QString copyrightTextLpc = QChar(0xA9) + QString(tr(" 2018 LightPayCoin developers"));
-	QString copyrightTextCfl = QChar(0xA9) + QString(tr(" 2018 The CryptoFlow Core developers"));
+	QString copyrightTextCfl = QChar(0xA9) + QString(tr(" 2018-2021 The CryptoFlow Core developers"));
     QString titleAddText = networkStyle->getTitleAddText();
 
     QString font = QApplication::font().toString();
