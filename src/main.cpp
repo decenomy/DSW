@@ -105,6 +105,8 @@ CScript COINBASE_FLAGS;
 
 const string strMessageMagic = "DarkNet Signed Message:\n";
 
+int MasternodeCollateralLimit() { return GetMasterNodeCollateral(chainActive.Tip()->nHeight + 1); }
+
 // Internal stuff
 namespace
 {
@@ -1707,8 +1709,11 @@ double ConvertBitsToDouble(unsigned int nBits)
 	return dDiff;
 }
 
-int64_t GetBlockValue(int nHeight)
+CAmount GetBlockValue(int nHeight, CAmount nMoneySupply)
 {
+	if(nMoneySupply >= Params().MaxMoneyOut())
+		return 0;
+
 	int64_t nSubsidy = 0;
 
 	if (nHeight < 100) {
@@ -1741,27 +1746,37 @@ int64_t GetBlockValue(int nHeight)
 	else if (nHeight < 1280000) {
 		nSubsidy = 150 * COIN;
 	}
-	else if (nHeight < 2560000) {
+	else if (nHeight < 1320000) {
 		nSubsidy = 140 * COIN;
 	}
-	else if (nHeight < 4000000) {
-		nSubsidy = 130 * COIN;
+	else if (nHeight < 1400000) {
+		nSubsidy = 300 * COIN;
 	}
-	else if (nHeight < 5256000) {
-		nSubsidy = 120 * COIN;
+	else if (nHeight < 1500000) {
+		nSubsidy = 700 * COIN;
 	}
-	else if (nHeight < 7884000) {
-		nSubsidy = 110 * COIN;
+	else if (nHeight < 1600000) {
+		nSubsidy = 650 * COIN;
 	}
-	else if (nHeight < 10512000) {
-		nSubsidy = 70 * COIN;
+	else if (nHeight < 1700000) {
+		nSubsidy = 600 * COIN;
 	}
-	else if (nHeight < 13140000) {
-		nSubsidy = 50 * COIN;
+	else if (nHeight < 1800000) {
+		nSubsidy = 550 * COIN;
+	}
+	else if (nHeight < 1900000) {
+		nSubsidy = 500 * COIN;
+	}
+	else if (nHeight < 2000000) {
+		nSubsidy = 450 * COIN;
 	}
 	else {
-		nSubsidy = 0 * COIN;
+		nSubsidy = 400 * COIN;
 	}
+
+	if(nMoneySupply + nSubsidy >= Params().MaxMoneyOut())
+		return (nMoneySupply + nSubsidy) - Params().MaxMoneyOut();
+
 	return nSubsidy;
 }
 
@@ -2314,7 +2329,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 	LogPrint("bench", "      - Connect %u transactions: %.2fms (%.3fms/tx, %.3fms/txin) [%.2fs]\n", (unsigned)block.vtx.size(), 0.001 * (nTime1 - nTimeStart), 0.001 * (nTime1 - nTimeStart) / block.vtx.size(), nInputs <= 1 ? 0 : 0.001 * (nTime1 - nTimeStart) / (nInputs - 1), nTimeConnect * 0.000001);
 
 	//PoW phase redistributed fees to miner. PoS stage destroys fees.
-	CAmount nExpectedMint = GetBlockValue(pindex->pprev->nHeight);
+	CAmount nExpectedMint = GetBlockValue(pindex->pprev->nHeight, pindex->pprev->nMoneySupply);
 	if (block.IsProofOfWork())
 		nExpectedMint += nFees;
 

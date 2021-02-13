@@ -149,9 +149,6 @@
 /* Define to 1 if you have the `iphlpapi' library (-liphlpapi). */
 #undef HAVE_LIBIPHLPAPI
 
-/* Define to 1 if you have the `jpeg ' library (-ljpeg ). */
-#undef HAVE_LIBJPEG_
-
 /* Define to 1 if you have the `kernel32' library (-lkernel32). */
 #undef HAVE_LIBKERNEL32
 
@@ -166,9 +163,6 @@
 
 /* Define to 1 if you have the `oleaut32' library (-loleaut32). */
 #undef HAVE_LIBOLEAUT32
-
-/* Define to 1 if you have the `png ' library (-lpng ). */
-#undef HAVE_LIBPNG_
 
 /* Define to 1 if you have the `rpcrt4' library (-lrpcrt4). */
 #undef HAVE_LIBRPCRT4
