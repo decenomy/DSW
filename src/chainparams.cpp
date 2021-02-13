@@ -120,9 +120,8 @@ public:
         nMasternodeCountDrift = 20;
         nModifierUpdateBlock = 615800;
         nMaxMoneyOut = 3000000000 * COIN;
-		nEnforceNewSporkKey = 1554076800; //!> Sporks signed after (GMT): Monday, April 1, 2019 12:00:00 AM GMT must use the new spork key
-		nRejectOldSporkKey = 1554163200; //!> Fully reject old spork key after (GMT): Tuesday, April 2, 2019 12:00:00 AM
-
+		nEnforceNewSporkKey = 1614556800; //!> Sporks signed after: Mon Mar 01 2021 00:00:00 GMT+0000 must use the new spork key
+		nRejectOldSporkKey = 1617235200; //!> Fully reject old spork key after: Thu Apr 01 2021 00:00:00 GMT+0000
 
         const char* pszTimestamp = "Money is made by sitting, not trading – Jesse Livermore";
         CMutableTransaction txNew;
@@ -172,8 +171,8 @@ public:
         fHeadersFirstSyncingActive = false;
 
         nPoolMaxTransactions = 3;
-		strSporkKey = "046d124652f5f8cd02851cd4370a0c7072b01a933598886eb7dba0de0a4209776aec972b59dc5c614cc42cea8044337fdb6d68527131b9c0c42b5427522207808b";
-		strSporkKeyOld = "042DD1C992AF5D41B1FE33E8129E954DFCFE91915B17E1BE829309FA10E237B26E261DC381BFFAD3567FF6DE0C74C4F3AC45D03209646155FF9859915D5FFE04AF";
+		strSporkKey = "04f41826b4cb2b38cc896526dbf386c36e31c96a4a7f99bb0eec6de4cb7949ebf13b181521dd0d6003dc0234ce83a052739a23cf829408eca6a662defba37aa8d6";
+		strSporkKeyOld = "046d124652f5f8cd02851cd4370a0c7072b01a933598886eb7dba0de0a4209776aec972b59dc5c614cc42cea8044337fdb6d68527131b9c0c42b5427522207808b";
 		strObfuscationPoolDummyAddress = "c3mwfxvM6nV3uFg5dMMRtPxfKQiR4FSWhd";
         nStartMasternodePayments = 1533446237;
     }
