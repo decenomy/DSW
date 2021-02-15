@@ -222,4 +222,20 @@
         <file alias="ic-check-cold-staking-off">pivx/res/img/ic-check-cold-staking-off.svg</file>
         <file alias="ic-check-cold-staking-enabled">pivx/res/img/ic-check-cold-staking-enabled.svg</file>
     </qresource>
+    <qresource prefix="/font">
+        <file alias="Nunito-Black.ttf">pivx/res/font/Nunito-Black.ttf</file>
+        <file alias="Nunito-BlackItalic.ttf">pivx/res/font/Nunito-BlackItalic.ttf</file>
+        <file alias="Nunito-Bold.ttf">pivx/res/font/Nunito-Bold.ttf</file>
+        <file alias="Nunito-BoldItalic.ttf">pivx/res/font/Nunito-BoldItalic.ttf</file>
+        <file alias="Nunito-ExtraBold.ttf">pivx/res/font/Nunito-ExtraBold.ttf</file>
+        <file alias="Nunito-ExtraBoldItalic.ttf">pivx/res/font/Nunito-ExtraBoldItalic.ttf</file>
+        <file alias="Nunito-ExtraLight.ttf">pivx/res/font/Nunito-ExtraLight.ttf</file>
+        <file alias="Nunito-ExtraLightItalic.ttf">pivx/res/font/Nunito-ExtraLightItalic.ttf</file>
+        <file alias="Nunito-Italic.ttf">pivx/res/font/Nunito-Italic.ttf</file>
+        <file alias="Nunito-Light.ttf">pivx/res/font/Nunito-Light.ttf</file>
+        <file alias="Nunito-LightItalic.ttf">pivx/res/font/Nunito-LightItalic.ttf</file>
+        <file alias="Nunito-Regular.ttf">pivx/res/font/Nunito-Regular.ttf</file>
+        <file alias="Nunito-SemiBold.ttf">pivx/res/font/Nunito-SemiBold.ttf</file>
+        <file alias="Nunito-SemiBoldItalic.ttf">pivx/res/font/Nunito-SemiBoldItalic.ttf</file>
+    </qresource>
 </RCC>

@@ -61,7 +61,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 QPushButton[cssClass="img-nav-logo"] {
-    qproperty-icon: url("://img-nav-logo-png");
+    qproperty-icon: url("://img-nav-logo");
     qproperty-iconSize: 96px 96px;
 }
 
@@ -1272,8 +1272,8 @@ QPushButton[cssClass="btn-check-right"]:checked:hover {
 }
 
 QPushButton[cssClass="btn-check-right"]:checked:pressed {
-    border:  1px solid #20192e;
-    background-color:#20192e;
+    border:  1px solid #444444;
+    background-color:#3b3b3b;
     font-size:18px;
     padding:4px;
     color: #dd514e;
@@ -1795,7 +1795,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 *[cssClass="container-splash"] {
     background-color:transparent;
     background-image: url("://bg-splash-png");
-    font-family: Montserrat;
+    font-family: Nunito;
 }
 
 *[cssClass="img-splash-logo"] {
@@ -1868,10 +1868,10 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="text-stake-zpiv-disable"] {
-    color:#454349;
+    color:#505050;
     font-size:16px;
     padding:10px;
-    border-bottom: 5px solid #4d4b50;
+    border-bottom: 5px solid #444444;
 }
 
 *[cssClass="legend-chart"] {
@@ -1924,7 +1924,7 @@ QPushButton[cssClass="btn-chart-arrow"]:hover {
 }
 
 QPushButton[cssClass="btn-chart-arrow"]:pressed {
-    background-color:#20192e;
+    background-color:#2e1919;
 }
 
 QPushButton[cssClass="btn-chart-arrow-right"] {
@@ -1940,7 +1940,7 @@ QPushButton[cssClass="btn-chart-arrow-right"]:hover {
 }
 
 QPushButton[cssClass="btn-chart-arrow-right"]:pressed {
-    background-color:#20192e;
+    background-color:#2e1919;
 }
 
 QComboBox[cssClass="btn-combo-secundary"] {
@@ -2000,7 +2000,7 @@ QComboBox[cssClass="btn-combo-chart-selected"]:on {
 }
 
 QComboBox[cssClass="btn-combo-chart-selected"]:disabled {
-    background-color:#20192e;
+    background-color:#2e2e2e;
     padding:6px 12px 6px 6px;
     font-size:16px;
     border:1px solid #bc5b57;
@@ -2430,7 +2430,7 @@ QPushButton[cssClass="btn-number-check"] {
     background-color:transparent;
     font-size:14px;
     border-radius:11px;
-    color: #807b8a;
+    color: #eeeeee;
 }
 
 QPushButton[cssClass="btn-number-check"]:checked {
@@ -2445,7 +2445,7 @@ QPushButton[cssClass="btn-name-check"] {
     background-color: transparent;
     border:none;
     font-size:20px;
-    color: #807b8a;
+    color: #eeeeee;
 }
 
 QPushButton[cssClass="btn-name-check"]:checked {
@@ -2679,7 +2679,7 @@ QPushButton[cssClass="btn-settings-options"]:checked {
 }
 
 QPushButton[cssClass="btn-settings-options"]:hover {
-    background-color: rgba(135, 123, 159, 0.7);
+    background-color: rgba(92, 92, 92, 0.7);
     border:none;
     font-size:20px;
     color: #FFFFFF;
@@ -2790,7 +2790,7 @@ QPushButton[cssClass="btn-faq-exit"] {
     border:none;
     padding:0 30px 0 0;
     font-size:18px;
-    color: #CCFFFFFF;
+    color: rgb(255, 255, 255);
     text-align:left;
 }
 
@@ -2814,7 +2814,7 @@ QPushButton[cssClass="btn-faq-options"] {
 }
 
 QPushButton[cssClass="btn-faq-options"]:checked {
-    background-color: rgba(240, 232, 255, 0.2);
+    background-color: rgba(221, 221, 221, 0.2);
     border:none;
     font-size:18px;
     color: #FFFFFF;
@@ -2884,9 +2884,9 @@ QPushButton[cssClass="ic-step-confirm-welcome"] {
     background-image: url("://ic-check-white");
     background-position:center;
     background-repeat:no-repeat;
-    border:  1px solid #46424e;
+    border:  1px solid #a02323;
     border-radius:11px;
-    background-color:#46424e;
+    background-color:#eb2617;
 }
 
 *[cssClass="text-title-welcome"] {
@@ -2901,12 +2901,12 @@ QPushButton[cssClass="ic-step-confirm-welcome"] {
 
 
 *[cssClass="container-welcome"] {
-    background-color: #000000;
+    background-color: #262626;
     border-image: url("://bg-welcome") 0 0 0 0 stretch stretch;
 }
 
 *[cssClass="container-welcome-no-image"] {
-    background-color:#000000;
+    background-color:#262626;
 }
 
 *[cssClass="container-welcome-box"] {
@@ -2916,7 +2916,7 @@ QPushButton[cssClass="ic-step-confirm-welcome"] {
 
 
 *[cssClass="line-welcome"] {
-    background-color: #807b8a;
+    background-color: #929292;
 }
 
 *[cssClass="container-welcome-stack"] {
@@ -2957,9 +2957,9 @@ QPushButton[cssClass="ic-step-confirm-welcome"] {
 }
 
 QComboBox[cssClass="btn-combo-welcome"] {
-    background-color:#151416;
+    background-color: #262626;
     padding:10px 20px 10px 10px;
-    font-size:16px;
+    font-size: 18px;
     border:1px solid #dd514e;
     color: #FFFFFF;
 }
@@ -2995,22 +2995,22 @@ QPushButton[cssClass="btn-welcome-number-check"] {
     background-color:transparent;
     font-size:14px;
     border-radius:11px;
-    color: #807b8a;
+    color: #888888;
 }
 
 QPushButton[cssClass="btn-welcome-number-check"]:checked {
     border:  1px solid #dd514e;
-    background-color:#dd514e;
+    background-color:#ff2b2b;
     font-size:14px;
     border-radius:11px;
-    color: #bc5b57;
+    color: #ff2b2b;
 }
 
 QPushButton[cssClass="btn-welcome-name-check"] {
     background-color: transparent;
     border:none;
     font-size:20px;
-    color: #807b8a;
+    color: #eeeeee;
 }
 
 QPushButton[cssClass="btn-welcome-name-check"]:checked {
@@ -3136,7 +3136,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 #treeWidget {
     border:1px solid #bc5b57;
-    background-color:#211f1f;;
+    background-color:  #211f1f;;
     background-position:center;
     background-repeat:no-repeat;
     selection-background-color:#33b088ff;
@@ -3303,13 +3303,13 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 
 *[cssClass="container-snackbar"] {
-    background-color: #ffe94d;
-    border-top: 2px solid #ffd00b;
+    background-color: #262626;
+    border-top: 3px solid #ffcc01;
 }
 
 *[cssClass="text-snackbar"] {
-    color: #262626;
-    font-size: 20px;
+    color: #ffffff;
+    font-size: 24px;
 }
 
 
@@ -3370,7 +3370,7 @@ QPushButton[cssClass="btn-dots-welcome"]:pressed {
 *[cssClass="edit-primary-welcome"] {
     border:1px solid #dd514e;
     border-right: 0px;
-    background-color:#151416;
+    background-color: #262626;
     font-size:18px;
     border-radius: 2px;
     padding:8px;
@@ -3395,7 +3395,7 @@ QPushButton[cssClass="btn-dots-welcome"]:pressed {
 *[cssClass="edit-primary-welcome-disabled"] {
     border:1px solid #33ffffff;
     border-right: 0px;
-    background-color:#151416;
+    background-color:#252525;
     font-size:18px;
     border-radius: 2px;
     padding:8px;
