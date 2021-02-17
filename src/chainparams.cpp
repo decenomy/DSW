@@ -116,6 +116,7 @@ public:
 
         genesis = CreateGenesisBlock(1533446237, 4199542, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
+
         assert(consensus.hashGenesisBlock == uint256S("0x000000f5b14f165bb33e98d316ccd8e25d4fba3e761d99c03ff78c9acf6237b1"));
         assert(genesis.hashMerkleRoot == uint256S("0xa7192a1a1249fe8a3a2a0fae7b51be4de2592bf4f424811f8efba46c4c2a890e"));
 

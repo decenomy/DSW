@@ -17,11 +17,11 @@
 
 uint256 CBlockHeader::GetHash() const
 {
-    uint256 thash;
-    xevan_hash(reinterpret_cast<const char*>(this), (char*)&thash, 80);
-    return thash;
+    //uint256 thash;
+    //xevan_hash(reinterpret_cast<const char*>(this), (char*)&thash, 80);
+    //return thash;
 
-/*     if (nVersion < 4)  {
+    //if (nVersion < 4)  {
 #if defined(WORDS_BIGENDIAN)
         uint8_t data[80];
         WriteLE32(&data[0], nVersion);
@@ -34,10 +34,10 @@ uint256 CBlockHeader::GetHash() const
 #else // Can take shortcut for little endian
         return HashQuark(BEGIN(nVersion), END(nNonce));
 #endif
-    }
+    //}
     // version >= 4
     return SerializeHash(*this);
- */
+ 
 }
 
 std::string CBlock::ToString() const
