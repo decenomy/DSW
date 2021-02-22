@@ -11,6 +11,7 @@
 #include "script/sign.h"
 #include "test_pivx.h"
 #include <boost/test/unit_test.hpp>
+#include "masternode.h"
 
 BOOST_FIXTURE_TEST_SUITE(main_tests, TestingSetup)
 
@@ -119,28 +120,28 @@ BOOST_AUTO_TEST_CASE(subsidy_limit_test)
     CAmount nSum = 0;
     for (int nHeight = 0; nHeight < 1; nHeight += 1) {
         /* premine in block 1 (60,001 777) */
-        CAmount nSubsidy = GetBlockValue(nHeight);
+        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
         BOOST_CHECK(nSubsidy <= 60001 * COIN);
         nSum += nSubsidy;
     }
 
     for (int nHeight = 1; nHeight < 86400; nHeight += 1) {
         /* PoW Phase One */
-        CAmount nSubsidy = GetBlockValue(nHeight);
+        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
         BOOST_CHECK(nSubsidy <= 250 * COIN);
         nSum += nSubsidy;
     }
 
     for (int nHeight = 86400; nHeight < 151200; nHeight += 1) {
         /* PoW Phase Two */
-        CAmount nSubsidy = GetBlockValue(nHeight);
+        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
         BOOST_CHECK(nSubsidy <= 225 * COIN);
         nSum += nSubsidy;
     }
 
     for (int nHeight = 151200; nHeight < 259200; nHeight += 1) {
         /* PoW Phase Two */
-        CAmount nSubsidy = GetBlockValue(nHeight);
+        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
         BOOST_CHECK(nSubsidy <= 45 * COIN);
         BOOST_CHECK(Params().GetConsensus().MoneyRange(nSubsidy));
         nSum += nSubsidy;

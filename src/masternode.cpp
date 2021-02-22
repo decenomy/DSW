@@ -213,7 +213,7 @@ void CMasternode::Check(bool forceCheck)
         CMutableTransaction tx = CMutableTransaction();
         CScript dummyScript;
         dummyScript << ToByteVector(pubKeyCollateralAddress) << OP_CHECKSIG;
-        CTxOut vout = CTxOut((GetMstrNodCollateral(chainActive.Height()) - 0.01) * COIN, dummyScript);
+        CTxOut vout = CTxOut((CMasternode::GetMasternodeNodeCollateral(chainActive.Height()) - 0.01 * COIN), dummyScript);
         tx.vin.push_back(vin);
         tx.vout.push_back(vout);
         {
@@ -309,11 +309,61 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
     uint256 hash;
     if(GetTransaction(vin.prevout.hash, txVin, hash, true)) {
         for (CTxOut out : txVin.vout) {
-            if (out.nValue == GetMstrNodCollateral(chainActive.Height()) * COIN && out.scriptPubKey == payee) return true;
+            if (out.nValue == CMasternode::GetMasternodeNodeCollateral(chainActive.Height()) && out.scriptPubKey == payee) return true;
         }
     }
 
     return false;
+}
+
+CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
+{
+    if (nHeight <= 100000) {
+        return 15000 * COIN;
+    } else if (nHeight <= 200000 && nHeight > 100000) {
+        return 17500 * COIN;
+    } else if (nHeight > 200000) {
+        return 20000 * COIN;
+    }
+    return 0;
+}
+
+CAmount CMasternode::GetBlockValue(int nHeight)
+{
+    CAmount maxMoneyOut= Params().GetConsensus().nMaxMoneyOut;
+
+    if(nMoneySupply >= maxMoneyOut) {
+        return 0;
+    }
+
+    CAmount nSubsidy;
+
+    if (nHeight == 1) {
+        nSubsidy = 30000000 * COIN; // previous FUNC+777 coin supply (30M)
+    } else if (nHeight <= 100000) {
+        nSubsidy = 100 * COIN;
+    } else if (nHeight > 100000 && nHeight <= 200000) {
+        nSubsidy = 125 * COIN;
+    } else if (nHeight > 200000 && nHeight <= 300000) {
+        nSubsidy = 150 * COIN;
+    } else if (nHeight > 300000 && nHeight <= 400000) {
+        nSubsidy = 125 * COIN;
+    } else if (nHeight > 400000) {
+        nSubsidy = 100 * COIN;
+    }
+
+    if(nMoneySupply + nSubsidy > maxMoneyOut) {
+        return nMoneySupply + nSubsidy - maxMoneyOut;
+    }
+
+    return nSubsidy;
+}
+
+CAmount CMasternode::GetMasternodePayment(int nHeight)
+{
+    if(nHeight <= 5000) return 0;
+
+    return CMasternode::GetBlockValue(nHeight) * 95 / 100;
 }
 
 CMasternodeBroadcast::CMasternodeBroadcast() :
@@ -599,7 +649,7 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
     CMutableTransaction tx = CMutableTransaction();
     CScript dummyScript;
     dummyScript << ToByteVector(pubKeyCollateralAddress) << OP_CHECKSIG;
-    CTxOut vout = CTxOut((GetMstrNodCollateral(chainActive.Height()) - 0.01) * COIN, dummyScript);
+    CTxOut vout = CTxOut((CMasternode::GetMasternodeNodeCollateral(chainActive.Height()) - 0.01 * COIN), dummyScript);
     tx.vin.push_back(vin);
     tx.vout.push_back(vout);
 

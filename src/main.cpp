@@ -1499,44 +1499,6 @@ double ConvertBitsToDouble(unsigned int nBits)
     return dDiff;
 }
 
-CAmount GetBlockValue(int nHeight)
-{
-    CAmount maxMoneyOut= Params().GetConsensus().nMaxMoneyOut;
-
-    if(nMoneySupply >= maxMoneyOut) {
-        return 0;
-    }
-
-    CAmount nSubsidy;
-
-    if (nHeight == 1) {
-        nSubsidy = 30000000 * COIN; // previous FUNC+777 coin supply (30M)
-    } else if (nHeight <= 100000) {
-        nSubsidy = 100 * COIN;
-    } else if (nHeight > 100000 && nHeight <= 200000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 200000 && nHeight <= 300000) {
-        nSubsidy = 150 * COIN;
-    } else if (nHeight > 300000 && nHeight <= 400000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 400000) {
-        nSubsidy = 100 * COIN;
-    }
-
-    if(nMoneySupply + nSubsidy > maxMoneyOut) {
-        return nMoneySupply + nSubsidy - maxMoneyOut;
-    }
-
-    return nSubsidy;
-}
-
-CAmount GetMasternodePayment(int nHeight)
-{
-    if(nHeight <= 5000) return 0;
-
-    return GetBlockValue(nHeight) * 95 / 100;
-}
-
 bool IsInitialBlockDownload()
 {
     // Once this function has returned false, it must remain false.
@@ -2378,7 +2340,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     LogPrint(BCLog::BENCH, "      - Connect %u transactions: %.2fms (%.3fms/tx, %.3fms/txin) [%.2fs]\n", (unsigned)block.vtx.size(), 0.001 * (nTime1 - nTimeStart), 0.001 * (nTime1 - nTimeStart) / block.vtx.size(), nInputs <= 1 ? 0 : 0.001 * (nTime1 - nTimeStart) / (nInputs - 1), nTimeConnect * 0.000001);
 
     //PoW phase redistributed fees to miner. PoS stage destroys fees.
-    CAmount nExpectedMint = GetBlockValue(pindex->pprev->nHeight + 1);
+    CAmount nExpectedMint = CMasternode::GetBlockValue(pindex->pprev->nHeight + 1);
     if (block.IsProofOfWork())
         nExpectedMint += nFees;
 
@@ -3370,7 +3332,7 @@ bool CheckColdStakeFreeOutput(const CTransaction& tx, const int nHeight)
     const unsigned int outs = tx.vout.size();
     const CTxOut& lastOut = tx.vout[outs-1];
     if (outs >=3 && lastOut.scriptPubKey != tx.vout[outs-2].scriptPubKey) {
-        if (lastOut.nValue == GetMasternodePayment(nHeight))
+        if (lastOut.nValue == CMasternode::GetMasternodePayment(nHeight))
             return true;
 
         // This could be a budget block.
@@ -3384,7 +3346,7 @@ bool CheckColdStakeFreeOutput(const CTransaction& tx, const int nHeight)
             CTransaction txPrev; uint256 hashBlock;
             if (!GetTransaction(tx.vin[0].prevout.hash, txPrev, hashBlock, true))
                 return error("%s : read txPrev failed: %s",  __func__, tx.vin[0].prevout.hash.GetHex());
-            CAmount amtIn = txPrev.vout[tx.vin[0].prevout.n].nValue + GetBlockValue(nHeight - 1);
+            CAmount amtIn = txPrev.vout[tx.vin[0].prevout.n].nValue + CMasternode::GetBlockValue(nHeight - 1);
             CAmount amtOut = 0;
             for (unsigned int i = 1; i < outs-1; i++) amtOut += tx.vout[i].nValue;
             if (amtOut != amtIn)
