@@ -265,6 +265,10 @@ public:
 
     /// Is the input associated with collateral public key? (and there is collateral - checking if valid masternode)
     bool IsInputAssociatedWithPubkey() const;
+
+    static CAmount GetMasternodeNodeCollateral(int nHeight);
+    static CAmount GetBlockValue(int nHeight);
+    static CAmount GetMasternodePayment(int nHeight);
 };
 
 

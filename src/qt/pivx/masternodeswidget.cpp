@@ -477,7 +477,7 @@ void MasterNodesWidget::onCreateMNClicked()
         return;
     }
 
-    if (walletModel->getBalance() <= (COIN * GetMstrNodCollateral(chainActive.Height()))) {
+    if (walletModel->getBalance() <= (CMasternode::GetMasternodeNodeCollateral(chainActive.Height()))) {
         inform(tr("Not enough balance to create a masternode.").arg(CURRENCY_UNIT.c_str()));
         return;
     }
