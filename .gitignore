@@ -7,20 +7,14 @@ reset-files.bash
 *.tar.gz
 
 *.exe
-src/pivx
-src/jackpot
-src/pivxd
-src/jackpotd
-src/pivx-cli
-src/jackpot-cli
-src/pivx-tx
-src/jackpot-tx
-src/bench/bench_pivx
-src/bench/bench_jackpotx
-src/test/test_pivx
-src/test/test_jackpot
-src/qt/test/test_pivx-qt
-src/qt/test/test_jackpot-qt
+src/bench/bench_cryptoflow
+src/cryptoflow-cli
+src/cryptoflow-tx
+src/cryptoflowd
+src/qt/cryptoflow-qt
+src/qt/test/test_cryptoflow-qt
+src/test/test_cryptoflow
+
 
 # autoreconf
 Makefile.in
