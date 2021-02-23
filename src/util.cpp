@@ -86,8 +86,8 @@
 #include <openssl/crypto.h>
 #include <openssl/rand.h>
 
-const char * const PIVX_CONF_FILENAME = "jackpot.conf";
-const char * const PIVX_PID_FILENAME = "jackpot.pid";
+const char * const PIVX_CONF_FILENAME = "cryptoflow.conf";
+const char * const PIVX_PID_FILENAME = "cryptoflow.pid";
 const char * const PIVX_MASTERNODE_CONF_FILENAME = "masternode.conf";
 
 
@@ -291,13 +291,13 @@ void PrintExceptionContinue(const std::exception* pex, const char* pszThread)
 
 fs::path GetDefaultDataDir()
 {
-// Windows < Vista: C:\Documents and Settings\Username\Application Data\jackpot
-// Windows >= Vista: C:\Users\Username\AppData\Roaming\jackpot
-// Mac: ~/Library/Application Support/jackpot
-// Unix: ~/.jackpot
+// Windows < Vista: C:\Documents and Settings\Username\Application Data\Cryptoflow
+// Windows >= Vista: C:\Users\Username\AppData\Roaming\Cryptoflow
+// Mac: ~/Library/Application Support/Cryptoflow
+// Unix: ~/.cryptoflow
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "jackpot";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "Cryptoflow";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -309,10 +309,10 @@ fs::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "jackpot";
+    return pathRet / "Cryptoflow";
 #else
     // Unix
-    return pathRet / ".jackpot";
+    return pathRet / ".cryptoflow";
 #endif
 #endif
 }
@@ -468,7 +468,7 @@ void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet,
 {
     fs::ifstream streamConfig(GetConfigFile());
     if (!streamConfig.good()) {
-        // Create empty jackpot.conf if it does not exist
+        // Create empty cryptoflow.conf if it does not exist
         FILE* configFile = fsbridge::fopen(GetConfigFile(), "a");
         if (configFile != NULL)
             fclose(configFile);
@@ -479,7 +479,7 @@ void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet,
     setOptions.insert("*");
 
     for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it) {
-        // Don't overwrite existing settings so command line settings override jackpot.conf
+        // Don't overwrite existing settings so command line settings override cryptoflow.conf
         std::string strKey = std::string("-") + it->string_key;
         std::string strValue = it->value[0];
         InterpretNegativeSetting(strKey, strValue);

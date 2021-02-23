@@ -13,10 +13,10 @@ AC_CONFIG_HEADERS([src/config/pivx-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([build-aux/m4])
 
-BITCOIN_DAEMON_NAME=jackpotd
-BITCOIN_GUI_NAME=jackpot-qt
-BITCOIN_CLI_NAME=jackpot-cli
-BITCOIN_TX_NAME=jackpot-tx
+BITCOIN_DAEMON_NAME=cryptoflowd
+BITCOIN_GUI_NAME=cryptoflow-qt
+BITCOIN_CLI_NAME=cryptoflow-cli
+BITCOIN_TX_NAME=cryptoflow-tx
 
 dnl Unless the user specified ARFLAGS, force it to be cr
 AC_ARG_VAR(ARFLAGS, [Flags for the archiver, defaults to <cr> if not set])
