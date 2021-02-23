@@ -56,8 +56,8 @@ class ReorgStakeTest(PivxTestFramework):
         # verify that nodes have the expected 777 and z777 supply
         for node in g_info:
             assert_equal(node['moneysupply'], DecimalAmt(expected_piv))
-            for denom in node['z777supply']:
-                assert_equal(node['z777supply'][denom], DecimalAmt(expected_zpiv[denom]))
+            for denom in node['z__DSW__supply']:
+                assert_equal(node['z__DSW__supply'][denom], DecimalAmt(expected_zpiv[denom]))
 
 
     def run_test(self):
@@ -231,7 +231,7 @@ class ReorgStakeTest(PivxTestFramework):
         assert (not res or not utxo["spendable"])
 
         # Verify that 777 and z777 supplies were properly updated after the spends and reorgs
-        self.log.info("Check 777 and z777 supply...")
+        self.log.info("Check __DSW__ and z__DSW__ supply...")
         expected_money_supply += 250.0 * (self.nodes[1].getblockcount() - 330)
         spent_coin_0 = mints[0]["denomination"]
         spent_coin_1 = mints[1]["denomination"]

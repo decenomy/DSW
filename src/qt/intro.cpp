@@ -197,7 +197,7 @@ bool Intro::pickDataDirectory()
                 TryCreateDirectory(GUIUtil::qstringToBoostPath(dataDir));
                 break;
             } catch (const fs::filesystem_error& e) {
-                QMessageBox::critical(0, tr("Jackpot"),
+                QMessageBox::critical(0, tr("__Decenomy__"),
                     tr("Error: Specified data directory \"%1\" cannot be created.").arg(dataDir));
                 // fall through, back to choosing screen
             }

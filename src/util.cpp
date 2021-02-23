@@ -86,8 +86,8 @@
 #include <openssl/crypto.h>
 #include <openssl/rand.h>
 
-const char * const PIVX_CONF_FILENAME = "jackpot.conf";
-const char * const PIVX_PID_FILENAME = "jackpot.pid";
+const char * const PIVX_CONF_FILENAME = "__decenomy__.conf";
+const char * const PIVX_PID_FILENAME = "__decenomy__.pid";
 const char * const PIVX_MASTERNODE_CONF_FILENAME = "masternode.conf";
 
 
@@ -271,7 +271,7 @@ static std::string FormatException(const std::exception* pex, const char* pszThr
     char pszModule[MAX_PATH] = "";
     GetModuleFileNameA(NULL, pszModule, sizeof(pszModule));
 #else
-    const char* pszModule = "jackpot";
+    const char* pszModule = "__decenomy__";
 #endif
     if (pex)
         return strprintf(

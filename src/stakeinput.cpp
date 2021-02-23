@@ -14,7 +14,7 @@
 bool CPivStake::InitFromTxIn(const CTxIn& txin)
 {
     if (txin.IsZerocoinSpend())
-        return error("%s: unable to initialize C777Stake from zerocoin spend", __func__);
+        return error("%s: unable to initialize C__DSW__Stake from zerocoin spend", __func__);
 
     // Find the previous transaction in database
     uint256 hashBlock;

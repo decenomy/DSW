@@ -380,7 +380,7 @@ bool CWallet::Unlock(const CKeyingMaterial& vMasterKeyIn)
             if (CWalletDB(strWalletFile).ReadCurrentSeedHash(hashSeed)) {
                 uint256 nSeed;
                 if (!GetDeterministicSeed(hashSeed, nSeed)) {
-                    return error("Failed to read z777 seed from DB. Wallet is probably corrupt.");
+                    return error("Failed to read z__DSW__ seed from DB. Wallet is probably corrupt.");
                 }
                 zwallet->SetMasterSeed(nSeed, false);
             }
@@ -3721,7 +3721,7 @@ std::string CWallet::GetWalletHelpString(bool showDebug)
     strUsage += HelpMessageOpt("-coldstaking=<n>", strprintf(_("Enable cold staking functionality (0-1, default: %u). Disabled if staking=0"), DEFAULT_COLDSTAKING));
     strUsage += HelpMessageOpt("-gen", strprintf(_("Generate coins (default: %u)"), DEFAULT_GENERATE));
     strUsage += HelpMessageOpt("-genproclimit=<n>", strprintf(_("Set the number of threads for coin generation if enabled (-1 = all cores, default: %d)"), DEFAULT_GENERATE_PROCLIMIT));
-    strUsage += HelpMessageOpt("-minstakesplit=<amt>", strprintf(_("Minimum positive amount (in 777) allowed by GUI and RPC for the stake split threshold (default: %s)"), FormatMoney(DEFAULT_MIN_STAKE_SPLIT_THRESHOLD)));
+    strUsage += HelpMessageOpt("-minstakesplit=<amt>", strprintf(_("Minimum positive amount (in __DSW__) allowed by GUI and RPC for the stake split threshold (default: %s)"), FormatMoney(DEFAULT_MIN_STAKE_SPLIT_THRESHOLD)));
     strUsage += HelpMessageOpt("-staking=<n>", strprintf(_("Enable staking functionality (0-1, default: %u)"), DEFAULT_STAKING));
     if (showDebug) {
         strUsage += HelpMessageGroup(_("Wallet debugging/testing options:"));
@@ -3769,10 +3769,10 @@ CWallet* CWallet::CreateWalletFromFile(const std::string walletFile)
             UIWarning(strprintf(_("Warning: error reading %s! All keys read correctly, but transaction data"
                          " or address book entries might be missing or incorrect."), walletFile));
         } else if (nLoadWalletRet == DB_TOO_NEW) {
-            UIError(strprintf(_("Error loading %s: Wallet requires newer version of Jackpot"), walletFile));
+            UIError(strprintf(_("Error loading %s: Wallet requires newer version of __Decenomy__"), walletFile));
             return nullptr;
         } else if (nLoadWalletRet == DB_NEED_REWRITE) {
-            UIError(_("Wallet needed to be rewritten: restart Jackpot to complete"));
+            UIError(_("Wallet needed to be rewritten: restart __Decenomy__ to complete"));
             return nullptr;
         } else {
             UIError(strprintf(_("Error loading %s\n"), walletFile));
@@ -3911,7 +3911,7 @@ CWallet* CWallet::CreateWalletFromFile(const std::string walletFile)
 
     if (!zwalletInstance->GetMasterSeed().IsNull()) {
         //Inititalize z777Wallet
-        uiInterface.InitMessage(_("Syncing z777 wallet..."));
+        uiInterface.InitMessage(_("Syncing z__DSW__ wallet..."));
 
         //Load zerocoin mint hashes to memory
         walletInstance->zpivTracker->Init();

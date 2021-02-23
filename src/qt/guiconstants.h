@@ -50,9 +50,9 @@ static const int MAX_URI_LENGTH = 255;
 #define EXPORT_IMAGE_SIZE 256
 
 
-#define QAPP_ORG_NAME "Jackpot"
-#define QAPP_ORG_DOMAIN "jackpot.org"
-#define QAPP_APP_NAME_DEFAULT "Jackpot-Qt"
-#define QAPP_APP_NAME_TESTNET "Jackpot-Qt-testnet"
+#define QAPP_ORG_NAME "__Decenomy__"
+#define QAPP_ORG_DOMAIN "__decenomy__.org"
+#define QAPP_APP_NAME_DEFAULT "__Decenomy__-Qt"
+#define QAPP_APP_NAME_TESTNET "__Decenomy__-Qt-testnet"
 
 #endif // BITCOIN_QT_GUICONSTANTS_H

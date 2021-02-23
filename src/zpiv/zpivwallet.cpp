@@ -31,10 +31,10 @@ CzPIVWallet::CzPIVWallet(CWallet* parent)
             hashSeed = Hash(seed.begin(), seed.end());
             if (wallet->AddDeterministicSeed(seed)) {
                 if (walletdb.EraseZPIVSeed_deprecated()) {
-                    LogPrintf("%s: Updated z777 seed databasing\n", __func__);
+                    LogPrintf("%s: Updated z__DSW__ seed databasing\n", __func__);
                     fFirstRun = false;
                 } else {
-                    LogPrintf("%s: failed to remove old z777 seed\n", __func__);
+                    LogPrintf("%s: failed to remove old z__DSW__ seed\n", __func__);
                 }
             }
         }
@@ -56,7 +56,7 @@ CzPIVWallet::CzPIVWallet(CWallet* parent)
         key.MakeNewKey(true);
         seed = key.GetPrivKey_256();
         seedMaster = seed;
-        LogPrintf("%s: first run of z777 wallet detected, new seed generated. Seedhash=%s\n", __func__, Hash(seed.begin(), seed.end()).GetHex());
+        LogPrintf("%s: first run of z__DSW__ wallet detected, new seed generated. Seedhash=%s\n", __func__, Hash(seed.begin(), seed.end()).GetHex());
     } else if (!parent->GetDeterministicSeed(hashSeed, seed)) {
         LogPrintf("%s: failed to get deterministic seed for hashseed %s\n", __func__, hashSeed.GetHex());
         return;

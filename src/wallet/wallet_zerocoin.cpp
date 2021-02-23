@@ -47,7 +47,7 @@ bool CWallet::AddDeterministicSeed(const uint256& seed)
         if (db.WriteZPIVSeed(hashSeed, ToByteVector(seed))) {
             return true;
         }
-        strErr = "save z777seed to wallet";
+        strErr = "save z__DSW__seed to wallet";
     }
     //the use case for this is no password set seed, mint dz777,
 
@@ -298,7 +298,7 @@ bool CWallet::CreateZerocoinMintTransaction(const CAmount nValue,
         CTxOut outMint;
         CDeterministicMint dMint;
         if (!CreateZPIVOutPut(denomination, outMint, dMint)) {
-            strFailReason = strprintf("%s: failed to create new z777 output", __func__);
+            strFailReason = strprintf("%s: failed to create new z__DSW__ output", __func__);
             return error(strFailReason.c_str());
         }
         txNew.vout.push_back(outMint);
@@ -543,7 +543,7 @@ bool CWallet::CreateZCPublicSpendTransaction(
     }
 
     if (nValue < 1) {
-        receipt.SetStatus(_("Value is below the smallest available denomination (= 1) of z777"), nStatus);
+        receipt.SetStatus(_("Value is below the smallest available denomination (= 1) of z__DSW__"), nStatus);
         return false;
     }
 

@@ -61,7 +61,7 @@
 
 
 #if defined(NDEBUG)
-#error "Jackpot cannot be compiled without assertions."
+#error "__Decenomy__ cannot be compiled without assertions."
 #endif
 
 /**
@@ -964,7 +964,7 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState &state, const C
 
             // Reject legacy z777 mints
             if (!Params().IsRegTestNet() && tx.HasZerocoinMintOutputs())
-                return state.Invalid(error("%s : tried to include z777 mint output in tx %s",
+                return state.Invalid(error("%s : tried to include z__DSW__ mint output in tx %s",
                         __func__, tx.GetHash().GetHex()), REJECT_INVALID, "bad-zc-spend-mint");
 
             // Bring the best block into scope
@@ -2034,7 +2034,7 @@ DisconnectResult DisconnectBlock(CBlock& block, CBlockIndex* pindex, CCoinsViewC
 
     //Track z777 money supply
     if (!UpdateZPIVSupplyDisconnect(block, pindex)) {
-        error("%s: Failed to calculate new z777 supply", __func__);
+        error("%s: Failed to calculate new z__DSW__ supply", __func__);
         return DISCONNECT_FAILED;
     }
 
@@ -2426,7 +2426,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
     // Update z777 money supply map
     if (!UpdateZPIVSupplyConnect(block, pindex, fJustCheck)) {
-        return state.DoS(100, error("%s: Failed to calculate new z777 supply for block=%s height=%d", __func__,
+        return state.DoS(100, error("%s: Failed to calculate new z__DSW__ supply for block=%s height=%d", __func__,
                                     block.GetHash().GetHex(), pindex->nHeight), REJECT_INVALID);
     }
 
@@ -3527,7 +3527,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                         spend = TxInToZerocoinSpend(txIn);
                     }
                     if (std::count(vBlockSerials.begin(), vBlockSerials.end(), spend.getCoinSerialNumber()))
-                        return state.DoS(100, error("%s : Double spending of z777 serial %s in block\n Block: %s",
+                        return state.DoS(100, error("%s : Double spending of z__DSW__ serial %s in block\n Block: %s",
                                                     __func__, spend.getCoinSerialNumber().GetHex(), block.ToString()));
                     vBlockSerials.emplace_back(spend.getCoinSerialNumber());
                 }
@@ -3974,7 +3974,7 @@ bool AcceptBlock(const CBlock& block, CValidationState& state, CBlockIndex** ppi
 
                     if (!ContextualCheckZerocoinSpendNoSerialCheck(stakeTxIn, &spend, pindex->nHeight, UINT256_ZERO))
                         return state.DoS(100,error("%s: forked chain ContextualCheckZerocoinSpend failed for tx %s", __func__,
-                                                   stakeTxIn.GetHash().GetHex()), REJECT_INVALID, "bad-txns-invalid-z777");
+                                                   stakeTxIn.GetHash().GetHex()), REJECT_INVALID, "bad-txns-invalid-z__DSW__");
 
                 }
             }
@@ -3998,7 +3998,7 @@ bool AcceptBlock(const CBlock& block, CValidationState& state, CBlockIndex** ppi
                         libzerocoin::CoinSpend spend = TxInToZerocoinSpend(zPivInput);
                         if (!ContextualCheckZerocoinSpend(stakeTxIn, &spend, pindex->nHeight, UINT256_ZERO))
                             return state.DoS(100,error("%s: main chain ContextualCheckZerocoinSpend failed for tx %s", __func__,
-                                    stakeTxIn.GetHash().GetHex()), REJECT_INVALID, "bad-txns-invalid-z777");
+                                    stakeTxIn.GetHash().GetHex()), REJECT_INVALID, "bad-txns-invalid-z__DSW__");
                 }
 
         }

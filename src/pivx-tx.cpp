@@ -47,10 +47,10 @@ static bool AppInitRawTx(int argc, char* argv[])
 
     if (argc < 2 || mapArgs.count("-?") || mapArgs.count("-help")) {
         // First part of help message is specific to this utility
-        std::string strUsage = _("Jackpot jackpot-tx utility version") + " " + FormatFullVersion() + "\n\n" +
+        std::string strUsage = _("__Decenomy__ __decenomy__-tx utility version") + " " + FormatFullVersion() + "\n\n" +
                                _("Usage:") + "\n" +
-                               "  jackpot-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded jackpot transaction") + "\n" +
-                               "  jackpot-tx [options] -create [commands]   " + _("Create hex-encoded jackpot transaction") + "\n" +
+                               "  __decenomy__-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded __decenomy__ transaction") + "\n" +
+                               "  __decenomy__-tx [options] -create [commands]   " + _("Create hex-encoded __decenomy__ transaction") + "\n" +
                                "\n";
 
         fprintf(stdout, "%s", strUsage.c_str());

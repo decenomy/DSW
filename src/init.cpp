@@ -516,7 +516,7 @@ std::string HelpMessage(HelpMessageMode mode)
     }
     strUsage += HelpMessageOpt("-shrinkdebugfile", _("Shrink debug.log file on client startup (default: 1 when no -debug)"));
     strUsage += HelpMessageOpt("-testnet", _("Use the test network"));
-    strUsage += HelpMessageOpt("-litemode=<n>", strprintf(_("Disable all 777 specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)"), 0));
+    strUsage += HelpMessageOpt("-litemode=<n>", strprintf(_("Disable all __DSW__ specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)"), 0));
 
     strUsage += HelpMessageGroup(_("Masternode options:"));
     strUsage += HelpMessageOpt("-masternode=<n>", strprintf(_("Enable the client to act as a masternode (0-1, default: %u)"), DEFAULT_MASTERNODE));
@@ -575,7 +575,7 @@ std::string LicenseInfo()
            "\n" +
            FormatParagraph(strprintf(_("Copyright (C) 2015-%i The PIVX Core Developers"), COPYRIGHT_YEAR)) + "\n" +
            "\n" +
-           FormatParagraph(strprintf(_("Copyright (C) %i The Jackpot 777 Developers"), COPYRIGHT_YEAR)) + "\n" +
+           FormatParagraph(strprintf(_("Copyright (C) %i The Decenomy Core Developers"), COPYRIGHT_YEAR)) + "\n" +
            "\n" +
            FormatParagraph(_("This is experimental software.")) + "\n" +
            "\n" +
@@ -963,7 +963,7 @@ void InitLogging()
 #else
     version_string += " (release build)";
 #endif
-    LogPrintf("Jackpot version %s (%s)\n", version_string, CLIENT_DATE);
+    LogPrintf("__Decenomy__ version %s (%s)\n", version_string, CLIENT_DATE);
 }
 
 /** Initialize jackpot.
@@ -1122,7 +1122,7 @@ bool AppInit2()
 
     // Sanity check
     if (!InitSanityCheck())
-        return UIError(_("Initialization sanity check failed. Jackpot is shutting down."));
+        return UIError(_("Initialization sanity check failed. __Decenomy__ is shutting down."));
 
     std::string strDataDir = GetDataDir().string();
 
@@ -1134,7 +1134,7 @@ bool AppInit2()
 
     // Wait maximum 10 seconds if an old wallet is still running. Avoids lockup during restart
     if (!lock.timed_lock(boost::get_system_time() + boost::posix_time::seconds(10)))
-        return UIError(strprintf(_("Cannot obtain a lock on data directory %s. Jackpot is probably already running."), strDataDir));
+        return UIError(strprintf(_("Cannot obtain a lock on data directory %s. __Decenomy__ is probably already running."), strDataDir));
 
 #ifndef WIN32
     CreatePidFile(GetPidFile(), getpid());
