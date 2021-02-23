@@ -117,11 +117,11 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += jackpotd
+  bin_PROGRAMS += trittiumd
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += jackpot-cli jackpot-tx
+  bin_PROGRAMS += trittium-cli trittium-tx
 endif
 
 LIBSAPLING_H = \
@@ -137,7 +137,7 @@ LIBSAPLING_H = \
   sapling/saplingscriptpubkeyman.h
 
 .PHONY: FORCE cargo-build check-symbols check-security
-# jackpot core #
+# trittium core #
 BITCOIN_CORE_H = \
   activemasternode.h \
   addrdb.h \
@@ -291,7 +291,7 @@ obj/build.h: FORCE
 	  "$(abs_top_srcdir)"
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between jackpotd and jackpot-qt
+# server: shared between trittiumd and trittium-qt
 libbitcoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libbitcoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_server_a_SOURCES = \
@@ -347,7 +347,7 @@ libbitcoin_zmq_a_SOURCES = \
   zmq/zmqpublishnotifier.cpp
 endif
 
-# wallet: shared between jackpotd and jackpot-qt, but only linked
+# wallet: shared between trittiumd and trittium-qt, but only linked
 # when wallet enabled
 libbitcoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
@@ -485,7 +485,7 @@ if USE_NUM_OPENSSL
   libzerocoin_libbitcoin_zerocoin_a_SOURCES += libzerocoin/bignum_openssl.cpp
 endif
 
-# common: shared between jackpotd, and jackpot-qt and non-server tools
+# common: shared between trittiumd, and trittium-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_common_a_SOURCES = \
@@ -578,7 +578,7 @@ libsapling_a_SOURCES += compat/glibc_compat.cpp
 AM_LDFLAGS += $(COMPAT_LDFLAGS)
 endif
 
-# cli: shared between jackpot-cli and jackpot-qt
+# cli: shared between trittium-cli and trittium-qt
 libbitcoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_cli_a_SOURCES = \
@@ -589,16 +589,16 @@ libbitcoin_cli_a_SOURCES = \
 nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# jackpotd binary #
-jackpotd_SOURCES = pivxd.cpp
-jackpotd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-jackpotd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-jackpotd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# trittiumd binary #
+trittiumd_SOURCES = pivxd.cpp
+trittiumd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+trittiumd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+trittiumd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-jackpotd_SOURCES += pivxd-res.rc
+trittiumd_SOURCES += pivxd-res.rc
 endif
-jackpotd_LDADD = \
+trittiumd_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
   $(LIBBITCOIN_COMMON) \
@@ -615,19 +615,19 @@ jackpotd_LDADD = \
   $(LIBRUSTZCASH) \
   $(LIBZCASH_LIBS)
 
-jackpotd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+trittiumd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
-# jackpot-cli binary #
-jackpot_cli_SOURCES = pivx-cli.cpp
-jackpot_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-jackpot_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-jackpot_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# trittium-cli binary #
+trittium_cli_SOURCES = pivx-cli.cpp
+trittium_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+trittium_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+trittium_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-jackpot_cli_SOURCES += pivx-cli-res.rc
+trittium_cli_SOURCES += pivx-cli-res.rc
 endif
 
-jackpot_cli_LDADD = \
+trittium_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
@@ -636,20 +636,20 @@ jackpot_cli_LDADD = \
   $(LIBRUSTZCASH) \
   $(LIBZCASH_LIBS)
 
-jackpot_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+trittium_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
-# jackpot-tx binary #
-jackpot_tx_SOURCES = pivx-tx.cpp
-jackpot_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-jackpot_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-jackpot_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# trittium-tx binary #
+trittium_tx_SOURCES = pivx-tx.cpp
+trittium_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+trittium_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+trittium_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-jackpot_tx_SOURCES += pivx-tx-res.rc
+trittium_tx_SOURCES += pivx-tx-res.rc
 endif
 
-jackpot_tx_LDADD = \
+trittium_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_ZEROCOIN) \
@@ -660,7 +660,7 @@ jackpot_tx_LDADD = \
   $(LIBRUSTZCASH) \
   $(LIBZCASH_LIBS)
 
-jackpot_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+trittium_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
 # bitcoinconsensus library #

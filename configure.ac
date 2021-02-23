@@ -1,6 +1,6 @@
 dnl require autoconf 2.60 (AS_ECHO/AS_ECHO_N)
 AC_PREREQ([2.60])
-define(_CLIENT_VERSION_MAJOR, 3)
+define(_CLIENT_VERSION_MAJOR, 4)
 define(_CLIENT_VERSION_MINOR, 0)
 define(_CLIENT_VERSION_REVISION, 0)
 define(_CLIENT_VERSION_BUILD, 0)
@@ -13,10 +13,10 @@ AC_CONFIG_HEADERS([src/config/pivx-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([build-aux/m4])
 
-BITCOIN_DAEMON_NAME=jackpotd
-BITCOIN_GUI_NAME=jackpot-qt
-BITCOIN_CLI_NAME=jackpot-cli
-BITCOIN_TX_NAME=jackpot-tx
+BITCOIN_DAEMON_NAME=trittiumd
+BITCOIN_GUI_NAME=trittium-qt
+BITCOIN_CLI_NAME=trittium-cli
+BITCOIN_TX_NAME=trittium-tx
 
 dnl Unless the user specified ARFLAGS, force it to be cr
 AC_ARG_VAR(ARFLAGS, [Flags for the archiver, defaults to <cr> if not set])

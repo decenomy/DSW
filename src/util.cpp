@@ -86,8 +86,8 @@
 #include <openssl/crypto.h>
 #include <openssl/rand.h>
 
-const char * const PIVX_CONF_FILENAME = "jackpot.conf";
-const char * const PIVX_PID_FILENAME = "jackpot.pid";
+const char * const PIVX_CONF_FILENAME = "trittium.conf";
+const char * const PIVX_PID_FILENAME = "trittium.pid";
 const char * const PIVX_MASTERNODE_CONF_FILENAME = "masternode.conf";
 
 
@@ -297,7 +297,7 @@ fs::path GetDefaultDataDir()
 // Unix: ~/.jackpot
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "jackpot";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "Trittium";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -309,10 +309,10 @@ fs::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "jackpot";
+    return pathRet / "Trittium";
 #else
     // Unix
-    return pathRet / ".jackpot";
+    return pathRet / ".trittium";
 #endif
 #endif
 }
