@@ -15,6 +15,14 @@ src/bench/bench___decenomy__x
 src/test/test___decenomy__
 src/qt/test/test___decenomy__-qt
 
+##########################################
+# clear this section when it's fixed
+###
+src/bench/bench_pivx
+src/qt/test/test_pivx-qt
+src/test/test_pivx
+##########################################
+
 # autoreconf
 Makefile.in
 aclocal.m4
