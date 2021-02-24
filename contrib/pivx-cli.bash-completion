@@ -143,7 +143,7 @@ _pivx_cli() {
             ;;
     esac
 } &&
-complete -F _pivx_cli jackpot-cli
+complete -F _pivx_cli __decenomy__-cli
 
 # Local variables:
 # mode: shell-script

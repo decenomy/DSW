@@ -32,7 +32,7 @@ Homepage: https://777coin.win/
 Vcs-Git: git://github.com/777-project/777.git
 Vcs-Browser: https://github.com/777-project/777
 
-Package: jackpotd
+Package: __decenomy__d
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - daemon
@@ -48,7 +48,7 @@ Description: peer-to-peer network based digital currency - daemon
  This package provides the daemon, jackpotd, and the CLI tool
  jackpot-cli to interact with the daemon.
 
-Package: jackpot-qt
+Package: __decenomy__-qt
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - Qt GUI

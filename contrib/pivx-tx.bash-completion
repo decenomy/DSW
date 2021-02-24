@@ -46,7 +46,7 @@ _pivx_tx() {
 
     return 0
 } &&
-complete -F _pivx_tx jackpot-tx
+complete -F _pivx_tx __decenomy__-tx
 
 # Local variables:
 # mode: shell-script

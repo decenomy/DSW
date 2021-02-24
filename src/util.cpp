@@ -297,7 +297,7 @@ fs::path GetDefaultDataDir()
 // Unix: ~/.jackpot
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "jackpot";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "__Decenomy__";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -309,10 +309,10 @@ fs::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "jackpot";
+    return pathRet / "__Decenomy__";
 #else
     // Unix
-    return pathRet / ".jackpot";
+    return pathRet / ".__decenomy__";
 #endif
 #endif
 }
@@ -331,7 +331,7 @@ static fs::path ZC_GetBaseParamsDir()
     // Unix: ~/.jackpot-params
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "jackpotParams";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "__Decenomy__Params";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -343,10 +343,10 @@ static fs::path ZC_GetBaseParamsDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "jackpotParams";
+    return pathRet / "__Decenomy__Params";
 #else
     // Unix
-    return pathRet / ".jackpot-params";
+    return pathRet / ".__decenomy__-params";
 #endif
 #endif
 }
