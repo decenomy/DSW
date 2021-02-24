@@ -3841,8 +3841,8 @@ Il y a eu une erreur de sauvegarde de la liste d'adresses vers %1. SVP rééssay
         <translation>2) Pourquoi mes 777 ne peuvent pas être dépensés?</translation>
     </message>
     <message>
-        <source>https://777coin.win/</source>
-        <translation>https://777coin.win/</translation>
+        <source>__decenomy_website_link__/</source>
+        <translation>__decenomy_website_link__/</translation>
     </message>
     <message>
         <source>1</source>

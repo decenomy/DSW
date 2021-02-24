@@ -3743,8 +3743,8 @@ Došlo je do greške prilikom spremanja popisa adresa u %1. Molimo pokušajte po
         <translation>2) Zašto se moji 777 ne mogu potrošiti?</translation>
     </message>
     <message>
-        <source>https://777coin.win/</source>
-        <translation>https://777coin.win/</translation>
+        <source>__decenomy_website_link__/</source>
+        <translation>__decenomy_website_link__/</translation>
     </message>
     <message>
         <source>1</source>

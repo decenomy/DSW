@@ -3837,8 +3837,8 @@ Es gab ein Problem bei dem Versuch die Adressen unter %1 zu speichern. Bitte ver
         <translation>2) Wieso kann ich meine 777 nicht ausgeben?</translation>
     </message>
     <message>
-        <source>https://777coin.win/</source>
-        <translation>https://777coin.win/</translation>
+        <source>__decenomy_website_link__/</source>
+        <translation>__decenomy_website_link__/</translation>
     </message>
     <message>
         <source>1</source>

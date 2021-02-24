@@ -3845,8 +3845,8 @@ Si è verificato un errore nel tentativo di salvare l'elenco degli indirizzi in 
         <translation>2) Perché i miei 777 non sono spendibili?</translation>
     </message>
     <message>
-        <source>https://777coin.win/</source>
-        <translation>https://777coin.win/</translation>
+        <source>__decenomy_website_link__/</source>
+        <translation>__decenomy_website_link__/</translation>
     </message>
     <message>
         <source>1</source>

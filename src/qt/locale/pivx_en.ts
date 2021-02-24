@@ -4796,7 +4796,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
     </message>
     <message>
         <location line="+148"/>
-        <source>https://777coin.win/</source>
+        <source>__decenomy_website_link__/</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -3844,8 +3844,8 @@ Er was een fout opgetreden tijdens het opslaan van deze adreslijst naar %1. Prob
         <translation>2) Waarom is mijn 777 niet besteedbaar?</translation>
     </message>
     <message>
-        <source>https://777coin.win/</source>
-        <translation>https://777coin.win/</translation>
+        <source>__decenomy_website_link__/</source>
+        <translation>__decenomy_website_link__/</translation>
     </message>
     <message>
         <source>1</source>

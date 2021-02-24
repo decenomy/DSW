@@ -342,7 +342,7 @@
                   <enum>Qt::NoFocus</enum>
                  </property>
                  <property name="text">
-                  <string>https://777coin.win/</string>
+                  <string>__decenomy_website_link__/</string>
                  </property>
                 </widget>
                </item>
