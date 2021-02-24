@@ -318,14 +318,20 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
-    if (nHeight <= 100000) {
-        return 15000 * COIN;
-    } else if (nHeight <= 200000 && nHeight > 100000) {
-        return 17500 * COIN;
-    } else if (nHeight > 200000) {
-        return 20000 * COIN;
-    }
-    return 0;
+    if (nHeight <= 1405000) {
+        return 50000 * COIN;
+    } else if (nHeight <= 1500000 && nHeight > 1405000) {
+        return 100000 * COIN;
+    } else if (nHeight <= 1600000 && nHeight > 1500000) {
+        return 120000 * COIN;
+    } else if (nHeight <= 1700000 && nHeight > 1600000) {
+        return 140000 * COIN;
+    } else if (nHeight <= 1800000 && nHeight > 1700000) {
+        return 160000 * COIN;
+    } else if (nHeight <= 1900000 && nHeight > 1800000) {
+        return 180000 * COIN;
+    } 
+    return 200000 * COIN;
 }
 
 CAmount CMasternode::GetBlockValue(int nHeight)
@@ -338,19 +344,54 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
     CAmount nSubsidy;
 
-    if (nHeight == 1) {
-        nSubsidy = 30000000 * COIN; // previous FUNC+777 coin supply (30M)
-    } else if (nHeight <= 100000) {
-        nSubsidy = 100 * COIN;
-    } else if (nHeight > 100000 && nHeight <= 200000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 200000 && nHeight <= 300000) {
-        nSubsidy = 150 * COIN;
-    } else if (nHeight > 300000 && nHeight <= 400000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 400000) {
-        nSubsidy = 100 * COIN;
-    }
+	const int targetFork1 = 200790; //fork since block 200,790
+	const int targetFork2 = 1400000; //fork since block 1,400,001
+
+	if (nHeight == 0) {
+		nSubsidy = 250 * COIN;  //genesis
+	} else if(nHeight == 1 ) {   
+		nSubsidy = 1450000 * COIN;  //1,450,000
+	} else if(nHeight > 1 && nHeight <= 800) { //PoW phase
+		nSubsidy = 30 * COIN;
+	} else if(nHeight > 800 && nHeight <= 1800) { //PoS phase
+		nSubsidy = 10 * COIN; // "instamine"
+	} else if(nHeight > 1800 && nHeight <= 3200) {
+		nSubsidy = 650 * COIN;
+	} else if(nHeight > 3200 && nHeight <= 6000) { 
+		nSubsidy = 850 * COIN;
+	} else if(nHeight > 6000 && nHeight <= 12000) { 
+		nSubsidy = 1050 * COIN;
+	} else if(nHeight > 12000 && nHeight <= 20000) { 
+		nSubsidy = 1250 * COIN;
+	} else if(nHeight > 20000 && nHeight <= 100000) { 
+		nSubsidy = 450 * COIN;
+	} else if(nHeight > 100000 && nHeight <= targetFork1) { 
+		nSubsidy = 350 * COIN;
+	} else if(nHeight > targetFork1 && nHeight <= 330390) {
+		nSubsidy = 80 * COIN;
+	} else if(nHeight > 330390 && nHeight <= 459990) {
+		nSubsidy = 40 * COIN;
+	} else if(nHeight > 459990 && nHeight <= 985590) {
+		nSubsidy = 20 * COIN;
+	} else if(nHeight > 985590 && nHeight <= targetFork2) { // targetFork2 = 1400001
+		nSubsidy = 10 * COIN;
+	} else if(nHeight > targetFork2 && nHeight <= 1500000) {
+		nSubsidy = 1000 * COIN;
+	} else if(nHeight > 1500000 && nHeight <= 1600000) {
+		nSubsidy = 900 * COIN;
+	} else if(nHeight > 1600000 && nHeight <= 1700000) {
+		nSubsidy = 800 * COIN;
+	} else if(nHeight > 1700000 && nHeight <= 1800000) {
+		nSubsidy = 700 * COIN;
+	} else if(nHeight > 1800000 && nHeight <= 1900000) {
+		nSubsidy = 600 * COIN;
+	} else if(nHeight > 1900000 && nHeight <= 2000000) {
+		nSubsidy = 500 * COIN;
+	} else if(nHeight > 2000000 && nHeight <= 2100000) {
+		nSubsidy = 450 * COIN;
+	} else if(nHeight > 2100000) {
+		nSubsidy = 400 * COIN;
+	} 
 
     if(nMoneySupply + nSubsidy > maxMoneyOut) {
         return nMoneySupply + nSubsidy - maxMoneyOut;
@@ -361,9 +402,16 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    if(nHeight <= 5000) return 0;
+	const int targetFork2 = 1400000; //fork since block 1,400,001
 
-    return CMasternode::GetBlockValue(nHeight) * 95 / 100;
+	if (nHeight <= 800)
+	    return 0;
+	
+	if (nHeight <= targetFork2)
+		return CMasternode::GetBlockValue(nHeight) * 80 / 100; // 80% of the block reward
+	
+	if (nHeight > targetFork2)
+    	return CMasternode::GetBlockValue(nHeight) * 90 / 100; // 90% of the block reward
 }
 
 CMasternodeBroadcast::CMasternodeBroadcast() :
