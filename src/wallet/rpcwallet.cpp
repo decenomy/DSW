@@ -963,7 +963,7 @@ void SendMoney(const CTxDestination& address, CAmount nValue, CWalletTx& wtxNew,
         throw JSONRPCError(RPC_WALLET_ERROR, strError);
     }
 
-    // Parse 777 address
+    // Parse __DSW__ address
     CScript scriptPubKey = GetScriptForDestination(address);
 
     // Create and send the transaction
@@ -1416,7 +1416,7 @@ UniValue getreceivedbyaddress(const JSONRPCRequest& request)
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
-    // 777 address
+    // __DSW__ address
     CTxDestination address = DecodeDestination(request.params[0].get_str());
     if (!IsValidDestination(address))
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid __DSW__ address");
@@ -3803,7 +3803,7 @@ UniValue multisend(const JSONRPCRequest& request)
     std::string strAddress = request.params[0].get_str();
     CBitcoinAddress address(strAddress);
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid 777 address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid __DSW__ address");
     if (std::stoi(request.params[1].get_str().c_str()) < 0)
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid parameter, expected valid percentage");
     if (pwalletMain->IsLocked())

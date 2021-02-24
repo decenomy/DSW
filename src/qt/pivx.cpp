@@ -151,7 +151,7 @@ void DebugMessageHandler(QtMsgType type, const QMessageLogContext& context, cons
     }
 }
 
-/** Class encapsulating Jackpot Core startup and shutdown.
+/** Class encapsulating __Decenomy__ Core startup and shutdown.
  * Allows running startup and shutdown in a different thread from the UI thread.
  */
 class BitcoinCore : public QObject
@@ -178,7 +178,7 @@ private:
     void handleRunawayException(const std::exception* e);
 };
 
-/** Main 777 application object */
+/** Main __DSW__ application object */
 class BitcoinApplication : public QApplication
 {
     Q_OBJECT
@@ -496,7 +496,7 @@ void BitcoinApplication::initializeResult(int retval)
 
 #ifdef ENABLE_WALLET
         // Now that initialization/startup is done, process any command-line
-        // Jackpot: URIs or payment requests:
+        // __Decenomy__: URIs or payment requests:
         //connect(paymentServer, &PaymentServer::receivedPaymentRequest, window, &PIVXGUI::handlePaymentRequest);
         connect(window, &PIVXGUI::receivedURI, paymentServer, &PaymentServer::handleURIOrFile);
         connect(paymentServer, &PaymentServer::message, [this](const QString& title, const QString& message, unsigned int style) {
@@ -604,7 +604,7 @@ int main(int argc, char* argv[])
     if (!Intro::pickDataDirectory())
         return 0;
 
-    /// 6. Determine availability of data directory and parse jackpot.conf
+    /// 6. Determine availability of data directory and parse __decenomy__.conf
     /// - Do not call GetDataDir(true) before this step finishes
     if (!fs::is_directory(GetDataDir(false))) {
         QMessageBox::critical(0, QObject::tr("__Decenomy__"),
@@ -661,7 +661,7 @@ int main(int argc, char* argv[])
         exit(0);
 
     // Start up the payment server early, too, so impatient users that click on
-    // jackpot: links repeatedly have their payment requests routed to this process:
+    // __decenomy__: links repeatedly have their payment requests routed to this process:
     app.createPaymentServer();
 #endif
 

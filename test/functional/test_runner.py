@@ -311,7 +311,7 @@ def main():
               args.keepcache)
 
 def run_tests(test_list, src_dir, build_dir, exeext, tmpdir, jobs=1, enable_coverage=False, args=[], combined_logs_len=0, keep_cache=False):
-    # Warn if jackpotd is already running (unix only)
+    # Warn if __decenomy__d is already running (unix only)
     try:
         if subprocess.check_output(["pidof", "__decenomy__d"]) is not None:
             print("%sWARNING!%s There is already a __decenomy__d process running on this system. Tests may fail unexpectedly due to resource contention!" % (BOLD[1], BOLD[0]))
@@ -443,7 +443,7 @@ class TestHandler:
         self.test_list = test_list
         self.flags = flags
         self.num_running = 0
-        # In case there is a graveyard of zombie jackpotds, we can apply a
+        # In case there is a graveyard of zombie __decenomy__ds, we can apply a
         # pseudorandom offset to hopefully jump over them.
         # (625 is PORT_RANGE/MAX_NODES)
         self.portseed_offset = int(time.time() * 1000) % 625

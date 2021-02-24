@@ -39,7 +39,7 @@ bool bSpendZeroConfChange = DEFAULT_SPEND_ZEROCONF_CHANGE;
 const char * DEFAULT_WALLET_DAT = "wallet.dat";
 
 /**
- * Fees smaller than this (in u777) are considered zero fee (for transaction creation)
+ * Fees smaller than this (in u__DSW__) are considered zero fee (for transaction creation)
  * We are ~100 times smaller then bitcoin now (2015-06-23), set minTxFee 10 times higher
  * so it's still 10 times lower comparing to bitcoin.
  * Override with -mintxfee
@@ -1525,7 +1525,7 @@ int CWallet::ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate, b
                     ret++;
             }
 
-            // Will try to rescan it if z777 upgrade is active.
+            // Will try to rescan it if z__DSW__ upgrade is active.
             doZPivRescan(pindex, block, setAddedToWallet, consensus, fCheckZPIV);
 
             pindex = chainActive.Next(pindex);
@@ -2513,7 +2513,7 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend,
                 if (nChange > 0) {
                     // Fill a vout to ourself
                     // TODO: pass in scriptChange instead of reservekey so
-                    // change transaction isn't always pay-to-777-address
+                    // change transaction isn't always pay-to-__DSW__-address
                     bool combineChange = false;
 
                     // coin control: send change to custom address
@@ -3910,7 +3910,7 @@ CWallet* CWallet::CreateWalletFromFile(const std::string walletFile)
     fVerifyingBlocks = false;
 
     if (!zwalletInstance->GetMasterSeed().IsNull()) {
-        //Inititalize z777Wallet
+        //Inititalize z__DSW__Wallet
         uiInterface.InitMessage(_("Syncing z__DSW__ wallet..."));
 
         //Load zerocoin mint hashes to memory
@@ -4128,7 +4128,7 @@ void CWallet::SetNull()
     // Stake split threshold
     nStakeSplitThreshold = DEFAULT_STAKE_SPLIT_THRESHOLD;
 
-    // User-defined fee 777/kb
+    // User-defined fee __DSW__/kb
     fUseCustomFee = false;
     nCustomFee = CWallet::minTxFee.GetFeePerK();
 

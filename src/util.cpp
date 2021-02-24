@@ -91,7 +91,7 @@ const char * const PIVX_PID_FILENAME = "__decenomy__.pid";
 const char * const PIVX_MASTERNODE_CONF_FILENAME = "masternode.conf";
 
 
-// Jackpot only features
+// __Decenomy__ only features
 // Masternode
 bool fMasterNode = false;
 std::string strMasterNodePrivKey = "";
@@ -291,10 +291,10 @@ void PrintExceptionContinue(const std::exception* pex, const char* pszThread)
 
 fs::path GetDefaultDataDir()
 {
-// Windows < Vista: C:\Documents and Settings\Username\Application Data\jackpot
-// Windows >= Vista: C:\Users\Username\AppData\Roaming\jackpot
-// Mac: ~/Library/Application Support/jackpot
-// Unix: ~/.jackpot
+// Windows < Vista: C:\Documents and Settings\Username\Application Data\__decenomy__
+// Windows >= Vista: C:\Users\Username\AppData\Roaming\__decenomy__
+// Mac: ~/Library/Application Support/__decenomy__
+// Unix: ~/.__decenomy__
 #ifdef WIN32
     // Windows
     return GetSpecialFolderPath(CSIDL_APPDATA) / "__Decenomy__";
@@ -325,10 +325,10 @@ static RecursiveMutex csPathCached;
 static fs::path ZC_GetBaseParamsDir()
 {
     // Copied from GetDefaultDataDir and adapter for zcash params.
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\jackpotParams
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\jackpotParams
-    // Mac: ~/Library/Application Support/jackpotParams
-    // Unix: ~/.jackpot-params
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\__decenomy__Params
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\__decenomy__Params
+    // Mac: ~/Library/Application Support/__decenomy__Params
+    // Unix: ~/.__decenomy__-params
 #ifdef WIN32
     // Windows
     return GetSpecialFolderPath(CSIDL_APPDATA) / "__Decenomy__Params";
@@ -468,7 +468,7 @@ void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet,
 {
     fs::ifstream streamConfig(GetConfigFile());
     if (!streamConfig.good()) {
-        // Create empty jackpot.conf if it does not exist
+        // Create empty __decenomy__.conf if it does not exist
         FILE* configFile = fsbridge::fopen(GetConfigFile(), "a");
         if (configFile != NULL)
             fclose(configFile);
@@ -479,7 +479,7 @@ void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet,
     setOptions.insert("*");
 
     for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it) {
-        // Don't overwrite existing settings so command line settings override jackpot.conf
+        // Don't overwrite existing settings so command line settings override __decenomy__.conf
         std::string strKey = std::string("-") + it->string_key;
         std::string strValue = it->value[0];
         InterpretNegativeSetting(strKey, strValue);

@@ -22,7 +22,7 @@ CzPIVWallet::CzPIVWallet(CWallet* parent)
     uint256 hashSeed;
     bool fFirstRun = !walletdb.ReadCurrentSeedHash(hashSeed);
 
-    //Check for old db version of storing z777 seed
+    //Check for old db version of storing z__DSW__ seed
     if (fFirstRun) {
         uint256 seed;
         if (walletdb.ReadZPIVSeed_deprecated(seed)) {
@@ -340,7 +340,7 @@ bool CzPIVWallet::SetMintSeen(const CBigNum& bnValue, const int& nHeight, const 
         wallet->AddToWallet(wtx);
     }
 
-    // Add to z777Tracker which also adds to database
+    // Add to z__DSW__Tracker which also adds to database
     wallet->zpivTracker->Add(dMint, true);
 
     //Update the count if it is less than the mint's count

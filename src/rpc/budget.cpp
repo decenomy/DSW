@@ -131,7 +131,7 @@ UniValue preparebudget(const JSONRPCRequest& request)
 
     checkBudgetInputs(request.params, strProposalName, strURL, nPaymentCount, nBlockStart, address, nAmount);
 
-    // Parse 777 address
+    // Parse __DSW__ address
     CScript scriptPubKey = GetScriptForDestination(address);
 
     // create transaction 15 minutes into the future, to allow for confirmation time
@@ -152,7 +152,7 @@ UniValue preparebudget(const JSONRPCRequest& request)
     CWalletTx wtx;
     // make our change address
     CReserveKey keyChange(pwalletMain);
-    if (!pwalletMain->CreateBudgetFeeTX(wtx, proposalHash, keyChange, false)) { // 50 777 collateral for proposal
+    if (!pwalletMain->CreateBudgetFeeTX(wtx, proposalHash, keyChange, false)) { // 50 __DSW__ collateral for proposal
         throw std::runtime_error("Error making collateral transaction for proposal. Please check your wallet balance.");
     }
 
@@ -196,7 +196,7 @@ UniValue submitbudget(const JSONRPCRequest& request)
 
     checkBudgetInputs(request.params, strProposalName, strURL, nPaymentCount, nBlockStart, address, nAmount);
 
-    // Parse 777 address
+    // Parse __DSW__ address
     CScript scriptPubKey = GetScriptForDestination(address);
 
     uint256 hash = ParseHashV(request.params[6], "parameter 1");

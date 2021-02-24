@@ -248,7 +248,7 @@ class TestNodeCLI():
         self.log = logging.getLogger('TestFramework.bitcoincli')
 
     def __call__(self, *options, input=None):
-        # TestNodeCLI is callable with jackpot-cli command-line options
+        # TestNodeCLI is callable with __decenomy__-cli command-line options
         cli = TestNodeCLI(self.binary, self.datadir)
         cli.options = [str(o) for o in options]
         cli.input = input

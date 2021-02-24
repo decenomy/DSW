@@ -144,7 +144,7 @@ UniValue getinfo(const JSONRPCRequest& request)
     //         zpivObj.push_back(Pair(std::to_string(denom), ValueFromAmount(mapZerocoinSupply.at(denom) * (denom*COIN))));
     // }
     // zpivObj.push_back(Pair("total", ValueFromAmount(GetZerocoinSupply())));
-    // obj.push_back(Pair("z777supply", zpivObj));
+    // obj.push_back(Pair("z__DSW__supply", zpivObj));
 
 #ifdef ENABLE_WALLET
     if (pwalletMain) {
@@ -486,7 +486,7 @@ CScript _createmultisig_redeemScript(const UniValue& params)
     for (unsigned int i = 0; i < keys.size(); i++) {
         const std::string& ks = keys[i].get_str();
 #ifdef ENABLE_WALLET
-        // Case 1: 777 address and we have full public key:
+        // Case 1: __DSW__ address and we have full public key:
         CTxDestination dest = DecodeDestination(ks);
         if (pwalletMain && IsValidDestination(dest)) {
             const CKeyID* keyID = boost::get<CKeyID>(&dest);

@@ -153,7 +153,7 @@ bool ContextualCheckZerocoinSpend(const CTransaction& tx, const libzerocoin::Coi
 bool ContextualCheckZerocoinSpendNoSerialCheck(const CTransaction& tx, const libzerocoin::CoinSpend* spend, int nHeight, const uint256& hashBlock)
 {
     const Consensus::Params& consensus = Params().GetConsensus();
-    //Check to see if the z777 is properly signed
+    //Check to see if the z__DSW__ is properly signed
     if (consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_ZC_V2)) {
         try {
             if (!spend->HasValidSignature())
@@ -251,7 +251,7 @@ bool RecalculatePIVSupply(int nHeightStart, bool fSkipZpiv)
         // Rewrite money supply
         nMoneySupply += (nValueOut - nValueIn);
 
-        // Rewrite z777 supply too
+        // Rewrite z__DSW__ supply too
         if (!fSkipZpiv && consensus.NetworkUpgradeActive(pindex->nHeight, Consensus::UPGRADE_ZC)) {
             UpdateZPIVSupplyConnect(block, pindex, true);
         }
