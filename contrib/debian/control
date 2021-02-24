@@ -1,4 +1,4 @@
-Source: jackpot
+Source: __decenomy__
 Section: utils
 Priority: optional
 Maintainer: Fuzzbawls <fuzzbawls@gmail.com>
@@ -36,7 +36,7 @@ Package: __decenomy__d
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - daemon
- Jackpot is a free, open source peer-to-peer electronic cash system that
+ __Decenomy__ is a free, open source peer-to-peer electronic cash system that
  is completely decentralized, without the need for a central server or
  trusted parties.  Users hold the crypto keys to their own money and
  transact directly with each other, with the help of a P2P network to
@@ -45,14 +45,14 @@ Description: peer-to-peer network based digital currency - daemon
  Full transaction history is stored locally at each client.  This
  requires 18.5+ GB of space, slowly growing.
  .
- This package provides the daemon, jackpotd, and the CLI tool
- jackpot-cli to interact with the daemon.
+ This package provides the daemon, __decenomy__d, and the CLI tool
+ __decenomy__-cli to interact with the daemon.
 
 Package: __decenomy__-qt
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - Qt GUI
- Jackpot is a free, open source peer-to-peer electronic cash system that
+ __Decenomy__ is a free, open source peer-to-peer electronic cash system that
  is completely decentralized, without the need for a central server or
  trusted parties.  Users hold the crypto keys to their own money and
  transact directly with each other, with the help of a P2P network to
@@ -61,4 +61,4 @@ Description: peer-to-peer network based digital currency - Qt GUI
  Full transaction history is stored locally at each client.  This
  requires 18.5+ GB of space, slowly growing.
  .
- This package provides Jackpot-Qt, a GUI for Jackpot based on Qt.
+ This package provides __Decenomy__-Qt, a GUI for __Decenomy__ based on Qt.
