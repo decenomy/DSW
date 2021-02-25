@@ -34,7 +34,7 @@ cache:
     - $TRAVIS_BUILD_DIR/depends/built
     - $TRAVIS_BUILD_DIR/depends/sdk-sources
     - $HOME/.ccache
-    - $HOME/.jackpot-params
+    - $HOME/.__decenomy__-params
 stages:
   - lint
   - cmake
@@ -52,7 +52,7 @@ env:
     - CCACHE_TEMPDIR=/tmp/.ccache-temp
     - CCACHE_COMPRESS=1
     - CCACHE_DIR=$HOME/.ccache
-    - PARAMS_DIR=$HOME/.jackpot-params
+    - PARAMS_DIR=$HOME/.__decenomy__-params
     - BASE_OUTDIR=$TRAVIS_BUILD_DIR/out
     - SDK_URL=https://bitcoincore.org/depends-sources/sdks
     - WINEDEBUG=fixme-all

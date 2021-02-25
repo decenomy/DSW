@@ -266,11 +266,11 @@ UniValue stop(const JSONRPCRequest& jsonRequest)
     if (jsonRequest.fHelp || jsonRequest.params.size() > 1)
         throw std::runtime_error(
             "stop\n"
-            "\nStop 777 server.");
+            "\nStop __DSW__ server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "777 server stopping";
+    return "__DSW__ server stopping";
 }
 
 
@@ -360,32 +360,32 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblock",           &waitforblock,           true },
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true },
 
-        /* 777 features */
-        {"jackpot", "listmasternodes", &listmasternodes, true },
-        {"jackpot", "getmasternodecount", &getmasternodecount, true },
-        {"jackpot", "createmasternodebroadcast", &createmasternodebroadcast, true },
-        {"jackpot", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
-        {"jackpot", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
-        {"jackpot", "masternodecurrent", &masternodecurrent, true },
-        {"jackpot", "startmasternode", &startmasternode, true },
-        {"jackpot", "createmasternodekey", &createmasternodekey, true },
-        {"jackpot", "getmasternodeoutputs", &getmasternodeoutputs, true },
-        {"jackpot", "listmasternodeconf", &listmasternodeconf, true },
-        {"jackpot", "getmasternodestatus", &getmasternodestatus, true },
-        {"jackpot", "getmasternodewinners", &getmasternodewinners, true },
-        {"jackpot", "getmasternodescores", &getmasternodescores, true },
-        {"jackpot", "preparebudget", &preparebudget, true },
-        {"jackpot", "submitbudget", &submitbudget, true },
-        {"jackpot", "mnbudgetvote", &mnbudgetvote, true },
-        {"jackpot", "getbudgetvotes", &getbudgetvotes, true },
-        {"jackpot", "getnextsuperblock", &getnextsuperblock, true },
-        {"jackpot", "getbudgetprojection", &getbudgetprojection, true },
-        {"jackpot", "getbudgetinfo", &getbudgetinfo, true },
-        {"jackpot", "mnbudgetrawvote", &mnbudgetrawvote, true },
-        {"jackpot", "mnfinalbudget", &mnfinalbudget, true },
-        {"jackpot", "checkbudgets", &checkbudgets, true },
-        {"jackpot", "mnsync", &mnsync, true },
-        {"jackpot", "spork", &spork, true },
+        /* __DSW__ features */
+        {"__decenomy__", "listmasternodes", &listmasternodes, true },
+        {"__decenomy__", "getmasternodecount", &getmasternodecount, true },
+        {"__decenomy__", "createmasternodebroadcast", &createmasternodebroadcast, true },
+        {"__decenomy__", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
+        {"__decenomy__", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
+        {"__decenomy__", "masternodecurrent", &masternodecurrent, true },
+        {"__decenomy__", "startmasternode", &startmasternode, true },
+        {"__decenomy__", "createmasternodekey", &createmasternodekey, true },
+        {"__decenomy__", "getmasternodeoutputs", &getmasternodeoutputs, true },
+        {"__decenomy__", "listmasternodeconf", &listmasternodeconf, true },
+        {"__decenomy__", "getmasternodestatus", &getmasternodestatus, true },
+        {"__decenomy__", "getmasternodewinners", &getmasternodewinners, true },
+        {"__decenomy__", "getmasternodescores", &getmasternodescores, true },
+        {"__decenomy__", "preparebudget", &preparebudget, true },
+        {"__decenomy__", "submitbudget", &submitbudget, true },
+        {"__decenomy__", "mnbudgetvote", &mnbudgetvote, true },
+        {"__decenomy__", "getbudgetvotes", &getbudgetvotes, true },
+        {"__decenomy__", "getnextsuperblock", &getnextsuperblock, true },
+        {"__decenomy__", "getbudgetprojection", &getbudgetprojection, true },
+        {"__decenomy__", "getbudgetinfo", &getbudgetinfo, true },
+        {"__decenomy__", "mnbudgetrawvote", &mnbudgetrawvote, true },
+        {"__decenomy__", "mnfinalbudget", &mnfinalbudget, true },
+        {"__decenomy__", "checkbudgets", &checkbudgets, true },
+        {"__decenomy__", "mnsync", &mnsync, true },
+        {"__decenomy__", "spork", &spork, true },
 
 #ifdef ENABLE_WALLET
         /* Wallet */
@@ -598,7 +598,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(std::string methodname, std::string args)
 {
-    return "> jackpot-cli " + methodname + " " + args + "\n";
+    return "> __decenomy__-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(std::string methodname, std::string args)

@@ -952,7 +952,7 @@
                          <enum>Qt::NoFocus</enum>
                         </property>
                         <property name="text">
-                         <string>About 777</string>
+                         <string>About __DSW__</string>
                         </property>
                         <property name="checkable">
                          <bool>false</bool>

@@ -303,7 +303,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x36d18dd41c94fc4fcce45ec6d8f1032441a1793df171014c8b733c40f5f6bcff"));
 
         consensus.fPowAllowMinDifficultyBlocks = true;
-        consensus.powLimit   = ~UINT256_ZERO >> 10;   // starting difficulty 
+        consensus.powLimit   = ~UINT256_ZERO >> 10;   // __decenomy__ starting difficulty  
         consensus.posLimitV1 = ~UINT256_ZERO >> 24;
         consensus.posLimitV2 = ~UINT256_ZERO >> 20;
         consensus.nBudgetCycleBlocks = 144;         // approx 10 cycles per day
@@ -389,15 +389,15 @@ public:
         vSeeds.push_back(CDNSSeedData("cfl-testnet.572133.club", "cfl-testnet.572133.club", true));
         vSeeds.push_back(CDNSSeedData("cfl-testnet2.572133.club", "cfl-testnet2.572133.club", true));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 90); // Testnet cryptoflow addresses start with 'd'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet cryptoflow script addresses start with '8' or '9'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 90); // Testnet __decenomy__ addresses start with 'd'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet __decenomy__ script addresses start with '8' or '9'
         base58Prefixes[STAKING_ADDRESS] = std::vector<unsigned char>(1, 125);     // starting with 's'
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);     // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
-        // Testnet jackpot BIP32 pubkeys start with 'DRKV'
+        // Testnet __decenomy__ BIP32 pubkeys start with 'DRKV'
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x3a)(0x80)(0x61)(0xa0).convert_to_container<std::vector<unsigned char> >();
-        // Testnet jackpot BIP32 prvkeys start with 'DRKP'
+        // Testnet __decenomy__ BIP32 prvkeys start with 'DRKP'
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x3a)(0x80)(0x58)(0x37).convert_to_container<std::vector<unsigned char> >();
-        // Testnet jackpot BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet __decenomy__ BIP44 coin type is '1' (All coin's testnet default)
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x00)(0x01).convert_to_container<std::vector<unsigned char> >();
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
