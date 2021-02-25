@@ -2307,7 +2307,7 @@ STAKING</source>
     <message>
         <location line="+21"/>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        https://discord.com/invite/HNyRevT</source>
+        __decenomy_discord_link__</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4890,7 +4890,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;
                            We have support channels in most of our official chat groups, for example
-                           &lt;a style=&apos;color: #b088ff&apos; href=&apos;https://discord.com/invite/HNyRevT&apos;&gt;
+                           &lt;a style=&apos;color: #b088ff&apos; href=&apos;__decenomy_discord_link__&apos;&gt;
                            #support in our Discord&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>

@@ -1735,9 +1735,9 @@ Jesteś pewny?</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        https://discord.com/invite/HNyRevT</source>
+        __decenomy_discord_link__</source>
         <translation>Brakuje języka bądź nieukończona pełnego tłumaczenia? Pomóż w tłumaczeniu tutaj:
-        https://discord.com/invite/HNyRevT</translation>
+        __decenomy_discord_link__</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>

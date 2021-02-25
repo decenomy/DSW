@@ -1739,9 +1739,9 @@ Are you sure?</source>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        https://discord.com/invite/HNyRevT</source>
+        __decenomy_discord_link__</source>
         <translation>语言缺失或翻译不完整?帮助贡献翻译在这里:
-        https://discord.com/invite/HNyRevT</translation>
+        __decenomy_discord_link__</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
