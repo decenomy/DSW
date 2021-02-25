@@ -13,9 +13,9 @@ if [ -n "${1:-}" ]; then
     PARAMS_DIR="$1"
 else
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        PARAMS_DIR="$HOME/Library/Application Support/__Decenomy__Params"
+        PARAMS_DIR="$HOME/Library/Application Support/CryptoFlowParams"
     else
-        PARAMS_DIR="$HOME/.__decenomy__-params"
+        PARAMS_DIR="$HOME/.cryptoflow-params"
     fi
 fi
 

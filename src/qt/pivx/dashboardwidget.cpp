@@ -224,7 +224,7 @@ void DashboardWidget::loadWalletModel()
         connect(walletModel->getOptionsModel(), &OptionsModel::hideChartsChanged, this, &DashboardWidget::onHideChartsChanged);
 #endif
     }
-    // update the display unit, to not use the default ("__DSW__")
+    // update the display unit, to not use the default ("CFL")
     updateDisplayUnit();
 }
 
@@ -522,7 +522,7 @@ void DashboardWidget::updateStakeFilter()
     }
 }
 
-// pair __DSW__, z__DSW__
+// pair CFL, zCFL
 const QMap<int, std::pair<qint64, qint64>> DashboardWidget::getAmountBy()
 {
     updateStakeFilter();
@@ -578,7 +578,7 @@ bool DashboardWidget::loadChartData(bool withMonthNames)
     }
 
     chartData = new ChartData();
-    chartData->amountsByCache = getAmountBy(); // pair __DSW__, z__DSW__
+    chartData->amountsByCache = getAmountBy(); // pair CFL, zCFL
 
     std::pair<int,int> range = getChartRange(chartData->amountsByCache);
     if (range.first == 0 && range.second == 0) {

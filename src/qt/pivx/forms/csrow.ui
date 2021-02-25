@@ -102,7 +102,7 @@
            <item>
             <widget class="QLabel" name="labelAmount">
              <property name="text">
-              <string>0,00 __DSW__</string>
+              <string>0,00 CFL</string>
              </property>
             </widget>
            </item>
