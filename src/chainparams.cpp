@@ -236,7 +236,7 @@ public:
         pchMessageStart[1] = 0x7b;
         pchMessageStart[2] = 0x86;
         pchMessageStart[3] = 0x77;
-        nDefaultPort = 17771;
+        nDefaultPort = __PORT_MAINNET__;
 
 	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.777coin.win"));
         vSeeds.push_back(CDNSSeedData("seed2", "seed2.777coin.win"));
@@ -275,7 +275,7 @@ public:
 static CMainParams mainParams;
 
 /**
- * Testnet (v3)
+ * Testnet (v1)
  */
 class CTestNetParams : public CMainParams
 {
@@ -369,7 +369,7 @@ public:
         pchMessageStart[1] = 0x76;
         pchMessageStart[2] = 0x65;
         pchMessageStart[3] = 0xba;
-        nDefaultPort = 51474;
+        nDefaultPort = __PORT_TESTNET__;
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -500,7 +500,7 @@ public:
         pchMessageStart[1] = 0xcf;
         pchMessageStart[2] = 0x7e;
         pchMessageStart[3] = 0xac;
-        nDefaultPort = 51476;
+        nDefaultPort = __PORT_REGTEST__;
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
