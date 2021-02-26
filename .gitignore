@@ -169,3 +169,4 @@ __decenomy__d-new-gui.*
 !.vscode/extensions.json
 *.code-workspace
 .history/
+.vscode/
