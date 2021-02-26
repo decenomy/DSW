@@ -71,6 +71,7 @@ public Q_SLOTS:
     void goToSettings();
     void goToSettingsInfo();
     void openNetworkMonitor();
+	void showPeers();
 
     void connectActions();
 
