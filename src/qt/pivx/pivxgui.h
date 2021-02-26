@@ -35,7 +35,7 @@ class WalletModel;
 
 
 /**
-  Jackpot GUI main class. This class represents the main window of the Jackpot UI. It communicates with both the client and
+  Trittium GUI main class. This class represents the main window of the Trittium UI. It communicates with both the client and
   wallet models to give the user an up-to-date view of the current core state.
 */
 class PIVXGUI : public QMainWindow

@@ -147,11 +147,11 @@ private:
     void operator=(const CZerocoinDB&);
 
 public:
-    /** Write z777 mints to the zerocoinDB in a batch */
+    /** Write zTRTT mints to the zerocoinDB in a batch */
     bool WriteCoinMintBatch(const std::vector<std::pair<libzerocoin::PublicCoin, uint256> >& mintInfo);
     bool ReadCoinMint(const CBigNum& bnPubcoin, uint256& txHash);
     bool ReadCoinMint(const uint256& hashPubcoin, uint256& hashTx);
-    /** Write z777 spends to the zerocoinDB in a batch */
+    /** Write zTRTT spends to the zerocoinDB in a batch */
     bool WriteCoinSpendBatch(const std::vector<std::pair<libzerocoin::CoinSpend, uint256> >& spendInfo);
     bool ReadCoinSpend(const CBigNum& bnSerial, uint256& txHash);
     bool ReadCoinSpend(const uint256& hashSerial, uint256 &txHash);

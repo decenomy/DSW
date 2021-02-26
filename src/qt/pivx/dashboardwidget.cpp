@@ -224,7 +224,7 @@ void DashboardWidget::loadWalletModel()
         connect(walletModel->getOptionsModel(), &OptionsModel::hideChartsChanged, this, &DashboardWidget::onHideChartsChanged);
 #endif
     }
-    // update the display unit, to not use the default ("777")
+    // update the display unit, to not use the default ("TRTT")
     updateDisplayUnit();
 }
 
@@ -522,7 +522,7 @@ void DashboardWidget::updateStakeFilter()
     }
 }
 
-// pair 777, z777
+// pair TRTT, zTRTT
 const QMap<int, std::pair<qint64, qint64>> DashboardWidget::getAmountBy()
 {
     updateStakeFilter();
@@ -578,7 +578,7 @@ bool DashboardWidget::loadChartData(bool withMonthNames)
     }
 
     chartData = new ChartData();
-    chartData->amountsByCache = getAmountBy(); // pair 777, z777
+    chartData->amountsByCache = getAmountBy(); // pair TRTT, zTRTT
 
     std::pair<int,int> range = getChartRange(chartData->amountsByCache);
     if (range.first == 0 && range.second == 0) {

@@ -454,7 +454,7 @@
             <enum>Qt::NoFocus</enum>
            </property>
            <property name="text">
-            <string>How to get 777</string>
+            <string>How to get TRTT</string>
            </property>
           </widget>
          </item>
@@ -519,7 +519,7 @@
             <item>
              <widget class="QLabel" name="labelMessage">
               <property name="text">
-               <string>Amount of 777 and z777 staked.</string>
+               <string>Amount of TRTT and zTRTT staked.</string>
               </property>
              </widget>
             </item>
@@ -567,7 +567,7 @@
           <item>
            <widget class="QLabel" name="labelAmountPiv">
             <property name="text">
-             <string notr="true">0 777</string>
+             <string notr="true">0 TRTT</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -577,7 +577,7 @@
           <item>
            <widget class="QLabel" name="labelAmountZpiv">
             <property name="text">
-             <string notr="true">0 z777</string>
+             <string notr="true">0 zTRTT</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -694,7 +694,7 @@
                 <item>
                  <widget class="QLabel" name="labelPiv">
                   <property name="text">
-                   <string notr="true">777</string>
+                   <string notr="true">TRTT</string>
                   </property>
                  </widget>
                 </item>
@@ -736,7 +736,7 @@
                 <item>
                  <widget class="QLabel" name="labelZpiv">
                   <property name="text">
-                   <string notr="true">z777</string>
+                   <string notr="true">zTRTT</string>
                   </property>
                  </widget>
                 </item>

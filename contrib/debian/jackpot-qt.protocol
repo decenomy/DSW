@@ -1,6 +1,6 @@
 [Protocol]
-exec=jackpot-qt '%u'
-protocol=jackpot
+exec=trittium-qt '%u'
+protocol=trittium
 input=none
 output=none
 helper=true

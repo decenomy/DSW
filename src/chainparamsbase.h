@@ -11,8 +11,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between jackpot-cli and jackpotd)
- * of a given instance of the jackpot system.
+ * CBaseChainParams defines the base parameters (shared between trittium-cli and trittiumd)
+ * of a given instance of the trittium system.
  */
 class CBaseChainParams
 {

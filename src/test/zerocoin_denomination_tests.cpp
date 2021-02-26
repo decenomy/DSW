@@ -19,7 +19,7 @@
 
 BOOST_FIXTURE_TEST_SUITE(zerocoin_denom_tests, BasicTestingSetup)
 
-//translation from jackpot quantity to zerocoin denomination
+//translation from trittium quantity to zerocoin denomination
 BOOST_AUTO_TEST_CASE(amount_to_denomination_test)
 {
     std::cout << "Running amount_to_denomination_test...\n";

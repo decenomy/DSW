@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Jackpot"
-            VALUE "FileDescription",    "Jackpot-cli (OSS RPC client for Jackpot)"
+            VALUE "CompanyName",        "Trittium"
+            VALUE "FileDescription",    "Trittium-cli (OSS RPC client for Trittium)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "jackpot-cli"
+            VALUE "InternalName",       "trittium-cli"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "jackpot-cli.exe"
-            VALUE "ProductName",        "Jackpot-cli"
+            VALUE "OriginalFilename",   "trittium-cli.exe"
+            VALUE "ProductName",        "Trittium-cli"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

@@ -13,9 +13,9 @@ if [ -n "${1:-}" ]; then
     PARAMS_DIR="$1"
 else
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        PARAMS_DIR="$HOME/Library/Application Support/jackpotParams"
+        PARAMS_DIR="$HOME/Library/Application Support/TrittiumParams"
     else
-        PARAMS_DIR="$HOME/.jackpot-params"
+        PARAMS_DIR="$HOME/.trittium-params"
     fi
 fi
 

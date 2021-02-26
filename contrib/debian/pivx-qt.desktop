@@ -1,13 +1,13 @@
 [Desktop Entry]
 Version=1.0
-Name=Jackpot
-Comment=777 P2P Cryptocurrency
-Comment[fr]=777, monnaie virtuelle cryptographique pair à pair
-Comment[tr]=777, eşten eşe kriptografik sanal para birimi
-Exec=jackpot-qt %u
+Name=Trittium
+Comment= TRTT P2P Cryptocurrency
+Comment[fr]= TRTT, monnaie virtuelle cryptographique pair à pair
+Comment[tr]= TRTT, eşten eşe kriptografik sanal para birimi
+Exec=trittium-qt %u
 Terminal=false
 Type=Application
 Icon=pivx128
 MimeType=x-scheme-handler/pivx;
 Categories=Office;Finance;
-StartupWMClass=Jackpot-qt
+StartupWMClass=Trittium-qt

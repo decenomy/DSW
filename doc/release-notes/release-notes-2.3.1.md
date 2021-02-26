@@ -12,7 +12,7 @@ Please report bugs using the issue tracker at github:
 How to Upgrade
 ==============
 
-If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/Jackpot-Qt (on Mac) or pivxd/pivx-qt (on Linux).
+If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/Trittium-Qt (on Mac) or pivxd/pivx-qt (on Linux).
 
 Compatibility
 ==============
@@ -99,7 +99,7 @@ Result: (for other sets):
 
 Examples:
 > pivx-cli startmasternode "alias" true "my_mn"
-> curl --user myusername --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "startmasternode", "params": ["alias" true "my_mn"] }' -H 'content-type: text/plain;' http://127.0.0.1:51473/
+> curl --user myusername --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "startmasternode", "params": ["alias" true "my_mn"] }' -H 'content-type: text/plain;' http://127.0.0.1:30002/
 ```
 
 ##### `preparebudget` & `submitbudget` Commands #####
@@ -134,7 +134,7 @@ Result:
 
 Examples:
 > pivx-cli mnbudgetvote "local" "ed2f83cedee59a91406f5f47ec4d60bf5a7f9ee6293913c82976bd2d3a658041" "yes"
-> curl --user myusername --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "mnbudgetvote", "params": ["local" "ed2f83cedee59a91406f5f47ec4d60bf5a7f9ee6293913c82976bd2d3a658041" "yes"] }' -H 'content-type: text/plain;' http://127.0.0.1:51473/
+> curl --user myusername --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "mnbudgetvote", "params": ["local" "ed2f83cedee59a91406f5f47ec4d60bf5a7f9ee6293913c82976bd2d3a658041" "yes"] }' -H 'content-type: text/plain;' http://127.0.0.1:30002/
 ```
 
 ##### `getbudgetinfo` Command #####
@@ -176,7 +176,7 @@ Result:
 
 Examples:
 > pivx-cli getbudgetinfo
-> curl --user myusername --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getbudgetinfo", "params": [] }' -H 'content-type: text/plain;' http://127.0.0.1:51473/
+> curl --user myusername --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getbudgetinfo", "params": [] }' -H 'content-type: text/plain;' http://127.0.0.1:30002/
 ```
 
 #### Masternode network protocol layer reporting ####

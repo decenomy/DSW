@@ -266,11 +266,11 @@ UniValue stop(const JSONRPCRequest& jsonRequest)
     if (jsonRequest.fHelp || jsonRequest.params.size() > 1)
         throw std::runtime_error(
             "stop\n"
-            "\nStop 777 server.");
+            "\nStop TRTT server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "777 server stopping";
+    return "TRTT server stopping";
 }
 
 
@@ -360,32 +360,32 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblock",           &waitforblock,           true },
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true },
 
-        /* 777 features */
-        {"jackpot", "listmasternodes", &listmasternodes, true },
-        {"jackpot", "getmasternodecount", &getmasternodecount, true },
-        {"jackpot", "createmasternodebroadcast", &createmasternodebroadcast, true },
-        {"jackpot", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
-        {"jackpot", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
-        {"jackpot", "masternodecurrent", &masternodecurrent, true },
-        {"jackpot", "startmasternode", &startmasternode, true },
-        {"jackpot", "createmasternodekey", &createmasternodekey, true },
-        {"jackpot", "getmasternodeoutputs", &getmasternodeoutputs, true },
-        {"jackpot", "listmasternodeconf", &listmasternodeconf, true },
-        {"jackpot", "getmasternodestatus", &getmasternodestatus, true },
-        {"jackpot", "getmasternodewinners", &getmasternodewinners, true },
-        {"jackpot", "getmasternodescores", &getmasternodescores, true },
-        {"jackpot", "preparebudget", &preparebudget, true },
-        {"jackpot", "submitbudget", &submitbudget, true },
-        {"jackpot", "mnbudgetvote", &mnbudgetvote, true },
-        {"jackpot", "getbudgetvotes", &getbudgetvotes, true },
-        {"jackpot", "getnextsuperblock", &getnextsuperblock, true },
-        {"jackpot", "getbudgetprojection", &getbudgetprojection, true },
-        {"jackpot", "getbudgetinfo", &getbudgetinfo, true },
-        {"jackpot", "mnbudgetrawvote", &mnbudgetrawvote, true },
-        {"jackpot", "mnfinalbudget", &mnfinalbudget, true },
-        {"jackpot", "checkbudgets", &checkbudgets, true },
-        {"jackpot", "mnsync", &mnsync, true },
-        {"jackpot", "spork", &spork, true },
+        /* TRTT features */
+        {"trittium", "listmasternodes", &listmasternodes, true },
+        {"trittium", "getmasternodecount", &getmasternodecount, true },
+        {"trittium", "createmasternodebroadcast", &createmasternodebroadcast, true },
+        {"trittium", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
+        {"trittium", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
+        {"trittium", "masternodecurrent", &masternodecurrent, true },
+        {"trittium", "startmasternode", &startmasternode, true },
+        {"trittium", "createmasternodekey", &createmasternodekey, true },
+        {"trittium", "getmasternodeoutputs", &getmasternodeoutputs, true },
+        {"trittium", "listmasternodeconf", &listmasternodeconf, true },
+        {"trittium", "getmasternodestatus", &getmasternodestatus, true },
+        {"trittium", "getmasternodewinners", &getmasternodewinners, true },
+        {"trittium", "getmasternodescores", &getmasternodescores, true },
+        {"trittium", "preparebudget", &preparebudget, true },
+        {"trittium", "submitbudget", &submitbudget, true },
+        {"trittium", "mnbudgetvote", &mnbudgetvote, true },
+        {"trittium", "getbudgetvotes", &getbudgetvotes, true },
+        {"trittium", "getnextsuperblock", &getnextsuperblock, true },
+        {"trittium", "getbudgetprojection", &getbudgetprojection, true },
+        {"trittium", "getbudgetinfo", &getbudgetinfo, true },
+        {"trittium", "mnbudgetrawvote", &mnbudgetrawvote, true },
+        {"trittium", "mnfinalbudget", &mnfinalbudget, true },
+        {"trittium", "checkbudgets", &checkbudgets, true },
+        {"trittium", "mnsync", &mnsync, true },
+        {"trittium", "spork", &spork, true },
 
 #ifdef ENABLE_WALLET
         /* Wallet */
@@ -598,14 +598,14 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(std::string methodname, std::string args)
 {
-    return "> jackpot-cli " + methodname + " " + args + "\n";
+    return "> trittium-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(std::string methodname, std::string args)
 {
     return "> curl --user myusername --data-binary '{\"jsonrpc\": \"1.0\", \"id\":\"curltest\", "
            "\"method\": \"" +
-           methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:51473/\n";
+           methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:30002/\n";
 }
 
 void RPCSetTimerInterfaceIfUnset(RPCTimerInterface *iface)

@@ -83,7 +83,7 @@ BitcoinAddressCheckValidator::BitcoinAddressCheckValidator(QObject* parent) : QV
 QValidator::State BitcoinAddressCheckValidator::validate(QString& input, int& pos) const
 {
     Q_UNUSED(pos);
-    // Validate the passed 777 address
+    // Validate the passed TRTT address
     CTxDestination addr = DecodeDestination(input.toStdString());
     if (IsValidDestination(addr))
         return QValidator::Acceptable;

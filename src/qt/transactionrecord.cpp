@@ -36,7 +36,7 @@ bool TransactionRecord::decomposeCoinStake(const CWallet* wallet, const CWalletT
     TransactionRecord sub(hash, wtx.GetTxTime(), wtx.GetTotalSize());
 
     if (wtx.HasZerocoinSpendInputs() && (fZSpendFromMe || wallet->zpivTracker->HasMintTx(hash))) {
-        //z777 stake reward
+        //zTRTT stake reward
         sub.involvesWatchAddress = false;
         sub.type = TransactionRecord::StakeZPIV;
         sub.address = getValueOrReturnEmpty(wtx.mapValue, "zerocoinmint");
@@ -54,7 +54,7 @@ bool TransactionRecord::decomposeCoinStake(const CWallet* wallet, const CWalletT
             sub.debit = -nDebit;
             loadHotOrColdStakeOrContract(wallet, wtx, sub);
         } else {
-            // 777 stake reward
+            // TRTT stake reward
             CTxDestination address;
             if (!ExtractDestination(wtx.vout[1].scriptPubKey, address))
                 return true;
@@ -193,7 +193,7 @@ bool TransactionRecord::decomposeCreditTransaction(const CWallet* wallet, const 
             sub.credit = txout.nValue;
             sub.involvesWatchAddress = mine & ISMINE_WATCH_ONLY;
             if (ExtractDestination(txout.scriptPubKey, address) && IsMine(*wallet, address)) {
-                // Received by 777 Address
+                // Received by TRTT Address
                 sub.type = TransactionRecord::RecvWithAddress;
                 sub.address = EncodeDestination(address);
             } else {
@@ -274,7 +274,7 @@ bool TransactionRecord::decomposeDebitTransaction(const CWallet* wallet, const C
             //private keys that the change was sent to. Do not display a "sent to" here.
             if (wtx.HasZerocoinMintOutputs())
                 continue;
-            // Sent to 777 Address
+            // Sent to TRTT Address
             sub.type = TransactionRecord::SendToAddress;
             sub.address = EncodeDestination(address);
         } else if (txout.IsZerocoinMint()){

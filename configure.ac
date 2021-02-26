@@ -7,7 +7,7 @@ define(_CLIENT_VERSION_BUILD, 0)
 define(_CLIENT_VERSION_RC, 0)
 define(_CLIENT_VERSION_IS_RELEASE, true)
 define(_COPYRIGHT_YEAR, 2020)
-AC_INIT([Jackpot Core],m4_join([.], _CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MINOR, _CLIENT_VERSION_REVISION, m4_if(_CLIENT_VERSION_BUILD, [0], [], _CLIENT_VERSION_BUILD))m4_if(_CLIENT_VERSION_RC, [0], [], [rc]_CLIENT_VERSION_RC),[https://github.com/777-project/777/issues],[jackpot],[https://777coin.win/])
+AC_INIT([Trittium Core],m4_join([.], _CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MINOR, _CLIENT_VERSION_REVISION, m4_if(_CLIENT_VERSION_BUILD, [0], [], _CLIENT_VERSION_BUILD))m4_if(_CLIENT_VERSION_RC, [0], [], [rc]_CLIENT_VERSION_RC),[https://github.com/Trittium/trittium/issues],[trittium],[https://trittium.cc/])
 AC_CONFIG_SRCDIR([src/main.cpp])
 AC_CONFIG_HEADERS([src/config/pivx-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
@@ -458,7 +458,7 @@ CPPFLAGS="$CPPFLAGS -DHAVE_BUILD_INFO -D__STDC_FORMAT_MACROS"
 
 AC_ARG_WITH([utils],
   [AS_HELP_STRING([--with-utils],
-  [build jackpot-cli jackpot-tx (default=yes)])],
+  [build trittium-cli trittium-tx (default=yes)])],
   [build_bitcoin_utils=$withval],
   [build_bitcoin_utils=yes])
 
@@ -470,7 +470,7 @@ AC_ARG_WITH([libs],
 
 AC_ARG_WITH([daemon],
   [AS_HELP_STRING([--with-daemon],
-  [build jackpotd daemon (default=yes)])],
+  [build trittiumd daemon (default=yes)])],
   [build_bitcoind=$withval],
   [build_bitcoind=yes])
 
@@ -1218,11 +1218,11 @@ AX_CHECK_COMPILE_FLAG([-Wno-builtin-declaration-mismatch],[CXXFLAGS="$CXXFLAGS -
 
 LIBZCASH_LIBS="$BOOST_SYSTEM_LIB $CRYPTO_LIBS $SODIUM_LIBS $RUST_LIBS"
 
-AC_MSG_CHECKING([whether to build jackpotd])
+AC_MSG_CHECKING([whether to build trittiumd])
 AM_CONDITIONAL([BUILD_BITCOIND], [test x$build_bitcoind = xyes])
 AC_MSG_RESULT($build_bitcoind)
 
-AC_MSG_CHECKING([whether to build utils (jackpot-cli jackpot-tx)])
+AC_MSG_CHECKING([whether to build utils (trittium-cli trittium-tx)])
 AM_CONDITIONAL([BUILD_BITCOIN_UTILS], [test x$build_bitcoin_utils = xyes])
 AC_MSG_RESULT($build_bitcoin_utils)
 
@@ -1350,7 +1350,7 @@ if test x$bitcoin_enable_qt != xno; then
     AC_MSG_WARN("xgettext is required to update qt translations")
   fi
 
-  AC_MSG_CHECKING([whether to build test_jackpot-qt])
+  AC_MSG_CHECKING([whether to build test_trittium-qt])
   if test x$use_gui_tests$bitcoin_enable_qt_test = xyesyes; then
     AC_MSG_RESULT([yes])
     BUILD_TEST_QT="yes"
@@ -1377,7 +1377,7 @@ esac
 AM_CONDITIONAL([USE_NUM_GMP], [test "x$set_bignum" = "xgmp"])
 AM_CONDITIONAL([USE_NUM_OPENSSL], [test "x$set_bignum" = "xopenssl"])
 
-AC_MSG_CHECKING([whether to build test_jackpot])
+AC_MSG_CHECKING([whether to build test_trittium])
 if test x$use_tests = xyes; then
   AC_MSG_RESULT([yes])
   BUILD_TEST="yes"

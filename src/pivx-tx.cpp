@@ -47,10 +47,10 @@ static bool AppInitRawTx(int argc, char* argv[])
 
     if (argc < 2 || mapArgs.count("-?") || mapArgs.count("-help")) {
         // First part of help message is specific to this utility
-        std::string strUsage = _("Jackpot jackpot-tx utility version") + " " + FormatFullVersion() + "\n\n" +
+        std::string strUsage = _("Trittium trittium-tx utility version") + " " + FormatFullVersion() + "\n\n" +
                                _("Usage:") + "\n" +
-                               "  jackpot-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded jackpot transaction") + "\n" +
-                               "  jackpot-tx [options] -create [commands]   " + _("Create hex-encoded jackpot transaction") + "\n" +
+                               "  trittium-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded trittium transaction") + "\n" +
+                               "  trittium-tx [options] -create [commands]   " + _("Create hex-encoded trittium transaction") + "\n" +
                                "\n";
 
         fprintf(stdout, "%s", strUsage.c_str());
@@ -596,7 +596,7 @@ static int CommandLineRawTx(int argc, char* argv[])
             if (argc < 2)
                 throw std::runtime_error("too few parameters");
 
-            // param: hex-encoded jackpot transaction
+            // param: hex-encoded trittium transaction
             std::string strHexTx(argv[1]);
             if (strHexTx == "-") // "-" implies standard input
                 strHexTx = readStdin();

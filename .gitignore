@@ -7,6 +7,13 @@ reset-files.bash
 *.tar.gz
 
 *.exe
+src/__decenomy__
+src/__decenomy__d
+src/__decenomy__-cli
+src/__decenomy__-tx
+src/bench/bench___decenomy__x
+src/test/test___decenomy__
+src/qt/test/test___decenomy__-qt
 src/bench/bench_trittium
 src/qt/test/test_trittium-qt
 src/qt/trittium-qt
@@ -15,6 +22,14 @@ src/trittium-cli
 src/trittium-tx
 src/trittiumd
 
+
+##########################################
+# clear this section when it's fixed
+###
+src/bench/bench_pivx
+src/qt/test/test_pivx-qt
+src/test/test_pivx
+##########################################
 
 # autoreconf
 Makefile.in
@@ -68,7 +83,7 @@ src/qt/test/moc*.cpp
 *.o-*
 *.patch
 .pivx
-.jackpot
+.__decenomy__
 *.a
 *.pb.cc
 *.pb.h
@@ -88,7 +103,7 @@ src/qt/test/moc*.cpp
 *.qm
 Makefile
 pivx-qt
-jackpot-qt
+__decenomy__-qt
 Jackpot-Qt.app
 background.tiff*
 
@@ -100,7 +115,7 @@ target/
 # Unit-tests
 Makefile.test
 pivx-qt_test
-jackpot-qt_test
+__decenomy__-qt_test
 src/test/buildenv.py
 
 # Resources cpp
@@ -117,7 +132,7 @@ build
 *.gcno
 /*.info
 test_pivx.coverage/
-test_jackpot.coverage/
+test___decenomy__.coverage/
 total.coverage/
 coverage_percent.txt
 
@@ -149,9 +164,9 @@ moc_*
 ui_*
 build*
 pivxd.*
-jackpotd.*
+__decenomy__d.*
 pivxd-new-gui.*
-jackpotd-new-gui.*
+__decenomy__d-new-gui.*
 
 # for Visual Studio Code
 

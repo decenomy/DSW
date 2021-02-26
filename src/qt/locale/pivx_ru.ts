@@ -122,12 +122,12 @@
         <translation>Адреса получения</translation>
     </message>
     <message>
-        <source>These are your 777 addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Это ваши 777-адреса для отправки платежей. Перед отправкой монет всегда проверяйте сумму и адрес получателя.</translation>
+        <source>These are your TRTT addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Это ваши TRTT-адреса для отправки платежей. Перед отправкой монет всегда проверяйте сумму и адрес получателя.</translation>
     </message>
     <message>
-        <source>These are your 777 addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Это ваши 777-адреса для получения платежей. Для каждой транзакции рекомендуется использовать новый адрес получения.</translation>
+        <source>These are your TRTT addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Это ваши TRTT-адреса для получения платежей. Для каждой транзакции рекомендуется использовать новый адрес получения.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -363,8 +363,8 @@ for staking</source>
         <translation>ОТМЕНА</translation>
     </message>
     <message>
-        <source>777 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your 777s from being stolen by malware infecting your computer.</source>
-        <translation>777 сейчас закроется, чтобы завершить процесс шифрования. Помните, что шифрование вашего кошелька не может полностью защитить ваши 777 от кражи с использованием вредоносного ПО.</translation>
+        <source>TRTT will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your TRTTs from being stolen by malware infecting your computer.</source>
+        <translation>TRTT сейчас закроется, чтобы завершить процесс шифрования. Помните, что шифрование вашего кошелька не может полностью защитить ваши TRTT от кражи с использованием вредоносного ПО.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -449,8 +449,8 @@ for staking</source>
         <translation>Сбережения</translation>
     </message>
     <message>
-        <source>0,00 777</source>
-        <translation>0.00 777</translation>
+        <source>0,00 TRTT</source>
+        <translation>0.00 TRTT</translation>
     </message>
     <message>
         <source>address</source>
@@ -491,8 +491,8 @@ for staking</source>
         <translation>Выбор монеты</translation>
     </message>
     <message>
-        <source>Select 777 Outputs to Spend</source>
-        <translation>Выберите 777 выходы для расходов</translation>
+        <source>Select TRTT Outputs to Spend</source>
+        <translation>Выберите TRTT выходы для расходов</translation>
     </message>
     <message>
         <source>Dust:</source>
@@ -519,8 +519,8 @@ for staking</source>
         <translation>Сумма</translation>
     </message>
     <message>
-        <source>0.00 777</source>
-        <translation>0.00 777 </translation>
+        <source>0.00 TRTT</source>
+        <translation>0.00 TRTT </translation>
     </message>
     <message>
         <source>0</source>
@@ -774,17 +774,17 @@ for staking</source>
         <translation>Ошибка при загрузке делегаций: %1</translation>
     </message>
     <message>
-        <source>You can delegate your 777s, letting a hot node (24/7 online node)
+        <source>You can delegate your TRTTs, letting a hot node (24/7 online node)
 stake on your behalf, while you keep the keys securely offline.</source>
-        <translation>Вы можете делегировать свои 777, позволяя горячему узлу (онлайн-узлу, работаещему 24/7) делать стекинг от вашего имени, в то время как ключи надежно хранятся в автономном режиме.</translation>
+        <translation>Вы можете делегировать свои TRTT, позволяя горячему узлу (онлайн-узлу, работаещему 24/7) делать стекинг от вашего имени, в то время как ключи надежно хранятся в автономном режиме.</translation>
     </message>
     <message>
         <source>Enter owner address</source>
         <translation>Введите адрес владельца</translation>
     </message>
     <message>
-        <source>Accept 777 delegation / Delegate 777</source>
-        <translation>Принять делегацию 777 / Делегировать 777</translation>
+        <source>Accept TRTT delegation / Delegate TRTT</source>
+        <translation>Принять делегацию TRTT / Делегировать TRTT</translation>
     </message>
     <message>
         <source>Cold Staking address</source>
@@ -988,8 +988,8 @@ address</source>
         <translation>Обзор истории вашего аккаунта</translation>
     </message>
     <message>
-        <source>How to get 777</source>
-        <translation>Как получить 777</translation>
+        <source>How to get TRTT</source>
+        <translation>Как получить TRTT</translation>
     </message>
     <message>
         <source>Sort by</source>
@@ -1012,8 +1012,8 @@ address</source>
         <translation>Сортировать по</translation>
     </message>
     <message>
-        <source>Amount of 777 and z777 staked.</source>
-        <translation>Сумма добытых 777 и z777</translation>
+        <source>Amount of TRTT and zTRTT staked.</source>
+        <translation>Сумма добытых TRTT и zTRTT</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -1108,8 +1108,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>Изменить адрес отправки</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid 777 address.</source>
-        <translation>Введенный адрес "%1" не является 777 адресом.</translation>
+        <source>The entered address "%1" is not a valid TRTT address.</source>
+        <translation>Введенный адрес "%1" не является TRTT адресом.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1161,16 +1161,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>версия</translation>
     </message>
     <message>
-        <source>Jackpot</source>
-        <translation>Jackpot</translation>
+        <source>Trittium</source>
+        <translation>Trittium</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-бит)</translation>
     </message>
     <message>
-        <source>About Jackpot</source>
-        <translation>О Jackpot</translation>
+        <source>About Trittium</source>
+        <translation>О Trittium</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1224,16 +1224,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>Добро пожаловать</translation>
     </message>
     <message>
-        <source>Welcome to Jackpot.</source>
-        <translation>Добро пожаловать в Jackpot.</translation>
+        <source>Welcome to Trittium.</source>
+        <translation>Добро пожаловать в Trittium.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Jackpot will store its data.</source>
-        <translation>Поскольку это первый запуск программы, вы можете выбрать, где будут храниться данные Jackpot.</translation>
+        <source>As this is the first time the program is launched, you can choose where Trittium will store its data.</source>
+        <translation>Поскольку это первый запуск программы, вы можете выбрать, где будут храниться данные Trittium.</translation>
     </message>
     <message>
-        <source>Jackpot will download and store a copy of the 777 block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Jackpot загрузит и сохранит копию цепочки блоков 777. Каталог будет занимать около %1GB и со временем размер будет увеличиваться. Кроме того, в этом каталоге будет храниться кошелек.</translation>
+        <source>Trittium will download and store a copy of the TRTT block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Trittium загрузит и сохранит копию цепочки блоков TRTT. Каталог будет занимать около %1GB и со временем размер будет увеличиваться. Кроме того, в этом каталоге будет храниться кошелек.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1252,8 +1252,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>ХОРОШО</translation>
     </message>
     <message>
-        <source>Jackpot</source>
-        <translation>Jackpot</translation>
+        <source>Trittium</source>
+        <translation>Trittium</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1377,7 +1377,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of collateral amount will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;На новый пустой адрес в вашем кошельке&lt;/p&gt;&lt;p&gt; будет сделана транзакция в 10 000 777. &lt;/p&gt;&lt;p&gt;Адрес отмечен под именем мастерноды.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;На новый пустой адрес в вашем кошельке&lt;/p&gt;&lt;p&gt; будет сделана транзакция в 10 000 TRTT. &lt;/p&gt;&lt;p&gt;Адрес отмечен под именем мастерноды.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Address of the node that must always be online running the actual master node.</source>
@@ -1582,7 +1582,7 @@ Please wait few more minutes (masternode collaterals require %1 confirmations).<
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the jackpot.conf file
+You will only have to paste the data in the trittium.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1590,7 +1590,7 @@ this controller wallet (select the Masternode in the list and press "start").
 на удаленном сервере в буфер обмена.
 
 
-Вам необходимо только вставить данные в файл jackpot.conf
+Вам необходимо только вставить данные в файл trittium.conf
 вашего удаленного сервера и запустить его, а затем запустить мастерноду,
 используя этот кошелек контроллера (выберите мастерноду из списка и нажмите «Старт»).
 </translation>
@@ -1780,8 +1780,8 @@ STAKING</source>
         <translation>Проанализированные данные слишком большие</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "jackpot" prefix</source>
-        <translation>Неверный URI, не начинается с префикса "jackpot"</translation>
+        <source>Invalid URI, not starting with "trittium" prefix</source>
+        <translation>Неверный URI, не начинается с префикса "trittium"</translation>
     </message>
 </context>
 <context>
@@ -1826,8 +1826,8 @@ STAKING</source>
         <translation>Отключив проведение неподтвержденных изменений все изменения о транзакции &lt;br/&gt;не будут использованы пока транзакция не получит хотя бы одно подтверждение.&lt;br/&gt;Также это влияет на расчет вашего баланса.</translation>
     </message>
     <message>
-        <source>Automatically open the 777 client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Автоматически открыть клиентский порт 777 через роутер. Ваш роутер должен поддерживать UPnP, а сам сервис должен быть включен.</translation>
+        <source>Automatically open the TRTT client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Автоматически открыть клиентский порт TRTT через роутер. Ваш роутер должен поддерживать UPnP, а сам сервис должен быть включен.</translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -1846,12 +1846,12 @@ STAKING</source>
         <translation>Эксперт</translation>
     </message>
     <message>
-        <source>Automatically start 777 after logging in to the system.</source>
-        <translation>Автоматически запускать 777 после входа в систему.</translation>
+        <source>Automatically start TRTT after logging in to the system.</source>
+        <translation>Автоматически запускать TRTT после входа в систему.</translation>
     </message>
     <message>
-        <source>&amp;Start 777 on system login</source>
-        <translation>&amp;Запускать 777 при входе в систему</translation>
+        <source>&amp;Start TRTT on system login</source>
+        <translation>&amp;Запускать TRTT при входе в систему</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1878,58 +1878,58 @@ STAKING</source>
         <translation>&amp;Сеть</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting 777.</source>
-        <translation>Здесь можно выставить язык интерфейса. Изменения вступят в силу после перезапуска 777.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting TRTT.</source>
+        <translation>Здесь можно выставить язык интерфейса. Изменения вступят в силу после перезапуска TRTT.</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        https://discord.com/invite/HNyRevT</source>
+        https://discordapp.com/invite/MkdqhHDqsr</source>
         <translation>Отсутствует ваш язык или заметили незавершенный перевод? Вы можете помочь нам стать лучше:
-        https://discord.com/invite/HNyRevT</translation>
+        https://discordapp.com/invite/MkdqhHDqsr</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>Карта порта, использующего &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of 777 units to z777</source>
-        <translation>Невозможно автоматически отчеканить единицы 777 для z777</translation>
+        <source>Enable automatic minting of TRTT units to zTRTT</source>
+        <translation>Невозможно автоматически отчеканить единицы TRTT для zTRTT</translation>
     </message>
     <message>
-        <source>Enable z777 Automint</source>
-        <translation>Невозможно авточеканка  z777</translation>
+        <source>Enable zTRTT Automint</source>
+        <translation>Невозможно авточеканка  zTRTT</translation>
     </message>
     <message>
-        <source>Enable automatic z777 minting from specific addresses</source>
-        <translation>Включить автоматическое чеканку z777 с определенных адресов</translation>
+        <source>Enable automatic zTRTT minting from specific addresses</source>
+        <translation>Включить автоматическое чеканку zTRTT с определенных адресов</translation>
     </message>
     <message>
         <source>Enable Automint Addresses</source>
         <translation>Включить адреса с автоматической чеканкой</translation>
     </message>
     <message>
-        <source>Percentage of incoming 777 which get automatically converted to z777 via Zerocoin Protocol (min: 10%)</source>
-        <translation>Процент приходящих 777, которые автоматически конвертируются в z777 благодаря Zerocoin протоколу (min: 10%)</translation>
+        <source>Percentage of incoming TRTT which get automatically converted to zTRTT via Zerocoin Protocol (min: 10%)</source>
+        <translation>Процент приходящих TRTT, которые автоматически конвертируются в zTRTT благодаря Zerocoin протоколу (min: 10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted z777</source>
-        <translation>Процент  авточеканненых z777</translation>
+        <source>Percentage of autominted zTRTT</source>
+        <translation>Процент  авточеканненых zTRTT</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough 777 for this denomination is available</source>
-        <translation>Подождите с автоматическим преобразованием в Zerocoin, пока не будет достаточно 777 для этой номинации.</translation>
+        <source>Wait with automatic conversion to Zerocoin until enough TRTT for this denomination is available</source>
+        <translation>Подождите с автоматическим преобразованием в Zerocoin, пока не будет достаточно TRTT для этой номинации.</translation>
     </message>
     <message>
-        <source>Preferred Automint z777 Denomination</source>
-        <translation>Предпочитаемый номинал авточеканной  монеты  z777</translation>
+        <source>Preferred Automint zTRTT Denomination</source>
+        <translation>Предпочитаемый номинал авточеканной  монеты  zTRTT</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
         <translation>Порог разделения доли:</translation>
     </message>
     <message>
-        <source>Connect to the 777 network through a SOCKS5 proxy.</source>
-        <translation>Подключиться к сети 777 через SOCKS5 прокси.</translation>
+        <source>Connect to the TRTT network through a SOCKS5 proxy.</source>
+        <translation>Подключиться к сети TRTT через SOCKS5 прокси.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -2075,8 +2075,8 @@ STAKING</source>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>Jackpot</source>
-        <translation>Jackpot</translation>
+        <source>Trittium</source>
+        <translation>Trittium</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -2103,8 +2103,8 @@ STAKING</source>
         <translation>Завершить работу</translation>
     </message>
     <message>
-        <source>Jackpot client</source>
-        <translation>Клиент Jackpot</translation>
+        <source>Trittium client</source>
+        <translation>Клиент Trittium</translation>
     </message>
     <message>
         <source>Error</source>
@@ -2170,12 +2170,12 @@ Address: %4
         <translation>Неверный адрес оплаты %1</translation>
     </message>
     <message>
-        <source>Cannot start jackpot: click-to-pay handler</source>
-        <translation>Не удалось запустить jackpot: обработчик click-to-pay </translation>
+        <source>Cannot start trittium: click-to-pay handler</source>
+        <translation>Не удалось запустить trittium: обработчик click-to-pay </translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid 777 address or malformed URI parameters.</source>
-        <translation>URI не интерпретируется! Причиной этому может быть неверный 777 адрес или неверные параметеры URI.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid TRTT address or malformed URI parameters.</source>
+        <translation>URI не интерпретируется! Причиной этому может быть неверный TRTT адрес или неверные параметеры URI.</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -2260,8 +2260,8 @@ Address: %4
         <translation>Сумма</translation>
     </message>
     <message>
-        <source>Enter 777 address (e.g. %1)</source>
-        <translation>Введите адрес 777 (например, %1)</translation>
+        <source>Enter TRTT address (e.g. %1)</source>
+        <translation>Введите адрес TRTT (например, %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2304,12 +2304,12 @@ Address: %4
         <translation>%1 мс</translation>
     </message>
     <message>
-        <source>A fatal error occurred. 777 can no longer continue safely and will quit.</source>
-        <translation>Произошла фатальная ошибка. 777 больше не может безопасно продолжать работу и завершит работу.</translation>
+        <source>A fatal error occurred. TRTT can no longer continue safely and will quit.</source>
+        <translation>Произошла фатальная ошибка. TRTT больше не может безопасно продолжать работу и завершит работу.</translation>
     </message>
     <message>
-        <source>Jackpot</source>
-        <translation>Jackpot</translation>
+        <source>Trittium</source>
+        <translation>Trittium</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -2328,8 +2328,8 @@ Address: %4
         <translation>Ошибка чтения файла конфигурации мастерноды: %1</translation>
     </message>
     <message>
-        <source>Jackpot didn't yet exit safely...</source>
-        <translation>Jackpot еще не вышел безопасно...</translation>
+        <source>Trittium didn't yet exit safely...</source>
+        <translation>Trittium еще не вышел безопасно...</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -2567,8 +2567,8 @@ Address: %4
         <translation>Блокчейн</translation>
     </message>
     <message>
-        <source>Open the 777 debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Открыть протокол отладки 777. Это может занять некоторе время, если файл протокола очень большой.</translation>
+        <source>Open the TRTT debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Открыть протокол отладки TRTT. Это может занять некоторе время, если файл протокола очень большой.</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -2711,8 +2711,8 @@ Address: %4
         <translation>Пользовательский путь резервного копирования:</translation>
     </message>
     <message>
-        <source>Custom z777 Backup Path:</source>
-        <translation>Пользовательский путь резервного копирования z777:</translation>
+        <source>Custom zTRTT Backup Path:</source>
+        <translation>Пользовательский путь резервного копирования zTRTT:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -2792,8 +2792,8 @@ Address: %4
         <translation>Вывод:</translation>
     </message>
     <message>
-        <source>Welcome to the 777 RPC console.</source>
-        <translation>Добро пожаловать в окружение 777 RPC.</translation>
+        <source>Welcome to the TRTT RPC console.</source>
+        <translation>Добро пожаловать в окружение TRTT RPC.</translation>
     </message>
     <message>
         <source>&amp;Disconnect Node</source>
@@ -2934,8 +2934,8 @@ Address: %4
         <translation>Нет адресов</translation>
     </message>
     <message>
-        <source>Scan the QR code or copy the address to receive 777</source>
-        <translation>Сканируйте QR-код или скопируйте адрес для получения 777</translation>
+        <source>Scan the QR code or copy the address to receive TRTT</source>
+        <translation>Сканируйте QR-код или скопируйте адрес для получения TRTT</translation>
     </message>
     <message>
         <source>Add Label</source>
@@ -3064,12 +3064,12 @@ Address: %4
         <translation>Сумма</translation>
     </message>
     <message>
-        <source>777</source>
-        <translation>777</translation>
+        <source>TRTT</source>
+        <translation>TRTT</translation>
     </message>
     <message>
-        <source>Instead of sharing only a 777 address, you can create a payment request, bundling up more information</source>
-        <translation>Вместо того, чтобы делиться только адресом 777, вы можете создать запрос на оплату, связывая больше информации</translation>
+        <source>Instead of sharing only a TRTT address, you can create a payment request, bundling up more information</source>
+        <translation>Вместо того, чтобы делиться только адресом TRTT, вы можете создать запрос на оплату, связывая больше информации</translation>
     </message>
     <message>
         <source>D7VFR83SQbiezrW72hjcWJtcfip5krte2Z </source>
@@ -3159,8 +3159,8 @@ Address: %4
         <translation>Смена адреса</translation>
     </message>
     <message>
-        <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" 777 address</source>
-        <translation>Остаточная часть значения, полученного от значения входов минус выходов, идет на «изменение» адреса 777</translation>
+        <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" TRTT address</source>
+        <translation>Остаточная часть значения, полученного от значения входов минус выходов, идет на «изменение» адреса TRTT</translation>
     </message>
     <message>
         <source>SAVE</source>
@@ -3190,8 +3190,8 @@ Address: %4
         <translation>рекомендуемые</translation>
     </message>
     <message>
-        <source>777/kilobyte</source>
-        <translation>777/килобайт</translation>
+        <source>TRTT/kilobyte</source>
+        <translation>TRTT/килобайт</translation>
     </message>
     <message>
         <source>0.00 KB</source>
@@ -3474,9 +3474,9 @@ Remember to write it down and store it safely, otherwise you might lose access t
         <translation>Инструмент BIP38</translation>
     </message>
     <message>
-        <source>Encrypt your 777 addresses (key pair actually) using BIP38 encryption.
+        <source>Encrypt your TRTT addresses (key pair actually) using BIP38 encryption.
 Using this mechanism you can share your keys without middle-man risk, only need to store your passphrase safely</source>
-        <translation>Зашифруйте свои адреса 777 (фактически, пару ключей), используя шифрование BIP38.
+        <translation>Зашифруйте свои адреса TRTT (фактически, пару ключей), используя шифрование BIP38.
 С помощью этого механизма вы можете делиться своими ключами без риска посредника, вам нужно только безопасно хранить вашу парольную фразу</translation>
     </message>
     <message>
@@ -3512,8 +3512,8 @@ Using this mechanism you can share your keys without middle-man risk, only need 
         <translation>Расшифровать ключ</translation>
     </message>
     <message>
-        <source>777 address</source>
-        <translation>Адрес 777</translation>
+        <source>TRTT address</source>
+        <translation>Адрес TRTT</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -3645,8 +3645,8 @@ Verify that you have installed a predetermined text editor.</source>
 Убедитесь, что вы установили заранее установленный текстовый редактор.</translation>
     </message>
     <message>
-        <source>Welcome to the 777 RPC console.</source>
-        <translation>Добро пожаловать в окружение 777 RPC.</translation>
+        <source>Welcome to the TRTT RPC console.</source>
+        <translation>Добро пожаловать в окружение TRTT RPC.</translation>
     </message>
     <message>
         <source>Use up and down arrows to navigate history, and %1 to clear screen.</source>
@@ -3829,49 +3829,49 @@ There was an error trying to save the address list to %1. Please try again.</sou
         <translation>Вид</translation>
     </message>
     <message>
-        <source>1) What is 777?</source>
-        <translation>1) Что такое 777?</translation>
+        <source>1) What is TRTT?</source>
+        <translation>1) Что такое TRTT?</translation>
     </message>
     <message>
-        <source>2) Why are my 777 unspendable?</source>
-        <translation>2) Почему мои 777 невозможно потратить?</translation>
+        <source>2) Why are my TRTT unspendable?</source>
+        <translation>2) Почему мои TRTT невозможно потратить?</translation>
     </message>
     <message>
-        <source>https://777coin.win/</source>
-        <translation>https://777coin.win/</translation>
+        <source>https://trittium.cc/</source>
+        <translation>https://trittium.cc/</translation>
     </message>
     <message>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <source>What is 777?</source>
-        <translation>Что такое 777?</translation>
+        <source>What is TRTT?</source>
+        <translation>Что такое TRTT?</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           777 is a form of digital online money using blockchain technology
+                           TRTT is a form of digital online money using blockchain technology
                            that can be easily transferred globally, instantly, and with near
-                           zero fees.  777 incorporates market leading security &amp;
+                           zero fees.  TRTT incorporates market leading security &amp;
                            privacy and is also the first PoS (Proof of Stake) Cryptocurrency
-                           to implement ZeroCoin(z777) and Zerocoin staking.
+                           to implement ZeroCoin(zTRTT) and Zerocoin staking.
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           777 utilizes a Proof of Stake (PoS) consensus system algorithm,
-                           allowing all owners of 777 to participate in earning block rewards
+                           TRTT utilizes a Proof of Stake (PoS) consensus system algorithm,
+                           allowing all owners of TRTT to participate in earning block rewards
                            while securing the network with full node wallets, as well as to
                            run Masternodes to create and vote on proposals.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-777 - это форма цифровых онлайн-денег, использующая технологию блокчейн,
+TRTT - это форма цифровых онлайн-денег, использующая технологию блокчейн,
 которая может быть легко переведена по всему миру, мгновенно и с практически
-нулевой комиссией. 777 включает в себя лидирующую на рынке защиту и
+нулевой комиссией. TRTT включает в себя лидирующую на рынке защиту и
 «конфиденциальность», а также является первой PoS криптовалютой (Proof of Stake),
-в которой реализована система стекинга ZeroCoin (z777) и Zerocoin.
+в которой реализована система стекинга ZeroCoin (zTRTT) и Zerocoin.
 &lt;/p&gt;&lt;p align="justify"&gt;
-777 использует консенсус PoS (Proof of Stake), позволяя всем владельцам 777 участвовать в заработке вознаграждений
+TRTT использует консенсус PoS (Proof of Stake), позволяя всем владельцам TRTT участвовать в заработке вознаграждений
 при этом обеспечивая безопасность сети с помощью кошельков с полными узлами, а также позволяет
 запускать мастерноды для создания предложений и голосования по ним.
 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
@@ -3881,25 +3881,25 @@ There was an error trying to save the address list to %1. Please try again.</sou
         <translation>2</translation>
     </message>
     <message>
-        <source>Why are my 777 unspendable?</source>
-        <translation>Почему мои 777 невозможно потратить?</translation>
+        <source>Why are my TRTT unspendable?</source>
+        <translation>Почему мои TRTT невозможно потратить?</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           Newly received 777 requires 6 confirmations on the network
+                           Newly received TRTT requires 6 confirmations on the network
                            to become eligible for spending which can take ~6 minutes.
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           Your 777 wallet also needs to be completely synchronized
+                           Your TRTT wallet also needs to be completely synchronized
                            to see and spend balances on the network.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-Недавно полученным 777 требуется 6 подтверждений в сети,
+Недавно полученным TRTT требуется 6 подтверждений в сети,
 чтобы получить право быть расходуемыми. Это может занять примерно 6 минут.
 &lt;/p&gt;&lt;p align="justify"&gt;
-Ваш кошелек 777 также должен быть полностью синхронизирован,
+Ваш кошелек TRTT также должен быть полностью синхронизирован,
 чтобы видеть баланс и расходовать его в сети.
  &lt;/p&gt;&lt;/body&gt;&lt;/html&gt; </translation>
     </message>
@@ -3908,8 +3908,8 @@ There was an error trying to save the address list to %1. Please try again.</sou
         <translation>3</translation>
     </message>
     <message>
-        <source>How do I stake 777?</source>
-        <translation>Как мне запустить стекинг 777?</translation>
+        <source>How do I stake TRTT?</source>
+        <translation>Как мне запустить стекинг TRTT?</translation>
     </message>
     <message>
         <source>4</source>
@@ -3940,7 +3940,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           A masternode is a computer running a full node 777 wallet with a
+                           A masternode is a computer running a full node TRTT wallet with a
                            required amount of secured collateral to provide extra services
                            to the network and in return, receive a portion of the block reward
                            regularly.  These services include:
@@ -3963,10 +3963,10 @@ There was an error trying to save the address list to %1. Please try again.</sou
                            Masternode Perks:
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;Participate in 777 Governance&lt;/li&gt;
+                           &lt;li&gt;Participate in TRTT Governance&lt;/li&gt;
                            &lt;li&gt;Earn Masternode Rewards&lt;/li&gt;
                            &lt;li&gt;Commodity option for future sale&lt;/li&gt;
-                           &lt;li&gt;Help secure the 777 network&lt;/li&gt;
+                           &lt;li&gt;Help secure the TRTT network&lt;/li&gt;
                            &lt;/ul&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
@@ -3981,7 +3981,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
-Мастернода - это компьютер, на котором запущен базовый кошелек 777 с полным узлом и для которого требуется обеспечение в 10000 777 для обеспечения дополнительных услуг сети и, в свою очередь, регулярного получения части вознаграждения за блок. Эти услуги в себя включают:
+Мастернода - это компьютер, на котором запущен базовый кошелек TRTT с полным узлом и для которого требуется обеспечение в 10000 TRTT для обеспечения дополнительных услуг сети и, в свою очередь, регулярного получения части вознаграждения за блок. Эти услуги в себя включают:
 
 Мгновенные транзакции (SwiftX)
 Децентрализованное управление (Голосование по предложениям)
@@ -3993,14 +3993,14 @@ There was an error trying to save the address list to %1. Please try again.</sou
 
 Привилегии мастерноды:
 
-Участие в управлении 777
+Участие в управлении TRTT
 Получение вознаграждений за мастерноду
 Товарные опционы для будущей продажи
-Помощь в защите сети 777
+Помощь в защите сети TRTT
 
 Требования:
 
-10 000 777 для каждой мастерноды
+10 000 TRTT для каждой мастерноды
 Должен храниться в основном кошельке
 Требуется выделенный IP-адрес
 Кошелек мастерноды должен оставаться в сети</translation>
@@ -4010,8 +4010,8 @@ There was an error trying to save the address list to %1. Please try again.</sou
         <translation>Часто задаваемые вопросы</translation>
     </message>
     <message>
-        <source>3) How do I stake 777?</source>
-        <translation>3) Как мне запустить стекинг 777?</translation>
+        <source>3) How do I stake TRTT?</source>
+        <translation>3) Как мне запустить стекинг TRTT?</translation>
     </message>
     <message>
         <source>4) Where I should go if I need support?</source>
@@ -4133,8 +4133,8 @@ There was an error trying to save the address list to %1. Please try again.</sou
         <translation>Невозможно открыть папку резервных копий</translation>
     </message>
     <message>
-        <source>Unable to open jackpot.conf with default application</source>
-        <translation>Невозможно открыть jackpot.conf с приложением по умолчанию</translation>
+        <source>Unable to open trittium.conf with default application</source>
+        <translation>Невозможно открыть trittium.conf с приложением по умолчанию</translation>
     </message>
     <message>
         <source>In:</source>
@@ -4188,8 +4188,8 @@ There was an error trying to save the address list to %1. Please try again.</sou
         <translation>Количество потоков проверки скрипта</translation>
     </message>
     <message>
-        <source>Start 777 on system login</source>
-        <translation>Запускать 777 при входе в систему</translation>
+        <source>Start TRTT on system login</source>
+        <translation>Запускать TRTT при входе в систему</translation>
     </message>
     <message>
         <source>Minimize to the tray instead of the taskbar</source>
@@ -4276,8 +4276,8 @@ Are you sure?
         <translation>Флажок</translation>
     </message>
     <message>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other 777 addresses after it matures.</source>
-        <translation>MultiSend позволяет автоматически отправлять до 100% ваших вознаграждений от стекинга или мастернод в список других адресов 777 после его созревания.</translation>
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other TRTT addresses after it matures.</source>
+        <translation>MultiSend позволяет автоматически отправлять до 100% ваших вознаграждений от стекинга или мастернод в список других адресов TRTT после его созревания.</translation>
     </message>
     <message>
         <source>Active</source>
@@ -4403,8 +4403,8 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation>Сообщение</translation>
     </message>
     <message>
-        <source>777 address or contact label</source>
-        <translation>777 адрес или лейбл контакта</translation>
+        <source>TRTT address or contact label</source>
+        <translation>TRTT адрес или лейбл контакта</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -4724,8 +4724,8 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation>ЧаВо</translation>
     </message>
     <message>
-        <source>About 777</source>
-        <translation>О 777</translation>
+        <source>About TRTT</source>
+        <translation>О TRTT</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -4795,8 +4795,8 @@ Are you sure?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Jackpot is shutting down...</source>
-        <translation>Jackpot выключается...</translation>
+        <source>Trittium is shutting down...</source>
+        <translation>Trittium выключается...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4825,8 +4825,8 @@ Are you sure?
         <translation>Загрузка...</translation>
     </message>
     <message>
-        <source>Jackpot</source>
-        <translation>Jackpot</translation>
+        <source>Trittium</source>
+        <translation>Trittium</translation>
     </message>
 </context>
 <context>
@@ -5364,25 +5364,25 @@ Select fewer inputs with coin control.</source>
     </message>
     <message>
         <source>Welcome to
-Jackpot Wallet</source>
+Trittium Wallet</source>
         <translation>Добро пожаловать
-в основной кошелек Jackpot</translation>
+в основной кошелек Trittium</translation>
     </message>
     <message>
-        <source>777 is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
-        <translation>777 - самая инновационная в мире технология на основе блокчейна Proof of Stake. Разработана командой опытных разработчиков и криптографов.</translation>
+        <source>TRTT is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
+        <translation>TRTT - самая инновационная в мире технология на основе блокчейна Proof of Stake. Разработана командой опытных разработчиков и криптографов.</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - 777 believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Как говорится в нашем манифесте: конфиденциальность является не подлежащим обсуждению основным правом человека; это дает пользователям свободу делиться своими данными в любое время и с кем угодно, ведь 777 верит в собственный суверенитет.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - TRTT believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Как говорится в нашем манифесте: конфиденциальность является не подлежащим обсуждению основным правом человека; это дает пользователям свободу делиться своими данными в любое время и с кем угодно, ведь TRTT верит в собственный суверенитет.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <source>The masternode network is 777's second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
-        <translation>Сеть мастернод - это сеть второго уровня 777 поверх блокчейна, которая позволяет нашему ДАО обеспечивать децентрализованное управление и казначейство.</translation>
+        <source>The masternode network is TRTT's second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
+        <translation>Сеть мастернод - это сеть второго уровня TRTT поверх блокчейна, которая позволяет нашему ДАО обеспечивать децентрализованное управление и казначейство.</translation>
     </message>
     <message>
-        <source>How 777 respects your privacy?</source>
-        <translation>Как 777 уважает вашу конфиденциальность?</translation>
+        <source>How TRTT respects your privacy?</source>
+        <translation>Как TRTT уважает вашу конфиденциальность?</translation>
     </message>
     <message>
         <source>What is a Masternode?</source>
@@ -5416,8 +5416,8 @@ Jackpot Wallet</source>
         <translation>Привяжите к указанному адресу для прослушивания соединений JSON-RPC. Используйте [host]: обозначение порта для IPv6. Эта опция может быть указана несколько раз (по умолчанию: привязка ко всем интерфейсам)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Jackpot is probably already running.</source>
-        <translation>Не удается получить блокировку в каталоге данных %s. Jackpot, вероятно, уже запущен.</translation>
+        <source>Cannot obtain a lock on data directory %s. Trittium is probably already running.</source>
+        <translation>Не удается получить блокировку в каталоге данных %s. Trittium, вероятно, уже запущен.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -5580,8 +5580,8 @@ Jackpot Wallet</source>
         <translation>Общая длина строки версии сети (%i) превышает максимальную длину (%i). Уменьшите количество или размер uacomments.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Jackpot is probably already running.</source>
-        <translation>Не удалось привязать к %s на этом компьютере. Jackpot, вероятно, уже запущен.</translation>
+        <source>Unable to bind to %s on this computer. Trittium is probably already running.</source>
+        <translation>Не удалось привязать к %s на этом компьютере. Trittium, вероятно, уже запущен.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -5596,8 +5596,8 @@ Jackpot Wallet</source>
         <translation>Предупреждение: -paytxfee установлен очень высоко! Это комиссия за транзакцию, которую вы заплатите, если вы отправляете транзакцию.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Jackpot will not work properly.</source>
-        <translation>Внимание: проверьте правильность даты и времени вашего компьютера! Если ваши часы ошибочны, Jackpot не будет работать должным образом.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Trittium will not work properly.</source>
+        <translation>Внимание: проверьте правильность даты и времени вашего компьютера! Если ваши часы ошибочны, Trittium не будет работать должным образом.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5812,8 +5812,8 @@ Jackpot Wallet</source>
         <translation>Информация</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Jackpot is shutting down.</source>
-        <translation>Инициализация проверки работоспособности не удалась. Jackpot отключается.</translation>
+        <source>Initialization sanity check failed. Trittium is shutting down.</source>
+        <translation>Инициализация проверки работоспособности не удалась. Trittium отключается.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5844,8 +5844,8 @@ Jackpot Wallet</source>
         <translation>Недопустимая сетевая маска, указанная в -whitelist: '%s'</translation>
     </message>
     <message>
-        <source>Recalculating 777 supply...</source>
-        <translation>Перерасчет предложения 777...</translation>
+        <source>Recalculating TRTT supply...</source>
+        <translation>Перерасчет предложения TRTT...</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>
@@ -5868,8 +5868,8 @@ Jackpot Wallet</source>
         <translation>Это предварительная версия сборки - используйте на свой страх и риск - не используйте для ставок или коммерческих приложений!</translation>
     </message>
     <message>
-        <source>Disable all 777 specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>Отключите все специфические функции 777 (Masternodes, Zerocoin, SwiftX, Бюджетирование) (0-1, по умолчанию: %u)</translation>
+        <source>Disable all TRTT specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
+        <translation>Отключите все специфические функции TRTT (Masternodes, Zerocoin, SwiftX, Бюджетирование) (0-1, по умолчанию: %u)</translation>
     </message>
     <message>
         <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
@@ -6144,12 +6144,12 @@ Jackpot Wallet</source>
         <translation>Комиссия (в %s/Кбайт) меньше этого значения считается с нулевой комиссией за создание транзакции (по умолчанию: %s)</translation>
     </message>
     <message>
-        <source>Minimum positive amount (in 777) allowed by GUI and RPC for the stake split threshold (default: %s)</source>
-        <translation>Минимальная положительная сумма (в 777), разрешенная GUI и RPC для порога разделения стекинга (по умолчанию: %s)</translation>
+        <source>Minimum positive amount (in TRTT) allowed by GUI and RPC for the stake split threshold (default: %s)</source>
+        <translation>Минимальная положительная сумма (в TRTT), разрешенная GUI и RPC для порога разделения стекинга (по умолчанию: %s)</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong Jackpot will not work properly.</source>
-        <translation>Пожалуйста, проверьте правильность даты и времени на вашем компьютере! Если ваши часы не точны, Jackpot не будет работать должным образом.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong Trittium will not work properly.</source>
+        <translation>Пожалуйста, проверьте правильность даты и времени на вашем компьютере! Если ваши часы не точны, Trittium не будет работать должным образом.</translation>
     </message>
     <message>
         <source>Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect/-noconnect)</source>
@@ -6418,8 +6418,8 @@ Jackpot Wallet</source>
         <translation>Синхронизация спорков ...</translation>
     </message>
     <message>
-        <source>Syncing z777 wallet...</source>
-        <translation>Синхронизация z777 кошелька ...</translation>
+        <source>Syncing zTRTT wallet...</source>
+        <translation>Синхронизация zTRTT кошелька ...</translation>
     </message>
     <message>
         <source>The threshold value cannot be less than %s</source>
@@ -6538,8 +6538,8 @@ Jackpot Wallet</source>
         <translation>Имя пользователя для соединений JSON-RPC</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of z777</source>
-        <translation>Значение ниже наименьшего доступного номинала (= 1) z777</translation>
+        <source>Value is below the smallest available denomination (= 1) of zTRTT</source>
+        <translation>Значение ниже наименьшего доступного номинала (= 1) zTRTT</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
@@ -6554,8 +6554,8 @@ Jackpot Wallet</source>
         <translation>Кошелек %s находится за пределами каталога данных %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Jackpot to complete</source>
-        <translation>Кошелек необходимо переписать: перезапустите Jackpot, чтобы завершить</translation>
+        <source>Wallet needed to be rewritten: restart Trittium to complete</source>
+        <translation>Кошелек необходимо переписать: перезапустите Trittium, чтобы завершить</translation>
     </message>
     <message>
         <source>Wallet options:</source>
@@ -6621,12 +6621,12 @@ Jackpot Wallet</source>
         <translation>Отправить</translation>
     </message>
     <message>
-        <source>Send public coins (777)</source>
-        <translation>Отправить монеты (777)</translation>
+        <source>Send public coins (TRTT)</source>
+        <translation>Отправить монеты (TRTT)</translation>
     </message>
     <message>
-        <source>777 address or contact label</source>
-        <translation>777 адрес или лейбл контакта</translation>
+        <source>TRTT address or contact label</source>
+        <translation>TRTT адрес или лейбл контакта</translation>
     </message>
     <message>
         <source>Amount</source>

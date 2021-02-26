@@ -1,6 +1,6 @@
-usr/local/bin/jackpot-qt usr/bin
+usr/local/bin/trittium-qt usr/bin
 share/pixmaps/pivx32.xpm usr/share/pixmaps
 share/pixmaps/pivx16.xpm usr/share/pixmaps
 share/pixmaps/pivx128.png usr/share/pixmaps
-debian/jackpot-qt.desktop usr/share/applications
-debian/jackpot-qt.protocol usr/share/kde4/services/
+debian/trittium-qt.desktop usr/share/applications
+debian/trittium-qt.protocol usr/share/kde4/services/

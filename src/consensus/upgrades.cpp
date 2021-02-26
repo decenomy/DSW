@@ -16,7 +16,7 @@
 const struct NUInfo NetworkUpgradeInfo[Consensus::MAX_NETWORK_UPGRADES] = {
         {
                 /*.strName =*/ "Base",
-                /*.strInfo =*/ "Jackpot network",
+                /*.strInfo =*/ "Trittium network",
         },
         {
                 /*.strName =*/ "PoS",

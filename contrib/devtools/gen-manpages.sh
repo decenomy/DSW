@@ -7,10 +7,10 @@ BUILDDIR=${BUILDDIR:-$TOPDIR}
 BINDIR=${BINDIR:-$BUILDDIR/src}
 MANDIR=${MANDIR:-$TOPDIR/doc/man}
 
-BITCOIND=${BITCOIND:-$BINDIR/jackpotd}
-BITCOINCLI=${BITCOINCLI:-$BINDIR/jackpot-cli}
-BITCOINTX=${BITCOINTX:-$BINDIR/jackpot-tx}
-BITCOINQT=${BITCOINQT:-$BINDIR/qt/jackpot-qt}
+BITCOIND=${BITCOIND:-$BINDIR/trittiumd}
+BITCOINCLI=${BITCOINCLI:-$BINDIR/trittium-cli}
+BITCOINTX=${BITCOINTX:-$BINDIR/trittium-tx}
+BITCOINQT=${BITCOINQT:-$BINDIR/qt/trittium-qt}
 
 [ ! -x $BITCOIND ] && echo "$BITCOIND not found or not executable." && exit 1
 

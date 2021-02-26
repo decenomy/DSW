@@ -5,10 +5,10 @@
 """Test bitcoind with different proxy configuration.
 
 Test plan:
-- Start jackpotd's with different proxy configurations
+- Start trittiumd's with different proxy configurations
 - Use addnode to initiate connections
 - Verify that proxies are connected to, and the right connection command is given
-- Proxy configurations to test on jackpotd side:
+- Proxy configurations to test on trittiumd side:
     - `-proxy` (proxy everything)
     - `-onion` (proxy just onions)
     - `-proxyrandomize` Circuit randomization
@@ -18,8 +18,8 @@ Test plan:
     - proxy on IPv6
 
 - Create various proxies (as threads)
-- Create jackpotds that connect to them
-- Manipulate the jackpotds using addnode (onetry) an observe effects
+- Create trittiumds that connect to them
+- Manipulate the trittiumds using addnode (onetry) an observe effects
 
 addnode connect to IPv4
 addnode connect to IPv6

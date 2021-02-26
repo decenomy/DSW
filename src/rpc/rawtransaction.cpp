@@ -128,7 +128,7 @@ UniValue getrawtransaction(const JSONRPCRequest& request)
             "  ],\n"
             "  \"vout\" : [              (array of json objects)\n"
             "     {\n"
-            "       \"value\" : x.xxx,            (numeric) The value in 777\n"
+            "       \"value\" : x.xxx,            (numeric) The value in TRTT\n"
             "       \"n\" : n,                    (numeric) index\n"
             "       \"scriptPubKey\" : {          (json object)\n"
             "         \"asm\" : \"asm\",          (string) the asm\n"
@@ -136,7 +136,7 @@ UniValue getrawtransaction(const JSONRPCRequest& request)
             "         \"reqSigs\" : n,            (numeric) The required sigs\n"
             "         \"type\" : \"pubkeyhash\",  (string) The type, eg 'pubkeyhash'\n"
             "         \"addresses\" : [           (json array of string)\n"
-            "           \"777address\"        (string) 777 address\n"
+            "           \"TRTTaddress\"        (string) TRTT address\n"
             "           ,...\n"
             "         ]\n"
             "       }\n"
@@ -227,7 +227,7 @@ UniValue createrawtransaction(const JSONRPCRequest& request)
             "     ]\n"
             "2. \"addresses\"           (string, required) a json object with addresses as keys and amounts as values\n"
             "    {\n"
-            "      \"address\": x.xxx   (numeric, required) The key is the 777 address, the value is the 777 amount\n"
+            "      \"address\": x.xxx   (numeric, required) The key is the TRTT address, the value is the TRTT amount\n"
             "      ,...\n"
             "    }\n"
             "3. locktime                (numeric, optional, default=0) Raw locktime. Non-0 value also locktime-activates inputs\n"
@@ -290,7 +290,7 @@ UniValue createrawtransaction(const JSONRPCRequest& request)
     for (const std::string& name_ : addrList) {
         CTxDestination address = DecodeDestination(name_);
         if (!IsValidDestination(address))
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid 777 address: ")+name_);
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid TRTT address: ")+name_);
 
         if (setAddress.count(address))
             throw JSONRPCError(RPC_INVALID_PARAMETER, std::string("Invalid parameter, duplicated address: ")+name_);
@@ -336,7 +336,7 @@ UniValue decoderawtransaction(const JSONRPCRequest& request)
             "  ],\n"
             "  \"vout\" : [             (array of json objects)\n"
             "     {\n"
-            "       \"value\" : x.xxx,            (numeric) The value in 777\n"
+            "       \"value\" : x.xxx,            (numeric) The value in TRTT\n"
             "       \"n\" : n,                    (numeric) index\n"
             "       \"scriptPubKey\" : {          (json object)\n"
             "         \"asm\" : \"asm\",          (string) the asm\n"
@@ -344,7 +344,7 @@ UniValue decoderawtransaction(const JSONRPCRequest& request)
             "         \"reqSigs\" : n,            (numeric) The required sigs\n"
             "         \"type\" : \"pubkeyhash\",  (string) The type, eg 'pubkeyhash'\n"
             "         \"addresses\" : [           (json array of string)\n"
-            "           \"12tvKAXCxZjSmdNbao16dKXC8tRWfcF5oc\"   (string) 777 address\n"
+            "           \"12tvKAXCxZjSmdNbao16dKXC8tRWfcF5oc\"   (string) TRTT address\n"
             "           ,...\n"
             "         ]\n"
             "       }\n"
@@ -387,7 +387,7 @@ UniValue decodescript(const JSONRPCRequest& request)
             "  \"type\":\"type\", (string) The output type\n"
             "  \"reqSigs\": n,    (numeric) The required signatures\n"
             "  \"addresses\": [   (json array of string)\n"
-            "     \"address\"     (string) 777 address\n"
+            "     \"address\"     (string) TRTT address\n"
             "     ,...\n"
             "  ],\n"
             "  \"p2sh\",\"address\" (string) script address\n"
@@ -444,11 +444,11 @@ UniValue fundrawtransaction(const JSONRPCRequest& request)
             "1. \"hexstring\"    (string, required) The hex string of the raw transaction\n"
             "2. options          (object, optional)\n"
             "   {\n"
-            "     \"changeAddress\"     (string, optional, default pool address) The 777 address to receive the change\n"
+            "     \"changeAddress\"     (string, optional, default pool address) The TRTT address to receive the change\n"
             "     \"changePosition\"    (numeric, optional, default random) The index of the change output\n"
             "     \"includeWatching\"   (boolean, optional, default false) Also select inputs which are watch only\n"
             "     \"lockUnspents\"      (boolean, optional, default false) Lock selected unspent outputs\n"
-                " \"feeRate\"           (numeric, optional, default 0=estimate) Set a specific feerate (777 per KB)\n"
+                " \"feeRate\"           (numeric, optional, default 0=estimate) Set a specific feerate (TRTT per KB)\n"
             "   }\n"
             "\nResult:\n"
             "{\n"
@@ -489,7 +489,7 @@ UniValue fundrawtransaction(const JSONRPCRequest& request)
             changeAddress = DecodeDestination(options["changeAddress"].get_str());
 
             if (!IsValidDestination(changeAddress))
-                throw JSONRPCError(RPC_INVALID_PARAMETER, "changeAddress must be a valid 777 address");
+                throw JSONRPCError(RPC_INVALID_PARAMETER, "changeAddress must be a valid TRTT address");
         }
 
         if (options.exists("changePosition"))
@@ -937,7 +937,7 @@ UniValue createrawzerocoinspend(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 3)
         throw std::runtime_error(
             "createrawzerocoinspend mint_input ( \"address\" )\n"
-            "\nCreates raw z777 public spend.\n" +
+            "\nCreates raw zTRTT public spend.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
@@ -963,7 +963,7 @@ UniValue createrawzerocoinspend(const JSONRPCRequest& request)
     if (address_str != "") {
         dest = DecodeDestination(address_str);
         if(!IsValidDestination(dest))
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid 777 address");
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid TRTT address");
     }
 
     assert(pwalletMain != NULL);

@@ -197,7 +197,7 @@ bool Intro::pickDataDirectory()
                 TryCreateDirectory(GUIUtil::qstringToBoostPath(dataDir));
                 break;
             } catch (const fs::filesystem_error& e) {
-                QMessageBox::critical(0, tr("Jackpot"),
+                QMessageBox::critical(0, tr("Trittium"),
                     tr("Error: Specified data directory \"%1\" cannot be created.").arg(dataDir));
                 // fall through, back to choosing screen
             }
@@ -207,8 +207,8 @@ bool Intro::pickDataDirectory()
     }
 
     /* Only override -datadir if different from the default, to make it possible to
-     * override -datadir in the jackpot.conf file in the default data directory
-     * (to be consistent with jackpotd behavior)
+     * override -datadir in the trittium.conf file in the default data directory
+     * (to be consistent with trittiumd behavior)
      */
 
     if (dataDir != getDefaultDataDirectory())

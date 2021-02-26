@@ -40,7 +40,7 @@ enum NumConnections {
     CONNECTIONS_ALL = (CONNECTIONS_IN | CONNECTIONS_OUT),
 };
 
-/** Model for 777 network client. */
+/** Model for TRTT network client. */
 class ClientModel : public QObject
 {
     Q_OBJECT
