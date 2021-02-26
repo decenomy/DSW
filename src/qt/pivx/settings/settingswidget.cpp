@@ -407,6 +407,11 @@ void SettingsWidget::openNetworkMonitor()
     settingsInformationWidget->openNetworkMonitor();
 }
 
+void SettingsWidget::showPeers()
+{
+    settingsInformationWidget->showPeers();
+}
+
 void SettingsWidget::selectOption(QPushButton* option)
 {
     for (QPushButton* wid : options) {

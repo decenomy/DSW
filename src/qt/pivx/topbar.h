@@ -68,6 +68,8 @@ private Q_SLOTS:
     void lockDropdownClicked(const StateClicked&);
     void refreshStatus();
     void openLockUnlock();
+    void onBtnConfClicked();
+    void onBtnMasternodesClicked();
     void onColdStakingClicked();
     void refreshProgressBarSize();
     void expandSync();

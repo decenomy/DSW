@@ -512,7 +512,7 @@
                </size>
               </property>
               <property name="text">
-               <string>Staking Rewards</string>
+               <string>Rewards Chart</string>
               </property>
              </widget>
             </item>
@@ -574,16 +574,16 @@
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QLabel" name="labelAmountZpiv">
-            <property name="text">
-             <string notr="true">0 zTRTT</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
+        <item>
+            <widget class="QLabel" name="labelAmountMNRewards">
+                <property name="text">
+                    <string>TextLabel</string>
+                </property>
+                <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                </property>
+            </widget>
+        </item>
          </layout>
         </item>
         <item>
@@ -715,30 +715,30 @@
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLabel" name="labelSquarezPiv">
-                  <property name="minimumSize">
-                   <size>
-                    <width>14</width>
-                    <height>14</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>14</width>
-                    <height>14</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                 </widget>
+                    <widget class="QLabel" name="labelSquareMNRewards">
+                        <property name="minimumSize">
+                            <size>
+                                <width>14</width>
+                                <height>14</height>
+                            </size>
+                        </property>
+                        <property name="maximumSize">
+                            <size>
+                                <width>14</width>
+                                <height>14</height>
+                            </size>
+                        </property>
+                        <property name="text">
+                            <string/>
+                        </property>
+                    </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="labelZpiv">
-                  <property name="text">
-                   <string notr="true">zTRTT</string>
-                  </property>
-                 </widget>
+                    <widget class="QLabel" name="labelMNRewards">
+                        <property name="text">
+                            <string>TRTT MN</string>
+                        </property>
+                    </widget>
                 </item>
                </layout>
               </item>

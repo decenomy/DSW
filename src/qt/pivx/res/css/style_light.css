@@ -117,6 +117,28 @@ QPushButton[cssClass="img-nav-logo"] {
   border-radius: 100%;
 }
 
+/*****
+*masternode conf & saphire conf file edit topbar buttons.
+*****/
+
+QPushButton[cssClass="btn-check-conf"] {
+    qproperty-icon: url("://ic-check-settings") ;
+    qproperty-iconSize: 24px 24px;
+    color:#B3FFFFFF;
+    background-color:#405c4b7d;
+    border-bottom:2px solid #5C4B7D;
+    border-radius:2px;
+}
+
+QPushButton[cssClass="btn-check-masternodes"] {
+    qproperty-icon: url("://ic-check-settings") ;
+    qproperty-iconSize: 24px 24px;
+    color:#B3FFFFFF;
+    background-color:#405c4b7d;
+    border-bottom:2px solid #5C4B7D;
+    border-radius:2px;
+}
+
 /*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 !############# Cold staking
  ################################*/
@@ -1804,18 +1826,18 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
   border-bottom: 5px solid #bdbdbd;
 }
 
-*[cssClass="text-stake-zpiv"] {
-  color: #262626;
-  font-size: 16px;
-  padding: 10px;
-  border-bottom: 5px solid #bdbdbd;
+*[cssClass="text-stake-mnrewards"] {
+    color:#6666ff;
+    font-size:16px;
+    padding:10px;
+    border-bottom: 5px solid #6666ff;
 }
 
-*[cssClass="text-stake-zpiv-disable"] {
-  color: #d7d5da;
-  font-size: 16px;
-  padding: 10px;
-  border-bottom: 5px solid #bdbdbd;
+*[cssClass="text-stake-mnrewards-disable"] {
+    color:#d7d5da;
+    font-size:16px;
+    padding:10px;
+    border-bottom: 5px solid #d7d5da;
 }
 
 *[cssClass="legend-chart"] {
@@ -1823,10 +1845,10 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
   font-size: 16px;
 }
 
-*[cssClass="text-chart-zpiv"] {
-  color: #262626;
-  font-size: 16px;
-  padding-left: 4px;
+*[cssClass="text-chart-mnrewards"] {
+    color:#6666ff;
+    font-size:16px;
+    padding-left:4px;
 }
 
 *[cssClass="text-chart-piv"] {
@@ -1835,9 +1857,9 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
   padding-left: 4px;
 }
 
-*[cssClass="square-chart-zpiv"] {
-  background-color: #ff8888;
-  border: none;
+*[cssClass="square-chart-mnrewards"] {
+    background-color:#6666ff;
+    border:none;
 }
 
 *[cssClass="square-chart-piv"] {
