@@ -77,6 +77,7 @@
         <file alias="ic-check-mint">pivx/res/img/ic-check-mint.svg</file>
         <file alias="ic-check-peers-off">pivx/res/img/ic-check-peers-off.svg</file>
         <file alias="ic-check-peers">pivx/res/img/ic-check-peers.svg</file>
+        <file alias="ic-check-settings">pivx/res/img/ic-check-settings.svg</file>
         <file alias="ic-check-staking-off">pivx/res/img/ic-check-staking-off.svg</file>
         <file alias="ic-check-staking">pivx/res/img/ic-check-staking.svg</file>
         <file alias="ic-check-sync-off">pivx/res/img/ic-check-sync-off.svg</file>

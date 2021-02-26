@@ -68,7 +68,7 @@ DashboardWidget::DashboardWidget(PIVXGUI* parent) :
 
     setCssProperty(ui->labelChart, "legend-chart");
     setCssProperty(ui->labelAmountPiv, "text-stake-piv-disable");
-	ui->labelAmountMNRewards->setText("0 SAPP");
+	ui->labelAmountMNRewards->setText("0 __DSW__");
 	setCssProperty(ui->labelAmountMNRewards, "text-stake-mnrewards-disable");
 
 

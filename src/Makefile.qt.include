@@ -328,6 +328,7 @@ RES_ICONS = \
   qt/pivx/res/img/ic-nav-master.svg \
   qt/pivx/res/img/img-dashboard-banner.jpg \
   qt/pivx/res/img/btn-radio-active.svg \
+  qt/pivx/res/img/ic-check-settings.svg \
   qt/pivx/res/img/ic-check-sync-off.svg \
   qt/pivx/res/img/ic-nav-privacy-active.svg \
   qt/pivx/res/img/img-empty-contacts.svg \

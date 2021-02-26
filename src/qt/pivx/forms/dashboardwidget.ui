@@ -736,7 +736,7 @@
                 <item>
                     <widget class="QLabel" name="labelMNRewards">
                         <property name="text">
-                            <string>SAPP MN</string>
+                            <string>__DSW__ MN</string>
                         </property>
                     </widget>
                 </item>
