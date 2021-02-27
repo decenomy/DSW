@@ -13,7 +13,7 @@
    version="1.1"
    id="svg6"
    sodipodi:docname="ic-transaction-received.svg"
-   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15, custom)">
   <metadata
      id="metadata12">
     <rdf:RDF>
@@ -37,16 +37,17 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="3840"
-     inkscape:window-height="2126"
+     inkscape:window-height="2066"
      id="namedview8"
      showgrid="false"
      inkscape:zoom="30.625"
      inkscape:cx="12"
      inkscape:cy="12"
-     inkscape:window-x="-11"
+     inkscape:window-x="3829"
      inkscape:window-y="-11"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg6" />
+     inkscape:current-layer="svg6"
+     inkscape:document-rotation="0" />
   <path
      fill="none"
      d="M0 0h24v24H0z"
@@ -55,5 +56,5 @@
      d="M4 19h16v-7h2v8a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-8h2v7zM14 9h5l-7 7-7-7h5V3h4v6z"
      fill="rgba(30,94,55,1)"
      id="path4"
-     style="fill:#00a500;fill-opacity:1" />
+     style="fill:#c24747;fill-opacity:1;stroke:#c24747;stroke-opacity:1" />
 </svg>
