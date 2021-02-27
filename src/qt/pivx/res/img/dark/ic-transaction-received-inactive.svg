@@ -1,14 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-    <defs>
-        <style type="text/css">
-            .cls-1{opacity:.7}.cls-2{fill:#B6B6B6}.cls-3{fill:none}
-        </style>
-    </defs>
-    <g id="ic-transaction-received" class="cls-1">
-        <g id="Group_8834" data-name="Group 8834">
-            <path id="Path_18892" d="M18.676 11.737l-1.352-1.475L13 14.227V2h-2v12.227l-4.324-3.964-1.352 1.474L12 17.856z" class="cls-2" data-name="Path 18892"/>
-            <path id="Path_18893" d="M20 16v4H4v-4H2v6h20v-6z" class="cls-2" data-name="Path 18893"/>
-        </g>
-        <path id="Rectangle_4413" d="M0 0h24v24H0z" class="cls-3" data-name="Rectangle 4413"/>
-    </g>
-</svg>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.cls-1{fill:none;}.cls-2{fill:#ddeddf;}</style></defs><rect class="cls-1" width="24" height="24"/><path class="cls-2" d="M22.64,15.68a.57.57,0,0,0-.57.57v2.18a2.28,2.28,0,0,1-2.28,2.28H4.21a2.28,2.28,0,0,1-2.28-2.28V16.25a.58.58,0,0,0-1.15,0v2.18a3.44,3.44,0,0,0,3.43,3.43H19.79a3.44,3.44,0,0,0,3.43-3.43V16.25A.57.57,0,0,0,22.64,15.68Z"/><path class="cls-2" d="M19.18,17.93H4.82a.57.57,0,0,0-.57.57.58.58,0,0,0,.57.57H19.18a.58.58,0,0,0,.57-.57A.57.57,0,0,0,19.18,17.93Z"/><path class="cls-2" d="M17.78,9.89a.58.58,0,0,0-.81,0l-4.4,3.93V2.71a.57.57,0,0,0-1.14,0V13.78L7,9.85a.58.58,0,0,0-.81,0,.57.57,0,0,0,0,.81L11.05,15A1.4,1.4,0,0,0,13,15l4.78-4.27A.57.57,0,0,0,17.78,9.89Z"/></svg>
