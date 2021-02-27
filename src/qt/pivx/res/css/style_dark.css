@@ -13,23 +13,23 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 *[cssClass="container-border-light"] {
     background-color:#211f1f;
-    border:  1px solid #33ffff;
+    border:  1px solid #ffde8a;
     border-radius:2px;
 }
 
 *[cssClass="container_right"] {
     background-color:#211f1f;
-    border-left:  1px solid #33ffff;
+    border-left:  1px solid #ffde8a;
 }
 
 *[cssClass="container-right"] {
     background-color:#211f1f;
-    border-left:  1px solid #33ffff;
+    border-left:  1px solid #ffde8a;
 }
 
 *[cssClass="container-square"] {
     background-color:#211f1f;
-    border:  1px solid #33ffffff;
+    border:  1px solid #ffde8a;
 }
 
 *[cssClass="container-options"] {
@@ -38,7 +38,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="container-divider"] {
-    background-color:#B3ffff;
+    background-color:#ffce55;
 }
 
 *[cssClass="container-purple"] {
@@ -3009,7 +3009,7 @@ HH        EMPTY LIST
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 *[cssClass="text-empty"]{
-    color: #B3ffff;
+    color: #ffde8a;
     font-size: 18px;
 }
 

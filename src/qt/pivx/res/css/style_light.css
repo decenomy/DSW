@@ -2979,7 +2979,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
   background-color: rgba(255, 255, 255, 100);
 }
 
-#treeWidget::branch:closed:has-children: !has-siblings {
+#treeWidget::branch:closed:has-children:!has-siblings {
   border-image: none;
   background-color: rgba(255, 255, 255, 100);
   image: url("://ic-arrow-drop-up");
@@ -2993,7 +2993,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
   border-bottom: 1px solid #ececec;
 }
 
-#treeWidget::branch:open:has-children: !has-siblings,
+#treeWidget::branch:open:has-children:!has-siblings,
     #treeWidget::branch:open:has-children:has-siblings {
   border-image: none;
   image: url("://ic-arrow-drop-down");
@@ -3033,7 +3033,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
   background-color: #8bf943;
 }
 
-#treeWidget::branch: !selected {
+#treeWidget::branch:!selected {
   background-color: #8bf943;
 }
 
@@ -3041,7 +3041,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
   background-color: #44ba26ba;
 }
 
-#treeWidget::branch: !has-children {
+#treeWidget::branch:!has-children {
   background-color: #ffffff;
 }
 
