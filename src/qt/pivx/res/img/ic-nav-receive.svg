@@ -1,1 +1,52 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.cls-1{fill:none;}.cls-2{fill:#262626;}</style></defs><rect class="cls-1" width="24" height="24"/><path class="cls-2" d="M23.24,15.83a.59.59,0,0,0-.6.58v2.25A2.37,2.37,0,0,1,20.24,21H3.85a2.37,2.37,0,0,1-2.4-2.35V16.41a.59.59,0,0,0-.61-.58.59.59,0,0,0-.6.58v2.25a3.57,3.57,0,0,0,3.61,3.53H20.24a3.56,3.56,0,0,0,3.6-3.53V16.41A.59.59,0,0,0,23.24,15.83Z"/><path class="cls-2" d="M19.6,18.14H4.49a.6.6,0,0,0-.6.59.59.59,0,0,0,.6.59H19.6a.59.59,0,0,0,.6-.59A.6.6,0,0,0,19.6,18.14Z"/><path class="cls-2" d="M18.13,9.87a.62.62,0,0,0-.85,0l-4.63,4V2.47a.61.61,0,0,0-1.21,0v11.4l-4.63-4a.62.62,0,0,0-.85,0,.58.58,0,0,0,0,.83l5,4.4a1.53,1.53,0,0,0,1,.37,1.49,1.49,0,0,0,1-.37l5-4.4A.59.59,0,0,0,18.13,9.87Z"/></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="24px"
+   height="40px"
+   viewBox="0 0 24 40"
+   version="1.1"
+   id="svg14">
+  <metadata
+     id="metadata20">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Dashboard</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs18" />
+  <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+  <title
+     id="title2">Dashboard</title>
+  <desc
+     id="desc4">Created with Sketch.</desc>
+  <g
+     id="g61"
+     transform="translate(1,11)">
+    <path
+       id="path2"
+       d="M 0,0 H 24 V 24 H 0 Z"
+       style="fill:none" />
+    <g
+       id="g862"
+       transform="translate(-0.04761939,0.56462597)">
+      <path
+         fill="none"
+         d="M 0,0 H 24 V 24 H 0 Z"
+         id="path848" />
+      <path
+         d="m 13,10 h 5 l -6,6 -6,-6 h 5 V 3 h 2 z m -9,9 h 16 v -7 h 2 v 8 a 1,1 0 0 1 -1,1 H 3 A 1,1 0 0 1 2,20 v -8 h 2 z"
+         id="path850"
+         style="fill:#ffffff;fill-opacity:1" />
+    </g>
+  </g>
+</svg>
