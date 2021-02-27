@@ -13,23 +13,23 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 *[cssClass="container-border-light"] {
     background-color:#211f1f;
-    border:  1px solid #ffde8a;
+    border:  1px solid #534930;
     border-radius:2px;
 }
 
 *[cssClass="container_right"] {
     background-color:#211f1f;
-    border-left:  1px solid #ffde8a;
+    border-left:  1px solid #534930;
 }
 
 *[cssClass="container-right"] {
     background-color:#211f1f;
-    border-left:  1px solid #ffde8a;
+    border-left:  1px solid #3a3527;
 }
 
 *[cssClass="container-square"] {
     background-color:#211f1f;
-    border:  1px solid #ffde8a;
+    border:  1px solid #534930;
 }
 
 *[cssClass="container-options"] {
@@ -38,7 +38,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="container-divider"] {
-    background-color:#ffce55;
+    background-color:#534930;
 }
 
 *[cssClass="container-purple"] {
@@ -92,7 +92,7 @@ QPushButton[cssClass="img-nav-logo"] {
   *[cssClass="btn-nav-receive"]:hover {
     background-color: #262626;
     font-size: 12px;
-    color: #f4b400;
+    color: #fff;
     
   }
   
@@ -221,7 +221,7 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
     qproperty-iconSize: 24px 40px;
     background-color: #262626;
     font-size: 12px;
-    color: #f4b400;
+    color: #fff;
     
   }
   
@@ -263,7 +263,7 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
     qproperty-iconSize: 24px 40px;
     background-color: #262626;
     font-size: 12px;
-    color: #f4b400;
+    color: #fff;
     
   }
   
@@ -304,7 +304,7 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
     qproperty-iconSize: 24px 40px;
     background-color: #262626;
     font-size: 12px;
-    color: #f4b400;
+    color: #fff;
   }
   
   *[cssClass="btn-nav-send-active"] {
@@ -345,7 +345,7 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
     qproperty-iconSize: 24px 40px;
     background-color: #262626;
     font-size: 12px;
-    color: #f4b400;
+    color: #fff;
     
   }
   
@@ -387,7 +387,7 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
     qproperty-iconSize: 24px 40px;
     background-color: #262626;
     font-size: 12px;
-    color: #f4b400;
+    color: #fff;
     
   }
   
@@ -429,7 +429,7 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
     qproperty-iconSize: 24px 30px;
     background-color: #262626;
     font-size: 12px;
-    color: #f4b400;
+    color: #fff;
     
   }
   
