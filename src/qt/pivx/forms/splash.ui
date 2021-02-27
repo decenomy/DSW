@@ -49,7 +49,7 @@
 					<property name="minimumSize">
 						<size>
 							<width>750</width>
-							<height>520</height>
+							<height>431</height>
 						</size>
 					</property>
 					<property name="styleSheet">
@@ -105,90 +105,6 @@
 							</widget>
 						</item>
 						<item>
-							<spacer name="horizontalSpacer_1">
-								<property name="orientation">
-									<enum>Qt::Vertical</enum>
-								</property>
-								<property name="sizeType">
-									<enum>QSizePolicy::Fixed</enum>
-								</property>
-								<property name="sizeHint"
-        									stdset="0">
-									<size>
-										<width>40</width>
-										<height>19</height>
-									</size>
-								</property>
-							</spacer>
-						</item>
-						<item>
-							<widget class="QLabel"
-      								name="lblLogo">
-								<property name="geometry">
-									<rect>
-										<x>0</x>
-										<y>0</y>
-										<width>235</width>
-										<height>45</height>
-									</rect>
-								</property>
-								<property name="sizePolicy">
-									<sizepolicy hsizetype="Maximum"
-          										vsizetype="Maximum">
-										<horstretch>0</horstretch>
-										<verstretch>0</verstretch>
-									</sizepolicy>
-								</property>
-								<property name="minimumSize">
-									<size>
-										<width>0</width>
-										<height>0</height>
-									</size>
-								</property>
-								<property name="maximumSize">
-									<size>
-										<width>235</width>
-										<height>45</height>
-									</size>
-								</property>
-								<property name="styleSheet">
-									<string notr="true">
-										height: 45px;
-										width: 235px;
-										color: #ED1C24;
-										font-family: "Montserrat Medium";
-										font-size: 37px;
-										letter-spacing: 4.81px;
-										line-height: 45px;
-										text-align: right;
-									</string>
-								</property>
-								<property name="text">
-									<string></string>
-								</property>
-								<property name="alignment">
-									<set>Qt::AlignTop|Qt::AlignHCenter</set>
-								</property>
-							</widget>
-						</item>
-						<item>
-							<spacer name="horizontalSpacer_1">
-								<property name="orientation">
-									<enum>Qt::Vertical</enum>
-								</property>
-								<property name="sizeType">
-									<enum>QSizePolicy::Fixed</enum>
-								</property>
-								<property name="sizeHint"
-        									stdset="0">
-									<size>
-										<width>40</width>
-										<height>9</height>
-									</size>
-								</property>
-							</spacer>
-						</item>
-						<item>
 							<widget class="QWidget"
       								name="horizontalWidget"
       								native="true">
@@ -237,15 +153,15 @@
 										<string notr="true">
 											height: 11px;
 											width: 91px;
-											color: #828282;
-											font-family: Nunito;
+											color: #262626;
+											font-family: Poppins;
 											font-size: 9px;
 											letter-spacing: 1.04px;
 											line-height: 12px;
 										</string>
 									</property>
 									<property name="text">
-										<string>Loading…</string>
+										<string>Loading...</string>
 									</property>
 									<property name="alignment">
 										<set>Qt::AlignTop|Qt::AlignLeft</set>
@@ -309,7 +225,7 @@
         									stdset="0">
 									<size>
 										<width>40</width>
-										<height>86</height>
+										<height>20</height>
 									</size>
 								</property>
 							</spacer>
@@ -321,7 +237,7 @@
 									<rect>
 										<x>0</x>
 										<y>0</y>
-										<width>200</width>
+										<width>235</width>
 										<height>16</height>
 									</rect>
 								</property>
@@ -340,7 +256,7 @@
 								</property>
 								<property name="maximumSize">
 									<size>
-										<width>200</width>
+										<width>235</width>
 										<height>16</height>
 									</size>
 								</property>
@@ -348,8 +264,8 @@
 									<string notr="true">
 										height: 16px;
 										width: 85px;
-										color: #242424;
-										font-family: Nunito;
+										color: #ffffff;
+										font-family: Poppins;
 										font-size: 12px;
 										letter-spacing: 0.2px;
 										line-height: 16px;
