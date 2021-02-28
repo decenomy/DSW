@@ -15,6 +15,25 @@ src/bench/bench___decenomy__x
 src/test/test___decenomy__
 src/qt/test/test___decenomy__-qt
 
+# CryptoFlow
+src/bench/bench_cryptoflow
+src/bench/bench_trittium
+src/cryptoflow-cli
+src/cryptoflow-tx
+src/cryptoflowd
+src/qt/cryptoflow-qt
+src/qt/test/test_cryptoflow-qt
+
+# Trittium
+src/qt/test/test_trittium-qt
+src/qt/trittium-qt
+src/test/test_cryptoflow
+src/test/test_trittium
+src/trittium-cli
+src/trittium-tx
+src/trittiumd
+
+
 ##########################################
 # clear this section when it's fixed
 ###
@@ -169,3 +188,4 @@ __decenomy__d-new-gui.*
 !.vscode/extensions.json
 *.code-workspace
 .history/
+.vscode/
