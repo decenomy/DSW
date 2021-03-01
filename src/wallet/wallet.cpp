@@ -1470,11 +1470,11 @@ bool CWallet::Upgrade(std::string& error, const int& prevVersion)
     }
 
     // Now upgrade to Sapling manager
-    if (prevVersion < FEATURE_SAPLING) {
-        if (!ActivateSaplingWallet()) {
-            return false;
-        }
-    }
+    // if (prevVersion < FEATURE_SAPLING) {
+    //     if (!ActivateSaplingWallet()) {
+    //         return false;
+    //     }
+    // }
 
     return true;
 }
