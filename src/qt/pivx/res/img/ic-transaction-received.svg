@@ -5,13 +5,13 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   viewBox="0 0 24 24"
+   id="ic-transaction-received"
    width="24"
    height="24"
-   version="1.1"
-   id="svg6">
+   viewBox="0 0 24 24"
+   version="1.1">
   <metadata
-     id="metadata12">
+     id="metadata13">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -23,14 +23,32 @@
     </rdf:RDF>
   </metadata>
   <defs
-     id="defs10" />
+     id="defs4">
+    <style
+       type="text/css"
+       id="style2">
+            .cls-1{fill:#707070}.cls-2{fill:none}
+        </style>
+  </defs>
+  <g
+     id="Group_8834"
+     data-name="Group 8834">
+    <path
+       id="Path_18892"
+       d="M18.676 11.737l-1.352-1.475L13 14.227V2h-2v12.227l-4.324-3.964-1.352 1.474L12 17.856z"
+       class="cls-1"
+       data-name="Path 18892"
+       style="fill:#008d36;fill-opacity:1" />
+    <path
+       id="Path_18893"
+       d="M20 16v4H4v-4H2v6h20v-6z"
+       class="cls-1"
+       data-name="Path 18893"
+       style="fill:#008d36;fill-opacity:1" />
+  </g>
   <path
-     fill="none"
+     id="Rectangle_4413"
      d="M0 0h24v24H0z"
-     id="path2" />
-  <path
-     d="M4 19h16v-7h2v8a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-8h2v7zM14 9h5l-7 7-7-7h5V3h4v6z"
-     fill="rgba(30,94,55,1)"
-     id="path4"
-     style="fill:#1e5e37;fill-opacity:1;stroke:#1e5e37;stroke-opacity:1" />
+     class="cls-2"
+     data-name="Rectangle 4413" />
 </svg>

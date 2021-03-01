@@ -14,6 +14,26 @@
    id="svg14"
    sodipodi:docname="ic-nav-dashboard.svg"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="3840"
+     inkscape:window-height="2066"
+     id="namedview10"
+     showgrid="false"
+     inkscape:zoom="18.375"
+     inkscape:cx="12"
+     inkscape:cy="20"
+     inkscape:window-x="3829"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g861" />
   <metadata
      id="metadata20">
     <rdf:RDF>
@@ -28,27 +48,6 @@
   </metadata>
   <defs
      id="defs18" />
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="3840"
-     inkscape:window-height="2066"
-     id="namedview16"
-     showgrid="false"
-     inkscape:zoom="53.2"
-     inkscape:cx="6.9371662"
-     inkscape:cy="23.529113"
-     inkscape:current-layer="g61"
-     inkscape:document-rotation="0"
-     inkscape:window-x="3829"
-     inkscape:window-y="-11"
-     inkscape:window-maximized="1" />
   <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
   <title
      id="title2">Dashboard</title>
@@ -60,11 +59,18 @@
     <path
        id="path2"
        d="M 0,0 H 24 V 24 H 0 Z"
-       inkscape:connector-curvature="0"
        style="fill:none" />
+  </g>
+  <g
+     id="g861"
+     transform="matrix(0.51638838,0,0,0.54421768,-1.7959187,8.2176869)">
     <path
-       id="path871"
-       d="m 11.982158,1.2492951 a 1,1 0 0 0 -0.626953,0.210938 l -8.0000001,6.222656 a 1,1 0 0 0 -0.384766,0.789062 V 18.98367 a 1,1 0 0 0 1,1 H 19.970439 a 1,1 0 0 0 1,-1 V 8.4719511 A 1,1 0 0 0 20.58372,7.6828891 l -8,-6.222656 a 1,1 0 0 0 -0.601562,-0.210938 z m -0.01172,2.267578 7,5.44336 V 17.98367 H 4.9704389 V 8.9602331 Z"
+       d="M 0,0 H 48 V 48 H 0 Z"
+       fill="none"
+       id="path847-0" />
+    <path
+       d="m 10.637126,26 h 16 V 6 h -16 z m 0,16 h 16 V 30 h -16 z m 20,0 h 16 V 22 h -16 z m 0,-36 v 12 h 16 V 6 Z"
+       id="path849"
        style="fill:#ffffff;fill-opacity:1" />
   </g>
 </svg>

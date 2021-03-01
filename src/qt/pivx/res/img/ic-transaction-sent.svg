@@ -5,13 +5,13 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   viewBox="0 0 24 24"
+   id="ic-transaction-sent"
    width="24"
    height="24"
-   version="1.1"
-   id="svg6">
+   viewBox="0 0 24 24"
+   version="1.1">
   <metadata
-     id="metadata12">
+     id="metadata14">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -23,20 +23,27 @@
     </rdf:RDF>
   </metadata>
   <defs
-     id="defs10" />
+     id="defs4">
+    <style
+       type="text/css"
+       id="style2">
+            .cls-1{fill:#707070}.cls-2{fill:none}
+        </style>
+  </defs>
   <path
-     fill="none"
+     id="Rectangle_4412"
      d="M0 0h24v24H0z"
-     id="path2" />
+     class="cls-2"
+     data-name="Rectangle 4412" />
   <g
-     id="g857">
+     id="g74">
     <path
-       fill="none"
+       id="path2"
        d="M 0,0 H 24 V 24 H 0 Z"
-       id="path843" />
+       style="fill:none" />
     <path
-       d="m 4,19 h 16 v -7 h 2 v 8 a 1,1 0 0 1 -1,1 H 3 A 1,1 0 0 1 2,20 V 12 H 4 Z M 13,9 v 7 H 11 V 9 H 6 l 6,-6 6,6 z"
-       id="path845"
-       style="fill:#c24747;fill-opacity:1;stroke:#c24747;stroke-opacity:1" />
+       style="fill:#c24747;fill-opacity:1"
+       id="path4"
+       d="M 2.01,21 23,12 2.01,3 2,10 17,12 2,14 Z" />
   </g>
 </svg>

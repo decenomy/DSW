@@ -36,10 +36,17 @@
        id="path2"
        d="M 0,0 H 24 V 24 H 0 Z"
        style="fill:none" />
+  </g>
+  <g
+     id="g861"
+     transform="matrix(0.51638838,0,0,0.54421768,-1.7959187,8.2176869)">
     <path
-       d="m 20.989235,18.833294 a 1,1 0 0 1 -1,1 H 3.9892349 a 1,1 0 0 1 -1,-1 v -10.51 a 1,1 0 0 1 0.386,-0.79 L 11.375235,1.3112941 a 1,1 0 0 1 1.228,0 l 8,6.2219999 a 1,1 0 0 1 0.386,0.79 z m -2,-1 v -9.022 l -7,-5.4439999 -7.0000001,5.4439999 v 9.022 z m -12.0000001,-4 H 16.989235 v 2 H 6.9892349 Z"
-       fill="rgba(255,255,255,1)"
-       id="path847"
-       style="fill:#f4b400;fill-opacity:1;stroke:#f4b400;stroke-opacity:1;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none" />
+       d="M 0,0 H 48 V 48 H 0 Z"
+       fill="none"
+       id="path847-0" />
+    <path
+       d="m 10.637126,26 h 16 V 6 h -16 z m 0,16 h 16 V 30 h -16 z m 20,0 h 16 V 22 h -16 z m 0,-36 v 12 h 16 V 6 Z"
+       id="path849"
+       style="fill:#f4b400;fill-opacity:1" />
   </g>
 </svg>
