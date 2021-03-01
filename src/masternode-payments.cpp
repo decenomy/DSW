@@ -16,6 +16,7 @@
 #include "sync.h"
 #include "util.h"
 #include "utilmoneystr.h"
+#include "core_io.h"
 
 
 /** Object for who's going to get paid on which blocks */
@@ -159,7 +160,11 @@ uint256 CMasternodePaymentWinner::GetHash() const
 
 std::string CMasternodePaymentWinner::GetStrMessage() const
 {
-    return vinMasternode.prevout.ToStringShort() + std::to_string(nBlockHeight) + HexStr(payee);
+    if (Params().GetConsensus().NetworkUpgradeActive(chainActive.Tip()->nHeight, Consensus::UPGRADE_V4_0)) {
+        return vinMasternode.prevout.ToStringShort() + std::to_string(nBlockHeight) + HexStr(payee);
+    } else {
+        return vinMasternode.prevout.ToStringShort() + std::to_string(nBlockHeight) + ScriptToAsmStr(payee);
+    }
 }
 
 bool CMasternodePaymentWinner::IsValid(CNode* pnode, std::string& strError)
@@ -167,7 +172,7 @@ bool CMasternodePaymentWinner::IsValid(CNode* pnode, std::string& strError)
     CMasternode* pmn = mnodeman.Find(vinMasternode);
 
     if (!pmn) {
-        strError = strprintf("Unknown Masternode %s", vinMasternode.prevout.hash.ToString());
+        strError = strprintf("Unknown Masternode %s", vinMasternode.prevout.ToStringShort());
         LogPrint(BCLog::MASTERNODE,"CMasternodePaymentWinner::IsValid - %s\n", strError);
         mnodeman.AskForMN(pnode, vinMasternode);
         return false;
@@ -470,7 +475,7 @@ void CMasternodePayments::ProcessMessageMasternodePayments(CNode* pfrom, std::st
         CTxDestination address1;
         ExtractDestination(winner.payee, address1);
 
-        //   LogPrint(BCLog::MASTERNODE, "mnw - winning vote - Addr %s Height %d bestHeight %d - %s\n", address2.ToString().c_str(), winner.nBlockHeight, nHeight, winner.vinMasternode.prevout.ToStringShort());
+        LogPrint(BCLog::MASTERNODE, "mnw - winning vote - Addr %s Height %d bestHeight %d - %s\n", EncodeDestination(address1), winner.nBlockHeight, nHeight, winner.vinMasternode.prevout.ToStringShort());
 
         if (masternodePayments.AddWinningMasternode(winner)) {
             winner.Relay();
@@ -689,7 +694,7 @@ bool CMasternodePayments::ProcessBlock(int nBlockHeight)
     if (budget.IsBudgetPaymentBlock(nBlockHeight)) {
         //is budget payment block -- handled by the budgeting software
     } else {
-        LogPrint(BCLog::MASTERNODE,"CMasternodePayments::ProcessBlock() Start nHeight %d - vin %s. \n", nBlockHeight, activeMasternode.vin->prevout.hash.ToString());
+        LogPrint(BCLog::MASTERNODE, "CMasternodePayments::ProcessBlock() Start nHeight %d - vin %s. \n", nBlockHeight, activeMasternode.vin->prevout.ToStringShort());
 
         // pay to the oldest MN that still had no payment but its input is old enough and it was active long enough
         int nCount = 0;
