@@ -15,6 +15,15 @@ src/qt/cryptoflow-qt
 src/qt/test/test_cryptoflow-qt
 src/test/test_cryptoflow
 
+# Trittium
+src/bench/bench_trittium
+src/qt/test/test_trittium-qt
+src/qt/trittium-qt
+src/test/test_trittium
+src/trittium-cli
+src/trittium-tx
+src/trittiumd
+
 
 # autoreconf
 Makefile.in
@@ -162,3 +171,4 @@ jackpotd-new-gui.*
 !.vscode/extensions.json
 *.code-workspace
 .history/
+.vscode/
