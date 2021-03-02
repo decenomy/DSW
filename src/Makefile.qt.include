@@ -292,6 +292,7 @@ RES_ICONS = \
   qt/pivx/res/img/bg-dashboard-banner.png \
   qt/pivx/res/img/bg-multi-number-dark.svg \
   qt/pivx/res/img/ic-check-locked.svg \
+  qt/pivx/res/img/ic-check-console.svg \
   qt/pivx/res/img/ic-nav-address.svg \
   qt/pivx/res/img/ic-update.svg \
   qt/pivx/res/img/bg-multi-number.svg \
