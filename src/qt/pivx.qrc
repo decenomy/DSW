@@ -73,6 +73,7 @@
         <file alias="ic-check-liliac-on">pivx/res/img/ic-check-liliac-on.svg</file>
         <file alias="ic-check-locked-off">pivx/res/img/ic-check-locked-off.svg</file>
         <file alias="ic-check-locked">pivx/res/img/ic-check-locked.svg</file>
+        <file alias="ic-check-console">pivx/res/img/ic-check-console.svg</file>
         <file alias="ic-check-mint-off">pivx/res/img/ic-check-mint-off.svg</file>
         <file alias="ic-check-mint">pivx/res/img/ic-check-mint.svg</file>
         <file alias="ic-check-peers-off">pivx/res/img/ic-check-peers-off.svg</file>
