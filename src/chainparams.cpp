@@ -236,7 +236,7 @@ public:
         pchMessageStart[1] = 0x7b;
         pchMessageStart[2] = 0x86;
         pchMessageStart[3] = 0x77;
-        nDefaultPort = __PORT_MAINNET__;
+        nDefaultPort = 51472;
 
 	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.777coin.win"));
         vSeeds.push_back(CDNSSeedData("seed2", "seed2.777coin.win"));
