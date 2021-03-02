@@ -534,7 +534,7 @@ const QMap<int, QMap<QString, qint64>> DashboardWidget::getAmountBy()
 {
     updateStakeFilter();
     const int size = stakesFilter->rowCount();
-    QMap<int, std::pair<qint64, qint64>> amountBy;
+    QMap<int, QMap<QString, qint64>> amountBy;
     // Get all of the stakes
     for (int i = 0; i < size; ++i) {
         QModelIndex modelIndex = stakesFilter->index(i, TransactionTableModel::ToAddress);
