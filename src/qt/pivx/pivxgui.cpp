@@ -509,6 +509,13 @@ void PIVXGUI::goToSettingsInfo()
     goToSettings();
 }
 
+void PIVXGUI::goToDebugConsole()
+{
+    navMenu->selectSettings();
+    settingsWidget->showDebugConsole();
+    goToSettings();
+}
+
 void PIVXGUI::goToReceive()
 {
     showTop(receiveWidget);

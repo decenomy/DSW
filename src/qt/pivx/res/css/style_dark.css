@@ -145,6 +145,14 @@ QPushButton[cssClass="img-nav-logo"] {
 !#############
  ################################*/
 
+ QPushButton[cssClass="btn-check-console"] {
+    qproperty-icon: url("://ic-check-console") ;
+    qproperty-iconSize: 24px 24px;
+    background-color: #262626;
+    font-size: 12px;
+    color: #f4b400;
+}
+
 /*******************
 ******cold staking top bar*********
  ********************/
