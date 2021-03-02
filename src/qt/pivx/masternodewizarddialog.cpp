@@ -69,7 +69,7 @@ MasterNodeWizardDialog::MasterNodeWizardDialog(WalletModel *model, QWidget *pare
     ui->stackedWidget->setCurrentIndex(pos);
     ui->lineEditPort->setEnabled(false);    // use default port number
     if (walletModel->isRegTestNetwork()) {
-        ui->lineEditPort->setText("__PORT_REGTEST__");
+        ui->lineEditPort->setText("51473");
     } else if (walletModel->isTestNetwork()) {
         ui->lineEditPort->setText("51474");
     } else {
