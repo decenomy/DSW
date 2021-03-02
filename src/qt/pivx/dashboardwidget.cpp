@@ -607,10 +607,8 @@ bool DashboardWidget::loadChartData(bool withMonthNames)
         if (chartData->amountsByCache.contains(num)) {
             QMap<QString, qint64> pair = chartData->amountsByCache[num];
             piv = (pair["piv"] != 0) ? pair["piv"] / 100000000 : 0;
-            zpiv = (pair["zpiv"] != 0) ? pair["zpiv"] / 100000000 : 0;
             mnrewards = (pair["mn"] != 0) ? pair["mn"] / 100000000 : 0;
             chartData->totalPiv += pair["piv"];
-            chartData->totalZpiv += pair["zpiv"];
             chartData->totalMNRewards += pair["mn"];
         }
 
@@ -702,7 +700,6 @@ void DashboardWidget::onChartRefreshed()
 
 	forceUpdateStyle({ui->labelAmountPiv, ui->labelAmountMNRewards});
     ui->labelAmountPiv->setText(GUIUtil::formatBalance(chartData->totalPiv, nDisplayUnit));
-    ui->labelAmountZpiv->setText(GUIUtil::formatBalance(chartData->totalZpiv, nDisplayUnit, true));
 	ui->labelAmountMNRewards->setText(GUIUtil::formatBalance(chartData->totalMNRewards, nDisplayUnit));
 
     series->append(set0);
