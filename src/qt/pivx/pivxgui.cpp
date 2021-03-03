@@ -526,6 +526,11 @@ void PIVXGUI::openNetworkMonitor()
     settingsWidget->openNetworkMonitor();
 }
 
+void PIVXGUI::showPeers()
+{
+    settingsWidget->showPeers();
+}
+
 void PIVXGUI::showTop(QWidget* view)
 {
     if (stackedContainer->currentWidget() != view) {

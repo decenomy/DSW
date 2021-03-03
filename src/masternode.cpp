@@ -852,7 +852,7 @@ bool CMasternodePing::CheckAndUpdate(int& nDos, bool fRequireEnabled, bool fChec
             // Check if the ping block hash exists in disk
             BlockMap::iterator mi = mapBlockIndex.find(blockHash);
             if (mi == mapBlockIndex.end() || !(*mi).second) {
-                LogPrint(BCLog::MNPING,"%s: ping block not in disk. Masternode %s block hash %s\n", __func__, vin.prevout.hash.ToString(), blockHash.ToString());
+                LogPrint(BCLog::MNPING, "%s: ping block not in disk. Masternode %s block hash %s\n", __func__, vin.prevout.ToStringShort(), blockHash.ToString());
                 return false;
             }
 

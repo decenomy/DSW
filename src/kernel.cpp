@@ -132,12 +132,25 @@ bool Stake(const CBlockIndex* pindexPrev, CStakeInput* stakeInput, unsigned int 
 
     // Get the new time slot (and verify it's not the same as previous block)
     const bool fRegTest = Params().IsRegTestNet();
-    nTimeTx = (fRegTest ? GetAdjustedTime() : GetCurrentTimeSlot());
+    const bool fTimeProtocolV2 = Params().GetConsensus().IsTimeProtocolV2(nHeightTx) && !fRegTest;
+    nTimeTx = (fTimeProtocolV2 ? GetCurrentTimeSlot() : GetAdjustedTime());
+
     if (nTimeTx <= pindexPrev->nTime && !fRegTest) return false;
 
-    // Verify Proof Of Stake
-    CStakeKernel stakeKernel(pindexPrev, stakeInput, nBits, nTimeTx);
-    return stakeKernel.CheckKernelHash(true);
+    int slotRange = fTimeProtocolV2 ? 1 : Params().GetConsensus().nFutureTimeDriftPoS;
+
+    for(int i = 0; i < slotRange; i++) 
+    {
+        // Verify Proof Of Stake
+        CStakeKernel stakeKernel(pindexPrev, stakeInput, nBits, nTimeTx);
+        if(stakeKernel.CheckKernelHash(true)) 
+        {
+            return true;
+        }
+        nTimeTx++;
+    }
+
+    return false;
 }
 
 

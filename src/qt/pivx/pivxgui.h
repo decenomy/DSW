@@ -72,6 +72,7 @@ public Q_SLOTS:
     void goToSettingsInfo();
     void goToDebugConsole();
     void openNetworkMonitor();
+	void showPeers();
 
     void connectActions();
 

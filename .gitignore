@@ -17,15 +17,17 @@ src/qt/test/test___decenomy__-qt
 
 # CryptoFlow
 src/bench/bench_cryptoflow
-src/bench/bench_trittium
 src/cryptoflow-cli
 src/cryptoflow-tx
 src/cryptoflowd
 src/qt/cryptoflow-qt
+src/test/test_cryptoflow
 src/qt/test/test_cryptoflow-qt
+
+# Trittium
+src/bench/bench_trittium
 src/qt/test/test_trittium-qt
 src/qt/trittium-qt
-src/test/test_cryptoflow
 src/test/test_trittium
 src/trittium-cli
 src/trittium-tx
@@ -185,4 +187,12 @@ __decenomy__d-new-gui.*
 !.vscode/extensions.json
 *.code-workspace
 .history/
+<<<<<<< HEAD
 .vscode/
+=======
+<<<<<<< HEAD
+.vscode/
+=======
+.vscode/
+>>>>>>> rebranding
+>>>>>>> design

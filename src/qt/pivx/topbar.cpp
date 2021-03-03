@@ -87,6 +87,14 @@ TopBar::TopBar(PIVXGUI* _mainWindow, QWidget *parent) :
     ui->pushButtonStack->setButtonClassStyle("cssClass", "btn-check-stack-inactive");
     ui->pushButtonStack->setButtonText(tr("Staking Disabled"));
 
+    ui->pushButtonConf->setButtonClassStyle("cssClass", "btn-check-conf");
+    ui->pushButtonConf->setButtonText("cryptoflow.conf");
+    ui->pushButtonConf->setChecked(false);
+
+    ui->pushButtonMasternodes->setButtonClassStyle("cssClass", "btn-check-masternodes");
+    ui->pushButtonMasternodes->setButtonText("masternode.conf");
+    ui->pushButtonMasternodes->setChecked(false);
+
     ui->pushButtonConsole->setButtonClassStyle("cssClass", "btn-check-console");
     ui->pushButtonConsole->setButtonText("Debug Console");
     ui->pushButtonConsole->setChecked(false);
@@ -129,12 +137,14 @@ TopBar::TopBar(PIVXGUI* _mainWindow, QWidget *parent) :
     connect(ui->pushButtonLock, &ExpandableButton::Mouse_Pressed, this, &TopBar::onBtnLockClicked);
     connect(ui->pushButtonTheme, &ExpandableButton::Mouse_Pressed, this, &TopBar::onThemeClicked);
     connect(ui->pushButtonFAQ, &ExpandableButton::Mouse_Pressed, [this](){window->openFAQ();});
+    connect(ui->pushButtonConf, &ExpandableButton::Mouse_Pressed, this, &TopBar::onBtnConfClicked);
+    connect(ui->pushButtonMasternodes, &ExpandableButton::Mouse_Pressed, this, &TopBar::onBtnMasternodesClicked);
     connect(ui->pushButtonColdStaking, &ExpandableButton::Mouse_Pressed, this, &TopBar::onColdStakingClicked);
     connect(ui->pushButtonSync, &ExpandableButton::Mouse_HoverLeave, this, &TopBar::refreshProgressBarSize);
     connect(ui->pushButtonSync, &ExpandableButton::Mouse_Hover, this, &TopBar::refreshProgressBarSize);
     connect(ui->pushButtonSync, &ExpandableButton::Mouse_Pressed, [this](){window->goToSettingsInfo();});
+    connect(ui->pushButtonConnection, &ExpandableButton::Mouse_Pressed, [this](){window->showPeers();});
     connect(ui->pushButtonConsole, &ExpandableButton::Mouse_Pressed, [this](){window->goToDebugConsole();});
-    connect(ui->pushButtonConnection, &ExpandableButton::Mouse_Pressed, [this](){window->openNetworkMonitor();});
 }
 
 void TopBar::onThemeClicked()
@@ -336,6 +346,22 @@ void TopBar::showBottom()
     ui->bottom_container->setVisible(true);
     this->setFixedHeight(200);
     this->adjustSize();
+}
+
+void TopBar::onBtnConfClicked()
+{
+    ui->pushButtonConf->setChecked(false);
+
+    if (!GUIUtil::openConfigfile())
+        inform(tr("Unable to open __decenomy__.conf with default application"));
+}
+
+void TopBar::onBtnMasternodesClicked()
+{
+    ui->pushButtonMasternodes->setChecked(false);
+
+    if (!GUIUtil::openMNConfigfile())
+        inform(tr("Unable to open masternode.conf with default application"));
 }
 
 void TopBar::onColdStakingClicked()
