@@ -353,7 +353,7 @@ void TopBar::onBtnConfClicked()
     ui->pushButtonConf->setChecked(false);
 
     if (!GUIUtil::openConfigfile())
-        inform(tr("Unable to open __decenomy__.conf with default application"));
+        inform(tr("Unable to open cryptoflow.conf with default application"));
 }
 
 void TopBar::onBtnMasternodesClicked()
