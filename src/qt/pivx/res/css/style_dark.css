@@ -1837,17 +1837,17 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="text-stake-mnrewards"] {
-    color:#6666ff;
+    color:#ffde8a;
     font-size:16px;
     padding:10px;
-    border-bottom: 5px solid #6666ff;
+    border-bottom: 5px solid #f4b400;
 }
 
 *[cssClass="text-stake-mnrewards-disable"] {
-    color:#423E4A;
+    color:#505050;
     font-size:16px;
     padding:10px;
-    border-bottom: 5px solid #423E4A;
+    border-bottom: 5px solid #444444;
 }
 
 *[cssClass="legend-chart"] {
@@ -1856,7 +1856,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="text-chart-mnrewards"] {
-    color:#6666ff;
+    color:#eeeeee;
     font-size:16px;
     padding-left:4px;
 }
@@ -1868,7 +1868,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="square-chart-mnrewards"] {
-    background-color:#6666ff;
+    background-color:#ffde8a;
     border:none;
 }
 

@@ -1741,17 +1741,17 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="text-stake-mnrewards"] {
-    color:#6666ff;
+    color:#262626;
     font-size:16px;
     padding:10px;
-    border-bottom: 5px solid #6666ff;
+    border-bottom: 5px solid #bdbdbd;
 }
 
 *[cssClass="text-stake-mnrewards-disable"] {
     color:#d7d5da;
     font-size:16px;
     padding:10px;
-    border-bottom: 5px solid #d7d5da;
+    border-bottom: 5px solid #bdbdbd;
 }
 
 *[cssClass="legend-chart"] {
@@ -1760,7 +1760,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="text-chart-mnrewards"] {
-    color:#6666ff;
+    color:#262626;
     font-size:16px;
     padding-left:4px;
 }
@@ -1772,7 +1772,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="square-chart-mnrewards"] {
-    background-color:#6666ff;
+    background-color:#ffde8a;
     border:none;
 }
 
