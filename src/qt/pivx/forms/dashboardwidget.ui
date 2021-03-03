@@ -519,7 +519,7 @@
             <item>
              <widget class="QLabel" name="labelMessage">
               <property name="text">
-               <string>Amount of CFL and zCFL staked.</string>
+               <string>Amount of CFL staked.</string>
               </property>
              </widget>
             </item>
