@@ -90,7 +90,7 @@ as well, use `discover` instead:
 <<<<<<< HEAD
 and open port 3333 on your firewall (or use -upnp).
 =======
-and open port __PORT_MAINNET__ on your firewall (or use -upnp).
+and open port 3333 on your firewall (or use -upnp).
 >>>>>>> design
 
 If you only want to use Tor to reach .onion addresses, but not use it as a proxy
