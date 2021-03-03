@@ -43,9 +43,9 @@ public:
     ExpandableButton *pushButtonSync;
     ExpandableButton *pushButtonHDUpgrade;
     ExpandableButton *pushButtonStack;
-    ExpandableButton *pushButtonConsole;
     ExpandableButton *pushButtonConf;
     ExpandableButton *pushButtonMasternodes;
+    ExpandableButton *pushButtonConsole;
     ExpandableButton *pushButtonColdStaking;
     ExpandableButton *pushButtonConnection;
     ExpandableButton *pushButtonTor;
@@ -156,6 +156,18 @@ public:
         pushButtonStack->setMinimumSize(QSize(36, 36));
 
         horizontalLayout_4->addWidget(pushButtonStack);
+
+        pushButtonConf = new ExpandableButton(top_container_2);
+        pushButtonConf->setObjectName(QStringLiteral("pushButtonConf"));
+        pushButtonConf->setMinimumSize(QSize(36, 36));
+
+        horizontalLayout_4->addWidget(pushButtonConf);
+
+        pushButtonMasternodes = new ExpandableButton(top_container_2);
+        pushButtonMasternodes->setObjectName(QStringLiteral("pushButtonMasternodes"));
+        pushButtonMasternodes->setMinimumSize(QSize(36, 36));
+
+        horizontalLayout_4->addWidget(pushButtonMasternodes);
 
         pushButtonConsole = new ExpandableButton(top_container_2);
         pushButtonConsole->setObjectName(QStringLiteral("pushButtonConsole"));

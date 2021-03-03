@@ -375,12 +375,12 @@ public:
 
         horizontalLayout_5->addWidget(labelAmountPiv);
 
-        labelAmountZpiv = new QLabel(right);
-        labelAmountZpiv->setObjectName(QStringLiteral("labelAmountZpiv"));
-        labelAmountZpiv->setText(QStringLiteral("0 zCFL"));
-        labelAmountZpiv->setAlignment(Qt::AlignCenter);
+        labelAmountMNRewards = new QLabel(right);
+        labelAmountMNRewards->setObjectName(QStringLiteral("labelAmountMNRewards"));
+        labelAmountMNRewards->setText(QStringLiteral("0 zCFL"));
+        labelAmountMNRewards->setAlignment(Qt::AlignCenter);
 
-        horizontalLayout_5->addWidget(labelAmountZpiv);
+        horizontalLayout_5->addWidget(labelAmountMNRewards);
 
 
         verticalLayout_2->addLayout(horizontalLayout_5);
@@ -431,18 +431,18 @@ public:
 
         horizontalLayout_4->addItem(horizontalSpacer_5);
 
-        labelSquarezPiv = new QLabel(verticalWidgetChart);
-        labelSquarezPiv->setObjectName(QStringLiteral("labelSquarezPiv"));
-        labelSquarezPiv->setMinimumSize(QSize(14, 14));
-        labelSquarezPiv->setMaximumSize(QSize(14, 14));
+        labelSquareMNRewards = new QLabel(verticalWidgetChart);
+        labelSquareMNRewards->setObjectName(QStringLiteral("labelSquareMNRewards"));
+        labelSquareMNRewards->setMinimumSize(QSize(14, 14));
+        labelSquareMNRewards->setMaximumSize(QSize(14, 14));
 
-        horizontalLayout_4->addWidget(labelSquarezPiv);
+        horizontalLayout_4->addWidget(labelSquareMNRewards);
 
-        labelZpiv = new QLabel(verticalWidgetChart);
-        labelZpiv->setObjectName(QStringLiteral("labelZpiv"));
-        labelZpiv->setText(QStringLiteral("zCFL"));
+        labelMNRewards = new QLabel(verticalWidgetChart);
+        labelMNRewards->setObjectName(QStringLiteral("labelMNRewards"));
+        labelMNRewards->setText(QStringLiteral("zCFL"));
 
-        horizontalLayout_4->addWidget(labelZpiv);
+        horizontalLayout_4->addWidget(labelMNRewards);
 
 
         verticalLayout_4->addLayout(horizontalLayout_4);
@@ -740,7 +740,7 @@ public:
         labelMessage->setText(QApplication::translate("DashboardWidget", "Amount of CFL and zCFL staked.", Q_NULLPTR));
         labelChart->setText(QApplication::translate("DashboardWidget", "Staking statistics", Q_NULLPTR));
         labelSquarePiv->setText(QString());
-        labelSquarezPiv->setText(QString());
+        labelSquareMNRewards->setText(QString());
         pushButtonChartArrow->setText(QString());
         pushButtonChartRight->setText(QString());
         groupBoxChart->setTitle(QApplication::translate("DashboardWidget", "Sort by", Q_NULLPTR));
