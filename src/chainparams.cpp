@@ -244,6 +244,7 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
+<<<<<<< HEAD
         pchMessageStart[0] = 0x31;
         pchMessageStart[1] = 0xc2;
         pchMessageStart[2] = 0xfe;
@@ -251,6 +252,15 @@ public:
         nDefaultPort = 32628;
 
         vSeeds.push_back(CDNSSeedData("seed1.ucrcoin.net", "seed1.ucrcoin.net"));
+=======
+        pchMessageStart[0] = 0x90;
+        pchMessageStart[1] = 0xc4;
+        pchMessageStart[2] = 0xfd;
+        pchMessageStart[3] = 0xe9;
+        nDefaultPort = 51472;
+
+	    vSeeds.push_back(CDNSSeedData("seed1.ucrcoin.net", "seed1.ucrcoin.net"));
+>>>>>>> bd4113503a3a3c1d716bce2d0147a1e3bb42c329
         vSeeds.push_back(CDNSSeedData("seed2.ucrcoin.net", "seed2.ucrcoin.net"));
         vSeeds.push_back(CDNSSeedData("seed3.ucrcoin.net", "seed3.ucrcoin.net"));
         vSeeds.push_back(CDNSSeedData("seed4.ucrcoin.net", "seed4.ucrcoin.net"));
@@ -259,8 +269,13 @@ public:
         vSeeds.push_back(CDNSSeedData("seed7.ucrcoin.net", "seed7.ucrcoin.net"));
         vSeeds.push_back(CDNSSeedData("seed8.ucrcoin.net", "seed8.ucrcoin.net"));
 
+<<<<<<< HEAD
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 28); // 7
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 31); // 7
+=======
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 30); // 7
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 13); // 7
+>>>>>>> bd4113503a3a3c1d716bce2d0147a1e3bb42c329
         base58Prefixes[STAKING_ADDRESS] = std::vector<unsigned char>(1, 63); // S
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 134);  // J
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x02)(0x2D)(0x25)(0x33).convert_to_container<std::vector<unsigned char> >();
