@@ -126,7 +126,6 @@ QPushButton[cssClass="btn-check-conf"] {
     qproperty-iconSize: 24px 24px;
     color:#B3FFFFFF;
     background-color:#405c4b7d;
-    border-bottom:2px solid #5C4B7D;
     border-radius:2px;
 }
 
@@ -135,7 +134,6 @@ QPushButton[cssClass="btn-check-masternodes"] {
     qproperty-iconSize: 24px 24px;
     color:#B3FFFFFF;
     background-color:#405c4b7d;
-    border-bottom:2px solid #5C4B7D;
     border-radius:2px;
 }
 
@@ -143,8 +141,7 @@ QPushButton[cssClass="btn-check-console"] {
   qproperty-icon: url("://ic-check-console") ;
   qproperty-iconSize: 24px 24px;
   color:#B3FFFFFF;
-  background-color:#232323;
-  border-bottom:2px solid #43b3ff;
+  background-color:#405c4b7d;
   border-radius:2px;
 }
 
