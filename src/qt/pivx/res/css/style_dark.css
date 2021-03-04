@@ -148,36 +148,31 @@ QPushButton[cssClass="img-nav-logo"] {
 QPushButton[cssClass="btn-check-conf"] {
     qproperty-icon: url("://ic-check-settings") ;
     qproperty-iconSize: 24px 24px;
+    background-color:#46453f;
     color:#ffffff;
-    background-color:#505c4b7d;
-    border-bottom:2px solid #5C4B7D;
+    padding-right:6px;
+    padding-left:6px;
     border-radius:2px;
 }
 
 QPushButton[cssClass="btn-check-masternodes"] {
     qproperty-icon: url("://ic-check-settings") ;
     qproperty-iconSize: 24px 24px;
+    background-color:#46453f;
     color:#ffffff;
-    background-color:#505c4b7d;
-    border-bottom:2px solid #5C4B7D;
+    padding-right:6px;
+    padding-left:6px;
     border-radius:2px;
 }
-
-QPushButton[cssClass="btn-check-console"] {
-	qproperty-icon: url("://ic-check-console") ;
-	qproperty-iconSize: 24px 24px;
-	color:#ffffff;
-	background-color:#505c4b7d;
-	border-bottom:2px solid #5C4B7D;
-	border-radius:2px;
-  }
 
  QPushButton[cssClass="btn-check-console"] {
     qproperty-icon: url("://ic-check-console") ;
     qproperty-iconSize: 24px 24px;
-    background-color: #262626;
-    font-size: 12px;
-    color: #f4b400;
+    background-color:#46453f;
+    color:#ffffff;
+    padding-right:6px;
+    padding-left:6px;
+    border-radius:2px;
 }
 
 /*******************

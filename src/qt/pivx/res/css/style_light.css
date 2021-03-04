@@ -100,15 +100,6 @@ QPushButton[cssClass="img-nav-logo"] {
   color: #f4b400;
 }
 
-QPushButton[cssClass="btn-check-console"] {
-  qproperty-icon: url("://ic-check-console") ;
-  qproperty-iconSize: 24px 24px;
-  background-color: #d1d3d4;
-  color: #262626;
-  padding-right: 6px;
-  padding-left: 6px;
-  border-radius: 2px;
-}
 
 /*****
 *masternode conf & saphire conf file edit topbar buttons.
@@ -117,28 +108,31 @@ QPushButton[cssClass="btn-check-console"] {
 QPushButton[cssClass="btn-check-conf"] {
     qproperty-icon: url("://ic-check-settings") ;
     qproperty-iconSize: 24px 24px;
-    color:#B3FFFFFF;
-    background-color:#405c4b7d;
-    border-bottom:2px solid #5C4B7D;
-    border-radius:2px;
+    background-color: #d1d3d4;
+    color: #262626;
+    padding-right: 6px;
+    padding-left: 6px;
+    border-radius: 2px;
 }
 
 QPushButton[cssClass="btn-check-masternodes"] {
     qproperty-icon: url("://ic-check-settings") ;
     qproperty-iconSize: 24px 24px;
-    color:#B3FFFFFF;
-    background-color:#405c4b7d;
-    border-bottom:2px solid #5C4B7D;
-    border-radius:2px;
+    background-color: #d1d3d4;
+    color: #262626;
+    padding-right: 6px;
+    padding-left: 6px;
+    border-radius: 2px;
 }
 
 QPushButton[cssClass="btn-check-console"] {
   qproperty-icon: url("://ic-check-console") ;
   qproperty-iconSize: 24px 24px;
-  color:#B3FFFFFF;
-  background-color:#232323;
-  border-bottom:2px solid #43b3ff;
-  border-radius:2px;
+  background-color: #d1d3d4;
+  color: #262626;
+  padding-right: 6px;
+  padding-left: 6px;
+  border-radius: 2px;
 }
 
 /*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
