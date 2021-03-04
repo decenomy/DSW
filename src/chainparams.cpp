@@ -239,14 +239,14 @@ public:
         pchMessageStart[3] = 0xe9;
         nDefaultPort = 51472;
 
-	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.777coin.win"));
-        vSeeds.push_back(CDNSSeedData("seed2", "seed2.777coin.win"));
-        vSeeds.push_back(CDNSSeedData("seed3", "seed3.777coin.win"));
-        vSeeds.push_back(CDNSSeedData("seed4", "seed4.777coin.win"));
-	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.777coin.win"));
-	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.777coin.win"));
-	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.777coin.win"));
-	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.777coin.win"));
+	    vSeeds.push_back(CDNSSeedData("seed1.ucrcoin.net", "seed1.ucrcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed2.ucrcoin.net", "seed2.ucrcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed3.ucrcoin.net", "seed3.ucrcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed4.ucrcoin.net", "seed4.ucrcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed5.ucrcoin.net", "seed5.ucrcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed6.ucrcoin.net", "seed6.ucrcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed7.ucrcoin.net", "seed7.ucrcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed8.ucrcoin.net", "seed8.ucrcoin.net"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 30); // 7
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 13); // 7
