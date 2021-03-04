@@ -146,7 +146,7 @@ QPushButton[cssClass="img-nav-logo"] {
 *****/
 
 QPushButton[cssClass="btn-check-conf"] {
-    qproperty-icon: url("://ic-check-settings") ;
+    qproperty-icon: url("://ic-check-coin-conf") ;
     qproperty-iconSize: 24px 24px;
     background-color:#46453f;
     color:#ffffff;
@@ -156,7 +156,7 @@ QPushButton[cssClass="btn-check-conf"] {
 }
 
 QPushButton[cssClass="btn-check-masternodes"] {
-    qproperty-icon: url("://ic-check-settings") ;
+    qproperty-icon: url("://ic-check-mn-conf") ;
     qproperty-iconSize: 24px 24px;
     background-color:#46453f;
     color:#ffffff;
