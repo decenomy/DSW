@@ -157,8 +157,8 @@ public:
         // /////////////////////////////////////////////////////////////////
 
         /** Height or Time Based Activations **/
-        //nLastPOWBlock = 500;
-        //nBlockUltraClear = 600000;
+        nLastPOWBlock = 500;
+        nBlockUltraClear = 600000;
 
         genesis = CreateGenesisBlock(1561685759, 3380104, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();

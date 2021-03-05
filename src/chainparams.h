@@ -84,6 +84,9 @@ public:
     CBaseChainParams::Network NetworkID() const { return networkID; }
     bool IsRegTestNet() const { return NetworkID() == CBaseChainParams::REGTEST; }
 
+    /** Height or Time Based Activations **/
+    int LAST_POW_BLOCK() const { return nLastPOWBlock; }
+    int UltraClearStart() const { return nBlockUltraClear; }
 
 protected:
     CChainParams() {}
@@ -98,6 +101,9 @@ protected:
     std::vector<unsigned char> base58Prefixes[MAX_BASE58_TYPES];
     std::string bech32HRPs[MAX_BECH32_TYPES];
     std::vector<SeedSpec6> vFixedSeeds;
+
+    int nLastPOWBlock;
+    int nBlockUltraClear;
 };
 
 /**

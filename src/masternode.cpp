@@ -330,26 +330,81 @@ CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
 
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
-    CAmount maxMoneyOut= Params().GetConsensus().nMaxMoneyOut;
+    CAmount maxMoneyOut = Params().GetConsensus().nMaxMoneyOut;
 
-    if(nMoneySupply >= maxMoneyOut) {
+    if (nMoneySupply >= maxMoneyOut) {
         return 0;
     }
 
-    CAmount nSubsidy;
+    if (Params().NetworkID() == CBaseChainParams::TESTNET) {
+        if (nHeight < 200 && nHeight > 0)
+            return 250000 * COIN;
+    }
 
-    if (nHeight == 1) {
-        nSubsidy = 30000000 * COIN; // __DSW__ coin supply (30M)
-    } else if (nHeight <= 100000) {
-        nSubsidy = 100 * COIN;
-    } else if (nHeight > 100000 && nHeight <= 200000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 200000 && nHeight <= 300000) {
-        nSubsidy = 150 * COIN;
-    } else if (nHeight > 300000 && nHeight <= 400000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 400000) {
-        nSubsidy = 100 * COIN;
+    if (Params().IsRegTestNet()) {
+        if (nHeight == 0)
+            return 250 * COIN;
+    }
+
+    int64_t nSubsidy = 0;
+    if (nHeight == 0) {
+        nSubsidy = 500000 * COIN; 
+    } else if (nHeight <= Params().LAST_POW_BLOCK()) {
+        nSubsidy = 1 * COIN; 
+    } else if (nHeight <= 1000 && nHeight > Params().LAST_POW_BLOCK()) {
+        nSubsidy = 1 * COIN; 
+    } else if (nHeight <= 2000 && nHeight > 1000) {
+        nSubsidy = 1.5 * COIN; 
+    } else if (nHeight <= 10000 && nHeight > 1000) {
+        nSubsidy = 2 * COIN; 
+    } else if (nHeight <= 20000 && nHeight > 10000) {
+        nSubsidy = 3 * COIN; 
+    } else if (nHeight <= 30000 && nHeight > 20000) {
+        nSubsidy = 5 * COIN; 
+    } else if (nHeight <= 40000 && nHeight > 30000) {
+        nSubsidy = 2 * COIN; 
+    } else if (nHeight <= 50000 && nHeight > 40000) {
+        nSubsidy = 3 * COIN; 
+    } else if (nHeight <= 60000 && nHeight > 50000) {
+        nSubsidy = 6.25 * COIN; 
+    } else if (nHeight <= 70000 && nHeight > 60000) {
+        nSubsidy = 8.75 * COIN; 
+    }else if (nHeight <= 100000 && nHeight > 70000) {
+        nSubsidy = 15 * COIN; 
+    }else if (nHeight <= 120000 && nHeight > 100000) {
+        nSubsidy = 18 * COIN; 
+    } else if (nHeight <= 145000 && nHeight > 120000) {
+        nSubsidy = 20 * COIN; 
+    } else if (nHeight <= 170000 && nHeight > 145000) {
+        nSubsidy = 22 * COIN; 
+    } else if (nHeight <= 230000 && nHeight > 170000) {
+        nSubsidy = 25 * COIN; 
+    } else if (nHeight <= 265000 && nHeight > 230000) {
+        nSubsidy = 28 * COIN; 
+    } else if (nHeight <= 350000 && nHeight > 265000) {
+        nSubsidy = 30 * COIN; 
+    } else if (nHeight <= 450000 && nHeight > 350000) {
+        nSubsidy = 35 * COIN; 
+    } else if (nHeight <= 500000 && nHeight > 450000) {
+        nSubsidy = 40 * COIN; 
+    } else if (nHeight <= 550000 && nHeight > 500000) {
+        nSubsidy = 45 * COIN; 
+    } else if (nHeight <= Params().UltraClearStart() && nHeight > 550000) {
+        nSubsidy = 50 * COIN; 
+    } else if (nHeight <= 700000 && nHeight > Params().UltraClearStart()) {
+        nSubsidy = 70 * COIN; ;
+    } else if (nHeight <= 800000 && nHeight > 700000) {
+        nSubsidy = 90 * COIN; 
+    } else if (nHeight <= 900000 && nHeight > 800000) {
+        nSubsidy = 105 * COIN; 
+    } else if (nHeight <= 1000000 && nHeight > 900000) {
+        nSubsidy = 120 * COIN; 
+    } else if (nHeight <= 1100000 && nHeight > 1000000) {
+        nSubsidy = 130 * COIN; 
+    } else if (nHeight <= 1200000 && nHeight > 1100000) {
+        nSubsidy = 120 * COIN; 
+    } else {
+        nSubsidy = 100 * COIN; 
     }
 
     if(nMoneySupply + nSubsidy > maxMoneyOut) {
@@ -361,9 +416,24 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    if(nHeight <= 5000) return 0;
+    int64_t ret = 0;
 
-    return CMasternode::GetBlockValue(nHeight) * 95 / 100;
+    if (Params().NetworkID() == CBaseChainParams::TESTNET) {
+        if (nHeight < 200)
+            return 0;
+    }
+
+    if (nHeight <= Params().LAST_POW_BLOCK()) {
+    	return 0;
+    } else if (nHeight <=12000 && nHeight > Params().LAST_POW_BLOCK()){
+        ret = GetBlockValue(nHeight) * 98/100;
+    } else if (nHeight > 12000){
+        ret = GetBlockValue(nHeight) * 9998/10000;
+    }
+
+    if(nHeight > Params().UltraClearStart()) {
+        ret = GetBlockValue(nHeight) - (5 * COIN);
+    }
 }
 
 CMasternodeBroadcast::CMasternodeBroadcast() :
