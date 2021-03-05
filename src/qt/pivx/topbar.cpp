@@ -87,6 +87,18 @@ TopBar::TopBar(PIVXGUI* _mainWindow, QWidget *parent) :
     ui->pushButtonStack->setButtonClassStyle("cssClass", "btn-check-stack-inactive");
     ui->pushButtonStack->setButtonText(tr("Staking Disabled"));
 
+    ui->pushButtonConf->setButtonClassStyle("cssClass", "btn-check-conf");
+    ui->pushButtonConf->setButtonText("__decenomy__.conf");
+    ui->pushButtonConf->setChecked(false);
+
+    ui->pushButtonMasternodes->setButtonClassStyle("cssClass", "btn-check-masternodes");
+    ui->pushButtonMasternodes->setButtonText("masternode.conf");
+    ui->pushButtonMasternodes->setChecked(false);
+
+    ui->pushButtonConsole->setButtonClassStyle("cssClass", "btn-check-console");
+    ui->pushButtonConsole->setButtonText("Debug Console");
+    ui->pushButtonConsole->setChecked(false);
+
     ui->pushButtonColdStaking->setButtonClassStyle("cssClass", "btn-check-cold-staking-inactive");
     ui->pushButtonColdStaking->setButtonText(tr("Cold Staking Disabled"));
     ui->pushButtonColdStaking->setVisible(false);
@@ -125,11 +137,14 @@ TopBar::TopBar(PIVXGUI* _mainWindow, QWidget *parent) :
     connect(ui->pushButtonLock, &ExpandableButton::Mouse_Pressed, this, &TopBar::onBtnLockClicked);
     connect(ui->pushButtonTheme, &ExpandableButton::Mouse_Pressed, this, &TopBar::onThemeClicked);
     connect(ui->pushButtonFAQ, &ExpandableButton::Mouse_Pressed, [this](){window->openFAQ();});
+    connect(ui->pushButtonConf, &ExpandableButton::Mouse_Pressed, this, &TopBar::onBtnConfClicked);
+    connect(ui->pushButtonMasternodes, &ExpandableButton::Mouse_Pressed, this, &TopBar::onBtnMasternodesClicked);
     connect(ui->pushButtonColdStaking, &ExpandableButton::Mouse_Pressed, this, &TopBar::onColdStakingClicked);
     connect(ui->pushButtonSync, &ExpandableButton::Mouse_HoverLeave, this, &TopBar::refreshProgressBarSize);
     connect(ui->pushButtonSync, &ExpandableButton::Mouse_Hover, this, &TopBar::refreshProgressBarSize);
     connect(ui->pushButtonSync, &ExpandableButton::Mouse_Pressed, [this](){window->goToSettingsInfo();});
-    connect(ui->pushButtonConnection, &ExpandableButton::Mouse_Pressed, [this](){window->openNetworkMonitor();});
+    connect(ui->pushButtonConsole, &ExpandableButton::Mouse_Pressed, [this](){window->goToDebugConsole();});
+    connect(ui->pushButtonConnection, &ExpandableButton::Mouse_Pressed, [this](){window->showPeers();});
 }
 
 void TopBar::onThemeClicked()
@@ -331,6 +346,22 @@ void TopBar::showBottom()
     ui->bottom_container->setVisible(true);
     this->setFixedHeight(200);
     this->adjustSize();
+}
+
+void TopBar::onBtnConfClicked()
+{
+    ui->pushButtonConf->setChecked(false);
+
+    if (!GUIUtil::openConfigfile())
+        inform(tr("Unable to open __decenomy__.conf with default application"));
+}
+
+void TopBar::onBtnMasternodesClicked()
+{
+    ui->pushButtonMasternodes->setChecked(false);
+
+    if (!GUIUtil::openMNConfigfile())
+        inform(tr("Unable to open masternode.conf with default application"));
 }
 
 void TopBar::onColdStakingClicked()
@@ -553,7 +584,7 @@ void TopBar::loadWalletModel()
     connect(walletModel, &WalletModel::encryptionStatusChanged, this, &TopBar::refreshStatus);
     // Ask for passphrase if needed
     connect(walletModel, &WalletModel::requireUnlock, this, &TopBar::unlockWallet);
-    // update the display unit, to not use the default ("777")
+    // update the display unit, to not use the default ("__DSW__")
     updateDisplayUnit();
 
     refreshStatus();
@@ -631,10 +662,10 @@ void TopBar::updateBalances(const interfaces::WalletBalances& newBalance)
     }
     ui->labelTitle1->setText(nLockedBalance > 0 ? tr("Available (Locked included)") : tr("Available"));
 
-    // 777 Total
+    // __DSW__ Total
     QString totalPiv = GUIUtil::formatBalance(newBalance.balance, nDisplayUnit);
 
-    // 777
+    // __DSW__
     // Top
     ui->labelAmountTopPiv->setText(totalPiv);
     // Expanded

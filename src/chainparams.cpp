@@ -275,7 +275,7 @@ public:
 static CMainParams mainParams;
 
 /**
- * Testnet (v3)
+ * Testnet (v1)
  */
 class CTestNetParams : public CMainParams
 {
@@ -513,7 +513,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x3bf54807365f102ff9cdb07cf5f4af411503d5b544835dc96a5beaee140ad419"));
 
         consensus.fPowAllowMinDifficultyBlocks = true;
-        consensus.powLimit   = ~UINT256_ZERO >> 20;   // jackpot starting difficulty is 1 / 2^12
+        consensus.powLimit   = ~UINT256_ZERO >> 20;   // __decenomy__ starting difficulty is 1 / 2^12
         consensus.posLimitV1 = ~UINT256_ZERO >> 24;
         consensus.posLimitV2 = ~UINT256_ZERO >> 20;
         consensus.nBudgetCycleBlocks = 144;         // approx 10 cycles per day

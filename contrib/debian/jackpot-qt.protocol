@@ -1,6 +1,6 @@
 [Protocol]
-exec=jackpot-qt '%u'
-protocol=jackpot
+exec=__decenomy__-qt '%u'
+protocol=__decenomy__
 input=none
 output=none
 helper=true

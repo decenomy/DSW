@@ -11,10 +11,10 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both jackpotd and jackpot-qt, to make it harder for attackers to
+ * for both __decenomy__d and __decenomy__-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("Jackpot");
+const std::string CLIENT_NAME("__Decenomy__");
 
 /**
  * Client version number

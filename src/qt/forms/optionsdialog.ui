@@ -30,10 +30,10 @@
        <item>
         <widget class="QCheckBox" name="bitcoinAtStartup">
          <property name="toolTip">
-          <string>Automatically start 777 after logging in to the system.</string>
+          <string>Automatically start __DSW__ after logging in to the system.</string>
          </property>
          <property name="text">
-          <string>&amp;Start 777 on system login</string>
+          <string>&amp;Start __DSW__ on system login</string>
          </property>
         </widget>
        </item>
@@ -141,20 +141,20 @@
             <item>
              <widget class="QCheckBox" name="checkBoxZeromintEnable">
               <property name="toolTip">
-               <string>Enable automatic minting of 777 units to z777</string>
+               <string>Enable automatic minting of __DSW__ units to z__DSW__</string>
               </property>
               <property name="layoutDirection">
                <enum>Qt::LeftToRight</enum>
               </property>
               <property name="text">
-               <string>Enable z777 Automint</string>
+               <string>Enable z__DSW__ Automint</string>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QCheckBox" name="checkBoxZeromintAddresses">
               <property name="toolTip">
-               <string>Enable automatic z777 minting from specific addresses</string>
+               <string>Enable automatic z__DSW__ minting from specific addresses</string>
               </property>
               <property name="layoutDirection">
                <enum>Qt::LeftToRight</enum>
@@ -171,10 +171,10 @@
             <item>
              <widget class="QLabel" name="percentage_label">
               <property name="toolTip">
-               <string>Percentage of incoming 777 which get automatically converted to z777 via Zerocoin Protocol (min: 10%)</string>
+               <string>Percentage of incoming __DSW__ which get automatically converted to z__DSW__ via Zerocoin Protocol (min: 10%)</string>
               </property>
               <property name="text">
-               <string>Percentage of autominted z777</string>
+               <string>Percentage of autominted z__DSW__</string>
               </property>
              </widget>
             </item>
@@ -204,10 +204,10 @@
                </size>
               </property>
               <property name="toolTip">
-               <string>Wait with automatic conversion to Zerocoin until enough 777 for this denomination is available</string>
+               <string>Wait with automatic conversion to Zerocoin until enough __DSW__ for this denomination is available</string>
               </property>
               <property name="text">
-               <string>Preferred Automint z777 Denomination</string>
+               <string>Preferred Automint z__DSW__ Denomination</string>
               </property>
              </widget>
             </item>
@@ -220,7 +220,7 @@
                </size>
               </property>
               <property name="toolTip">
-               <string>Wait with automatic conversion to Zerocoin until enough 777 for this denomination is available</string>
+               <string>Wait with automatic conversion to Zerocoin until enough __DSW__ for this denomination is available</string>
               </property>
               <property name="maxVisibleItems">
                <number>9</number>
@@ -325,7 +325,7 @@
        <item>
         <widget class="QCheckBox" name="mapPortUpnp">
          <property name="toolTip">
-          <string>Automatically open the 777 client port on the router. This only works when your router supports UPnP and it is enabled.</string>
+          <string>Automatically open the __DSW__ client port on the router. This only works when your router supports UPnP and it is enabled.</string>
          </property>
          <property name="text">
           <string>Map port using &amp;UPnP</string>
@@ -345,7 +345,7 @@
        <item>
         <widget class="QCheckBox" name="connectSocks">
          <property name="toolTip">
-          <string>Connect to the 777 network through a SOCKS5 proxy.</string>
+          <string>Connect to the __DSW__ network through a SOCKS5 proxy.</string>
          </property>
          <property name="text">
           <string>&amp;Connect through SOCKS5 proxy (default proxy):</string>
@@ -511,7 +511,7 @@
          <item>
           <widget class="QValueComboBox" name="lang">
            <property name="toolTip">
-            <string>The user interface language can be set here. This setting will take effect after restarting 777.</string>
+            <string>The user interface language can be set here. This setting will take effect after restarting __DSW__.</string>
            </property>
           </widget>
          </item>
@@ -533,7 +533,7 @@
          </property>
          <property name="text">
           <string>Language missing or translation incomplete? Help contributing translations here:
-https://discord.com/invite/HNyRevT</string>
+__decenomy_discord_link__</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>

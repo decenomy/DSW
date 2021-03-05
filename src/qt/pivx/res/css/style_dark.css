@@ -165,9 +165,33 @@ QPushButton[cssClass="img-nav-logo"] {
     border-radius: 100%;
 }
 
-/*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
-!#############
- ################################*/
+/*****
+*masternode conf & saphire conf file edit topbar buttons.
+*****/
+
+QPushButton[cssClass="btn-check-conf"] {
+    qproperty-icon: url("://ic-check-coin-conf") ;
+    qproperty-iconSize: 24px 24px;
+    color:#ffffff;
+    background-color:#505c4b7d;
+    border-radius:2px;
+}
+
+QPushButton[cssClass="btn-check-masternodes"] {
+    qproperty-icon: url("://ic-check-mn-conf") ;
+    qproperty-iconSize: 24px 24px;
+    color:#ffffff;
+    background-color:#505c4b7d;
+    border-radius:2px;
+}
+
+QPushButton[cssClass="btn-check-console"] {
+	qproperty-icon: url("://ic-check-console") ;
+	qproperty-iconSize: 24px 24px;
+	color:#ffffff;
+	background-color:#505c4b7d;
+	border-radius:2px;
+  }
 
 /*******************
 ******cold staking top bar*********
@@ -1860,18 +1884,18 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     border-bottom: 5px solid #727172;
 }
 
-*[cssClass="text-stake-zpiv"] {
-    color:#dd514e;
+*[cssClass="text-stake-mnrewards"] {
+    color:#6666ff;
     font-size:16px;
     padding:10px;
-    border-bottom: 5px solid #dd514e;
+    border-bottom: 5px solid #6666ff;
 }
 
-*[cssClass="text-stake-zpiv-disable"] {
-    color:#505050;
+*[cssClass="text-stake-mnrewards-disable"] {
+    color:#423E4A;
     font-size:16px;
     padding:10px;
-    border-bottom: 5px solid #444444;
+    border-bottom: 5px solid #423E4A;
 }
 
 *[cssClass="legend-chart"] {
@@ -1879,8 +1903,8 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     font-size:16px;
 }
 
-*[cssClass="text-chart-zpiv"] {
-    color:#dd514e;
+*[cssClass="text-chart-mnrewards"] {
+    color:#6666ff;
     font-size:16px;
     padding-left:4px;
 }
@@ -1891,8 +1915,8 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     padding-left:4px;
 }
 
-*[cssClass="square-chart-zpiv"] {
-    background-color:#dd514e;
+*[cssClass="square-chart-mnrewards"] {
+    background-color:#6666ff;
     border:none;
 }
 

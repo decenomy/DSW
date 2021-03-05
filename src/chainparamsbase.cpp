@@ -29,7 +29,7 @@ public:
 static CBaseMainParams mainParams;
 
 /**
- * Testnet (v3)
+ * Testnet (v1)
  */
 class CBaseTestNetParams : public CBaseMainParams
 {

@@ -35,7 +35,7 @@ class WalletModel;
 
 
 /**
-  Jackpot GUI main class. This class represents the main window of the Jackpot UI. It communicates with both the client and
+  __Decenomy__ GUI main class. This class represents the main window of the __Decenomy__ UI. It communicates with both the client and
   wallet models to give the user an up-to-date view of the current core state.
 */
 class PIVXGUI : public QMainWindow
@@ -70,7 +70,9 @@ public Q_SLOTS:
     void goToColdStaking();
     void goToSettings();
     void goToSettingsInfo();
+    void goToDebugConsole();
     void openNetworkMonitor();
+	void showPeers();
 
     void connectActions();
 

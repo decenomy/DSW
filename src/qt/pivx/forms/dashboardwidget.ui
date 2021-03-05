@@ -454,7 +454,7 @@
             <enum>Qt::NoFocus</enum>
            </property>
            <property name="text">
-            <string>How to get 777</string>
+            <string>How to get __DSW__</string>
            </property>
           </widget>
          </item>
@@ -512,14 +512,14 @@
                </size>
               </property>
               <property name="text">
-               <string>Staking Rewards</string>
+               <string>Rewards Chart</string>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QLabel" name="labelMessage">
               <property name="text">
-               <string>Amount of 777 and z777 staked.</string>
+               <string>Amount of __DSW__ and z__DSW__ staked.</string>
               </property>
              </widget>
             </item>
@@ -567,23 +567,23 @@
           <item>
            <widget class="QLabel" name="labelAmountPiv">
             <property name="text">
-             <string notr="true">0 777</string>
+             <string notr="true">0 __DSW__</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QLabel" name="labelAmountZpiv">
-            <property name="text">
-             <string notr="true">0 z777</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
+        <item>
+            <widget class="QLabel" name="labelAmountMNRewards">
+                <property name="text">
+                    <string>TextLabel</string>
+                </property>
+                <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                </property>
+            </widget>
+        </item>
          </layout>
         </item>
         <item>
@@ -694,7 +694,7 @@
                 <item>
                  <widget class="QLabel" name="labelPiv">
                   <property name="text">
-                   <string notr="true">777</string>
+                   <string notr="true">__DSW__</string>
                   </property>
                  </widget>
                 </item>
@@ -715,30 +715,30 @@
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLabel" name="labelSquarezPiv">
-                  <property name="minimumSize">
-                   <size>
-                    <width>14</width>
-                    <height>14</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>14</width>
-                    <height>14</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                 </widget>
+                    <widget class="QLabel" name="labelSquareMNRewards">
+                        <property name="minimumSize">
+                            <size>
+                                <width>14</width>
+                                <height>14</height>
+                            </size>
+                        </property>
+                        <property name="maximumSize">
+                            <size>
+                                <width>14</width>
+                                <height>14</height>
+                            </size>
+                        </property>
+                        <property name="text">
+                            <string/>
+                        </property>
+                    </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="labelZpiv">
-                  <property name="text">
-                   <string notr="true">z777</string>
-                  </property>
-                 </widget>
+                    <widget class="QLabel" name="labelMNRewards">
+                        <property name="text">
+                            <string>__DSW__ MN</string>
+                        </property>
+                    </widget>
                 </item>
                </layout>
               </item>

@@ -101,7 +101,7 @@ SettingsInformationWidget::SettingsInformationWidget(PIVXGUI* _window,QWidget *p
     });
     connect(ui->pushButtonFile, &QPushButton::clicked, [this](){
         if (!GUIUtil::openConfigfile())
-            inform(tr("Unable to open jackpot.conf with default application"));
+            inform(tr("Unable to open __decenomy__.conf with default application"));
     });
     connect(ui->pushButtonNetworkMonitor, &QPushButton::clicked, this, &SettingsInformationWidget::openNetworkMonitor);
 }
@@ -159,6 +159,15 @@ void SettingsInformationWidget::openNetworkMonitor()
         rpcConsole->setClientModel(clientModel);
     }
     rpcConsole->showNetwork();
+}
+
+void SettingsInformationWidget::showPeers()
+{
+    if (!rpcConsole) {
+        rpcConsole = new RPCConsole(0);
+        rpcConsole->setClientModel(clientModel);
+    }
+    rpcConsole->showPeers();
 }
 
 void SettingsInformationWidget::showEvent(QShowEvent *event)
