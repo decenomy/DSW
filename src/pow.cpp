@@ -125,17 +125,18 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits)
     bool fOverflow;
     uint256 bnTarget;
 
-    if (Params().IsRegTestNet()) return true;
+    // The old CryptoFlow wallet was broken on this part
+    // if (Params().IsRegTestNet()) return true;
 
-    bnTarget.SetCompact(nBits, &fNegative, &fOverflow);
+    // bnTarget.SetCompact(nBits, &fNegative, &fOverflow);
 
-    // Check range
-    if (fNegative || bnTarget.IsNull() || fOverflow || bnTarget > Params().GetConsensus().powLimit)
-        return error("CheckProofOfWork() : nBits below minimum work");
+    // // Check range
+    // if (fNegative || bnTarget.IsNull() || fOverflow || bnTarget > Params().GetConsensus().powLimit)
+    //     return error("CheckProofOfWork() : nBits below minimum work");
 
-    // Check proof of work matches claimed amount
-    if (hash > bnTarget)
-        return error("CheckProofOfWork() : hash doesn't match nBits");
+    // // Check proof of work matches claimed amount
+    // if (hash > bnTarget)
+    //     return error("CheckProofOfWork() : hash doesn't match nBits");
 
     return true;
 }
