@@ -349,47 +349,47 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
 	if (nHeight == 0) {
 		nSubsidy = 250 * COIN;  //genesis
-	} else if(nHeight == 1 ) {   
+	} else if (nHeight == 1 ) {   
 		nSubsidy = 1450000 * COIN;  //1,450,000
-	} else if(nHeight > 1 && nHeight <= 800) { //PoW phase
+	} else if (nHeight > 1 && nHeight <= 800) { //PoW phase
 		nSubsidy = 30 * COIN;
-	} else if(nHeight > 800 && nHeight <= 1800) { //PoS phase
+	} else if (nHeight > 800 && nHeight <= 1800) { //PoS phase
 		nSubsidy = 10 * COIN; // "instamine"
-	} else if(nHeight > 1800 && nHeight <= 3200) {
+	} else if (nHeight > 1800 && nHeight <= 3200) {
 		nSubsidy = 650 * COIN;
-	} else if(nHeight > 3200 && nHeight <= 6000) { 
+	} else if (nHeight > 3200 && nHeight <= 6000) { 
 		nSubsidy = 850 * COIN;
-	} else if(nHeight > 6000 && nHeight <= 12000) { 
+	} else if (nHeight > 6000 && nHeight <= 12000) { 
 		nSubsidy = 1050 * COIN;
-	} else if(nHeight > 12000 && nHeight <= 20000) { 
+	} else if (nHeight > 12000 && nHeight <= 20000) { 
 		nSubsidy = 1250 * COIN;
-	} else if(nHeight > 20000 && nHeight <= 100000) { 
+	} else if (nHeight > 20000 && nHeight <= 100000) { 
 		nSubsidy = 450 * COIN;
-	} else if(nHeight > 100000 && nHeight <= targetFork1) { 
+	} else if (nHeight > 100000 && nHeight <= targetFork1) { 
 		nSubsidy = 350 * COIN;
-	} else if(nHeight > targetFork1 && nHeight <= 330390) {
+	} else if (nHeight > targetFork1 && nHeight <= 330390) {
 		nSubsidy = 80 * COIN;
-	} else if(nHeight > 330390 && nHeight <= 459990) {
+	} else if (nHeight > 330390 && nHeight <= 459990) {
 		nSubsidy = 40 * COIN;
-	} else if(nHeight > 459990 && nHeight <= 985590) {
+	} else if (nHeight > 459990 && nHeight <= 985590) {
 		nSubsidy = 20 * COIN;
-	} else if(nHeight > 985590 && nHeight <= targetFork2) { // targetFork2 = 1400001
+	} else if (nHeight > 985590 && nHeight <= targetFork2) { // targetFork2 = 1400001
 		nSubsidy = 10 * COIN;
-	} else if(nHeight > targetFork2 && nHeight <= 1500000) {
+	} else if (nHeight > targetFork2 && nHeight <= 1500000) {
 		nSubsidy = 1000 * COIN;
-	} else if(nHeight > 1500000 && nHeight <= 1600000) {
+	} else if (nHeight > 1500000 && nHeight <= 1600000) {
 		nSubsidy = 900 * COIN;
-	} else if(nHeight > 1600000 && nHeight <= 1700000) {
+	} else if (nHeight > 1600000 && nHeight <= 1700000) {
 		nSubsidy = 800 * COIN;
-	} else if(nHeight > 1700000 && nHeight <= 1800000) {
+	} else if (nHeight > 1700000 && nHeight <= 1800000) {
 		nSubsidy = 700 * COIN;
-	} else if(nHeight > 1800000 && nHeight <= 1900000) {
+	} else if (nHeight > 1800000 && nHeight <= 1900000) {
 		nSubsidy = 600 * COIN;
-	} else if(nHeight > 1900000 && nHeight <= 2000000) {
+	} else if (nHeight > 1900000 && nHeight <= 2000000) {
 		nSubsidy = 500 * COIN;
-	} else if(nHeight > 2000000 && nHeight <= 2100000) {
+	} else if (nHeight > 2000000 && nHeight <= 2100000) {
 		nSubsidy = 450 * COIN;
-	} else if(nHeight > 2100000) {
+	} else if (nHeight > 2100000) {
 		nSubsidy = 400 * COIN;
 	} 
 
