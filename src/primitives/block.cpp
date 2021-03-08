@@ -32,17 +32,7 @@ uint256 CBlockHeader::GetHash() const
 #endif
     }
 	
-	if (nVersion < 7) { // nVersion = 4, 5, 6
-		return Hash(BEGIN(nVersion), END(nAccumulatorCheckpoint));
-	}
-
-    return SerializeHash(*this); // nVersion >= 7
-
-// From original trittium codes
-	// if(nVersion < 4)
-    //     return XEVAN(BEGIN(nVersion), END(nNonce));
-
-    // return Hash(BEGIN(nVersion), END(nAccumulatorCheckpoint));
+    return SerializeHash(*this); // nVersion >= 4
 }
 
 std::string CBlock::ToString() const
