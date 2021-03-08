@@ -54,7 +54,7 @@ uint256 CStakeKernel::GetHash() const
 {
     CDataStream ss(stakeModifier);
     ss << nTimeBlockFrom << stakeUniqueness << nTime;
-    return Hash(ss.begin(), ss.end());
+    return HashX13(ss.begin(), ss.end());
 }
 
 // Check that the kernel hash meets the target required
