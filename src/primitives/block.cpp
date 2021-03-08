@@ -17,11 +17,7 @@
 
 uint256 CBlockHeader::GetHash() const
 {
-    uint256 thash;
-    xevan_hash(reinterpret_cast<const char*>(this), (char*)&thash, 80);
-    return thash;
-
-/*     if (nVersion < 4)  {
+     if (nVersion < 4)  { // nVersion = 1, 2, 3
 #if defined(WORDS_BIGENDIAN)
         uint8_t data[80];
         WriteLE32(&data[0], nVersion);
@@ -30,14 +26,23 @@ uint256 CBlockHeader::GetHash() const
         WriteLE32(&data[68], nTime);
         WriteLE32(&data[72], nBits);
         WriteLE32(&data[76], nNonce);
-        return HashQuark(data, data + 80);
+        return XEVAN(data, data + 80);
 #else // Can take shortcut for little endian
-        return HashQuark(BEGIN(nVersion), END(nNonce));
+        return XEVAN(BEGIN(nVersion), END(nNonce));
 #endif
     }
-    // version >= 4
-    return SerializeHash(*this);
- */
+	
+	if (nVersion < 7) { // nVersion = 4, 5, 6
+		return Hash(BEGIN(nVersion), END(nAccumulatorCheckpoint));
+	}
+
+    return SerializeHash(*this); // nVersion >= 7
+
+// From original trittium codes
+	// if(nVersion < 4)
+    //     return XEVAN(BEGIN(nVersion), END(nNonce));
+
+    // return Hash(BEGIN(nVersion), END(nAccumulatorCheckpoint));
 }
 
 std::string CBlock::ToString() const

@@ -52,7 +52,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "BTC appreciated by 73 percent in May 2017 as it jumped from $1,348 to $2,330.";
+	const char* pszTimestamp = "BTC appreciated by 73 percent in May 2017 as it jumped from $1,348 to $2,330.";
     const CScript genesisOutputScript = CScript() << ParseHex("04bcfbea59ec97482475f554db08f7f67c5c5a95a52a356b052d0ed87862815796fe6022c33a0baf09fcd8d3ee98ebb6aa6a77fb43d716641242cfd45369a88e7d") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -69,7 +69,7 @@ static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits
  */
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("00006eb8f6f84dd032d09adc52515dc697fcc7505ea7ec430126e3a4811d8654")) // Genesis
+    (0, uint256("0x00006eb8f6f84dd032d09adc52515dc697fcc7505ea7ec430126e3a4811d8654"))
 ; 
 
 static const Checkpoints::CCheckpointData data = {
@@ -107,51 +107,51 @@ public:
         networkID = CBaseChainParams::MAIN;
         strNetworkID = "main";
 
-        // // This is used inorder to mine the genesis block. Once found, we can use the nonce and block hash found to create a valid genesis block
-        // /////////////////////////////////////////////////////////////////
+        // This is used inorder to mine the genesis block. Once found, we can use the nonce and block hash found to create a valid genesis block
+        /////////////////////////////////////////////////////////////////
 
-        // uint32_t nGenesisTime = 1612360301; // 2021-02-03T13:51:41+00:00
+        uint32_t nGenesisTime = 1525551420; // 2021-02-03T13:51:41+00:00
 
-        // arith_uint256 test;
-        // bool fNegative;
-        // bool fOverflow;
-        // test.SetCompact(0x1e0ffff0, &fNegative, &fOverflow);
-        // std::cout << "Test threshold: " << test.GetHex() << "\n\n";
+        arith_uint256 test;
+        bool fNegative;
+        bool fOverflow;
+        test.SetCompact(0x1e0ffff0, &fNegative, &fOverflow);
+        std::cout << "Test threshold: " << test.GetHex() << "\n\n";
 
-        // int genesisNonce = 0;
-        // uint256 TempHashHolding = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
-        // uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        // for (int i=0;i<40000000;i++) {
-        //     genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e0ffff0, 1, 0 * COIN);
-        //     //genesis.hashPrevBlock = TempHashHolding;
-        //     consensus.hashGenesisBlock = genesis.GetHash();
+        int genesisNonce = 0;
+        uint256 TempHashHolding = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
+        uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        for (int i=0;i<40000000;i++) {
+            genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e0ffff0, 4, 250 * COIN);
+            //genesis.hashPrevBlock = TempHashHolding;
+            consensus.hashGenesisBlock = genesis.GetHash();
 
-        //     arith_uint256 BestBlockHashArith = UintToArith256(BestBlockHash);
-        //     if (UintToArith256(consensus.hashGenesisBlock) < BestBlockHashArith) {
-        //         BestBlockHash = consensus.hashGenesisBlock;
-        //         std::cout << BestBlockHash.GetHex() << " Nonce: " << i << "\n";
-        //         std::cout << "   PrevBlockHash: " << genesis.hashPrevBlock.GetHex() << "\n";
-        //     }
+            arith_uint256 BestBlockHashArith = UintToArith256(BestBlockHash);
+            if (UintToArith256(consensus.hashGenesisBlock) < BestBlockHashArith) {
+                BestBlockHash = consensus.hashGenesisBlock;
+                std::cout << BestBlockHash.GetHex() << " Nonce: " << i << "\n";
+                std::cout << "   PrevBlockHash: " << genesis.hashPrevBlock.GetHex() << "\n";
+            }
 
-        //     TempHashHolding = consensus.hashGenesisBlock;
+            TempHashHolding = consensus.hashGenesisBlock;
 
-        //     if (BestBlockHashArith < test) {
-        //         genesisNonce = i - 1;
-        //         break;
-        //     }
-        //     //std::cout << consensus.hashGenesisBlock.GetHex() << "\n";
-        // }
-        // std::cout << "\n";
-        // std::cout << "\n";
-        // std::cout << "\n";
+            if (BestBlockHashArith < test) {
+                genesisNonce = i - 1;
+                break;
+            }
+            //std::cout << consensus.hashGenesisBlock.GetHex() << "\n";
+        }
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
 
-        // std::cout << "hashGenesisBlock to 0x" << BestBlockHash.GetHex() << std::endl;
-        // std::cout << "Genesis Nonce to " << genesisNonce << std::endl;
-        // std::cout << "Genesis Merkle 0x" << genesis.hashMerkleRoot.GetHex() << std::endl;
+        std::cout << "hashGenesisBlock to 0x" << BestBlockHash.GetHex() << std::endl;
+        std::cout << "Genesis Nonce to " << genesisNonce << std::endl;
+        std::cout << "Genesis Merkle 0x" << genesis.hashMerkleRoot.GetHex() << std::endl;
 
-        // exit(0);
+        exit(0);
 
-        // /////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////
 
         genesis = CreateGenesisBlock(1525551420, 0x4059, 0x1e0ffff0, 1, 250 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
@@ -423,15 +423,15 @@ public:
         vSeeds.push_back(CDNSSeedData("trtt-testnet.572133.club", "trtt-testnet.572133.club", true));
         vSeeds.push_back(CDNSSeedData("trtt-testnet2.572133.club", "trtt-testnet2.572133.club", true));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet Trittium addresses start with 'x' or 'y'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet Trittium script addresses start with '8' or '9'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet __Decenomy__ addresses start with 'x' or 'y'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet __Decenomy__ script addresses start with '8' or '9'
         base58Prefixes[STAKING_ADDRESS] = std::vector<unsigned char>(1, 73);     // starting with 'W'
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);     // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
-        // Testnet Trittium BIP32 pubkeys start with 'DRKV'
+        // Testnet __Decenomy__ BIP32 pubkeys start with 'DRKV'
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x3a)(0x80)(0x61)(0xa0).convert_to_container<std::vector<unsigned char> >();
-        // Testnet Trittium BIP32 prvkeys start with 'DRKP'
+        // Testnet __Decenomy__ BIP32 prvkeys start with 'DRKP'
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x3a)(0x80)(0x58)(0x37).convert_to_container<std::vector<unsigned char> >();
-        // Testnet Trittium BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet __Decenomy__ BIP44 coin type is '1' (All coin's testnet default)
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x00)(0x01).convert_to_container<std::vector<unsigned char> >();
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
