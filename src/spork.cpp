@@ -101,7 +101,8 @@ void CSporkManager::ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStr
         }
 
         // reject old signature version
-        if (spork.nMessVersion != MessageVersion::MESS_VER_HASH) {
+        if (Params().GetConsensus().NetworkUpgradeActive(chainActive.Tip()->nHeight, Consensus::UPGRADE_V4_0) &&
+            spork.nMessVersion != MessageVersion::MESS_VER_HASH) {
             LogPrintf("%s : nMessVersion=%d not accepted anymore\n", __func__, spork.nMessVersion);
             return;
         }
