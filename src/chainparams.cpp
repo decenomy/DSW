@@ -70,13 +70,6 @@ static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
     (0, uint256("0x000000f5b14f165bb33e98d316ccd8e25d4fba3e761d99c03ff78c9acf6237b1"))
-	(1286, uint256("0x9fde9ff411f3862e798fdb4365620cf89d30f9aac1a006761108073cf0c80bd4"))
-	(65849, uint256("0x0479a27a5672b3c85640ed079962839e15773aafad6536ae3aab5ce5ccedc3e8"))
-	(147816, uint256("0x15832cf53e3a7f56c38c9c227a8cd3fa9b239fe797cf521b6634e3c0e28a89d5"))
-	(298759, uint256("0xa22cc2a1253a36940ed089e6571e439b39915f5df7f28f498abc919e85915bf1"))
-	(300501, uint256("0x7f556f2119fe222b471f811a2c577c24c57ed4f5f5fe9a4afeaad84445b0ca28"))
-	(311785, uint256("0x1ee333b16030886cfd1f8833aeb5899dcb89fdfbe619e1bd9cf233d3c77f63af"))
-	(319170, uint256("0xbfe6b28b2422d5e84fa42e78116f7d8dd26bfdd6264c675e031e68695b242816"))
 ; 
 
 static const Checkpoints::CCheckpointData data = {
@@ -126,7 +119,7 @@ public:
         consensus.posLimitV2 = ~UINT256_ZERO >> 20;
         consensus.nBudgetCycleBlocks = 30 * 24 * 60;       // approx. 1 every 30 days
         consensus.nBudgetFeeConfirmations = 6;      // Number of confirmations for the finalization fee
-        consensus.nCoinbaseMaturity = 20;
+        consensus.nCoinbaseMaturity = 100;
         consensus.nFutureTimeDriftPoW = 7200;
         consensus.nFutureTimeDriftPoS = 180;
         consensus.nMasternodeCountDrift = 20;       // num of MN we allow the see-saw payments to be off by
@@ -142,7 +135,7 @@ public:
 
         // spork keys
         consensus.strSporkPubKey = "02f41826b4cb2b38cc896526dbf386c36e31c96a4a7f99bb0eec6de4cb7949ebf1";
-        consensus.strSporkPubKeyOld = "046d124652f5f8cd02851cd4370a0c7072b01a933598886eb7dba0de0a4209776aec972b59dc5c614cc42cea8044337fdb6d68527131b9c0c42b5427522207808b";
+        consensus.strSporkPubKeyOld = "";
         consensus.nTime_EnforceNewSporkKey = 0;
         consensus.nTime_RejectOldSporkKey = 0;
 
@@ -172,15 +165,15 @@ public:
         // Network upgrades
         consensus.vUpgrades[Consensus::BASE_NETWORK].nActivationHeight                  = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
         consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight             = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight                   = 501;
-        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight                = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight                   = 1001;
+        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight                = 1441;
         consensus.vUpgrades[Consensus::UPGRADE_ZC].nActivationHeight                    = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight                 = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight                 = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight                 = 1441;
         consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight             = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight                  = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight                  = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].nActivationHeight              = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight                  = 1541;
+        consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight                  = 1641;
+        consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].nActivationHeight              = 1741;
 
         consensus.vUpgrades[Consensus::UPGRADE_ZC].hashActivationBlock                  = uint256S("0x0");
         consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].hashActivationBlock               = uint256S("0x0");
@@ -194,12 +187,13 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0xcf;
-        pchMessageStart[1] = 0xf7;
-        pchMessageStart[2] = 0x12;
-        pchMessageStart[3] = 0xa5;
-        nDefaultPort = 3333;
+        pchMessageStart[0] = 0xde;
+        pchMessageStart[1] = 0xe9;
+        pchMessageStart[2] = 0xd5;
+        pchMessageStart[3] = 0xef;
+        nDefaultPort = 13333;
 
+        vSeeds.push_back(CDNSSeedData("seeder", "seeder.cryptoflow.eu"));
 	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.cryptoflow.eu"));
         vSeeds.push_back(CDNSSeedData("seed2", "seed2.cryptoflow.eu"));
         vSeeds.push_back(CDNSSeedData("seed3", "seed3.cryptoflow.eu"));
