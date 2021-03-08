@@ -7,13 +7,13 @@
 
 #include "primitives/block.h"
 
-#include "hash.h"
-#include "script/standard.h"
-#include "script/sign.h"
-#include "tinyformat.h"
-#include "utilstrencodings.h"
-#include "util.h"
 #include "crypto/xevan.h"
+#include "hash.h"
+#include "script/sign.h"
+#include "script/standard.h"
+#include "tinyformat.h"
+#include "util.h"
+#include "utilstrencodings.h"
 
 uint256 CBlockHeader::GetHash() const
 {
@@ -30,8 +30,7 @@ std::string CBlock::ToString() const
         hashMerkleRoot.ToString(),
         nTime, nBits, nNonce,
         vtx.size());
-    for (unsigned int i = 0; i < vtx.size(); i++)
-    {
+    for (unsigned int i = 0; i < vtx.size(); i++) {
         s << "  " << vtx[i].ToString() << "\n";
     }
     return s.str();
