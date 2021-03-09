@@ -15,7 +15,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"io.jackpot.Jackpot-Qt";
+        return @"io.__decenomy__.__Decenomy__-Qt";
     } else {
         return [self __bundleIdentifier];
     }

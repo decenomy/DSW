@@ -104,7 +104,7 @@ void UpdateTime(CBlockHeader* pblock, const CBlockIndex* pindexPrev)
 bool CheckForDuplicatedSerials(const CTransaction& tx, const Consensus::Params& consensus,
                                std::vector<CBigNum>& vBlockSerials)
 {
-    // double check that there are no double spent z777 spends in this block or tx
+    // double check that there are no double spent z__DSW__ spends in this block or tx
     if (tx.HasZerocoinSpendInputs()) {
         int nHeightTx = 0;
         if (IsTransactionInChain(tx.GetHash(), nHeightTx)) {
@@ -139,7 +139,7 @@ bool CheckForDuplicatedSerials(const CTransaction& tx, const Consensus::Params& 
                 vBlockSerials.emplace_back(spend->getCoinSerialNumber());
             }
         }
-        //This z777 serial has already been included in the block, do not add this tx.
+        //This z__DSW__ serial has already been included in the block, do not add this tx.
         if (fDoubleSerial) {
             return false;
         }
@@ -206,8 +206,17 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
     // Make sure to create the correct block version
     const Consensus::Params& consensus = Params().GetConsensus();
 
-    //!> Block v7: Removes accumulator checkpoints
-    pblock->nVersion = CBlockHeader::CURRENT_VERSION;
+    if (consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_V4_0))
+        pblock->nVersion = 7;
+    else if (consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_V3_4))
+        pblock->nVersion = 6;
+    else if (consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_BIP65))
+        pblock->nVersion = 5;
+    else if (consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_ZC))
+        pblock->nVersion = 4;
+    else
+        pblock->nVersion = 3;
+
     // -regtest only: allow overriding block.nVersion with
     // -blockversion=N to test forking scenarios
     if (Params().IsRegTestNet()) {
@@ -313,7 +322,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
 
                 int nConf = nHeight - coin.nHeight;
 
-                // z777 spends can have very large priority, use non-overflowing safe functions
+                // z__DSW__ spends can have very large priority, use non-overflowing safe functions
                 dPriority = double_safe_addition(dPriority, ((double)nValueIn * nConf));
 
             }
@@ -385,7 +394,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
             if (!view.HaveInputs(tx))
                 continue;
 
-            // z777 check to not include duplicated serials in the same block.
+            // z__DSW__ check to not include duplicated serials in the same block.
             if (!CheckForDuplicatedSerials(tx, consensus, vBlockSerials)) {
                 continue;
             }

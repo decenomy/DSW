@@ -67,7 +67,7 @@ public:
  *  * CNoDestination: no destination set
  *  * CKeyID: TX_PUBKEYHASH destination
  *  * CScriptID: TX_SCRIPTHASH destination
- *  A CTxDestination is the internal data type encoded in a 777 address
+ *  A CTxDestination is the internal data type encoded in a __DSW__ address
  */
 typedef boost::variant<CNoDestination, CKeyID, CScriptID> CTxDestination;
 
