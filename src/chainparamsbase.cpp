@@ -13,10 +13,6 @@
 
 #include <boost/assign/list_of.hpp>
 
-#define __RPCPORT_MAINNET__ 9998;
-#define __RPCPORT_TESTNET__ 19998;
-
-
 /**
  * Main network
  */
