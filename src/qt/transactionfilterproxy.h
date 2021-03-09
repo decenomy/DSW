@@ -64,7 +64,7 @@ public:
     void setShowZcTxes(bool fOnlyZc);
 
     /** Only stakes txes **/
-    void setOnlyStakes(bool fOnlyStakes);
+    void setOnlyStakesandMN(bool fOnlyStakesandMN);
 
     /** Shows only p2cs-p2cs && xxx-p2cs **/
     void setOnlyColdStakes(bool fOnlyColdStakes);
@@ -88,11 +88,12 @@ private:
     bool showInactive;
     bool fHideOrphans = true;
     bool fOnlyZc = false;
-    bool fOnlyStakes = false;
+    bool fOnlyStakesandMN = false;
     bool fOnlyColdStaking = false;
 
     bool isZcTx(int type) const;
     bool isStakeTx(int type) const;
+	bool isMasternodeRewardTx(int type) const;
     bool isColdStake(int type) const;
 };
 

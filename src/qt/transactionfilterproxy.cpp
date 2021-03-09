@@ -64,7 +64,7 @@ bool TransactionFilterProxy::filterAcceptsRow(int sourceRow, const QModelIndex& 
     if (fOnlyZc && !isZcTx(type)){
         return false;
     }
-    if (fOnlyStakes && !isStakeTx(type))
+    if (fOnlyStakesandMN && !isStakeTx(type) && !isMasternodeRewardTx(type))
         return false;
 
     if (fOnlyColdStaking && !isColdStake(type))
@@ -129,9 +129,9 @@ void TransactionFilterProxy::setShowZcTxes(bool fOnlyZc)
     invalidateFilter();
 }
 
-void TransactionFilterProxy::setOnlyStakes(bool fOnlyStakes)
+void TransactionFilterProxy::setOnlyStakesandMN(bool fOnlyStakesandMN)
 {
-    this->fOnlyStakes = fOnlyStakes;
+    this->fOnlyStakesandMN = fOnlyStakesandMN;
     invalidateFilter();
 }
 
@@ -163,7 +163,11 @@ bool TransactionFilterProxy::isZcTx(int type) const {
 }
 
 bool TransactionFilterProxy::isStakeTx(int type) const {
-    return type == TransactionRecord::StakeMint || type == TransactionRecord::Generated || type == TransactionRecord::StakeZPIV || type == TransactionRecord::StakeDelegated;
+    return type == TransactionRecord::StakeMint || type == TransactionRecord::Generated /*|| type == TransactionRecord::StakeZPIV*/ || type == TransactionRecord::StakeDelegated;
+}
+
+bool TransactionFilterProxy::isMasternodeRewardTx(int type) const {
+    return (type == TransactionRecord::MNReward);
 }
 
 bool TransactionFilterProxy::isColdStake(int type) const {

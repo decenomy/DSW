@@ -33,6 +33,7 @@ private Q_SLOTS:
 
 public Q_SLOTS:
     void openNetworkMonitor();
+	void showPeers();
 
 private:
     Ui::SettingsInformationWidget *ui;
