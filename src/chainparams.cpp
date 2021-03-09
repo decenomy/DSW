@@ -180,7 +180,7 @@ public:
         consensus.nProposalEstablishmentTime = 60 * 60 * 24;    // must be at least a day old to make it into a budget
         consensus.nStakeMinAge = 60 * 60; // 1h
         consensus.nStakeMinDepth = 600;
-        consensus.nTargetTimespan = 1 * 60;
+        consensus.nTargetTimespan = 40 * 60;
         consensus.nTargetTimespanV2 = 30 * 60;
         consensus.nTargetSpacing = 1 * 60;
         consensus.nTimeSlotLength = 15;
@@ -229,7 +229,6 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight             = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT; // Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight                  = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight                  = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        //consensus.vUpgrades[Consensus::UPGRADE_V5_0].nActivationHeight                  = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].nActivationHeight              = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
 
         consensus.vUpgrades[Consensus::UPGRADE_ZC].hashActivationBlock                  = uint256S("0x0");
@@ -251,14 +250,15 @@ public:
         pchMessageStart[3] = 0x19;
         nDefaultPort = 32628;
 
-        vSeeds.push_back(CDNSSeedData("seed1.ucrcoin.net", "seed1.ucrcoin.net"));
-        vSeeds.push_back(CDNSSeedData("seed2.ucrcoin.net", "seed2.ucrcoin.net"));
-        vSeeds.push_back(CDNSSeedData("seed3.ucrcoin.net", "seed3.ucrcoin.net"));
-        vSeeds.push_back(CDNSSeedData("seed4.ucrcoin.net", "seed4.ucrcoin.net"));
-        vSeeds.push_back(CDNSSeedData("seed5.ucrcoin.net", "seed5.ucrcoin.net"));
-        vSeeds.push_back(CDNSSeedData("seed6.ucrcoin.net", "seed6.ucrcoin.net"));
-        vSeeds.push_back(CDNSSeedData("seed7.ucrcoin.net", "seed7.ucrcoin.net"));
-        vSeeds.push_back(CDNSSeedData("seed8.ucrcoin.net", "seed8.ucrcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seeder", "seeder.ucrcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed1", "seed1.ucrcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed2", "seed2.ucrcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed3", "seed3.ucrcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed4", "seed4.ucrcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed5", "seed5.ucrcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed6", "seed6.ucrcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed7", "seed7.ucrcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed8", "seed8.ucrcoin.net"));
 
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 28); // 7
