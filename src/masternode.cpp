@@ -384,7 +384,7 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 		nSubsidy = 40 * COIN; //nSubsidy = 20 * COIN; something f..... up happened in these blocks, sometimes they are paid in double (part 2)
 	} else if (nPrevHeight > 985590 && nPrevHeight <= targetFork2) { // targetFork2 = 1400001
 		nSubsidy = 20 * COIN; //nSubsidy = 10 * COIN; something f..... up happened in these blocks, sometimes they are paid in double (part 2)
-	} else if (nPrevHeight > targetFork2 && nHeight <= nHeight) {
+	} else if (nPrevHeight > targetFork2 && nHeight <= 1500000) {
 		nSubsidy = 2000 * COIN; //nSubsidy = 1000 * COIN; something f..... up happened in these blocks, sometimes they are paid in double (part 2)
 	} else if (nHeight > 1500000 && nHeight <= 1600000) {
 		nSubsidy = 900 * COIN;
