@@ -18,6 +18,9 @@
 #include <assert.h>
 
 #define DISABLED 0xFFFFFFFF;
+#define __PORT_MAINNET__ 9999;
+#define __PORT_TESTNET__ 19999;
+#define __PORT_REGTEST__ 29999;
 
 static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesisOutputScript, uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
@@ -238,14 +241,15 @@ public:
         pchMessageStart[3] = 0x77;
         nDefaultPort = __PORT_MAINNET__;
 
-	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.777coin.win"));
-        vSeeds.push_back(CDNSSeedData("seed2", "seed2.777coin.win"));
-        vSeeds.push_back(CDNSSeedData("seed3", "seed3.777coin.win"));
-        vSeeds.push_back(CDNSSeedData("seed4", "seed4.777coin.win"));
-	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.777coin.win"));
-	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.777coin.win"));
-	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.777coin.win"));
-	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.777coin.win"));
+        vSeeds.push_back(CDNSSeedData("seeder", "seeder.__decenomy.net__"));
+	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.__decenomy.net__"));
+        vSeeds.push_back(CDNSSeedData("seed2", "seed2.__decenomy.net__"));
+        vSeeds.push_back(CDNSSeedData("seed3", "seed3.__decenomy.net__"));
+        vSeeds.push_back(CDNSSeedData("seed4", "seed4.__decenomy.net__"));
+	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.__decenomy.net__"));
+	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.__decenomy.net__"));
+	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.__decenomy.net__"));
+	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.__decenomy.net__"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 15); // 7
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 16); // 7
@@ -374,8 +378,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "pivx-testnet.seed.fuzzbawls.pw", true));
-        vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "pivx-testnet.seed2.fuzzbawls.pw", true));
+        vSeeds.push_back(CDNSSeedData("tseeder", "tseeder.__decenomy.net__", true));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet __decenomy__ addresses start with 'x' or 'y'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet __decenomy__ script addresses start with '8' or '9'
