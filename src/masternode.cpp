@@ -347,36 +347,45 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 	const int targetFork1 = 200790; //fork since block 200,790
 	const int targetFork2 = 1400000; //fork since block 1,400,001
 
-	if (nHeight == 0) {
+    int nPrevHeight = nHeight - 1; //old stuff worked with this index
+
+    //lets deal with the old treasury stuff (this was really f..... up (part 3))
+    if(nPrevHeight == 70000) {
+        return 200010 * COIN; 
+    } else if(nPrevHeight > 70000 && nPrevHeight <= targetFork2 && (nPrevHeight - 70000) % 1000 == 0) {
+        return 15010 * COIN;
+    }
+
+	if (nPrevHeight == 0) {
 		nSubsidy = 250 * COIN;  //genesis
-	} else if (nHeight == 1 ) {   
+	} else if (nPrevHeight == 1 ) {   
 		nSubsidy = 1450000 * COIN;  //1,450,000
-	} else if (nHeight > 1 && nHeight <= 800) { //PoW phase
+	} else if (nPrevHeight > 1 && nPrevHeight <= 800) { //PoW phase
 		nSubsidy = 30 * COIN;
-	} else if (nHeight > 800 && nHeight <= 1800) { //PoS phase
+	} else if (nPrevHeight > 800 && nPrevHeight <= 1800) { //PoS phase
 		nSubsidy = 10 * COIN; // "instamine"
-	} else if (nHeight > 1800 && nHeight <= 3200) {
+	} else if (nPrevHeight > 1800 && nPrevHeight <= 3200) {
 		nSubsidy = 650 * COIN;
-	} else if (nHeight > 3200 && nHeight <= 6000) { 
+	} else if (nPrevHeight > 3200 && nPrevHeight <= 6000) { 
 		nSubsidy = 850 * COIN;
-	} else if (nHeight > 6000 && nHeight <= 12000) { 
+	} else if (nPrevHeight > 6000 && nPrevHeight <= 12000) { 
 		nSubsidy = 1050 * COIN;
-	} else if (nHeight > 12000 && nHeight <= 20000) { 
+	} else if (nPrevHeight > 12000 && nPrevHeight <= 20000) { 
 		nSubsidy = 1250 * COIN;
-	} else if (nHeight > 20000 && nHeight <= 100000) { 
+	} else if (nPrevHeight > 20000 && nPrevHeight <= 100000) { 
 		nSubsidy = 450 * COIN;
-	} else if (nHeight > 100000 && nHeight <= targetFork1) { 
+	} else if (nPrevHeight > 100000 && nPrevHeight <= targetFork1) { 
 		nSubsidy = 350 * COIN;
-	} else if (nHeight > targetFork1 && nHeight <= 330390) {
-		nSubsidy = 80 * COIN;
-	} else if (nHeight > 330390 && nHeight <= 459990) {
-		nSubsidy = 40 * COIN;
-	} else if (nHeight > 459990 && nHeight <= 985590) {
-		nSubsidy = 20 * COIN;
-	} else if (nHeight > 985590 && nHeight <= targetFork2) { // targetFork2 = 1400001
-		nSubsidy = 10 * COIN;
-	} else if (nHeight > targetFork2 && nHeight <= 1500000) {
-		nSubsidy = 1000 * COIN;
+	} else if (nPrevHeight > targetFork1 && nPrevHeight <= 330390) {
+		nSubsidy = 160 * COIN; //nSubsidy = 80 * COIN; something f..... up happened in these blocks, sometimes they are paid in double (part 2)
+	} else if (nPrevHeight > 330390 && nPrevHeight <= 459990) {
+		nSubsidy = 80 * COIN; //nSubsidy = 40 * COIN; something f..... up happened in these blocks, sometimes they are paid in double (part 2)
+	} else if (nPrevHeight > 459990 && nPrevHeight <= 985590) {
+		nSubsidy = 40 * COIN; //nSubsidy = 20 * COIN; something f..... up happened in these blocks, sometimes they are paid in double (part 2)
+	} else if (nPrevHeight > 985590 && nPrevHeight <= targetFork2) { // targetFork2 = 1400001
+		nSubsidy = 20 * COIN; //nSubsidy = 10 * COIN; something f..... up happened in these blocks, sometimes they are paid in double (part 2)
+	} else if (nPrevHeight > targetFork2 && nHeight <= nHeight) {
+		nSubsidy = 2000 * COIN; //nSubsidy = 1000 * COIN; something f..... up happened in these blocks, sometimes they are paid in double (part 2)
 	} else if (nHeight > 1500000 && nHeight <= 1600000) {
 		nSubsidy = 900 * COIN;
 	} else if (nHeight > 1600000 && nHeight <= 1700000) {
