@@ -15,14 +15,14 @@
 
 extern const std::string CURRENCY_UNIT;
 
-/** Amount in __DSW__ (Can be negative) */
+/** Amount in UCR (Can be negative) */
 typedef int64_t CAmount;
 
 static const CAmount COIN = 100000000;
 static const CAmount CENT = 1000000;
 
 /**
- * Fee rate in __DSW__ per kilobyte: CAmount / kB
+ * Fee rate in UCR per kilobyte: CAmount / kB
  */
 class CFeeRate
 {
