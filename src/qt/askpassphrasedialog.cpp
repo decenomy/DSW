@@ -348,7 +348,7 @@ void AskPassphraseDialog::warningMessage()
     openStandardDialog(
             tr("Wallet encrypted"),
             "<qt>" +
-            tr("__Decenomy__ will close now to finish the encryption process. "
+            tr("Ultra Clear will close now to finish the encryption process. "
                "Remember that encrypting your wallet cannot fully protect "
                "your __DSW__s from being stolen by malware infecting your computer.") +
             "<br><br><b>" +
