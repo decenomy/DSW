@@ -236,7 +236,7 @@ public:
         pchMessageStart[1] = 0x52;
         pchMessageStart[2] = 0x58;
         pchMessageStart[3] = 0x67;
-        nDefaultPort = 30001;
+        nDefaultPort = __PORT_MAINNET__;
 
         vSeeds.push_back(CDNSSeedData("seeder", "seeder.trittium.net"));
         vSeeds.push_back(CDNSSeedData("seed1", "seed1.trittium.net"));
@@ -416,11 +416,12 @@ public:
         pchMessageStart[1] = 0x63;
         pchMessageStart[2] = 0x69;
         pchMessageStart[3] = 0x78;
-        nDefaultPort = 40001;
+        nDefaultPort = __PORT_TESTNET__;
 
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
+        vSeeds.push_back(CDNSSeedData("seeder", "seeder.trittium.net"));
         vSeeds.push_back(CDNSSeedData("trtt-testnet.572133.club", "trtt-testnet.572133.club", true));
         vSeeds.push_back(CDNSSeedData("trtt-testnet2.572133.club", "trtt-testnet2.572133.club", true));
 
@@ -593,7 +594,7 @@ public:
         pchMessageStart[1] = 0xcf;
         pchMessageStart[2] = 0x7e;
         pchMessageStart[3] = 0xac;
-        nDefaultPort = 51436;
+        nDefaultPort = __PORT_REGTEST__;
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
