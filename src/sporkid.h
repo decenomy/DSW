@@ -18,12 +18,15 @@ enum SporkId : int32_t {
     SPORK_5_MAX_VALUE                           = 10004,
     SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT      = 10007,
     SPORK_9_MASTERNODE_BUDGET_ENFORCEMENT       = 10008,
+	SPORK_10_NOOP								= 10009, // Old wallet code (v3.0.2): SPORK_10_MASTERNODE_PAY_UPDATED_NODES 10009
+	SPORK_11_NOOP								= 10010, // Old wallet code (v3.0.2): SPORK_11_LOCK_INVALID_UTXO 10010
+	SPORK_12_NOOP								= 10011, // Old wallet code (v3.0.2): SPORK_12_RECONSIDER_BLOCKS 10011 (commented)
     SPORK_13_ENABLE_SUPERBLOCKS                 = 10012,
-    SPORK_14_MIN_PROTOCOL_ACCEPTED              = 10013,
-    SPORK_15_NOOP                               = 10014,
+    SPORK_14_MIN_PROTOCOL_ACCEPTED              = 10013, // Old wallet code (v3.0.2): SPORK_14_NEW_PROTOCOL_ENFORCEMENT 10013
+    SPORK_15_NOOP                               = 10014, // Old wallet code (v3.0.2): SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2 10014
     SPORK_16_ZEROCOIN_MAINTENANCE_MODE          = 10015,
-    SPORK_17_COLDSTAKING_ENFORCEMENT            = 10017,
-    SPORK_18_ZEROCOIN_PUBLICSPEND_V4            = 10018,
+    SPORK_17_COLDSTAKING_ENFORCEMENT            = 10016, // Old wallet code (v3.0.2): SPORK_17_TREASURY_PAYMENT_ENFORCEMENT 10016
+    SPORK_18_ZEROCOIN_PUBLICSPEND_V4            = 10018, // Old wallet code (v3.0.2): SPORK_19_MASTERNODE_PRE_ENABLED_ENFORCEMENT 10018
 
     SPORK_101_SERVICES_ENFORCEMENT              = 10100,
     SPORK_102_FORCE_ENABLED_MASTERNODE          = 10101,
@@ -31,6 +34,7 @@ enum SporkId : int32_t {
     SPORK_104_MAX_BLOCK_TIME                    = 10103,
     SPORK_105_MAX_BLOCK_SIZE                    = 10104,
     SPORK_106_STAKING_SKIP_MN_SYNC              = 10105,
+	
 
     SPORK_INVALID                               = -1
 };
