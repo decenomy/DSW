@@ -14,7 +14,7 @@ static const int MODEL_UPDATE_DELAY = 1000;
 /* AskPassphraseDialog -- Maximum passphrase length */
 static const int MAX_PASSPHRASE_SIZE = 1024;
 
-/* __Decenomy__ GUI -- Size of icons in status bar */
+/* Ultra Clear GUI -- Size of icons in status bar */
 static const int STATUSBAR_ICONSIZE = 16;
 
 static const bool DEFAULT_SPLASHSCREEN = true;
@@ -50,9 +50,9 @@ static const int MAX_URI_LENGTH = 255;
 #define EXPORT_IMAGE_SIZE 256
 
 
-#define QAPP_ORG_NAME "__Decenomy__"
-#define QAPP_ORG_DOMAIN "__decenomy__.org"
-#define QAPP_APP_NAME_DEFAULT "__Decenomy__-Qt"
-#define QAPP_APP_NAME_TESTNET "__Decenomy__-Qt-testnet"
+#define QAPP_ORG_NAME "Ultra Clear"
+#define QAPP_ORG_DOMAIN "ucr.org"
+#define QAPP_APP_NAME_DEFAULT "ucr-Qt"
+#define QAPP_APP_NAME_TESTNET "ucr-Qt-testnet"
 
 #endif // BITCOIN_QT_GUICONSTANTS_H
