@@ -344,25 +344,15 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
     CAmount nSubsidy;
 
-	const int targetFork1 = 200790; //fork since block 200,790
-	const int targetFork2 = 1400000; //fork since block 1,400,001
-
-    int nPrevHeight = nHeight - 1; //old stuff worked with this index
-
-    //lets deal with the old treasury stuff (this was really f..... up (part 3))
-    if(nPrevHeight == 70000) {
-        return 200010 * COIN; 
-    } else if(nPrevHeight > 70000 && nPrevHeight <= targetFork2 && (nPrevHeight - 70000) % 1000 == 0) {
-        return 15010 * COIN;
-    }
+    int nPrevHeight = nHeight - 1; //old stuff worked with this index //! Is this still needed?
 
 	if (nPrevHeight == 0) {
 		nSubsidy = 250 * COIN;  //genesis
 	}
-	else if (nPrevHeight <= 100 ) {   
-		nSubsidy = 5000000 * COIN;  // 20M
+	else if (nPrevHeight <= 100 ) { // TODO: Adjust this value according to the blocks needed to mine the required amount of coins for the swap
+		nSubsidy = 5000000 * COIN;  // TODO: Adjust this value according to the amount of coins that will be sent with the swap
 	}
-	else if (nPrevHeight <= 1000 ) {   
+	else if (nPrevHeight <= 1001 ) {   
 		nSubsidy = 1000 * COIN;  // 20M
 	}
 	else if (nHeight <= 1500000) {
@@ -387,7 +377,7 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 		nSubsidy = 450 * COIN;
 	}
 
-		nSubsidy = 400 * COIN;
+	nSubsidy = 400 * COIN;
 
     if(nMoneySupply + nSubsidy > maxMoneyOut) {
         return nMoneySupply + nSubsidy - maxMoneyOut;
@@ -398,16 +388,10 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-	const int targetFork2 = 1400000; //fork since block 1,400,001
-
 	if (nHeight <= 1001)
-	    return 0;
+		return 1000;
 	
-	if (nHeight <= targetFork2)
-		return CMasternode::GetBlockValue(nHeight) * 80 / 100; // 80% of the block reward
-	
-	if (nHeight > targetFork2)
-    	return CMasternode::GetBlockValue(nHeight) * 90 / 100; // 90% of the block reward
+   	return CMasternode::GetBlockValue(nHeight) * 90 / 100; // 90% of the block reward
 }
 
 CMasternodeBroadcast::CMasternodeBroadcast() :
