@@ -111,6 +111,9 @@ bool SendMultiRow::addressChanged(const QString& str, bool fOnlyValidate)
                 if (!label.isEmpty()) {
                     ui->lineEditDescription->setText(label);
                 }
+				else {
+					ui->lineEditDescription->clear();
+				}
             }
         }
         updateStyle(ui->lineEditAddress);
