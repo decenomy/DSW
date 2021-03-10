@@ -917,8 +917,8 @@ kopyala</translation>
         <translation>Filtrele</translation>
     </message>
     <message>
-        <source>Amount of UCR and zUCR staked.</source>
-        <translation>Stake edilmiş UCR ve zUCR miktarı</translation>
+        <source>Amount of UCR staked.</source>
+        <translation>Stake edilmiş UCR miktarı</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>

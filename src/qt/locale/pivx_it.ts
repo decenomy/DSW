@@ -1015,8 +1015,8 @@ proprietario</translation>
         <translation>Filtra per</translation>
     </message>
     <message>
-        <source>Amount of UCR and zUCR staked.</source>
-        <translation>Quantità di UCR e zUCR dallo stake.</translation>
+        <source>Amount of UCR staked.</source>
+        <translation>Quantità di UCR dallo stake.</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>

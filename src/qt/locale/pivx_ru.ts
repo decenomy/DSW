@@ -1012,8 +1012,8 @@ address</source>
         <translation>Сортировать по</translation>
     </message>
     <message>
-        <source>Amount of UCR and zUCR staked.</source>
-        <translation>Сумма добытых UCR и zUCR</translation>
+        <source>Amount of UCR staked.</source>
+        <translation>Сумма добытых UCR</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>

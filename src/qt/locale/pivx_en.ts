@@ -1260,7 +1260,7 @@ address</source>
     </message>
     <message>
         <location line="-558"/>
-        <source>Amount of UCR and zUCR staked.</source>
+        <source>Amount of UCR staked.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

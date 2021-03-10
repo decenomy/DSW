@@ -1015,8 +1015,8 @@ address</translation>
         <translation>Filter by</translation>
     </message>
     <message>
-        <source>Amount of UCR and zUCR staked.</source>
-        <translation>Amount of UCR and zUCR staked.</translation>
+        <source>Amount of UCR staked.</source>
+        <translation>Amount of UCR staked.</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>

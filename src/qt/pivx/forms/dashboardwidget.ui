@@ -519,7 +519,7 @@
             <item>
              <widget class="QLabel" name="labelMessage">
               <property name="text">
-               <string>Amount of UCR and zUCR staked.</string>
+               <string>Amount of UCR staked.</string>
               </property>
              </widget>
             </item>

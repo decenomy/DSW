@@ -989,8 +989,8 @@ del propietario </translation>
         <translation>Filtrar por</translation>
     </message>
     <message>
-        <source>Amount of UCR and zUCR staked.</source>
-        <translation>Cantidad de UCR y zUCR por stake.</translation>
+        <source>Amount of UCR staked.</source>
+        <translation>Cantidad de UCR por stake.</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>

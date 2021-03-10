@@ -945,8 +945,8 @@ address</source>
         <translation>过滤</translation>
     </message>
     <message>
-        <source>Amount of UCR and zUCR staked.</source>
-        <translation>已加注的UCR 和 zUCR 金额</translation>
+        <source>Amount of UCR staked.</source>
+        <translation>已加注的UCR 金额</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
