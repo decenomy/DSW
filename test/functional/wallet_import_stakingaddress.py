@@ -35,7 +35,7 @@ class ImportStakingTest(PivxTestFramework):
         NUM_OF_DELEGATIONS = 4  # Create 2*NUM_OF_DELEGATIONS staking addresses
         self.log_title()
         self.log.info("Activating cold staking spork")
-        assert_equal("success", self.activate_spork(0, "SPORK_17_COLDSTAKING_ENFORCEMENT"))
+        assert_equal("success", self.activate_spork(0, "SPORK_18_COLDSTAKING_ENFORCEMENT"))
 
         # Create cold staking addresses and delegations
         self.log.info("Creating new staking addresses and sending delegations")

@@ -58,7 +58,7 @@ class PIVX_ColdStakingTest(PivxTestFramework):
             self.test_nodes[i].wait_for_verack()
 
     def setColdStakingEnforcement(self, fEnable=True):
-        sporkName = "SPORK_17_COLDSTAKING_ENFORCEMENT"
+        sporkName = "SPORK_18_COLDSTAKING_ENFORCEMENT"
         # update spork 17 with node[0]
         if fEnable:
             self.log.info("Enabling cold staking with SPORK 17...")
@@ -74,7 +74,7 @@ class PIVX_ColdStakingTest(PivxTestFramework):
 
     def isColdStakingEnforced(self):
         # verify from node[1]
-        return self.is_spork_active(1, "SPORK_17_COLDSTAKING_ENFORCEMENT")
+        return self.is_spork_active(1, "SPORK_18_COLDSTAKING_ENFORCEMENT")
 
 
 
