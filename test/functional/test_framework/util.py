@@ -28,10 +28,10 @@ def assert_fee_amount(fee, tx_size, fee_per_kB):
     """Assert the fee was in range"""
     target_fee = round(tx_size * fee_per_kB / 1000, 8)
     if fee < target_fee:
-        raise AssertionError("Fee of %s __DSW__ too low! (Should be %s __DSW__)" % (str(fee), str(target_fee)))
+        raise AssertionError("Fee of %s UCR too low! (Should be %s UCR)" % (str(fee), str(target_fee)))
     # allow the wallet's estimation to be at most 2 bytes off
     if fee > (tx_size + 20) * fee_per_kB / 1000:
-        raise AssertionError("Fee of %s __DSW__ too high! (Should be %s __DSW__)" % (str(fee), str(target_fee)))
+        raise AssertionError("Fee of %s UCR too high! (Should be %s UCR)" % (str(fee), str(target_fee)))
 
 def assert_equal(thing1, thing2, *args):
     if thing1 != thing2 or any(thing1 != arg for arg in args):
