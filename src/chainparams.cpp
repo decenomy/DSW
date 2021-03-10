@@ -69,12 +69,12 @@ static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits
  */
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("0x00006eb8f6f84dd032d09adc52515dc697fcc7505ea7ec430126e3a4811d8654"))
+    (0, uint256("0x00000a42b6b9eb49e2016dd7683313b96f46b3bbd8717be9e080443b2dd9fb96"))
 ; 
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1514540176, // * UNIX timestamp of last checkpoint block
+    1525551420, // * UNIX timestamp of last checkpoint block
     0,          // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the UpdateTip debug.log lines)
     2000        // * estimated number of transactions per day after checkpoint
@@ -86,7 +86,7 @@ static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
 
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
-    1740710,
+    1615346670,
     0,
     250};
 
@@ -122,7 +122,7 @@ public:
         // uint256 TempHashHolding = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
         // uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         // for (int i=0;i<40000000;i++) {
-        //     genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e0ffff0, 4, 250 * COIN);
+        //     genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e0ffff0, 1, 250 * COIN);
         //     //genesis.hashPrevBlock = TempHashHolding;
         //     consensus.hashGenesisBlock = genesis.GetHash();
 
@@ -153,9 +153,9 @@ public:
 
         // /////////////////////////////////////////////////////////////////
 
-        genesis = CreateGenesisBlock(1525551420, 0x4059, 0x1e0ffff0, 1, 250 * COIN);
+        genesis = CreateGenesisBlock(1525551420, 1175179, 0x1e0ffff0, 1, 250 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x0000cc75a7c6fa2ce8186e24f872e43acf88b21a1cc02aa11a4ceaee2a562d4c"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00000a42b6b9eb49e2016dd7683313b96f46b3bbd8717be9e080443b2dd9fb96"));
         assert(genesis.hashMerkleRoot == uint256S("0x3bf54807365f102ff9cdb07cf5f4af411503d5b544835dc96a5beaee140ad419"));
 
         consensus.fPowAllowMinDifficultyBlocks = false;
@@ -210,15 +210,15 @@ public:
         // Network upgrades
         consensus.vUpgrades[Consensus::BASE_NETWORK].nActivationHeight                  = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
         consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight             = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight                   = 801;
-        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight                = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight                   = 1001;
+        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight                = 1441;
         consensus.vUpgrades[Consensus::UPGRADE_ZC].nActivationHeight                    = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight                 = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight                 = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight                 = 1441;
         consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight             = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight                  = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight                  = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].nActivationHeight              = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight                  = 1541;
+        consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight                  = 1641;
+        consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].nActivationHeight              = 1741;
 
         consensus.vUpgrades[Consensus::UPGRADE_ZC].hashActivationBlock                  = uint256S("0x0");
         consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].hashActivationBlock               = uint256S("0x0");
@@ -232,21 +232,21 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0x72;
-        pchMessageStart[1] = 0x52;
-        pchMessageStart[2] = 0x58;
-        pchMessageStart[3] = 0x67;
+        pchMessageStart[0] = 0x31;
+        pchMessageStart[1] = 0x41;
+        pchMessageStart[2] = 0x51;
+        pchMessageStart[3] = 0xf1;
         nDefaultPort = __PORT_MAINNET__;
 
-        vSeeds.push_back(CDNSSeedData("seeder", "seeder.trittium.net"));
-        vSeeds.push_back(CDNSSeedData("seed1", "seed1.trittium.net"));
-        vSeeds.push_back(CDNSSeedData("seed2", "seed2.trittium.net"));
-        vSeeds.push_back(CDNSSeedData("seed3", "seed3.trittium.net"));
-        vSeeds.push_back(CDNSSeedData("seed4", "seed4.trittium.net"));
-        vSeeds.push_back(CDNSSeedData("seed5", "seed5.trittium.net"));
-        vSeeds.push_back(CDNSSeedData("seed6", "seed6.trittium.net"));
-        vSeeds.push_back(CDNSSeedData("seed7", "seed7.trittium.net"));
-        vSeeds.push_back(CDNSSeedData("seed8", "seed8.trittium.net"));
+        vSeeds.push_back(CDNSSeedData("seeder", "seeder.__decenomy.net__"));
+        vSeeds.push_back(CDNSSeedData("seed1", "seed1.__decenomy.net__"));
+        vSeeds.push_back(CDNSSeedData("seed2", "seed2.__decenomy.net__"));
+        vSeeds.push_back(CDNSSeedData("seed3", "seed3.__decenomy.net__"));
+        vSeeds.push_back(CDNSSeedData("seed4", "seed4.__decenomy.net__"));
+        vSeeds.push_back(CDNSSeedData("seed5", "seed5.__decenomy.net__"));
+        vSeeds.push_back(CDNSSeedData("seed6", "seed6.__decenomy.net__"));
+        vSeeds.push_back(CDNSSeedData("seed7", "seed7.__decenomy.net__"));
+        vSeeds.push_back(CDNSSeedData("seed8", "seed8.__decenomy.net__"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 65); // T
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19); // 8 or 9
@@ -289,7 +289,7 @@ public:
         // // This is used inorder to mine the genesis block. Once found, we can use the nonce and block hash found to create a valid genesis block
         // /////////////////////////////////////////////////////////////////
 
-        // uint32_t nGenesisTime = 1614088845; // 2021-02-03T13:51:41+00:00
+        // uint32_t nGenesisTime = 1615346670; // 2021-02-03T13:51:41+00:00
 
         // arith_uint256 test;
         // bool fNegative;
@@ -332,9 +332,9 @@ public:
 
         // /////////////////////////////////////////////////////////////////
 
-        genesis = CreateGenesisBlock(1614088845, 6878260, 0x1e0ffff0, 1, 250 * COIN);
+        genesis = CreateGenesisBlock(1615346670, 510194, 0x1e0ffff0, 1, 250 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000003c0b699b86361a2e9e22927cd3f8e0e00db9ae7daaa6278bece8e5fb8e4"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000001757bc439623709f3f8f95d7975db3b73af16b7157e2c782f4ef6822725"));
         assert(genesis.hashMerkleRoot == uint256S("0x3bf54807365f102ff9cdb07cf5f4af411503d5b544835dc96a5beaee140ad419"));
 
         consensus.fPowAllowMinDifficultyBlocks = true;
@@ -412,16 +412,16 @@ public:
          * a large 4-byte int at any alignment.
          */
 
-        pchMessageStart[0] = 0x83;
-        pchMessageStart[1] = 0x63;
-        pchMessageStart[2] = 0x69;
-        pchMessageStart[3] = 0x78;
+        pchMessageStart[0] = 0x32;
+        pchMessageStart[1] = 0x42;
+        pchMessageStart[2] = 0x52;
+        pchMessageStart[3] = 0xf2;
         nDefaultPort = __PORT_TESTNET__;
 
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.push_back(CDNSSeedData("seeder", "seeder.trittium.net"));
+        vSeeds.push_back(CDNSSeedData("seeder", "seeder.__decenomy.net__"));
         vSeeds.push_back(CDNSSeedData("trtt-testnet.572133.club", "trtt-testnet.572133.club", true));
         vSeeds.push_back(CDNSSeedData("trtt-testnet2.572133.club", "trtt-testnet2.572133.club", true));
 
@@ -466,19 +466,19 @@ public:
         // // This is used inorder to mine the genesis block. Once found, we can use the nonce and block hash found to create a valid genesis block
         // /////////////////////////////////////////////////////////////////
 
-        // uint32_t nGenesisTime = 1614094460; // 2021-02-03T13:51:41+00:00
+        // uint32_t nGenesisTime = 1615347255; // 2021-02-03T13:51:41+00:00
 
         // arith_uint256 test;
         // bool fNegative;
         // bool fOverflow;
-        // test.SetCompact(0x1e0ffff0, &fNegative, &fOverflow);
+        // test.SetCompact(0x1fffffff, &fNegative, &fOverflow);
         // std::cout << "Test threshold: " << test.GetHex() << "\n\n";
 
         // int genesisNonce = 0;
         // uint256 TempHashHolding = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
         // uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         // for (int i=0;i<40000000;i++) {
-        //     genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e0ffff0, 1, 250 * COIN);
+        //     genesis = CreateGenesisBlock(nGenesisTime, i, 0x1fffffff, 1, 250 * COIN);
         //     //genesis.hashPrevBlock = TempHashHolding;
         //     consensus.hashGenesisBlock = genesis.GetHash();
 
@@ -509,18 +509,18 @@ public:
 
         // /////////////////////////////////////////////////////////////////
 
-        genesis = CreateGenesisBlock(1614094460, 252602, 0x1e0ffff0, 1, 250 * COIN);
+        genesis = CreateGenesisBlock(1615347255, 746, 0x1fffffff, 1, 250 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00000b9f9229b0ea4b7dbaa20d771967a93e48527c4b2d3d444ae0de64834303"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00000a51ec08652323848a7587356052bbb044bd788c51ba545f7188896883b1"));
         assert(genesis.hashMerkleRoot == uint256S("0x3bf54807365f102ff9cdb07cf5f4af411503d5b544835dc96a5beaee140ad419"));
 
         consensus.fPowAllowMinDifficultyBlocks = true;
-        consensus.powLimit   = ~UINT256_ZERO >> 20;   // __decenomy__ starting difficulty is 1 / 2^12
+        consensus.powLimit   = ~UINT256_ZERO >> 2;   // __decenomy__ starting difficulty is 1 / 2^12
         consensus.posLimitV1 = ~UINT256_ZERO >> 24;
         consensus.posLimitV2 = ~UINT256_ZERO >> 20;
         consensus.nBudgetCycleBlocks = 144;         // approx 10 cycles per day
         consensus.nBudgetFeeConfirmations = 3;      // (only 8-blocks window for finalization on regtest)
-        consensus.nCoinbaseMaturity = 100;
+        consensus.nCoinbaseMaturity = 5;
         consensus.nFutureTimeDriftPoW = 7200;
         consensus.nFutureTimeDriftPoS = 180;
         consensus.nMasternodeCountDrift = 4;        // num of MN we allow the see-saw payments to be off by
@@ -568,20 +568,16 @@ public:
         consensus.ZC_WrappedSerialsSupply = 0;
 
         // Network upgrades
-        consensus.vUpgrades[Consensus::BASE_NETWORK].nActivationHeight =
-                Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
-        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight =
-                Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::BASE_NETWORK].nActivationHeight 			= Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
+        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight 	= Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight           = 251;
         consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight        = 251;
         consensus.vUpgrades[Consensus::UPGRADE_ZC].nActivationHeight            = 300;
         consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight         = 300;
-        consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight         =
-                Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
+        consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight         = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
         consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight     = 400;
         consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight          = 251;
-        consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight          =
-                Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
+        consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight          = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
         consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].nActivationHeight       = 300;
 
         /**
@@ -590,10 +586,10 @@ public:
          * a large 4-byte int at any alignment.
          */
 
-        pchMessageStart[0] = 0x69;
-        pchMessageStart[1] = 0xcf;
-        pchMessageStart[2] = 0x7e;
-        pchMessageStart[3] = 0xac;
+        pchMessageStart[0] = 0x33;
+        pchMessageStart[1] = 0x43;
+        pchMessageStart[2] = 0x53;
+        pchMessageStart[3] = 0xf3;
         nDefaultPort = __PORT_REGTEST__;
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.

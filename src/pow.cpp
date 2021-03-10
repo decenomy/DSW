@@ -133,10 +133,9 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits)
     if (fNegative || bnTarget.IsNull() || fOverflow || bnTarget > Params().GetConsensus().powLimit)
         return error("CheckProofOfWork() : nBits below minimum work");
 
-    //something f..... up happened here (part 1)
     // Check proof of work matches claimed amount
-    // if (hash > bnTarget)
-    //     return error("CheckProofOfWork() : hash doesn't match nBits");
+    if (hash > bnTarget)
+        return error("CheckProofOfWork() : hash doesn't match nBits");
 
     return true;
 }
