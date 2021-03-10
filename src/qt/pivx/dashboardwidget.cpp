@@ -96,15 +96,11 @@ DashboardWidget::DashboardWidget(PIVXGUI* parent) :
 #endif // USE_QTCHARTS
 
     // Sort Transactions
-    SortEdit* lineEdit = new SortEdit(ui->comboBoxSort);
-    connect(lineEdit, &SortEdit::Mouse_Pressed, [this](){ui->comboBoxSort->showPopup();});
-    setSortTx(ui->comboBoxSort, lineEdit);
+    setSortTx(ui->comboBoxSort);
     connect(ui->comboBoxSort, static_cast<void (QComboBox::*)(const QString&)>(&QComboBox::currentIndexChanged), this, &DashboardWidget::onSortChanged);
 
     // Sort type
-    SortEdit* lineEditType = new SortEdit(ui->comboBoxSortType);
-    connect(lineEditType, &SortEdit::Mouse_Pressed, [this](){ui->comboBoxSortType->showPopup();});
-    setSortTxTypeFilter(ui->comboBoxSortType, lineEditType);
+    setSortTxTypeFilter(ui->comboBoxSortType);
     ui->comboBoxSortType->setCurrentIndex(0);
     connect(ui->comboBoxSortType, static_cast<void (QComboBox::*)(const QString&)>(&QComboBox::currentIndexChanged),
         this, &DashboardWidget::onSortTypeChanged);
