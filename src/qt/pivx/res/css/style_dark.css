@@ -105,13 +105,13 @@ QPushButton[cssClass="img-nav-logo"] {
  ################################*/
 
 *[cssClass="btn-nav-cold-staking"]:checked {
-    background-color: #0A1A29;
+    background-color: #0b2c42;
     font-size: 10px;
     color: #27cafc;
 }
   
 *[cssClass="btn-nav-cold-staking"]:checked:hover {
-    background-color: #0A1A29;
+    background-color: #0b2c42;
     font-size: 10px;
     color: #27cafc;
 }
@@ -119,7 +119,7 @@ QPushButton[cssClass="img-nav-logo"] {
 *[cssClass="btn-nav-cold-staking"]:hover {
     qproperty-icon: url("://ic-nav-cold-staking-hover");
     qproperty-iconSize: 24px 40px;
-    background-color: #0A1A29;
+    background-color: #0b2c42;
     font-size: 10px;
     color: #27cafc;
 }
@@ -127,7 +127,7 @@ QPushButton[cssClass="img-nav-logo"] {
 *[cssClass="btn-nav-cold-staking-active"] {
     qproperty-icon: url("://ic-nav-cold-staking-active");
     qproperty-iconSize: 24px 40px;
-    background-color: #0A1A29;
+    background-color: #0b2c42;
     font-size: 10px;
     color: #27cafc;
 }
