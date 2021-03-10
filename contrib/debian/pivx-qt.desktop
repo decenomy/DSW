@@ -1,9 +1,9 @@
 [Desktop Entry]
 Version=1.0
 Name=Ultra Clear
-Comment= __DSW__ P2P Cryptocurrency
-Comment[fr]= __DSW__, monnaie virtuelle cryptographique pair à pair
-Comment[tr]= __DSW__, eşten eşe kriptografik sanal para birimi
+Comment= UCR P2P Cryptocurrency
+Comment[fr]= UCR, monnaie virtuelle cryptographique pair à pair
+Comment[tr]= UCR, eşten eşe kriptografik sanal para birimi
 Exec=ucr-qt %u
 Terminal=false
 Type=Application
