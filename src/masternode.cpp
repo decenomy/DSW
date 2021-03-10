@@ -346,13 +346,13 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
     int nPrevHeight = nHeight - 1; //old stuff worked with this index //! Is this still needed?
 
-	if (nPrevHeight == 0) {
+	if (nHeight <= 0) {
 		nSubsidy = 250 * COIN;  //genesis
 	}
-	else if (nPrevHeight <= 100 ) { // TODO: Adjust this value according to the blocks needed to mine the required amount of coins for the swap
+	else if (nHeight <= 100 ) { // TODO: Adjust this value according to the blocks needed to mine the required amount of coins for the swap
 		nSubsidy = 5000000 * COIN;  // TODO: Adjust this value according to the amount of coins that will be sent with the swap
 	}
-	else if (nPrevHeight <= 1001 ) {   
+	else if (nHeight <= 1001 ) {   
 		nSubsidy = 1000 * COIN;  // 20M
 	}
 	else if (nHeight <= 1500000) {
@@ -389,7 +389,7 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
 	if (nHeight <= 1001)
-		return 1000;
+		return 0;
 	
    	return CMasternode::GetBlockValue(nHeight) * 90 / 100; // 90% of the block reward
 }
