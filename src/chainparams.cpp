@@ -380,6 +380,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
+        vSeeds.push_back(CDNSSeedData("seeder", "seeder.cryptoflow.eu"));
         vSeeds.push_back(CDNSSeedData("cfl-testnet.572133.club", "cfl-testnet.572133.club", true));
         vSeeds.push_back(CDNSSeedData("cfl-testnet2.572133.club", "cfl-testnet2.572133.club", true));
 
