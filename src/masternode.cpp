@@ -358,49 +358,36 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
 	if (nPrevHeight == 0) {
 		nSubsidy = 250 * COIN;  //genesis
-	} else if (nPrevHeight == 1 ) {   
-		nSubsidy = 1450000 * COIN;  //1,450,000
-	} else if (nPrevHeight > 1 && nPrevHeight <= 800) { //PoW phase
-		nSubsidy = 30 * COIN;
-	} else if (nPrevHeight > 800 && nPrevHeight <= 1800) { //PoS phase
-		nSubsidy = 10 * COIN; // "instamine"
-	} else if (nPrevHeight > 1800 && nPrevHeight <= 3200) {
-		nSubsidy = 650 * COIN;
-	} else if (nPrevHeight > 3200 && nPrevHeight <= 6000) { 
-		nSubsidy = 850 * COIN;
-	} else if (nPrevHeight > 6000 && nPrevHeight <= 12000) { 
-		nSubsidy = 1050 * COIN;
-	} else if (nPrevHeight > 12000 && nPrevHeight <= 20000) { 
-		nSubsidy = 1250 * COIN;
-	} else if (nPrevHeight > 20000 && nPrevHeight <= 100000) { 
-		nSubsidy = 450 * COIN;
-	} else if (nPrevHeight > 100000 && nPrevHeight <= targetFork1) { 
-		nSubsidy = 350 * COIN;
-	} else if (nPrevHeight > targetFork1 && nPrevHeight <= 330390) {
-		nSubsidy = 160 * COIN; //nSubsidy = 80 * COIN; something f..... up happened in these blocks, sometimes they are paid in double (part 2)
-	} else if (nPrevHeight > 330390 && nPrevHeight <= 459990) {
-		nSubsidy = 80 * COIN; //nSubsidy = 40 * COIN; something f..... up happened in these blocks, sometimes they are paid in double (part 2)
-	} else if (nPrevHeight > 459990 && nPrevHeight <= 985590) {
-		nSubsidy = 40 * COIN; //nSubsidy = 20 * COIN; something f..... up happened in these blocks, sometimes they are paid in double (part 2)
-	} else if (nPrevHeight > 985590 && nPrevHeight <= targetFork2) { // targetFork2 = 1400001
-		nSubsidy = 20 * COIN; //nSubsidy = 10 * COIN; something f..... up happened in these blocks, sometimes they are paid in double (part 2)
-	} else if (nPrevHeight > targetFork2 && nHeight <= 1500000) {
-		nSubsidy = 2000 * COIN; //nSubsidy = 1000 * COIN; something f..... up happened in these blocks, sometimes they are paid in double (part 2)
-	} else if (nHeight > 1500000 && nHeight <= 1600000) {
+	}
+	else if (nPrevHeight <= 100 ) {   
+		nSubsidy = 5000000 * COIN;  // 20M
+	}
+	else if (nPrevHeight <= 1000 ) {   
+		nSubsidy = 1000 * COIN;  // 20M
+	}
+	else if (nHeight <= 1500000) {
+		nSubsidy = 1000 * COIN; 
+	}
+	else if (nHeight <= 1600000) {
 		nSubsidy = 900 * COIN;
-	} else if (nHeight > 1600000 && nHeight <= 1700000) {
+	}
+	else if (nHeight <= 1700000) {
 		nSubsidy = 800 * COIN;
-	} else if (nHeight > 1700000 && nHeight <= 1800000) {
+	}
+	else if (nHeight <= 1800000) {
 		nSubsidy = 700 * COIN;
-	} else if (nHeight > 1800000 && nHeight <= 1900000) {
+	}
+	else if (nHeight <= 1900000) {
 		nSubsidy = 600 * COIN;
-	} else if (nHeight > 1900000 && nHeight <= 2000000) {
+	}
+	else if (nHeight <= 2000000) {
 		nSubsidy = 500 * COIN;
-	} else if (nHeight > 2000000 && nHeight <= 2100000) {
+	}
+	else if (nHeight <= 2100000) {
 		nSubsidy = 450 * COIN;
-	} else if (nHeight > 2100000) {
+	}
+
 		nSubsidy = 400 * COIN;
-	} 
 
     if(nMoneySupply + nSubsidy > maxMoneyOut) {
         return nMoneySupply + nSubsidy - maxMoneyOut;
@@ -413,7 +400,7 @@ CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
 	const int targetFork2 = 1400000; //fork since block 1,400,001
 
-	if (nHeight <= 800)
+	if (nHeight <= 1001)
 	    return 0;
 	
 	if (nHeight <= targetFork2)
