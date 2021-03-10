@@ -1,6 +1,6 @@
 [Protocol]
-exec=__decenomy__-qt '%u'
-protocol=__decenomy__
+exec=ucr-qt '%u'
+protocol=ucr
 input=none
 output=none
 helper=true

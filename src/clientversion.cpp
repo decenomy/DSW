@@ -11,10 +11,10 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both __decenomy__d and __decenomy__-qt, to make it harder for attackers to
+ * for both ucrd and ucr-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("__Decenomy__");
+const std::string CLIENT_NAME("Ultra Clear");
 
 /**
  * Client version number

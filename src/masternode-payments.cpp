@@ -257,6 +257,7 @@ bool IsBlockValueValid(int nHeight, CAmount nExpectedValue, CAmount nMinted)
             //the value of the block is evaluated in CheckBlock
             return true;
         }
+
     }
 
     // No superblock, regular check

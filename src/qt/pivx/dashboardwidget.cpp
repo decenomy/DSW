@@ -68,7 +68,7 @@ DashboardWidget::DashboardWidget(PIVXGUI* parent) :
 
     setCssProperty(ui->labelChart, "legend-chart");
     setCssProperty(ui->labelAmountPiv, "text-stake-piv-disable");
-	ui->labelAmountMNRewards->setText("0 __DSW__");
+	ui->labelAmountMNRewards->setText("0 UCR");
 	setCssProperty(ui->labelAmountMNRewards, "text-stake-mnrewards-disable");
 
 
@@ -231,7 +231,7 @@ void DashboardWidget::loadWalletModel()
         connect(walletModel->getOptionsModel(), &OptionsModel::hideChartsChanged, this, &DashboardWidget::onHideChartsChanged);
 #endif
     }
-    // update the display unit, to not use the default ("__DSW__")
+    // update the display unit, to not use the default ("UCR")
     updateDisplayUnit();
 }
 
@@ -529,7 +529,7 @@ void DashboardWidget::updateStakeFilter()
     }
 }
 
-// pair __DSW__, z__DSW__
+// pair UCR, zUCR
 const QMap<int, QMap<QString, qint64>> DashboardWidget::getAmountBy()
 {
     updateStakeFilter();
@@ -589,7 +589,7 @@ bool DashboardWidget::loadChartData(bool withMonthNames)
     }
 
     chartData = new ChartData();
-    chartData->amountsByCache = getAmountBy(); // pair __DSW__, z__DSW__
+    chartData->amountsByCache = getAmountBy(); // pair UCR, zUCR
 
     std::pair<int,int> range = getChartRange(chartData->amountsByCache);
     if (range.first == 0 && range.second == 0) {

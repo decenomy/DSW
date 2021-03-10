@@ -33,6 +33,15 @@ src/trittium-cli
 src/trittium-tx
 src/trittiumd
 
+# UCR
+src/ucr
+src/ucrd
+src/ucr-cli
+src/ucr-tx
+src/bench/bench_ucrx
+src/test/test_ucr
+src/qt/test/test_ucr-qt
+
 ##########################################
 # clear this section when it's fixed
 ###
@@ -94,6 +103,7 @@ src/qt/test/moc*.cpp
 *.patch
 .pivx
 .__decenomy__
+.ucr
 *.a
 *.pb.cc
 *.pb.h
@@ -114,6 +124,7 @@ src/qt/test/moc*.cpp
 Makefile
 pivx-qt
 __decenomy__-qt
+ucr-qt
 Jackpot-Qt.app
 background.tiff*
 
@@ -126,6 +137,7 @@ target/
 Makefile.test
 pivx-qt_test
 __decenomy__-qt_test
+ucr-qt_test
 src/test/buildenv.py
 
 # Resources cpp
@@ -143,6 +155,7 @@ build
 /*.info
 test_pivx.coverage/
 test___decenomy__.coverage/
+test_ucr.coverage/
 total.coverage/
 coverage_percent.txt
 
@@ -175,8 +188,10 @@ ui_*
 build*
 pivxd.*
 __decenomy__d.*
+ucrd.*
 pivxd-new-gui.*
 __decenomy__d-new-gui.*
+ucrd-new-gui.*
 
 # for Visual Studio Code
 
@@ -187,8 +202,4 @@ __decenomy__d-new-gui.*
 !.vscode/extensions.json
 *.code-workspace
 .history/
-<<<<<<< HEAD
 .vscode/
-=======
-.vscode/
->>>>>>> rebranding
