@@ -266,11 +266,11 @@ UniValue stop(const JSONRPCRequest& jsonRequest)
     if (jsonRequest.fHelp || jsonRequest.params.size() > 1)
         throw std::runtime_error(
             "stop\n"
-            "\nStop __DSW__ server.");
+            "\nStop UCR server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "__DSW__ server stopping";
+    return "UCR server stopping";
 }
 
 
@@ -360,7 +360,7 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblock",           &waitforblock,           true },
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true },
 
-        /* __DSW__ features */
+        /* UCR features */
         {"ucr", "listmasternodes", &listmasternodes, true },
         {"ucr", "getmasternodecount", &getmasternodecount, true },
         {"ucr", "createmasternodebroadcast", &createmasternodebroadcast, true },
