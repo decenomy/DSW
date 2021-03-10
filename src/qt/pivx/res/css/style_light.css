@@ -105,7 +105,15 @@ QPushButton[cssClass="img-nav-logo"] {
 *****/
 
 QPushButton[cssClass="btn-check-conf"] {
-  qproperty-icon: url("://ic-check-dashd-conf") ;
+  qproperty-icon: url("://ic-check-coin-conf") ;
+  qproperty-iconSize: 24px 24px;
+  color: #0A1A29;
+  background-color:#d1d3d4;
+  border-radius:2px;
+}
+
+QPushButton[cssClass="btn-check-console"] {
+  qproperty-icon: url("://ic-check-console") ;
   qproperty-iconSize: 24px 24px;
   color: #0A1A29;
   background-color:#d1d3d4;
@@ -1706,10 +1714,10 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="text-stake-piv"] {
-  color: #8cb244;
+  color: #c5f7ff;
   font-size:16px;
   padding:10px;
-  border-bottom: 5px solid #8cb244;
+  border-bottom: 5px solid #c5f7ff;
 }
 
 *[cssClass="text-stake-piv-disable"] {
@@ -1720,10 +1728,10 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="text-stake-mnrewards"] {
-  color: #38d7ff;
+  color: #7be6ff;
   font-size:16px;
   padding:10px;
-  border-bottom: 5px solid #38d7ff;
+  border-bottom: 5px solid #7be6ff;
 }
 
 *[cssClass="text-stake-mnrewards-disable"] {
@@ -1739,24 +1747,24 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="text-chart-mnrewards"] {
-  color: #38d7ff;
+  color: #7be6ff;
   font-size:16px;
   padding-left:4px;
 }
 
 *[cssClass="text-chart-piv"] {
-  color:#8cb244;
+  color:#c5f7ff;
   font-size:16px;
   padding-left:4px;
 }
 
 *[cssClass="square-chart-mnrewards"] {
-  background-color: #38d7ff;
+  background-color: #7be6ff;
   border:none;
 }
 
 *[cssClass="square-chart-piv"] {
-  background-color:#8cb244;
+  background-color:#c5f7ff;
   border:none;
 }
 
