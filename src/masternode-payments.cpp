@@ -257,6 +257,17 @@ bool IsBlockValueValid(int nHeight, CAmount nExpectedValue, CAmount nMinted)
             //the value of the block is evaluated in CheckBlock
             return true;
         }
+
+        /*if (budget.IsBudgetPaymentBlock(nHeight)) {
+            //the value of the block is evaluated in CheckBlock
+            return true;
+        } else {
+            if(nHeight > Params().UltraClearStart()) {
+                return nMinted == nExpectedValue;
+            } else {
+                return nMinted <= nExpectedValue;
+            }
+        }*/
     }
 
     // No superblock, regular check
