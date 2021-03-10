@@ -241,7 +241,6 @@ void initComboBox(QComboBox* combo, QLineEdit* lineEdit, QString cssClass)
         lineEdit->setAlignment(Qt::AlignRight);
         combo->setLineEdit(lineEdit);
     }
-    combo->setStyleSheet("selection-background-color:transparent; selection-color:transparent;");
     combo->setView(new QListView());
 }
 
