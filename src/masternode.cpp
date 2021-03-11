@@ -316,6 +316,7 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
     return false;
 }
 
+// TODO: Adjust the collateral schedule once the old chain snapshot block is decided.
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
     if (nHeight <= 1405000) {
@@ -334,6 +335,7 @@ CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
     return 200000 * COIN;
 }
 
+// TODO: Adjust the reward schedule once the old chain snapshot block is decided.
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
     CAmount maxMoneyOut= Params().GetConsensus().nMaxMoneyOut;
@@ -344,8 +346,6 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
     CAmount nSubsidy;
 
-    int nPrevHeight = nHeight - 1; //old stuff worked with this index //! Is this still needed?
-
 	if (nHeight <= 0) {
 		nSubsidy = 250 * COIN;  //genesis
 	}
@@ -353,7 +353,7 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 		nSubsidy = 5000000 * COIN;  // TODO: Adjust this value according to the amount of coins that will be sent with the swap
 	}
 	else if (nHeight <= 1001 ) {   
-		nSubsidy = 1000 * COIN;  // 20M
+		nSubsidy = 1000 * COIN;
 	}
 	else if (nHeight <= 1500000) {
 		nSubsidy = 1000 * COIN; 
