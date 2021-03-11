@@ -318,14 +318,58 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
-    if (nHeight <= 100000) {
-        return 15000 * COIN;
-    } else if (nHeight <= 200000 && nHeight > 100000) {
-        return 17500 * COIN;
-    } else if (nHeight > 200000) {
-        return 20000 * COIN;
+    if (nHeight <= 1000 && nHeight > Params().LAST_POW_BLOCK()) {
+        return 10;
+    } else if (nHeight <= 2000 && nHeight > 1000) {
+        return 50;
+    } else if (nHeight <= 10000 && nHeight > 2000) {
+        return 100;
+    } else if (nHeight <= 20000 && nHeight > 10000) {
+        return 500;
+    } else if (nHeight <= 30000 && nHeight > 20000) {
+        return 750;
+    } else if (nHeight <= 40000 && nHeight > 30000) {
+        return 250;
+    } else if (nHeight <= 50000 && nHeight > 40000) {
+        return 375;
+    } else if (nHeight <= 60000 && nHeight > 50000) {
+        return 750;
+    } else if (nHeight <= 70000 && nHeight > 60000) {
+        return 1125;
+    } else if (nHeight <= 80000 && nHeight > 70000) {
+        return 1750;
+    } else if (nHeight <= 100000 && nHeight > 80000) {
+        return 2500;
+    } else if (nHeight <= 120000 && nHeight > 100000) {
+        return 3500;
+    } else if (nHeight <= 145000 && nHeight > 120000) {
+        return 5000;
+    } else if (nHeight <= 170000 && nHeight > 145000) {
+        return 6500;
+    } else if (nHeight <= 200000 && nHeight > 170000) {
+        return 8000;
+    } else if (nHeight <= 230000 && nHeight > 200000) {
+        return 10000;
+    } else if (nHeight <= 265000 && nHeight > 230000) {
+        return 12000;
+    } else if (nHeight <= 300000 && nHeight > 265000) {
+        return 15000;
+    } else if (nHeight <= 350000 && nHeight > 300000) {
+        return 20000;
+    } else if (nHeight <= 400000 && nHeight > 350000) {
+        return 35000;
+    } else if (nHeight <= Params().UltraClearStart() && nHeight > 400000) {
+        return 50000;
+    } else if (nHeight <= 700000 && nHeight > Params().UltraClearStart()) {
+        return 60000;
+    } else if (nHeight <= 800000 && nHeight > 700000) {
+        return 70000;
+    } else if (nHeight <= 900000 && nHeight > 800000) {
+        return 80000;
+    } else if (nHeight <= 1000000 && nHeight > 900000) {
+        return 90000;
     }
-    return 0;
+    return 100000;
 }
 
 CAmount CMasternode::GetBlockValue(int nHeight)
