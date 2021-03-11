@@ -391,15 +391,15 @@ public:
         // Network upgrades
         consensus.vUpgrades[Consensus::BASE_NETWORK].nActivationHeight                  = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
         consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight             = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight                   = 201;
-        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight                = 441;
+        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight                   = 501;
+        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight                = 721;
         consensus.vUpgrades[Consensus::UPGRADE_ZC].nActivationHeight                    = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight                 = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight                 = 441;
+        consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight                 = 721;
         consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight             = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight                  = 541;
-        consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight                  = 641;
-        consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].nActivationHeight              = 741;
+        consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight                  = 821;
+        consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight                  = 921;
+        consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].nActivationHeight              = 1021;
 
         consensus.vUpgrades[Consensus::UPGRADE_ZC].hashActivationBlock                  = uint256S("0x0");
         consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].hashActivationBlock               = uint256S("0x0");
@@ -424,8 +424,8 @@ public:
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
         vSeeds.push_back(CDNSSeedData("seeder", "seeder.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("trtt-testnet.572133.club", "trtt-testnet.572133.club", true));
-        vSeeds.push_back(CDNSSeedData("trtt-testnet2.572133.club", "trtt-testnet2.572133.club", true));
+        vSeeds.push_back(CDNSSeedData("testnet.572133.club", "testnet.572133.club", true));
+        vSeeds.push_back(CDNSSeedData("testnet2.572133.club", "testnet2.572133.club", true));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet __Decenomy__ addresses start with 'x' or 'y'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet __Decenomy__ script addresses start with '8' or '9'
