@@ -424,8 +424,11 @@ public:
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
         vSeeds.push_back(CDNSSeedData("seeder", "seeder.__decenomy.net__"));
+        vSeeds.push_back(CDNSSeedData("testnet1", "testnet1.4444.tools", true));
+        vSeeds.push_back(CDNSSeedData("testnet2", "testnet2.4444.tools", true));
         vSeeds.push_back(CDNSSeedData("testnet.572133.club", "testnet.572133.club", true));
         vSeeds.push_back(CDNSSeedData("testnet2.572133.club", "testnet2.572133.club", true));
+		
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 127); // Testnet __Decenomy__ addresses start with 't'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet __Decenomy__ script addresses start with '8' or '9'
