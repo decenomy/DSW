@@ -319,19 +319,21 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 // TODO: Adjust the collateral schedule once the old chain snapshot block is decided.
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
-    if (nHeight <= 1405000) {
-        return 50000 * COIN;
-    } else if (nHeight <= 1500000 && nHeight > 1405000) {
+	// Assumed old blockchain snapshot taken at 18.03.2021 00:03 at Block 1493000 - Collateral is 100000 * COIN
+	// At Block 1500001, collateral increases to 120000 * COIN
+	// So we will put 1500001 - 1493000 = 7001 blocks for the collateral change block interval from coll = 100000 to coll = 120000
+    if (nHeight <= 7001) { // 
         return 100000 * COIN;
-    } else if (nHeight <= 1600000 && nHeight > 1500000) {
+    } else if (nHeight <= 107000) {
         return 120000 * COIN;
-    } else if (nHeight <= 1700000 && nHeight > 1600000) {
+    } else if (nHeight <= 207000) {
         return 140000 * COIN;
-    } else if (nHeight <= 1800000 && nHeight > 1700000) {
+    } else if (nHeight <= 307000) {
         return 160000 * COIN;
-    } else if (nHeight <= 1900000 && nHeight > 1800000) {
+    } else if (nHeight <= 407000) {
         return 180000 * COIN;
-    } 
+    }
+ 
     return 200000 * COIN;
 }
 
@@ -352,7 +354,7 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 	else if (nHeight <= 100 ) { // TODO: Adjust this value according to the blocks needed to mine the required amount of coins for the swap
 		nSubsidy = 5000000 * COIN;  // TODO: Adjust this value according to the amount of coins that will be sent with the swap
 	}
-	else if (nHeight <= 1001 ) {   
+	else if (nHeight <= 1000 ) {   
 		nSubsidy = 1000 * COIN;
 	}
 	else if (nHeight <= 1500000) {
