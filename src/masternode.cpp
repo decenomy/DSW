@@ -319,57 +319,57 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
     if (nHeight <= 1000 && nHeight > Params().LAST_POW_BLOCK()) {
-        return 10;
+        return 10 * COIN;
     } else if (nHeight <= 2000 && nHeight > 1000) {
-        return 50;
+        return 50 * COIN;
     } else if (nHeight <= 10000 && nHeight > 2000) {
-        return 100;
+        return 100 * COIN;
     } else if (nHeight <= 20000 && nHeight > 10000) {
-        return 500;
+        return 500 * COIN;
     } else if (nHeight <= 30000 && nHeight > 20000) {
-        return 750;
+        return 750 * COIN;
     } else if (nHeight <= 40000 && nHeight > 30000) {
-        return 250;
+        return 250 * COIN;
     } else if (nHeight <= 50000 && nHeight > 40000) {
-        return 375;
+        return 375 * COIN;
     } else if (nHeight <= 60000 && nHeight > 50000) {
-        return 750;
+        return 750 * COIN;
     } else if (nHeight <= 70000 && nHeight > 60000) {
-        return 1125;
+        return 1125 * COIN;
     } else if (nHeight <= 80000 && nHeight > 70000) {
-        return 1750;
+        return 1750 * COIN;
     } else if (nHeight <= 100000 && nHeight > 80000) {
-        return 2500;
+        return 2500 * COIN;
     } else if (nHeight <= 120000 && nHeight > 100000) {
-        return 3500;
+        return 3500 * COIN;
     } else if (nHeight <= 145000 && nHeight > 120000) {
-        return 5000;
+        return 5000 * COIN;
     } else if (nHeight <= 170000 && nHeight > 145000) {
-        return 6500;
+        return 6500 * COIN;
     } else if (nHeight <= 200000 && nHeight > 170000) {
-        return 8000;
+        return 8000 * COIN;
     } else if (nHeight <= 230000 && nHeight > 200000) {
-        return 10000;
+        return 10000 * COIN;
     } else if (nHeight <= 265000 && nHeight > 230000) {
-        return 12000;
+        return 12000 * COIN;
     } else if (nHeight <= 300000 && nHeight > 265000) {
-        return 15000;
+        return 15000 * COIN;
     } else if (nHeight <= 350000 && nHeight > 300000) {
-        return 20000;
+        return 20000 * COIN;
     } else if (nHeight <= 400000 && nHeight > 350000) {
-        return 35000;
+        return 35000 * COIN;
     } else if (nHeight <= Params().UltraClearStart() && nHeight > 400000) {
-        return 50000;
+        return 50000 * COIN;
     } else if (nHeight <= 700000 && nHeight > Params().UltraClearStart()) {
-        return 60000;
+        return 60000 * COIN;
     } else if (nHeight <= 800000 && nHeight > 700000) {
-        return 70000;
+        return 70000 * COIN;
     } else if (nHeight <= 900000 && nHeight > 800000) {
-        return 80000;
+        return 80000 * COIN;
     } else if (nHeight <= 1000000 && nHeight > 900000) {
-        return 90000;
+        return 90000 * COIN;
     }
-    return 100000;
+    return 100000 * COIN;
 }
 
 CAmount CMasternode::GetBlockValue(int nHeight)
