@@ -187,7 +187,7 @@ public:
 
         // spork keys
         consensus.strSporkPubKey = "0391eb99d1d94bf8bbc66b39ba11c95814a2bcbcc1cf6c567c8bd58b8710b192f4";
-        consensus.strSporkPubKeyOld = "0476959408a6ea4d27531e06179dc940ff01e340dda28074e0e232858f49a937b8e62b069c97447d3f7b8dbd8d22c9fedefc7fc0d92e520cd54c943c5d12fa5323";
+        consensus.strSporkPubKeyOld = "";
         consensus.nTime_EnforceNewSporkKey = 1599033600;
         consensus.nTime_RejectOldSporkKey = 1599030000;
 
