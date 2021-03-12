@@ -462,11 +462,6 @@ CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
     int64_t ret = 0;
 
-    if (Params().NetworkID() == CBaseChainParams::TESTNET) {
-        if (nHeight < 200)
-            return 0;
-    }
-
     if (nHeight <= Params().LAST_POW_BLOCK()) {
     	return 0;
     } else if (nHeight <=12000 && nHeight > Params().LAST_POW_BLOCK()){
@@ -478,6 +473,8 @@ CAmount CMasternode::GetMasternodePayment(int nHeight)
     if(nHeight > Params().UltraClearStart()) {
         ret = GetBlockValue(nHeight) - (5 * COIN);
     }
+
+    return ret;
 }
 
 CMasternodeBroadcast::CMasternodeBroadcast() :
