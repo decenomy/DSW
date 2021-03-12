@@ -348,16 +348,10 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
     CAmount nSubsidy;
 
-	const int targetFork1 = 200790; //fork since block 200,790
-	const int targetFork2 = 1400000; //fork since block 1,400,001
-
-	if (nHeight == 0) {
-		nSubsidy = 250 * COIN;  //genesis
+	if (nHeight == 1) {
+		nSubsidy = 250000000 * COIN;  //! Premine for sending coins to the coin holders. Current circulating supply is around 234,011,079 TRTT so we mine 250M and burn the remaining coins after send away.
 	}
-	else if (nHeight <= 100 ) { // TODO: Adjust this value according to the blocks needed to mine the required amount of coins for the swap
-		nSubsidy = 2000000 * COIN;  // TODO: Adjust this value according to the amount of coins that will be sent with the swap
-	}
-	else if (nHeight <= 1000 ) { // Mining phase
+	else if (nHeight <= 1000 ) { // Mining phase for mainnet
 		nSubsidy = 1000 * COIN;
 	}
 	else if (nHeight <= 7001 ) { // Old blockchain block 1500000
