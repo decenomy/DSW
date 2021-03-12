@@ -348,8 +348,8 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
     CAmount nSubsidy;
 
-	if (nHeight == 1) {
-		nSubsidy = 250000000 * COIN;  //! Premine for sending coins to the coin holders. Current circulating supply is around 234,011,079 TRTT so we mine 250M and burn the remaining coins after send away.
+	if (nHeight < 125) {
+		nSubsidy = 2000000 * COIN;  //! Premine for sending coins to the coin holders. Current circulating supply is around 234,011,079 TRTT so we mine 250M and burn the remaining coins after send away.
 	}
 	else if (nHeight <= 1000 ) { // Mining phase for mainnet
 		nSubsidy = 1000 * COIN;
