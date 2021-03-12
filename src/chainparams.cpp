@@ -653,3 +653,4 @@ void UpdateNetworkUpgradeParameters(Consensus::UpgradeIndex idx, int nActivation
 {
     regTestParams.UpdateNetworkUpgradeParameters(idx, nActivationHeight);
 }
+
