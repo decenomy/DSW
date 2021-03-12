@@ -7,7 +7,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="container"] {
-  background-color: #ffffff;
+  background-color: #fafafa;
 }
 
 *[cssClass="container-border"] {
@@ -1731,10 +1731,10 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="text-stake-mnrewards"] {
-  color: #7be6ff;
+  color: rgb(74, 149, 103);
   font-size:16px;
   padding:10px;
-  border-bottom: 5px solid #7be6ff;
+  border-bottom: 5px solid rgb(74, 149, 103);
 }
 
 *[cssClass="text-stake-mnrewards-disable"] {
@@ -1750,7 +1750,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="text-chart-mnrewards"] {
-  color: #7be6ff;
+  color: rgb(74, 149, 103);
   font-size:16px;
   padding-left:4px;
 }
@@ -1762,7 +1762,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="square-chart-mnrewards"] {
-  background-color: #7be6ff;
+  background-color: rgb(74, 149, 103);
   border:none;
 }
 
