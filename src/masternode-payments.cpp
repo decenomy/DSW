@@ -446,7 +446,8 @@ void CMasternodePayments::ProcessMessageMasternodePayments(CNode* pfrom, std::st
         }
 
         // reject old signature version
-        if (winner.nMessVersion != MessageVersion::MESS_VER_HASH) {
+        if (Params().GetConsensus().NetworkUpgradeActive(chainActive.Tip()->nHeight, Consensus::UPGRADE_V4_0) &&
+            winner.nMessVersion != MessageVersion::MESS_VER_HASH) {
             LogPrint(BCLog::MASTERNODE, "mnw - rejecting old message version %d\n", winner.nMessVersion);
             return;
         }
