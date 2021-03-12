@@ -352,7 +352,7 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 		nSubsidy = 250 * COIN;  //genesis
 	}
 	else if (nHeight <= 100 ) { // TODO: Adjust this value according to the blocks needed to mine the required amount of coins for the swap
-		nSubsidy = 5000000 * COIN;  // TODO: Adjust this value according to the amount of coins that will be sent with the swap
+		nSubsidy = 2000000 * COIN;  // TODO: Adjust this value according to the amount of coins that will be sent with the swap
 	}
 	else if (nHeight <= 1000 ) { // Mining phase
 		nSubsidy = 1000 * COIN;
