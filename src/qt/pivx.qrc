@@ -241,4 +241,22 @@
         <file alias="Nunito-SemiBold.ttf">pivx/res/font/Nunito-SemiBold.ttf</file>
         <file alias="Nunito-SemiBoldItalic.ttf">pivx/res/font/Nunito-SemiBoldItalic.ttf</file>
     </qresource>
+    <qresource prefix="/font">
+        <file alias="Montserrat-Black.ttf">pivx/res/font/Montserrat-Black.ttf</file>
+        <file alias="Montserrat-BlackItalic.ttf">pivx/res/font/Montserrat-BlackItalic.ttf</file>
+        <file alias="Montserrat-Bold.ttf">pivx/res/font/Montserrat-Bold.ttf</file>
+        <file alias="Montserrat-BoldItalic.ttf">pivx/res/font/Montserrat-BoldItalic.ttf</file>
+        <file alias="Montserrat-ExtraBold.ttf">pivx/res/font/Montserrat-ExtraBold.ttf</file>
+        <file alias="Montserrat-ExtraBoldItalic.ttf">pivx/res/font/Montserrat-ExtraBoldItalic.ttf</file>
+        <file alias="Montserrat-ExtraLight.ttf">pivx/res/font/Montserrat-ExtraLight.ttf</file>
+        <file alias="Montserrat-ExtraLightItalic.ttf">pivx/res/font/Montserrat-ExtraLightItalic.ttf</file>
+        <file alias="Montserrat-Italic.ttf">pivx/res/font/Montserrat-Italic.ttf</file>
+        <file alias="Montserrat-Light.ttf">pivx/res/font/Montserrat-Light.ttf</file>
+        <file alias="Montserrat-LightItalic.ttf">pivx/res/font/Montserrat-LightItalic.ttf</file>
+        <file alias="Montserrat-Regular.ttf">pivx/res/font/Montserrat-Regular.ttf</file>
+        <file alias="Montserrat-SemiBold.ttf">pivx/res/font/Montserrat-SemiBold.ttf</file>
+        <file alias="Montserrat-SemiBoldItalic.ttf">pivx/res/font/Montserrat-SemiBoldItalic.ttf</file>
+        <file alias="Montserrat-Thin.ttf">pivx/res/font/Montserrat-Thin.ttf</file>
+        <file alias="Montserrat-ThinItalic.ttf">pivx/res/font/Montserrat-ThinItalic.ttf</file>        
+    </qresource>
 </RCC>
