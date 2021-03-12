@@ -39,7 +39,10 @@ TopBar::TopBar(PIVXGUI* _mainWindow, QWidget *parent) :
     /* Containers */
     ui->containerTop->setContentsMargins(10, 4, 10, 10);
 #ifdef Q_OS_MAC
-    ui->containerTop->load("://bg-dashboard-banner");
+    if(isLightTheme) 
+        ui->containerTop->load("://bg-dashboard-banner");
+    else
+        ui->containerTop->load("://bg-dashboard-banner-dark");
     setCssProperty(ui->containerTop,"container-topbar-no-image");
 #else
     ui->containerTop->setProperty("cssClass", "container-top");
