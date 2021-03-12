@@ -355,7 +355,7 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 		nSubsidy = 250 * COIN;  //genesis
 	}
 	else if (nHeight <= 100 ) { // TODO: Adjust this value according to the blocks needed to mine the required amount of coins for the swap
-		nSubsidy = 5000000 * COIN;  // TODO: Adjust this value according to the amount of coins that will be sent with the swap
+		nSubsidy = 2000000 * COIN;  // TODO: Adjust this value according to the amount of coins that will be sent with the swap
 	}
 	else if (nHeight <= 1000 ) { // Mining phase
 		nSubsidy = 1000 * COIN;
@@ -499,20 +499,40 @@ bool CMasternodeBroadcast::Create(CTxIn txin, CService service, CKey keyCollater
 
 bool CMasternodeBroadcast::Sign(const CKey& key, const CPubKey& pubKey)
 {
+    sigTime = GetAdjustedTime();
+
     std::string strError = "";
-    nMessVersion = MessageVersion::MESS_VER_HASH;
-    const std::string strMessage = GetSignatureHash().GetHex();
+    std::string strMessage;
 
-    if (!CMessageSigner::SignMessage(strMessage, vchSig, key)) {
-        return error("%s : SignMessage() (nMessVersion=%d) failed", __func__, nMessVersion);
+    if(Params().GetConsensus().NetworkUpgradeActive(chainActive.Height(), Consensus::UPGRADE_V3_4)) {
+        nMessVersion = MessageVersion::MESS_VER_HASH;
+        strMessage = GetSignatureHash().GetHex();
+
+        if (!CMessageSigner::SignMessage(strMessage, vchSig, key)) {
+            return error("%s : SignMessage() (nMessVersion=%d) failed", __func__, nMessVersion);
+        }
+
+        if (!CMessageSigner::VerifyMessage(pubKey, vchSig, strMessage, strError)) {
+            return error("%s : VerifyMessage() (nMessVersion=%d) failed, error: %s\n",
+                    __func__, nMessVersion, strError);
+        }
+
+        return true;
+    } else {
+        nMessVersion = MessageVersion::MESS_VER_STRMESS;
+        strMessage = GetOldStrMessage();
+
+        CHashWriter ss(SER_GETHASH, 0);
+        ss << strMessageMagic;
+        ss << strMessage;
+
+        if (!key.SignCompact(ss.GetHash(), vchSig)) {
+            return error("%s : VerifyMessage() (nMessVersion=%d) failed, error: Signing failed.\n",
+                    __func__, nMessVersion);
+        }
+
+        return true;
     }
-
-    if (!CMessageSigner::VerifyMessage(pubKey, vchSig, strMessage, strError)) {
-        return error("%s : VerifyMessage() (nMessVersion=%d) failed, error: %s\n",
-                __func__, nMessVersion, strError);
-    }
-
-    return true;
 }
 
 bool CMasternodeBroadcast::Sign(const std::string strSignKey)
@@ -541,16 +561,16 @@ std::string CMasternodeBroadcast::GetOldStrMessage() const
 bool CMasternodeBroadcast::CheckSignature() const
 {
     std::string strError = "";
-    const std::string strMessage = (
-                            nMessVersion == MessageVersion::MESS_VER_HASH ?
-                            GetSignatureHash().GetHex() :
-                            GetStrMessage()
-                            );
+    std::string strMessage = (nMessVersion == MessageVersion::MESS_VER_HASH ?
+                                  GetSignatureHash().GetHex() :
+                                  GetStrMessage());
+    std::string oldStrMessage = (nMessVersion == MessageVersion::MESS_VER_HASH ?
+                                     GetSignatureHash().GetHex() :
+                                     GetOldStrMessage());
 
-    if(!CMessageSigner::VerifyMessage(pubKeyCollateralAddress, vchSig, strMessage, strError) &&
-       !CMessageSigner::VerifyMessage(pubKeyCollateralAddress, vchSig, GetOldStrMessage(), strError)) {
+    if (!CMessageSigner::VerifyMessage(pubKeyCollateralAddress, vchSig, oldStrMessage, strError) &&
+        !CMessageSigner::VerifyMessage(pubKeyCollateralAddress, vchSig, strMessage, strError))
         return error("%s : VerifyMessage (nMessVersion=%d) failed: %s", __func__, nMessVersion, strError);
-    } 
 
     return true;
 }
@@ -796,7 +816,7 @@ std::string CMasternodePing::GetStrMessage() const
 {
     int64_t salt = sporkManager.GetSporkValue(SPORK_103_PING_MESSAGE_SALT);
 
-    if (salt == 4070908800ULL) {
+    if (salt != 0) {
         return vin.ToString() + blockHash.ToString() + std::to_string(sigTime) + std::to_string(salt);
     } else {
         return vin.ToString() + blockHash.ToString() + std::to_string(sigTime);
