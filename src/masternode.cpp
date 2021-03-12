@@ -348,7 +348,10 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
     CAmount nSubsidy;
 
-	if (nHeight <= 0) {
+	const int targetFork1 = 200790; //fork since block 200,790
+	const int targetFork2 = 1400000; //fork since block 1,400,001
+
+	if (nHeight == 0) {
 		nSubsidy = 250 * COIN;  //genesis
 	}
 	else if (nHeight <= 100 ) { // TODO: Adjust this value according to the blocks needed to mine the required amount of coins for the swap
@@ -377,9 +380,10 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 	}
 	else if (nHeight <= 607000) { // Old blockchain block 2100000
 		nSubsidy = 450 * COIN;
-	}
-
-	nSubsidy = 400 * COIN; // Old blockchain block above 2100000
+	} 
+    else if(nHeight > 2100000) {
+		nSubsidy = 400 * COIN;
+	} 
 
     if(nMoneySupply + nSubsidy > maxMoneyOut) {
         return nMoneySupply + nSubsidy - maxMoneyOut;
@@ -713,13 +717,13 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
     }
 
     // verify that sig time is legit in past
-    // should be at least not earlier than block when 1000 __DSW__ tx got MASTERNODE_MIN_CONFIRMATIONS
+    // should be at least not earlier than block when 1000 TRTT tx got MASTERNODE_MIN_CONFIRMATIONS
     uint256 hashBlock = UINT256_ZERO;
     CTransaction tx2;
     GetTransaction(vin.prevout.hash, tx2, hashBlock, true);
     BlockMap::iterator mi = mapBlockIndex.find(hashBlock);
     if (mi != mapBlockIndex.end() && (*mi).second) {
-        CBlockIndex* pMNIndex = (*mi).second;                                                        // block for 1000 __DSW__ tx -> 1 confirmation
+        CBlockIndex* pMNIndex = (*mi).second;                                                        // block for 1000 TRTT tx -> 1 confirmation
         CBlockIndex* pConfIndex = chainActive[pMNIndex->nHeight + MASTERNODE_MIN_CONFIRMATIONS - 1]; // block where tx got MASTERNODE_MIN_CONFIRMATIONS
         if (pConfIndex->GetBlockTime() > sigTime) {
             LogPrint(BCLog::MASTERNODE,"mnb - Bad sigTime %d for Masternode %s (%i conf block is at %d)\n",

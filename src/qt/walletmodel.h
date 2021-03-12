@@ -107,7 +107,7 @@ public:
     }
 };
 
-/** Interface to __DSW__ wallet from Qt view code. */
+/** Interface to TRTT wallet from Qt view code. */
 class WalletModel : public QObject
 {
     Q_OBJECT

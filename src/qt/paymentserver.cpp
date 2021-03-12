@@ -77,7 +77,7 @@ namespace // Anon namespace
 //
 static QString ipcServerName()
 {
-    QString name("__Decenomy__Qt");
+    QString name("TrittiumQt");
 
     // Append a simple hash of the datadir
     // Note that GetDataDir(true) returns a different path
@@ -184,11 +184,11 @@ void PaymentServer::ipcParseCommandLine(int argc, char* argv[])
         if (arg.startsWith("-"))
             continue;
 
-        // If the __decenomy__: URI contains a payment request, we are not able to detect the
+        // If the trittium: URI contains a payment request, we are not able to detect the
         // network as that would require fetching and parsing the payment request.
         // That means clicking such an URI which contains a testnet payment request
         // will start a mainnet instance and throw a "wrong network" error.
-        if (arg.startsWith(BITCOIN_IPC_PREFIX, Qt::CaseInsensitive)) // __decenomy__: URI
+        if (arg.startsWith(BITCOIN_IPC_PREFIX, Qt::CaseInsensitive)) // trittium: URI
         {
             savedPaymentRequests.append(arg);
 
@@ -268,7 +268,7 @@ PaymentServer::PaymentServer(QObject* parent, bool startLocalServer) : QObject(p
     GOOGLE_PROTOBUF_VERIFY_VERSION;
 
     // Install global event filter to catch QFileOpenEvents
-    // on Mac: sent when you click __decenomy__: links
+    // on Mac: sent when you click trittium: links
     // other OSes: helpful when dealing with payment request files (in the future)
     if (parent)
         parent->installEventFilter(this);
@@ -284,7 +284,7 @@ PaymentServer::PaymentServer(QObject* parent, bool startLocalServer) : QObject(p
         if (!uriServer->listen(name)) {
             // constructor is called early in init, so don't use "emit message()" here
             QMessageBox::critical(0, tr("Payment request error"),
-                tr("Cannot start __decenomy__: click-to-pay handler"));
+                tr("Cannot start trittium: click-to-pay handler"));
         } else {
             connect(uriServer, &QLocalServer::newConnection, this, &PaymentServer::handleURIConnection);
             connect(this, &PaymentServer::receivedPaymentACK, this, &PaymentServer::handlePaymentACK);
@@ -298,12 +298,12 @@ PaymentServer::~PaymentServer()
 }
 
 //
-// OSX-specific way of handling __decenomy__: URIs and
+// OSX-specific way of handling trittium: URIs and
 // PaymentRequest mime types
 //
 bool PaymentServer::eventFilter(QObject* object, QEvent* event)
 {
-    // clicking on __decenomy__: URIs creates FileOpen events on the Mac
+    // clicking on trittium: URIs creates FileOpen events on the Mac
     if (event->type() == QEvent::FileOpen) {
         QFileOpenEvent* fileEvent = static_cast<QFileOpenEvent*>(event);
         if (!fileEvent->file().isEmpty())
@@ -324,7 +324,7 @@ void PaymentServer::initNetManager()
     if (netManager != NULL)
         delete netManager;
 
-    // netManager is used to fetch paymentrequests given in __decenomy__: URIs
+    // netManager is used to fetch paymentrequests given in trittium: URIs
     netManager = new QNetworkAccessManager(this);
 
     QNetworkProxy proxy;
@@ -359,7 +359,7 @@ void PaymentServer::handleURIOrFile(const QString& s)
         return;
     }
 
-    if (s.startsWith(BITCOIN_IPC_PREFIX, Qt::CaseInsensitive)) // __decenomy__: URI
+    if (s.startsWith(BITCOIN_IPC_PREFIX, Qt::CaseInsensitive)) // trittium: URI
     {
         QUrlQuery uri((QUrl(s)));
         if (uri.hasQueryItem("r")) // payment request URI
@@ -391,7 +391,7 @@ void PaymentServer::handleURIOrFile(const QString& s)
                     Q_EMIT receivedPaymentRequest(recipient);
             } else
                 Q_EMIT message(tr("URI handling"),
-                    tr("URI cannot be parsed! This can be caused by an invalid __DSW__ address or malformed URI parameters."),
+                    tr("URI cannot be parsed! This can be caused by an invalid TRTT address or malformed URI parameters."),
                     CClientUIInterface::ICON_WARNING);
 
             return;
@@ -505,7 +505,7 @@ bool PaymentServer::processPaymentRequest(PaymentRequestPlus& request, SendCoins
             // Append destination address
             addresses.append(QString::fromStdString(EncodeDestination(dest)));
         } else if (!recipient.authenticatedMerchant.isEmpty()) {
-            // Insecure payments to custom __DSW__ addresses are not supported
+            // Insecure payments to custom TRTT addresses are not supported
             // (there is no good way to tell the user where they are paying in a way
             // they'd have a chance of understanding).
             Q_EMIT message(tr("Payment request rejected"),

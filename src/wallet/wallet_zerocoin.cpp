@@ -47,9 +47,9 @@ bool CWallet::AddDeterministicSeed(const uint256& seed)
         if (db.WriteZPIVSeed(hashSeed, ToByteVector(seed))) {
             return true;
         }
-        strErr = "save z__DSW__seed to wallet";
+        strErr = "save zTRTTseed to wallet";
     }
-    //the use case for this is no password set seed, mint dz__DSW__,
+    //the use case for this is no password set seed, mint dzTRTT,
 
     return error("s%: Failed to %s\n", __func__, strErr);
 }
@@ -98,7 +98,7 @@ bool CWallet::GetDeterministicSeed(const uint256& hashSeed, uint256& seedOut)
 void CWallet::doZPivRescan(const CBlockIndex* pindex, const CBlock& block,
         std::set<uint256>& setAddedToWallet, const Consensus::Params& consensus, bool fCheckZPIV)
 {
-    //If this is a zapwallettx, need to read z__DSW__
+    //If this is a zapwallettx, need to read zTRTT
     if (fCheckZPIV && consensus.NetworkUpgradeActive(pindex->nHeight, Consensus::UPGRADE_ZC)) {
         std::list<CZerocoinMint> listMints;
         BlockToZerocoinMintList(block, listMints, true);
@@ -298,7 +298,7 @@ bool CWallet::CreateZerocoinMintTransaction(const CAmount nValue,
         CTxOut outMint;
         CDeterministicMint dMint;
         if (!CreateZPIVOutPut(denomination, outMint, dMint)) {
-            strFailReason = strprintf("%s: failed to create new z__DSW__ output", __func__);
+            strFailReason = strprintf("%s: failed to create new zTRTT output", __func__);
             return error(strFailReason.c_str());
         }
         txNew.vout.push_back(outMint);
@@ -329,7 +329,7 @@ bool CWallet::CreateZerocoinMintTransaction(const CAmount nValue,
 
 
     //any change that is less than 0.0100000 will be ignored and given as an extra fee
-    //also assume that a zerocoinspend that is minting the change will not have any change that goes to __DSW__
+    //also assume that a zerocoinspend that is minting the change will not have any change that goes to TRTT
     CAmount nChange = nValueIn - nTotalValue; // Fee already accounted for in nTotalValue
     if (nChange > 1 * CENT) {
         // Fill a vout to ourself using the largest contributing address
@@ -451,7 +451,7 @@ bool CWallet::SpendZerocoin(CAmount nAmount, CWalletTx& wtxNew, CZerocoinSpendRe
         zpivTracker->Add(dMint, true);
     }
 
-    receipt.SetStatus("Spend Successful", ZPIV_SPEND_OKAY);  // When we reach this point spending z__DSW__ was successful
+    receipt.SetStatus("Spend Successful", ZPIV_SPEND_OKAY);  // When we reach this point spending zTRTT was successful
 
     return true;
 }
@@ -543,7 +543,7 @@ bool CWallet::CreateZCPublicSpendTransaction(
     }
 
     if (nValue < 1) {
-        receipt.SetStatus(_("Value is below the smallest available denomination (= 1) of z__DSW__"), nStatus);
+        receipt.SetStatus(_("Value is below the smallest available denomination (= 1) of zTRTT"), nStatus);
         return false;
     }
 
@@ -556,10 +556,10 @@ bool CWallet::CreateZCPublicSpendTransaction(
     CAmount nValueSelected = 0;
     int nCoinsReturned = 0; // Number of coins returned in change from function below (for debug)
     int nNeededSpends = 0;  // Number of spends which would be needed if selection failed
-    const int nMaxSpends = Params().GetConsensus().ZC_MaxPublicSpendsPerTx; // Maximum possible spends for one z__DSW__ public spend transaction
+    const int nMaxSpends = Params().GetConsensus().ZC_MaxPublicSpendsPerTx; // Maximum possible spends for one zTRTT public spend transaction
     std::vector<CMintMeta> vMintsToFetch;
     if (vSelectedMints.empty()) {
-        //  All of the z__DSW__ used in the public coin spend are mature by default (everything is public now.. no need to wait for any accumulation)
+        //  All of the zTRTT used in the public coin spend are mature by default (everything is public now.. no need to wait for any accumulation)
         setMints = zpivTracker->ListMints(true, false, true, true); // need to find mints to spend
         if(setMints.empty()) {
             receipt.SetStatus(_("Failed to find Zerocoins in wallet database"), nStatus);
@@ -573,7 +573,7 @@ bool CWallet::CreateZCPublicSpendTransaction(
         if(!fWholeNumber)
             nValueToSelect = static_cast<CAmount>(ceil(dValue) * COIN);
 
-        // Select the z__DSW__ mints to use in this spend
+        // Select the zTRTT mints to use in this spend
         std::map<libzerocoin::CoinDenomination, CAmount> DenomMap = GetMyZerocoinDistribution();
         std::list<CMintMeta> listMints(setMints.begin(), setMints.end());
         vMintsToFetch = SelectMintsFromList(nValueToSelect, nValueSelected, nMaxSpends,
@@ -690,7 +690,7 @@ bool CWallet::CreateZCPublicSpendTransaction(
 
             for (std::pair<CTxDestination,CAmount> pair : addressesTo){
                 CScript scriptZerocoinSpend = GetScriptForDestination(pair.first);
-                //add output to __DSW__ address to the transaction (the actual primary spend taking place)
+                //add output to TRTT address to the transaction (the actual primary spend taking place)
                 // TODO: check value?
                 CTxOut txOutZerocoinSpend(pair.second, scriptZerocoinSpend);
                 txNew.vout.push_back(txOutZerocoinSpend);
@@ -764,7 +764,7 @@ bool CWallet::CreateZCPublicSpendTransaction(
 CAmount CWallet::GetZerocoinBalance(bool fMatureOnly) const
 {
     if (fMatureOnly) {
-        // This code is not removed just for when we back to use z__DSW__ in the future, for now it's useless,
+        // This code is not removed just for when we back to use zTRTT in the future, for now it's useless,
         // every public coin spend is now spendable without need to have new mints on top.
 
         //if (chainActive.Height() > nLastMaturityCheck)
@@ -809,7 +809,7 @@ std::map<libzerocoin::CoinDenomination, CAmount> CWallet::GetMyZerocoinDistribut
     return spread;
 }
 
-// z__DSW__ wallet
+// zTRTT wallet
 
 void CWallet::setZWallet(CzPIVWallet* zwallet)
 {

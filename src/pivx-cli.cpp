@@ -72,12 +72,12 @@ static bool AppInitRPC(int argc, char* argv[])
     //
     ParseParameters(argc, argv);
     if (argc < 2 || mapArgs.count("-?") || mapArgs.count("-help") || mapArgs.count("-version")) {
-        std::string strUsage = _("__Decenomy__ RPC client version") + " " + FormatFullVersion() + "\n";
+        std::string strUsage = _("Trittium RPC client version") + " " + FormatFullVersion() + "\n";
         if (!mapArgs.count("-version")) {
             strUsage += "\n" + _("Usage:") + "\n" +
-                        "  __decenomy__-cli [options] <command> [params]  " + _("Send command to __Decenomy__") + "\n" +
-                        "  __decenomy__-cli [options] help                " + _("List commands") + "\n" +
-                        "  __decenomy__-cli [options] help <command>      " + _("Get help for a command") + "\n";
+                        "  trittium-cli [options] <command> [params]  " + _("Send command to Trittium") + "\n" +
+                        "  trittium-cli [options] help                " + _("List commands") + "\n" +
+                        "  trittium-cli [options] help <command>      " + _("Get help for a command") + "\n";
 
             strUsage += "\n" + HelpMessageCli();
         }

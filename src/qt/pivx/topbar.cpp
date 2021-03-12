@@ -88,7 +88,7 @@ TopBar::TopBar(PIVXGUI* _mainWindow, QWidget *parent) :
     ui->pushButtonStack->setButtonText(tr("Staking Disabled"));
 
     ui->pushButtonConf->setButtonClassStyle("cssClass", "btn-check-conf");
-    ui->pushButtonConf->setButtonText("__decenomy__.conf");
+    ui->pushButtonConf->setButtonText("trittium.conf");
     ui->pushButtonConf->setChecked(false);
 
     ui->pushButtonMasternodes->setButtonClassStyle("cssClass", "btn-check-masternodes");
@@ -353,7 +353,7 @@ void TopBar::onBtnConfClicked()
     ui->pushButtonConf->setChecked(false);
 
     if (!GUIUtil::openConfigfile())
-        inform(tr("Unable to open __decenomy__.conf with default application"));
+        inform(tr("Unable to open trittium.conf with default application"));
 }
 
 void TopBar::onBtnMasternodesClicked()
@@ -584,7 +584,7 @@ void TopBar::loadWalletModel()
     connect(walletModel, &WalletModel::encryptionStatusChanged, this, &TopBar::refreshStatus);
     // Ask for passphrase if needed
     connect(walletModel, &WalletModel::requireUnlock, this, &TopBar::unlockWallet);
-    // update the display unit, to not use the default ("__DSW__")
+    // update the display unit, to not use the default ("TRTT")
     updateDisplayUnit();
 
     refreshStatus();
@@ -662,10 +662,10 @@ void TopBar::updateBalances(const interfaces::WalletBalances& newBalance)
     }
     ui->labelTitle1->setText(nLockedBalance > 0 ? tr("Available (Locked included)") : tr("Available"));
 
-    // __DSW__ Total
+    // TRTT Total
     QString totalPiv = GUIUtil::formatBalance(newBalance.balance, nDisplayUnit);
 
-    // __DSW__
+    // TRTT
     // Top
     ui->labelAmountTopPiv->setText(totalPiv);
     // Expanded

@@ -234,21 +234,21 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0x31;
-        pchMessageStart[1] = 0x41;
-        pchMessageStart[2] = 0x51;
-        pchMessageStart[3] = 0xf1;
-        nDefaultPort = __PORT_MAINNET__;
+        pchMessageStart[0] = 0x72;
+        pchMessageStart[1] = 0x52;
+        pchMessageStart[2] = 0x58;
+        pchMessageStart[3] = 0x67;
+        nDefaultPort = 30001;
 
-        vSeeds.push_back(CDNSSeedData("seeder", "seeder.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed1", "seed1.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed2", "seed2.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed3", "seed3.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed4", "seed4.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed5", "seed5.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed6", "seed6.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed7", "seed7.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed8", "seed8.__decenomy.net__"));
+        vSeeds.push_back(CDNSSeedData("seeder", "seeder.trittium.net"));
+        vSeeds.push_back(CDNSSeedData("seed1",  "seed1.trittium.net"));
+        vSeeds.push_back(CDNSSeedData("seed2",  "seed2.trittium.net"));
+        vSeeds.push_back(CDNSSeedData("seed3",  "seed3.trittium.net"));
+        vSeeds.push_back(CDNSSeedData("seed4",  "seed4.trittium.net"));
+        vSeeds.push_back(CDNSSeedData("seed5",  "seed5.trittium.net"));
+        vSeeds.push_back(CDNSSeedData("seed6",  "seed6.trittium.net"));
+        vSeeds.push_back(CDNSSeedData("seed7",  "seed7.trittium.net"));
+        vSeeds.push_back(CDNSSeedData("seed8",  "seed8.trittium.net"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 65); // T
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19); // 8 or 9
@@ -340,7 +340,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x3bf54807365f102ff9cdb07cf5f4af411503d5b544835dc96a5beaee140ad419"));
 
         consensus.fPowAllowMinDifficultyBlocks = true;
-        consensus.powLimit   = ~UINT256_ZERO >> 12;   // __decenomy__ starting difficulty is 1 / 2^12
+        consensus.powLimit   = ~UINT256_ZERO >> 20; // trittium starting difficulty
         consensus.posLimitV1 = ~UINT256_ZERO >> 24;
         consensus.posLimitV2 = ~UINT256_ZERO >> 20;
         consensus.nBudgetCycleBlocks = 144; // approx 10 cycles per day
@@ -414,31 +414,27 @@ public:
          * a large 4-byte int at any alignment.
          */
 
-        pchMessageStart[0] = 0x32;
-        pchMessageStart[1] = 0x42;
-        pchMessageStart[2] = 0x52;
-        pchMessageStart[3] = 0xf2;
-        nDefaultPort = __PORT_TESTNET__;
+        pchMessageStart[0] = 0x83;
+        pchMessageStart[1] = 0x63;
+        pchMessageStart[2] = 0x69;
+        pchMessageStart[3] = 0x78;
+        nDefaultPort = 40001;
 
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.push_back(CDNSSeedData("seeder", "seeder.__decenomy.net__"));
         vSeeds.push_back(CDNSSeedData("testnet1", "testnet1.4444.tools", true));
         vSeeds.push_back(CDNSSeedData("testnet2", "testnet2.4444.tools", true));
-        vSeeds.push_back(CDNSSeedData("testnet.572133.club", "testnet.572133.club", true));
-        vSeeds.push_back(CDNSSeedData("testnet2.572133.club", "testnet2.572133.club", true));
-		
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 127); // Testnet __Decenomy__ addresses start with 't'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet __Decenomy__ script addresses start with '8' or '9'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet Trittium addresses start with 'x' or 'y'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet Trittium script addresses start with '8' or '9'
         base58Prefixes[STAKING_ADDRESS] = std::vector<unsigned char>(1, 73);     // starting with 'W'
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);     // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
         // Testnet __Decenomy__ BIP32 pubkeys start with 'DRKV'
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x3a)(0x80)(0x61)(0xa0).convert_to_container<std::vector<unsigned char> >();
         // Testnet __Decenomy__ BIP32 prvkeys start with 'DRKP'
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x3a)(0x80)(0x58)(0x37).convert_to_container<std::vector<unsigned char> >();
-        // Testnet __Decenomy__ BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet Trittium BIP44 coin type is '1' (All coin's testnet default)
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x00)(0x01).convert_to_container<std::vector<unsigned char> >();
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
@@ -520,7 +516,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x3bf54807365f102ff9cdb07cf5f4af411503d5b544835dc96a5beaee140ad419"));
 
         consensus.fPowAllowMinDifficultyBlocks = true;
-        consensus.powLimit   = ~UINT256_ZERO >> 2;   // __decenomy__ starting difficulty is 1 / 2^12
+        consensus.powLimit   = ~UINT256_ZERO >> 20;   // trittium starting difficulty is 1 / 2^12
         consensus.posLimitV1 = ~UINT256_ZERO >> 24;
         consensus.posLimitV2 = ~UINT256_ZERO >> 20;
         consensus.nBudgetCycleBlocks = 144;         // approx 10 cycles per day
@@ -591,11 +587,11 @@ public:
          * a large 4-byte int at any alignment.
          */
 
-        pchMessageStart[0] = 0x33;
-        pchMessageStart[1] = 0x43;
-        pchMessageStart[2] = 0x53;
-        pchMessageStart[3] = 0xf3;
-        nDefaultPort = __PORT_REGTEST__;
+        pchMessageStart[0] = 0x69;
+        pchMessageStart[1] = 0xcf;
+        pchMessageStart[2] = 0x7e;
+        pchMessageStart[3] = 0xac;
+        nDefaultPort = 51436;
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.

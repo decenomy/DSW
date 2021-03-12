@@ -15,7 +15,7 @@ Users updating from a previous version after Tuesday, May 8, 2018 12:00:00 AM GM
 How to Upgrade
 ==============
 
-If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/__Decenomy__-Qt (on Mac) or pivxd/pivx-qt (on Linux).
+If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/Trittium-Qt (on Mac) or pivxd/pivx-qt (on Linux).
 
 
 Compatibility
@@ -251,8 +251,8 @@ Minor Enhancements
 -	Enforced v1 zPIV spends to require a security level of 100
 -	Updates to zPIV spends to avoid segfaults
 -	Updates to configuration will now reflect on the privacy tab
--	Fixed a  bug that would not start masternodes from the __Decenomy__-Qt masternodes tab
--	Updated __Decenomy__-Qt tooltips
+-	Fixed a  bug that would not start masternodes from the Trittium-Qt masternodes tab
+-	Updated Trittium-Qt tooltips
 -	Icon added to the wallet GUI to reflect the status of autominting (active / inactive)
 -	Updated errors causing the blockchain to corrupt when experiencing unexpected wallet shutdowns
 -	Updated RPC help outputs & removed the deprecated obfuscation. 

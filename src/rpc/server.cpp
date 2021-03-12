@@ -266,11 +266,11 @@ UniValue stop(const JSONRPCRequest& jsonRequest)
     if (jsonRequest.fHelp || jsonRequest.params.size() > 1)
         throw std::runtime_error(
             "stop\n"
-            "\nStop __DSW__ server.");
+            "\nStop TRTT server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "__DSW__ server stopping";
+    return "TRTT server stopping";
 }
 
 
@@ -360,32 +360,32 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblock",           &waitforblock,           true },
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true },
 
-        /* __DSW__ features */
-        {"__decenomy__", "listmasternodes", &listmasternodes, true },
-        {"__decenomy__", "getmasternodecount", &getmasternodecount, true },
-        {"__decenomy__", "createmasternodebroadcast", &createmasternodebroadcast, true },
-        {"__decenomy__", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
-        {"__decenomy__", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
-        {"__decenomy__", "masternodecurrent", &masternodecurrent, true },
-        {"__decenomy__", "startmasternode", &startmasternode, true },
-        {"__decenomy__", "createmasternodekey", &createmasternodekey, true },
-        {"__decenomy__", "getmasternodeoutputs", &getmasternodeoutputs, true },
-        {"__decenomy__", "listmasternodeconf", &listmasternodeconf, true },
-        {"__decenomy__", "getmasternodestatus", &getmasternodestatus, true },
-        {"__decenomy__", "getmasternodewinners", &getmasternodewinners, true },
-        {"__decenomy__", "getmasternodescores", &getmasternodescores, true },
-        {"__decenomy__", "preparebudget", &preparebudget, true },
-        {"__decenomy__", "submitbudget", &submitbudget, true },
-        {"__decenomy__", "mnbudgetvote", &mnbudgetvote, true },
-        {"__decenomy__", "getbudgetvotes", &getbudgetvotes, true },
-        {"__decenomy__", "getnextsuperblock", &getnextsuperblock, true },
-        {"__decenomy__", "getbudgetprojection", &getbudgetprojection, true },
-        {"__decenomy__", "getbudgetinfo", &getbudgetinfo, true },
-        {"__decenomy__", "mnbudgetrawvote", &mnbudgetrawvote, true },
-        {"__decenomy__", "mnfinalbudget", &mnfinalbudget, true },
-        {"__decenomy__", "checkbudgets", &checkbudgets, true },
-        {"__decenomy__", "mnsync", &mnsync, true },
-        {"__decenomy__", "spork", &spork, true },
+        /* TRTT features */
+        {"trittium", "listmasternodes", &listmasternodes, true },
+        {"trittium", "getmasternodecount", &getmasternodecount, true },
+        {"trittium", "createmasternodebroadcast", &createmasternodebroadcast, true },
+        {"trittium", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
+        {"trittium", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
+        {"trittium", "masternodecurrent", &masternodecurrent, true },
+        {"trittium", "startmasternode", &startmasternode, true },
+        {"trittium", "createmasternodekey", &createmasternodekey, true },
+        {"trittium", "getmasternodeoutputs", &getmasternodeoutputs, true },
+        {"trittium", "listmasternodeconf", &listmasternodeconf, true },
+        {"trittium", "getmasternodestatus", &getmasternodestatus, true },
+        {"trittium", "getmasternodewinners", &getmasternodewinners, true },
+        {"trittium", "getmasternodescores", &getmasternodescores, true },
+        {"trittium", "preparebudget", &preparebudget, true },
+        {"trittium", "submitbudget", &submitbudget, true },
+        {"trittium", "mnbudgetvote", &mnbudgetvote, true },
+        {"trittium", "getbudgetvotes", &getbudgetvotes, true },
+        {"trittium", "getnextsuperblock", &getnextsuperblock, true },
+        {"trittium", "getbudgetprojection", &getbudgetprojection, true },
+        {"trittium", "getbudgetinfo", &getbudgetinfo, true },
+        {"trittium", "mnbudgetrawvote", &mnbudgetrawvote, true },
+        {"trittium", "mnfinalbudget", &mnfinalbudget, true },
+        {"trittium", "checkbudgets", &checkbudgets, true },
+        {"trittium", "mnsync", &mnsync, true },
+        {"trittium", "spork", &spork, true },
 
 #ifdef ENABLE_WALLET
         /* Wallet */
@@ -598,7 +598,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(std::string methodname, std::string args)
 {
-    return "> __decenomy__-cli " + methodname + " " + args + "\n";
+    return "> trittium-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(std::string methodname, std::string args)
