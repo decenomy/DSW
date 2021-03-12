@@ -240,8 +240,6 @@
         <file alias="Nunito-Regular.ttf">pivx/res/font/Nunito-Regular.ttf</file>
         <file alias="Nunito-SemiBold.ttf">pivx/res/font/Nunito-SemiBold.ttf</file>
         <file alias="Nunito-SemiBoldItalic.ttf">pivx/res/font/Nunito-SemiBoldItalic.ttf</file>
-    </qresource>
-    <qresource prefix="/font">
         <file alias="Montserrat-Black.ttf">pivx/res/font/Montserrat-Black.ttf</file>
         <file alias="Montserrat-BlackItalic.ttf">pivx/res/font/Montserrat-BlackItalic.ttf</file>
         <file alias="Montserrat-Bold.ttf">pivx/res/font/Montserrat-Bold.ttf</file>
