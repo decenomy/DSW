@@ -84,7 +84,7 @@ static const unsigned int DEFAULT_MAX_PEER_CONNECTIONS = 125;
 
 static const ServiceFlags REQUIRED_SERVICES = NODE_NETWORK;
 
-static const bool DEFAULT_FORCEDNSSEED = false;
+static const bool DEFAULT_FORCEDNSSEED = true;
 static const size_t DEFAULT_MAXRECEIVEBUFFER = 5 * 1000;
 static const size_t DEFAULT_MAXSENDBUFFER    = 1 * 1000;
 
