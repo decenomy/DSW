@@ -54,6 +54,7 @@ DashboardWidget::DashboardWidget(PIVXGUI* parent) :
     setCssSubtitleScreen(ui->labelSubtitle);
 
     // Staking Information
+    ui->labelMessage->setText(tr("Amount of TRTT earned via Staking & Masternodes"));
     setCssSubtitleScreen(ui->labelMessage);
     setCssProperty(ui->labelSquarePiv, "square-chart-piv");
     setCssProperty(ui->labelPiv, "text-chart-piv");
@@ -575,6 +576,7 @@ const QMap<int, QMap<QString, qint64>> DashboardWidget::getAmountBy()
             } else if (isMN) {
                 amountBy[time]["piv"] = 0;
                 amountBy[time]["mn"] = amount;
+                hasMNRewards = true;
             }
         }
     }
@@ -614,7 +616,8 @@ bool DashboardWidget::loadChartData(bool withMonthNames)
 
         chartData->xLabels << ((withMonthNames) ? monthsNames[num - 1] : QString::number(num));
 
-        chartData->valuesPiv.append(piv);        
+        chartData->valuesPiv.append(piv);    
+        chartData->valuesMNRewards.append(mnrewards);    
 
         int max = std::max(piv, mnrewards);
         if (max > chartData->maxValue) {
@@ -690,7 +693,7 @@ void DashboardWidget::onChartRefreshed()
 
     // Total
     nDisplayUnit = walletModel->getOptionsModel()->getDisplayUnit();
-    if (chartData->totalPiv > 0 || chartData->totalMNRewards) {
+    if (chartData->totalPiv > 0 || chartData->totalMNRewards > 0) {
         setCssProperty(ui->labelAmountPiv, "text-stake-piv");
 		setCssProperty(ui->labelAmountMNRewards, "text-stake-mnrewards");
     } else {
