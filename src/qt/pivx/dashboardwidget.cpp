@@ -54,11 +54,7 @@ DashboardWidget::DashboardWidget(PIVXGUI* parent) :
     setCssSubtitleScreen(ui->labelSubtitle);
 
     // Staking Information
-<<<<<<< HEAD
     ui->labelMessage->setText(tr("Amount of TRTT earned via Staking & Masternodes"));
-=======
-    ui->labelMessage->setText(tr("Amount of __DSW__ earned via Staking & Masternodes"));
->>>>>>> develop
     setCssSubtitleScreen(ui->labelMessage);
     setCssProperty(ui->labelSquarePiv, "square-chart-piv");
     setCssProperty(ui->labelPiv, "text-chart-piv");
