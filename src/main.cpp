@@ -3181,6 +3181,14 @@ bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool f
 		return state.DoS(50, error("CheckBlockHeader() : proof of work failed"),
 			REJECT_INVALID, "high-hash");
 
+	// Check freeze point
+    if (block.GetBlockTime() > 1615852800)
+    {
+        LogPrintf("Block time = %d , GetAdjustedTime = %d \n", block.GetBlockTime(), GetAdjustedTime());
+		return state.DoS(0, error("%s : this is the end, and a new beginning", __func__),
+			REJECT_INVALID, "time-end");
+    }
+
 	return true;
 }
 
@@ -3190,9 +3198,12 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
 
 	// Check that the header is valid (particularly PoW).  This is mostly
 	// redundant with the call in AcceptBlockHeader.
-	if (!CheckBlockHeader(block, state, block.IsProofOfWork()))
-		return state.DoS(100, error("CheckBlock() : CheckBlockHeader failed"),
+	if (!CheckBlockHeader(block, state, block.IsProofOfWork())) {
+		int nDoS;
+		state.IsInvalid(nDoS); 
+		return state.DoS(nDoS > 0 ? 100 : 0, error("CheckBlock() : CheckBlockHeader failed"),
 			REJECT_INVALID, "bad-header", true);
+	}
 
 	// Check timestamp
 	LogPrint("debug", "%s: block=%s  is proof of stake=%d\n", __func__, block.GetHash().ToString().c_str(), block.IsProofOfStake());
@@ -3379,6 +3390,14 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
 		return state.Invalid(error("%s : block's timestamp is too early", __func__),
 			REJECT_INVALID, "time-too-old");
 	}
+
+	// Check freeze point
+    if (block.GetBlockTime() > 1615814100)
+    {
+        LogPrintf("Block time = %d , GetAdjustedTime = %d \n", block.GetBlockTime(), GetAdjustedTime());
+		return state.DoS(0, error("%s : this is the end, and a new beginning", __func__),
+			REJECT_INVALID, "time-end");
+    }
 
 	// Check that the block chain matches the known block chain up to a checkpoint
 	if (!Checkpoints::CheckBlock(nHeight, hash))
