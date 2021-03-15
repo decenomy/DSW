@@ -50,31 +50,31 @@ pipeline {
             }
         }
 
-        stage("build_windows") {
+        // stage("build_windows") {
 
-            steps {
-                echo 'building windows ...'
-                sh '''#!/bin/bash
-                    make clean
-                    ./autogen.sh
-                    ./configure --prefix=$(pwd)/depends/x86_64-w64-mingw32 --disable-debug --disable-tests --disable-bench --disable-online-rust CFLAGS="-O3" CXXFLAGS="-O3"
-	                make -j $(nproc) HOST=x86_64-w64-mingw32
-                '''
-            }
-        }
+        //     steps {
+        //         echo 'building windows ...'
+        //         sh '''#!/bin/bash
+        //             make clean
+        //             ./autogen.sh
+        //             ./configure --prefix=$(pwd)/depends/x86_64-w64-mingw32 --disable-debug --disable-tests --disable-bench --disable-online-rust CFLAGS="-O3" CXXFLAGS="-O3"
+	    //             make -j $(nproc) HOST=x86_64-w64-mingw32
+        //         '''
+        //     }
+        // }
 
-        stage("deploy_windows") {
+        // stage("deploy_windows") {
 
-            steps {
-                echo 'deploy windows ...'
-                sh """#!/bin/bash
-                    mkdir -p deploy/windows
-                    cp src/${BASE_NAME}d.exe src/${BASE_NAME}-cli.exe src/${BASE_NAME}-tx.exe src/qt/${BASE_NAME}-qt.exe deploy/windows/
-                    cd deploy/windows
-                    zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-Windows.zip ${BASE_NAME}d.exe ${BASE_NAME}-cli.exe ${BASE_NAME}-tx.exe ${BASE_NAME}-qt.exe
-                    rm -f ${BASE_NAME}d.exe ${BASE_NAME}-cli.exe ${BASE_NAME}-tx.exe ${BASE_NAME}-qt.exe
-                """
-            }
-        }
+        //     steps {
+        //         echo 'deploy windows ...'
+        //         sh """#!/bin/bash
+        //             mkdir -p deploy/windows
+        //             cp src/${BASE_NAME}d.exe src/${BASE_NAME}-cli.exe src/${BASE_NAME}-tx.exe src/qt/${BASE_NAME}-qt.exe deploy/windows/
+        //             cd deploy/windows
+        //             zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-Windows.zip ${BASE_NAME}d.exe ${BASE_NAME}-cli.exe ${BASE_NAME}-tx.exe ${BASE_NAME}-qt.exe
+        //             rm -f ${BASE_NAME}d.exe ${BASE_NAME}-cli.exe ${BASE_NAME}-tx.exe ${BASE_NAME}-qt.exe
+        //         """
+        //     }
+        // }
     }
 }
