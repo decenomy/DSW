@@ -343,28 +343,28 @@ CAmount CMasternode::GetBlockValue(int nHeight)
     else if (nHeight <= 1000) {  // Mining phase for mainnet
         nSubsidy = 300 * COIN;
     }
-    else if (nHeight <= 56440) { // Old blockchain block 1400000
+    else if (nHeight <= 56455) { // Old blockchain block 1400000
         nSubsidy = 300 * COIN;
     }
-    else if (nHeight <= 156440) { // Old blockchain block 1500000
+    else if (nHeight <= 156455) { // Old blockchain block 1500000
         nSubsidy = 700 * COIN;
     }
-    else if (nHeight <= 256440) { // Old blockchain block 1600000
+    else if (nHeight <= 256455) { // Old blockchain block 1600000
         nSubsidy = 650 * COIN;
     }
-    else if (nHeight <= 356440) { // Old blockchain block 1700000
+    else if (nHeight <= 356455) { // Old blockchain block 1700000
         nSubsidy = 600 * COIN;
     }
-    else if (nHeight <= 456440) { // Old blockchain block 1800000
+    else if (nHeight <= 456455) { // Old blockchain block 1800000
         nSubsidy = 550 * COIN;
     }
-    else if (nHeight <= 556440) { // Old blockchain block 1900000
+    else if (nHeight <= 556455) { // Old blockchain block 1900000
         nSubsidy = 500 * COIN;
     }
-    else if (nHeight <= 656440) { // Old blockchain block 2000000
+    else if (nHeight <= 656455) { // Old blockchain block 2000000
         nSubsidy = 450 * COIN;
     }
-    else if (nHeight > 656440) { // Old blockchain after block 2000000
+    else if (nHeight > 656455) { // Old blockchain after block 2000000
         nSubsidy = 400 * COIN;
     }
 
