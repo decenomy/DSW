@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=CryptoFlow
+Comment= CFL P2P Cryptocurrency
+Comment[fr]= CFL, monnaie virtuelle cryptographique pair à pair
+Comment[tr]= CFL, eşten eşe kriptografik sanal para birimi
+Exec=cryptoflow-qt %u
+Terminal=false
+Type=Application
+Icon=pivx128
+MimeType=x-scheme-handler/pivx;
+Categories=Office;Finance;
+StartupWMClass=CryptoFlow-qt

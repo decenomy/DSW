@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="Layer_1"
+   data-name="Layer 1"
+   viewBox="0 0 98.45 82.24"
+   version="1.1"
+   sodipodi:docname="img-empty-dark-masternode.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="3840"
+     inkscape:window-height="2126"
+     id="namedview17"
+     showgrid="false"
+     inkscape:zoom="8.937257"
+     inkscape:cx="49.224998"
+     inkscape:cy="41.119999"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g868"
+     inkscape:document-rotation="0" />
+  <metadata
+     id="metadata15">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4">
+    <style
+       id="style2">.cls-1{opacity:0.19;}.cls-2{fill:#eaeaea;}</style>
+    <style
+       id="style2-9">.cls-1{fill:#eaeaea;}.cls-2{fill:none;}</style>
+  </defs>
+  <g
+     id="g868"
+     transform="matrix(2.808907,0,0,2.5291791,15.077663,11.161469)">
+    <path
+       fill="none"
+       d="M 0,0 H 24 V 24 H 0 Z"
+       id="path854" />
+    <path
+       d="m 9,7.539 6,14 L 18.659,13 H 23 V 11 H 17.341 L 15,16.461 9,2.461 5.341,11 H 1 v 2 h 5.659 z"
+       id="path856"
+       style="fill:#ececec" />
+  </g>
+</svg>

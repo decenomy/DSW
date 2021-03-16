@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=CryptoFlow 
+Comment=CryptoFlow P2P Cryptocurrency
+Comment[fr]=CryptoFlow, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=CryptoFlow, eşten eşe kriptografik sanal para birimi
+Exec=cryptoflow-qt %u
+Terminal=false
+Type=Application
+Icon=pivx128
+MimeType=x-scheme-handler/cryptoflow;
+Categories=Office;Finance;
+StartupWMClass=cryptoflow-qt

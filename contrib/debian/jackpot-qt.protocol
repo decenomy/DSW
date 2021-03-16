@@ -1,0 +1,11 @@
+[Protocol]
+exec=cryptoflow-qt '%u'
+protocol=cryptoflow
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false
