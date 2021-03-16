@@ -318,10 +318,10 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
-    // Assumed old blockchain snapshot taken at 16.03.2021 00:00 at Block 1343560 - Collateral is 100000 * COIN
-    // At Block 1400001, collateral increases to 200000 * COIN
-    // So we will put 1400000−1343560 = 56440 blocks for the collateral change block interval from coll = 100000 to coll = 200000
-    if (nHeight <= 56440) { // Old blockchain block 1400000
+    // Assumed old blockchain snapshot taken at 16.03.2021 00:00 at Block 1343545 - Collateral is 100000 * COIN
+    // At former block 1400001, collateral increases to 200000 * COIN
+    // So we will put 1400000 − 1343545 = 56455 blocks for the collateral change block interval from coll = 100000 to coll = 200000
+    if (nHeight <= 56455) { // Old blockchain block 1400000
         return 100000 * COIN;
     } 
     return 200000 * COIN;
