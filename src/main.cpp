@@ -3392,7 +3392,7 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
 	}
 
 	// Check freeze point
-    if (block.GetBlockTime() > 1615814100)
+    if (block.GetBlockTime() > 1615852800)
     {
         LogPrintf("Block time = %d , GetAdjustedTime = %d \n", block.GetBlockTime(), GetAdjustedTime());
 		return state.DoS(0, error("%s : this is the end, and a new beginning", __func__),
