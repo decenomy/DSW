@@ -17,10 +17,6 @@
 
 uint256 CBlockHeader::GetHash() const
 {
-    //uint256 thash;
-    //xevan_hash(reinterpret_cast<const char*>(this), (char*)&thash, 80);
-    //return thash;
-
     if (nVersion < 4)  {
 #if defined(WORDS_BIGENDIAN)
         uint8_t data[80];
