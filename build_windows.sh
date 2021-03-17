@@ -12,11 +12,11 @@ fi
 	echo "1" | sudo update-alternatives --config x86_64-w64-mingw32-g++
 
 # Clone code from official Github repository
-	rm -rf 777
-	git clone https://github.com/777-project/777
+	rm -rf DSW
+	git clone https://github.com/decenomy/DSW.git
 
 # Entering directory
-	cd 777
+	cd DSW
 
 # Compile dependencies
 	cd depends
@@ -30,6 +30,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp 777/src/jackpotd.exe 777/src/jackpot-cli.exe 777/src/jackpot-tx.exe 777/src/qt/jackpot-qt.exe .
-	zip Jackpot-Windows.zip jackpotd.exe jackpot-cli.exe jackpot-tx.exe jackpot-qt.exe
-	rm -f jackpotd.exe jackpot-cli.exe jackpot-tx.exe jackpot-qt.exe
+	cp DSW/src/__decenomy__d.exe DSW/src/__decenomy__-cli.exe DSW/src/__decenomy__-tx.exe DSW/src/qt/__decenomy__-qt.exe .
+	zip __DSW__-Windows.zip __decenomy__d.exe __decenomy__-cli.exe __decenomy__-tx.exe __decenomy__-qt.exe
+	rm -f __decenomy__d.exe __decenomy__-cli.exe __decenomy__-tx.exe __decenomy__-qt.exe

@@ -68,13 +68,7 @@ MasterNodeWizardDialog::MasterNodeWizardDialog(WalletModel *model, QWidget *pare
     initCssEditLine(ui->lineEditPort);
     ui->stackedWidget->setCurrentIndex(pos);
     ui->lineEditPort->setEnabled(false);    // use default port number
-    if (walletModel->isRegTestNetwork()) {
-        ui->lineEditPort->setText("51232");
-    } else if (walletModel->isTestNetwork()) {
-        ui->lineEditPort->setText("51230");
-    } else {
-        ui->lineEditPort->setText("32628");
-    }
+    ui->lineEditPort->setText(QString::fromStdString(std::to_string(Params().GetDefaultPort())));
 
     // Confirm icons
     ui->stackedIcon1->addWidget(icConfirm1);
