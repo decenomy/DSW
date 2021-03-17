@@ -26,6 +26,7 @@ enum SporkId : int32_t {
     SPORK_12_NOOP                               = 10011, 
     SPORK_13_ENABLE_SUPERBLOCKS                 = 10012,
     SPORK_14_MIN_PROTOCOL_ACCEPTED              = 10013,
+    SPORK_15_NOOP                               = 10014,
     SPORK_16_ZEROCOIN_MAINTENANCE_MODE          = 10015,
     SPORK_17_NOOP                               = 10016,
     SPORK_18_COLDSTAKING_ENFORCEMENT            = 10017,
