@@ -320,8 +320,8 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
 	// Assumed old blockchain snapshot taken at 18.03.2021 00:03 at Block 1493000 - Collateral is 100000 * COIN
-	// At Block 1500001, collateral increases to 120000 * COIN
-	// So we will put 1500001 - 1493000 = 7001 blocks for the collateral change block interval from coll = 100000 to coll = 120000
+	// At Block 1500000, collateral increases to 120000 * COIN
+	// So we will put 1500000 - 1493000 = 7000 blocks for the collateral change block interval from coll = 100000 to coll = 120000
     if (nHeight <= 7000) { // Old blockchain block 1500000
         return 100000 * COIN;
     } else if (nHeight <= 107000) { // Old blockchain block 1600000
@@ -354,7 +354,7 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 	else if (nHeight <= 1000 ) { // Mining phase for mainnet
 		nSubsidy = 1000 * COIN;
 	}
-	else if (nHeight <= 7001 ) { // Old blockchain block 1500000
+	else if (nHeight <= 7000 ) { // Old blockchain block 1500000
 		nSubsidy = 1000 * COIN;
 	}
 	else if (nHeight <= 107000) { // Old blockchain block 1600000
@@ -388,7 +388,7 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-	if (nHeight <= 1001)
+	if (nHeight <= 1000)
 		return 0;
 	
    	return CMasternode::GetBlockValue(nHeight) * 90 / 100; // 90% of the block reward
