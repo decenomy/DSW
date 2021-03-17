@@ -31,7 +31,7 @@ std::vector<CSporkDef> sporkDefs = {
     MAKE_SPORK_DEF(SPORK_103_PING_MESSAGE_SALT,             0),             // OFF
     MAKE_SPORK_DEF(SPORK_104_MAX_BLOCK_TIME,                4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_105_MAX_BLOCK_SIZE,                4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_106_STAKING_SKIP_MN_SYNC,          4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_106_STAKING_SKIP_MN_SYNC,          1), // OFF
 };
 
 CSporkManager sporkManager;
