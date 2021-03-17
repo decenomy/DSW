@@ -11,11 +11,11 @@ fi
 	sudo apt install git zip unzip build-essential libtool bsdmainutils autotools-dev autoconf pkg-config automake python3 libqt5svg5-dev -y
 
 # Clone code from official Github repository
-	rm -rf 777
-	git clone https://github.com/777-project/777
+	rm -rf CryptoFlowCoin
+	git clone https://github.com/CryptoFlowCoin/CryptoFlowCoin.git
 
 # Entering directory
-	cd 777
+	cd CryptoFlowCoin
 
 # Compile dependencies
 	cd depends
@@ -29,6 +29,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp 777/src/jackpotd 777/src/jackpot-cli 777/src/jackpot-tx 777/src/qt/jackpot-qt .
-	zip Jackpot-$( ./jackpot-cli --version | grep -Po '\d\.\d\.\d\.\d' )-Linux.zip jackpotd jackpot-cli jackpot-tx jackpot-qt
-	rm -f jackpotd jackpot-cli jackpot-tx jackpot-qt
+	cp CryptoFlowCoin/src/cryptoflowd CryptoFlowCoin/src/cryptoflow-cli CryptoFlowCoin/src/cryptoflow-tx CryptoFlowCoin/src/qt/cryptoflow-qt .
+	zip CryptoFlow-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip cryptoflowd cryptoflow-cli cryptoflow-tx cryptoflow-qt
+	rm -f cryptoflowd cryptoflow-cli cryptoflow-tx cryptoflow-qt

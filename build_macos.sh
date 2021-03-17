@@ -7,11 +7,11 @@ then
 fi
 
 # Clone code from official Github repository
-    rm -rf 777
-    git clone https://github.com/777-project/777
+    rm -rf CryptoFlowCoin
+    git clone https://github.com/CryptoFlowCoin/CryptoFlowCoin.git
 
 # Entering directory
-    cd 777
+    cd CryptoFlowCoin
 
 # Compile dependencies
     cd depends
@@ -31,6 +31,6 @@ fi
     cd ..
 
 # Create zip file of binaries
-    cp 777/src/jackpotd 777/src/jackpot-cli 777/src/jackpot-tx 777/src/qt/jackpot-qt 777/Jackpot-Core.dmg .
-    zip Jackpot-MacOS.zip jackpotd jackpot-cli jackpot-tx jackpot-qt Jackpot-Core.dmg
-    rm -f jackpotd jackpot-cli jackpot-tx jackpot-qt Jackpot-Core.dmg
+    cp CryptoFlowCoin/src/cryptoflowd CryptoFlowCoin/src/cryptoflow-cli CryptoFlowCoin/src/cryptoflow-tx CryptoFlowCoin/src/qt/cryptoflow-qt CryptoFlowCoin/cryptoflow-Core.dmg .
+    zip CryptoFlow-MacOS.zip cryptoflowd cryptoflow-cli cryptoflow-tx cryptoflow-qt CryptoFlow-Core.dmg
+    rm -f cryptoflowd cryptoflow-cli cryptoflow-tx cryptoflow-qt CryptoFlow-Core.dmg

@@ -47,7 +47,7 @@ versions of Tor see [Section 3](#3-automatically-listen-on-tor).*
 
 	HiddenServiceDir /var/lib/tor/pivx-service/
 	HiddenServiceVersion 2
-	HiddenServicePort 3333 127.0.0.1:3333
+	HiddenServicePort 3333 127.0.0.1:13333
 	HiddenServicePort 61472 127.0.0.1:61472
 
 The directory can be different of course, but (both) port numbers should be equal to
