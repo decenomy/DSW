@@ -11,11 +11,11 @@ fi
 	sudo apt install git zip unzip build-essential libtool bsdmainutils autotools-dev autoconf pkg-config automake python3 libqt5svg5-dev -y
 
 # Clone code from official Github repository
-	rm -rf DSW
-	git clone https://github.com/decenomy/DSW.git
+	rm -rf CryptoFlowCoin
+	git clone https://github.com/CryptoFlowCoin/CryptoFlowCoin.git
 
 # Entering directory
-	cd DSW
+	cd CryptoFlowCoin
 
 # Compile dependencies
 	cd depends
@@ -29,6 +29,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/__decenomy__d DSW/src/__decenomy__-cli DSW/src/__decenomy__-tx DSW/src/qt/__decenomy__-qt .
-	zip __DSW__-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt
-	rm -f __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt
+	cp CryptoFlowCoin/src/cryptoflowd CryptoFlowCoin/src/cryptoflow-cli CryptoFlowCoin/src/cryptoflow-tx CryptoFlowCoin/src/qt/cryptoflow-qt .
+	zip CryptoFlow-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip cryptoflowd cryptoflow-cli cryptoflow-tx cryptoflow-qt
+	rm -f cryptoflowd cryptoflow-cli cryptoflow-tx cryptoflow-qt

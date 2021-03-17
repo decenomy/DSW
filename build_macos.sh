@@ -7,11 +7,11 @@ then
 fi
 
 # Clone code from official Github repository
-    rm -rf DSW
-    git clone https://github.com/decenomy/DSW.git
+    rm -rf CryptoFlowCoin
+    git clone https://github.com/CryptoFlowCoin/CryptoFlowCoin.git
 
 # Entering directory
-    cd DSW
+    cd CryptoFlowCoin
 
 # Compile dependencies
     cd depends
@@ -31,6 +31,6 @@ fi
     cd ..
 
 # Create zip file of binaries
-    cp DSW/src/__decenomy__d DSW/src/__decenomy__-cli DSW/src/__decenomy__-tx DSW/src/qt/__decenomy__-qt DSW/__Decenomy__-Core.dmg .
-    zip __DSW__-MacOS.zip __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt __Decenomy__-Core.dmg
-    rm -f __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt __Decenomy__-Core.dmg
+    cp CryptoFlowCoin/src/cryptoflowd CryptoFlowCoin/src/cryptoflow-cli CryptoFlowCoin/src/cryptoflow-tx CryptoFlowCoin/src/qt/cryptoflow-qt CryptoFlowCoin/cryptoflow-Core.dmg .
+    zip CryptoFlow-MacOS.zip cryptoflowd cryptoflow-cli cryptoflow-tx cryptoflow-qt CryptoFlow-Core.dmg
+    rm -f cryptoflowd cryptoflow-cli cryptoflow-tx cryptoflow-qt CryptoFlow-Core.dmg
