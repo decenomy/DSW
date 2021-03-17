@@ -418,7 +418,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.push_back(CDNSSeedData("testnet", "testnet.4444.tools", true));
+        vSeeds.push_back(CDNSSeedData("testnet1", "testnet1.4444.tools", true));
         vSeeds.push_back(CDNSSeedData("testnet2", "testnet2.4444.tools", true));
         vSeeds.push_back(CDNSSeedData("testnet.572133.club", "testnet.572133.club", true));
         vSeeds.push_back(CDNSSeedData("testnet2.572133.club", "testnet2.572133.club", true));
