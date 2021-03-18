@@ -15,7 +15,7 @@ Trittium wallet repository
 
 • Explorer https://explorer.trittium.cc/
 
-• Website [trittium.cc](https://trittium.cc/)
+• Website [https://trittium.cc/](https://trittium.cc/)
 
 ### Rewards Breakdown
 <table border=0 cellpadding=0 cellspacing=0 width=701 class=xl6553517252
