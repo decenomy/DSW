@@ -388,7 +388,7 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-	if (nHeight <= 1000)
+	if (nHeight <= 2880)
 		return 0;
 	
    	return CMasternode::GetBlockValue(nHeight) * 90 / 100; // 90% of the block reward
