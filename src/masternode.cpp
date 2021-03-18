@@ -319,18 +319,18 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 // TODO: Adjust the collateral schedule once the old chain snapshot block is decided.
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
-	// Assumed old blockchain snapshot taken at 18.03.2021 00:03 at Block 1493000 - Collateral is 100000 * COIN
+	// Old blockchain snapshot is taken at 18.03.2021 00:00 UTC at Block 1493071 - Collateral is 100000 * COIN
 	// At Block 1500000, collateral increases to 120000 * COIN
-	// So we will put 1500000 - 1493000 = 7000 blocks for the collateral change block interval from coll = 100000 to coll = 120000
-    if (nHeight <= 7000) { // Old blockchain block 1500000
+	// So we will put 1500000 - 1493071 = 6929 blocks for the collateral change block interval from coll = 100000 to coll = 120000
+    if (nHeight <= 6929) { // Old blockchain block 1500000
         return 100000 * COIN;
-    } else if (nHeight <= 107000) { // Old blockchain block 1600000
+    } else if (nHeight <= 106929) { // Old blockchain block 1600000
         return 120000 * COIN;
-    } else if (nHeight <= 207000) { // Old blockchain block 1700000
+    } else if (nHeight <= 206929) { // Old blockchain block 1700000
         return 140000 * COIN;
-    } else if (nHeight <= 307000) { // Old blockchain block 1800000
+    } else if (nHeight <= 306929) { // Old blockchain block 1800000
         return 160000 * COIN;
-    } else if (nHeight <= 407000) { // Old blockchain block 1900000
+    } else if (nHeight <= 406929) { // Old blockchain block 1900000
         return 180000 * COIN;
     }
  
@@ -349,33 +349,33 @@ CAmount CMasternode::GetBlockValue(int nHeight)
     CAmount nSubsidy;
 
 	if (nHeight == 1) {
-		nSubsidy = 250000000 * COIN;  //! Premine for sending coins to the coin holders. Current circulating supply is around 234,011,079 TRTT so we mine 250M and burn the remaining coins after send away.
+		nSubsidy = 250000000 * COIN;  //! Premine for sending coins to the coin holders. Circulating supply at block 1493071 is 242432073.45009163 TRTT so we mine 250M and burn the remaining coins after send away.
 	}
-	else if (nHeight <= 1000 ) { // Mining phase for mainnet
+	else if (nHeight <= 1000) { // Mining phase for mainnet
 		nSubsidy = 1000 * COIN;
 	}
-	else if (nHeight <= 7000 ) { // Old blockchain block 1500000
+	else if (nHeight <= 6929) { // Old blockchain block 1500000
 		nSubsidy = 1000 * COIN;
 	}
-	else if (nHeight <= 107000) { // Old blockchain block 1600000
+	else if (nHeight <= 106929) { // Old blockchain block 1600000
 		nSubsidy = 900 * COIN;
 	}
-	else if (nHeight <= 207000) { // Old blockchain block 1700000
+	else if (nHeight <= 206929) { // Old blockchain block 1700000
 		nSubsidy = 800 * COIN;
 	}
-	else if (nHeight <= 307000) { // Old blockchain block 1800000
+	else if (nHeight <= 306929) { // Old blockchain block 1800000
 		nSubsidy = 700 * COIN;
 	}
-	else if (nHeight <= 407000) { // Old blockchain block 1900000
+	else if (nHeight <= 406929) { // Old blockchain block 1900000
 		nSubsidy = 600 * COIN;
 	}
-	else if (nHeight <= 507000) { // Old blockchain block 2000000
+	else if (nHeight <= 506929) { // Old blockchain block 2000000
 		nSubsidy = 500 * COIN;
 	}
-	else if (nHeight <= 607000) { // Old blockchain block 2100000
+	else if (nHeight <= 606929) { // Old blockchain block 2100000
 		nSubsidy = 450 * COIN;
 	} 
-    else if(nHeight > 607000) {
+    else if(nHeight > 606929) {
 		nSubsidy = 400 * COIN;
 	} 
 

@@ -4,14 +4,14 @@ Trittium wallet repository
 
 ### Coin Specs
 
-• PoW Algorithm: XEVAN  
+• PoW Algorithm: XEVAN
 • Premine: 250.000.000 TRTT
-• PoW Blocks: 1 - 1000  
-• PoS Blocks: Starting from 1001  
-• Block Time: 60 Seconds    
-• Maturity: 100 Confirmations  
-• Prefix: TRTT adresses start with the capital letter "T"  
-• Ports: 31001 (p2p) / 31002 (rpc)
+• PoW Blocks: 1 - 1000
+• PoS Blocks: Starting from 1001
+• Block Time: 60 Seconds
+• Maturity: 100 Confirmations
+• Prefix: TRTT adresses start with the capital letter "T"
+• Ports: 31001 (P2P) / 31002 (RPC)
 
 • Explorer https://explorer.trittium.cc/
 
@@ -47,16 +47,16 @@ Trittium wallet repository
   <td class=xl6553517252></td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>1-7000</td>
+  <td height=21 class=xl6417252 style='height:15.75pt'>1-6928</td>
   <td class=xl6517252>100.000</td>
   <td class=xl6517252>1000</td>
   <td class=xl6617252>-</td>
   <td class=xl6617252>-</td>
-  <td class=xl6717252 align=right>900</td>
-  <td class=xl6817252 align=right>100</td>
+  <td class=xl6717252 align=right>-</td>
+  <td class=xl6817252 align=right>-</td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>7001-107000</td>
+  <td height=21 class=xl6417252 style='height:15.75pt'>6929-106928</td>
   <td class=xl6517252>120.000</td>
   <td class=xl6517252>900</td>
   <td class=xl6617252>90</td>
@@ -65,7 +65,7 @@ Trittium wallet repository
   <td class=xl6817252 align=right>90</td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>107001-207000</td>
+  <td height=21 class=xl6417252 style='height:15.75pt'>106929-206928</td>
   <td class=xl6517252>140.000</td>
   <td class=xl6517252>800</td>
   <td class=xl6617252>90</td>
@@ -74,7 +74,7 @@ Trittium wallet repository
   <td class=xl6817252 align=right>80</td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>207001-307000</td>
+  <td height=21 class=xl6417252 style='height:15.75pt'>206929-306928</td>
   <td class=xl6517252>160.000</td>
   <td class=xl6517252>700</td>
   <td class=xl6617252>90</td>
@@ -83,7 +83,7 @@ Trittium wallet repository
   <td class=xl6817252 align=right>70</td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>307001-407000</td>
+  <td height=21 class=xl6417252 style='height:15.75pt'>306929-406928</td>
   <td class=xl6517252>180.000</td>
   <td class=xl6517252>600</td>
   <td class=xl6617252>90</td>
@@ -92,7 +92,7 @@ Trittium wallet repository
   <td class=xl6817252 align=right>60</td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>407001-507000</td>
+  <td height=21 class=xl6417252 style='height:15.75pt'>406929-506928</td>
   <td class=xl6517252>200.000</td>
   <td class=xl6517252>500</td>
   <td class=xl6617252>90</td>
@@ -101,7 +101,7 @@ Trittium wallet repository
   <td class=xl6817252 align=right>50</td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>507001-607000</td>
+  <td height=21 class=xl6417252 style='height:15.75pt'>506929-606928</td>
   <td class=xl6517252>200.000</td>
   <td class=xl6517252>450</td>
   <td class=xl6617252>90</td>
@@ -110,7 +110,7 @@ Trittium wallet repository
   <td class=xl6817252 align=right>45</td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>607001-...</td>
+  <td height=21 class=xl6417252 style='height:15.75pt'>606929-...</td>
   <td class=xl6517252>200.000</td>
   <td class=xl6517252>400</td>
   <td class=xl6617252>90</td>
