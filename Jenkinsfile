@@ -18,6 +18,7 @@ pipeline {
                     cd depends
                     make -j $(nproc) HOST=x86_64-pc-linux-gnu
                     make -j $(nproc) HOST=x86_64-w64-mingw32
+                    make -j $(nproc) HOST=aarch64-linux-gnu
                     rm -rf SDKs
                     mkdir SDKs
                     cd SDKs
@@ -109,6 +110,60 @@ pipeline {
                     cd deploy/macos
                     zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-MacOS.zip ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt ${NAME}-Core.dmg
                     rm -f ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt ${NAME}-Core.dmg
+                """
+            }
+        }
+
+        stage("build_aarch64") {
+
+            steps {
+                echo 'building aarch64 ...'
+                sh '''#!/bin/bash
+                    make clean
+                    ./autogen.sh
+                    ./configure --prefix=$(pwd)/depends/aarch64-linux-gnu --disable-debug --disable-tests --disable-bench --disable-online-rust CFLAGS="-O3" CXXFLAGS="-O3"
+	                make -j $(nproc) HOST=aarch64-linux-gnu
+                '''
+            }
+        }
+
+        stage("deploy_aarch64") {
+
+            steps {
+                echo 'deploy aarch64 ...'
+                sh """#!/bin/bash
+                    mkdir -p deploy/aarch64
+                    cp src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt deploy/aarch64/
+                    cd deploy/aarch64
+                    zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-aarch64.zip ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt
+                    rm -f ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt
+                """
+            }
+        }
+
+        stage("build_aarch32") {
+
+            steps {
+                echo 'building aarch32 ...'
+                sh '''#!/bin/bash
+                    make clean
+                    ./autogen.sh
+                    ./configure --prefix=$(pwd)/depends/arm-linux-gnueabihf --disable-debug --disable-tests --disable-bench --disable-online-rust CFLAGS="-O3" CXXFLAGS="-O3"
+	                make -j $(nproc) HOST=arm-linux-gnueabihf
+                '''
+            }
+        }
+
+        stage("deploy_aarch32") {
+
+            steps {
+                echo 'deploy aarch32 ...'
+                sh """#!/bin/bash
+                    mkdir -p deploy/aarch32
+                    cp src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt deploy/aarch32/
+                    cd deploy/aarch32
+                    zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-aarch32.zip ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt
+                    rm -f ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt
                 """
             }
         }
