@@ -7,11 +7,11 @@ then
 fi
 
 # Clone code from official Github repository
-    rm -rf DSW
-    git clone https://github.com/decenomy/DSW.git
+    rm -rf trittium
+    git clone https://github.com/Trittium/trittium.git
 
 # Entering directory
-    cd DSW
+    cd trittium
 
 # Compile dependencies
     cd depends
@@ -31,6 +31,6 @@ fi
     cd ..
 
 # Create zip file of binaries
-    cp DSW/src/__decenomy__d DSW/src/__decenomy__-cli DSW/src/__decenomy__-tx DSW/src/qt/__decenomy__-qt DSW/__Decenomy__-Core.dmg .
-    zip __DSW__-MacOS.zip __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt __Decenomy__-Core.dmg
-    rm -f __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt __Decenomy__-Core.dmg
+    cp trittium/src/trittiumd trittium/src/trittium-cli trittium/src/trittium-tx trittium/src/qt/trittium-qt trittium/Trittium-Core.dmg .
+    zip Trittium-MacOS.zip trittiumd trittium-cli trittium-tx trittium-qt Trittium-Core.dmg
+    rm -f trittiumd trittium-cli trittium-tx trittium-qt Trittium-Core.dmg
