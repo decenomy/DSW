@@ -4,18 +4,17 @@ Trittium wallet repository
 
 ### Coin Specs
 
-• PoW Algorithm: XEVAN
-• Premine: 250.000.000 TRTT
-• PoW Blocks: 1 - 1000
-• PoS Blocks: Starting from 1001
-• Block Time: 60 Seconds
-• Maturity: 100 Confirmations
-• Prefix: TRTT adresses start with the capital letter "T"
-• Ports: 31001 (P2P) / 31002 (RPC)
+• PoW Algorithm: XEVAN   
+• Premine: 250.000.000 TRTT   
+• PoW Blocks: 1 - 1000    
+• PoS Blocks: Starting from 1001    
+• Block Time: 60 Seconds    
+• Maturity: 100 Confirmations   
+• Prefix: TRTT adresses start with the capital letter "T"   
+• Ports: 31001 (P2P) / 31002 (RPC)    
 
-• Explorer https://explorer.trittium.cc/
-
-• Website [https://trittium.cc/](https://trittium.cc/)
+• Explorer https://chains.trittium.cc/TRTT/blocks   
+• Website [https://trittium.cc/](https://trittium.cc/)   
 
 ### Rewards Breakdown
 <table border=0 cellpadding=0 cellspacing=0 width=701 class=xl6553517252
@@ -43,17 +42,35 @@ Trittium wallet repository
   <td class=xl6517252>250.000.000</td>
   <td class=xl6617252>-</td>
   <td class=xl6617252>-</td>
-  <td class=xl6717252></td>
-  <td class=xl6553517252></td>
+  <td class=xl6717252 align=right>-</td>
+  <td class=xl6817252 align=right>-</td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>1-6928</td>
+  <td height=21 class=xl6417252 style='height:15.75pt'>2-1000</td>
   <td class=xl6517252>100.000</td>
   <td class=xl6517252>1000</td>
   <td class=xl6617252>-</td>
   <td class=xl6617252>-</td>
   <td class=xl6717252 align=right>-</td>
   <td class=xl6817252 align=right>-</td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl6417252 style='height:15.75pt'>1001-2880</td>
+  <td class=xl6517252>100.000</td>
+  <td class=xl6517252>1000</td>
+  <td class=xl6617252>-</td>
+  <td class=xl6617252>100</td>
+  <td class=xl6717252 align=right>-</td>
+  <td class=xl6817252 align=right>1000</td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 class=xl6417252 style='height:15.75pt'>2881-6928</td>
+  <td class=xl6517252>100.000</td>
+  <td class=xl6517252>1000</td>
+  <td class=xl6617252>90</td>
+  <td class=xl6617252>10</td>
+  <td class=xl6717252 align=right>900</td>
+  <td class=xl6817252 align=right>100</td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>6929-106928</td>
