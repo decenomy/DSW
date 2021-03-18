@@ -375,7 +375,7 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 	else if (nHeight <= 607000) { // Old blockchain block 2100000
 		nSubsidy = 450 * COIN;
 	} 
-    else if(nHeight > 2100000) {
+    else if(nHeight > 607000) {
 		nSubsidy = 400 * COIN;
 	} 
 
