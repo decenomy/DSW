@@ -114,7 +114,7 @@ pipeline {
             }
         }
 
-                stage("build_aarch64") {
+        stage("build_aarch64") {
 
             steps {
                 echo 'building aarch64 ...'
@@ -136,6 +136,33 @@ pipeline {
                     cp src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt deploy/aarch64/
                     cd deploy/aarch64
                     zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-aarch64.zip ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt
+                    rm -f ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt
+                """
+            }
+        }
+
+        stage("build_aarch32") {
+
+            steps {
+                echo 'building aarch32 ...'
+                sh '''#!/bin/bash
+                    make clean
+                    ./autogen.sh
+                    ./configure --prefix=$(pwd)/depends/arm-linux-gnueabihf --disable-debug --disable-tests --disable-bench --disable-online-rust CFLAGS="-O3" CXXFLAGS="-O3"
+	                make -j $(nproc) HOST=arm-linux-gnueabihf
+                '''
+            }
+        }
+
+        stage("deploy_aarch32") {
+
+            steps {
+                echo 'deploy aarch32 ...'
+                sh """#!/bin/bash
+                    mkdir -p deploy/aarch32
+                    cp src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt deploy/aarch32/
+                    cd deploy/aarch32
+                    zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-aarch32.zip ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt
                     rm -f ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt
                 """
             }
