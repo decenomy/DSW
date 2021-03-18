@@ -52,7 +52,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-	const char* pszTimestamp = "BTC appreciated by 73 percent in May 2017 as it jumped from $1,348 to $2,330.";
+	const char* pszTimestamp = "Bitcoin 'better than gold' if you study it, fund manager tells mainstream media, COINTELEGRAPH, 18/03/2021";
     const CScript genesisOutputScript = CScript() << ParseHex("04bcfbea59ec97482475f554db08f7f67c5c5a95a52a356b052d0ed87862815796fe6022c33a0baf09fcd8d3ee98ebb6aa6a77fb43d716641242cfd45369a88e7d") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -112,7 +112,7 @@ public:
         // // This is used inorder to mine the genesis block. Once found, we can use the nonce and block hash found to create a valid genesis block
         // /////////////////////////////////////////////////////////////////
 
-        // uint32_t nGenesisTime = 1525551420; // 2021-02-03T13:51:41+00:00
+        // uint32_t nGenesisTime = 1616082639; // 2021-03-18T15:50:39+00:00
 
         // arith_uint256 test;
         // bool fNegative;
@@ -124,7 +124,7 @@ public:
         // uint256 TempHashHolding = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
         // uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         // for (int i=0;i<40000000;i++) {
-        //     genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e0ffff0, 1, 250 * COIN);
+        //     genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e0ffff0, 1, 0 * COIN);
         //     //genesis.hashPrevBlock = TempHashHolding;
         //     consensus.hashGenesisBlock = genesis.GetHash();
 
@@ -155,10 +155,10 @@ public:
 
         // /////////////////////////////////////////////////////////////////
 
-        genesis = CreateGenesisBlock(1525551420, 1175179, 0x1e0ffff0, 1, 250 * COIN);
+        genesis = CreateGenesisBlock(1616082639, 56119, 0x1e0ffff0, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00000a42b6b9eb49e2016dd7683313b96f46b3bbd8717be9e080443b2dd9fb96"));
-        assert(genesis.hashMerkleRoot == uint256S("0x3bf54807365f102ff9cdb07cf5f4af411503d5b544835dc96a5beaee140ad419"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000003b073dae25978a8dab4a2d52dce79cbada6c5b8c21b09646af9a44cfc93"));
+        assert(genesis.hashMerkleRoot == uint256S("0xbeb39df5e5c3029bb4a6d66357a41d06c275ea69a96c9081a3e6f8d2f8efe918"));
 
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.powLimit   = ~UINT256_ZERO >> 20;  // trittium starting difficulty is 1 / 2^20
@@ -293,7 +293,7 @@ public:
         // // This is used inorder to mine the genesis block. Once found, we can use the nonce and block hash found to create a valid genesis block
         // /////////////////////////////////////////////////////////////////
 
-        // uint32_t nGenesisTime = 1615346670; // 2021-02-03T13:51:41+00:00
+        // uint32_t nGenesisTime = 1616082640; // Thu Mar 18 2021 15:50:40 GMT+0000
 
         // arith_uint256 test;
         // bool fNegative;
@@ -305,7 +305,7 @@ public:
         // uint256 TempHashHolding = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
         // uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         // for (int i=0;i<40000000;i++) {
-        //     genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e0ffff0, 1, 250 * COIN);
+        //     genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e0ffff0, 1, 0 * COIN);
         //     //genesis.hashPrevBlock = TempHashHolding;
         //     consensus.hashGenesisBlock = genesis.GetHash();
 
@@ -336,10 +336,10 @@ public:
 
         // /////////////////////////////////////////////////////////////////
 
-        genesis = CreateGenesisBlock(1615346670, 510194, 0x1e0ffff0, 1, 250 * COIN);
+        genesis = CreateGenesisBlock(1616082640, 3235403, 0x1e0ffff0, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000001757bc439623709f3f8f95d7975db3b73af16b7157e2c782f4ef6822725"));
-        assert(genesis.hashMerkleRoot == uint256S("0x3bf54807365f102ff9cdb07cf5f4af411503d5b544835dc96a5beaee140ad419"));
+        assert(consensus.hashGenesisBlock == uint256S("0x0000019cc3b05fed09b3757db6fa9e408e75a93387ac99c95758ae38b25cebbb"));
+        assert(genesis.hashMerkleRoot == uint256S("0xbeb39df5e5c3029bb4a6d66357a41d06c275ea69a96c9081a3e6f8d2f8efe918"));
 
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.powLimit   = ~UINT256_ZERO >> 12;   // trittium starting difficulty is 1 / 2^12
@@ -471,7 +471,7 @@ public:
         // // This is used inorder to mine the genesis block. Once found, we can use the nonce and block hash found to create a valid genesis block
         // /////////////////////////////////////////////////////////////////
 
-        // uint32_t nGenesisTime = 1615347255; // 2021-02-03T13:51:41+00:00
+        // uint32_t nGenesisTime = 1616082641; // Thu Mar 18 2021 15:50:41 GMT+0000
 
         // arith_uint256 test;
         // bool fNegative;
@@ -483,7 +483,7 @@ public:
         // uint256 TempHashHolding = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
         // uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         // for (int i=0;i<40000000;i++) {
-        //     genesis = CreateGenesisBlock(nGenesisTime, i, 0x1fffffff, 1, 250 * COIN);
+        //     genesis = CreateGenesisBlock(nGenesisTime, i, 0x1fffffff, 1, 0 * COIN);
         //     //genesis.hashPrevBlock = TempHashHolding;
         //     consensus.hashGenesisBlock = genesis.GetHash();
 
@@ -514,10 +514,10 @@ public:
 
         // /////////////////////////////////////////////////////////////////
 
-        genesis = CreateGenesisBlock(1615347255, 746, 0x1fffffff, 1, 250 * COIN);
+        genesis = CreateGenesisBlock(1616082641, 498, 0x1fffffff, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00000a51ec08652323848a7587356052bbb044bd788c51ba545f7188896883b1"));
-        assert(genesis.hashMerkleRoot == uint256S("0x3bf54807365f102ff9cdb07cf5f4af411503d5b544835dc96a5beaee140ad419"));
+        assert(consensus.hashGenesisBlock == uint256S("0x004952a7bf209dae25d54c0721872a43ad660e78687a03c6f56ed18dd00cca79"));
+        assert(genesis.hashMerkleRoot == uint256S("0xbeb39df5e5c3029bb4a6d66357a41d06c275ea69a96c9081a3e6f8d2f8efe918"));
 
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.powLimit   = ~UINT256_ZERO >> 2;   // trittium starting difficulty is 1 / 2^2
