@@ -155,9 +155,9 @@ public:
 
         // /////////////////////////////////////////////////////////////////
 
-        genesis = CreateGenesisBlock(1616082639, 56119, 0x1e0ffff0, 1, 0 * COIN);
+        genesis = CreateGenesisBlock(1616082639, 933427, 0x1e0ffff0, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000003b073dae25978a8dab4a2d52dce79cbada6c5b8c21b09646af9a44cfc93"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00000e41db923032d1be957ad4be59aa287c9727ca7602dd403cf7312d259968"));
         assert(genesis.hashMerkleRoot == uint256S("0xbeb39df5e5c3029bb4a6d66357a41d06c275ea69a96c9081a3e6f8d2f8efe918"));
 
         consensus.fPowAllowMinDifficultyBlocks = false;
@@ -298,14 +298,14 @@ public:
         // arith_uint256 test;
         // bool fNegative;
         // bool fOverflow;
-        // test.SetCompact(0x1e0ffff0, &fNegative, &fOverflow);
+        // test.SetCompact(0x1efffff0, &fNegative, &fOverflow);
         // std::cout << "Test threshold: " << test.GetHex() << "\n\n";
 
         // int genesisNonce = 0;
         // uint256 TempHashHolding = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
         // uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         // for (int i=0;i<40000000;i++) {
-        //     genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e0ffff0, 1, 0 * COIN);
+        //     genesis = CreateGenesisBlock(nGenesisTime, i, 0x1efffff0, 1, 0 * COIN);
         //     //genesis.hashPrevBlock = TempHashHolding;
         //     consensus.hashGenesisBlock = genesis.GetHash();
 
@@ -336,9 +336,9 @@ public:
 
         // /////////////////////////////////////////////////////////////////
 
-        genesis = CreateGenesisBlock(1616082640, 3235403, 0x1e0ffff0, 1, 0 * COIN);
+        genesis = CreateGenesisBlock(1616082640, 178720, 0x1efffff0, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x0000019cc3b05fed09b3757db6fa9e408e75a93387ac99c95758ae38b25cebbb"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000034fe1805f04a440c06c1b96b1234b45d9fdba0fcb055d5caf4d83689428c"));
         assert(genesis.hashMerkleRoot == uint256S("0xbeb39df5e5c3029bb4a6d66357a41d06c275ea69a96c9081a3e6f8d2f8efe918"));
 
         consensus.fPowAllowMinDifficultyBlocks = true;
@@ -514,9 +514,9 @@ public:
 
         // /////////////////////////////////////////////////////////////////
 
-        genesis = CreateGenesisBlock(1616082641, 498, 0x1fffffff, 1, 0 * COIN);
+        genesis = CreateGenesisBlock(1616082641, 333, 0x1fffffff, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x004952a7bf209dae25d54c0721872a43ad660e78687a03c6f56ed18dd00cca79"));
+        assert(consensus.hashGenesisBlock == uint256S("0x003279ba296f0376d7a8417354e0ef9bd00fa29f92ac5d9cdf97c160673474af"));
         assert(genesis.hashMerkleRoot == uint256S("0xbeb39df5e5c3029bb4a6d66357a41d06c275ea69a96c9081a3e6f8d2f8efe918"));
 
         consensus.fPowAllowMinDifficultyBlocks = true;
