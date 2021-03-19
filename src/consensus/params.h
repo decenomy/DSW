@@ -35,6 +35,8 @@ enum UpgradeIndex : uint32_t {
     UPGRADE_V3_4,
     UPGRADE_V4_0,
     UPGRADE_V5_DUMMY,
+    UPGRADE_STAKE_MIN_DEPTH_V2,
+    UPGRADE_CHECK_WORK_V2,
     UPGRADE_TESTDUMMY,
     // NOTE: Also add new upgrades to NetworkUpgradeInfo in upgrades.cpp
     MAX_NETWORK_UPGRADES
@@ -102,6 +104,7 @@ struct Params {
     int64_t nProposalEstablishmentTime;
     int nStakeMinAge;
     int nStakeMinDepth;
+    int nStakeMinDepthV2;
     int64_t nTargetTimespan;
     int64_t nTargetTimespanV2;
     int64_t nTargetSpacing;
@@ -152,7 +155,7 @@ struct Params {
         if (!NetworkUpgradeActive(contextHeight, Consensus::UPGRADE_V3_4))
             return (utxoFromBlockTime + nStakeMinAge <= contextTime);
         // with stake modifier V2+, we require the utxo to be nStakeMinDepth deep in the chain
-        return (contextHeight - utxoFromBlockHeight >= nStakeMinDepth);
+        return (contextHeight - utxoFromBlockHeight >= NetworkUpgradeActive(contextHeight, Consensus::UPGRADE_STAKE_MIN_DEPTH_V2) ? nStakeMinDepthV2 : nStakeMinDepth);
     }
 
     /*
