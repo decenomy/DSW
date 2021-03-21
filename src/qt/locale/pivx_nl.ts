@@ -1163,16 +1163,16 @@ Het zal automatisch starten zodra de portemonnee voldoende bevestigingen heeft o
         <translation>versie</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Aezora</source>
+        <translation>Aezora</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About __Decenomy__</source>
-        <translation>Over __Decenomy__</translation>
+        <source>About Aezora</source>
+        <translation>Over Aezora</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1226,16 +1226,16 @@ Het zal automatisch starten zodra de portemonnee voldoende bevestigingen heeft o
         <translation>Welkom</translation>
     </message>
     <message>
-        <source>Welcome to __Decenomy__.</source>
-        <translation>Welkom bij __Decenomy__.</translation>
+        <source>Welcome to Aezora.</source>
+        <translation>Welkom bij Aezora.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where __Decenomy__ will store its data.</source>
-        <translation>Aangezien dit de eerste keer is dat het programma is gestart, kun je kiezen waar __Decenomy__ zijn data opslaat.</translation>
+        <source>As this is the first time the program is launched, you can choose where Aezora will store its data.</source>
+        <translation>Aangezien dit de eerste keer is dat het programma is gestart, kun je kiezen waar Aezora zijn data opslaat.</translation>
     </message>
     <message>
-        <source>__Decenomy__ will download and store a copy of the AZR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>__Decenomy__ zal een kopie van de AZR blockchain downloaden en opslaan. Tenminste %1GB aan data zal worden opgeslagen in deze map en het zal over de tijd groeien. De portemonnee zal ook in deze map worden opgeslagen.</translation>
+        <source>Aezora will download and store a copy of the AZR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Aezora zal een kopie van de AZR blockchain downloaden en opslaan. Tenminste %1GB aan data zal worden opgeslagen in deze map en het zal over de tijd groeien. De portemonnee zal ook in deze map worden opgeslagen.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1254,8 +1254,8 @@ Het zal automatisch starten zodra de portemonnee voldoende bevestigingen heeft o
         <translation>Akkoord</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Aezora</source>
+        <translation>Aezora</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1589,7 +1589,7 @@ Gelieve nog enkele minuten te wachten (het onderpand van een masternode vereist 
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the __decenomy__.conf file
+You will only have to paste the data in the aezora.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1597,7 +1597,7 @@ this controller wallet (select the Masternode in the list and press "start").
 op een externe server aan uw klembord.
 
 
-U hoeft alleen de gegevens in het __decenomy__.conf bestand te plakken
+U hoeft alleen de gegevens in het aezora.conf bestand te plakken
 van uw externe server en start deze vervolgens de Masternode met
 deze controller portemonnee (selecteer de Masternode in de lijst en druk op "start").
 </translation>
@@ -1787,8 +1787,8 @@ STAKING</translation>
         <translation>Ingelezen data te groot</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "__decenomy__" prefix</source>
-        <translation>Ongeldige URI, begint niet met de "__decenomy__" prefix</translation>
+        <source>Invalid URI, not starting with "aezora" prefix</source>
+        <translation>Ongeldige URI, begint niet met de "aezora" prefix</translation>
     </message>
 </context>
 <context>
@@ -2082,8 +2082,8 @@ STAKING</translation>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Aezora</source>
+        <translation>Aezora</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -2110,8 +2110,8 @@ STAKING</translation>
         <translation>Programma afsluiten</translation>
     </message>
     <message>
-        <source>__Decenomy__ client</source>
-        <translation>__Decenomy__ client</translation>
+        <source>Aezora client</source>
+        <translation>Aezora client</translation>
     </message>
     <message>
         <source>Error</source>
@@ -2177,8 +2177,8 @@ Adres: %4
         <translation>Ongeldig betalingsadres %1</translation>
     </message>
     <message>
-        <source>Cannot start __decenomy__: click-to-pay handler</source>
-        <translation>Kan __decenomy__ niet starten: click-to-pay handler</translation>
+        <source>Cannot start aezora: click-to-pay handler</source>
+        <translation>Kan aezora niet starten: click-to-pay handler</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid AZR address or malformed URI parameters.</source>
@@ -2315,8 +2315,8 @@ Adres: %4
         <translation>Een kritieke fout is opgelopen. AZR kan niet langer veilig uitgevoerd worden en zal afsluiten.</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Aezora</source>
+        <translation>Aezora</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -2335,8 +2335,8 @@ Adres: %4
         <translation>Fout bij het lezen van het masternode configuratiebestand: %1</translation>
     </message>
     <message>
-        <source>__Decenomy__ didn't yet exit safely...</source>
-        <translation>__Decenomy__ is nog niet veilig afgesloten...</translation>
+        <source>Aezora didn't yet exit safely...</source>
+        <translation>Aezora is nog niet veilig afgesloten...</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -3922,8 +3922,8 @@ Er was een fout opgetreden tijdens het opslaan van deze adreslijst naar %1. Prob
         <translation>Hoe stake ik AZR?</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Make sure your wallet is completely synchronized and you are using the latest release. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You must have a balance of AZR with a minimum of 600 confirmations. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Your wallet must stay online and be unlocked for staking purposes. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Once all those steps are followed staking should be enabled. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state &amp;quot;Staking Enabled&amp;quot; to indicate it is staking. Using the command line interface (__decenomy__-cli); the command &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; will confirm that staking is active. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Zorg ervoor dat uw portemonnee volledig gesynchroniseerd is en je op de juiste versie zit. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Je moet een balans van AZR hebben met een minimum van 600 bevestigingen. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Uw portemonnee moet steeds online en ontgrendeld blijven voor stakingsdoeleinden. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Van zodra al deze stappen gevolgd zijn, zou staking ingeschakeld moeten zijn. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Je kan de stakingsstatus controleren door over het pakketicoontje te gaan gaan met je muis. Deze staat op de linker van de portemonnee interface. Dit pakketje zal oplichten en zal &amp;quot;Staking Inschakeld&amp;quot; vermelden om aan te geven dat staking actief is. Als je gebruik maakt van de command line interface (__decenomy__-cli); het commando &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; zal bevestigen dat staking actief is. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Make sure your wallet is completely synchronized and you are using the latest release. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You must have a balance of AZR with a minimum of 600 confirmations. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Your wallet must stay online and be unlocked for staking purposes. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Once all those steps are followed staking should be enabled. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state &amp;quot;Staking Enabled&amp;quot; to indicate it is staking. Using the command line interface (aezora-cli); the command &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; will confirm that staking is active. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Zorg ervoor dat uw portemonnee volledig gesynchroniseerd is en je op de juiste versie zit. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Je moet een balans van AZR hebben met een minimum van 600 bevestigingen. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Uw portemonnee moet steeds online en ontgrendeld blijven voor stakingsdoeleinden. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Van zodra al deze stappen gevolgd zijn, zou staking ingeschakeld moeten zijn. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Je kan de stakingsstatus controleren door over het pakketicoontje te gaan gaan met je muis. Deze staat op de linker van de portemonnee interface. Dit pakketje zal oplichten en zal &amp;quot;Staking Inschakeld&amp;quot; vermelden om aan te geven dat staking actief is. Als je gebruik maakt van de command line interface (aezora-cli); het commando &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; zal bevestigen dat staking actief is. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>4</source>
@@ -4183,8 +4183,8 @@ Er was een fout opgetreden tijdens het opslaan van deze adreslijst naar %1. Prob
         <translation>Kan de back-upmap niet openen</translation>
     </message>
     <message>
-        <source>Unable to open __decenomy__.conf with default application</source>
-        <translation>Kan __decenomy__.conf niet openen met de standaard applicatie</translation>
+        <source>Unable to open aezora.conf with default application</source>
+        <translation>Kan aezora.conf niet openen met de standaard applicatie</translation>
     </message>
     <message>
         <source>In:</source>
@@ -4845,8 +4845,8 @@ Weet je zeker dat?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>__Decenomy__ is shutting down...</source>
-        <translation>__Decenomy__ is aan het afsluiten...</translation>
+        <source>Aezora is shutting down...</source>
+        <translation>Aezora is aan het afsluiten...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4875,8 +4875,8 @@ Weet je zeker dat?
         <translation>Laden...</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Aezora</source>
+        <translation>Aezora</translation>
     </message>
 </context>
 <context>
@@ -5415,9 +5415,9 @@ Selecteer minder invoeren met muntcontrole.</translation>
     </message>
     <message>
         <source>Welcome to
-__Decenomy__ Wallet</source>
+Aezora Wallet</source>
         <translation>Welkom bij
-__Decenomy__ Portemonnee</translation>
+Aezora Portemonnee</translation>
     </message>
     <message>
         <source>AZR is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
@@ -5467,8 +5467,8 @@ __Decenomy__ Portemonnee</translation>
         <translation>Bind naar het opgegeven adres om te luisteren naar JSON-RPC verbindingen. Gebruik [host]:poort notatie voor IPv6. Deze optie kan meerdere keren worden opgegeven (standaard: bind aan alle interfaces)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. __Decenomy__ is probably already running.</source>
-        <translation>Kan geen vergrendeling op data directory %s verkrijgen. __Decenomy__ loopt waarschijnlijk al.</translation>
+        <source>Cannot obtain a lock on data directory %s. Aezora is probably already running.</source>
+        <translation>Kan geen vergrendeling op data directory %s verkrijgen. Aezora loopt waarschijnlijk al.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -5631,8 +5631,8 @@ __Decenomy__ Portemonnee</translation>
         <translation>De totale lengte van de netwerkversie (%i) overschrijdt de maximale lengte (%i). Verminder het aantal of de grootte van uacommentaren.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. __Decenomy__ is probably already running.</source>
-        <translation>Niet mogelijk te binden aan %s op deze computer. __Decenomy__ loopt waarschijnlijk al.</translation>
+        <source>Unable to bind to %s on this computer. Aezora is probably already running.</source>
+        <translation>Niet mogelijk te binden aan %s op deze computer. Aezora loopt waarschijnlijk al.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -5647,8 +5647,8 @@ __Decenomy__ Portemonnee</translation>
         <translation>Waarschuwing: -paytxfee is zeer hoog ingesteld! Dit zijn de transactie kosten die je betaalt als je een transactie verstuurt.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</source>
-        <translation>Waarschuwing: Controleer of de datum en tijd van je computer juist zijn! Als je klok verkeerd staat, werkt __Decenomy__ niet goed.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Aezora will not work properly.</source>
+        <translation>Waarschuwing: Controleer of de datum en tijd van je computer juist zijn! Als je klok verkeerd staat, werkt Aezora niet goed.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5863,8 +5863,8 @@ __Decenomy__ Portemonnee</translation>
         <translation>Informatie</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. __Decenomy__ is shutting down.</source>
-        <translation>Initialisatie saniteitscontrole mislukt. __Decenomy__ wordt afgesloten.</translation>
+        <source>Initialization sanity check failed. Aezora is shutting down.</source>
+        <translation>Initialisatie saniteitscontrole mislukt. Aezora wordt afgesloten.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -6199,8 +6199,8 @@ __Decenomy__ Portemonnee</translation>
         <translation>Minimum geldige waarde (in AZR) toegestaan bij GUI en RPC voor de staking splitsdrempel (standaard: %s)</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</source>
-        <translation>Controleer of de datum en tijd van je computer juist zijn! Als je klok verkeerd ingesteld staat, werkt __Decenomy__ niet goed.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong Aezora will not work properly.</source>
+        <translation>Controleer of de datum en tijd van je computer juist zijn! Als je klok verkeerd ingesteld staat, werkt Aezora niet goed.</translation>
     </message>
     <message>
         <source>Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect/-noconnect)</source>
@@ -6609,8 +6609,8 @@ __Decenomy__ Portemonnee</translation>
         <translation>Portemonnee %s verblijft buiten de data directory %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart __Decenomy__ to complete</source>
-        <translation>Wallet moest worden herschreven: start __Decenomy__ opnieuw om te voltooien</translation>
+        <source>Wallet needed to be rewritten: restart Aezora to complete</source>
+        <translation>Wallet moest worden herschreven: start Aezora opnieuw om te voltooien</translation>
     </message>
     <message>
         <source>Wallet options:</source>

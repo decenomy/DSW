@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "__Decenomy__"
-            VALUE "FileDescription",    "__decenomy__d (OSS daemon/client for __Decenomy__)"
+            VALUE "CompanyName",        "Aezora"
+            VALUE "FileDescription",    "aezorad (OSS daemon/client for Aezora)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "__decenomy__d"
+            VALUE "InternalName",       "aezorad"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "__decenomy__d.exe"
-            VALUE "ProductName",        "__decenomy__d"
+            VALUE "OriginalFilename",   "aezorad.exe"
+            VALUE "ProductName",        "aezorad"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

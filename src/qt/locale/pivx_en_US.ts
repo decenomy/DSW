@@ -1164,16 +1164,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>version</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Aezora</source>
+        <translation>Aezora</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About __Decenomy__</source>
-        <translation>About __Decenomy__</translation>
+        <source>About Aezora</source>
+        <translation>About Aezora</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1227,16 +1227,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>Welcome</translation>
     </message>
     <message>
-        <source>Welcome to __Decenomy__.</source>
-        <translation>Welcome to __Decenomy__.</translation>
+        <source>Welcome to Aezora.</source>
+        <translation>Welcome to Aezora.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where __Decenomy__ will store its data.</source>
-        <translation>As this is the first time the program is launched, you can choose where __Decenomy__ will store its data.</translation>
+        <source>As this is the first time the program is launched, you can choose where Aezora will store its data.</source>
+        <translation>As this is the first time the program is launched, you can choose where Aezora will store its data.</translation>
     </message>
     <message>
-        <source>__Decenomy__ will download and store a copy of the AZR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>__Decenomy__ will download and store a copy of the AZR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</translation>
+        <source>Aezora will download and store a copy of the AZR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Aezora will download and store a copy of the AZR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1255,8 +1255,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>OK</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Aezora</source>
+        <translation>Aezora</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1590,7 +1590,7 @@ Please wait few more minutes (masternode collaterals require %1 confirmations).<
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the __decenomy__.conf file
+You will only have to paste the data in the aezora.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1598,7 +1598,7 @@ this controller wallet (select the Masternode in the list and press "start").
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the __decenomy__.conf file
+You will only have to paste the data in the aezora.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </translation>
@@ -1788,8 +1788,8 @@ STAKING</translation>
         <translation>Parsed data too large</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "__decenomy__" prefix</source>
-        <translation>Invalid URI, not starting with "__decenomy__" prefix</translation>
+        <source>Invalid URI, not starting with "aezora" prefix</source>
+        <translation>Invalid URI, not starting with "aezora" prefix</translation>
     </message>
 </context>
 <context>
@@ -2083,8 +2083,8 @@ STAKING</translation>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Aezora</source>
+        <translation>Aezora</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -2111,8 +2111,8 @@ STAKING</translation>
         <translation>Quit application</translation>
     </message>
     <message>
-        <source>__Decenomy__ client</source>
-        <translation>__Decenomy__ client</translation>
+        <source>Aezora client</source>
+        <translation>Aezora client</translation>
     </message>
     <message>
         <source>Error</source>
@@ -2178,8 +2178,8 @@ Address: %4
         <translation>Invalid payment address %1</translation>
     </message>
     <message>
-        <source>Cannot start __decenomy__: click-to-pay handler</source>
-        <translation>Cannot start __decenomy__: click-to-pay handler</translation>
+        <source>Cannot start aezora: click-to-pay handler</source>
+        <translation>Cannot start aezora: click-to-pay handler</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid AZR address or malformed URI parameters.</source>
@@ -2320,8 +2320,8 @@ Address: %4
         <translation>A fatal error occurred. AZR can no longer continue safely and will quit.</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Aezora</source>
+        <translation>Aezora</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -2340,8 +2340,8 @@ Address: %4
         <translation>Error reading masternode configuration file: %1</translation>
     </message>
     <message>
-        <source>__Decenomy__ didn't yet exit safely...</source>
-        <translation>__Decenomy__ didn't yet exit safely...</translation>
+        <source>Aezora didn't yet exit safely...</source>
+        <translation>Aezora didn't yet exit safely...</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -3927,8 +3927,8 @@ There was an error trying to save the address list to %1. Please try again.</tra
         <translation>How do I stake AZR?</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Make sure your wallet is completely synchronized and you are using the latest release. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You must have a balance of AZR with a minimum of 600 confirmations. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Your wallet must stay online and be unlocked for staking purposes. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Once all those steps are followed staking should be enabled. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state &amp;quot;Staking Enabled&amp;quot; to indicate it is staking. Using the command line interface (__decenomy__-cli); the command &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; will confirm that staking is active. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Make sure your wallet is completely synchronized and you are using the latest release. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You must have a balance of AZR with a minimum of 600 confirmations. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Your wallet must stay online and be unlocked for staking purposes. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Once all those steps are followed staking should be enabled. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state &amp;quot;Staking Enabled&amp;quot; to indicate it is staking. Using the command line interface (__decenomy__-cli); the command &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; will confirm that staking is active. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Make sure your wallet is completely synchronized and you are using the latest release. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You must have a balance of AZR with a minimum of 600 confirmations. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Your wallet must stay online and be unlocked for staking purposes. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Once all those steps are followed staking should be enabled. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state &amp;quot;Staking Enabled&amp;quot; to indicate it is staking. Using the command line interface (aezora-cli); the command &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; will confirm that staking is active. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Make sure your wallet is completely synchronized and you are using the latest release. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You must have a balance of AZR with a minimum of 600 confirmations. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Your wallet must stay online and be unlocked for staking purposes. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Once all those steps are followed staking should be enabled. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state &amp;quot;Staking Enabled&amp;quot; to indicate it is staking. Using the command line interface (aezora-cli); the command &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; will confirm that staking is active. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>4</source>
@@ -4188,8 +4188,8 @@ There was an error trying to save the address list to %1. Please try again.</tra
         <translation>Unable to open backups folder</translation>
     </message>
     <message>
-        <source>Unable to open __decenomy__.conf with default application</source>
-        <translation>Unable to open __decenomy__.conf with default application</translation>
+        <source>Unable to open aezora.conf with default application</source>
+        <translation>Unable to open aezora.conf with default application</translation>
     </message>
     <message>
         <source>In:</source>
@@ -4850,8 +4850,8 @@ Are you sure?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>__Decenomy__ is shutting down...</source>
-        <translation>__Decenomy__ is shutting down...</translation>
+        <source>Aezora is shutting down...</source>
+        <translation>Aezora is shutting down...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4880,8 +4880,8 @@ Are you sure?
         <translation>Loading…</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Aezora</source>
+        <translation>Aezora</translation>
     </message>
 </context>
 <context>
@@ -5448,9 +5448,9 @@ Select fewer inputs with coin control.</translation>
     </message>
     <message>
         <source>Welcome to
-__Decenomy__ Wallet</source>
+Aezora Wallet</source>
         <translation>Welcome to
-__Decenomy__ Wallet</translation>
+Aezora Wallet</translation>
     </message>
     <message>
         <source>AZR is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
@@ -5512,8 +5512,8 @@ Please run 'sapling-fetch-params' or './util/fetch-params.sh' and then restart.<
 Please run 'sapling-fetch-params' or './util/fetch-params.sh' and then restart.</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. __Decenomy__ is probably already running.</source>
-        <translation>Cannot obtain a lock on data directory %s. __Decenomy__ is probably already running.</translation>
+        <source>Cannot obtain a lock on data directory %s. Aezora is probably already running.</source>
+        <translation>Cannot obtain a lock on data directory %s. Aezora is probably already running.</translation>
     </message>
     <message>
         <source>Cannot upgrade to Sapling wallet (already running Sapling support). Version: %d</source>
@@ -5680,8 +5680,8 @@ Please run 'sapling-fetch-params' or './util/fetch-params.sh' and then restart.<
         <translation>Total length of network version string (%i) exceeds maximum length (%i). Reduce the number or size of uacomments.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. __Decenomy__ is probably already running.</source>
-        <translation>Unable to bind to %s on this computer. __Decenomy__ is probably already running.</translation>
+        <source>Unable to bind to %s on this computer. Aezora is probably already running.</source>
+        <translation>Unable to bind to %s on this computer. Aezora is probably already running.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -5696,8 +5696,8 @@ Please run 'sapling-fetch-params' or './util/fetch-params.sh' and then restart.<
         <translation>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</source>
-        <translation>Warning: Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Aezora will not work properly.</source>
+        <translation>Warning: Please check that your computer's date and time are correct! If your clock is wrong Aezora will not work properly.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5912,8 +5912,8 @@ Please run 'sapling-fetch-params' or './util/fetch-params.sh' and then restart.<
         <translation>Information</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. __Decenomy__ is shutting down.</source>
-        <translation>Initialization sanity check failed. __Decenomy__ is shutting down.</translation>
+        <source>Initialization sanity check failed. Aezora is shutting down.</source>
+        <translation>Initialization sanity check failed. Aezora is shutting down.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -6276,8 +6276,8 @@ Please run 'sapling-fetch-params' or './util/fetch-params.sh' and then restart.<
         <translation>Minimum positive amount (in AZR) allowed by GUI and RPC for the stake split threshold (default: %s)</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</source>
-        <translation>Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong Aezora will not work properly.</source>
+        <translation>Please check that your computer's date and time are correct! If your clock is wrong Aezora will not work properly.</translation>
     </message>
     <message>
         <source>Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect/-noconnect)</source>
@@ -6320,8 +6320,8 @@ Please run 'sapling-fetch-params' or './util/fetch-params.sh' and then restart.<
         <translation>Error loading %s: Wallet corrupted</translation>
     </message>
     <message>
-        <source>Error loading %s: Wallet requires newer version of __Decenomy__</source>
-        <translation>Error loading %s: Wallet requires newer version of __Decenomy__</translation>
+        <source>Error loading %s: Wallet requires newer version of Aezora</source>
+        <translation>Error loading %s: Wallet requires newer version of Aezora</translation>
     </message>
     <message>
         <source>Error loading %s
@@ -6724,8 +6724,8 @@ Please run 'sapling-fetch-params' or './util/fetch-params.sh' and then restart.<
         <translation>Wallet debugging/testing options:</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart __Decenomy__ to complete</source>
-        <translation>Wallet needed to be rewritten: restart __Decenomy__ to complete</translation>
+        <source>Wallet needed to be rewritten: restart Aezora to complete</source>
+        <translation>Wallet needed to be rewritten: restart Aezora to complete</translation>
     </message>
     <message>
         <source>Wallet options:</source>

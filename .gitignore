@@ -7,13 +7,13 @@ reset-files.bash
 *.tar.gz
 
 *.exe
-src/__decenomy__
-src/__decenomy__d
-src/__decenomy__-cli
-src/__decenomy__-tx
-src/bench/bench___decenomy__
-src/test/test___decenomy__
-src/qt/test/test___decenomy__-qt
+src/aezora
+src/aezorad
+src/aezora-cli
+src/aezora-tx
+src/bench/bench_aezora
+src/test/test_aezora
+src/qt/test/test_aezora-qt
 
 # CryptoFlow
 src/bench/bench_cryptoflow
@@ -93,7 +93,7 @@ src/qt/test/moc*.cpp
 *.o-*
 *.patch
 .pivx
-.__decenomy__
+.aezora
 *.a
 *.pb.cc
 *.pb.h
@@ -113,7 +113,7 @@ src/qt/test/moc*.cpp
 *.qm
 Makefile
 pivx-qt
-__decenomy__-qt
+aezora-qt
 Jackpot-Qt.app
 background.tiff*
 
@@ -125,7 +125,7 @@ target/
 # Unit-tests
 Makefile.test
 pivx-qt_test
-__decenomy__-qt_test
+aezora-qt_test
 src/test/buildenv.py
 
 # Resources cpp
@@ -142,7 +142,7 @@ build
 *.gcno
 /*.info
 test_pivx.coverage/
-test___decenomy__.coverage/
+test_aezora.coverage/
 total.coverage/
 coverage_percent.txt
 
@@ -174,9 +174,9 @@ moc_*
 ui_*
 build*
 pivxd.*
-__decenomy__d.*
+aezorad.*
 pivxd-new-gui.*
-__decenomy__d-new-gui.*
+aezorad-new-gui.*
 
 # for Visual Studio Code
 

@@ -30,6 +30,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/__decenomy__d.exe DSW/src/__decenomy__-cli.exe DSW/src/__decenomy__-tx.exe DSW/src/qt/__decenomy__-qt.exe .
-	zip AZR-Windows.zip __decenomy__d.exe __decenomy__-cli.exe __decenomy__-tx.exe __decenomy__-qt.exe
-	rm -f __decenomy__d.exe __decenomy__-cli.exe __decenomy__-tx.exe __decenomy__-qt.exe
+	cp DSW/src/aezorad.exe DSW/src/aezora-cli.exe DSW/src/aezora-tx.exe DSW/src/qt/aezora-qt.exe .
+	zip AZR-Windows.zip aezorad.exe aezora-cli.exe aezora-tx.exe aezora-qt.exe
+	rm -f aezorad.exe aezora-cli.exe aezora-tx.exe aezora-qt.exe
