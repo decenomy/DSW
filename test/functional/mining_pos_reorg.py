@@ -53,11 +53,11 @@ class ReorgStakeTest(PivxTestFramework):
 
     def check_money_supply(self, expected_piv, expected_zpiv):
         g_info = [self.nodes[i].getinfo() for i in range(self.num_nodes)]
-        # verify that nodes have the expected __DSW__ and z__DSW__ supply
+        # verify that nodes have the expected AZR and zAZR supply
         for node in g_info:
             assert_equal(node['moneysupply'], DecimalAmt(expected_piv))
-            for denom in node['z__DSW__supply']:
-                assert_equal(node['z__DSW__supply'][denom], DecimalAmt(expected_zpiv[denom]))
+            for denom in node['zAZRsupply']:
+                assert_equal(node['zAZRsupply'][denom], DecimalAmt(expected_zpiv[denom]))
 
 
     def run_test(self):
@@ -68,9 +68,9 @@ class ReorgStakeTest(PivxTestFramework):
                     return True, x
             return False, None
 
-        # Check __DSW__ and z__DSW__ supply at the beginning
+        # Check AZR and zAZR supply at the beginning
         # ------------------------------------------
-        # z__DSW__ supply: 2 coins for each denomination
+        # zAZR supply: 2 coins for each denomination
         expected_zpiv_supply = {
             "1": 2,
             "5": 10,
@@ -82,7 +82,7 @@ class ReorgStakeTest(PivxTestFramework):
             "5000": 10000,
             "total": 13332,
         }
-        # __DSW__ supply: block rewards minus burned fees for minting
+        # AZR supply: block rewards minus burned fees for minting
         expected_money_supply = 250.0 * 330 - 16 * 0.01
         self.check_money_supply(expected_money_supply, expected_zpiv_supply)
 
@@ -230,8 +230,8 @@ class ReorgStakeTest(PivxTestFramework):
         res, utxo = findUtxoInList(stakeinput["txid"], stakeinput["vout"], self.nodes[0].listunspent())
         assert (not res or not utxo["spendable"])
 
-        # Verify that __DSW__ and z__DSW__ supplies were properly updated after the spends and reorgs
-        self.log.info("Check __DSW__ and z__DSW__ supply...")
+        # Verify that AZR and zAZR supplies were properly updated after the spends and reorgs
+        self.log.info("Check AZR and zAZR supply...")
         expected_money_supply += 250.0 * (self.nodes[1].getblockcount() - 330)
         spent_coin_0 = mints[0]["denomination"]
         spent_coin_1 = mints[1]["denomination"]
