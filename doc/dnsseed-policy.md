@@ -44,7 +44,7 @@ related to the DNS seed operation.
 If these expectations cannot be satisfied the operator should
 discontinue providing services and contact the active __Decenomy__
 Core development team as well as posting on the
-[__Decenomy__ Discord](__decenomy_discord_link__).
+[__Decenomy__ Discord](https://discord.gg/HhzHDcn).
 
 Behavior outside of these expectations may be reasonable in some
 situations but should be discussed in public in advance.

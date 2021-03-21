@@ -1886,9 +1886,9 @@ EN FRIO</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        __decenomy_discord_link__</source>
+        https://discord.gg/HhzHDcn</source>
         <translation>¿Falta su lenguaje o la traducción está incompleta? Contribuya con las traducciones aquí:
-        __decenomy_discord_link__</translation>
+        https://discord.gg/HhzHDcn</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -3843,8 +3843,8 @@ Ha habido un error al tratar de guardar la libreta de direcciones en %1. Por fav
         <translation>2) ¿Por qué mis __DSW__ no se pueden gastar?</translation>
     </message>
     <message>
-        <source>__decenomy_website_link__/</source>
-        <translation>__decenomy_website_link__/</translation>
+        <source>https://aezora.com/</source>
+        <translation>https://aezora.com/</translation>
     </message>
     <message>
         <source>1</source>

@@ -1883,9 +1883,9 @@ STAKING</source>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        __decenomy_discord_link__</source>
+        https://discord.gg/HhzHDcn</source>
         <translation>Отсутствует ваш язык или заметили незавершенный перевод? Вы можете помочь нам стать лучше:
-        __decenomy_discord_link__</translation>
+        https://discord.gg/HhzHDcn</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -3837,8 +3837,8 @@ There was an error trying to save the address list to %1. Please try again.</sou
         <translation>2) Почему мои __DSW__ невозможно потратить?</translation>
     </message>
     <message>
-        <source>__decenomy_website_link__/</source>
-        <translation>__decenomy_website_link__/</translation>
+        <source>https://aezora.com/</source>
+        <translation>https://aezora.com/</translation>
     </message>
     <message>
         <source>1</source>

@@ -1,7 +1,7 @@
 <!--- Remove this description and sections that do not apply -->
 
 This issue tracker is only for technical issues related to __Decenomy__ Core.
-General __Decenomy__ questions and/or support requests and are best directed to the [__Decenomy__ Discord](__decenomy_discord_link__).
+General __Decenomy__ questions and/or support requests and are best directed to the [__Decenomy__ Discord](https://discord.gg/HhzHDcn).
 
 ### Describe the issue
 
