@@ -236,17 +236,17 @@ public:
         pchMessageStart[1] = 0x7b;
         pchMessageStart[2] = 0x86;
         pchMessageStart[3] = 0x77;
-        nDefaultPort = __PORT_MAINNET__;
+        nDefaultPort = 17771;
 
-        vSeeds.push_back(CDNSSeedData("seeder", "seeder.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed2", "seed2.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed3", "seed3.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed4", "seed4.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.__decenomy.net__"));
+        vSeeds.push_back(CDNSSeedData("seeder", "seeder.777coin.win"));
+	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.777coin.win"));
+        vSeeds.push_back(CDNSSeedData("seed2", "seed2.777coin.win"));
+        vSeeds.push_back(CDNSSeedData("seed3", "seed3.777coin.win"));
+        vSeeds.push_back(CDNSSeedData("seed4", "seed4.777coin.win"));
+	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.777coin.win"));
+	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.777coin.win"));
+	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.777coin.win"));
+	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.777coin.win"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 15); // 7
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 16); // 7
