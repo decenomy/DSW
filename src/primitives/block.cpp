@@ -17,11 +17,11 @@
 
 uint256 CBlockHeader::GetHash() const
 {
-    uint256 thash;
+/*     uint256 thash;
     xevan_hash(reinterpret_cast<const char*>(this), (char*)&thash, 80);
     return thash;
-
-/*     if (nVersion < 4)  {
+ */
+    if (nVersion < 4)  {
 #if defined(WORDS_BIGENDIAN)
         uint8_t data[80];
         WriteLE32(&data[0], nVersion);
@@ -37,7 +37,7 @@ uint256 CBlockHeader::GetHash() const
     }
     // version >= 4
     return SerializeHash(*this);
- */
+
 }
 
 std::string CBlock::ToString() const
