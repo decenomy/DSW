@@ -5,10 +5,10 @@
 """Test bitcoind with different proxy configuration.
 
 Test plan:
-- Start __decenomy__d's with different proxy configurations
+- Start dashdiamondd's with different proxy configurations
 - Use addnode to initiate connections
 - Verify that proxies are connected to, and the right connection command is given
-- Proxy configurations to test on __decenomy__d side:
+- Proxy configurations to test on dashdiamondd side:
     - `-proxy` (proxy everything)
     - `-onion` (proxy just onions)
     - `-proxyrandomize` Circuit randomization
@@ -18,8 +18,8 @@ Test plan:
     - proxy on IPv6
 
 - Create various proxies (as threads)
-- Create __decenomy__ds that connect to them
-- Manipulate the __decenomy__ds using addnode (onetry) an observe effects
+- Create dashdiamondds that connect to them
+- Manipulate the dashdiamondds using addnode (onetry) an observe effects
 
 addnode connect to IPv4
 addnode connect to IPv6

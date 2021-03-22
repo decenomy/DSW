@@ -125,7 +125,7 @@ enum AvailableCoinsType {
     STAKEABLE_COINS = 6                             // UTXO's that are valid for staking
 };
 
-// Possible states for z__DSW__ send
+// Possible states for zDASHD send
 enum ZerocoinSpendStatus {
     ZPIV_SPEND_OKAY = 0,                            // No error
     ZPIV_SPEND_ERROR = 1,                           // Unspecified class of errors, more details are (hopefully) in the returning text
@@ -337,7 +337,7 @@ public:
     // Staker status (last hashed block and time)
     CStakerStatus* pStakerStatus = nullptr;
 
-    // User-defined fee __DSW__/kb
+    // User-defined fee DASHD/kb
     bool fUseCustomFee;
     CAmount nCustomFee;
 
@@ -738,7 +738,7 @@ public:
     CAmount GetImmatureZerocoinBalance() const;
     std::map<libzerocoin::CoinDenomination, CAmount> GetMyZerocoinDistribution() const;
 
-    // z__DSW__ wallet
+    // zDASHD wallet
     std::unique_ptr<CzPIVTracker> zpivTracker{nullptr};
     void setZWallet(CzPIVWallet* zwallet);
     CzPIVWallet* getZWallet();
