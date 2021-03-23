@@ -1,9 +1,9 @@
 [Desktop Entry]
 Version=1.0
 Name=Sapphire
-Comment= __DSW__ P2P Cryptocurrency
-Comment[fr]= __DSW__, monnaie virtuelle cryptographique pair à pair
-Comment[tr]= __DSW__, eşten eşe kriptografik sanal para birimi
+Comment= SAPP P2P Cryptocurrency
+Comment[fr]= SAPP, monnaie virtuelle cryptographique pair à pair
+Comment[tr]= SAPP, eşten eşe kriptografik sanal para birimi
 Exec=sapphire-qt %u
 Terminal=false
 Type=Application

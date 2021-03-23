@@ -39,7 +39,7 @@ bool bSpendZeroConfChange = DEFAULT_SPEND_ZEROCONF_CHANGE;
 const char * DEFAULT_WALLET_DAT = "wallet.dat";
 
 /**
- * Fees smaller than this (in u__DSW__) are considered zero fee (for transaction creation)
+ * Fees smaller than this (in uSAPP) are considered zero fee (for transaction creation)
  * We are ~100 times smaller then bitcoin now (2015-06-23), set minTxFee 10 times higher
  * so it's still 10 times lower comparing to bitcoin.
  * Override with -mintxfee
@@ -380,7 +380,7 @@ bool CWallet::Unlock(const CKeyingMaterial& vMasterKeyIn)
             if (CWalletDB(strWalletFile).ReadCurrentSeedHash(hashSeed)) {
                 uint256 nSeed;
                 if (!GetDeterministicSeed(hashSeed, nSeed)) {
-                    return error("Failed to read z__DSW__ seed from DB. Wallet is probably corrupt.");
+                    return error("Failed to read zSAPP seed from DB. Wallet is probably corrupt.");
                 }
                 zwallet->SetMasterSeed(nSeed, false);
             }
@@ -1525,7 +1525,7 @@ int CWallet::ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate, b
                     ret++;
             }
 
-            // Will try to rescan it if z__DSW__ upgrade is active.
+            // Will try to rescan it if zSAPP upgrade is active.
             doZPivRescan(pindex, block, setAddedToWallet, consensus, fCheckZPIV);
 
             pindex = chainActive.Next(pindex);
@@ -2520,7 +2520,7 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend,
                 if (nChange > 0) {
                     // Fill a vout to ourself
                     // TODO: pass in scriptChange instead of reservekey so
-                    // change transaction isn't always pay-to-__DSW__-address
+                    // change transaction isn't always pay-to-SAPP-address
                     bool combineChange = false;
 
                     // coin control: send change to custom address
@@ -3728,7 +3728,7 @@ std::string CWallet::GetWalletHelpString(bool showDebug)
     strUsage += HelpMessageOpt("-coldstaking=<n>", strprintf(_("Enable cold staking functionality (0-1, default: %u). Disabled if staking=0"), DEFAULT_COLDSTAKING));
     strUsage += HelpMessageOpt("-gen", strprintf(_("Generate coins (default: %u)"), DEFAULT_GENERATE));
     strUsage += HelpMessageOpt("-genproclimit=<n>", strprintf(_("Set the number of threads for coin generation if enabled (-1 = all cores, default: %d)"), DEFAULT_GENERATE_PROCLIMIT));
-    strUsage += HelpMessageOpt("-minstakesplit=<amt>", strprintf(_("Minimum positive amount (in __DSW__) allowed by GUI and RPC for the stake split threshold (default: %s)"), FormatMoney(DEFAULT_MIN_STAKE_SPLIT_THRESHOLD)));
+    strUsage += HelpMessageOpt("-minstakesplit=<amt>", strprintf(_("Minimum positive amount (in SAPP) allowed by GUI and RPC for the stake split threshold (default: %s)"), FormatMoney(DEFAULT_MIN_STAKE_SPLIT_THRESHOLD)));
     strUsage += HelpMessageOpt("-staking=<n>", strprintf(_("Enable staking functionality (0-1, default: %u)"), DEFAULT_STAKING));
     if (showDebug) {
         strUsage += HelpMessageGroup(_("Wallet debugging/testing options:"));
@@ -3917,8 +3917,8 @@ CWallet* CWallet::CreateWalletFromFile(const std::string walletFile)
     fVerifyingBlocks = false;
 
     if (!zwalletInstance->GetMasterSeed().IsNull()) {
-        //Inititalize z__DSW__Wallet
-        uiInterface.InitMessage(_("Syncing z__DSW__ wallet..."));
+        //Inititalize zSAPPWallet
+        uiInterface.InitMessage(_("Syncing zSAPP wallet..."));
 
         //Load zerocoin mint hashes to memory
         walletInstance->zpivTracker->Init();
@@ -4135,7 +4135,7 @@ void CWallet::SetNull()
     // Stake split threshold
     nStakeSplitThreshold = DEFAULT_STAKE_SPLIT_THRESHOLD;
 
-    // User-defined fee __DSW__/kb
+    // User-defined fee SAPP/kb
     fUseCustomFee = false;
     nCustomFee = CWallet::minTxFee.GetFeePerK();
 

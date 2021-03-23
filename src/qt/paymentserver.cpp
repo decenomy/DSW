@@ -391,7 +391,7 @@ void PaymentServer::handleURIOrFile(const QString& s)
                     Q_EMIT receivedPaymentRequest(recipient);
             } else
                 Q_EMIT message(tr("URI handling"),
-                    tr("URI cannot be parsed! This can be caused by an invalid __DSW__ address or malformed URI parameters."),
+                    tr("URI cannot be parsed! This can be caused by an invalid SAPP address or malformed URI parameters."),
                     CClientUIInterface::ICON_WARNING);
 
             return;
@@ -505,7 +505,7 @@ bool PaymentServer::processPaymentRequest(PaymentRequestPlus& request, SendCoins
             // Append destination address
             addresses.append(QString::fromStdString(EncodeDestination(dest)));
         } else if (!recipient.authenticatedMerchant.isEmpty()) {
-            // Insecure payments to custom __DSW__ addresses are not supported
+            // Insecure payments to custom SAPP addresses are not supported
             // (there is no good way to tell the user where they are paying in a way
             // they'd have a chance of understanding).
             Q_EMIT message(tr("Payment request rejected"),
