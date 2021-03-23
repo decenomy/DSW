@@ -53,7 +53,7 @@ ds['.']['icvp'] = icvp
 ds['.']['vSrn'] = ('long', 1)
 
 ds['Applications']['Iloc'] = (370, 156)
-ds['__Decenomy__-Qt.app']['Iloc'] = (128, 156)
+ds['Sapphire-Qt.app']['Iloc'] = (128, 156)
 
 ds.flush()
 ds.close()
