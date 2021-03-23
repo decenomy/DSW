@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "__Decenomy__"
-            VALUE "FileDescription",    "__decenomy__-tx (CLI __Decenomy__ transaction editor utility)"
+            VALUE "CompanyName",        "Sapphire"
+            VALUE "FileDescription",    "sapphire-tx (CLI Sapphire transaction editor utility)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "__decenomy__-tx"
+            VALUE "InternalName",       "sapphire-tx"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "__decenomy__-tx.exe"
-            VALUE "ProductName",        "__decenomy__-tx"
+            VALUE "OriginalFilename",   "sapphire-tx.exe"
+            VALUE "ProductName",        "sapphire-tx"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END
