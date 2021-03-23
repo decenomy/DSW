@@ -25,7 +25,7 @@ class TxnMallTest(PivxTestFramework):
         disconnect_nodes(self.nodes[2], 1)
 
     def run_test(self):
-        # All nodes should start with 6,250 __DSW__:
+        # All nodes should start with 6,250 777:
         starting_balance = 6250
         for i in range(4):
             assert_equal(self.nodes[i].getbalance(), starting_balance)
