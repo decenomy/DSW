@@ -13,7 +13,7 @@ if [ -n "${1:-}" ]; then
     PARAMS_DIR="$1"
 else
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        PARAMS_DIR="$HOME/Library/Application Support/__Decenomy__Params"
+        PARAMS_DIR="$HOME/Library/Application Support/JackpotParams"
     else
         PARAMS_DIR="$HOME/.__decenomy__-params"
     fi

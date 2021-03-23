@@ -16,8 +16,8 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "__Decenomy__"
-            VALUE "FileDescription",    "__decenomy__-tx (CLI __Decenomy__ transaction editor utility)"
+            VALUE "CompanyName",        "Jackpot"
+            VALUE "FileDescription",    "__decenomy__-tx (CLI Jackpot transaction editor utility)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "__decenomy__-tx"
             VALUE "LegalCopyright",     COPYRIGHT_STR
