@@ -41,6 +41,7 @@ src/sapphire-tx
 src/bench/bench_sapphire
 src/test/test_sapphire
 src/qt/test/test_sapphire-qt
+src/qt/sapphire-qt
 
 ##########################################
 # clear this section when it's fixed
