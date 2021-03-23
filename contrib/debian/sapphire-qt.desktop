@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=Sapphire 
+Comment=Sapphire P2P Cryptocurrency
+Comment[fr]=Sapphire, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Sapphire, eşten eşe kriptografik sanal para birimi
+Exec=sapphire-qt %u
+Terminal=false
+Type=Application
+Icon=pivx128
+MimeType=x-scheme-handler/sapphire;
+Categories=Office;Finance;
+StartupWMClass=sapphire-qt
