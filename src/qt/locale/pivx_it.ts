@@ -1164,16 +1164,16 @@ Si avvierà automaticamente non appena il portafoglio avrà sufficienti conferme
         <translation>versione</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Jackpot</source>
+        <translation>Jackpot</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About __Decenomy__</source>
-        <translation>Informazioni su __Decenomy__</translation>
+        <source>About Jackpot</source>
+        <translation>Informazioni su Jackpot</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1227,16 +1227,16 @@ Si avvierà automaticamente non appena il portafoglio avrà sufficienti conferme
         <translation>Benvenuto</translation>
     </message>
     <message>
-        <source>Welcome to __Decenomy__.</source>
-        <translation>Benvenuto in __Decenomy__.</translation>
+        <source>Welcome to Jackpot.</source>
+        <translation>Benvenuto in Jackpot.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where __Decenomy__ will store its data.</source>
-        <translation>Essendo il primo avvio dell'applicazione, puoi scegliere dove __Decenomy__ salverà i propri dati.</translation>
+        <source>As this is the first time the program is launched, you can choose where Jackpot will store its data.</source>
+        <translation>Essendo il primo avvio dell'applicazione, puoi scegliere dove Jackpot salverà i propri dati.</translation>
     </message>
     <message>
-        <source>__Decenomy__ will download and store a copy of the __DSW__ block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>__Decenomy__ scaricherà e salverà una copia della blockchain __DSW__. Verranno salvati almeno %1GB di dati in questa cartella, che cresceranno nel tempo. In questa cartella verrà salvato anche il portafoglio.</translation>
+        <source>Jackpot will download and store a copy of the __DSW__ block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Jackpot scaricherà e salverà una copia della blockchain __DSW__. Verranno salvati almeno %1GB di dati in questa cartella, che cresceranno nel tempo. In questa cartella verrà salvato anche il portafoglio.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1255,8 +1255,8 @@ Si avvierà automaticamente non appena il portafoglio avrà sufficienti conferme
         <translation>OK</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Jackpot</source>
+        <translation>Jackpot</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -2083,8 +2083,8 @@ STAKING</translation>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Jackpot</source>
+        <translation>Jackpot</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -2111,8 +2111,8 @@ STAKING</translation>
         <translation>Chiude l'applicazione</translation>
     </message>
     <message>
-        <source>__Decenomy__ client</source>
-        <translation>__Decenomy__</translation>
+        <source>Jackpot client</source>
+        <translation>Jackpot</translation>
     </message>
     <message>
         <source>Error</source>
@@ -2316,8 +2316,8 @@ Indirizzo: %4
         <translation>Si è verificato un errore irreversibile. __DSW__ non può più continuare in modo sicuro e verrà chiuso.</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Jackpot</source>
+        <translation>Jackpot</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -2336,8 +2336,8 @@ Indirizzo: %4
         <translation>Errore durante la lettura del file di configurazione del Masternode: %1</translation>
     </message>
     <message>
-        <source>__Decenomy__ didn't yet exit safely...</source>
-        <translation>__Decenomy__ non è ancora uscito in modo sicuro...</translation>
+        <source>Jackpot didn't yet exit safely...</source>
+        <translation>Jackpot non è ancora uscito in modo sicuro...</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -4846,8 +4846,8 @@ Sei sicuro?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>__Decenomy__ is shutting down...</source>
-        <translation>__Decenomy__ si sta spegnendo...</translation>
+        <source>Jackpot is shutting down...</source>
+        <translation>Jackpot si sta spegnendo...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4876,8 +4876,8 @@ Sei sicuro?
         <translation>Caricamento...</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Jackpot</source>
+        <translation>Jackpot</translation>
     </message>
 </context>
 <context>
@@ -5416,9 +5416,9 @@ Selezionare meno ingressi con controllo coin.</translation>
     </message>
     <message>
         <source>Welcome to
-__Decenomy__ Wallet</source>
+Jackpot Wallet</source>
         <translation>Benvenuto in
-Portafoglio __Decenomy__.</translation>
+Portafoglio Jackpot.</translation>
     </message>
     <message>
         <source>__DSW__ is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
@@ -5468,8 +5468,8 @@ Portafoglio __Decenomy__.</translation>
         <translation>Associa l'indirizzo indicato per ascoltare le connessioni JSON-RPC. Usa la notazione [host]:porta per IPv6. Questa opzione può essere specificata più volte (impostazione predefinita: associa a tutte le interfacce)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. __Decenomy__ is probably already running.</source>
-        <translation>Impossibile allocare la directory di dati %s. Probabilmente __Decenomy__ è già in esecuzione.</translation>
+        <source>Cannot obtain a lock on data directory %s. Jackpot is probably already running.</source>
+        <translation>Impossibile allocare la directory di dati %s. Probabilmente Jackpot è già in esecuzione.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -5632,8 +5632,8 @@ Portafoglio __Decenomy__.</translation>
         <translation>La lunghezza totale della stringa della versione di rete (%i) supera la lunghezza massima (%i). Ridurre il numero o la dimensione degli uacomments.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. __Decenomy__ is probably already running.</source>
-        <translation>Impossibile associare %s su questo computer. Probabilmente __Decenomy__ è già in esecuzione.</translation>
+        <source>Unable to bind to %s on this computer. Jackpot is probably already running.</source>
+        <translation>Impossibile associare %s su questo computer. Probabilmente Jackpot è già in esecuzione.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -5648,8 +5648,8 @@ Portafoglio __Decenomy__.</translation>
         <translation>Attenzione: -paytxfee è impostato molto alto! Questa è la commissione di transazione che dovrai pagare se invii una transazione.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</source>
-        <translation>Avvertenza: verificare che la data e l'ora del computer siano corrette! Se l'orologio è sbagliato, __Decenomy__ non funzionerà correttamente.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Jackpot will not work properly.</source>
+        <translation>Avvertenza: verificare che la data e l'ora del computer siano corrette! Se l'orologio è sbagliato, Jackpot non funzionerà correttamente.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5864,8 +5864,8 @@ Portafoglio __Decenomy__.</translation>
         <translation>Informazioni</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. __Decenomy__ is shutting down.</source>
-        <translation>Verifica dell'integrità dell'inizializzazione non riuscita. __Decenomy__ si sta spegnendo.</translation>
+        <source>Initialization sanity check failed. Jackpot is shutting down.</source>
+        <translation>Verifica dell'integrità dell'inizializzazione non riuscita. Jackpot si sta spegnendo.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -6200,8 +6200,8 @@ Portafoglio __Decenomy__.</translation>
         <translation>Importo positivo minimo (in __DSW__) consentito da GUI e RPC per la soglia di ripartizione della partecipazione (default: %s)</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</source>
-        <translation>Verificare che la data e l'ora del computer siano corrette! Se l'orologio sincronizzato, __Decenomy__ non funzionerà correttamente.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong Jackpot will not work properly.</source>
+        <translation>Verificare che la data e l'ora del computer siano corrette! Se l'orologio sincronizzato, Jackpot non funzionerà correttamente.</translation>
     </message>
     <message>
         <source>Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect/-noconnect)</source>
@@ -6610,8 +6610,8 @@ Portafoglio __Decenomy__.</translation>
         <translation>Il portafoglio %s risiede al di fuori della directory di dati %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart __Decenomy__ to complete</source>
-        <translation>Il portafoglio doveva essere riscritto: riavviare __Decenomy__ per completare</translation>
+        <source>Wallet needed to be rewritten: restart Jackpot to complete</source>
+        <translation>Il portafoglio doveva essere riscritto: riavviare Jackpot per completare</translation>
     </message>
     <message>
         <source>Wallet options:</source>
