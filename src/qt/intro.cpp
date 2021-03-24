@@ -197,7 +197,7 @@ bool Intro::pickDataDirectory()
                 TryCreateDirectory(GUIUtil::qstringToBoostPath(dataDir));
                 break;
             } catch (const fs::filesystem_error& e) {
-                QMessageBox::critical(0, tr("__Decenomy__"),
+                QMessageBox::critical(0, tr("Jackpot"),
                     tr("Error: Specified data directory \"%1\" cannot be created.").arg(dataDir));
                 // fall through, back to choosing screen
             }
@@ -207,8 +207,8 @@ bool Intro::pickDataDirectory()
     }
 
     /* Only override -datadir if different from the default, to make it possible to
-     * override -datadir in the __decenomy__.conf file in the default data directory
-     * (to be consistent with __decenomy__d behavior)
+     * override -datadir in the jackpot.conf file in the default data directory
+     * (to be consistent with jackpotd behavior)
      */
 
     if (dataDir != getDefaultDataDirectory())
