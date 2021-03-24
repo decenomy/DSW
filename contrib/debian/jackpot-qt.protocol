@@ -1,6 +1,6 @@
 [Protocol]
-exec=__decenomy__-qt '%u'
-protocol=__decenomy__
+exec=dashdiamond-qt '%u'
+protocol=dashdiamond
 input=none
 output=none
 helper=true

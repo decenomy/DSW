@@ -1,13 +1,13 @@
 [Desktop Entry]
 Version=1.0
-Name=__Decenomy__ 
-Comment=__Decenomy__ P2P Cryptocurrency
-Comment[fr]=__Decenomy__, monnaie virtuelle cryptographique pair à pair
-Comment[tr]=__Decenomy__, eşten eşe kriptografik sanal para birimi
-Exec=__decenomy__-qt %u
+Name=Dash Diamond 
+Comment=Dash Diamond P2P Cryptocurrency
+Comment[fr]=Dash Diamond, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Dash Diamond, eşten eşe kriptografik sanal para birimi
+Exec=dashdiamond-qt %u
 Terminal=false
 Type=Application
 Icon=pivx128
-MimeType=x-scheme-handler/__decenomy__;
+MimeType=x-scheme-handler/dashdiamond;
 Categories=Office;Finance;
-StartupWMClass=__decenomy__-qt
+StartupWMClass=dashdiamond-qt

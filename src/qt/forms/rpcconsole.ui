@@ -356,7 +356,7 @@
        <item row="17" column="0">
         <widget class="QPushButton" name="openDebugLogfileButton">
          <property name="toolTip">
-          <string>Open the __DSW__ debug log file from the current data directory. This can take a few seconds for large log files.</string>
+          <string>Open the DASHD debug log file from the current data directory. This can take a few seconds for large log files.</string>
          </property>
          <property name="text">
           <string>&amp;Open</string>
@@ -1333,7 +1333,7 @@
           <bool>false</bool>
          </property>
          <property name="text">
-          <string>Custom z__DSW__ Backup Path:</string>
+          <string>Custom zDASHD Backup Path:</string>
          </property>
         </widget>
        </item>
