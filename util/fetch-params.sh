@@ -15,7 +15,7 @@ else
     if [[ "$OSTYPE" == "darwin"* ]]; then
         PARAMS_DIR="$HOME/Library/Application Support/JackpotParams"
     else
-        PARAMS_DIR="$HOME/.__decenomy__-params"
+        PARAMS_DIR="$HOME/.jackpot-params"
     fi
 fi
 

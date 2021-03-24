@@ -38,7 +38,7 @@
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>io.__decenomy__.Jackpot-Qt</string>
+  <string>io.jackpot.Jackpot-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
