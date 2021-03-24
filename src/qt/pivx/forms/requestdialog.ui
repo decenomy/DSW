@@ -210,7 +210,7 @@
              </size>
             </property>
             <property name="text">
-             <string>Instead of sharing only a __DSW__ address, you can create a payment request, bundling up more information</string>
+             <string>Instead of sharing only a DASHD address, you can create a payment request, bundling up more information</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -327,7 +327,7 @@
                    <item>
                     <widget class="QLabel" name="comboBoxCoin">
                      <property name="text">
-                      <string>__DSW__</string>
+                      <string>DASHD</string>
                      </property>
                      <property name="alignment">
                       <set>Qt::AlignCenter</set>
