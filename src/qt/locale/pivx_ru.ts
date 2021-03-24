@@ -122,12 +122,12 @@
         <translation>Адреса получения</translation>
     </message>
     <message>
-        <source>These are your __DSW__ addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Это ваши __DSW__-адреса для отправки платежей. Перед отправкой монет всегда проверяйте сумму и адрес получателя.</translation>
+        <source>These are your 777 addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Это ваши 777-адреса для отправки платежей. Перед отправкой монет всегда проверяйте сумму и адрес получателя.</translation>
     </message>
     <message>
-        <source>These are your __DSW__ addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Это ваши __DSW__-адреса для получения платежей. Для каждой транзакции рекомендуется использовать новый адрес получения.</translation>
+        <source>These are your 777 addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Это ваши 777-адреса для получения платежей. Для каждой транзакции рекомендуется использовать новый адрес получения.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -363,8 +363,8 @@ for staking</source>
         <translation>ОТМЕНА</translation>
     </message>
     <message>
-        <source>__DSW__ will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your __DSW__s from being stolen by malware infecting your computer.</source>
-        <translation>__DSW__ сейчас закроется, чтобы завершить процесс шифрования. Помните, что шифрование вашего кошелька не может полностью защитить ваши __DSW__ от кражи с использованием вредоносного ПО.</translation>
+        <source>777 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your 777s from being stolen by malware infecting your computer.</source>
+        <translation>777 сейчас закроется, чтобы завершить процесс шифрования. Помните, что шифрование вашего кошелька не может полностью защитить ваши 777 от кражи с использованием вредоносного ПО.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -449,8 +449,8 @@ for staking</source>
         <translation>Сбережения</translation>
     </message>
     <message>
-        <source>0,00 __DSW__</source>
-        <translation>0.00 __DSW__</translation>
+        <source>0,00 777</source>
+        <translation>0.00 777</translation>
     </message>
     <message>
         <source>address</source>
@@ -491,8 +491,8 @@ for staking</source>
         <translation>Выбор монеты</translation>
     </message>
     <message>
-        <source>Select __DSW__ Outputs to Spend</source>
-        <translation>Выберите __DSW__ выходы для расходов</translation>
+        <source>Select 777 Outputs to Spend</source>
+        <translation>Выберите 777 выходы для расходов</translation>
     </message>
     <message>
         <source>Dust:</source>
@@ -519,8 +519,8 @@ for staking</source>
         <translation>Сумма</translation>
     </message>
     <message>
-        <source>0.00 __DSW__</source>
-        <translation>0.00 __DSW__ </translation>
+        <source>0.00 777</source>
+        <translation>0.00 777 </translation>
     </message>
     <message>
         <source>0</source>
@@ -774,17 +774,17 @@ for staking</source>
         <translation>Ошибка при загрузке делегаций: %1</translation>
     </message>
     <message>
-        <source>You can delegate your __DSW__s, letting a hot node (24/7 online node)
+        <source>You can delegate your 777s, letting a hot node (24/7 online node)
 stake on your behalf, while you keep the keys securely offline.</source>
-        <translation>Вы можете делегировать свои __DSW__, позволяя горячему узлу (онлайн-узлу, работаещему 24/7) делать стекинг от вашего имени, в то время как ключи надежно хранятся в автономном режиме.</translation>
+        <translation>Вы можете делегировать свои 777, позволяя горячему узлу (онлайн-узлу, работаещему 24/7) делать стекинг от вашего имени, в то время как ключи надежно хранятся в автономном режиме.</translation>
     </message>
     <message>
         <source>Enter owner address</source>
         <translation>Введите адрес владельца</translation>
     </message>
     <message>
-        <source>Accept __DSW__ delegation / Delegate __DSW__</source>
-        <translation>Принять делегацию __DSW__ / Делегировать __DSW__</translation>
+        <source>Accept 777 delegation / Delegate 777</source>
+        <translation>Принять делегацию 777 / Делегировать 777</translation>
     </message>
     <message>
         <source>Cold Staking address</source>
@@ -988,8 +988,8 @@ address</source>
         <translation>Обзор истории вашего аккаунта</translation>
     </message>
     <message>
-        <source>How to get __DSW__</source>
-        <translation>Как получить __DSW__</translation>
+        <source>How to get 777</source>
+        <translation>Как получить 777</translation>
     </message>
     <message>
         <source>Sort by</source>
@@ -1012,8 +1012,8 @@ address</source>
         <translation>Сортировать по</translation>
     </message>
     <message>
-        <source>Amount of __DSW__ and z__DSW__ staked.</source>
-        <translation>Сумма добытых __DSW__ и z__DSW__</translation>
+        <source>Amount of 777 and z777 staked.</source>
+        <translation>Сумма добытых 777 и z777</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -1108,8 +1108,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>Изменить адрес отправки</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid __DSW__ address.</source>
-        <translation>Введенный адрес "%1" не является __DSW__ адресом.</translation>
+        <source>The entered address "%1" is not a valid 777 address.</source>
+        <translation>Введенный адрес "%1" не является 777 адресом.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1232,8 +1232,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>Поскольку это первый запуск программы, вы можете выбрать, где будут храниться данные Jackpot.</translation>
     </message>
     <message>
-        <source>Jackpot will download and store a copy of the __DSW__ block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Jackpot загрузит и сохранит копию цепочки блоков __DSW__. Каталог будет занимать около %1GB и со временем размер будет увеличиваться. Кроме того, в этом каталоге будет храниться кошелек.</translation>
+        <source>Jackpot will download and store a copy of the 777 block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Jackpot загрузит и сохранит копию цепочки блоков 777. Каталог будет занимать около %1GB и со временем размер будет увеличиваться. Кроме того, в этом каталоге будет храниться кошелек.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1377,7 +1377,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of collateral amount will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;На новый пустой адрес в вашем кошельке&lt;/p&gt;&lt;p&gt; будет сделана транзакция в 10 000 __DSW__. &lt;/p&gt;&lt;p&gt;Адрес отмечен под именем мастерноды.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;На новый пустой адрес в вашем кошельке&lt;/p&gt;&lt;p&gt; будет сделана транзакция в 10 000 777. &lt;/p&gt;&lt;p&gt;Адрес отмечен под именем мастерноды.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Address of the node that must always be online running the actual master node.</source>
@@ -1582,7 +1582,7 @@ Please wait few more minutes (masternode collaterals require %1 confirmations).<
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the __decenomy__.conf file
+You will only have to paste the data in the jackpot.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1590,7 +1590,7 @@ this controller wallet (select the Masternode in the list and press "start").
 на удаленном сервере в буфер обмена.
 
 
-Вам необходимо только вставить данные в файл __decenomy__.conf
+Вам необходимо только вставить данные в файл jackpot.conf
 вашего удаленного сервера и запустить его, а затем запустить мастерноду,
 используя этот кошелек контроллера (выберите мастерноду из списка и нажмите «Старт»).
 </translation>
@@ -1780,8 +1780,8 @@ STAKING</source>
         <translation>Проанализированные данные слишком большие</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "__decenomy__" prefix</source>
-        <translation>Неверный URI, не начинается с префикса "__decenomy__"</translation>
+        <source>Invalid URI, not starting with "jackpot" prefix</source>
+        <translation>Неверный URI, не начинается с префикса "jackpot"</translation>
     </message>
 </context>
 <context>
@@ -1826,8 +1826,8 @@ STAKING</source>
         <translation>Отключив проведение неподтвержденных изменений все изменения о транзакции &lt;br/&gt;не будут использованы пока транзакция не получит хотя бы одно подтверждение.&lt;br/&gt;Также это влияет на расчет вашего баланса.</translation>
     </message>
     <message>
-        <source>Automatically open the __DSW__ client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Автоматически открыть клиентский порт __DSW__ через роутер. Ваш роутер должен поддерживать UPnP, а сам сервис должен быть включен.</translation>
+        <source>Automatically open the 777 client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Автоматически открыть клиентский порт 777 через роутер. Ваш роутер должен поддерживать UPnP, а сам сервис должен быть включен.</translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -1846,12 +1846,12 @@ STAKING</source>
         <translation>Эксперт</translation>
     </message>
     <message>
-        <source>Automatically start __DSW__ after logging in to the system.</source>
-        <translation>Автоматически запускать __DSW__ после входа в систему.</translation>
+        <source>Automatically start 777 after logging in to the system.</source>
+        <translation>Автоматически запускать 777 после входа в систему.</translation>
     </message>
     <message>
-        <source>&amp;Start __DSW__ on system login</source>
-        <translation>&amp;Запускать __DSW__ при входе в систему</translation>
+        <source>&amp;Start 777 on system login</source>
+        <translation>&amp;Запускать 777 при входе в систему</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1878,58 +1878,58 @@ STAKING</source>
         <translation>&amp;Сеть</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting __DSW__.</source>
-        <translation>Здесь можно выставить язык интерфейса. Изменения вступят в силу после перезапуска __DSW__.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting 777.</source>
+        <translation>Здесь можно выставить язык интерфейса. Изменения вступят в силу после перезапуска 777.</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        __decenomy_discord_link__</source>
+        https://discordapp.com/invite/HNyRevT</source>
         <translation>Отсутствует ваш язык или заметили незавершенный перевод? Вы можете помочь нам стать лучше:
-        __decenomy_discord_link__</translation>
+        https://discordapp.com/invite/HNyRevT</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>Карта порта, использующего &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of __DSW__ units to z__DSW__</source>
-        <translation>Невозможно автоматически отчеканить единицы __DSW__ для z__DSW__</translation>
+        <source>Enable automatic minting of 777 units to z777</source>
+        <translation>Невозможно автоматически отчеканить единицы 777 для z777</translation>
     </message>
     <message>
-        <source>Enable z__DSW__ Automint</source>
-        <translation>Невозможно авточеканка  z__DSW__</translation>
+        <source>Enable z777 Automint</source>
+        <translation>Невозможно авточеканка  z777</translation>
     </message>
     <message>
-        <source>Enable automatic z__DSW__ minting from specific addresses</source>
-        <translation>Включить автоматическое чеканку z__DSW__ с определенных адресов</translation>
+        <source>Enable automatic z777 minting from specific addresses</source>
+        <translation>Включить автоматическое чеканку z777 с определенных адресов</translation>
     </message>
     <message>
         <source>Enable Automint Addresses</source>
         <translation>Включить адреса с автоматической чеканкой</translation>
     </message>
     <message>
-        <source>Percentage of incoming __DSW__ which get automatically converted to z__DSW__ via Zerocoin Protocol (min: 10%)</source>
-        <translation>Процент приходящих __DSW__, которые автоматически конвертируются в z__DSW__ благодаря Zerocoin протоколу (min: 10%)</translation>
+        <source>Percentage of incoming 777 which get automatically converted to z777 via Zerocoin Protocol (min: 10%)</source>
+        <translation>Процент приходящих 777, которые автоматически конвертируются в z777 благодаря Zerocoin протоколу (min: 10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted z__DSW__</source>
-        <translation>Процент  авточеканненых z__DSW__</translation>
+        <source>Percentage of autominted z777</source>
+        <translation>Процент  авточеканненых z777</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough __DSW__ for this denomination is available</source>
-        <translation>Подождите с автоматическим преобразованием в Zerocoin, пока не будет достаточно __DSW__ для этой номинации.</translation>
+        <source>Wait with automatic conversion to Zerocoin until enough 777 for this denomination is available</source>
+        <translation>Подождите с автоматическим преобразованием в Zerocoin, пока не будет достаточно 777 для этой номинации.</translation>
     </message>
     <message>
-        <source>Preferred Automint z__DSW__ Denomination</source>
-        <translation>Предпочитаемый номинал авточеканной  монеты  z__DSW__</translation>
+        <source>Preferred Automint z777 Denomination</source>
+        <translation>Предпочитаемый номинал авточеканной  монеты  z777</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
         <translation>Порог разделения доли:</translation>
     </message>
     <message>
-        <source>Connect to the __DSW__ network through a SOCKS5 proxy.</source>
-        <translation>Подключиться к сети __DSW__ через SOCKS5 прокси.</translation>
+        <source>Connect to the 777 network through a SOCKS5 proxy.</source>
+        <translation>Подключиться к сети 777 через SOCKS5 прокси.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -2170,12 +2170,12 @@ Address: %4
         <translation>Неверный адрес оплаты %1</translation>
     </message>
     <message>
-        <source>Cannot start __decenomy__: click-to-pay handler</source>
-        <translation>Не удалось запустить __decenomy__: обработчик click-to-pay </translation>
+        <source>Cannot start jackpot: click-to-pay handler</source>
+        <translation>Не удалось запустить jackpot: обработчик click-to-pay </translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid __DSW__ address or malformed URI parameters.</source>
-        <translation>URI не интерпретируется! Причиной этому может быть неверный __DSW__ адрес или неверные параметеры URI.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid 777 address or malformed URI parameters.</source>
+        <translation>URI не интерпретируется! Причиной этому может быть неверный 777 адрес или неверные параметеры URI.</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -2260,8 +2260,8 @@ Address: %4
         <translation>Сумма</translation>
     </message>
     <message>
-        <source>Enter __DSW__ address (e.g. %1)</source>
-        <translation>Введите адрес __DSW__ (например, %1)</translation>
+        <source>Enter 777 address (e.g. %1)</source>
+        <translation>Введите адрес 777 (например, %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2304,8 +2304,8 @@ Address: %4
         <translation>%1 мс</translation>
     </message>
     <message>
-        <source>A fatal error occurred. __DSW__ can no longer continue safely and will quit.</source>
-        <translation>Произошла фатальная ошибка. __DSW__ больше не может безопасно продолжать работу и завершит работу.</translation>
+        <source>A fatal error occurred. 777 can no longer continue safely and will quit.</source>
+        <translation>Произошла фатальная ошибка. 777 больше не может безопасно продолжать работу и завершит работу.</translation>
     </message>
     <message>
         <source>Jackpot</source>
@@ -2567,8 +2567,8 @@ Address: %4
         <translation>Блокчейн</translation>
     </message>
     <message>
-        <source>Open the __DSW__ debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Открыть протокол отладки __DSW__. Это может занять некоторе время, если файл протокола очень большой.</translation>
+        <source>Open the 777 debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Открыть протокол отладки 777. Это может занять некоторе время, если файл протокола очень большой.</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -2711,8 +2711,8 @@ Address: %4
         <translation>Пользовательский путь резервного копирования:</translation>
     </message>
     <message>
-        <source>Custom z__DSW__ Backup Path:</source>
-        <translation>Пользовательский путь резервного копирования z__DSW__:</translation>
+        <source>Custom z777 Backup Path:</source>
+        <translation>Пользовательский путь резервного копирования z777:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -2792,8 +2792,8 @@ Address: %4
         <translation>Вывод:</translation>
     </message>
     <message>
-        <source>Welcome to the __DSW__ RPC console.</source>
-        <translation>Добро пожаловать в окружение __DSW__ RPC.</translation>
+        <source>Welcome to the 777 RPC console.</source>
+        <translation>Добро пожаловать в окружение 777 RPC.</translation>
     </message>
     <message>
         <source>&amp;Disconnect Node</source>
@@ -2934,8 +2934,8 @@ Address: %4
         <translation>Нет адресов</translation>
     </message>
     <message>
-        <source>Scan the QR code or copy the address to receive __DSW__</source>
-        <translation>Сканируйте QR-код или скопируйте адрес для получения __DSW__</translation>
+        <source>Scan the QR code or copy the address to receive 777</source>
+        <translation>Сканируйте QR-код или скопируйте адрес для получения 777</translation>
     </message>
     <message>
         <source>Add Label</source>
@@ -3064,12 +3064,12 @@ Address: %4
         <translation>Сумма</translation>
     </message>
     <message>
-        <source>__DSW__</source>
-        <translation>__DSW__</translation>
+        <source>777</source>
+        <translation>777</translation>
     </message>
     <message>
-        <source>Instead of sharing only a __DSW__ address, you can create a payment request, bundling up more information</source>
-        <translation>Вместо того, чтобы делиться только адресом __DSW__, вы можете создать запрос на оплату, связывая больше информации</translation>
+        <source>Instead of sharing only a 777 address, you can create a payment request, bundling up more information</source>
+        <translation>Вместо того, чтобы делиться только адресом 777, вы можете создать запрос на оплату, связывая больше информации</translation>
     </message>
     <message>
         <source>D7VFR83SQbiezrW72hjcWJtcfip5krte2Z </source>
@@ -3159,8 +3159,8 @@ Address: %4
         <translation>Смена адреса</translation>
     </message>
     <message>
-        <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" __DSW__ address</source>
-        <translation>Остаточная часть значения, полученного от значения входов минус выходов, идет на «изменение» адреса __DSW__</translation>
+        <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" 777 address</source>
+        <translation>Остаточная часть значения, полученного от значения входов минус выходов, идет на «изменение» адреса 777</translation>
     </message>
     <message>
         <source>SAVE</source>
@@ -3190,8 +3190,8 @@ Address: %4
         <translation>рекомендуемые</translation>
     </message>
     <message>
-        <source>__DSW__/kilobyte</source>
-        <translation>__DSW__/килобайт</translation>
+        <source>777/kilobyte</source>
+        <translation>777/килобайт</translation>
     </message>
     <message>
         <source>0.00 KB</source>
@@ -3474,9 +3474,9 @@ Remember to write it down and store it safely, otherwise you might lose access t
         <translation>Инструмент BIP38</translation>
     </message>
     <message>
-        <source>Encrypt your __DSW__ addresses (key pair actually) using BIP38 encryption.
+        <source>Encrypt your 777 addresses (key pair actually) using BIP38 encryption.
 Using this mechanism you can share your keys without middle-man risk, only need to store your passphrase safely</source>
-        <translation>Зашифруйте свои адреса __DSW__ (фактически, пару ключей), используя шифрование BIP38.
+        <translation>Зашифруйте свои адреса 777 (фактически, пару ключей), используя шифрование BIP38.
 С помощью этого механизма вы можете делиться своими ключами без риска посредника, вам нужно только безопасно хранить вашу парольную фразу</translation>
     </message>
     <message>
@@ -3512,8 +3512,8 @@ Using this mechanism you can share your keys without middle-man risk, only need 
         <translation>Расшифровать ключ</translation>
     </message>
     <message>
-        <source>__DSW__ address</source>
-        <translation>Адрес __DSW__</translation>
+        <source>777 address</source>
+        <translation>Адрес 777</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -3645,8 +3645,8 @@ Verify that you have installed a predetermined text editor.</source>
 Убедитесь, что вы установили заранее установленный текстовый редактор.</translation>
     </message>
     <message>
-        <source>Welcome to the __DSW__ RPC console.</source>
-        <translation>Добро пожаловать в окружение __DSW__ RPC.</translation>
+        <source>Welcome to the 777 RPC console.</source>
+        <translation>Добро пожаловать в окружение 777 RPC.</translation>
     </message>
     <message>
         <source>Use up and down arrows to navigate history, and %1 to clear screen.</source>
@@ -3829,49 +3829,49 @@ There was an error trying to save the address list to %1. Please try again.</sou
         <translation>Вид</translation>
     </message>
     <message>
-        <source>1) What is __DSW__?</source>
-        <translation>1) Что такое __DSW__?</translation>
+        <source>1) What is 777?</source>
+        <translation>1) Что такое 777?</translation>
     </message>
     <message>
-        <source>2) Why are my __DSW__ unspendable?</source>
-        <translation>2) Почему мои __DSW__ невозможно потратить?</translation>
+        <source>2) Why are my 777 unspendable?</source>
+        <translation>2) Почему мои 777 невозможно потратить?</translation>
     </message>
     <message>
-        <source>__decenomy_website_link__/</source>
-        <translation>__decenomy_website_link__/</translation>
+        <source>https://777coin.win/</source>
+        <translation>https://777coin.win/</translation>
     </message>
     <message>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <source>What is __DSW__?</source>
-        <translation>Что такое __DSW__?</translation>
+        <source>What is 777?</source>
+        <translation>Что такое 777?</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           __DSW__ is a form of digital online money using blockchain technology
+                           777 is a form of digital online money using blockchain technology
                            that can be easily transferred globally, instantly, and with near
-                           zero fees.  __DSW__ incorporates market leading security &amp;
+                           zero fees.  777 incorporates market leading security &amp;
                            privacy and is also the first PoS (Proof of Stake) Cryptocurrency
-                           to implement ZeroCoin(z__DSW__) and Zerocoin staking.
+                           to implement ZeroCoin(z777) and Zerocoin staking.
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           __DSW__ utilizes a Proof of Stake (PoS) consensus system algorithm,
-                           allowing all owners of __DSW__ to participate in earning block rewards
+                           777 utilizes a Proof of Stake (PoS) consensus system algorithm,
+                           allowing all owners of 777 to participate in earning block rewards
                            while securing the network with full node wallets, as well as to
                            run Masternodes to create and vote on proposals.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-__DSW__ - это форма цифровых онлайн-денег, использующая технологию блокчейн,
+777 - это форма цифровых онлайн-денег, использующая технологию блокчейн,
 которая может быть легко переведена по всему миру, мгновенно и с практически
-нулевой комиссией. __DSW__ включает в себя лидирующую на рынке защиту и
+нулевой комиссией. 777 включает в себя лидирующую на рынке защиту и
 «конфиденциальность», а также является первой PoS криптовалютой (Proof of Stake),
-в которой реализована система стекинга ZeroCoin (z__DSW__) и Zerocoin.
+в которой реализована система стекинга ZeroCoin (z777) и Zerocoin.
 &lt;/p&gt;&lt;p align="justify"&gt;
-__DSW__ использует консенсус PoS (Proof of Stake), позволяя всем владельцам __DSW__ участвовать в заработке вознаграждений
+777 использует консенсус PoS (Proof of Stake), позволяя всем владельцам 777 участвовать в заработке вознаграждений
 при этом обеспечивая безопасность сети с помощью кошельков с полными узлами, а также позволяет
 запускать мастерноды для создания предложений и голосования по ним.
 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
@@ -3881,25 +3881,25 @@ __DSW__ использует консенсус PoS (Proof of Stake), позво
         <translation>2</translation>
     </message>
     <message>
-        <source>Why are my __DSW__ unspendable?</source>
-        <translation>Почему мои __DSW__ невозможно потратить?</translation>
+        <source>Why are my 777 unspendable?</source>
+        <translation>Почему мои 777 невозможно потратить?</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           Newly received __DSW__ requires 6 confirmations on the network
+                           Newly received 777 requires 6 confirmations on the network
                            to become eligible for spending which can take ~6 minutes.
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           Your __DSW__ wallet also needs to be completely synchronized
+                           Your 777 wallet also needs to be completely synchronized
                            to see and spend balances on the network.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-Недавно полученным __DSW__ требуется 6 подтверждений в сети,
+Недавно полученным 777 требуется 6 подтверждений в сети,
 чтобы получить право быть расходуемыми. Это может занять примерно 6 минут.
 &lt;/p&gt;&lt;p align="justify"&gt;
-Ваш кошелек __DSW__ также должен быть полностью синхронизирован,
+Ваш кошелек 777 также должен быть полностью синхронизирован,
 чтобы видеть баланс и расходовать его в сети.
  &lt;/p&gt;&lt;/body&gt;&lt;/html&gt; </translation>
     </message>
@@ -3908,8 +3908,8 @@ __DSW__ использует консенсус PoS (Proof of Stake), позво
         <translation>3</translation>
     </message>
     <message>
-        <source>How do I stake __DSW__?</source>
-        <translation>Как мне запустить стекинг __DSW__?</translation>
+        <source>How do I stake 777?</source>
+        <translation>Как мне запустить стекинг 777?</translation>
     </message>
     <message>
         <source>4</source>
@@ -3940,7 +3940,7 @@ __DSW__ использует консенсус PoS (Proof of Stake), позво
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           A masternode is a computer running a full node __DSW__ wallet with a
+                           A masternode is a computer running a full node 777 wallet with a
                            required amount of secured collateral to provide extra services
                            to the network and in return, receive a portion of the block reward
                            regularly.  These services include:
@@ -3963,10 +3963,10 @@ __DSW__ использует консенсус PoS (Proof of Stake), позво
                            Masternode Perks:
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;Participate in __DSW__ Governance&lt;/li&gt;
+                           &lt;li&gt;Participate in 777 Governance&lt;/li&gt;
                            &lt;li&gt;Earn Masternode Rewards&lt;/li&gt;
                            &lt;li&gt;Commodity option for future sale&lt;/li&gt;
-                           &lt;li&gt;Help secure the __DSW__ network&lt;/li&gt;
+                           &lt;li&gt;Help secure the 777 network&lt;/li&gt;
                            &lt;/ul&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
@@ -3981,7 +3981,7 @@ __DSW__ использует консенсус PoS (Proof of Stake), позво
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
-Мастернода - это компьютер, на котором запущен базовый кошелек __DSW__ с полным узлом и для которого требуется обеспечение в 10000 __DSW__ для обеспечения дополнительных услуг сети и, в свою очередь, регулярного получения части вознаграждения за блок. Эти услуги в себя включают:
+Мастернода - это компьютер, на котором запущен базовый кошелек 777 с полным узлом и для которого требуется обеспечение в 10000 777 для обеспечения дополнительных услуг сети и, в свою очередь, регулярного получения части вознаграждения за блок. Эти услуги в себя включают:
 
 Мгновенные транзакции (SwiftX)
 Децентрализованное управление (Голосование по предложениям)
@@ -3993,14 +3993,14 @@ __DSW__ использует консенсус PoS (Proof of Stake), позво
 
 Привилегии мастерноды:
 
-Участие в управлении __DSW__
+Участие в управлении 777
 Получение вознаграждений за мастерноду
 Товарные опционы для будущей продажи
-Помощь в защите сети __DSW__
+Помощь в защите сети 777
 
 Требования:
 
-10 000 __DSW__ для каждой мастерноды
+10 000 777 для каждой мастерноды
 Должен храниться в основном кошельке
 Требуется выделенный IP-адрес
 Кошелек мастерноды должен оставаться в сети</translation>
@@ -4010,8 +4010,8 @@ __DSW__ использует консенсус PoS (Proof of Stake), позво
         <translation>Часто задаваемые вопросы</translation>
     </message>
     <message>
-        <source>3) How do I stake __DSW__?</source>
-        <translation>3) Как мне запустить стекинг __DSW__?</translation>
+        <source>3) How do I stake 777?</source>
+        <translation>3) Как мне запустить стекинг 777?</translation>
     </message>
     <message>
         <source>4) Where I should go if I need support?</source>
@@ -4133,8 +4133,8 @@ __DSW__ использует консенсус PoS (Proof of Stake), позво
         <translation>Невозможно открыть папку резервных копий</translation>
     </message>
     <message>
-        <source>Unable to open __decenomy__.conf with default application</source>
-        <translation>Невозможно открыть __decenomy__.conf с приложением по умолчанию</translation>
+        <source>Unable to open jackpot.conf with default application</source>
+        <translation>Невозможно открыть jackpot.conf с приложением по умолчанию</translation>
     </message>
     <message>
         <source>In:</source>
@@ -4188,8 +4188,8 @@ __DSW__ использует консенсус PoS (Proof of Stake), позво
         <translation>Количество потоков проверки скрипта</translation>
     </message>
     <message>
-        <source>Start __DSW__ on system login</source>
-        <translation>Запускать __DSW__ при входе в систему</translation>
+        <source>Start 777 on system login</source>
+        <translation>Запускать 777 при входе в систему</translation>
     </message>
     <message>
         <source>Minimize to the tray instead of the taskbar</source>
@@ -4276,8 +4276,8 @@ Are you sure?
         <translation>Флажок</translation>
     </message>
     <message>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other __DSW__ addresses after it matures.</source>
-        <translation>MultiSend позволяет автоматически отправлять до 100% ваших вознаграждений от стекинга или мастернод в список других адресов __DSW__ после его созревания.</translation>
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other 777 addresses after it matures.</source>
+        <translation>MultiSend позволяет автоматически отправлять до 100% ваших вознаграждений от стекинга или мастернод в список других адресов 777 после его созревания.</translation>
     </message>
     <message>
         <source>Active</source>
@@ -4403,8 +4403,8 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation>Сообщение</translation>
     </message>
     <message>
-        <source>__DSW__ address or contact label</source>
-        <translation>__DSW__ адрес или лейбл контакта</translation>
+        <source>777 address or contact label</source>
+        <translation>777 адрес или лейбл контакта</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -4724,8 +4724,8 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation>ЧаВо</translation>
     </message>
     <message>
-        <source>About __DSW__</source>
-        <translation>О __DSW__</translation>
+        <source>About 777</source>
+        <translation>О 777</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -5369,20 +5369,20 @@ Jackpot Wallet</source>
 в основной кошелек Jackpot</translation>
     </message>
     <message>
-        <source>__DSW__ is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
-        <translation>__DSW__ - самая инновационная в мире технология на основе блокчейна Proof of Stake. Разработана командой опытных разработчиков и криптографов.</translation>
+        <source>777 is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
+        <translation>777 - самая инновационная в мире технология на основе блокчейна Proof of Stake. Разработана командой опытных разработчиков и криптографов.</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - __DSW__ believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Как говорится в нашем манифесте: конфиденциальность является не подлежащим обсуждению основным правом человека; это дает пользователям свободу делиться своими данными в любое время и с кем угодно, ведь __DSW__ верит в собственный суверенитет.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - 777 believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Как говорится в нашем манифесте: конфиденциальность является не подлежащим обсуждению основным правом человека; это дает пользователям свободу делиться своими данными в любое время и с кем угодно, ведь 777 верит в собственный суверенитет.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <source>The masternode network is __DSW__'s second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
-        <translation>Сеть мастернод - это сеть второго уровня __DSW__ поверх блокчейна, которая позволяет нашему ДАО обеспечивать децентрализованное управление и казначейство.</translation>
+        <source>The masternode network is 777's second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
+        <translation>Сеть мастернод - это сеть второго уровня 777 поверх блокчейна, которая позволяет нашему ДАО обеспечивать децентрализованное управление и казначейство.</translation>
     </message>
     <message>
-        <source>How __DSW__ respects your privacy?</source>
-        <translation>Как __DSW__ уважает вашу конфиденциальность?</translation>
+        <source>How 777 respects your privacy?</source>
+        <translation>Как 777 уважает вашу конфиденциальность?</translation>
     </message>
     <message>
         <source>What is a Masternode?</source>
@@ -5844,8 +5844,8 @@ Jackpot Wallet</source>
         <translation>Недопустимая сетевая маска, указанная в -whitelist: '%s'</translation>
     </message>
     <message>
-        <source>Recalculating __DSW__ supply...</source>
-        <translation>Перерасчет предложения __DSW__...</translation>
+        <source>Recalculating 777 supply...</source>
+        <translation>Перерасчет предложения 777...</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>
@@ -5868,8 +5868,8 @@ Jackpot Wallet</source>
         <translation>Это предварительная версия сборки - используйте на свой страх и риск - не используйте для ставок или коммерческих приложений!</translation>
     </message>
     <message>
-        <source>Disable all __DSW__ specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>Отключите все специфические функции __DSW__ (Masternodes, Zerocoin, SwiftX, Бюджетирование) (0-1, по умолчанию: %u)</translation>
+        <source>Disable all 777 specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
+        <translation>Отключите все специфические функции 777 (Masternodes, Zerocoin, SwiftX, Бюджетирование) (0-1, по умолчанию: %u)</translation>
     </message>
     <message>
         <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
@@ -6144,8 +6144,8 @@ Jackpot Wallet</source>
         <translation>Комиссия (в %s/Кбайт) меньше этого значения считается с нулевой комиссией за создание транзакции (по умолчанию: %s)</translation>
     </message>
     <message>
-        <source>Minimum positive amount (in __DSW__) allowed by GUI and RPC for the stake split threshold (default: %s)</source>
-        <translation>Минимальная положительная сумма (в __DSW__), разрешенная GUI и RPC для порога разделения стекинга (по умолчанию: %s)</translation>
+        <source>Minimum positive amount (in 777) allowed by GUI and RPC for the stake split threshold (default: %s)</source>
+        <translation>Минимальная положительная сумма (в 777), разрешенная GUI и RPC для порога разделения стекинга (по умолчанию: %s)</translation>
     </message>
     <message>
         <source>Please check that your computer's date and time are correct! If your clock is wrong Jackpot will not work properly.</source>
@@ -6418,8 +6418,8 @@ Jackpot Wallet</source>
         <translation>Синхронизация спорков ...</translation>
     </message>
     <message>
-        <source>Syncing z__DSW__ wallet...</source>
-        <translation>Синхронизация z__DSW__ кошелька ...</translation>
+        <source>Syncing z777 wallet...</source>
+        <translation>Синхронизация z777 кошелька ...</translation>
     </message>
     <message>
         <source>The threshold value cannot be less than %s</source>
@@ -6538,8 +6538,8 @@ Jackpot Wallet</source>
         <translation>Имя пользователя для соединений JSON-RPC</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of z__DSW__</source>
-        <translation>Значение ниже наименьшего доступного номинала (= 1) z__DSW__</translation>
+        <source>Value is below the smallest available denomination (= 1) of z777</source>
+        <translation>Значение ниже наименьшего доступного номинала (= 1) z777</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
@@ -6621,12 +6621,12 @@ Jackpot Wallet</source>
         <translation>Отправить</translation>
     </message>
     <message>
-        <source>Send public coins (__DSW__)</source>
-        <translation>Отправить монеты (__DSW__)</translation>
+        <source>Send public coins (777)</source>
+        <translation>Отправить монеты (777)</translation>
     </message>
     <message>
-        <source>__DSW__ address or contact label</source>
-        <translation>__DSW__ адрес или лейбл контакта</translation>
+        <source>777 address or contact label</source>
+        <translation>777 адрес или лейбл контакта</translation>
     </message>
     <message>
         <source>Amount</source>
