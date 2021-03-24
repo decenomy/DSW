@@ -56,25 +56,26 @@
     <g
        id="Group_8934"
        data-name="Group 8934"
-       style="stroke:#ed1c24;stroke-opacity:1">
+       style="stroke:#6666ff;stroke-opacity:1">
       <path
          id="Path_18928"
          d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 19.25A9.25 9.25 0 1 1 21.25 12 9.25 9.25 0 0 1 12 21.25z"
          class="cls-1"
          data-name="Path 18928"
-         style="stroke:#ed1c24;stroke-opacity:1" />
+         style="stroke:#6666ff;stroke-opacity:1" />
     </g>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;opacity:1;fill:#ed1c24;fill-opacity:1;stroke:#ed1c24;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       x="12.120547"
-       y="14.285738"
-       id="text820"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.82772827px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;text-anchor:middle;opacity:1;fill:#6666ff;fill-opacity:1;stroke:none;stroke-width:16.36878967;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       x="12.342008"
+       y="17.769245"
+       id="text1060"
+       transform="scale(0.98550994,1.0147031)"><tspan
          sodipodi:role="line"
-         id="tspan818"
-         x="12.120547"
-         y="14.285738"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'">SAPP</tspan></text>
+         id="tspan1058"
+         x="12.342008"
+         y="17.769245"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold';fill:#6666ff;fill-opacity:1;stroke-width:16.36878967">S</tspan></text>
   </g>
   <path
      id="Rectangle_4543"

@@ -5,15 +5,11 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   id="ic_empty_zpiv"
-   width="100"
-   height="100"
-   viewBox="0 0 100 100"
    version="1.1"
-   sodipodi:docname="img-empty-privacy.svg"
-   inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
+   viewBox="0 0 100 100"
+   height="100"
+   width="100"
+   id="ic_empty_zpiv">
   <metadata
      id="metadata23">
     <rdf:RDF>
@@ -22,97 +18,71 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="640"
-     inkscape:window-height="480"
-     id="namedview21"
-     showgrid="false"
-     inkscape:zoom="7.123569"
-     inkscape:cx="54.719705"
-     inkscape:cy="65.800048"
-     inkscape:current-layer="Group_9085" />
   <defs
      id="defs4">
     <style
-       type="text/css"
-       id="style2">
+       id="style2"
+       type="text/css">
             .cls-1{fill:#d6d6d6}.cls-2{fill:#666}.cls-3{fill:none}
         </style>
-    <style
-       id="style2-4">.cls-1{fill:#66f;}</style>
   </defs>
+  <path
+     id="Path_19031"
+     d="M 50,26 A 24,24 0 1 0 74,50 24,24 0 0 0 50,26 Z m 0,42 A 18,18 0 1 1 68,50 18,18 0 0 1 50,68 Z"
+     class="cls-1"
+     data-name="Path 19031"
+     style="fill:#d6d6d6" />
   <g
-     id="Group_9086"
-     data-name="Group 9086">
+     data-name="Group 9083"
+     id="Group_9083">
     <path
-       id="Path_19031"
-       d="M50 26a24 24 0 1 0 24 24 24 24 0 0 0-24-24zm0 42a18 18 0 1 1 18-18 18 18 0 0 1-18 18z"
-       class="cls-1"
-       data-name="Path 19031"
-       style="fill:#ed1c24;fill-opacity:1" />
-    <g
-       id="Group_9085"
-       data-name="Group 9085">
-      <g
-         id="Group_9083"
-         data-name="Group 9083">
-        <path
-           id="Path_19032"
-           d="M50 31a19 19 0 1 0 19 19 19.021 19.021 0 0 0-19-19zm0 36a17 17 0 1 1 17-17 17.019 17.019 0 0 1-17 17z"
-           class="cls-2"
-           data-name="Path 19032" />
-        <path
-           id="Rectangle_4749"
-           d="M0 0h2v4H0z"
-           class="cls-2"
-           data-name="Rectangle 4749"
-           transform="translate(83 56)" />
-        <path
-           id="Rectangle_4750"
-           d="M0 0h2v8H0z"
-           class="cls-2"
-           data-name="Rectangle 4750"
-           transform="translate(83 44)" />
-        <path
-           id="Rectangle_4751"
-           d="M0 0h2v8H0z"
-           class="cls-2"
-           data-name="Rectangle 4751"
-           transform="translate(15 48)" />
-        <path
-           id="Rectangle_4752"
-           d="M0 0h2v4H0z"
-           class="cls-2"
-           data-name="Rectangle 4752"
-           transform="translate(15 40)" />
-        <path
-           id="Path_19033"
-           d="M95.162 71H85v-7h-2v9h7.838L76 90.456 61.162 73H68v-2h-4.461a24.989 24.989 0 0 0-22.4-44.374L24 6.456 4.838 29H15v7h2v-9H9.162L24 9.544 38.838 27H32v2h4.461a24.989 24.989 0 0 0 22.4 44.374L76 93.544zM27 50a23 23 0 1 1 23 23 23.026 23.026 0 0 1-23-23z"
-           class="cls-2"
-           data-name="Path 19033" />
-      </g>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;text-anchor:middle;opacity:1;fill:#ed1c24;fill-opacity:1;stroke:#ed1c24;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         x="50.255707"
-         y="54.271114"
-         id="text839"><tspan
-           sodipodi:role="line"
-           id="tspan837"
-           x="51.060707"
-           y="54.271114"
-           style="letter-spacing:1.61000013px">SAPP</tspan></text>
-    </g>
+       style="fill:#666666"
+       data-name="Path 19032"
+       class="cls-2"
+       d="M 50,31 A 19,19 0 1 0 69,50 19.021,19.021 0 0 0 50,31 Z m 0,36 A 17,17 0 1 1 67,50 17.019,17.019 0 0 1 50,67 Z"
+       id="Path_19032" />
+    <path
+       style="fill:#666666"
+       transform="translate(83,56)"
+       data-name="Rectangle 4749"
+       class="cls-2"
+       d="M 0,0 H 2 V 4 H 0 Z"
+       id="Rectangle_4749" />
+    <path
+       style="fill:#666666"
+       transform="translate(83,44)"
+       data-name="Rectangle 4750"
+       class="cls-2"
+       d="M 0,0 H 2 V 8 H 0 Z"
+       id="Rectangle_4750" />
+    <path
+       style="fill:#666666"
+       transform="translate(15,48)"
+       data-name="Rectangle 4751"
+       class="cls-2"
+       d="M 0,0 H 2 V 8 H 0 Z"
+       id="Rectangle_4751" />
+    <path
+       style="fill:#666666"
+       transform="translate(15,40)"
+       data-name="Rectangle 4752"
+       class="cls-2"
+       d="M 0,0 H 2 V 4 H 0 Z"
+       id="Rectangle_4752" />
+    <path
+       style="fill:#666666"
+       data-name="Path 19033"
+       class="cls-2"
+       d="M 95.162,71 H 85 v -7 h -2 v 9 h 7.838 L 76,90.456 61.162,73 H 68 V 71 H 63.539 A 24.989,24.989 0 0 0 41.139,26.626 L 24,6.456 4.838,29 H 15 v 7 h 2 V 27 H 9.162 L 24,9.544 38.838,27 H 32 v 2 h 4.461 a 24.989,24.989 0 0 0 22.4,44.374 L 76,93.544 Z M 27,50 A 23,23 0 1 1 50,73 23.026,23.026 0 0 1 27,50 Z"
+       id="Path_19033" />
   </g>
+  <path
+     data-name="Rectangle 4753"
+     class="cls-3"
+     d="M0 0h100v100H0z"
+     id="Rectangle_4753" />
 </svg>
