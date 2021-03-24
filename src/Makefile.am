@@ -117,11 +117,11 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += __decenomy__d
+  bin_PROGRAMS += jackpotd
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += __decenomy__-cli __decenomy__-tx
+  bin_PROGRAMS += jackpot-cli jackpot-tx
 endif
 
 LIBSAPLING_H = \
@@ -137,7 +137,7 @@ LIBSAPLING_H = \
   sapling/saplingscriptpubkeyman.h
 
 .PHONY: FORCE cargo-build check-symbols check-security
-# __decenomy__ core #
+# jackpot core #
 BITCOIN_CORE_H = \
   activemasternode.h \
   addrdb.h \
@@ -291,7 +291,7 @@ obj/build.h: FORCE
 	  "$(abs_top_srcdir)"
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between __decenomy__d and __decenomy__-qt
+# server: shared between jackpotd and jackpot-qt
 libbitcoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libbitcoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_server_a_SOURCES = \
@@ -347,7 +347,7 @@ libbitcoin_zmq_a_SOURCES = \
   zmq/zmqpublishnotifier.cpp
 endif
 
-# wallet: shared between __decenomy__d and __decenomy__-qt, but only linked
+# wallet: shared between jackpotd and jackpot-qt, but only linked
 # when wallet enabled
 libbitcoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
@@ -485,7 +485,7 @@ if USE_NUM_OPENSSL
   libzerocoin_libbitcoin_zerocoin_a_SOURCES += libzerocoin/bignum_openssl.cpp
 endif
 
-# common: shared between __decenomy__d, and __decenomy__-qt and non-server tools
+# common: shared between jackpotd, and jackpot-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_common_a_SOURCES = \
@@ -578,7 +578,7 @@ libsapling_a_SOURCES += compat/glibc_compat.cpp
 AM_LDFLAGS += $(COMPAT_LDFLAGS)
 endif
 
-# cli: shared between __decenomy__-cli and __decenomy__-qt
+# cli: shared between jackpot-cli and jackpot-qt
 libbitcoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_cli_a_SOURCES = \
@@ -589,16 +589,16 @@ libbitcoin_cli_a_SOURCES = \
 nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# __decenomy__d binary #
-__decenomy__d_SOURCES = pivxd.cpp
-__decenomy__d_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-__decenomy__d_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-__decenomy__d_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# jackpotd binary #
+jackpotd_SOURCES = pivxd.cpp
+jackpotd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+jackpotd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+jackpotd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-__decenomy__d_SOURCES += pivxd-res.rc
+jackpotd_SOURCES += pivxd-res.rc
 endif
-__decenomy__d_LDADD = \
+jackpotd_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
   $(LIBBITCOIN_COMMON) \
@@ -615,19 +615,19 @@ __decenomy__d_LDADD = \
   $(LIBRUSTZCASH) \
   $(LIBZCASH_LIBS)
 
-__decenomy__d_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+jackpotd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
-# __decenomy__-cli binary #
-__decenomy___cli_SOURCES = pivx-cli.cpp
-__decenomy___cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-__decenomy___cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-__decenomy___cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# jackpot-cli binary #
+jackpot_cli_SOURCES = pivx-cli.cpp
+jackpot_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+jackpot_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+jackpot_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-__decenomy___cli_SOURCES += pivx-cli-res.rc
+jackpot_cli_SOURCES += pivx-cli-res.rc
 endif
 
-__decenomy___cli_LDADD = \
+jackpot_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
@@ -636,20 +636,20 @@ __decenomy___cli_LDADD = \
   $(LIBRUSTZCASH) \
   $(LIBZCASH_LIBS)
 
-__decenomy___cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+jackpot_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
-# __decenomy__-tx binary #
-__decenomy___tx_SOURCES = pivx-tx.cpp
-__decenomy___tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-__decenomy___tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-__decenomy___tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# jackpot-tx binary #
+jackpot_tx_SOURCES = pivx-tx.cpp
+jackpot_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+jackpot_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+jackpot_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-__decenomy___tx_SOURCES += pivx-tx-res.rc
+jackpot_tx_SOURCES += pivx-tx-res.rc
 endif
 
-__decenomy___tx_LDADD = \
+jackpot_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_ZEROCOIN) \
@@ -660,7 +660,7 @@ __decenomy___tx_LDADD = \
   $(LIBRUSTZCASH) \
   $(LIBZCASH_LIBS)
 
-__decenomy___tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+jackpot_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
 # bitcoinconsensus library #
