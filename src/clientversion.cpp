@@ -14,7 +14,7 @@
  * for both jackpotd and jackpot-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("__Decenomy__");
+const std::string CLIENT_NAME("Jackpot");
 
 /**
  * Client version number
