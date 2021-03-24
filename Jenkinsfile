@@ -4,7 +4,7 @@ pipeline {
 
     environment {
         NAME = 'Jackpot'
-        BASE_NAME = '__decenomy__'
+        BASE_NAME = 'jackpot'
         ZIP_NAME = '777'
     }
 
