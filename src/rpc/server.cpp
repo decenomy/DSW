@@ -361,31 +361,31 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true },
 
         /* SAPP features */
-        {"__decenomy__", "listmasternodes", &listmasternodes, true },
-        {"__decenomy__", "getmasternodecount", &getmasternodecount, true },
-        {"__decenomy__", "createmasternodebroadcast", &createmasternodebroadcast, true },
-        {"__decenomy__", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
-        {"__decenomy__", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
-        {"__decenomy__", "masternodecurrent", &masternodecurrent, true },
-        {"__decenomy__", "startmasternode", &startmasternode, true },
-        {"__decenomy__", "createmasternodekey", &createmasternodekey, true },
-        {"__decenomy__", "getmasternodeoutputs", &getmasternodeoutputs, true },
-        {"__decenomy__", "listmasternodeconf", &listmasternodeconf, true },
-        {"__decenomy__", "getmasternodestatus", &getmasternodestatus, true },
-        {"__decenomy__", "getmasternodewinners", &getmasternodewinners, true },
-        {"__decenomy__", "getmasternodescores", &getmasternodescores, true },
-        {"__decenomy__", "preparebudget", &preparebudget, true },
-        {"__decenomy__", "submitbudget", &submitbudget, true },
-        {"__decenomy__", "mnbudgetvote", &mnbudgetvote, true },
-        {"__decenomy__", "getbudgetvotes", &getbudgetvotes, true },
-        {"__decenomy__", "getnextsuperblock", &getnextsuperblock, true },
-        {"__decenomy__", "getbudgetprojection", &getbudgetprojection, true },
-        {"__decenomy__", "getbudgetinfo", &getbudgetinfo, true },
-        {"__decenomy__", "mnbudgetrawvote", &mnbudgetrawvote, true },
-        {"__decenomy__", "mnfinalbudget", &mnfinalbudget, true },
-        {"__decenomy__", "checkbudgets", &checkbudgets, true },
-        {"__decenomy__", "mnsync", &mnsync, true },
-        {"__decenomy__", "spork", &spork, true },
+        {"sapphire", "listmasternodes", &listmasternodes, true },
+        {"sapphire", "getmasternodecount", &getmasternodecount, true },
+        {"sapphire", "createmasternodebroadcast", &createmasternodebroadcast, true },
+        {"sapphire", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
+        {"sapphire", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
+        {"sapphire", "masternodecurrent", &masternodecurrent, true },
+        {"sapphire", "startmasternode", &startmasternode, true },
+        {"sapphire", "createmasternodekey", &createmasternodekey, true },
+        {"sapphire", "getmasternodeoutputs", &getmasternodeoutputs, true },
+        {"sapphire", "listmasternodeconf", &listmasternodeconf, true },
+        {"sapphire", "getmasternodestatus", &getmasternodestatus, true },
+        {"sapphire", "getmasternodewinners", &getmasternodewinners, true },
+        {"sapphire", "getmasternodescores", &getmasternodescores, true },
+        {"sapphire", "preparebudget", &preparebudget, true },
+        {"sapphire", "submitbudget", &submitbudget, true },
+        {"sapphire", "mnbudgetvote", &mnbudgetvote, true },
+        {"sapphire", "getbudgetvotes", &getbudgetvotes, true },
+        {"sapphire", "getnextsuperblock", &getnextsuperblock, true },
+        {"sapphire", "getbudgetprojection", &getbudgetprojection, true },
+        {"sapphire", "getbudgetinfo", &getbudgetinfo, true },
+        {"sapphire", "mnbudgetrawvote", &mnbudgetrawvote, true },
+        {"sapphire", "mnfinalbudget", &mnfinalbudget, true },
+        {"sapphire", "checkbudgets", &checkbudgets, true },
+        {"sapphire", "mnsync", &mnsync, true },
+        {"sapphire", "spork", &spork, true },
 
 #ifdef ENABLE_WALLET
         /* Wallet */
@@ -598,7 +598,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(std::string methodname, std::string args)
 {
-    return "> __decenomy__-cli " + methodname + " " + args + "\n";
+    return "> sapphire-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(std::string methodname, std::string args)
