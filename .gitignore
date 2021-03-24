@@ -33,6 +33,15 @@ src/trittium-cli
 src/trittium-tx
 src/trittiumd
 
+# Jackpot
+src/bench/bench_jackpot
+src/jackpot-cli
+src/jackpot-tx
+src/jackpotd
+src/qt/jackpot-qt
+src/test/test_jackpot
+src/qt/test/test_jackpot-qt
+
 ##########################################
 # clear this section when it's fixed
 ###
