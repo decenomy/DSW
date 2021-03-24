@@ -121,6 +121,10 @@ struct Params {
     int height_start_ZC_SerialRangeCheck;
     int height_ZC_RecalcAccumulators;
 
+    // validation by-pass
+    int64_t nAezoraBadBlockTime;
+    unsigned int nAezoraBadBlockBits;
+
     // Map with network updates
     NetworkUpgrade vUpgrades[MAX_NETWORK_UPGRADES];
 

@@ -454,7 +454,7 @@
             <enum>Qt::NoFocus</enum>
            </property>
            <property name="text">
-            <string>How to get __DSW__</string>
+            <string>How to get AZR</string>
            </property>
           </widget>
          </item>
@@ -519,7 +519,7 @@
             <item>
              <widget class="QLabel" name="labelMessage">
               <property name="text">
-               <string>Amount of __DSW__ staked.</string>
+               <string>Amount of AZR staked.</string>
               </property>
              </widget>
             </item>
@@ -567,7 +567,7 @@
                 <item>
                     <widget class="QLabel" name="labelAmountPiv">
                         <property name="text">
-                            <string notr="true">0 __DSW__</string>
+                            <string notr="true">0 AZR</string>
                         </property>
                         <property name="alignment">
                             <set>Qt::AlignCenter</set>
@@ -694,7 +694,7 @@
                 <item>
                  <widget class="QLabel" name="labelPiv">
                   <property name="text">
-                   <string notr="true">__DSW__</string>
+                   <string notr="true">AZR</string>
                   </property>
                  </widget>
                 </item>
@@ -736,7 +736,7 @@
                 <item>
                     <widget class="QLabel" name="labelMNRewards">
                         <property name="text">
-                            <string>__DSW__ MN</string>
+                            <string>AZR MN</string>
                         </property>
                     </widget>
                 </item>

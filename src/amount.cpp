@@ -9,7 +9,7 @@
 
 #include "tinyformat.h"
 
-const std::string CURRENCY_UNIT = "__DSW__";
+const std::string CURRENCY_UNIT = "AZR";
 
 CFeeRate::CFeeRate(const CAmount& nFeePaid, size_t nSize)
 {

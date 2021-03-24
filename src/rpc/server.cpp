@@ -266,11 +266,11 @@ UniValue stop(const JSONRPCRequest& jsonRequest)
     if (jsonRequest.fHelp || jsonRequest.params.size() > 1)
         throw std::runtime_error(
             "stop\n"
-            "\nStop __DSW__ server.");
+            "\nStop AZR server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "__DSW__ server stopping";
+    return "AZR server stopping";
 }
 
 
@@ -360,32 +360,32 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblock",           &waitforblock,           true },
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true },
 
-        /* __DSW__ features */
-        {"__decenomy__", "listmasternodes", &listmasternodes, true },
-        {"__decenomy__", "getmasternodecount", &getmasternodecount, true },
-        {"__decenomy__", "createmasternodebroadcast", &createmasternodebroadcast, true },
-        {"__decenomy__", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
-        {"__decenomy__", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
-        {"__decenomy__", "masternodecurrent", &masternodecurrent, true },
-        {"__decenomy__", "startmasternode", &startmasternode, true },
-        {"__decenomy__", "createmasternodekey", &createmasternodekey, true },
-        {"__decenomy__", "getmasternodeoutputs", &getmasternodeoutputs, true },
-        {"__decenomy__", "listmasternodeconf", &listmasternodeconf, true },
-        {"__decenomy__", "getmasternodestatus", &getmasternodestatus, true },
-        {"__decenomy__", "getmasternodewinners", &getmasternodewinners, true },
-        {"__decenomy__", "getmasternodescores", &getmasternodescores, true },
-        {"__decenomy__", "preparebudget", &preparebudget, true },
-        {"__decenomy__", "submitbudget", &submitbudget, true },
-        {"__decenomy__", "mnbudgetvote", &mnbudgetvote, true },
-        {"__decenomy__", "getbudgetvotes", &getbudgetvotes, true },
-        {"__decenomy__", "getnextsuperblock", &getnextsuperblock, true },
-        {"__decenomy__", "getbudgetprojection", &getbudgetprojection, true },
-        {"__decenomy__", "getbudgetinfo", &getbudgetinfo, true },
-        {"__decenomy__", "mnbudgetrawvote", &mnbudgetrawvote, true },
-        {"__decenomy__", "mnfinalbudget", &mnfinalbudget, true },
-        {"__decenomy__", "checkbudgets", &checkbudgets, true },
-        {"__decenomy__", "mnsync", &mnsync, true },
-        {"__decenomy__", "spork", &spork, true },
+        /* AZR features */
+        {"aezora", "listmasternodes", &listmasternodes, true },
+        {"aezora", "getmasternodecount", &getmasternodecount, true },
+        {"aezora", "createmasternodebroadcast", &createmasternodebroadcast, true },
+        {"aezora", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
+        {"aezora", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
+        {"aezora", "masternodecurrent", &masternodecurrent, true },
+        {"aezora", "startmasternode", &startmasternode, true },
+        {"aezora", "createmasternodekey", &createmasternodekey, true },
+        {"aezora", "getmasternodeoutputs", &getmasternodeoutputs, true },
+        {"aezora", "listmasternodeconf", &listmasternodeconf, true },
+        {"aezora", "getmasternodestatus", &getmasternodestatus, true },
+        {"aezora", "getmasternodewinners", &getmasternodewinners, true },
+        {"aezora", "getmasternodescores", &getmasternodescores, true },
+        {"aezora", "preparebudget", &preparebudget, true },
+        {"aezora", "submitbudget", &submitbudget, true },
+        {"aezora", "mnbudgetvote", &mnbudgetvote, true },
+        {"aezora", "getbudgetvotes", &getbudgetvotes, true },
+        {"aezora", "getnextsuperblock", &getnextsuperblock, true },
+        {"aezora", "getbudgetprojection", &getbudgetprojection, true },
+        {"aezora", "getbudgetinfo", &getbudgetinfo, true },
+        {"aezora", "mnbudgetrawvote", &mnbudgetrawvote, true },
+        {"aezora", "mnfinalbudget", &mnfinalbudget, true },
+        {"aezora", "checkbudgets", &checkbudgets, true },
+        {"aezora", "mnsync", &mnsync, true },
+        {"aezora", "spork", &spork, true },
 
 #ifdef ENABLE_WALLET
         /* Wallet */
@@ -598,14 +598,14 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(std::string methodname, std::string args)
 {
-    return "> __decenomy__-cli " + methodname + " " + args + "\n";
+    return "> aezora-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(std::string methodname, std::string args)
 {
     return "> curl --user myusername --data-binary '{\"jsonrpc\": \"1.0\", \"id\":\"curltest\", "
            "\"method\": \"" +
-           methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:__RPCPORT_MAINNET__/\n";
+           methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:14724/\n";
 }
 
 void RPCSetTimerInterfaceIfUnset(RPCTimerInterface *iface)

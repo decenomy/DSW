@@ -60,7 +60,7 @@ void SettingsExportCSV::selectFileOutput(const bool& isTxExport)
 {
     QString filename = GUIUtil::getSaveFileName(this,
                                         isTxExport ? tr("Export CSV") : tr("Export Address List"), QString(),
-                                        isTxExport ? tr("__Decenomy___tx_csv_export(*.csv)") : tr("__Decenomy___addresses_csv_export(*.csv)"),
+                                        isTxExport ? tr("Aezora_tx_csv_export(*.csv)") : tr("Aezora_addresses_csv_export(*.csv)"),
                                         nullptr);
 
     if (isTxExport) {
