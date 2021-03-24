@@ -28,9 +28,9 @@ Build-Depends: debhelper,
  libzmq3-dev,
  dh-systemd
 Standards-Version: 3.9.2
-Homepage: __decenomy_website_link__
-Vcs-Git: git://__decenomy_github_link__.git
-Vcs-Browser: https://__decenomy_github_link__
+Homepage: https://777coin.win/
+Vcs-Git: git://github.com/777-project/777.git
+Vcs-Browser: https://github.com/777-project/777
 
 Package: jackpotd
 Architecture: any
