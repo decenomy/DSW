@@ -56,7 +56,7 @@ The Jackpot repo's [root README](/README.md) contains relevant information on th
 
 ### Resources
 * Discuss on the [Jackpot Homepage](https://777coin.win/).
-* Join the [Jackpot Discord](__decenomy_discord_link__).
+* Join the [Jackpot Discord](https://discordapp.com/invite/HNyRevT).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)
