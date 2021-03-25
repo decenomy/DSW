@@ -9,9 +9,9 @@
 #ifndef BITCOIN_CHAINPARAMS_H
 #define BITCOIN_CHAINPARAMS_H
 
-#define __PORT_MAINNET__ 9999
-#define __PORT_TESTNET__ 19999
-#define __PORT_REGTEST__ 29999
+#define 12341 9999
+#define 51434 19999
+#define 51436 29999
 
 #include "chainparamsbase.h"
 #include "checkpoints.h"
@@ -88,6 +88,17 @@ public:
     CBaseChainParams::Network NetworkID() const { return networkID; }
     bool IsRegTestNet() const { return NetworkID() == CBaseChainParams::REGTEST; }
 
+    CScript GetLiquiMiningScriptAtHeight(int nHeight) const;
+
+    bool IsLiquiMiningBlock(int nHeight) const { 
+        return 
+            nHeight > nLiquiMiningStartHeight && 
+            nHeight <= (nLiquiMiningStartHeight + 500); 
+    }
+
+    CAmount GetLiquiMiningValue(int nHeight) const {
+        return nLiquiMiningValue;
+    }
 
 protected:
     CChainParams() {}
@@ -102,6 +113,10 @@ protected:
     std::vector<unsigned char> base58Prefixes[MAX_BASE58_TYPES];
     std::string bech32HRPs[MAX_BECH32_TYPES];
     std::vector<SeedSpec6> vFixedSeeds;
+	
+	// liquiMining
+    int nLiquiMiningStartHeight;
+    CAmount nLiquiMiningValue;
 };
 
 /**
