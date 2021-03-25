@@ -16,8 +16,8 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Dash Diamond"
-            VALUE "FileDescription",    "dashdiamond-tx (CLI Dash Diamond transaction editor utility)"
+            VALUE "CompanyName",        "DashDiamond"
+            VALUE "FileDescription",    "dashdiamond-tx (CLI DashDiamond transaction editor utility)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "dashdiamond-tx"
             VALUE "LegalCopyright",     COPYRIGHT_STR

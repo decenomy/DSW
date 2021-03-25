@@ -1066,16 +1066,16 @@ Cüzdanınız senkronize olduktan ve harcanmamış bakiyeniz yeterli miktarda on
         <translation>versiyon</translation>
     </message>
     <message>
-        <source>Dash Diamond</source>
-        <translation>Dash Diamond</translation>
+        <source>DashDiamond</source>
+        <translation>DashDiamond</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Dash Diamond</source>
-        <translation>Dash Diamond Hakkında </translation>
+        <source>About DashDiamond</source>
+        <translation>DashDiamond Hakkında </translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1125,16 +1125,16 @@ Cüzdanınız senkronize olduktan ve harcanmamış bakiyeniz yeterli miktarda on
         <translation>Hoşgeldiniz</translation>
     </message>
     <message>
-        <source>Welcome to Dash Diamond.</source>
-        <translation>Dash Diamond'a hoşgeldiniz.</translation>
+        <source>Welcome to DashDiamond.</source>
+        <translation>DashDiamond'a hoşgeldiniz.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Dash Diamond will store its data.</source>
-        <translation>Program ilk başlatıldığında Dash Diamond'un verilerini nerede saklayacağını seçebilirsiniz.</translation>
+        <source>As this is the first time the program is launched, you can choose where DashDiamond will store its data.</source>
+        <translation>Program ilk başlatıldığında DashDiamond'un verilerini nerede saklayacağını seçebilirsiniz.</translation>
     </message>
     <message>
-        <source>Dash Diamond will download and store a copy of the DASHD block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Dash Diamond, DASHD blok zincirinin bir kopyasını indirecek ve depolayacaktır. Bu dizinde en az %1GB veri saklanacak ve zamanla büyüyecektir. Ayrıca cüzdanınız da bu dizinde saklanır.</translation>
+        <source>DashDiamond will download and store a copy of the DASHD block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>DashDiamond, DASHD blok zincirinin bir kopyasını indirecek ve depolayacaktır. Bu dizinde en az %1GB veri saklanacak ve zamanla büyüyecektir. Ayrıca cüzdanınız da bu dizinde saklanır.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1153,8 +1153,8 @@ Cüzdanınız senkronize olduktan ve harcanmamış bakiyeniz yeterli miktarda on
         <translation>TAMAM</translation>
     </message>
     <message>
-        <source>Dash Diamond</source>
-        <translation>Dash Diamond</translation>
+        <source>DashDiamond</source>
+        <translation>DashDiamond</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1782,8 +1782,8 @@ Emin misiniz?</translation>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>Dash Diamond</source>
-        <translation>Dash Diamond</translation>
+        <source>DashDiamond</source>
+        <translation>DashDiamond</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -1810,8 +1810,8 @@ Emin misiniz?</translation>
         <translation>Uygulamayı sonlandır</translation>
     </message>
     <message>
-        <source>Dash Diamond client</source>
-        <translation>Dash Diamond istemci</translation>
+        <source>DashDiamond client</source>
+        <translation>DashDiamond istemci</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1878,7 +1878,7 @@ Adres: %4
     </message>
     <message>
         <source>Cannot start dashdiamond: click-to-pay handler</source>
-        <translation>Dash Diamond başlatılamıyor: tıkla ve ödeme işleyicisi</translation>
+        <translation>DashDiamond başlatılamıyor: tıkla ve ödeme işleyicisi</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid DASHD address or malformed URI parameters.</source>
@@ -2011,8 +2011,8 @@ Adres: %4
         <translation>Onarılamaz bir hata oluştu. DASHD güvenli bir şekilde çalışamaz, kapanacaktır.</translation>
     </message>
     <message>
-        <source>Dash Diamond</source>
-        <translation>Dash Diamond</translation>
+        <source>DashDiamond</source>
+        <translation>DashDiamond</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -2031,8 +2031,8 @@ Adres: %4
         <translation>Masternode konfigürasyon dosyası okuma hatası: %1</translation>
     </message>
     <message>
-        <source>Dash Diamond didn't yet exit safely...</source>
-        <translation>Dash Diamond henüz güvenle kapanmadı..</translation>
+        <source>DashDiamond didn't yet exit safely...</source>
+        <translation>DashDiamond henüz güvenle kapanmadı..</translation>
     </message>
     <message>
         <source>Cold Staking</source>
@@ -4011,8 +4011,8 @@ Emin misiniz?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Dash Diamond is shutting down...</source>
-        <translation>Dash Diamond kapanıyor ...</translation>
+        <source>DashDiamond is shutting down...</source>
+        <translation>DashDiamond kapanıyor ...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4041,8 +4041,8 @@ Emin misiniz?
         <translation>Yükleniyor...</translation>
     </message>
     <message>
-        <source>Dash Diamond</source>
-        <translation>Dash Diamond</translation>
+        <source>DashDiamond</source>
+        <translation>DashDiamond</translation>
     </message>
 </context>
 <context>
@@ -4393,8 +4393,8 @@ Emin misiniz?
     </message>
     <message>
         <source>Welcome to
-Dash Diamond Wallet</source>
-        <translation>Dash Diamond Cüzdanı'na
+DashDiamond Wallet</source>
+        <translation>DashDiamond Cüzdanı'na
 Hoşgeldiniz</translation>
     </message>
     <message>
@@ -4445,8 +4445,8 @@ Hoşgeldiniz</translation>
         <translation>JSON-RPC bağlantılarını dinlemek için verilen adrese bağlanın. IPv6 için [host]: port gösterimini kullanın. Bu seçenek birden çok kez belirtilebilir (varsayılan: tüm arabirimlere bağlanır)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Dash Diamond is probably already running.</source>
-        <translation>Veri dizini %s üzerinde bir kilit elde edemiyor. Dash Diamond muhtemelen zaten çalışıyor.</translation>
+        <source>Cannot obtain a lock on data directory %s. DashDiamond is probably already running.</source>
+        <translation>Veri dizini %s üzerinde bir kilit elde edemiyor. DashDiamond muhtemelen zaten çalışıyor.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -4605,8 +4605,8 @@ Hoşgeldiniz</translation>
         <translation>Ağ versiyon dizisi toplam uzunluğu(%i) maksimum uzunluğu aşıyor(%i). Yorumların büyüklüğünü veya sayısını azaltın.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Dash Diamond is probably already running.</source>
-        <translation>Bu bilgisayarda %s 'e bağlanılamıyor. Dash Diamond muhtemelen zaten çalışıyor.</translation>
+        <source>Unable to bind to %s on this computer. DashDiamond is probably already running.</source>
+        <translation>Bu bilgisayarda %s 'e bağlanılamıyor. DashDiamond muhtemelen zaten çalışıyor.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -4621,8 +4621,8 @@ Hoşgeldiniz</translation>
         <translation>Uyarı: paytxfee değeri çok yüksek ayarlanmış! Bu para gönderirken ödeyeceğiniz transfer ücretidir.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Dash Diamond will not work properly.</source>
-        <translation>Uyarı: Bilgisayarınızın tarih ve saat ayarlarının doğruluğunu kontrol edin! Saatiniz yanlış ise Dash Diamond düzgün çalışmayacaktır. </translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong DashDiamond will not work properly.</source>
+        <translation>Uyarı: Bilgisayarınızın tarih ve saat ayarlarının doğruluğunu kontrol edin! Saatiniz yanlış ise DashDiamond düzgün çalışmayacaktır. </translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -4837,8 +4837,8 @@ Hoşgeldiniz</translation>
         <translation>Bilgi</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Dash Diamond is shutting down.</source>
-        <translation>Sağlama kontrolü başlatımı başarısız. Dash Diamond kapatılıyor.</translation>
+        <source>Initialization sanity check failed. DashDiamond is shutting down.</source>
+        <translation>Sağlama kontrolü başlatımı başarısız. DashDiamond kapatılıyor.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5401,8 +5401,8 @@ Hoşgeldiniz</translation>
         <translation>Cüzdan %s bilgi dizini %s dışında bulunuyor</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Dash Diamond to complete</source>
-        <translation>Cüzdanın tekrar yazılması gerekiyor: tamamlamak için Dash Diamond uygulamasını tekrar başlatın.</translation>
+        <source>Wallet needed to be rewritten: restart DashDiamond to complete</source>
+        <translation>Cüzdanın tekrar yazılması gerekiyor: tamamlamak için DashDiamond uygulamasını tekrar başlatın.</translation>
     </message>
     <message>
         <source>Wallet options:</source>

@@ -1,7 +1,7 @@
 **ALERT: This document should be updated for EACH coin individually**
 **The dummy values below belongs to Sapphire Coin**
 
-Dash Diamond Standard wallet repository
+DashDiamond Standard wallet repository
 =====================================
 
 ### Coin Specs

@@ -91,7 +91,7 @@ const char * const PIVX_PID_FILENAME = "dashdiamond.pid";
 const char * const PIVX_MASTERNODE_CONF_FILENAME = "masternode.conf";
 
 
-// Dash Diamond only features
+// DashDiamond only features
 // Masternode
 bool fMasterNode = false;
 std::string strMasterNodePrivKey = "";
@@ -297,7 +297,7 @@ fs::path GetDefaultDataDir()
 // Unix: ~/.dashdiamond
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Dash Diamond";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "DashDiamond";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -309,7 +309,7 @@ fs::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "Dash Diamond";
+    return pathRet / "DashDiamond";
 #else
     // Unix
     return pathRet / ".dashdiamond";
@@ -331,7 +331,7 @@ static fs::path ZC_GetBaseParamsDir()
     // Unix: ~/.dashdiamond-params
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Dash DiamondParams";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "DashDiamondParams";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -343,7 +343,7 @@ static fs::path ZC_GetBaseParamsDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "Dash DiamondParams";
+    return pathRet / "DashDiamondParams";
 #else
     // Unix
     return pathRet / ".dashdiamond-params";

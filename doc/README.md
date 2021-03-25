@@ -1,13 +1,13 @@
-Dash Diamond Core
+DashDiamond Core
 =============
 
 Setup
 ---------------------
-[Dash Diamond Core](https://dashdiamond.net//) is the original Dash Diamond client and it builds the backbone of the network. However, it downloads and stores the entire history of Dash Diamond transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
+[DashDiamond Core](https://dashdiamond.net//) is the original DashDiamond client and it builds the backbone of the network. However, it downloads and stores the entire history of DashDiamond transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
 
 Running
 ---------------------
-The following are some helpful notes on how to run Dash Diamond Core on your native platform.
+The following are some helpful notes on how to run DashDiamond Core on your native platform.
 
 ### Unix
 
@@ -18,21 +18,21 @@ Unpack the files into a directory and run:
 
 ### Windows
 
-Unpack the files into a directory, and then run Dash Diamond-qt.exe.
+Unpack the files into a directory, and then run DashDiamond-qt.exe.
 
 ### macOS
 
-Drag Dash Diamond-Qt to your applications folder, and then run Dash Diamond-Qt.
+Drag DashDiamond-Qt to your applications folder, and then run DashDiamond-Qt.
 
 ### Need Help?
 
-* See the documentation at the [Dash Diamond Wiki](https://github.com/Dash-Diamond/DASHD/)
+* See the documentation at the [DashDiamond Wiki](https://github.com/Dash-Diamond/DASHD/)
 for help and more information.
 * Join our Discord server [Discord Server](https://discord.gg/CeJb7Yxku3)
 
 Building
 ---------------------
-The following are developer notes on how to build Dash Diamond Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build DashDiamond Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [Dependencies](dependencies.md)
 - [macOS Build Notes](build-osx.md)
@@ -42,7 +42,7 @@ The following are developer notes on how to build Dash Diamond Core on your nati
 
 Development
 ---------------------
-The Dash Diamond repo's [root README](/README.md) contains relevant information on the development process and automated testing.
+The DashDiamond repo's [root README](/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Multiwallet Qt Development](multiwallet-qt.md)
@@ -55,8 +55,8 @@ The Dash Diamond repo's [root README](/README.md) contains relevant information 
 - [Dnsseed Policy](dnsseed-policy.md)
 
 ### Resources
-* Discuss on the [Dash Diamond Homepage](https://dashdiamond.net//).
-* Join the [Dash Diamond Discord](https://discord.gg/CeJb7Yxku3).
+* Discuss on the [DashDiamond Homepage](https://dashdiamond.net//).
+* Join the [DashDiamond Discord](https://discord.gg/CeJb7Yxku3).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

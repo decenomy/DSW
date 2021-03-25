@@ -1444,7 +1444,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <location line="+0"/>
-        <source>Dash Diamond</source>
+        <source>DashDiamond</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1455,7 +1455,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <location line="+6"/>
-        <source>About Dash Diamond</source>
+        <source>About DashDiamond</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1523,17 +1523,17 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <location line="+90"/>
-        <source>Welcome to Dash Diamond.</source>
+        <source>Welcome to DashDiamond.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+35"/>
-        <source>As this is the first time the program is launched, you can choose where Dash Diamond will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where DashDiamond will store its data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+18"/>
-        <source>Dash Diamond will download and store a copy of the DASHD block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>DashDiamond will download and store a copy of the DASHD block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1558,7 +1558,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <location filename="../intro.cpp" line="+100"/>
-        <source>Dash Diamond</source>
+        <source>DashDiamond</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2551,7 +2551,7 @@ STAKING</source>
         <location filename="../pivx/pivxgui.cpp" line="+69"/>
         <location line="+298"/>
         <location line="+69"/>
-        <source>Dash Diamond</source>
+        <source>DashDiamond</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2586,7 +2586,7 @@ STAKING</source>
     </message>
     <message>
         <location line="+39"/>
-        <source>Dash Diamond client</source>
+        <source>DashDiamond client</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2856,7 +2856,7 @@ Address: %4
         <location line="+7"/>
         <location line="+13"/>
         <location line="+19"/>
-        <source>Dash Diamond</source>
+        <source>DashDiamond</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2881,7 +2881,7 @@ Address: %4
     </message>
     <message>
         <location line="+64"/>
-        <source>Dash Diamond didn&apos;t yet exit safely...</source>
+        <source>DashDiamond didn&apos;t yet exit safely...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5940,7 +5940,7 @@ Are you sure?
     <name>ShutdownWindow</name>
     <message>
         <location filename="../utilitydialog.cpp" line="+71"/>
-        <source>Dash Diamond is shutting down...</source>
+        <source>DashDiamond is shutting down...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5976,7 +5976,7 @@ Are you sure?
     </message>
     <message>
         <location filename="../pivx/splash.cpp" line="+30"/>
-        <source>Dash Diamond</source>
+        <source>DashDiamond</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6699,7 +6699,7 @@ Select fewer inputs with coin control.</source>
     <message>
         <location line="+89"/>
         <source>Welcome to
-Dash Diamond Wallet</source>
+DashDiamond Wallet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6774,7 +6774,7 @@ Please run &apos;sapling-fetch-params&apos; or &apos;./util/fetch-params.sh&apos
     </message>
     <message>
         <location line="+5"/>
-        <source>Cannot obtain a lock on data directory %s. Dash Diamond is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. DashDiamond is probably already running.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6984,7 +6984,7 @@ Please run &apos;sapling-fetch-params&apos; or &apos;./util/fetch-params.sh&apos
     </message>
     <message>
         <location line="+3"/>
-        <source>Unable to bind to %s on this computer. Dash Diamond is probably already running.</source>
+        <source>Unable to bind to %s on this computer. DashDiamond is probably already running.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7004,7 +7004,7 @@ Please run &apos;sapling-fetch-params&apos; or &apos;./util/fetch-params.sh&apos
     </message>
     <message>
         <location line="+3"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong Dash Diamond will not work properly.</source>
+        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong DashDiamond will not work properly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7274,7 +7274,7 @@ Please run &apos;sapling-fetch-params&apos; or &apos;./util/fetch-params.sh&apos
     </message>
     <message>
         <location line="+1"/>
-        <source>Initialization sanity check failed. Dash Diamond is shutting down.</source>
+        <source>Initialization sanity check failed. DashDiamond is shutting down.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7729,7 +7729,7 @@ Please run &apos;sapling-fetch-params&apos; or &apos;./util/fetch-params.sh&apos
     </message>
     <message>
         <location line="+7"/>
-        <source>Please check that your computer&apos;s date and time are correct! If your clock is wrong Dash Diamond will not work properly.</source>
+        <source>Please check that your computer&apos;s date and time are correct! If your clock is wrong DashDiamond will not work properly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7784,7 +7784,7 @@ Please run &apos;sapling-fetch-params&apos; or &apos;./util/fetch-params.sh&apos
     </message>
     <message>
         <location line="+1"/>
-        <source>Error loading %s: Wallet requires newer version of Dash Diamond</source>
+        <source>Error loading %s: Wallet requires newer version of DashDiamond</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8286,7 +8286,7 @@ Please run &apos;sapling-fetch-params&apos; or &apos;./util/fetch-params.sh&apos
     </message>
     <message>
         <location line="+1"/>
-        <source>Wallet needed to be rewritten: restart Dash Diamond to complete</source>
+        <source>Wallet needed to be rewritten: restart DashDiamond to complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -47,7 +47,7 @@ static bool AppInitRawTx(int argc, char* argv[])
 
     if (argc < 2 || mapArgs.count("-?") || mapArgs.count("-help")) {
         // First part of help message is specific to this utility
-        std::string strUsage = _("Dash Diamond dashdiamond-tx utility version") + " " + FormatFullVersion() + "\n\n" +
+        std::string strUsage = _("DashDiamond dashdiamond-tx utility version") + " " + FormatFullVersion() + "\n\n" +
                                _("Usage:") + "\n" +
                                "  dashdiamond-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded dashdiamond transaction") + "\n" +
                                "  dashdiamond-tx [options] -create [commands]   " + _("Create hex-encoded dashdiamond transaction") + "\n" +

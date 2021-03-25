@@ -1,7 +1,7 @@
 <!--- Remove this description and sections that do not apply -->
 
-This issue tracker is only for technical issues related to Dash Diamond Core.
-General Dash Diamond questions and/or support requests and are best directed to the [Dash Diamond Discord](https://discord.gg/CeJb7Yxku3).
+This issue tracker is only for technical issues related to DashDiamond Core.
+General DashDiamond questions and/or support requests and are best directed to the [DashDiamond Discord](https://discord.gg/CeJb7Yxku3).
 
 ### Describe the issue
 
@@ -20,7 +20,7 @@ Tell us what happens instead
 ### Screenshots.
 If the issue is related to the GUI, screenshots can be added to this issue via drag & drop.
 
-### What version of Dash Diamond Core are you using?
+### What version of DashDiamond Core are you using?
 List the version number/commit ID, and if it is an official binary, self compiled or a distribution package.
 
 ### Machine specs:

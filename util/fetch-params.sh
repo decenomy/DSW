@@ -13,7 +13,7 @@ if [ -n "${1:-}" ]; then
     PARAMS_DIR="$1"
 else
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        PARAMS_DIR="$HOME/Library/Application Support/Dash DiamondParams"
+        PARAMS_DIR="$HOME/Library/Application Support/DashDiamondParams"
     else
         PARAMS_DIR="$HOME/.dashdiamond-params"
     fi

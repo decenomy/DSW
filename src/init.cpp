@@ -703,7 +703,7 @@ void ThreadImport(std::vector<fs::path> vImportFiles)
 }
 
 /** Sanity checks
- *  Ensure that Dash Diamond is running in a usable environment with all
+ *  Ensure that DashDiamond is running in a usable environment with all
  *  necessary library support.
  */
 bool InitSanityCheck(void)
@@ -963,7 +963,7 @@ void InitLogging()
 #else
     version_string += " (release build)";
 #endif
-    LogPrintf("Dash Diamond version %s (%s)\n", version_string, CLIENT_DATE);
+    LogPrintf("DashDiamond version %s (%s)\n", version_string, CLIENT_DATE);
 }
 
 /** Initialize dashdiamond.
@@ -1122,11 +1122,11 @@ bool AppInit2()
 
     // Sanity check
     if (!InitSanityCheck())
-        return UIError(_("Initialization sanity check failed. Dash Diamond is shutting down."));
+        return UIError(_("Initialization sanity check failed. DashDiamond is shutting down."));
 
     std::string strDataDir = GetDataDir().string();
 
-    // Make sure only a single Dash Diamond process is using the data directory.
+    // Make sure only a single DashDiamond process is using the data directory.
     fs::path pathLockFile = GetDataDir() / ".lock";
     FILE* file = fsbridge::fopen(pathLockFile, "a"); // empty lock file; created if it doesn't exist.
     if (file) fclose(file);
@@ -1134,7 +1134,7 @@ bool AppInit2()
 
     // Wait maximum 10 seconds if an old wallet is still running. Avoids lockup during restart
     if (!lock.timed_lock(boost::get_system_time() + boost::posix_time::seconds(10)))
-        return UIError(strprintf(_("Cannot obtain a lock on data directory %s. Dash Diamond is probably already running."), strDataDir));
+        return UIError(strprintf(_("Cannot obtain a lock on data directory %s. DashDiamond is probably already running."), strDataDir));
 
 #ifndef WIN32
     CreatePidFile(GetPidFile(), getpid());
@@ -1487,7 +1487,7 @@ bool AppInit2()
                 delete zerocoinDB;
                 delete pSporkDB;
 
-                //Dash Diamond specific: zerocoin and spork DB's
+                //DashDiamond specific: zerocoin and spork DB's
                 zerocoinDB = new CZerocoinDB(0, false, fReindex);
                 pSporkDB = new CSporkDB(0, false, false);
 
@@ -1510,7 +1510,7 @@ bool AppInit2()
                 // End loop if shutdown was requested
                 if (ShutdownRequested()) break;
 
-                // Dash Diamond: load previous sessions sporks if we have them.
+                // DashDiamond: load previous sessions sporks if we have them.
                 uiInterface.InitMessage(_("Loading sporks..."));
                 sporkManager.LoadSporksFromDB();
 

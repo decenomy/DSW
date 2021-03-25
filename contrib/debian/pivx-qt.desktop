@@ -1,6 +1,6 @@
 [Desktop Entry]
 Version=1.0
-Name=Dash Diamond
+Name=DashDiamond
 Comment= DASHD P2P Cryptocurrency
 Comment[fr]= DASHD, monnaie virtuelle cryptographique pair à pair
 Comment[tr]= DASHD, eşten eşe kriptografik sanal para birimi
@@ -10,4 +10,4 @@ Type=Application
 Icon=pivx128
 MimeType=x-scheme-handler/pivx;
 Categories=Office;Finance;
-StartupWMClass=Dash Diamond-qt
+StartupWMClass=DashDiamond-qt

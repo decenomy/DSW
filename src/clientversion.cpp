@@ -14,7 +14,7 @@
  * for both dashdiamondd and dashdiamond-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("Dash Diamond");
+const std::string CLIENT_NAME("DashDiamond");
 
 /**
  * Client version number
