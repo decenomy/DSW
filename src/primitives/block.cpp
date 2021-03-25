@@ -14,9 +14,10 @@
 #include "utilstrencodings.h"
 #include "util.h"
 
+// TODO: Change X11KVS algorithm call to whatever the coin being adapted is used.
 uint256 CBlockHeader::GetHash() const
 {
-     if (nVersion < 4)  {
+     if (nVersion < 4)  { // nVersion = 1, 2, 3
 #if defined(WORDS_BIGENDIAN)
         uint8_t data[80];
         WriteLE32(&data[0], nVersion);
@@ -25,14 +26,14 @@ uint256 CBlockHeader::GetHash() const
         WriteLE32(&data[68], nTime);
         WriteLE32(&data[72], nBits);
         WriteLE32(&data[76], nNonce);
+
         return XEVAN(data, data + 80);
 #else // Can take shortcut for little endian
         return XEVAN(BEGIN(nVersion), END(nNonce));
 #endif
     }
-    // version >= 4
-    return SerializeHash(*this);
-
+	
+    return SerializeHash(*this); // nVersion >= 4
 }
 
 std::string CBlock::ToString() const
