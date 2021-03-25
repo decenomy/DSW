@@ -115,6 +115,17 @@ GLOBAL sph_groestl512_context z_groestl;
 GLOBAL sph_jh512_context z_jh;
 GLOBAL sph_keccak512_context z_keccak;
 GLOBAL sph_skein512_context z_skein;
+GLOBAL sph_luffa512_context     z_luffa;
+GLOBAL sph_cubehash512_context  z_cubehash;
+GLOBAL sph_shavite512_context   z_shavite;
+GLOBAL sph_simd512_context      z_simd;
+GLOBAL sph_echo512_context      z_echo;
+GLOBAL sph_hamsi512_context     z_hamsi;
+GLOBAL sph_fugue512_context     z_fugue;
+GLOBAL sph_shabal512_context    z_shabal;
+GLOBAL sph_whirlpool_context    z_whirlpool;
+GLOBAL sph_sha512_context       z_sha2;
+GLOBAL sph_haval256_5_context   z_haval;
 
 #define fillz()                          \
     do {                                 \
@@ -124,6 +135,17 @@ GLOBAL sph_skein512_context z_skein;
         sph_jh512_init(&z_jh);           \
         sph_keccak512_init(&z_keccak);   \
         sph_skein512_init(&z_skein);     \
+		sph_luffa512_init(&z_luffa);     \
+        sph_cubehash512_init(&z_cubehash); \
+        sph_shavite512_init(&z_shavite); \
+        sph_simd512_init(&z_simd); \
+        sph_echo512_init(&z_echo); \
+        sph_hamsi512_init(&z_hamsi); \
+        sph_fugue512_init(&z_fugue); \
+        sph_shabal512_init(&z_shabal); \
+        sph_whirlpool_init(&z_whirlpool); \
+        sph_sha512_init(&z_sha2); \
+        sph_haval256_5_init(&z_haval); \
     } while (0)
 
 #define ZBLAKE (memcpy(&ctx_blake, &z_blake, sizeof(z_blake)))
