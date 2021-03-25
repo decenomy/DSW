@@ -7,8 +7,6 @@
 #ifndef BITCOIN_CHAINPARAMSBASE_H
 #define BITCOIN_CHAINPARAMSBASE_H
 
-#define 23452 9998
-#define 38843 19998
 
 #include <string>
 #include <vector>

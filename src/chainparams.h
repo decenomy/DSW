@@ -9,9 +9,6 @@
 #ifndef BITCOIN_CHAINPARAMS_H
 #define BITCOIN_CHAINPARAMS_H
 
-#define 12341 9999
-#define 51434 19999
-#define 51436 29999
 
 #include "chainparamsbase.h"
 #include "checkpoints.h"
