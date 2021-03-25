@@ -236,17 +236,16 @@ public:
         pchMessageStart[1] = 0x7b;
         pchMessageStart[2] = 0x86;
         pchMessageStart[3] = 0x77;
-        nDefaultPort = __PORT_MAINNET__;
+        nDefaultPort = 17771;
 
-        vSeeds.push_back(CDNSSeedData("seeder", "seeder.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed2", "seed2.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed3", "seed3.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed4", "seed4.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.__decenomy.net__"));
+	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.777coin.win"));
+        vSeeds.push_back(CDNSSeedData("seed2", "seed2.777coin.win"));
+        vSeeds.push_back(CDNSSeedData("seed3", "seed3.777coin.win"));
+        vSeeds.push_back(CDNSSeedData("seed4", "seed4.777coin.win"));
+	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.777coin.win"));
+	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.777coin.win"));
+	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.777coin.win"));
+	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.777coin.win"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 15); // 7
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 16); // 7
@@ -370,12 +369,13 @@ public:
         pchMessageStart[1] = 0x76;
         pchMessageStart[2] = 0x65;
         pchMessageStart[3] = 0xba;
-        nDefaultPort = __PORT_TESTNET__;
+        nDefaultPort = 51474;
 
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.push_back(CDNSSeedData("tseeder", "tseeder.__decenomy.net__", true));
+        vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "pivx-testnet.seed.fuzzbawls.pw", true));
+        vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "pivx-testnet.seed2.fuzzbawls.pw", true));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet jackpot addresses start with 'x' or 'y'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet jackpot script addresses start with '8' or '9'
@@ -394,7 +394,7 @@ public:
         bech32HRPs[SAPLING_PAYMENT_ADDRESS]      = "ptestsapling";
         bech32HRPs[SAPLING_FULL_VIEWING_KEY]     = "pviewtestsapling";
         bech32HRPs[SAPLING_INCOMING_VIEWING_KEY] = "pivktestsapling";
-        bech32HRPs[SAPLING_EXTENDED_SPEND_KEY]         = "p-secret-spending-key-test";
+        bech32HRPs[SAPLING_EXTENDED_SPEND_KEY]   = "p-secret-spending-key-test";
     }
 
     const Checkpoints::CCheckpointData& Checkpoints() const
@@ -500,7 +500,7 @@ public:
         pchMessageStart[1] = 0xcf;
         pchMessageStart[2] = 0x7e;
         pchMessageStart[3] = 0xac;
-        nDefaultPort = __PORT_REGTEST__;
+        nDefaultPort = 51476;
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
