@@ -318,18 +318,24 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
-    if (nHeight <= 100000) {
-        return 15000 * COIN;
-    } else if (nHeight <= 200000 && nHeight > 100000) {
-        return 17500 * COIN;
-    } else if (nHeight > 200000) {
-        return 20000 * COIN;
-    }
-    return 0;
+    if(nHeight <= 500000)
+        return 1000 * COIN;
+    else if(nHeight <= 600000 && nHeight > 500000)
+        return 2000 * COIN;
+    else if(nHeight <= 700000 && nHeight > 600000)
+        return 3000 * COIN;
+    else if(nHeight <= 800000 && nHeight > 700000)
+        return 5000 * COIN;
+    else if(nHeight <= 900000 && nHeight > 800000)
+        return 7000 * COIN;
+    else
+        return 10000 * COIN;
 }
 
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
+	int prevHeight = nHeight - 1; // In the original DASHD the nHeight refers to the previous block  
+	
     CAmount maxMoneyOut= Params().GetConsensus().nMaxMoneyOut;
 
     if(nMoneySupply >= maxMoneyOut) {
@@ -338,18 +344,44 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
     CAmount nSubsidy;
 
-    if (nHeight == 1) {
-        nSubsidy = 30000000 * COIN; // DASHD coin supply (30M)
-    } else if (nHeight <= 100000) {
+    if (nHeight == 0) {
+        nSubsidy = 180000 * COIN;
+    } else if (prevHeight <= 210240 && prevHeight > 0) {
+        nSubsidy = 5 * COIN;
+    } else if (nHeight <= 350000 && prevHeight > 210240) {
+        nSubsidy = 4.5 * COIN;
+    } else if (nHeight <= 500000 && nHeight > 350000) {
+        nSubsidy = 25 * COIN;
+    } else if (nHeight <= 600000 && nHeight > 500000) {
+        nSubsidy = 60 * COIN;
+    } else if (nHeight <= 700000 && nHeight > 600000) {
         nSubsidy = 100 * COIN;
-    } else if (nHeight > 100000 && nHeight <= 200000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 200000 && nHeight <= 300000) {
+    } else if (nHeight <= 800000 && nHeight > 700000) {
+        nSubsidy = 200 * COIN;
+    } else if (nHeight <= 900000 && nHeight > 800000) {
+        nSubsidy = 300 * COIN;
+    } else if (nHeight <= 1000000 && nHeight > 900000) {
+        nSubsidy = 450 * COIN;
+    } else if (nHeight <= 1100000 && nHeight > 1000000) {
+        nSubsidy = 400 * COIN;
+    } else if (nHeight <= 1200000 && nHeight > 1100000) {
+        nSubsidy = 300 * COIN;
+    } else if (nHeight <= 1300000 && nHeight > 1200000) {
+        nSubsidy = 250 * COIN;
+    } else if (nHeight <= 1400000 && nHeight > 1300000) {
+        nSubsidy = 200 * COIN;
+    } else if (nHeight <= 1500000 && nHeight > 1400000) {
         nSubsidy = 150 * COIN;
-    } else if (nHeight > 300000 && nHeight <= 400000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 400000) {
+    } else if (nHeight <= 1600000 && nHeight > 1500000) {
         nSubsidy = 100 * COIN;
+    } else if (nHeight <= 1700000 && nHeight > 1600000) {
+        nSubsidy = 80 * COIN;
+    } else {
+        nSubsidy = 50 * COIN;
+    }
+	
+	if(Params().IsLiquiMiningBlock(prevHeight + 1)) {
+        nSubsidy += Params().GetLiquiMiningValue(prevHeight + 1);
     }
 
     if(nMoneySupply + nSubsidy > maxMoneyOut) {
@@ -361,9 +393,15 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    if(nHeight <= 5000) return 0;
+    int64_t ret = 0;
 
-    return CMasternode::GetBlockValue(nHeight) * 95 / 100;
+	if (nHeight <= 200) {
+		ret = GetBlockValue(nHeight)  / 100 * 0;
+	} else {
+		ret = GetBlockValue(nHeight)  / 100 * 80;
+	}
+
+    return ret;
 }
 
 CMasternodeBroadcast::CMasternodeBroadcast() :

@@ -298,15 +298,33 @@ bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
     // votes (status = TrxValidationStatus::VoteThreshold) for a finalized budget were found
     // In all cases a masternode will get the payment for this block
 
-    //check for masternode payee
-    if (masternodePayments.IsTransactionValid(txNew, nBlockHeight))
-        return true;
-    LogPrint(BCLog::MASTERNODE,"Invalid mn payment detected %s\n", txNew.ToString().c_str());
+    //check if it's valid liquimining block
+    if (Params().IsLiquiMiningBlock(nBlockHeight)) {
+        LogPrint(BCLog::MASTERNODE, "IsBlockPayeeValid: Check liquimining reward\n");
+        
+        //CScript payee = Params().GetLiquiMiningScriptAtHeight(nBlockHeight);
+        CAmount amount = Params().GetLiquiMiningValue(nBlockHeight);
+        LogPrint(BCLog::MASTERNODE, "IsBlockPayeeValid, expected liquimining amount is %lld, coins %f\n", amount, (float)amount / COIN);
 
-    if (sporkManager.IsSporkActive(SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT))
+        BOOST_FOREACH (CTxOut out, txNew.vout) {
+            if (amount == out.nValue) {
+                return true;
+            }
+        }
+
         return false;
-    LogPrint(BCLog::MASTERNODE,"Masternode payment enforcement is disabled, accepting block\n");
-    return true;
+    } else {
+		//check for masternode payee
+		if (masternodePayments.IsTransactionValid(txNew, nBlockHeight))
+			return true;
+		LogPrint(BCLog::MASTERNODE,"Invalid mn payment detected %s\n", txNew.ToString().c_str());
+
+		if (sporkManager.IsSporkActive(SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT))
+			return false;
+		LogPrint(BCLog::MASTERNODE,"Masternode payment enforcement is disabled, accepting block\n");
+	}
+	
+	return true;
 }
 
 
@@ -316,9 +334,54 @@ void FillBlockPayee(CMutableTransaction& txNew, const CBlockIndex* pindexPrev, b
 
     if (sporkManager.IsSporkActive(SPORK_13_ENABLE_SUPERBLOCKS) && budget.IsBudgetPaymentBlock(pindexPrev->nHeight + 1)) {
         budget.FillBlockPayee(txNew, fProofOfStake);
+    } else if(Params().IsLiquiMiningBlock(pindexPrev->nHeight + 1)) {
+		FillLiquiMiningBlockPayee(txNew, pindexPrev, fProofOfStake);
     } else {
         masternodePayments.FillBlockPayee(txNew, pindexPrev, fProofOfStake);
     }
+}
+
+void FillLiquiMiningBlockPayee(CMutableTransaction& txNew, const CBlockIndex* pindexPrev, bool fProofOfStake)
+{
+    if (!pindexPrev) return;
+
+    int nHeight = pindexPrev->nHeight + 1;
+
+    CAmount blockValue = CMasternode::GetBlockValue(nHeight - 1);
+    //CScript payee = Params().GetLiquiMiningScriptAtHeight(nHeight);
+    CAmount liquiMiningPayment = Params().GetLiquiMiningValue(nHeight);
+
+    if (fProofOfStake) {
+        /**For Proof Of Stake vout[0] must be null
+		 * Stake reward can be split into many different outputs, so we must
+		 * use vout.size() to align with several different cases.
+		 * An additional output is appended as the masternode payment
+		 */
+        unsigned int i = txNew.vout.size();
+        txNew.vout.resize(i + 1);
+        //txNew.vout[i].scriptPubKey = payee;
+        txNew.vout[i].nValue = liquiMiningPayment;
+
+        if (txNew.vout.size() == 4) { //here is a situation: if stake was split, subtraction from the last one may give us negative value, so we have split it
+            //subtract liquimining payment from the stake reward
+            txNew.vout[i - 1].nValue -= liquiMiningPayment / 2;
+            txNew.vout[i - 2].nValue -= liquiMiningPayment / 2;
+        } else {
+            //subtract liquimining payment from the stake reward
+            txNew.vout[i - 1].nValue -= liquiMiningPayment;
+        }
+    } else {
+        txNew.vout.resize(2);
+        //txNew.vout[1].scriptPubKey = payee;
+        txNew.vout[1].nValue = liquiMiningPayment;
+        txNew.vout[0].nValue = blockValue - liquiMiningPayment;
+    }
+
+    //CTxDestination address1;
+    //ExtractDestination(payee, address1);
+    //CBitcoinAddress address2(address1);
+
+    LogPrint(BCLog::MASTERNODE, "LiquiMining payment of %s to %s\n", FormatMoney(liquiMiningPayment).c_str());
 }
 
 std::string GetRequiredPaymentsString(int nBlockHeight)
