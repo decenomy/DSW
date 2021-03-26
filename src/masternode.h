@@ -268,7 +268,7 @@ public:
 
     static CAmount GetMasternodeNodeCollateral(int nHeight);
     static CAmount GetBlockValue(int nHeight);
-    static CAmount GetMasternodePayment(int nHeight);
+    static CAmount GetMasternodePayment();
 };
 
 

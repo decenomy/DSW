@@ -102,9 +102,11 @@ struct Params {
     int64_t nProposalEstablishmentTime;
     int nStakeMinAge;
     int nStakeMinDepth;
+	int nStakeMinDepthV2;
     int64_t nTargetTimespan;
     int64_t nTargetTimespanV2;
     int64_t nTargetSpacing;
+	int64_t nTargetSpacingV2;
     int nTimeSlotLength;
 
     // spork keys
@@ -124,7 +126,6 @@ struct Params {
     // Map with network updates
     NetworkUpgrade vUpgrades[MAX_NETWORK_UPGRADES];
 
-    int64_t TargetTimespan(const bool fV2 = true) const { return fV2 ? nTargetTimespanV2 : nTargetTimespan; }
     uint256 ProofOfStakeLimit(const bool fV2) const { return fV2 ? posLimitV2 : posLimitV1; }
     bool MoneyRange(const CAmount& nValue) const { return (nValue >= 0 && nValue <= nMaxMoneyOut); }
     bool IsTimeProtocolV2(const int nHeight) const { return NetworkUpgradeActive(nHeight, UPGRADE_V4_0); }
@@ -152,7 +153,8 @@ struct Params {
         if (!NetworkUpgradeActive(contextHeight, Consensus::UPGRADE_V3_4))
             return (utxoFromBlockTime + nStakeMinAge <= contextTime);
         // with stake modifier V2+, we require the utxo to be nStakeMinDepth deep in the chain
-        return (contextHeight - utxoFromBlockHeight >= nStakeMinDepth);
+        return (contextHeight - utxoFromBlockHeight >= NetworkUpgradeActive(contextHeight, Consensus::UPGRADE_STAKE_MIN_DEPTH_V2) ?
+		                                               nStakeMinDepthV2 : nStakeMinDepth);
     }
 
     /*

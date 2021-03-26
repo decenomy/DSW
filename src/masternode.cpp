@@ -336,13 +336,17 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 {
 	int prevHeight = nHeight - 1; // In the original DASHD the nHeight refers to the previous block  
 	
-    CAmount maxMoneyOut= Params().GetConsensus().nMaxMoneyOut;
-
-    if(nMoneySupply >= maxMoneyOut) {
-        return 0;
+    if (Params().NetworkID() == CBaseChainParams::TESTNET) {
+        if (nHeight < 200 && nHeight > 0)
+            return 250000 * COIN;
     }
 
-    CAmount nSubsidy;
+    if (Params().IsRegTestNet()) {
+        if (nHeight == 0)
+            return 250 * COIN;
+    }
+
+    CAmount nSubsidy = 0;
 
     if (nHeight == 0) {
         nSubsidy = 180000 * COIN;
@@ -384,21 +388,25 @@ CAmount CMasternode::GetBlockValue(int nHeight)
         nSubsidy += Params().GetLiquiMiningValue(prevHeight + 1);
     }
 
-    if(nMoneySupply + nSubsidy > maxMoneyOut) {
-        return nMoneySupply + nSubsidy - maxMoneyOut;
-    }
+	// Check if we reached the coin max supply.
+
+    if (nMoneySupply + nSubsidy >= Params().MaxMoneyOut())
+        nSubsidy = Params().MaxMoneyOut() - nMoneySupply;
+
+    if (nMoneySupply >= Params().MaxMoneyOut())
+        nSubsidy = 0;
 
     return nSubsidy;
 }
 
-CAmount CMasternode::GetMasternodePayment(int nHeight)
+CAmount CMasternode::GetMasternodePayment()
 {
     int64_t ret = 0;
 
-	if (nHeight <= 200) {
-		ret = GetBlockValue(nHeight)  / 100 * 0;
+	if (chainActive.Height() <= 200) {
+		ret = GetBlockValue(chainActive.Height())  / 100 * 0;
 	} else {
-		ret = GetBlockValue(nHeight)  / 100 * 80;
+		ret = GetBlockValue(chainActive.Height())  / 100 * 80;
 	}
 
     return ret;

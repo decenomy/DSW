@@ -84,6 +84,8 @@ public:
 
     CBaseChainParams::Network NetworkID() const { return networkID; }
     bool IsRegTestNet() const { return NetworkID() == CBaseChainParams::REGTEST; }
+    bool IsTestNet() const { return NetworkID() == CBaseChainParams::TESTNET; }
+	bool IsMainNet() const { return NetworkID() == CBaseChainParams::MAIN; }
 
     CScript GetLiquiMiningScriptAtHeight(int nHeight) const;
 
@@ -96,6 +98,11 @@ public:
     CAmount GetLiquiMiningValue(int nHeight) const {
         return nLiquiMiningValue;
     }
+	
+	CAmount MaxMoneyOut() const { return consensus.nMaxMoneyOut; }
+	
+	int64_t TargetTimespan(int nHeight) const { return TargetSpacing(nHeight) * (consensus.IsTimeProtocolV2(nHeight) ? consensus.nTargetTimespanV2 : consensus.nTargetTimespan); }
+	int64_t TargetSpacing(int nHeight) const { return nHeight >= consensus.vUpgrades[Consensus::UPGRADE_NEW_TARGET_SPACING].nActivationHeight ? consensus.nTargetSpacingV2 : consensus.nTargetSpacing; }
 
 protected:
     CChainParams() {}
