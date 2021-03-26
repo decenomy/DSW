@@ -10,7 +10,7 @@
  * ==========================(LICENSE BEGIN)============================
  *
  * Copyright (c) 2007-2010  Projet RNRT SAPHIR
- *
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
  * "Software"), to deal in the Software without restriction, including
@@ -18,10 +18,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -6616,7 +6616,7 @@ static const sph_u32 T256_16[256][8] = {
 	  SPH_C32(0x908b934b), SPH_C32(0xc76c0020), SPH_C32(0x02ea7b0f),
 	  SPH_C32(0x512948b6), SPH_C32(0x36343593) },
 	{ SPH_C32(0x56fc0090), SPH_C32(0xcc46a705), SPH_C32(0x478a47ae),
-	  SPH_C32(0xe1dcc32a), SPH_C32(0xe9550020), SPH_C32(0x66371d86),
+	  SPH_C32(0xe1dcc32a), SPH_C32(0xe9560020), SPH_C32(0x66371d86),
 	  SPH_C32(0x6dfd4e4a), SPH_C32(0x87c0a52f) },
 	{ SPH_C32(0x29990080), SPH_C32(0xe868b377), SPH_C32(0x87b96750),
 	  SPH_C32(0x217f03f7), SPH_C32(0xb8090030), SPH_C32(0x26c46f7d),
@@ -6673,7 +6673,7 @@ static const sph_u32 T256_16[256][8] = {
 	  SPH_C32(0x734b6993), SPH_C32(0xee9b0030), SPH_C32(0xe2d453c0),
 	  SPH_C32(0xf092ce43), SPH_C32(0x3514e139) },
 	{ SPH_C32(0xe8d600e0), SPH_C32(0x3609dc76), SPH_C32(0x74c64600),
-	  SPH_C32(0x5147098e), SPH_C32(0xe3b50020), SPH_C32(0x6b9dec29),
+	  SPH_C32(0x5147098e), SPH_C32(0xe3b60020), SPH_C32(0x6b9dec29),
 	  SPH_C32(0x75dce5b8), SPH_C32(0x27aa9020) },
 	{ SPH_C32(0xb98a00f0), SPH_C32(0x76faae8d), SPH_C32(0x88216002),
 	  SPH_C32(0x201059ef), SPH_C32(0xcd8c0020), SPH_C32(0x0f408aa0),
@@ -6822,7 +6822,7 @@ static const sph_u32 T256_16[256][8] = {
 	{ SPH_C32(0x96300030), SPH_C32(0x421909f4), SPH_C32(0xadce6eb4),
 	  SPH_C32(0x476365f2), SPH_C32(0xeef500a0), SPH_C32(0xea82c878),
 	  SPH_C32(0xd6902fe6), SPH_C32(0x174b3664) },
-	{ SPH_C32(0xe9550020), SPH_C32(0x66371d86), SPH_C32(0x6dfd4e4a),
+	{ SPH_C32(0xe9560020), SPH_C32(0x66371d86), SPH_C32(0x6dfd4e4a),
 	  SPH_C32(0x87c0a52f), SPH_C32(0xbfa900b0), SPH_C32(0xaa71ba83),
 	  SPH_C32(0x2a7709e4), SPH_C32(0x661c6605) },
 	{ SPH_C32(0xb8090030), SPH_C32(0x26c46f7d), SPH_C32(0x911a6848),
@@ -6888,7 +6888,7 @@ static const sph_u32 T256_16[256][8] = {
 	{ SPH_C32(0x3e680010), SPH_C32(0xce541dad), SPH_C32(0x4c218942),
 	  SPH_C32(0x05a6f03d), SPH_C32(0x064d00d0), SPH_C32(0xd4dd8fb6),
 	  SPH_C32(0x84548843), SPH_C32(0x6453e8b7) },
-	{ SPH_C32(0xe3b50020), SPH_C32(0x6b9dec29), SPH_C32(0x75dce5b8),
+	{ SPH_C32(0xe3b60020), SPH_C32(0x6b9dec29), SPH_C32(0x75dce5b8),
 	  SPH_C32(0x27aa9020), SPH_C32(0x0b6300c0), SPH_C32(0x5d94305f),
 	  SPH_C32(0x011aa3b8), SPH_C32(0x76ed99ae) },
 	{ SPH_C32(0xb2e90030), SPH_C32(0x2b6e9ed2), SPH_C32(0x893bc3ba),

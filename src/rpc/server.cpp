@@ -266,11 +266,11 @@ UniValue stop(const JSONRPCRequest& jsonRequest)
     if (jsonRequest.fHelp || jsonRequest.params.size() > 1)
         throw std::runtime_error(
             "stop\n"
-            "\nStop __DSW__ server.");
+            "\nStop DASHD server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "__DSW__ server stopping";
+    return "DASHD server stopping";
 }
 
 
@@ -360,32 +360,32 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblock",           &waitforblock,           true },
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true },
 
-        /* __DSW__ features */
-        {"__decenomy__", "listmasternodes", &listmasternodes, true },
-        {"__decenomy__", "getmasternodecount", &getmasternodecount, true },
-        {"__decenomy__", "createmasternodebroadcast", &createmasternodebroadcast, true },
-        {"__decenomy__", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
-        {"__decenomy__", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
-        {"__decenomy__", "masternodecurrent", &masternodecurrent, true },
-        {"__decenomy__", "startmasternode", &startmasternode, true },
-        {"__decenomy__", "createmasternodekey", &createmasternodekey, true },
-        {"__decenomy__", "getmasternodeoutputs", &getmasternodeoutputs, true },
-        {"__decenomy__", "listmasternodeconf", &listmasternodeconf, true },
-        {"__decenomy__", "getmasternodestatus", &getmasternodestatus, true },
-        {"__decenomy__", "getmasternodewinners", &getmasternodewinners, true },
-        {"__decenomy__", "getmasternodescores", &getmasternodescores, true },
-        {"__decenomy__", "preparebudget", &preparebudget, true },
-        {"__decenomy__", "submitbudget", &submitbudget, true },
-        {"__decenomy__", "mnbudgetvote", &mnbudgetvote, true },
-        {"__decenomy__", "getbudgetvotes", &getbudgetvotes, true },
-        {"__decenomy__", "getnextsuperblock", &getnextsuperblock, true },
-        {"__decenomy__", "getbudgetprojection", &getbudgetprojection, true },
-        {"__decenomy__", "getbudgetinfo", &getbudgetinfo, true },
-        {"__decenomy__", "mnbudgetrawvote", &mnbudgetrawvote, true },
-        {"__decenomy__", "mnfinalbudget", &mnfinalbudget, true },
-        {"__decenomy__", "checkbudgets", &checkbudgets, true },
-        {"__decenomy__", "mnsync", &mnsync, true },
-        {"__decenomy__", "spork", &spork, true },
+        /* DASHD features */
+        {"dashdiamond", "listmasternodes", &listmasternodes, true },
+        {"dashdiamond", "getmasternodecount", &getmasternodecount, true },
+        {"dashdiamond", "createmasternodebroadcast", &createmasternodebroadcast, true },
+        {"dashdiamond", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
+        {"dashdiamond", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
+        {"dashdiamond", "masternodecurrent", &masternodecurrent, true },
+        {"dashdiamond", "startmasternode", &startmasternode, true },
+        {"dashdiamond", "createmasternodekey", &createmasternodekey, true },
+        {"dashdiamond", "getmasternodeoutputs", &getmasternodeoutputs, true },
+        {"dashdiamond", "listmasternodeconf", &listmasternodeconf, true },
+        {"dashdiamond", "getmasternodestatus", &getmasternodestatus, true },
+        {"dashdiamond", "getmasternodewinners", &getmasternodewinners, true },
+        {"dashdiamond", "getmasternodescores", &getmasternodescores, true },
+        {"dashdiamond", "preparebudget", &preparebudget, true },
+        {"dashdiamond", "submitbudget", &submitbudget, true },
+        {"dashdiamond", "mnbudgetvote", &mnbudgetvote, true },
+        {"dashdiamond", "getbudgetvotes", &getbudgetvotes, true },
+        {"dashdiamond", "getnextsuperblock", &getnextsuperblock, true },
+        {"dashdiamond", "getbudgetprojection", &getbudgetprojection, true },
+        {"dashdiamond", "getbudgetinfo", &getbudgetinfo, true },
+        {"dashdiamond", "mnbudgetrawvote", &mnbudgetrawvote, true },
+        {"dashdiamond", "mnfinalbudget", &mnfinalbudget, true },
+        {"dashdiamond", "checkbudgets", &checkbudgets, true },
+        {"dashdiamond", "mnsync", &mnsync, true },
+        {"dashdiamond", "spork", &spork, true },
 
 #ifdef ENABLE_WALLET
         /* Wallet */
@@ -598,14 +598,14 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(std::string methodname, std::string args)
 {
-    return "> __decenomy__-cli " + methodname + " " + args + "\n";
+    return "> dashdiamond-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(std::string methodname, std::string args)
 {
     return "> curl --user myusername --data-binary '{\"jsonrpc\": \"1.0\", \"id\":\"curltest\", "
            "\"method\": \"" +
-           methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:__RPCPORT_MAINNET__/\n";
+           methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:23452/\n";
 }
 
 void RPCSetTimerInterfaceIfUnset(RPCTimerInterface *iface)

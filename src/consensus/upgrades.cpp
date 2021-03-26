@@ -16,7 +16,7 @@
 const struct NUInfo NetworkUpgradeInfo[Consensus::MAX_NETWORK_UPGRADES] = {
         {
                 /*.strName =*/ "Base",
-                /*.strInfo =*/ "__Decenomy__ network",
+                /*.strInfo =*/ "DashDiamond network",
         },
         {
                 /*.strName =*/ "PoS",
@@ -57,6 +57,14 @@ const struct NUInfo NetworkUpgradeInfo[Consensus::MAX_NETWORK_UPGRADES] = {
         {
                 /*.strName =*/ "Test_dummy",
                 /*.strInfo =*/ "Test dummy info",
+        },
+		{
+                /*.strName =*/ "stake_min_depth_v2",
+                /*.strInfo =*/ "new stake min depth",
+        },
+        {
+                /*.strName =*/ "new_target_spacing",
+                /*.strInfo =*/ "new target spacing",
         },
 };
 

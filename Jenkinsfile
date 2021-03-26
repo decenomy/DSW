@@ -3,9 +3,9 @@ pipeline {
     agent any
 
     environment {
-        NAME = '__Decenomy__'
-        BASE_NAME = '__decenomy__'
-        ZIP_NAME = '__DSW__'
+        NAME = 'DashDiamond'
+        BASE_NAME = 'dashdiamond'
+        ZIP_NAME = 'DASHD'
     }
 
     stages {
@@ -19,6 +19,7 @@ pipeline {
                     make -j $(nproc) HOST=x86_64-pc-linux-gnu
                     make -j $(nproc) HOST=x86_64-w64-mingw32
                     make -j $(nproc) HOST=aarch64-linux-gnu
+                    make -j $(nproc) HOST=arm-linux-gnueabihf
                     rm -rf SDKs
                     mkdir SDKs
                     cd SDKs
@@ -31,7 +32,7 @@ pipeline {
             }
         }
 
-        stage("build_linux") {
+        stage("build_x86_64-pc-linux-gnu") {
 
             steps {
                 echo 'building linux ...'
@@ -44,7 +45,7 @@ pipeline {
             }
         }
 
-        stage("deploy_linux") {
+        stage("deploy_x86_64-pc-linux-gnu") {
 
             steps {
                 echo 'deploy linux ...'
@@ -59,7 +60,7 @@ pipeline {
             }
         }
 
-        stage("build_windows") {
+        stage("build_x86_64-w64-mingw32") {
 
             steps {
                 echo 'building windows ...'
@@ -72,7 +73,7 @@ pipeline {
             }
         }
 
-        stage("deploy_windows") {
+        stage("deploy_x86_64-w64-mingw32") {
 
             steps {
                 echo 'deploy windows ...'
@@ -86,7 +87,7 @@ pipeline {
             }
         }
 
-        stage("build_macos") {
+        stage("build_x86_64-apple-darwin14") {
 
             steps {
                 echo 'building macos ...'
@@ -99,7 +100,7 @@ pipeline {
             }
         }
 
-        stage("deploy_macos") {
+        stage("deploy_x86_64-apple-darwin14") {
 
             steps {
                 echo 'deploy macos ...'
@@ -114,7 +115,7 @@ pipeline {
             }
         }
 
-        stage("build_aarch64") {
+        stage("build_aarch64-linux-gnu") {
 
             steps {
                 echo 'building aarch64 ...'
@@ -127,7 +128,7 @@ pipeline {
             }
         }
 
-        stage("deploy_aarch64") {
+        stage("deploy_aarch64-linux-gnu") {
 
             steps {
                 echo 'deploy aarch64 ...'
@@ -141,7 +142,7 @@ pipeline {
             }
         }
 
-        stage("build_aarch32") {
+        stage("build_arm-linux-gnueabihf") {
 
             steps {
                 echo 'building aarch32 ...'
@@ -154,7 +155,7 @@ pipeline {
             }
         }
 
-        stage("deploy_aarch32") {
+        stage("deploy_arm-linux-gnueabihf") {
 
             steps {
                 echo 'deploy aarch32 ...'

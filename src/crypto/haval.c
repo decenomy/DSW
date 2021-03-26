@@ -11,7 +11,7 @@
  * ==========================(LICENSE BEGIN)============================
  *
  * Copyright (c) 2007-2010  Projet RNRT SAPHIR
- *
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
  * "Software"), to deal in the Software without restriction, including
@@ -19,10 +19,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -40,6 +40,10 @@
 #include <string.h>
 
 #include "sph_haval.h"
+
+#ifdef __cplusplus
+extern "C"{
+#endif
 
 #if SPH_SMALL_FOOTPRINT && !defined SPH_SMALL_FOOTPRINT_HAVAL
 #define SPH_SMALL_FOOTPRINT_HAVAL   1
@@ -630,6 +634,7 @@ haval_init(sph_haval_context *sc, unsigned olen, unsigned passes)
 	sc->count_high = 0;
 	sc->count_low = 0;
 #endif
+	
 }
 
 /*
@@ -809,7 +814,7 @@ haval_out(sph_haval_context *sc, void *dst)
 	DSTATE;
 	unsigned char *buf;
 
-	buf = (unsigned char*)dst;
+	buf = dst;
 	RSTATE;
 	switch (sc->olen) {
 	case 4:
@@ -878,26 +883,26 @@ haval_out(sph_haval_context *sc, void *dst)
 void \
 sph_haval ## xxx ## _ ## y ## _init(void *cc) \
 { \
-	haval_init((sph_haval_context*)cc, xxx >> 5, y); \
+	haval_init(cc, xxx >> 5, y); \
 } \
  \
 void \
 sph_haval ## xxx ## _ ## y (void *cc, const void *data, size_t len) \
 { \
-	haval ## y((sph_haval_context*)cc, data, len); \
+	haval ## y(cc, data, len); \
 } \
  \
 void \
 sph_haval ## xxx ## _ ## y ## _close(void *cc, void *dst) \
 { \
-	haval ## y ## _close((sph_haval_context*)cc, 0, 0, dst); \
+	haval ## y ## _close(cc, 0, 0, dst); \
 } \
  \
 void \
 sph_haval ## xxx ## _ ## y ## addbits_and_close( \
 	void *cc, unsigned ub, unsigned n, void *dst) \
 { \
-	haval ## y ## _close((sph_haval_context*)cc, ub, n, dst); \
+	haval ## y ## _close(cc, ub, n, dst); \
 }
 
 API(128, 3)
@@ -973,3 +978,6 @@ sph_haval_5_comp(const sph_u32 msg[32], sph_u32 val[8])
 	WVAL;
 }
 
+#ifdef __cplusplus
+}
+#endif	

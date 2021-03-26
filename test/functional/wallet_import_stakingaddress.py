@@ -35,7 +35,7 @@ class ImportStakingTest(PivxTestFramework):
         NUM_OF_DELEGATIONS = 4  # Create 2*NUM_OF_DELEGATIONS staking addresses
         self.log_title()
         self.log.info("Activating cold staking spork")
-        assert_equal("success", self.activate_spork(0, "SPORK_17_COLDSTAKING_ENFORCEMENT"))
+        assert_equal("success", self.activate_spork(0, "SPORK_19_COLDSTAKING_ENFORCEMENT"))
 
         # Create cold staking addresses and delegations
         self.log.info("Creating new staking addresses and sending delegations")
@@ -43,7 +43,7 @@ class ImportStakingTest(PivxTestFramework):
                              for i in range(2 * NUM_OF_DELEGATIONS)]
         delegations = []
         for i, sa in enumerate(staking_addresses):
-            # delegate 10 __DSW__
+            # delegate 10 DASHD
             delegations.append(self.nodes[0].delegatestake(sa, 10)['txid'])
             # mine a block and check staking balance
             self.nodes[0].generate(1)

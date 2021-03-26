@@ -29,9 +29,17 @@
  *
  * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
  */
+ 
+#ifndef MAC_OSX
+#pragma GCC diagnostic ignored "-fpermissive"
+#endif
 
 #include <stddef.h>
 #include <string.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #include "sph_sha2.h"
 
@@ -182,7 +190,7 @@ sph_sha384_init(void *cc)
 {
 	sph_sha384_context *sc;
 
-	sc = (sph_sha384_context*)cc;
+	sc = (sph_sha384_context *)cc;
 	memcpy(sc->val, H384, sizeof H384);
 	sc->count = 0;
 }
@@ -193,7 +201,7 @@ sph_sha512_init(void *cc)
 {
 	sph_sha512_context *sc;
 
-	sc = (sph_sha512_context*)cc;
+	sc = (sph_sha384_context *)cc;
 	memcpy(sc->val, H512, sizeof H512);
 	sc->count = 0;
 }
@@ -201,7 +209,7 @@ sph_sha512_init(void *cc)
 #define RFUN   sha3_round
 #define HASH   sha384
 #define BE64   1
-#include "md_helper.c"
+#include "sph_md_helper.c"
 
 /* see sph_sha3.h */
 void
@@ -244,5 +252,8 @@ sph_sha384_comp(const sph_u64 msg[16], sph_u64 val[8])
 #undef SHA3_IN
 }
 
+#ifdef __cplusplus
+}
 #endif
 
+#endif

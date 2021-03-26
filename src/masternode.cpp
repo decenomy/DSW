@@ -203,9 +203,11 @@ void CMasternode::Check(bool forceCheck)
         return;
     }
 
-    if(lastPing.sigTime - sigTime < MASTERNODE_MIN_MNP_SECONDS){
-        activeState = MASTERNODE_PRE_ENABLED;
-        return;
+    if(Params().GetConsensus().NetworkUpgradeActive(chainActive.Height(), Consensus::UPGRADE_V3_4)) {
+        if (lastPing.sigTime - sigTime < MASTERNODE_MIN_MNP_SECONDS) {
+            activeState = MASTERNODE_PRE_ENABLED;
+            return;
+        }
     }
 
     if (!unitTest) {
@@ -318,52 +320,98 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
-    if (nHeight <= 100000) {
-        return 15000 * COIN;
-    } else if (nHeight <= 200000 && nHeight > 100000) {
-        return 17500 * COIN;
-    } else if (nHeight > 200000) {
-        return 20000 * COIN;
-    }
-    return 0;
+    if(nHeight <= 500000)
+        return 1000 * COIN;
+    else if(nHeight <= 600000 && nHeight > 500000)
+        return 2000 * COIN;
+    else if(nHeight <= 700000 && nHeight > 600000)
+        return 3000 * COIN;
+    else if(nHeight <= 800000 && nHeight > 700000)
+        return 5000 * COIN;
+    else if(nHeight <= 900000 && nHeight > 800000)
+        return 7000 * COIN;
+    else
+        return 10000 * COIN;
 }
 
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
-    CAmount maxMoneyOut= Params().GetConsensus().nMaxMoneyOut;
-
-    if(nMoneySupply >= maxMoneyOut) {
-        return 0;
+	int prevHeight = nHeight - 1; // In the original DASHD the nHeight refers to the previous block  
+	
+    if (Params().NetworkID() == CBaseChainParams::TESTNET) {
+        if (nHeight < 200 && nHeight > 0)
+            return 250000 * COIN;
     }
 
-    CAmount nSubsidy;
+    if (Params().IsRegTestNet()) {
+        if (nHeight == 0)
+            return 250 * COIN;
+    }
 
-    if (nHeight == 1) {
-        nSubsidy = 30000000 * COIN; // __DSW__ coin supply (30M)
-    } else if (nHeight <= 100000) {
+    CAmount nSubsidy = 0;
+
+    if (nHeight == 0) {
+        nSubsidy = 180000 * COIN;
+    } else if (prevHeight <= 210240 && prevHeight > 0) {
+        nSubsidy = 5 * COIN;
+    } else if (nHeight <= 350000 && prevHeight > 210240) {
+        nSubsidy = 4.5 * COIN;
+    } else if (nHeight <= 500000 && nHeight > 350000) {
+        nSubsidy = 25 * COIN;
+    } else if (nHeight <= 600000 && nHeight > 500000) {
+        nSubsidy = 60 * COIN;
+    } else if (nHeight <= 700000 && nHeight > 600000) {
         nSubsidy = 100 * COIN;
-    } else if (nHeight > 100000 && nHeight <= 200000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 200000 && nHeight <= 300000) {
+    } else if (nHeight <= 800000 && nHeight > 700000) {
+        nSubsidy = 200 * COIN;
+    } else if (nHeight <= 900000 && nHeight > 800000) {
+        nSubsidy = 300 * COIN;
+    } else if (nHeight <= 1000000 && nHeight > 900000) {
+        nSubsidy = 450 * COIN;
+    } else if (nHeight <= 1100000 && nHeight > 1000000) {
+        nSubsidy = 400 * COIN;
+    } else if (nHeight <= 1200000 && nHeight > 1100000) {
+        nSubsidy = 300 * COIN;
+    } else if (nHeight <= 1300000 && nHeight > 1200000) {
+        nSubsidy = 250 * COIN;
+    } else if (nHeight <= 1400000 && nHeight > 1300000) {
+        nSubsidy = 200 * COIN;
+    } else if (nHeight <= 1500000 && nHeight > 1400000) {
         nSubsidy = 150 * COIN;
-    } else if (nHeight > 300000 && nHeight <= 400000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 400000) {
+    } else if (nHeight <= 1600000 && nHeight > 1500000) {
         nSubsidy = 100 * COIN;
+    } else if (nHeight <= 1700000 && nHeight > 1600000) {
+        nSubsidy = 80 * COIN;
+    } else {
+        nSubsidy = 50 * COIN;
+    }
+	
+	if(Params().IsLiquiMiningBlock(prevHeight + 1)) {
+        nSubsidy += Params().GetLiquiMiningValue(prevHeight + 1);
     }
 
-    if(nMoneySupply + nSubsidy > maxMoneyOut) {
-        return nMoneySupply + nSubsidy - maxMoneyOut;
-    }
+	// Check if we reached the coin max supply.
+
+    if (nMoneySupply + nSubsidy >= Params().MaxMoneyOut())
+        nSubsidy = Params().MaxMoneyOut() - nMoneySupply;
+
+    if (nMoneySupply >= Params().MaxMoneyOut())
+        nSubsidy = 0;
 
     return nSubsidy;
 }
 
-CAmount CMasternode::GetMasternodePayment(int nHeight)
+CAmount CMasternode::GetMasternodePayment()
 {
-    if(nHeight <= 5000) return 0;
+    int64_t ret = 0;
 
-    return CMasternode::GetBlockValue(nHeight) * 95 / 100;
+	if (chainActive.Height() <= 200) {
+		ret = GetBlockValue(chainActive.Height())  / 100 * 0;
+	} else {
+		ret = GetBlockValue(chainActive.Height())  / 100 * 80;
+	}
+
+    return ret;
 }
 
 CMasternodeBroadcast::CMasternodeBroadcast() :
@@ -703,13 +751,13 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
     }
 
     // verify that sig time is legit in past
-    // should be at least not earlier than block when 1000 __DSW__ tx got MASTERNODE_MIN_CONFIRMATIONS
+    // should be at least not earlier than block when 1000 DASHD tx got MASTERNODE_MIN_CONFIRMATIONS
     uint256 hashBlock = UINT256_ZERO;
     CTransaction tx2;
     GetTransaction(vin.prevout.hash, tx2, hashBlock, true);
     BlockMap::iterator mi = mapBlockIndex.find(hashBlock);
     if (mi != mapBlockIndex.end() && (*mi).second) {
-        CBlockIndex* pMNIndex = (*mi).second;                                                        // block for 1000 __DSW__ tx -> 1 confirmation
+        CBlockIndex* pMNIndex = (*mi).second;                                                        // block for 1000 DASHD tx -> 1 confirmation
         CBlockIndex* pConfIndex = chainActive[pMNIndex->nHeight + MASTERNODE_MIN_CONFIRMATIONS - 1]; // block where tx got MASTERNODE_MIN_CONFIRMATIONS
         if (pConfIndex->GetBlockTime() > sigTime) {
             LogPrint(BCLog::MASTERNODE,"mnb - Bad sigTime %d for Masternode %s (%i conf block is at %d)\n",
