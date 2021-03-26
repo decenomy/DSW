@@ -1,15 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-    <defs>
-        <style type="text/css">
-            .cls-1{opacity:.7}.cls-2{fill:#fff}.cls-3{fill:none}
-        </style>
-    </defs>
-    <g id="ic_mint" class="cls-1">
-        <g id="Group_9004" data-name="Group 9004">
-            <path id="Path_18964" d="M6 5h12v2.586l-.793-.793-1.414 1.414L19 11.414l3.207-3.207-1.414-1.414-.793.793V3H4v7h2z" class="cls-2" data-name="Path 18964"/>
-            <path id="Path_18965" d="M12 8a4 4 0 1 0 4 4 4 4 0 0 0-4-4zm0 6a2 2 0 1 1 2-2 2 2 0 0 1-2 2z" class="cls-2" data-name="Path 18965"/>
-            <path id="Path_18966" d="M18 19H6v-2.586l.793.793 1.414-1.414L5 12.586l-3.207 3.207 1.414 1.414.793-.793V21h16v-7h-2z" class="cls-2" data-name="Path 18966"/>
-        </g>
-        <path id="Rectangle_4647" d="M0 0h24v24H0z" class="cls-3" data-name="Rectangle 4647"/>
-    </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;}
+	.st1{fill:#2EA1FF;}
+</style>
+<rect class="st0" width="24" height="24"/>
+<g id="Group_8823">
+	<path id="Path_18880" class="st1" d="M8,12c0,2.2,1.8,4,4,4s4-1.8,4-4s-1.8-4-4-4S8,9.8,8,12z M14,12c0,1.1-0.9,2-2,2s-2-0.9-2-2
+		s0.9-2,2-2S14,10.9,14,12z"/>
+	<path id="Path_18881" class="st1" d="M7,8H5.1C7.3,4.2,12.2,2.9,16,5.1c2.4,1.4,4,4,4,6.9h2c0-5.5-4.5-10-10-10C8.9,2,5.9,3.5,4,6
+		V5H2v5h5V8z"/>
+	<path id="Path_18882" class="st1" d="M17,16h1.9c-2.2,3.8-7.1,5.1-10.9,2.9c-2.4-1.4-4-4-4-6.9H2c0,5.5,4.5,10,10,10
+		c3.1,0,6.1-1.5,8-4v1h2v-5h-5V16z"/>
+</g>
+<path id="Rectangle_4408" class="st0" d="M0,0h24v24H0V0z"/>
 </svg>
