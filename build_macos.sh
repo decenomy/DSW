@@ -31,6 +31,6 @@ fi
     cd ..
 
 # Create zip file of binaries
-    cp DSW/src/dashdiamondd DSW/src/dashdiamond-cli DSW/src/dashdiamond-tx DSW/src/qt/dashdiamond-qt DSW/Dash Diamond-Core.dmg .
-    zip DASHD-MacOS.zip dashdiamondd dashdiamond-cli dashdiamond-tx dashdiamond-qt Dash Diamond-Core.dmg
-    rm -f dashdiamondd dashdiamond-cli dashdiamond-tx dashdiamond-qt Dash Diamond-Core.dmg
+    cp DSW/src/dashdiamondd DSW/src/dashdiamond-cli DSW/src/dashdiamond-tx DSW/src/qt/dashdiamond-qt DSW/DashDiamond-Core.dmg .
+    zip DASHD-MacOS.zip dashdiamondd dashdiamond-cli dashdiamond-tx dashdiamond-qt DashDiamond-Core.dmg
+    rm -f dashdiamondd dashdiamond-cli dashdiamond-tx dashdiamond-qt DashDiamond-Core.dmg

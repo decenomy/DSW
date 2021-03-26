@@ -15,7 +15,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"io.dashdiamond.Dash Diamond-Qt";
+        return @"io.dashdiamond.DashDiamond-Qt";
     } else {
         return [self __bundleIdentifier];
     }

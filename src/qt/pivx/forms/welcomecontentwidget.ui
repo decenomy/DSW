@@ -937,7 +937,7 @@
                      </property>
                      <property name="text">
                       <string>Welcome to
-Dash Diamond Wallet</string>
+DashDiamond Wallet</string>
                      </property>
                      <property name="alignment">
                       <set>Qt::AlignCenter</set>

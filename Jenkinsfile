@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        NAME = 'Dash Diamond'
+        NAME = 'DashDiamond'
         BASE_NAME = 'dashdiamond'
         ZIP_NAME = 'DASHD'
     }

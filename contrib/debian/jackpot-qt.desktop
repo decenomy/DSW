@@ -1,9 +1,9 @@
 [Desktop Entry]
 Version=1.0
-Name=Dash Diamond 
-Comment=Dash Diamond P2P Cryptocurrency
-Comment[fr]=Dash Diamond, monnaie virtuelle cryptographique pair à pair
-Comment[tr]=Dash Diamond, eşten eşe kriptografik sanal para birimi
+Name=DashDiamond 
+Comment=DashDiamond P2P Cryptocurrency
+Comment[fr]=DashDiamond, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=DashDiamond, eşten eşe kriptografik sanal para birimi
 Exec=dashdiamond-qt %u
 Terminal=false
 Type=Application

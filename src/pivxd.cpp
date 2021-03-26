@@ -29,8 +29,8 @@
  *
  * \section intro_sec Introduction
  *
- * This is the developer documentation of the reference client for an experimental new digital currency called Dash Diamond (https://dashdiamond.net//),
- * which enables instant payments to anyone, anywhere in the world. Dash Diamond uses peer-to-peer technology to operate
+ * This is the developer documentation of the reference client for an experimental new digital currency called DashDiamond (https://dashdiamond.net//),
+ * which enables instant payments to anyone, anywhere in the world. DashDiamond uses peer-to-peer technology to operate
  * with no central authority: managing transactions and issuing money are carried out collectively by the network.
  *
  * The software is a community-driven open source project, released under the MIT license.
@@ -68,13 +68,13 @@ bool AppInit(int argc, char* argv[])
 
     // Process help and version before taking care about datadir
     if (mapArgs.count("-?") || mapArgs.count("-help") || mapArgs.count("-version")) {
-        std::string strUsage = _("Dash Diamond Daemon") + " " + _("version") + " " + FormatFullVersion() + "\n";
+        std::string strUsage = _("DashDiamond Daemon") + " " + _("version") + " " + FormatFullVersion() + "\n";
 
         if (mapArgs.count("-version")) {
             strUsage += LicenseInfo();
         } else {
             strUsage += "\n" + _("Usage:") + "\n" +
-                        "  dashdiamondd [options]                     " + _("Start Dash Diamond Daemon") + "\n";
+                        "  dashdiamondd [options]                     " + _("Start DashDiamond Daemon") + "\n";
 
             strUsage += "\n" + HelpMessage(HMM_BITCOIND);
         }
@@ -120,7 +120,7 @@ bool AppInit(int argc, char* argv[])
 #ifndef WIN32
         fDaemon = GetBoolArg("-daemon", false);
         if (fDaemon) {
-            fprintf(stdout, "Dash Diamond server starting\n");
+            fprintf(stdout, "DashDiamond server starting\n");
 
             // Daemonize
             pid_t pid = fork();

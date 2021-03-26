@@ -744,7 +744,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         // Write a dashdiamond.desktop file to the autostart directory:
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
-        optionFile << "Name=Dash Diamond\n";
+        optionFile << "Name=DashDiamond\n";
         optionFile << "Exec=" << pszExePath << " -min\n";
         optionFile << "Terminal=false\n";
         optionFile << "Hidden=false\n";

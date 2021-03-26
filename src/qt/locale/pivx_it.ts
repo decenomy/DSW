@@ -1164,16 +1164,16 @@ Si avvierà automaticamente non appena il portafoglio avrà sufficienti conferme
         <translation>versione</translation>
     </message>
     <message>
-        <source>Dash Diamond</source>
-        <translation>Dash Diamond</translation>
+        <source>DashDiamond</source>
+        <translation>DashDiamond</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Dash Diamond</source>
-        <translation>Informazioni su Dash Diamond</translation>
+        <source>About DashDiamond</source>
+        <translation>Informazioni su DashDiamond</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1227,16 +1227,16 @@ Si avvierà automaticamente non appena il portafoglio avrà sufficienti conferme
         <translation>Benvenuto</translation>
     </message>
     <message>
-        <source>Welcome to Dash Diamond.</source>
-        <translation>Benvenuto in Dash Diamond.</translation>
+        <source>Welcome to DashDiamond.</source>
+        <translation>Benvenuto in DashDiamond.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Dash Diamond will store its data.</source>
-        <translation>Essendo il primo avvio dell'applicazione, puoi scegliere dove Dash Diamond salverà i propri dati.</translation>
+        <source>As this is the first time the program is launched, you can choose where DashDiamond will store its data.</source>
+        <translation>Essendo il primo avvio dell'applicazione, puoi scegliere dove DashDiamond salverà i propri dati.</translation>
     </message>
     <message>
-        <source>Dash Diamond will download and store a copy of the DASHD block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Dash Diamond scaricherà e salverà una copia della blockchain DASHD. Verranno salvati almeno %1GB di dati in questa cartella, che cresceranno nel tempo. In questa cartella verrà salvato anche il portafoglio.</translation>
+        <source>DashDiamond will download and store a copy of the DASHD block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>DashDiamond scaricherà e salverà una copia della blockchain DASHD. Verranno salvati almeno %1GB di dati in questa cartella, che cresceranno nel tempo. In questa cartella verrà salvato anche il portafoglio.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1255,8 +1255,8 @@ Si avvierà automaticamente non appena il portafoglio avrà sufficienti conferme
         <translation>OK</translation>
     </message>
     <message>
-        <source>Dash Diamond</source>
-        <translation>Dash Diamond</translation>
+        <source>DashDiamond</source>
+        <translation>DashDiamond</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -2083,8 +2083,8 @@ STAKING</translation>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>Dash Diamond</source>
-        <translation>Dash Diamond</translation>
+        <source>DashDiamond</source>
+        <translation>DashDiamond</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -2111,8 +2111,8 @@ STAKING</translation>
         <translation>Chiude l'applicazione</translation>
     </message>
     <message>
-        <source>Dash Diamond client</source>
-        <translation>Dash Diamond</translation>
+        <source>DashDiamond client</source>
+        <translation>DashDiamond</translation>
     </message>
     <message>
         <source>Error</source>
@@ -2316,8 +2316,8 @@ Indirizzo: %4
         <translation>Si è verificato un errore irreversibile. DASHD non può più continuare in modo sicuro e verrà chiuso.</translation>
     </message>
     <message>
-        <source>Dash Diamond</source>
-        <translation>Dash Diamond</translation>
+        <source>DashDiamond</source>
+        <translation>DashDiamond</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -2336,8 +2336,8 @@ Indirizzo: %4
         <translation>Errore durante la lettura del file di configurazione del Masternode: %1</translation>
     </message>
     <message>
-        <source>Dash Diamond didn't yet exit safely...</source>
-        <translation>Dash Diamond non è ancora uscito in modo sicuro...</translation>
+        <source>DashDiamond didn't yet exit safely...</source>
+        <translation>DashDiamond non è ancora uscito in modo sicuro...</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -4846,8 +4846,8 @@ Sei sicuro?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Dash Diamond is shutting down...</source>
-        <translation>Dash Diamond si sta spegnendo...</translation>
+        <source>DashDiamond is shutting down...</source>
+        <translation>DashDiamond si sta spegnendo...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4876,8 +4876,8 @@ Sei sicuro?
         <translation>Caricamento...</translation>
     </message>
     <message>
-        <source>Dash Diamond</source>
-        <translation>Dash Diamond</translation>
+        <source>DashDiamond</source>
+        <translation>DashDiamond</translation>
     </message>
 </context>
 <context>
@@ -5416,9 +5416,9 @@ Selezionare meno ingressi con controllo coin.</translation>
     </message>
     <message>
         <source>Welcome to
-Dash Diamond Wallet</source>
+DashDiamond Wallet</source>
         <translation>Benvenuto in
-Portafoglio Dash Diamond.</translation>
+Portafoglio DashDiamond.</translation>
     </message>
     <message>
         <source>DASHD is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
@@ -5468,8 +5468,8 @@ Portafoglio Dash Diamond.</translation>
         <translation>Associa l'indirizzo indicato per ascoltare le connessioni JSON-RPC. Usa la notazione [host]:porta per IPv6. Questa opzione può essere specificata più volte (impostazione predefinita: associa a tutte le interfacce)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Dash Diamond is probably already running.</source>
-        <translation>Impossibile allocare la directory di dati %s. Probabilmente Dash Diamond è già in esecuzione.</translation>
+        <source>Cannot obtain a lock on data directory %s. DashDiamond is probably already running.</source>
+        <translation>Impossibile allocare la directory di dati %s. Probabilmente DashDiamond è già in esecuzione.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -5632,8 +5632,8 @@ Portafoglio Dash Diamond.</translation>
         <translation>La lunghezza totale della stringa della versione di rete (%i) supera la lunghezza massima (%i). Ridurre il numero o la dimensione degli uacomments.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Dash Diamond is probably already running.</source>
-        <translation>Impossibile associare %s su questo computer. Probabilmente Dash Diamond è già in esecuzione.</translation>
+        <source>Unable to bind to %s on this computer. DashDiamond is probably already running.</source>
+        <translation>Impossibile associare %s su questo computer. Probabilmente DashDiamond è già in esecuzione.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -5648,8 +5648,8 @@ Portafoglio Dash Diamond.</translation>
         <translation>Attenzione: -paytxfee è impostato molto alto! Questa è la commissione di transazione che dovrai pagare se invii una transazione.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Dash Diamond will not work properly.</source>
-        <translation>Avvertenza: verificare che la data e l'ora del computer siano corrette! Se l'orologio è sbagliato, Dash Diamond non funzionerà correttamente.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong DashDiamond will not work properly.</source>
+        <translation>Avvertenza: verificare che la data e l'ora del computer siano corrette! Se l'orologio è sbagliato, DashDiamond non funzionerà correttamente.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5864,8 +5864,8 @@ Portafoglio Dash Diamond.</translation>
         <translation>Informazioni</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Dash Diamond is shutting down.</source>
-        <translation>Verifica dell'integrità dell'inizializzazione non riuscita. Dash Diamond si sta spegnendo.</translation>
+        <source>Initialization sanity check failed. DashDiamond is shutting down.</source>
+        <translation>Verifica dell'integrità dell'inizializzazione non riuscita. DashDiamond si sta spegnendo.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -6200,8 +6200,8 @@ Portafoglio Dash Diamond.</translation>
         <translation>Importo positivo minimo (in DASHD) consentito da GUI e RPC per la soglia di ripartizione della partecipazione (default: %s)</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong Dash Diamond will not work properly.</source>
-        <translation>Verificare che la data e l'ora del computer siano corrette! Se l'orologio sincronizzato, Dash Diamond non funzionerà correttamente.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong DashDiamond will not work properly.</source>
+        <translation>Verificare che la data e l'ora del computer siano corrette! Se l'orologio sincronizzato, DashDiamond non funzionerà correttamente.</translation>
     </message>
     <message>
         <source>Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect/-noconnect)</source>
@@ -6610,8 +6610,8 @@ Portafoglio Dash Diamond.</translation>
         <translation>Il portafoglio %s risiede al di fuori della directory di dati %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Dash Diamond to complete</source>
-        <translation>Il portafoglio doveva essere riscritto: riavviare Dash Diamond per completare</translation>
+        <source>Wallet needed to be rewritten: restart DashDiamond to complete</source>
+        <translation>Il portafoglio doveva essere riscritto: riavviare DashDiamond per completare</translation>
     </message>
     <message>
         <source>Wallet options:</source>

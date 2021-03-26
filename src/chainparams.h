@@ -9,9 +9,6 @@
 #ifndef BITCOIN_CHAINPARAMS_H
 #define BITCOIN_CHAINPARAMS_H
 
-#define 12341 9999
-#define 51434 19999
-#define 51436 29999
 
 #include "chainparamsbase.h"
 #include "checkpoints.h"
@@ -35,7 +32,7 @@ struct SeedSpec6 {
 
 /**
  * CChainParams defines various tweakable parameters of a given instance of the
- * Dash Diamond system. There are three: the main network on which people trade goods
+ * DashDiamond system. There are three: the main network on which people trade goods
  * and services, the public test network which gets reset from time to time and
  * a regression test mode which is intended for private networks only. It has
  * minimal difficulty to ensure that blocks can be found instantly.
@@ -87,6 +84,8 @@ public:
 
     CBaseChainParams::Network NetworkID() const { return networkID; }
     bool IsRegTestNet() const { return NetworkID() == CBaseChainParams::REGTEST; }
+    bool IsTestNet() const { return NetworkID() == CBaseChainParams::TESTNET; }
+	bool IsMainNet() const { return NetworkID() == CBaseChainParams::MAIN; }
 
     CScript GetLiquiMiningScriptAtHeight(int nHeight) const;
 
@@ -99,6 +98,11 @@ public:
     CAmount GetLiquiMiningValue(int nHeight) const {
         return nLiquiMiningValue;
     }
+	
+	CAmount MaxMoneyOut() const { return consensus.nMaxMoneyOut; }
+	
+	int64_t TargetTimespan(int nHeight) const { return TargetSpacing(nHeight) * (consensus.IsTimeProtocolV2(nHeight) ? consensus.nTargetTimespanV2 : consensus.nTargetTimespan); }
+	int64_t TargetSpacing(int nHeight) const { return nHeight >= consensus.vUpgrades[Consensus::UPGRADE_NEW_TARGET_SPACING].nActivationHeight ? consensus.nTargetSpacingV2 : consensus.nTargetSpacing; }
 
 protected:
     CChainParams() {}

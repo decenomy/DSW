@@ -60,7 +60,7 @@ void SettingsExportCSV::selectFileOutput(const bool& isTxExport)
 {
     QString filename = GUIUtil::getSaveFileName(this,
                                         isTxExport ? tr("Export CSV") : tr("Export Address List"), QString(),
-                                        isTxExport ? tr("Dash Diamond_tx_csv_export(*.csv)") : tr("Dash Diamond_addresses_csv_export(*.csv)"),
+                                        isTxExport ? tr("DashDiamond_tx_csv_export(*.csv)") : tr("DashDiamond_addresses_csv_export(*.csv)"),
                                         nullptr);
 
     if (isTxExport) {

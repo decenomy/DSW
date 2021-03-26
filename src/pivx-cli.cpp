@@ -72,10 +72,10 @@ static bool AppInitRPC(int argc, char* argv[])
     //
     ParseParameters(argc, argv);
     if (argc < 2 || mapArgs.count("-?") || mapArgs.count("-help") || mapArgs.count("-version")) {
-        std::string strUsage = _("Dash Diamond RPC client version") + " " + FormatFullVersion() + "\n";
+        std::string strUsage = _("DashDiamond RPC client version") + " " + FormatFullVersion() + "\n";
         if (!mapArgs.count("-version")) {
             strUsage += "\n" + _("Usage:") + "\n" +
-                        "  dashdiamond-cli [options] <command> [params]  " + _("Send command to Dash Diamond") + "\n" +
+                        "  dashdiamond-cli [options] <command> [params]  " + _("Send command to DashDiamond") + "\n" +
                         "  dashdiamond-cli [options] help                " + _("List commands") + "\n" +
                         "  dashdiamond-cli [options] help <command>      " + _("Get help for a command") + "\n";
 

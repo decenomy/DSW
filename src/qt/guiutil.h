@@ -43,7 +43,7 @@ public:
     GUIException(const std::string &message) : message(message) {}
 };
 
-/** Utility functions used by the Dash Diamond Qt UI.
+/** Utility functions used by the DashDiamond Qt UI.
  */
 namespace GUIUtil
 {

@@ -1756,7 +1756,8 @@ CAmount CWallet::GetStakingBalance(const bool fIncludeColdStaking) const
 {
     return std::max(CAmount(0), loopTxsBalance(
             [fIncludeColdStaking](const uint256& id, const CWalletTx& pcoin, CAmount& nTotal) {
-        if (pcoin.IsTrusted() && pcoin.GetDepthInMainChain() >= Params().GetConsensus().nStakeMinDepth) {
+        if (pcoin.IsTrusted() && pcoin.GetDepthInMainChain() >= (Params().GetConsensus().NetworkUpgradeActive(chainActive.Height(), Consensus::UPGRADE_STAKE_MIN_DEPTH_V2) ? 
+		                                                         Params().GetConsensus().nStakeMinDepthV2 : Params().GetConsensus().nStakeMinDepth)) {
             nTotal += pcoin.GetAvailableCredit();       // available coins
             nTotal -= pcoin.GetStakeDelegationCredit(); // minus delegated coins, if any
             nTotal -= pcoin.GetLockedCredit();          // minus locked coins, if any
@@ -2043,7 +2044,8 @@ bool CWallet::AvailableCoins(std::vector<COutput>* pCoins,      // --> populates
                 continue;
 
             // Check min depth requirement for stake inputs
-            if (nCoinType == STAKEABLE_COINS && nDepth < Params().GetConsensus().nStakeMinDepth) continue;
+            if (nCoinType == STAKEABLE_COINS && nDepth < (Params().GetConsensus().NetworkUpgradeActive(chainActive.Height(), Consensus::UPGRADE_STAKE_MIN_DEPTH_V2) ?
+                                                          Params().GetConsensus().nStakeMinDepthV2 : Params().GetConsensus().nStakeMinDepth)) continue;
 
             for (unsigned int i = 0; i < pcoin->vout.size(); i++) {
 
@@ -2169,7 +2171,7 @@ static void ApproximateBestSubset(std::vector<std::pair<CAmount, std::pair<const
 
 bool CWallet::StakeableCoins(std::vector<COutput>* pCoins)
 {
-    const bool fIncludeCold = (sporkManager.IsSporkActive(SPORK_17_COLDSTAKING_ENFORCEMENT) &&
+    const bool fIncludeCold = (sporkManager.IsSporkActive(SPORK_19_COLDSTAKING_ENFORCEMENT) &&
                                GetBoolArg("-coldstaking", DEFAULT_COLDSTAKING));
 
     return AvailableCoins(pCoins,
@@ -3769,10 +3771,10 @@ CWallet* CWallet::CreateWalletFromFile(const std::string walletFile)
             UIWarning(strprintf(_("Warning: error reading %s! All keys read correctly, but transaction data"
                          " or address book entries might be missing or incorrect."), walletFile));
         } else if (nLoadWalletRet == DB_TOO_NEW) {
-            UIError(strprintf(_("Error loading %s: Wallet requires newer version of Dash Diamond"), walletFile));
+            UIError(strprintf(_("Error loading %s: Wallet requires newer version of DashDiamond"), walletFile));
             return nullptr;
         } else if (nLoadWalletRet == DB_NEED_REWRITE) {
-            UIError(_("Wallet needed to be rewritten: restart Dash Diamond to complete"));
+            UIError(_("Wallet needed to be rewritten: restart DashDiamond to complete"));
             return nullptr;
         } else {
             UIError(strprintf(_("Error loading %s\n"), walletFile));
