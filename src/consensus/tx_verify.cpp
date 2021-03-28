@@ -128,7 +128,7 @@ bool CheckTransaction(const CTransaction& tx, bool fZerocoinActive, bool fReject
     }
 
     if (tx.IsCoinBase()) {
-        if (tx.vin[0].scriptSig.size() < 2 || tx.vin[0].scriptSig.size() > 150)
+        if (tx.vin[0].scriptSig.size() < 2 || tx.vin[0].scriptSig.size() > 160)
             return state.DoS(100, false, REJECT_INVALID, "bad-cb-length");
     } else if (fZerocoinActive && tx.HasZerocoinSpendInputs()) {
         if (tx.vin.size() < 1)
