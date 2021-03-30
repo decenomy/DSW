@@ -31,7 +31,18 @@ std::vector<CSporkDef> sporkDefs = {
     MAKE_SPORK_DEF(SPORK_103_PING_MESSAGE_SALT,             0),             // OFF
     MAKE_SPORK_DEF(SPORK_104_MAX_BLOCK_TIME,                4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_105_MAX_BLOCK_SIZE,                4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_106_STAKING_SKIP_MN_SYNC,          4070908800ULL), // OFF
+	
+	// Unused dummy sporks.
+	//TODO: Needed to be removed in the future when the old nodes cut from the network.
+	// Prevents error messages in debug logs due to v1 wallets
+    MAKE_SPORK_DEF(SPORK_7_NOOP,                            4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_10_NOOP,                           4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_11_NOOP,                           4070908800ULL), // OFF
+	MAKE_SPORK_DEF(SPORK_15_NOOP,                           4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_17_NOOP,                           4070908800ULL), // OFF
+	MAKE_SPORK_DEF(SPORK_18_NOOP,                           4070908800ULL), // OFF
+	MAKE_SPORK_DEF(SPORK_22_NOOP,                           4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_24_NOOP,                           4070908800ULL), // OFF
 };
 
 CSporkManager sporkManager;

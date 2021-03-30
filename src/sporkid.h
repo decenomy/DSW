@@ -30,7 +30,18 @@ enum SporkId : int32_t {
     SPORK_103_PING_MESSAGE_SALT                 = 10102,
     SPORK_104_MAX_BLOCK_TIME                    = 10103,
     SPORK_105_MAX_BLOCK_SIZE                    = 10104,
-    SPORK_106_STAKING_SKIP_MN_SYNC              = 10105,
+	
+	// Unused dummy sporks.
+	//TODO needed to be removed in the future when the old nodes cut from the network.
+    // Prevents error messages in debug logs due to v1 wallets
+    SPORK_7_NOOP                                = 10006,
+    SPORK_10_NOOP                               = 10009,
+    SPORK_11_NOOP                               = 10010,
+    SPORK_15_NOOP                               = 10014,
+    SPORK_17_NOOP                               = 10016,
+	SPORK_18_NOOP					            = 10017, 
+	SPORK_22_NOOP					            = 10021, 
+	SPORK_24_NOOP            					= 10023, 
 
     SPORK_INVALID                               = -1
 };
