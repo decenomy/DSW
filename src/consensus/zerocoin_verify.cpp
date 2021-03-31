@@ -128,7 +128,7 @@ bool CheckPublicCoinSpendEnforced(int blockHeight, bool isPublicSpend)
 }
 
 int CurrentPublicCoinSpendVersion() {
-    return sporkManager.IsSporkActive(SPORK_18_ZEROCOIN_PUBLICSPEND_V4) ? 4 : 3;
+    return sporkManager.IsSporkActive(SPORK_19_ZEROCOIN_PUBLICSPEND_V4) ? 4 : 3;
 }
 
 bool CheckPublicCoinSpendVersion(int version) {

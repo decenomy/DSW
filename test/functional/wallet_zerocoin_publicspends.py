@@ -42,7 +42,7 @@ class ZerocoinSpendTest(PivxTestFramework):
         self.log.info("\n\n%s\n%s\n%s\n", title, underline, description)
 
     def setV4SpendEnforcement(self, fEnable=True):
-        sporkName = "SPORK_18_ZEROCOIN_PUBLICSPEND_V4"
+        sporkName = "SPORK_19_ZEROCOIN_PUBLICSPEND_V4"
         # update spork 18 with node[0]
         if fEnable:
             self.log.info("Enabling v4 PublicSpend version with SPORK 18...")
