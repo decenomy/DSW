@@ -426,34 +426,17 @@ crypto_libbitcoin_crypto_a_SOURCES = \
   crypto/sph_jh.h \
   crypto/sph_keccak.h \
   crypto/sph_skein.h \
-  crypto/sph_types.h
-
-  # specifically for xevan hash
-crypto_libbitcoin_crypto_a_SOURCES += \
-  crypto/sha3/sph_jh.c \
-  crypto/sha3/sph_blake.c \
-  crypto/sha3/sph_bmw.c \
-  crypto/sha3/sph_groestl.c \
-  crypto/sha3/sph_skein.c \
-  crypto/sha3/sph_keccak.c \
-  crypto/sha3/sph_luffa.c \
-  crypto/sha3/sph_cubehash.c \
-  crypto/sha3/sph_shavite.c \
-  crypto/sha3/sph_simd.c \
-  crypto/sha3/sph_echo.c \
-  crypto/sha3/sph_fugue.c \
-  crypto/sha3/sph_hamsi.c \
-  crypto/sha3/sph_shabal.c \
-  crypto/sha3/sph_whirlpool.c \
-  crypto/sha3/sph_haval.c \
-  crypto/sha3/sph_hefty1.c \
-  crypto/sha3/sph_ripemd.c \
-  crypto/sha3/sph_sha2.c \
-  crypto/sha3/sph_sha2big.c \
-  crypto/sha3/sph_tiger.c \
-  crypto/sha3/blake2s.c \
-  crypto/sha3/blake2b.c \
-  crypto/xevan.c
+  crypto/sph_types.h \
+  crypto/sph_luffa.h \
+  crypto/luffa.c \
+  crypto/sph_cubehash.h \
+  crypto/cubehash.c \
+  crypto/sph_shavite \
+  crypto/shavite.c \
+  crypto/sph_simd.h \
+  crypto/simd.c \
+  crypto/sph_echo \
+  crypto/echo.c
 
 # libzerocoin library
 libzerocoin_libbitcoin_zerocoin_a_CPPFLAGS = $(AM_CPPFLAGS) $(BOOST_CPPFLAGS)
