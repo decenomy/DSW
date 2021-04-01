@@ -506,12 +506,12 @@ void DashboardWidget::updateStakeFilter()
                 QDate monthFirst = QDate(yearFilter, monthFilter, 1);
                 stakesFilter->setDateRange(
                         QDateTime(monthFirst),
-                        QDateTime(QDate(yearFilter, monthFilter, monthFirst.daysInMonth()))
+                        QDateTime(QDate(yearFilter, monthFilter, monthFirst.daysInMonth())).addDays(1).addMSecs(-1);
                 );
             } else {
                 stakesFilter->setDateRange(
                         QDateTime(QDate(yearFilter, 1, 1)),
-                        QDateTime(QDate(yearFilter, 12, 31))
+                        QDateTime(QDate(yearFilter, 12, 31)).addDays(1).addMSecs(-1);
                 );
             }
         } else if (filterByMonth) {
@@ -519,7 +519,7 @@ void DashboardWidget::updateStakeFilter()
             QDate monthFirst = QDate(currentDate.year(), monthFilter, 1);
             stakesFilter->setDateRange(
                     QDateTime(monthFirst),
-                    QDateTime(QDate(currentDate.year(), monthFilter, monthFirst.daysInMonth()))
+                    QDateTime(QDate(currentDate.year(), monthFilter, monthFirst.daysInMonth())).addDays(1).addMSecs(-1);
             );
             ui->comboBoxYears->setCurrentText(QString::number(currentDate.year()));
         } else {
