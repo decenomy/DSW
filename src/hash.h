@@ -35,7 +35,6 @@
 #include "crypto/sph_skein.h"
 #include "crypto/sph_whirlpool.h"
 
-#include <functional>
 #include <iomanip>
 #include <openssl/sha.h>
 #include <sstream>
