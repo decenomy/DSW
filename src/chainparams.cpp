@@ -17,7 +17,7 @@
 
 #include <assert.h>
 
-#define DISABLED 0xFFFFFFFF;
+#define DISABLED 0x7FFFFFFE;
 
 static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesisOutputScript, uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
@@ -193,16 +193,16 @@ public:
         consensus.nTime_RejectOldSporkKey = 1605006000;    // 11/10/2020 @ 11:00am (UTC)
 
         // height-based activations
-        consensus.height_last_ZC_AccumCheckpoint    = 0;
-        consensus.height_last_ZC_WrappedSerials     = 0;
-        consensus.height_start_InvalidUTXOsCheck    = 0;
-        consensus.height_start_ZC_InvalidSerials    = 0;
-        consensus.height_start_ZC_SerialRangeCheck  = 0;
-        consensus.height_ZC_RecalcAccumulators      = 0;
+        consensus.height_last_ZC_AccumCheckpoint    = DISABLED;
+        consensus.height_last_ZC_WrappedSerials     = DISABLED;
+        consensus.height_start_InvalidUTXOsCheck    = DISABLED;
+        consensus.height_start_ZC_InvalidSerials    = DISABLED;
+        consensus.height_start_ZC_SerialRangeCheck  = DISABLED;
+        consensus.height_ZC_RecalcAccumulators      = DISABLED;
         
         // validation by-pass
-        consensus.nAezoraBadBlockTime = 1471401614;    // Skip nBit validation of Block 259201 per PR #915
-        consensus.nAezoraBadBlockBits = 0x1c056dac;    // Skip nBit validation of Block 259201 per PR #915
+        // consensus.nAezoraBadBlockTime = 1471401614;    // Skip nBit validation of Block 259201 per PR #915
+        // consensus.nAezoraBadBlockBits = 0x1c056dac;    // Skip nBit validation of Block 259201 per PR #915
 
         // Zerocoin-related params
         consensus.ZC_Modulus = "25195908475657893494027183240048398571429282126204032027777137836043662020707595556264018525880784"
@@ -250,14 +250,15 @@ public:
         pchMessageStart[3] = 0x19;
         nDefaultPort = __PORT_MAINNET__;
 
-	    vSeeds.push_back(CDNSSeedData("seed1.aezora.com", "seed1.aezora.com"));
-        vSeeds.push_back(CDNSSeedData("seed2.aezora.com", "seed2.aezora.com"));
-        vSeeds.push_back(CDNSSeedData("seed3.aezora.com", "seed3.aezora.com"));
-        vSeeds.push_back(CDNSSeedData("seed4.aezora.com", "seed4.aezora.com"));
-	    vSeeds.push_back(CDNSSeedData("seed5.aezora.com", "seed5.aezora.com"));
-	    vSeeds.push_back(CDNSSeedData("seed6.aezora.com", "seed6.aezora.com"));
-	    vSeeds.push_back(CDNSSeedData("seed7.aezora.com", "seed7.aezora.com"));
-	    vSeeds.push_back(CDNSSeedData("seed8.aezora.com", "seed8.aezora.com"));
+        vSeeds.push_back(CDNSSeedData("seeder", "seeder.aezora.com"));
+	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.aezora.com"));
+        vSeeds.push_back(CDNSSeedData("seed2", "seed2.aezora.com"));
+        vSeeds.push_back(CDNSSeedData("seed3", "seed3.aezora.com"));
+        vSeeds.push_back(CDNSSeedData("seed4", "seed4.aezora.com"));
+	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.aezora.com"));
+	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.aezora.com"));
+	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.aezora.com"));
+	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.aezora.com"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 23);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 24);
