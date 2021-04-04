@@ -878,11 +878,7 @@ std::string CMasternodePing::GetStrMessage() const
 {
     int64_t salt = sporkManager.GetSporkValue(SPORK_103_PING_MESSAGE_SALT);
 
-    if (salt != 0) {
-        return vin.ToString() + blockHash.ToString() + std::to_string(sigTime) + std::to_string(salt);
-    } else {
-        return vin.ToString() + blockHash.ToString() + std::to_string(sigTime);
-    }
+    return vin.ToString() + blockHash.ToString() + std::to_string(sigTime) + std::to_string(salt);
 }
 
 bool CMasternodePing::CheckAndUpdate(int& nDos, bool fRequireEnabled, bool fCheckSigTimeOnly)
