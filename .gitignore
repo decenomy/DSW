@@ -7,6 +7,8 @@ reset-files.bash
 *.tar.gz
 
 *.exe
+
+# DSW
 src/__decenomy__
 src/__decenomy__d
 src/__decenomy__-cli
@@ -14,6 +16,33 @@ src/__decenomy__-tx
 src/bench/bench___decenomy__
 src/test/test___decenomy__
 src/qt/test/test___decenomy__-qt
+
+# Sapphire
+src/bench/bench_sapphire
+src/sapphire-cli
+src/sapphire-tx
+src/sapphired
+src/qt/sapphire-qt
+src/test/test_sapphire
+src/qt/test/test_sapphire-qt
+
+# Jackpot
+src/bench/bench_jackpot
+src/jackpot-cli
+src/jackpot-tx
+src/jackpotd
+src/qt/jackpot-qt
+src/test/test_jackpot
+src/qt/test/test_jackpot-qt
+
+# Dash Diamon
+src/bench/bench_dashdiamond
+src/dashdiamond-cli
+src/dashdiamond-tx
+src/dashdiamondd
+src/qt/dashdiamond-qt
+src/test/test_dashdiamond
+src/qt/test/test_dashdiamond-qt
 
 # CryptoFlow
 src/bench/bench_cryptoflow
@@ -32,6 +61,15 @@ src/test/test_trittium
 src/trittium-cli
 src/trittium-tx
 src/trittiumd
+
+# Aezora
+src/bench/bench_aezora
+src/qt/test/test_aezora-qt
+src/qt/aezora-qt
+src/test/test_aezora
+src/aezora-cli
+src/aezora-tx
+src/aezorad
 
 ##########################################
 # clear this section when it's fixed
