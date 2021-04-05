@@ -78,25 +78,23 @@ QPushButton[cssClass="img-nav-logo"] {
 *[cssClass="btn-nav-receive"]:checked {
     background-color: #232323;
     font-size: 12px;
-    color: #ffffff;
+    color: #ED1C24;
     letter-spacing: 1px;
-    border-left: 4px solid #ED1C24;
     border-radius: 100%;
 }
 
 *[cssClass="btn-nav-receive"]:checked:hover {
     background-color: #232323;
     font-size: 12px;
-    color: #ffffff;
+    color: #ED1C24;
     letter-spacing: 1px;
-    border-left: 4px solid #ED1C24;
     border-radius: 100%;
 }
 
 *[cssClass="btn-nav-receive"]:hover {
     background-color: #232323;
     font-size: 12px;
-    color: #ffffff;
+    color: #ED1C24;
     letter-spacing: 1px;
     border-radius: 100%;
 }
@@ -106,9 +104,8 @@ QPushButton[cssClass="img-nav-logo"] {
     qproperty-iconSize: 24px 40px;
     background-color: #232323;
     font-size: 12px;
-    color: #ffffff;
+    color: #ED1C24;
     letter-spacing: 1px;
-    border-left: 4px solid #ED1C24;
     border-radius: 100%;
 }
 
@@ -253,18 +250,16 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
 *[cssClass="btn-nav-settings"]:checked {
     background-color: #232323;
     font-size: 12px;
-    color: #ffffff;
+    color: #ED1C24;
     letter-spacing: 1px;
-    border-left: 4px solid #ED1C24;
     border-radius: 100%;
 }
 
 *[cssClass="btn-nav-settings"]:checked:hover {
     background-color: #232323;
     font-size: 12px;
-    color: #ffffff;
+    color: #ED1C24;
     letter-spacing: 1px;
-    border-left: 4px solid #ED1C24;
     border-radius: 100%;
 }
 
@@ -273,7 +268,7 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
     qproperty-iconSize: 24px 40px;
     background-color: #232323;
     font-size: 12px;
-    color: #ffffff;
+    color: #ED1C24;
     letter-spacing: 1px;
     border-radius: 100%;
 }
@@ -283,9 +278,8 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
     qproperty-iconSize: 24px 40px;
     background-color: #232323;
     font-size: 12px;
-    color: #ffffff;
+    color: #ED1C24;
     letter-spacing: 1px;
-    border-left: 4px solid #ED1C24;
     border-radius: 100%;
 }
 
@@ -302,18 +296,16 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
 *[cssClass="btn-nav-dash"]:checked {
     background-color: #232323;
     font-size: 12px;
-    color: #ffffff;
+    color: #ED1C24;
     letter-spacing: 1px;
-    border-left: 4px solid #ED1C24;
     border-radius: 100%;
 }
 
 *[cssClass="btn-nav-dash"]:checked:hover {
     background-color: #232323;
     font-size: 12px;
-    color: #ffffff;
+    color: #ED1C24;
     letter-spacing: 1px;
-    border-left: 4px solid #ED1C24;
     border-radius: 100%;
 }
 
@@ -323,7 +315,7 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
     qproperty-iconSize: 24px 40px;
     background-color: #232323;
     font-size: 12px;
-    color: #ffffff;
+    color: #ED1C24;
     letter-spacing: 1px;
     border-radius: 100%;
 }
@@ -333,9 +325,8 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
     qproperty-iconSize: 24px 40px;
     background-color: #232323;
     font-size: 12px;
-    color: #ffffff;
+    color: #ED1C24;
     letter-spacing: 1px;
-    border-left: 4px solid #ED1C24;
     border-radius: 100%;
 }
 
@@ -352,18 +343,16 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
 *[cssClass="btn-nav-send"]:checked {
     background-color: #232323;
     font-size: 12px;
-    color: #ffffff;
+    color: #ED1C24;
     letter-spacing: 1px;
-    border-left: 4px solid #ED1C24;
     border-radius: 100%;
 }
 
 *[cssClass="btn-nav-send"]:checked:hover {
     background-color: #232323;
     font-size: 12px;
-    color: #ffffff;
+    color: #ED1C24;
     letter-spacing: 1px;
-    border-left: 4px solid #ED1C24;
     border-radius: 100%;
 }
 
@@ -372,7 +361,7 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
     qproperty-iconSize: 24px 40px;
     background-color: #232323;
     font-size: 12px;
-    color: #ffffff;
+    color: #ED1C24;
     letter-spacing: 1px;
     border-radius: 100%;
 }
@@ -382,9 +371,8 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
     qproperty-iconSize: 24px 40px;
     background-color: #232323;
     font-size: 12px;
-    color: #ffffff;
+    color: #ED1C24;
     letter-spacing: 1px;
-    border-left: 4px solid #ED1C24;
     border-radius: 100%;
 }
 
@@ -401,18 +389,16 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
 *[cssClass="btn-nav-address"]:checked {
     background-color: #232323;
     font-size: 12px;
-    color: #ffffff;
+    color: #ED1C24;
     letter-spacing: 1px;
-    border-left: 4px solid #ED1C24;
     border-radius: 100%;
 }
 
 *[cssClass="btn-nav-address"]:checked:hover {
     background-color: #232323;
     font-size: 12px;
-    color: #ffffff;
+    color: #ED1C24;
     letter-spacing: 1px;
-    border-left: 4px solid #ED1C24;
     border-radius: 100%;
 }
 
@@ -421,7 +407,7 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
     qproperty-iconSize: 24px 40px;
     background-color: #232323;
     font-size: 12px;
-    color: #ffffff;
+    color: #ED1C24;
     letter-spacing: 1px;
     border-radius: 100%;
 }
@@ -431,9 +417,8 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
     qproperty-iconSize: 24px 40px;
     background-color: #232323;
     font-size: 12px;
-    color: #ffffff;
+    color: #ED1C24;
     letter-spacing: 1px;
-    border-left: 4px solid #ED1C24;
     border-radius: 100%;
 }
 
@@ -500,7 +485,7 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
     qproperty-icon: url("://ic-nav-master-active");
     background-color: #232323;
     font-size: 12px;
-    color: #ffffff;
+    color: #ED1C24;
     letter-spacing: 1px;
     border-left: 4px solid #ED1C24;
     border-radius: 100%;
@@ -509,7 +494,7 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
 *[cssClass="btn-nav-master"]:checked:hover {
     background-color: #232323;
     font-size: 12px;
-    color: #ffffff;
+    color: #ED1C24;
     letter-spacing: 1px;
     border-left: 4px solid #ED1C24;
     border-radius: 100%;
@@ -520,7 +505,7 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
     qproperty-iconSize: 24px 30px;
     background-color: #232323;
     font-size: 12px;
-    color: #ffffff;
+    color: #ED1C24;
     letter-spacing: 1px;
     border-radius: 100%;
 }
@@ -530,7 +515,7 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
     qproperty-iconSize: 24px 30px;
     background-color: #232323;
     font-size: 12px;
-    color: #ffffff;
+    color: #ED1C24;
     letter-spacing: 1px;
     border-left: 4px solid #ED1C24;
     border-radius: 100%;
