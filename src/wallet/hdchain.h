@@ -21,7 +21,7 @@ namespace HDChain {
     };
 }
 
-/* Simple HD chain data model for regular and sapling addresses */
+/* Simple HD chain data model */
 class CHDChain
 {
 private:

@@ -81,8 +81,6 @@ fs::path GetDefaultDataDir();
 const fs::path &GetDataDir(bool fNetSpecific = true);
 // Sapling network dir
 const fs::path &ZC_GetParamsDir();
-// Init sapling library
-void initZKSNARKS();
 void ClearDatadirCache();
 fs::path GetConfigFile();
 fs::path GetMasternodeConfigFile();
