@@ -1072,7 +1072,6 @@ if test x$use_pkgconfig = xyes; then
         if test x$TARGET_OS != xwindows; then
           PKG_CHECK_MODULES([EVENT_PTHREADS], [libevent_pthreads],, [AC_MSG_ERROR(libevent_pthreads not found.)])
         fi
-        PKG_CHECK_MODULES([SODIUM], [libsodium],, [AC_MSG_ERROR(libsodium not found.)])
       fi
 
       if test "x$use_zmq" = "xyes"; then
@@ -1099,8 +1098,6 @@ else
     if test x$TARGET_OS != xwindows; then
       AC_CHECK_LIB([event_pthreads],[main],EVENT_PTHREADS_LIBS=-levent_pthreads,AC_MSG_ERROR(libevent_pthreads missing))
     fi
-    AC_CHECK_HEADER([sodium/core.h],, AC_MSG_ERROR(libsodium headers missing),)
-    AC_CHECK_LIB([sodium],[main],SODIUM_LIBS=-lsodium,AC_MSG_ERROR(libsodium missing))
   fi
 
   if test "x$use_zmq" = "xyes"; then
@@ -1135,8 +1132,6 @@ else
     BITCOIN_QT_CHECK([AC_CHECK_HEADER([QtCharts/qchartview.h],, have_qtcharts=no)])
   fi
 fi
-
-LIBSAPLING_LIBS="-lgmp -lboost_system-mt -lcrypto -lsodium"
 
 dnl univalue check
 
@@ -1192,7 +1187,7 @@ BITCOIN_QT_PATH_PROGS([PROTOC], [protoc],$protoc_bin_path)
 AX_CHECK_COMPILE_FLAG([-fno-strict-aliasing],[CXXFLAGS="$CXXFLAGS -fno-strict-aliasing"])
 AX_CHECK_COMPILE_FLAG([-Wno-builtin-declaration-mismatch],[CXXFLAGS="$CXXFLAGS -Wno-builtin-declaration-mismatch"],,[[$CXXFLAG_WERROR]])
 
-LIBZCASH_LIBS="$BOOST_SYSTEM_LIB $CRYPTO_LIBS $SODIUM_LIBS"
+LIBZCASH_LIBS="$BOOST_SYSTEM_LIB $CRYPTO_LIBS"
 
 AC_MSG_CHECKING([whether to build __decenomy__d])
 AM_CONDITIONAL([BUILD_BITCOIND], [test x$build_bitcoind = xyes])
@@ -1444,7 +1439,6 @@ AC_SUBST(CRYPTO_LIBS)
 AC_SUBST(SSL_LIBS)
 AC_SUBST(EVENT_LIBS)
 AC_SUBST(EVENT_PTHREADS_LIBS)
-AC_SUBST(SODIUM_LIBS)
 AC_SUBST(ZMQ_LIBS)
 AC_SUBST(LIBSAPLING_LIBS)
 AC_SUBST(LIBZCASH_LIBS)
