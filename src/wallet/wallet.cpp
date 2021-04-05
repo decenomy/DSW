@@ -2703,10 +2703,11 @@ bool CWallet::CreateCoinStake(
 
         // Add block reward to the credit
         nCredit += CMasternode::GetBlockValue(pindexPrev->nHeight + 1);
+        CAmount nMasternodeCredit = CMasternode::GetMasternodePayment(pindexPrev->nHeight + 1);
 
         // Create the output transaction(s)
         std::vector<CTxOut> vout;
-        if (!stakeInput.CreateTxOuts(this, vout, nCredit, onlyP2PK)) {
+        if (!stakeInput.CreateTxOuts(this, vout, nCredit - nMasternodeCredit, onlyP2PK)) {
             LogPrintf("%s : failed to create output\n", __func__);
             continue;
         }

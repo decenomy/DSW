@@ -3444,7 +3444,7 @@ UniValue setstakesplitthreshold(const JSONRPCRequest& request)
             "This will set the stake-split threshold value.\n"
             "Whenever a successful stake is found, the stake amount is split across as many outputs (each with a value\n"
             "higher than the threshold) as possible.\n"
-            "E.g. If the coinstake input + the block reward is 2000, and the split threshold is 499, the corresponding\n"
+            "E.g. If the coinstake input + the block stake reward is 2000, and the split threshold is 499, the corresponding\n"
             "coinstake transaction will have 4 outputs (of 500 __DSW__ each)."
             + HelpRequiringPassphrase() + "\n"
 
