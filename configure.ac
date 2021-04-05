@@ -1133,8 +1133,6 @@ else
   fi
 fi
 
-LIBSAPLING_LIBS="-lgmp -lboost_system-mt -lcrypto -lsodium"
-
 dnl univalue check
 
 need_bundled_univalue=yes
@@ -1189,7 +1187,7 @@ BITCOIN_QT_PATH_PROGS([PROTOC], [protoc],$protoc_bin_path)
 AX_CHECK_COMPILE_FLAG([-fno-strict-aliasing],[CXXFLAGS="$CXXFLAGS -fno-strict-aliasing"])
 AX_CHECK_COMPILE_FLAG([-Wno-builtin-declaration-mismatch],[CXXFLAGS="$CXXFLAGS -Wno-builtin-declaration-mismatch"],,[[$CXXFLAG_WERROR]])
 
-LIBZCASH_LIBS="$BOOST_SYSTEM_LIB $CRYPTO_LIBS $SODIUM_LIBS"
+LIBZCASH_LIBS="$BOOST_SYSTEM_LIB $CRYPTO_LIBS"
 
 AC_MSG_CHECKING([whether to build sapphired])
 AM_CONDITIONAL([BUILD_BITCOIND], [test x$build_bitcoind = xyes])
@@ -1441,7 +1439,6 @@ AC_SUBST(CRYPTO_LIBS)
 AC_SUBST(SSL_LIBS)
 AC_SUBST(EVENT_LIBS)
 AC_SUBST(EVENT_PTHREADS_LIBS)
-AC_SUBST(SODIUM_LIBS)
 AC_SUBST(ZMQ_LIBS)
 AC_SUBST(LIBSAPLING_LIBS)
 AC_SUBST(LIBZCASH_LIBS)
