@@ -1072,7 +1072,6 @@ if test x$use_pkgconfig = xyes; then
         if test x$TARGET_OS != xwindows; then
           PKG_CHECK_MODULES([EVENT_PTHREADS], [libevent_pthreads],, [AC_MSG_ERROR(libevent_pthreads not found.)])
         fi
-        PKG_CHECK_MODULES([SODIUM], [libsodium],, [AC_MSG_ERROR(libsodium not found.)])
       fi
 
       if test "x$use_zmq" = "xyes"; then
@@ -1099,8 +1098,6 @@ else
     if test x$TARGET_OS != xwindows; then
       AC_CHECK_LIB([event_pthreads],[main],EVENT_PTHREADS_LIBS=-levent_pthreads,AC_MSG_ERROR(libevent_pthreads missing))
     fi
-    AC_CHECK_HEADER([sodium/core.h],, AC_MSG_ERROR(libsodium headers missing),)
-    AC_CHECK_LIB([sodium],[main],SODIUM_LIBS=-lsodium,AC_MSG_ERROR(libsodium missing))
   fi
 
   if test "x$use_zmq" = "xyes"; then
