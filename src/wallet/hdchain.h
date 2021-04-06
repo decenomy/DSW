@@ -17,7 +17,6 @@ namespace HDChain {
 
     namespace ChainCounterType {
         static const uint8_t Standard  = 0;
-        static const uint8_t Sapling   = 1;
     };
 }
 
@@ -29,7 +28,7 @@ private:
     CKeyID seed_id;
 
 public:
-    // Standard/Sapling hd chain
+    // Standard hd chain
     static const int CURRENT_VERSION = 2;
     // Single account counters.
     uint32_t nExternalChainCounter{0};

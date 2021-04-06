@@ -74,7 +74,7 @@ if BUILD_BITCOIN_UTILS
   bin_PROGRAMS += sapphire-cli sapphire-tx
 endif
 
-.PHONY: FORCE cargo-build check-symbols check-security
+.PHONY: FORCE check-symbols check-security
 # sapphire core #
 BITCOIN_CORE_H = \
   activemasternode.h \
