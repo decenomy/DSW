@@ -67,7 +67,7 @@ pipeline {
                 sh '''#!/bin/bash
                     make clean
                     ./autogen.sh
-                    ./configure --prefix=$(pwd)/depends/x86_64-w64-mingw32 --disable-debug --disable-tests --disable-bench --disable-online-rust CFLAGS="-O3" CXXFLAGS="-O3"
+                    ./configure --prefix=$(pwd)/depends/x86_64-w64-mingw32 --disable-debug --disable-tests --disable-bench CFLAGS="-O3" CXXFLAGS="-O3"
 	                make -j $(nproc) HOST=x86_64-w64-mingw32
                 '''
             }
@@ -94,7 +94,7 @@ pipeline {
                 sh '''#!/bin/bash
                     make clean
                     ./autogen.sh
-                    ./configure --prefix=$(pwd)/depends/x86_64-apple-darwin14 --enable-cxx --enable-static --disable-shared --disable-debug --disable-tests --disable-bench --disable-online-rust
+                    ./configure --prefix=$(pwd)/depends/x86_64-apple-darwin14 --enable-cxx --enable-static --disable-shared --disable-debug --disable-tests --disable-bench
                     make -j $(nproc) HOST=x86_64-apple-darwin14
                 '''
             }
@@ -122,7 +122,7 @@ pipeline {
                 sh '''#!/bin/bash
                     make clean
                     ./autogen.sh
-                    ./configure --prefix=$(pwd)/depends/aarch64-linux-gnu --disable-debug --disable-tests --disable-bench --disable-online-rust CFLAGS="-O3" CXXFLAGS="-O3"
+                    ./configure --prefix=$(pwd)/depends/aarch64-linux-gnu --disable-debug --disable-tests --disable-bench CFLAGS="-O3" CXXFLAGS="-O3"
 	                make -j $(nproc) HOST=aarch64-linux-gnu
                 '''
             }
@@ -149,7 +149,7 @@ pipeline {
                 sh '''#!/bin/bash
                     make clean
                     ./autogen.sh
-                    ./configure --prefix=$(pwd)/depends/arm-linux-gnueabihf --disable-debug --disable-tests --disable-bench --disable-online-rust CFLAGS="-O3" CXXFLAGS="-O3"
+                    ./configure --prefix=$(pwd)/depends/arm-linux-gnueabihf --disable-debug --disable-tests --disable-bench CFLAGS="-O3" CXXFLAGS="-O3"
 	                make -j $(nproc) HOST=arm-linux-gnueabihf
                 '''
             }

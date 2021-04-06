@@ -74,7 +74,7 @@ if BUILD_BITCOIN_UTILS
   bin_PROGRAMS += __decenomy__-cli __decenomy__-tx
 endif
 
-.PHONY: FORCE cargo-build check-symbols check-security
+.PHONY: FORCE check-symbols check-security
 # __decenomy__ core #
 BITCOIN_CORE_H = \
   activemasternode.h \

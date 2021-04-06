@@ -289,8 +289,6 @@ bool CWalletDB::WriteHDChain(const CHDChain& chain)
 {
     nWalletDBUpdateCounter++;
     std::string key = std::string("hdchain");
-    if (chain.chainType == HDChain::ChainCounterType::Sapling)
-        key += std::string("_sap");
     return Write(key, chain);
 }
 
