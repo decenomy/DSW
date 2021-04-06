@@ -30,16 +30,8 @@ QT_TRANSLATE_NOOP("pivx-core", ""
 "notation for IPv6. This option can be specified multiple times (default: "
 "bind to all interfaces)"),
 QT_TRANSLATE_NOOP("pivx-core", ""
-"Cannot find the Sapling parameters in the following directory:\n"
-"%s\n"
-"Please run 'sapling-fetch-params' or './util/fetch-params.sh' and then "
-"restart."),
-QT_TRANSLATE_NOOP("pivx-core", ""
 "Cannot obtain a lock on data directory %s. Jackpot is probably already "
 "running."),
-QT_TRANSLATE_NOOP("pivx-core", ""
-"Cannot upgrade to Sapling wallet (already running Sapling support). Version: "
-"%d"),
 QT_TRANSLATE_NOOP("pivx-core", ""
 "Change automatic finalized budget voting behavior. mode=auto: Vote for only "
 "exact finalized budget match to my generated budget. (string, default: auto)"),

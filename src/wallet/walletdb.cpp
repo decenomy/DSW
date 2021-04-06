@@ -109,48 +109,6 @@ bool CWalletDB::WriteCryptedKey(const CPubKey& vchPubKey,
     return true;
 }
 
-bool CWalletDB::WriteSaplingZKey(const libzcash::SaplingIncomingViewingKey &ivk,
-                                 const libzcash::SaplingExtendedSpendingKey &key,
-                                 const CKeyMetadata &keyMeta)
-{
-    nWalletDBUpdateCounter++;
-
-    if (!Write(std::make_pair(std::string("sapzkeymeta"), ivk), keyMeta))
-        return false;
-
-    return Write(std::make_pair(std::string("sapzkey"), ivk), key, false);
-}
-
-bool CWalletDB::WriteSaplingPaymentAddress(
-        const libzcash::SaplingPaymentAddress &addr,
-        const libzcash::SaplingIncomingViewingKey &ivk)
-{
-    nWalletDBUpdateCounter++;
-
-    return Write(std::make_pair(std::string("sapzaddr"), addr), ivk, false);
-}
-
-bool CWalletDB::WriteCryptedSaplingZKey(
-        const libzcash::SaplingExtendedFullViewingKey &extfvk,
-        const std::vector<unsigned char>& vchCryptedSecret,
-        const CKeyMetadata &keyMeta)
-{
-    const bool fEraseUnencryptedKey = true;
-    nWalletDBUpdateCounter++;
-    auto ivk = extfvk.fvk.in_viewing_key();
-
-    if (!Write(std::make_pair(std::string("sapzkeymeta"), ivk), keyMeta))
-        return false;
-
-    if (!Write(std::make_pair(std::string("csapzkey"), ivk), std::make_pair(extfvk, vchCryptedSecret), false))
-        return false;
-
-    if (fEraseUnencryptedKey) {
-        Erase(std::make_pair(std::string("sapzkey"), ivk));
-    }
-    return true;
-}
-
 bool CWalletDB::WriteMasterKey(unsigned int nID, const CMasterKey& kMasterKey)
 {
     nWalletDBUpdateCounter++;
@@ -331,8 +289,6 @@ bool CWalletDB::WriteHDChain(const CHDChain& chain)
 {
     nWalletDBUpdateCounter++;
     std::string key = std::string("hdchain");
-    if (chain.chainType == HDChain::ChainCounterType::Sapling)
-        key += std::string("_sap");
     return Write(key, chain);
 }
 
@@ -738,58 +694,6 @@ bool ReadKeyValue(CWallet* pwallet, CDataStream& ssKey, CDataStream& ssValue, CW
             CHDChain chain;
             ssValue >> chain;
             pwallet->GetScriptPubKeyMan()->SetHDChain(chain, true);
-        } else if (strType == "hdchain_sap") {
-            CHDChain chain;
-            ssValue >> chain;
-            pwallet->GetSaplingScriptPubKeyMan()->SetHDChain(chain, true);
-        } else if (strType == "sapzkey") {
-            libzcash::SaplingIncomingViewingKey ivk;
-            ssKey >> ivk;
-            libzcash::SaplingExtendedSpendingKey key;
-            ssValue >> key;
-
-            if (!pwallet->LoadSaplingZKey(key)) {
-                strErr = "Error reading wallet database: LoadSaplingZKey failed";
-                return false;
-            }
-
-            //add checks for integrity
-            wss.nZKeys++;
-        } else if (strType == "csapzkey") {
-            libzcash::SaplingIncomingViewingKey ivk;
-            ssKey >> ivk;
-            libzcash::SaplingExtendedFullViewingKey extfvk;
-            ssValue >> extfvk;
-            std::vector<unsigned char> vchCryptedSecret;
-            ssValue >> vchCryptedSecret;
-            wss.nCKeys++;
-
-            if (!pwallet->LoadCryptedSaplingZKey(extfvk, vchCryptedSecret)) {
-                strErr = "Error reading wallet database: LoadCryptedSaplingZKey failed";
-                return false;
-            }
-            wss.fIsEncrypted = true;
-        } else if (strType == "sapzkeymeta") {
-            libzcash::SaplingIncomingViewingKey ivk;
-            ssKey >> ivk;
-            CKeyMetadata keyMeta;
-            ssValue >> keyMeta;
-
-            wss.nZKeyMeta++;
-
-            pwallet->LoadSaplingZKeyMetadata(ivk, keyMeta);
-        } else if (strType == "sapzaddr") {
-            libzcash::SaplingPaymentAddress addr;
-            ssKey >> addr;
-            libzcash::SaplingIncomingViewingKey ivk;
-            ssValue >> ivk;
-
-            wss.nSapZAddrs++;
-
-            if (!pwallet->LoadSaplingPaymentAddress(addr, ivk)) {
-                strErr = "Error reading wallet database: LoadSaplingPaymentAddress failed";
-                return false;
-            }
         }
     } catch (...) {
         return false;
