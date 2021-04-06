@@ -263,10 +263,10 @@ public:
         vSeeds.emplace_back(CDNSSeedData("seed7", "seed7.sappcoin.com", true));
         vSeeds.emplace_back(CDNSSeedData("seed8", "seed8.sappcoin.com", true));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 63); // 7
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 18); // 7
-        base58Prefixes[STAKING_ADDRESS] = std::vector<unsigned char>(1, 28); // S
-        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 25);  // J
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 63); // S
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 18); // 8
+        base58Prefixes[STAKING_ADDRESS] = std::vector<unsigned char>(1, 28); // C
+        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 25);  // B
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x02)(0x2D)(0x25)(0x63).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x02)(0x21)(0x31)(0x2B).convert_to_container<std::vector<unsigned char> >();
         // BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md
