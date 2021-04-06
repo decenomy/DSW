@@ -1801,10 +1801,10 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="text-stake-piv"] {
-  color: #262626;
+  color: #ffd188;
   font-size: 16px;
   padding: 10px;
-  border-bottom: 5px solid #afafaf;
+  border-bottom: 5px solid #ffd188;
 }
 
 *[cssClass="text-stake-piv-disable"] {
@@ -1815,10 +1815,10 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="text-stake-mnrewards"] {
-    color:#6666ff;
+    color:#e25050;
     font-size:16px;
     padding:10px;
-    border-bottom: 5px solid #6666ff;
+    border-bottom: 5px solid #e25050;
 }
 
 *[cssClass="text-stake-mnrewards-disable"] {
@@ -1834,24 +1834,24 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="text-chart-mnrewards"] {
-    color:#6666ff;
+    color:#bc5b57;
     font-size:16px;
     padding-left:4px;
 }
 
 *[cssClass="text-chart-piv"] {
-  color: #262626;
+  color: #ccaa64;
   font-size: 16px;
   padding-left: 4px;
 }
 
 *[cssClass="square-chart-mnrewards"] {
-    background-color:#6666ff;
+    background-color:#bc5b57;
     border:none;
 }
 
 *[cssClass="square-chart-piv"] {
-  background-color: #ff8888;
+  background-color: #ccaa64;
   border: none;
 }
 
@@ -1991,7 +1991,7 @@ QPushButton[cssClass="btn-check-time"]:hover {
   border-radius: 2px;
   font-size: 14px;
   padding: 4px;
-  color: #ffffff;
+  color: #262626;
 }
 
 QPushButton[cssClass="btn-check-time"]:pressed {
@@ -2947,7 +2947,7 @@ HH        Tooltip
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 QToolTip {
-  color: white;
+  color: #262626;
   background-color: #f0f0f0;
   border: none;
   padding: 4px;
@@ -2977,7 +2977,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="btn-list-menu"]:hover {
-  color: #dddddd;
+  color: #262626;
 }
 
 /*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
@@ -3052,7 +3052,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
   background-color: #ffffff;
   background-position: center;
   background-repeat: no-repeat;
-  selection-background-color: rgb(86, 248, 58);
+  selection-background-color: rgb(250, 250, 250);
   selection-color: white;
   font-size: 14px;
   border-radius: 0px;
@@ -3141,19 +3141,19 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 #treeWidget::branch {
   background-color: #ffffff;
-  selection-background-color: #8bf943;
+  selection-background-color: #fafafa;
 }
 
 #treeWidget::branch:selected {
-  background-color: #8bf943;
+  background-color: #fafafa;
 }
 
 #treeWidget::branch:!selected {
-  background-color: #8bf943;
+  background-color: #fafafa;
 }
 
 #treeWidget::branch:hover {
-  background-color: #44ba26ba;
+  background-color: #fafafa;
 }
 
 #treeWidget::branch:!has-children {
