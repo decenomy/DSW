@@ -52,6 +52,7 @@ pipeline {
 
                 sh """#!/bin/bash
                     mkdir -p deploy/linux
+                    strip src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt
                     cp src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt deploy/linux/
                     cd deploy/linux
                     zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt
@@ -79,6 +80,7 @@ pipeline {
                 echo 'deploy windows ...'
                 sh """#!/bin/bash
                     mkdir -p deploy/windows
+                    strip src/${BASE_NAME}d.exe src/${BASE_NAME}-cli.exe src/${BASE_NAME}-tx.exe src/qt/${BASE_NAME}-qt.exe
                     cp src/${BASE_NAME}d.exe src/${BASE_NAME}-cli.exe src/${BASE_NAME}-tx.exe src/qt/${BASE_NAME}-qt.exe deploy/windows/
                     cd deploy/windows
                     zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-Windows.zip ${BASE_NAME}d.exe ${BASE_NAME}-cli.exe ${BASE_NAME}-tx.exe ${BASE_NAME}-qt.exe
@@ -107,6 +109,7 @@ pipeline {
                 sh """#!/bin/bash
                     make deploy HOST=x86_64-apple-darwin14
                     mkdir -p deploy/macos
+                    strip src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt ${NAME}-Core.dmg
                     cp src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt ${NAME}-Core.dmg deploy/macos/
                     cd deploy/macos
                     zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-MacOS.zip ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt ${NAME}-Core.dmg
@@ -134,6 +137,7 @@ pipeline {
                 echo 'deploy aarch64 ...'
                 sh """#!/bin/bash
                     mkdir -p deploy/aarch64
+                    strip src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt
                     cp src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt deploy/aarch64/
                     cd deploy/aarch64
                     zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-aarch64.zip ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt
@@ -161,6 +165,7 @@ pipeline {
                 echo 'deploy aarch32 ...'
                 sh """#!/bin/bash
                     mkdir -p deploy/aarch32
+                    strip src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt
                     cp src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt deploy/aarch32/
                     cd deploy/aarch32
                     zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-aarch32.zip ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt
