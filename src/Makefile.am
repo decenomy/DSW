@@ -363,6 +363,7 @@ crypto_libbitcoin_crypto_a_SOURCES = \
   crypto/sph_skein.h \
   crypto/sph_types.h \
   crypto/sph_luffa.h \
+  crypto/sph_haval.h \
   crypto/luffa.c \
   crypto/sph_cubehash.h \
   crypto/cubehash.c \
@@ -371,7 +372,13 @@ crypto_libbitcoin_crypto_a_SOURCES = \
   crypto/sph_simd.h \
   crypto/simd.c \
   crypto/sph_echo \
-  crypto/echo.c
+  crypto/echo.c \
+  crypto/shabal.c \
+  crypto/whirlpool.c \
+  crypto/haval.c \
+  crypto/hamsi.c \
+  crypto/fugue.c \
+  crypto/sph_sha2big.c
 
 # libzerocoin library
 libzerocoin_libbitcoin_zerocoin_a_CPPFLAGS = $(AM_CPPFLAGS) $(BOOST_CPPFLAGS)
