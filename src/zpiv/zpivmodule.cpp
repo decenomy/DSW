@@ -159,12 +159,12 @@ namespace ZPIVModule {
         if (!fUseV1Params) {
             CKey key;
             if (!mint.GetKeyPair(key))
-                return error("%s: failed to set z__DSW__ privkey mint.", __func__);
+                return error("%s: failed to set zPNY privkey mint.", __func__);
             spend.setPubKey(key.GetPubKey(), true);
 
             std::vector<unsigned char> vchSig;
             if (!key.Sign(spend.signatureHash(), vchSig))
-                return error("%s: Z__DSW__Module failed to sign signatureHash.", __func__);
+                return error("%s: ZPNYModule failed to sign signatureHash.", __func__);
             spend.setVchSig(vchSig);
 
         }
@@ -231,7 +231,7 @@ namespace ZPIVModule {
         }
         if (!ZPIVModule::parseCoinSpend(txIn, tx, prevOut, publicSpend)) {
             return state.Invalid(error("%s: invalid public coin spend parse %s\n", __func__,
-                                       tx.GetHash().GetHex()), REJECT_INVALID, "bad-txns-invalid-z__DSW__");
+                                       tx.GetHash().GetHex()), REJECT_INVALID, "bad-txns-invalid-zPNY");
         }
         return true;
     }
