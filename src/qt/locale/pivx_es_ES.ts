@@ -1137,16 +1137,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>versión</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Beacon</source>
+        <translation>Beacon</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About __Decenomy__</source>
-        <translation>Acerca de __Decenomy__</translation>
+        <source>About Beacon</source>
+        <translation>Acerca de Beacon</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1200,16 +1200,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>Bienvenido/a</translation>
     </message>
     <message>
-        <source>Welcome to __Decenomy__.</source>
-        <translation>Bienvenido/a a __Decenomy__.</translation>
+        <source>Welcome to Beacon.</source>
+        <translation>Bienvenido/a a Beacon.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where __Decenomy__ will store its data.</source>
-        <translation>Al ser la primera vez que se inicia el programa, usted puede elegir dónde guardará __Decenomy__ sus datos.</translation>
+        <source>As this is the first time the program is launched, you can choose where Beacon will store its data.</source>
+        <translation>Al ser la primera vez que se inicia el programa, usted puede elegir dónde guardará Beacon sus datos.</translation>
     </message>
     <message>
-        <source>__Decenomy__ will download and store a copy of the __DSW__ block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>__Decenomy__ descargará y guardará una copia de la cadena de bloques __DSW__. Por lo menos %1GB de datos serán guardados en esta carpeta, y crecerá con el tiempo. La wallet también se guardará en esta carpeta.</translation>
+        <source>Beacon will download and store a copy of the __DSW__ block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Beacon descargará y guardará una copia de la cadena de bloques __DSW__. Por lo menos %1GB de datos serán guardados en esta carpeta, y crecerá con el tiempo. La wallet también se guardará en esta carpeta.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1228,8 +1228,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>OK</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Beacon</source>
+        <translation>Beacon</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -2012,8 +2012,8 @@ STAKING</translation>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Beacon</source>
+        <translation>Beacon</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -2040,8 +2040,8 @@ STAKING</translation>
         <translation>Cerrar aplicación</translation>
     </message>
     <message>
-        <source>__Decenomy__ client</source>
-        <translation>Cliente __Decenomy__</translation>
+        <source>Beacon client</source>
+        <translation>Cliente Beacon</translation>
     </message>
     <message>
         <source>Error</source>
@@ -2245,8 +2245,8 @@ Dirección: %4
         <translation>Se produjo un error fatal. __DSW__ ya no puede continuar de forma segura y dejará de funcionar.   </translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Beacon</source>
+        <translation>Beacon</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -2265,8 +2265,8 @@ Dirección: %4
         <translation>Error al leer el archivo de configuración de masternode: %1</translation>
     </message>
     <message>
-        <source>__Decenomy__ didn't yet exit safely...</source>
-        <translation>El núcleo __Decenomy__ aún no ha salido de forma segura...</translation>
+        <source>Beacon didn't yet exit safely...</source>
+        <translation>El núcleo Beacon aún no ha salido de forma segura...</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -4556,8 +4556,8 @@ Are you sure?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>__Decenomy__ is shutting down...</source>
-        <translation>El programa __Decenomy__ se está cerrando...</translation>
+        <source>Beacon is shutting down...</source>
+        <translation>El programa Beacon se está cerrando...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4586,8 +4586,8 @@ Are you sure?
         <translation>Cargando....</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Beacon</source>
+        <translation>Beacon</translation>
     </message>
 </context>
 <context>
@@ -5026,9 +5026,9 @@ una nueva copia de seguridad.
     </message>
     <message>
         <source>Welcome to
-__Decenomy__ Wallet</source>
+Beacon Wallet</source>
         <translation>Bienvenido a
-__Decenomy__ Wallet</translation>
+Beacon Wallet</translation>
     </message>
     <message>
         <source>__DSW__ is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
@@ -5078,8 +5078,8 @@ __Decenomy__ Wallet</translation>
         <translation>Escuchar únicamente a la tarjeta de red indicada para conexiones JSON-RPC. Use la notación [host]:puerto para IPv6. Esta opción puede ser especificada varias veces (por defecto: escuchar en todas las tarjetas de red)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. __Decenomy__ is probably already running.</source>
-        <translation>No se puede obtener un bloqueo sobre el directorio de datos %s. __Decenomy__ esta probablemente en ejecución.</translation>
+        <source>Cannot obtain a lock on data directory %s. Beacon is probably already running.</source>
+        <translation>No se puede obtener un bloqueo sobre el directorio de datos %s. Beacon esta probablemente en ejecución.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -5242,8 +5242,8 @@ __Decenomy__ Wallet</translation>
         <translation>La longitud total de la cadena de la versión de red (%i) excede la longitud máxima (%i). Reducir el número o tamaño de los uacomments.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. __Decenomy__ is probably already running.</source>
-        <translation>Imposible conectar a %s en esta computadora. Es probable que __Decenomy__ ya este corriendo.</translation>
+        <source>Unable to bind to %s on this computer. Beacon is probably already running.</source>
+        <translation>Imposible conectar a %s en esta computadora. Es probable que Beacon ya este corriendo.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -5258,8 +5258,8 @@ __Decenomy__ Wallet</translation>
         <translation>Advertencia: -paytxfee esta muy alta! Esta es la comisión de transacción que pagarás si envías una transacción.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</source>
-        <translation>Advertencia: Por favor verifique que la fecha y hora de su computadora sean correctas! Si su reloj esta fuera de hora __Decenomy__ no funcionará adecuadamente.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Beacon will not work properly.</source>
+        <translation>Advertencia: Por favor verifique que la fecha y hora de su computadora sean correctas! Si su reloj esta fuera de hora Beacon no funcionará adecuadamente.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5474,8 +5474,8 @@ __Decenomy__ Wallet</translation>
         <translation>Información</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. __Decenomy__ is shutting down.</source>
-        <translation>La prueba de salud de inicialización ha fallado. __Decenomy__ se cerrará.</translation>
+        <source>Initialization sanity check failed. Beacon is shutting down.</source>
+        <translation>La prueba de salud de inicialización ha fallado. Beacon se cerrará.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5774,8 +5774,8 @@ __Decenomy__ Wallet</translation>
         <translation>Preparando para resincronizar...</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</source>
-        <translation>Por favor verifique que la fecha y hora de su computadora sean correctas! Si su reloj esta fuera de hora __Decenomy__ no funcionará adecuadamente.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong Beacon will not work properly.</source>
+        <translation>Por favor verifique que la fecha y hora de su computadora sean correctas! Si su reloj esta fuera de hora Beacon no funcionará adecuadamente.</translation>
     </message>
     <message>
         <source>Specify location of debug log file: this can be an absolute path or a path relative to the data directory (default: %s)</source>
@@ -6078,8 +6078,8 @@ __Decenomy__ Wallet</translation>
         <translation>La wallet %s esta ubicada fuera del directorio de datos %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart __Decenomy__ to complete</source>
-        <translation>La wallet necesita reescribirse: reinicie la __Decenomy__ para completarlo</translation>
+        <source>Wallet needed to be rewritten: restart Beacon to complete</source>
+        <translation>La wallet necesita reescribirse: reinicie la Beacon para completarlo</translation>
     </message>
     <message>
         <source>Wallet options:</source>
