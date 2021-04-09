@@ -3,7 +3,7 @@ HH       CONTAINER
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 * {
-    font-family: Nunito;
+    font-family: Montserrat;
 }
 
 *[cssClass="container"] {
@@ -369,12 +369,12 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 *[cssClass="text-title-topbar"] {
     color:#818181;
     font-size:16px;
-    font-weight: ligther;
+    font-weight: 200;
 }
 
 *[cssClass="amount-topbar"] {
     color:#474747;
-    font-size:35px;
+    font-size:30px;
 }
 
 *[cssClass="amount-small-topbar"] {
