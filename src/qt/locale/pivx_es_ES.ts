@@ -1137,7 +1137,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>versión</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
+        <source>Peony</source>
         <translation>__Decenomy__</translation>
     </message>
     <message>
