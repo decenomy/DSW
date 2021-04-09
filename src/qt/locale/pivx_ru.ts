@@ -1883,9 +1883,9 @@ STAKING</source>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        __decenomy_discord_link__</source>
+        https://discord.gg/fPFTtWCu</source>
         <translation>Отсутствует ваш язык или заметили незавершенный перевод? Вы можете помочь нам стать лучше:
-        __decenomy_discord_link__</translation>
+        https://discord.gg/fPFTtWCu</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
