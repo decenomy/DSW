@@ -1,9 +1,9 @@
 [Desktop Entry]
 Version=1.0
-Name=__Decenomy__ 
-Comment=__Decenomy__ P2P Cryptocurrency
-Comment[fr]=__Decenomy__, monnaie virtuelle cryptographique pair à pair
-Comment[tr]=__Decenomy__, eşten eşe kriptografik sanal para birimi
+Name=Peony 
+Comment=Peony P2P Cryptocurrency
+Comment[fr]=Peony, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Peony, eşten eşe kriptografik sanal para birimi
 Exec=__decenomy__-qt %u
 Terminal=false
 Type=Application

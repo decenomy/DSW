@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        NAME = '__Decenomy__'
+        NAME = 'Peony'
         BASE_NAME = '__decenomy__'
         ZIP_NAME = 'PNY'
     }
