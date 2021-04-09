@@ -71,6 +71,15 @@ src/aezora-cli
 src/aezora-tx
 src/aezorad
 
+# Beacon
+src/bench/bench_beacon
+src/qt/test/test_beacon-qt
+src/qt/beacon-qt
+src/test/test_beacon
+src/beacon-cli
+src/beacon-tx
+src/beacond
+
 ##########################################
 # clear this section when it's fixed
 ###
