@@ -1538,7 +1538,7 @@ Molimo pričekajte nekoliko minuta (zalog za Masternode zahtjeva %1 potvrda).</t
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the __decenomy__.conf file
+You will only have to paste the data in the beacon.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1546,7 +1546,7 @@ this controller wallet (select the Masternode in the list and press "start").
 na udaljenom poslužitelju u medjuspremnik.
 
 
-Podatke ćete morati zalijepiti u datoteku __decenomy__.conf
+Podatke ćete morati zalijepiti u datoteku beacon.conf
 na udaljenom poslužitelju i pokrenuti ga, a zatim pokrenite Masternode
 koristeći ovaj controller novčanik (na popisu odaberite Masternode i pritisnite "start").
 </translation>
@@ -1732,8 +1732,8 @@ STAKING</translation>
         <translation>Parsirani podaci preveliki</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "__decenomy__" prefix</source>
-        <translation>Nevažeći URI, ne počinje "__decenomy__" prefiksom</translation>
+        <source>Invalid URI, not starting with "beacon" prefix</source>
+        <translation>Nevažeći URI, ne počinje "beacon" prefiksom</translation>
     </message>
 </context>
 <context>
@@ -2122,8 +2122,8 @@ Adresa: %4
         <translation>Nevažeća adresa za plaćanje %1</translation>
     </message>
     <message>
-        <source>Cannot start __decenomy__: click-to-pay handler</source>
-        <translation>Ne može se pokrenuti __decenomy__: clik-to-pay handler</translation>
+        <source>Cannot start beacon: click-to-pay handler</source>
+        <translation>Ne može se pokrenuti beacon: clik-to-pay handler</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid BECN address or malformed URI parameters.</source>
@@ -4046,8 +4046,8 @@ Zahtjevi:
         <translation>Ne može se otvoriti mapa sigurnosne kopije</translation>
     </message>
     <message>
-        <source>Unable to open __decenomy__.conf with default application</source>
-        <translation>Nije moguće otvoriti __decenomy__.conf sa zadanom aplikacijom</translation>
+        <source>Unable to open beacon.conf with default application</source>
+        <translation>Nije moguće otvoriti beacon.conf sa zadanom aplikacijom</translation>
     </message>
     <message>
         <source>In:</source>
