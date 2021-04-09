@@ -38,7 +38,7 @@
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>io.__decenomy__.Beacon-Qt</string>
+  <string>io.beacon.Beacon-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
