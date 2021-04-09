@@ -1,6 +1,6 @@
 [Protocol]
-exec=__decenomy__-qt '%u'
-protocol=__decenomy__
+exec=peony-qt '%u'
+protocol=peony
 input=none
 output=none
 helper=true
