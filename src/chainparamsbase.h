@@ -14,8 +14,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between __decenomy__-cli and __decenomy__d)
- * of a given instance of the __decenomy__ system.
+ * CBaseChainParams defines the base parameters (shared between beacon-cli and beacond)
+ * of a given instance of the beacon system.
  */
 class CBaseChainParams
 {
