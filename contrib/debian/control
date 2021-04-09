@@ -29,8 +29,8 @@ Build-Depends: debhelper,
  dh-systemd
 Standards-Version: 3.9.2
 Homepage: __decenomy_website_link__
-Vcs-Git: git://__decenomy_github_link__.git
-Vcs-Browser: https://__decenomy_github_link__
+Vcs-Git: git://https://github.com/beaconcrypto.git
+Vcs-Browser: https://github.com/beaconcrypto
 
 Package: beacond
 Architecture: any
