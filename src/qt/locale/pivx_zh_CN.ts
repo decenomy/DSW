@@ -95,11 +95,11 @@
     </message>
     <message>
         <source>Choose the address to send coins to</source>
-        <translation>选择发送__DSW__ coin的地址</translation>
+        <translation>选择发送BECN coin的地址</translation>
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
-        <translation>选择接收__DSW__ coin的地址</translation>
+        <translation>选择接收BECN coin的地址</translation>
     </message>
     <message>
         <source>C&amp;hoose</source>
@@ -114,12 +114,12 @@
         <translation>接收地址</translation>
     </message>
     <message>
-        <source>These are your __DSW__ addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>这是用于发送__DSW__的地址。在发送__DSW__之前，请认真核查发送金额和接收地址。</translation>
+        <source>These are your BECN addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>这是用于发送BECN的地址。在发送BECN之前，请认真核查发送金额和接收地址。</translation>
     </message>
     <message>
-        <source>These are your __DSW__ addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>这是用于接收__DSW__的钱包地址。建议每一笔交易都使用一个新的钱包地址。</translation>
+        <source>These are your BECN addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>这是用于接收BECN的钱包地址。建议每一笔交易都使用一个新的钱包地址。</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -348,8 +348,8 @@ for staking</source>
         <translation>删除</translation>
     </message>
     <message>
-        <source>__DSW__ will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your __DSW__s from being stolen by malware infecting your computer.</source>
-        <translation>__DSW__将关闭以完成加密过程。但是，仅仅加密您的钱包是不够的，因为它并不能阻止恶意软件从您的电脑里面偷取__DSW__s。</translation>
+        <source>BECN will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your BECNs from being stolen by malware infecting your computer.</source>
+        <translation>BECN将关闭以完成加密过程。但是，仅仅加密您的钱包是不够的，因为它并不能阻止恶意软件从您的电脑里面偷取BECNs。</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -418,8 +418,8 @@ for staking</source>
         <translation>存款</translation>
     </message>
     <message>
-        <source>0,00 __DSW__</source>
-        <translation>0,00 __DSW__</translation>
+        <source>0,00 BECN</source>
+        <translation>0,00 BECN</translation>
     </message>
     <message>
         <source>address</source>
@@ -460,8 +460,8 @@ for staking</source>
         <translation>币选择</translation>
     </message>
     <message>
-        <source>Select __DSW__ Outputs to Spend</source>
-        <translation>选择__DSW__支出花费</translation>
+        <source>Select BECN Outputs to Spend</source>
+        <translation>选择BECN支出花费</translation>
     </message>
     <message>
         <source>Dust:</source>
@@ -488,8 +488,8 @@ for staking</source>
         <translation>金额</translation>
     </message>
     <message>
-        <source>0.00 __DSW__</source>
-        <translation>0.00 __DSW__</translation>
+        <source>0.00 BECN</source>
+        <translation>0.00 BECN</translation>
     </message>
     <message>
         <source>0</source>
@@ -739,9 +739,9 @@ for staking</source>
         <translation>加载委托时出错：%1</translation>
     </message>
     <message>
-        <source>You can delegate your __DSW__s, letting a hot node (24/7 online node)
+        <source>You can delegate your BECNs, letting a hot node (24/7 online node)
 stake on your behalf, while you keep the keys securely offline.</source>
-        <translation>您可以委托您的__DSW__并让一个热节点(24/7在线节点)
+        <translation>您可以委托您的BECN并让一个热节点(24/7在线节点)
 代表你加注，而且保持密钥离线安全。</translation>
     </message>
     <message>
@@ -749,8 +749,8 @@ stake on your behalf, while you keep the keys securely offline.</source>
         <translation>输入所有者地址</translation>
     </message>
     <message>
-        <source>Accept __DSW__ delegation / Delegate __DSW__</source>
-        <translation>接受__DSW__委托／委托__DSW__ </translation>
+        <source>Accept BECN delegation / Delegate BECN</source>
+        <translation>接受BECN委托／委托BECN </translation>
     </message>
     <message>
         <source>Cold Staking address</source>
@@ -945,8 +945,8 @@ address</source>
         <translation>过滤</translation>
     </message>
     <message>
-        <source>Amount of __DSW__ and z__DSW__ staked.</source>
-        <translation>已加注的__DSW__ 和 z__DSW__ 金额</translation>
+        <source>Amount of BECN and zBECN staked.</source>
+        <translation>已加注的BECN 和 zBECN 金额</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -1041,8 +1041,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>编辑发送地址</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid __DSW__ address.</source>
-        <translation>所输入的地址“%1”不是有效的__DSW__地址。</translation>
+        <source>The entered address "%1" is not a valid BECN address.</source>
+        <translation>所输入的地址“%1”不是有效的BECN地址。</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1165,8 +1165,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>由于这是该程序第一次启动，您可以选择存储Beacon 数据的位置。</translation>
     </message>
     <message>
-        <source>Beacon will download and store a copy of the __DSW__ block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Beacon将下载并存储__DSW__区块链副本。 至少 %1 GB的数据将存储在此目录中，并且会随着时间的推移而增长。 钱包也将存储在此目录中。</translation>
+        <source>Beacon will download and store a copy of the BECN block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Beacon将下载并存储BECN区块链副本。 至少 %1 GB的数据将存储在此目录中，并且会随着时间的推移而增长。 钱包也将存储在此目录中。</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1285,8 +1285,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>创建新的主节点控制器</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a __DSW__ Masternode you must dedicate a collateral amount of __DSW__ (the unit of __DSW__) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;要去创建一个__DSW__主节点，你必须奉献10,000 __DSW__（__DSW__的单位）到网络（但是这些币还是属于你的，一直为你所有）。&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;你可以在任何时候关闭该节点并解锁币。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a BECN Masternode you must dedicate a collateral amount of BECN (the unit of BECN) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;要去创建一个BECN主节点，你必须奉献10,000 BECN（BECN的单位）到网络（但是这些币还是属于你的，一直为你所有）。&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;你可以在任何时候关闭该节点并解锁币。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Set Masternode Name</source>
@@ -1306,7 +1306,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of collateral amount will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;将进行10,000 __DSW__的交易&lt;/p&gt;&lt;p&gt;到您的钱包空地址&lt;/p&gt;&lt;p&gt;地址被标记在主节点的名称之下&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;将进行10,000 BECN的交易&lt;/p&gt;&lt;p&gt;到您的钱包空地址&lt;/p&gt;&lt;p&gt;地址被标记在主节点的名称之下&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Address of the node that must always be online running the actual master node.</source>
@@ -1682,8 +1682,8 @@ Are you sure?</source>
         <translation>如果您要禁用未经确认发送，在至少有一个确认之前&lt;br/&gt;不能更改。&lt;br/&gt;这也将影响您的余额计算。</translation>
     </message>
     <message>
-        <source>Automatically open the __DSW__ client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>自动打开路由器上的__DSW__钱包使用的端口。 这只有当您的路由器支持UPnP并且该享生效时才有用。</translation>
+        <source>Automatically open the BECN client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>自动打开路由器上的BECN钱包使用的端口。 这只有当您的路由器支持UPnP并且该享生效时才有用。</translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -1702,12 +1702,12 @@ Are you sure?</source>
         <translation>专家</translation>
     </message>
     <message>
-        <source>Automatically start __DSW__ after logging in to the system.</source>
-        <translation>登录系统后自动启动__DSW__。</translation>
+        <source>Automatically start BECN after logging in to the system.</source>
+        <translation>登录系统后自动启动BECN。</translation>
     </message>
     <message>
-        <source>&amp;Start __DSW__ on system login</source>
-        <translation>&amp;开机启动__DSW__</translation>
+        <source>&amp;Start BECN on system login</source>
+        <translation>&amp;开机启动BECN</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1734,8 +1734,8 @@ Are you sure?</source>
         <translation>&amp;网络</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting __DSW__.</source>
-        <translation>可以在这里设置用户界面语言。此设置将在重新启动__DSW__后生效。</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting BECN.</source>
+        <translation>可以在这里设置用户界面语言。此设置将在重新启动BECN后生效。</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
@@ -1748,44 +1748,44 @@ Are you sure?</source>
         <translation>端口使用&amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of __DSW__ units to z__DSW__</source>
-        <translation>启动自动铸造__DSW__到z__DSW__</translation>
+        <source>Enable automatic minting of BECN units to zBECN</source>
+        <translation>启动自动铸造BECN到zBECN</translation>
     </message>
     <message>
-        <source>Enable z__DSW__ Automint</source>
-        <translation>启动自动铸造z__DSW__</translation>
+        <source>Enable zBECN Automint</source>
+        <translation>启动自动铸造zBECN</translation>
     </message>
     <message>
-        <source>Enable automatic z__DSW__ minting from specific addresses</source>
-        <translation>启用从特定地址自动生成z__DSW__</translation>
+        <source>Enable automatic zBECN minting from specific addresses</source>
+        <translation>启用从特定地址自动生成zBECN</translation>
     </message>
     <message>
         <source>Enable Automint Addresses</source>
         <translation>启动自动铸造地址</translation>
     </message>
     <message>
-        <source>Percentage of incoming __DSW__ which get automatically converted to z__DSW__ via Zerocoin Protocol (min: 10%)</source>
-        <translation>通过零币协议自动转换为z__DSW__的传入__DSW__的百分比(最小:10%)</translation>
+        <source>Percentage of incoming BECN which get automatically converted to zBECN via Zerocoin Protocol (min: 10%)</source>
+        <translation>通过零币协议自动转换为zBECN的传入BECN的百分比(最小:10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted z__DSW__</source>
-        <translation>自动铸造的z__DSW__百分比</translation>
+        <source>Percentage of autominted zBECN</source>
+        <translation>自动铸造的zBECN百分比</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough __DSW__ for this denomination is available</source>
-        <translation>等待自动转换为零币，直到足够的__DSW__为这种面额可用</translation>
+        <source>Wait with automatic conversion to Zerocoin until enough BECN for this denomination is available</source>
+        <translation>等待自动转换为零币，直到足够的BECN为这种面额可用</translation>
     </message>
     <message>
-        <source>Preferred Automint z__DSW__ Denomination</source>
-        <translation>首选自动铸造z__DSW__面额</translation>
+        <source>Preferred Automint zBECN Denomination</source>
+        <translation>首选自动铸造zBECN面额</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
         <translation>股权分割阈值:</translation>
     </message>
     <message>
-        <source>Connect to the __DSW__ network through a SOCKS5 proxy.</source>
-        <translation>通过SOCKS5代理连接到__DSW__网络。</translation>
+        <source>Connect to the BECN network through a SOCKS5 proxy.</source>
+        <translation>通过SOCKS5代理连接到BECN网络。</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1841,7 +1841,7 @@ Are you sure?</source>
     </message>
     <message>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
-        <translation>选择显示发送__DSW__的默认单位。</translation>
+        <translation>选择显示发送BECN的默认单位。</translation>
     </message>
     <message>
         <source>Decimal digits</source>
@@ -2030,8 +2030,8 @@ Address: %4
         <translation>无法启动__decenomy__:点击支付处理程序</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid __DSW__ address or malformed URI parameters.</source>
-        <translation>URI不能被解析!这可能是由无效的__DSW__地址或格式错误的URI参数造成的。</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid BECN address or malformed URI parameters.</source>
+        <translation>URI不能被解析!这可能是由无效的BECN地址或格式错误的URI参数造成的。</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -2116,8 +2116,8 @@ Address: %4
         <translation>金额</translation>
     </message>
     <message>
-        <source>Enter __DSW__ address (e.g. %1)</source>
-        <translation>输入__DSW__ a地址(e.g. %1)</translation>
+        <source>Enter BECN address (e.g. %1)</source>
+        <translation>输入BECN a地址(e.g. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2160,8 +2160,8 @@ Address: %4
         <translation>%1 毫秒</translation>
     </message>
     <message>
-        <source>A fatal error occurred. __DSW__ can no longer continue safely and will quit.</source>
-        <translation>发生了一个致命的错误。__DSW__不能继续安全，将退出。</translation>
+        <source>A fatal error occurred. BECN can no longer continue safely and will quit.</source>
+        <translation>发生了一个致命的错误。BECN不能继续安全，将退出。</translation>
     </message>
     <message>
         <source>Beacon</source>
@@ -2367,8 +2367,8 @@ Address: %4
         <translation>区块链</translation>
     </message>
     <message>
-        <source>Open the __DSW__ debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>从当前数据目录打开__DSW__调试日志文件。对于大型日志文件，这可能需要几秒钟。</translation>
+        <source>Open the BECN debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>从当前数据目录打开BECN调试日志文件。对于大型日志文件，这可能需要几秒钟。</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -2511,8 +2511,8 @@ Address: %4
         <translation>自定义备份路径:</translation>
     </message>
     <message>
-        <source>Custom z__DSW__ Backup Path:</source>
-        <translation>自定义z__DSW__备份路径:</translation>
+        <source>Custom zBECN Backup Path:</source>
+        <translation>自定义zBECN备份路径:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -2591,8 +2591,8 @@ Address: %4
         <translation>出：</translation>
     </message>
     <message>
-        <source>Welcome to the __DSW__ RPC console.</source>
-        <translation>欢迎访问__DSW__ RPC控制台</translation>
+        <source>Welcome to the BECN RPC console.</source>
+        <translation>欢迎访问BECN RPC控制台</translation>
     </message>
     <message>
         <source>&amp;Disconnect Node</source>
@@ -2839,8 +2839,8 @@ Address: %4
         <translation>金额</translation>
     </message>
     <message>
-        <source>__DSW__</source>
-        <translation>__DSW__</translation>
+        <source>BECN</source>
+        <translation>BECN</translation>
     </message>
     <message>
         <source>D7VFR83SQbiezrW72hjcWJtcfip5krte2Z </source>
@@ -2918,8 +2918,8 @@ Address: %4
         <translation>自定义更改地址</translation>
     </message>
     <message>
-        <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" __DSW__ address</source>
-        <translation>输入值减去输出值所得的值的其余部分归为“更改”__DSW__地址</translation>
+        <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" BECN address</source>
+        <translation>输入值减去输出值所得的值的其余部分归为“更改”BECN地址</translation>
     </message>
     <message>
         <source>SAVE</source>
@@ -2945,8 +2945,8 @@ Address: %4
         <translation>已推荐</translation>
     </message>
     <message>
-        <source>__DSW__/kilobyte</source>
-        <translation>__DSW__/k字节</translation>
+        <source>BECN/kilobyte</source>
+        <translation>BECN/k字节</translation>
     </message>
     <message>
         <source>0.00 KB</source>
@@ -3209,8 +3209,8 @@ These coins will no longer be cold-staked.</source>
         <translation>解密钥匙</translation>
     </message>
     <message>
-        <source>__DSW__ address</source>
-        <translation>__DSW__地址</translation>
+        <source>BECN address</source>
+        <translation>BECN地址</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -3334,8 +3334,8 @@ Verify that you have installed a predetermined text editor.</source>
 确认您已经安装了预定的文本编辑器</translation>
     </message>
     <message>
-        <source>Welcome to the __DSW__ RPC console.</source>
-        <translation>欢迎访问__DSW__ RPC控制台</translation>
+        <source>Welcome to the BECN RPC console.</source>
+        <translation>欢迎访问BECN RPC控制台</translation>
     </message>
     <message>
         <source>Use up and down arrows to navigate history, and %1 to clear screen.</source>
@@ -3519,46 +3519,46 @@ There was an error trying to save the address list to %1. Please try again.</sou
         <translation>来自</translation>
     </message>
     <message>
-        <source>1) What is __DSW__?</source>
-        <translation>1）什么是__DSW__?</translation>
+        <source>1) What is BECN?</source>
+        <translation>1）什么是BECN?</translation>
     </message>
     <message>
-        <source>2) Why are my __DSW__ unspendable?</source>
-        <translation>2) 我的__DSW__为什么不能用？</translation>
+        <source>2) Why are my BECN unspendable?</source>
+        <translation>2) 我的BECN为什么不能用？</translation>
     </message>
     <message>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <source>What is __DSW__?</source>
-        <translation>__DSW__是什么?</translation>
+        <source>What is BECN?</source>
+        <translation>BECN是什么?</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           __DSW__ is a form of digital online money using blockchain technology
+                           BECN is a form of digital online money using blockchain technology
                            that can be easily transferred globally, instantly, and with near
-                           zero fees.  __DSW__ incorporates market leading security &amp;
+                           zero fees.  BECN incorporates market leading security &amp;
                            privacy and is also the first PoS (Proof of Stake) Cryptocurrency
-                           to implement ZeroCoin(z__DSW__) and Zerocoin staking.
+                           to implement ZeroCoin(zBECN) and Zerocoin staking.
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           __DSW__ utilizes a Proof of Stake (PoS) consensus system algorithm,
-                           allowing all owners of __DSW__ to participate in earning block rewards
+                           BECN utilizes a Proof of Stake (PoS) consensus system algorithm,
+                           allowing all owners of BECN to participate in earning block rewards
                            while securing the network with full node wallets, as well as to
                            run Masternodes to create and vote on proposals.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-__DSW__是一种使用区块链技术的数字在线货币
+BECN是一种使用区块链技术的数字在线货币
 全球范围内快捷交易，即时，基本为
-零的交易费用。__DSW__是市场上领先的安全和
+零的交易费用。BECN是市场上领先的安全和
 隐私加密货币，也是第一个PoS(股权证明)加密货币
-实现零币(z__DSW__)和零币加注。
+实现零币(zBECN)和零币加注。
 &lt;/p&gt;&lt;p align="justify"&gt;
-__DSW__使用了一个股权证明(PoS)一致系统算法，
-允许所有__DSW__的所有者参与赚取区块奖励
+BECN使用了一个股权证明(PoS)一致系统算法，
+允许所有BECN的所有者参与赚取区块奖励
 同时保护网络与完整的节点钱包，以及
 运行主节点创建和投票来进行提案。</translation>
     </message>
@@ -3567,25 +3567,25 @@ __DSW__使用了一个股权证明(PoS)一致系统算法，
         <translation>2</translation>
     </message>
     <message>
-        <source>Why are my __DSW__ unspendable?</source>
-        <translation>我的__DSW__为什么不能用？</translation>
+        <source>Why are my BECN unspendable?</source>
+        <translation>我的BECN为什么不能用？</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           Newly received __DSW__ requires 6 confirmations on the network
+                           Newly received BECN requires 6 confirmations on the network
                            to become eligible for spending which can take ~6 minutes.
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           Your __DSW__ wallet also needs to be completely synchronized
+                           Your BECN wallet also needs to be completely synchronized
                            to see and spend balances on the network.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-接收到的__DSW__需要网络上的6个确认
+接收到的BECN需要网络上的6个确认
 才能成为有资格的花费，可以花~6分钟。
 &lt;/p&gt;&lt;p align="justify"&gt;
-您的__DSW__钱包也需要完全同步
+您的BECN钱包也需要完全同步
 查看网络收支余额。
 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
 </translation>
@@ -3620,12 +3620,12 @@ __DSW__使用了一个股权证明(PoS)一致系统算法，
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;A Masternode Controller wallet is where the collateral amount can reside during a Controller-Remote masternode setup. It is a wallet that can activate the remote masternode wallet(s) and allows you to keep your collateral coins offline while the remote masternode remains online. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;主节点控制器钱包是控制器-远程主节点建立期间10,000 __DSW__抵押可以驻留的地方。这是一个可以激活远程主节点钱包(s)的钱包，可以让你的抵押币离线但远程主节点保持在线。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;主节点控制器钱包是控制器-远程主节点建立期间10,000 BECN抵押可以驻留的地方。这是一个可以激活远程主节点钱包(s)的钱包，可以让你的抵押币离线但远程主节点保持在线。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           A masternode is a computer running a full node __DSW__ wallet with a
+                           A masternode is a computer running a full node BECN wallet with a
                            required amount of secured collateral to provide extra services
                            to the network and in return, receive a portion of the block reward
                            regularly.  These services include:
@@ -3648,10 +3648,10 @@ __DSW__使用了一个股权证明(PoS)一致系统算法，
                            Masternode Perks:
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;Participate in __DSW__ Governance&lt;/li&gt;
+                           &lt;li&gt;Participate in BECN Governance&lt;/li&gt;
                            &lt;li&gt;Earn Masternode Rewards&lt;/li&gt;
                            &lt;li&gt;Commodity option for future sale&lt;/li&gt;
-                           &lt;li&gt;Help secure the __DSW__ network&lt;/li&gt;
+                           &lt;li&gt;Help secure the BECN network&lt;/li&gt;
                            &lt;/ul&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
@@ -3667,8 +3667,8 @@ __DSW__使用了一个股权证明(PoS)一致系统算法，
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-主节点是运行完整节点__DSW__核心钱包的计算机
-需要10,000个__DSW__作抵押以提供额外服务
+主节点是运行完整节点BECN核心钱包的计算机
+需要10,000个BECN作抵押以提供额外服务
 到网络，会收到一部分的区块奖励作为定期
 回报
 这些服务包括:
@@ -3690,17 +3690,17 @@ __DSW__使用了一个股权证明(PoS)一致系统算法，
 主节点福利：
 &lt;/p&gt;&lt;p align="justify"&gt;
 &lt;ul&gt;
-&lt;li&gt;参与__DSW__治理&lt;/li&gt;
+&lt;li&gt;参与BECN治理&lt;/li&gt;
 &lt;li&gt;赢取主节点奖励&lt;/li&gt;
 &lt;li&gt;商品期货期权&lt;/li&gt;
-&lt;li&gt;帮助保护__DSW__网络&lt;/li&gt;
+&lt;li&gt;帮助保护BECN网络&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/p&gt;&lt;p align="justify"&gt;
 
 要求：
 &lt;/p&gt;&lt;p align="justify"&gt;
 &lt;ul&gt;
-&lt;li&gt;每个主节点实例有10,000 __DSW__&lt;/li&gt;
+&lt;li&gt;每个主节点实例有10,000 BECN&lt;/li&gt;
 &lt;li&gt;必须存储在核心钱包&lt;/li&gt;
 &lt;li&gt;需要专用IP地址&lt;/li&gt;
 主节点钱包保持在线&lt;li&gt;
@@ -3872,8 +3872,8 @@ __DSW__使用了一个股权证明(PoS)一致系统算法，
         <translation>脚本&amp;验证线程数</translation>
     </message>
     <message>
-        <source>Start __DSW__ on system login</source>
-        <translation>开机启动__DSW__</translation>
+        <source>Start BECN on system login</source>
+        <translation>开机启动BECN</translation>
     </message>
     <message>
         <source>Minimize to the tray instead of the taskbar</source>
@@ -3960,8 +3960,8 @@ Are you sure?
         <translation>查看列表</translation>
     </message>
     <message>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other __DSW__ addresses after it matures.</source>
-        <translation>成熟以后，多重花费允许您自动发送高达 100% 的股权或主节点奖励到其他__DSW__地址列表</translation>
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other BECN addresses after it matures.</source>
+        <translation>成熟以后，多重花费允许您自动发送高达 100% 的股权或主节点奖励到其他BECN地址列表</translation>
     </message>
     <message>
         <source>Active</source>
@@ -4079,8 +4079,8 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation>消息 </translation>
     </message>
     <message>
-        <source>__DSW__ address or contact label</source>
-        <translation>__DSW__ 地址或者联系人标签</translation>
+        <source>BECN address or contact label</source>
+        <translation>BECN 地址或者联系人标签</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -4356,8 +4356,8 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation>常见问题</translation>
     </message>
     <message>
-        <source>About __DSW__</source>
-        <translation>关于__DSW__ </translation>
+        <source>About BECN</source>
+        <translation>关于BECN </translation>
     </message>
     <message>
         <source>Settings</source>
@@ -4902,20 +4902,20 @@ Beacon Wallet</source>
 Beacon心钱包</translation>
     </message>
     <message>
-        <source>__DSW__ is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
-        <translation>__DSW__是世界上最先进的隐私保护技术，由经验丰富的开发人员和密码专家开发。</translation>
+        <source>BECN is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
+        <translation>BECN是世界上最先进的隐私保护技术，由经验丰富的开发人员和密码专家开发。</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - __DSW__ believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;正如我们的宣言所说:隐私是一项不容协商的基本人权;它赋予用户随时随地与任何人共享数据的自由——__DSW__相信自我主权&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - BECN believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;正如我们的宣言所说:隐私是一项不容协商的基本人权;它赋予用户随时随地与任何人共享数据的自由——BECN相信自我主权&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <source>The masternode network is __DSW__'s second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
-        <translation>主节点网络是__DSW__在区块链之上的第二层网络，它使我们的DAO能够提供去中心的治理。</translation>
+        <source>The masternode network is BECN's second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
+        <translation>主节点网络是BECN在区块链之上的第二层网络，它使我们的DAO能够提供去中心的治理。</translation>
     </message>
     <message>
-        <source>How __DSW__ respects your privacy?</source>
-        <translation>__DSW__ 到底是怎么尊重你的隐私的？</translation>
+        <source>How BECN respects your privacy?</source>
+        <translation>BECN 到底是怎么尊重你的隐私的？</translation>
     </message>
     <message>
         <source>What is a Masternode?</source>
@@ -5377,8 +5377,8 @@ Beacon心钱包</translation>
         <translation>白名单中指定的无效网络掩码:'%s'</translation>
     </message>
     <message>
-        <source>Recalculating __DSW__ supply...</source>
-        <translation>重新计算__DSW__供应量……</translation>
+        <source>Recalculating BECN supply...</source>
+        <translation>重新计算BECN供应量……</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>
@@ -5401,8 +5401,8 @@ Beacon心钱包</translation>
         <translation>这是一个预发行测试版本 - 您自己承担风险 - 不要用于商业应用！</translation>
     </message>
     <message>
-        <source>Disable all __DSW__ specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>禁用所有__DSW__特定功能(主节点, 零币, SwiftX, budget)(0-1，默认值:%u)</translation>
+        <source>Disable all BECN specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
+        <translation>禁用所有BECN特定功能(主节点, 零币, SwiftX, budget)(0-1，默认值:%u)</translation>
     </message>
     <message>
         <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
@@ -5829,8 +5829,8 @@ Beacon心钱包</translation>
         <translation>正在同步分叉...</translation>
     </message>
     <message>
-        <source>Syncing z__DSW__ wallet...</source>
-        <translation>正在同步z__DSW__钱包……</translation>
+        <source>Syncing zBECN wallet...</source>
+        <translation>正在同步zBECN钱包……</translation>
     </message>
     <message>
         <source>This help message</source>
@@ -5933,8 +5933,8 @@ Beacon心钱包</translation>
         <translation>JSON-RPC连接的用户名</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of z__DSW__</source>
-        <translation>值小于z__DSW__的最小可用面额(= 1)</translation>
+        <source>Value is below the smallest available denomination (= 1) of zBECN</source>
+        <translation>值小于zBECN的最小可用面额(= 1)</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
@@ -6016,8 +6016,8 @@ Beacon心钱包</translation>
         <translation>发送</translation>
     </message>
     <message>
-        <source>__DSW__ address or contact label</source>
-        <translation>__DSW__ 地址或者联系人标签</translation>
+        <source>BECN address or contact label</source>
+        <translation>BECN 地址或者联系人标签</translation>
     </message>
     <message>
         <source>Amount</source>
