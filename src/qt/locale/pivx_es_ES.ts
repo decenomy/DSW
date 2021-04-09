@@ -1138,15 +1138,15 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <source>Peony</source>
-        <translation>__Decenomy__</translation>
+        <translation>Peony</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About __Decenomy__</source>
-        <translation>Acerca de __Decenomy__</translation>
+        <source>About Peony</source>
+        <translation>Acerca de Peony</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1200,16 +1200,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>Bienvenido/a</translation>
     </message>
     <message>
-        <source>Welcome to __Decenomy__.</source>
-        <translation>Bienvenido/a a __Decenomy__.</translation>
+        <source>Welcome to Peony.</source>
+        <translation>Bienvenido/a a Peony.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where __Decenomy__ will store its data.</source>
-        <translation>Al ser la primera vez que se inicia el programa, usted puede elegir dónde guardará __Decenomy__ sus datos.</translation>
+        <source>As this is the first time the program is launched, you can choose where Peony will store its data.</source>
+        <translation>Al ser la primera vez que se inicia el programa, usted puede elegir dónde guardará Peony sus datos.</translation>
     </message>
     <message>
-        <source>__Decenomy__ will download and store a copy of the PNY block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>__Decenomy__ descargará y guardará una copia de la cadena de bloques PNY. Por lo menos %1GB de datos serán guardados en esta carpeta, y crecerá con el tiempo. La wallet también se guardará en esta carpeta.</translation>
+        <source>Peony will download and store a copy of the PNY block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Peony descargará y guardará una copia de la cadena de bloques PNY. Por lo menos %1GB de datos serán guardados en esta carpeta, y crecerá con el tiempo. La wallet también se guardará en esta carpeta.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1228,8 +1228,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>OK</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Peony</source>
+        <translation>Peony</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1530,14 +1530,14 @@ Espere unos minutos más (las garantías de masternode requieren %1 confirmacion
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the __decenomy__.conf file
+You will only have to paste the data in the peony.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
         <translation>Estás a punto de exportar los datos necesarios para ejecutar un Masternode de un servidor remoto a tu portapapeles.
 
 
-Sólo tendrás que pegar los datos en el archivo __decenomy__.conf de tu servidor remoto e iniciarlo, luego inicia el Masternode usando esta wallet de controladores (selecciona el Masternode en la lista y presione "start").
+Sólo tendrás que pegar los datos en el archivo peony.conf de tu servidor remoto e iniciarlo, luego inicia el Masternode usando esta wallet de controladores (selecciona el Masternode en la lista y presione "start").
 </translation>
     </message>
     <message>
@@ -1717,8 +1717,8 @@ STAKING</translation>
         <translation>Los datos analizados son demasiado grandes</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "__decenomy__" prefix</source>
-        <translation>URI inválido, no empezar con el prefijo "__decenomy__"</translation>
+        <source>Invalid URI, not starting with "peony" prefix</source>
+        <translation>URI inválido, no empezar con el prefijo "peony"</translation>
     </message>
 </context>
 <context>
@@ -2012,8 +2012,8 @@ STAKING</translation>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Peony</source>
+        <translation>Peony</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -2040,8 +2040,8 @@ STAKING</translation>
         <translation>Cerrar aplicación</translation>
     </message>
     <message>
-        <source>__Decenomy__ client</source>
-        <translation>Cliente __Decenomy__</translation>
+        <source>Peony client</source>
+        <translation>Cliente Peony</translation>
     </message>
     <message>
         <source>Error</source>
@@ -2107,8 +2107,8 @@ Dirección: %4
         <translation>Dirección de pago inválida %1</translation>
     </message>
     <message>
-        <source>Cannot start __decenomy__: click-to-pay handler</source>
-        <translation>No se puede iniciar __decenomy__: módulo click-to-pay</translation>
+        <source>Cannot start peony: click-to-pay handler</source>
+        <translation>No se puede iniciar peony: módulo click-to-pay</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid PNY address or malformed URI parameters.</source>
@@ -2245,8 +2245,8 @@ Dirección: %4
         <translation>Se produjo un error fatal. PNY ya no puede continuar de forma segura y dejará de funcionar.   </translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Peony</source>
+        <translation>Peony</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -2265,8 +2265,8 @@ Dirección: %4
         <translation>Error al leer el archivo de configuración de masternode: %1</translation>
     </message>
     <message>
-        <source>__Decenomy__ didn't yet exit safely...</source>
-        <translation>El núcleo __Decenomy__ aún no ha salido de forma segura...</translation>
+        <source>Peony didn't yet exit safely...</source>
+        <translation>El núcleo Peony aún no ha salido de forma segura...</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -3950,8 +3950,8 @@ Requisitos:
         <translation>No se puede abrir la carpeta de copias de seguridad</translation>
     </message>
     <message>
-        <source>Unable to open __decenomy__.conf with default application</source>
-        <translation>No se puede abrir __decenomy__.conf con la aplicación predeterminada</translation>
+        <source>Unable to open peony.conf with default application</source>
+        <translation>No se puede abrir peony.conf con la aplicación predeterminada</translation>
     </message>
     <message>
         <source>In:</source>
@@ -4556,8 +4556,8 @@ Are you sure?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>__Decenomy__ is shutting down...</source>
-        <translation>El programa __Decenomy__ se está cerrando...</translation>
+        <source>Peony is shutting down...</source>
+        <translation>El programa Peony se está cerrando...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4586,8 +4586,8 @@ Are you sure?
         <translation>Cargando....</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Peony</source>
+        <translation>Peony</translation>
     </message>
 </context>
 <context>
@@ -5026,9 +5026,9 @@ una nueva copia de seguridad.
     </message>
     <message>
         <source>Welcome to
-__Decenomy__ Wallet</source>
+Peony Wallet</source>
         <translation>Bienvenido a
-__Decenomy__ Wallet</translation>
+Peony Wallet</translation>
     </message>
     <message>
         <source>PNY is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
@@ -5078,8 +5078,8 @@ __Decenomy__ Wallet</translation>
         <translation>Escuchar únicamente a la tarjeta de red indicada para conexiones JSON-RPC. Use la notación [host]:puerto para IPv6. Esta opción puede ser especificada varias veces (por defecto: escuchar en todas las tarjetas de red)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. __Decenomy__ is probably already running.</source>
-        <translation>No se puede obtener un bloqueo sobre el directorio de datos %s. __Decenomy__ esta probablemente en ejecución.</translation>
+        <source>Cannot obtain a lock on data directory %s. Peony is probably already running.</source>
+        <translation>No se puede obtener un bloqueo sobre el directorio de datos %s. Peony esta probablemente en ejecución.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -5242,8 +5242,8 @@ __Decenomy__ Wallet</translation>
         <translation>La longitud total de la cadena de la versión de red (%i) excede la longitud máxima (%i). Reducir el número o tamaño de los uacomments.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. __Decenomy__ is probably already running.</source>
-        <translation>Imposible conectar a %s en esta computadora. Es probable que __Decenomy__ ya este corriendo.</translation>
+        <source>Unable to bind to %s on this computer. Peony is probably already running.</source>
+        <translation>Imposible conectar a %s en esta computadora. Es probable que Peony ya este corriendo.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -5258,8 +5258,8 @@ __Decenomy__ Wallet</translation>
         <translation>Advertencia: -paytxfee esta muy alta! Esta es la comisión de transacción que pagarás si envías una transacción.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</source>
-        <translation>Advertencia: Por favor verifique que la fecha y hora de su computadora sean correctas! Si su reloj esta fuera de hora __Decenomy__ no funcionará adecuadamente.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Peony will not work properly.</source>
+        <translation>Advertencia: Por favor verifique que la fecha y hora de su computadora sean correctas! Si su reloj esta fuera de hora Peony no funcionará adecuadamente.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5474,8 +5474,8 @@ __Decenomy__ Wallet</translation>
         <translation>Información</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. __Decenomy__ is shutting down.</source>
-        <translation>La prueba de salud de inicialización ha fallado. __Decenomy__ se cerrará.</translation>
+        <source>Initialization sanity check failed. Peony is shutting down.</source>
+        <translation>La prueba de salud de inicialización ha fallado. Peony se cerrará.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5774,8 +5774,8 @@ __Decenomy__ Wallet</translation>
         <translation>Preparando para resincronizar...</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</source>
-        <translation>Por favor verifique que la fecha y hora de su computadora sean correctas! Si su reloj esta fuera de hora __Decenomy__ no funcionará adecuadamente.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong Peony will not work properly.</source>
+        <translation>Por favor verifique que la fecha y hora de su computadora sean correctas! Si su reloj esta fuera de hora Peony no funcionará adecuadamente.</translation>
     </message>
     <message>
         <source>Specify location of debug log file: this can be an absolute path or a path relative to the data directory (default: %s)</source>
@@ -6078,8 +6078,8 @@ __Decenomy__ Wallet</translation>
         <translation>La wallet %s esta ubicada fuera del directorio de datos %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart __Decenomy__ to complete</source>
-        <translation>La wallet necesita reescribirse: reinicie la __Decenomy__ para completarlo</translation>
+        <source>Wallet needed to be rewritten: restart Peony to complete</source>
+        <translation>La wallet necesita reescribirse: reinicie la Peony para completarlo</translation>
     </message>
     <message>
         <source>Wallet options:</source>
