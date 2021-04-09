@@ -1132,16 +1132,16 @@ Automatski će se pokrenuti čim novčanik dobije dovoljno potvrda o neiskorišt
         <translation>verzija</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Peony</source>
+        <translation>Peony</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About __Decenomy__</source>
-        <translation>O __Decenomy__-u</translation>
+        <source>About Peony</source>
+        <translation>O Peony-u</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1195,16 +1195,16 @@ Automatski će se pokrenuti čim novčanik dobije dovoljno potvrda o neiskorišt
         <translation>Dobrodošli</translation>
     </message>
     <message>
-        <source>Welcome to __Decenomy__.</source>
-        <translation>Dobrodošli u __Decenomy__.</translation>
+        <source>Welcome to Peony.</source>
+        <translation>Dobrodošli u Peony.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where __Decenomy__ will store its data.</source>
-        <translation>Budući da je prvi put pokrenut program, možete odabrati gdje će __Decenomy__ pohraniti svoje podatke.</translation>
+        <source>As this is the first time the program is launched, you can choose where Peony will store its data.</source>
+        <translation>Budući da je prvi put pokrenut program, možete odabrati gdje će Peony pohraniti svoje podatke.</translation>
     </message>
     <message>
-        <source>__Decenomy__ will download and store a copy of the PNY block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>__Decenomy__ preuzima i pohranjuje kopiju PNY blok-lanca. Barem će %1GB podataka biti pohranjeno u ovom direktoriju i to će s vremenom rasti. Novčanik će također biti pohranjena u ovom direktoriju.</translation>
+        <source>Peony will download and store a copy of the PNY block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Peony preuzima i pohranjuje kopiju PNY blok-lanca. Barem će %1GB podataka biti pohranjeno u ovom direktoriju i to će s vremenom rasti. Novčanik će također biti pohranjena u ovom direktoriju.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1223,8 +1223,8 @@ Automatski će se pokrenuti čim novčanik dobije dovoljno potvrda o neiskorišt
         <translation>OK</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Peony</source>
+        <translation>Peony</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1538,7 +1538,7 @@ Molimo pričekajte nekoliko minuta (zalog za Masternode zahtjeva %1 potvrda).</t
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the __decenomy__.conf file
+You will only have to paste the data in the peony.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1546,7 +1546,7 @@ this controller wallet (select the Masternode in the list and press "start").
 na udaljenom poslužitelju u medjuspremnik.
 
 
-Podatke ćete morati zalijepiti u datoteku __decenomy__.conf
+Podatke ćete morati zalijepiti u datoteku peony.conf
 na udaljenom poslužitelju i pokrenuti ga, a zatim pokrenite Masternode
 koristeći ovaj controller novčanik (na popisu odaberite Masternode i pritisnite "start").
 </translation>
@@ -1732,8 +1732,8 @@ STAKING</translation>
         <translation>Parsirani podaci preveliki</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "__decenomy__" prefix</source>
-        <translation>Nevažeći URI, ne počinje "__decenomy__" prefiksom</translation>
+        <source>Invalid URI, not starting with "peony" prefix</source>
+        <translation>Nevažeći URI, ne počinje "peony" prefiksom</translation>
     </message>
 </context>
 <context>
@@ -2027,8 +2027,8 @@ STAKING</translation>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Peony</source>
+        <translation>Peony</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -2055,8 +2055,8 @@ STAKING</translation>
         <translation>Napusti aplikaciju</translation>
     </message>
     <message>
-        <source>__Decenomy__ client</source>
-        <translation>__Decenomy__ Klijent</translation>
+        <source>Peony client</source>
+        <translation>Peony Klijent</translation>
     </message>
     <message>
         <source>Error</source>
@@ -2122,8 +2122,8 @@ Adresa: %4
         <translation>Nevažeća adresa za plaćanje %1</translation>
     </message>
     <message>
-        <source>Cannot start __decenomy__: click-to-pay handler</source>
-        <translation>Ne može se pokrenuti __decenomy__: clik-to-pay handler</translation>
+        <source>Cannot start peony: click-to-pay handler</source>
+        <translation>Ne može se pokrenuti peony: clik-to-pay handler</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid PNY address or malformed URI parameters.</source>
@@ -2264,8 +2264,8 @@ Adresa: %4
         <translation>Dogodila se fatalna pogreška. PNY ne može sigurno nastaviti i izaći će.</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Peony</source>
+        <translation>Peony</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -2284,8 +2284,8 @@ Adresa: %4
         <translation>Greška pri čitanju masternode konfiguracijske datoteke: %1</translation>
     </message>
     <message>
-        <source>__Decenomy__ didn't yet exit safely...</source>
-        <translation>__Decenomy__ nije ugašen sigurno...</translation>
+        <source>Peony didn't yet exit safely...</source>
+        <translation>Peony nije ugašen sigurno...</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -3893,7 +3893,7 @@ da biste vidjeli i mogli potrošiti sredstva na mreži.
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-Masternode je računalo koje pokreće full node __Decenomy__ novčanik sa
+Masternode je računalo koje pokreće full node Peony novčanik sa
 zahtjevanih 10,000 PNY-a osiguranog zaloga da pruži dodatne usluge
 mreži, i zauzvrat redovito primi dio nagrade blokova.
 Te usluge uključuju:
@@ -4046,8 +4046,8 @@ Zahtjevi:
         <translation>Ne može se otvoriti mapa sigurnosne kopije</translation>
     </message>
     <message>
-        <source>Unable to open __decenomy__.conf with default application</source>
-        <translation>Nije moguće otvoriti __decenomy__.conf sa zadanom aplikacijom</translation>
+        <source>Unable to open peony.conf with default application</source>
+        <translation>Nije moguće otvoriti peony.conf sa zadanom aplikacijom</translation>
     </message>
     <message>
         <source>In:</source>
@@ -4664,8 +4664,8 @@ Jeste li sigurni?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>__Decenomy__ is shutting down...</source>
-        <translation>__Decenomy__ se zatvara...</translation>
+        <source>Peony is shutting down...</source>
+        <translation>Peony se zatvara...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4694,8 +4694,8 @@ Jeste li sigurni?
         <translation>Učitavanje...</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Peony</source>
+        <translation>Peony</translation>
     </message>
 </context>
 <context>
@@ -5216,9 +5216,9 @@ se nova sigurnosna kopija.
     </message>
     <message>
         <source>Welcome to
-__Decenomy__ Wallet</source>
+Peony Wallet</source>
         <translation>Dobrodošli u
-        __Decenomy__ temeljni novčanik</translation>
+        Peony temeljni novčanik</translation>
     </message>
     <message>
         <source>PNY is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
@@ -5268,8 +5268,8 @@ __Decenomy__ Wallet</source>
         <translation>Pridržavajte se na navedenu adresu da biste slušali veze JSON-RPC. Koristite [host]: port notation za IPv6. Ova se opcija može odrediti više puta (zadano: vezati se na sva sučelja)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. __Decenomy__ is probably already running.</source>
-        <translation>Nije moguće dobiti zaključavanje na direktoriju podataka %s. __Decenomy__ vjerojatno već radi.</translation>
+        <source>Cannot obtain a lock on data directory %s. Peony is probably already running.</source>
+        <translation>Nije moguće dobiti zaključavanje na direktoriju podataka %s. Peony vjerojatno već radi.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -5432,8 +5432,8 @@ __Decenomy__ Wallet</source>
         <translation>Ukupna duljina teksta mrežne verzije (%i) prelazi maksimalnu duljinu (%i). Smanjite broj ili veličinu uacommentsa.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. __Decenomy__ is probably already running.</source>
-        <translation>Nije moguće vezati se na %s na ovom računalu. __Decenomy__ vjerojatno već radi.</translation>
+        <source>Unable to bind to %s on this computer. Peony is probably already running.</source>
+        <translation>Nije moguće vezati se na %s na ovom računalu. Peony vjerojatno već radi.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -5448,8 +5448,8 @@ __Decenomy__ Wallet</source>
         <translation>Upozorenje: -paytxfee je vrlo visoka! To je transakcijska naknada koju ćete platiti ako šaljete transakciju.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</source>
-        <translation>Upozorenje: Provjerite jesu li datum i vrijeme vašeg računala točni! Ako je vaš sat pogrešan, __Decenomy__ neće raditi ispravno.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Peony will not work properly.</source>
+        <translation>Upozorenje: Provjerite jesu li datum i vrijeme vašeg računala točni! Ako je vaš sat pogrešan, Peony neće raditi ispravno.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5665,8 +5665,8 @@ __Decenomy__ Wallet</source>
         <translation>Informacije</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. __Decenomy__ is shutting down.</source>
-        <translation>Provjera ispravnosti inicijalizacije nije uspjela. __Decenomy__ se zatvara.</translation>
+        <source>Initialization sanity check failed. Peony is shutting down.</source>
+        <translation>Provjera ispravnosti inicijalizacije nije uspjela. Peony se zatvara.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5965,8 +5965,8 @@ __Decenomy__ Wallet</source>
         <translation>Priprema za resinkronizaciju...</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</source>
-        <translation>Provjerite jesu li datum i vrijeme vašeg računala točni! Ako je vaš sat pogrešan, __Decenomy__ neće raditi ispravno.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong Peony will not work properly.</source>
+        <translation>Provjerite jesu li datum i vrijeme vašeg računala točni! Ako je vaš sat pogrešan, Peony neće raditi ispravno.</translation>
     </message>
     <message>
         <source>Specify location of debug log file: this can be an absolute path or a path relative to the data directory (default: %s)</source>
@@ -6299,8 +6299,8 @@ __Decenomy__ Wallet</source>
         <translation>Novčanik %s nalazi se izvan direktorija podataka %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart __Decenomy__ to complete</source>
-        <translation>Potrebno je prepisati novčanik: ponovo pokrenite __Decenomy__</translation>
+        <source>Wallet needed to be rewritten: restart Peony to complete</source>
+        <translation>Potrebno je prepisati novčanik: ponovo pokrenite Peony</translation>
     </message>
     <message>
         <source>Wallet options:</source>
