@@ -51,7 +51,7 @@ static const int MAX_URI_LENGTH = 255;
 
 
 #define QAPP_ORG_NAME "Beacon"
-#define QAPP_ORG_DOMAIN "__decenomy__.org"
+#define QAPP_ORG_DOMAIN "beacon.org"
 #define QAPP_APP_NAME_DEFAULT "Beacon-Qt"
 #define QAPP_APP_NAME_TESTNET "Beacon-Qt-testnet"
 
