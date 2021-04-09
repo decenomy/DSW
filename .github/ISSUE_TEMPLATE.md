@@ -1,7 +1,7 @@
 <!--- Remove this description and sections that do not apply -->
 
 This issue tracker is only for technical issues related to Beacon Core.
-General Beacon questions and/or support requests and are best directed to the [Beacon Discord](https://discord.gg/fPFTtWCu).
+General Beacon questions and/or support requests and are best directed to the [Beacon Discord](https://discord.gg/uTar2Sd).
 
 ### Describe the issue
 

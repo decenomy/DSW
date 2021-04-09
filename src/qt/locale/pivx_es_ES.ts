@@ -1820,9 +1820,9 @@ STAKING</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        https://discord.gg/fPFTtWCu</source>
+        https://discord.gg/uTar2Sd</source>
         <translation>¿Falta su lenguaje o la traducción está incompleta? Contribuya con las traducciones aquí:
-        https://discord.gg/fPFTtWCu</translation>
+        https://discord.gg/uTar2Sd</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>

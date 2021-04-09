@@ -28,7 +28,7 @@ Drag Beacon-Qt to your applications folder, and then run Beacon-Qt.
 
 * See the documentation at the [Beacon Wiki](https://github.com/beaconcrypto/)
 for help and more information.
-* Join our Discord server [Discord Server](https://discord.gg/fPFTtWCu)
+* Join our Discord server [Discord Server](https://discord.gg/uTar2Sd)
 
 Building
 ---------------------
@@ -56,7 +56,7 @@ The Beacon repo's [root README](/README.md) contains relevant information on the
 
 ### Resources
 * Discuss on the [Beacon Homepage](__decenomy_website_link__/).
-* Join the [Beacon Discord](https://discord.gg/fPFTtWCu).
+* Join the [Beacon Discord](https://discord.gg/uTar2Sd).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)
