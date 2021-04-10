@@ -15,8 +15,8 @@
 #define MAKE_SPORK_DEF(name, defaultValue) CSporkDef(name, defaultValue, #name)
 
 std::vector<CSporkDef> sporkDefs = {
-    MAKE_SPORK_DEF(SPORK_2_SWIFTTX,                         4070908800ULL), // ON
-    MAKE_SPORK_DEF(SPORK_3_SWIFTTX_BLOCK_FILTERING,         4070908800ULL), // ON
+    MAKE_SPORK_DEF(SPORK_2_SWIFTTX,                         0),             // ON
+    MAKE_SPORK_DEF(SPORK_3_SWIFTTX_BLOCK_FILTERING,         0),             // ON
     MAKE_SPORK_DEF(SPORK_5_MAX_VALUE,                       1000),          // 1000
     MAKE_SPORK_DEF(SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT,  4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_9_MASTERNODE_BUDGET_ENFORCEMENT,   4070908800ULL), // OFF
