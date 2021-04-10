@@ -3568,14 +3568,6 @@ bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
     }
     
     if (block.nBits != nBitsRequired) {
-        // Aezora Specific reference to the block with the wrong threshold was used.
-        const Consensus::Params& consensus = Params().GetConsensus();
-        if ((block.nTime == (uint32_t) consensus.nAezoraBadBlockTime) &&
-                (block.nBits == (uint32_t) consensus.nAezoraBadBlockBits)) {
-            // accept AEZORA block minted with incorrect proof of work threshold
-            return true;
-        }
-
         return error("%s : incorrect proof of work at %d", __func__, pindexPrev->nHeight + 1);
     }
 

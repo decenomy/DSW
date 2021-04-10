@@ -200,10 +200,6 @@ public:
         consensus.height_start_ZC_SerialRangeCheck  = DISABLED;
         consensus.height_ZC_RecalcAccumulators      = DISABLED;
         
-        // validation by-pass
-        // consensus.nAezoraBadBlockTime = 1471401614;    // Skip nBit validation of Block 259201 per PR #915
-        // consensus.nAezoraBadBlockBits = 0x1c056dac;    // Skip nBit validation of Block 259201 per PR #915
-
         // Zerocoin-related params
         consensus.ZC_Modulus = "25195908475657893494027183240048398571429282126204032027777137836043662020707595556264018525880784"
                 "4069182906412495150821892985591491761845028084891200728449926873928072877767359714183472702618963750149718246911"
@@ -336,10 +332,6 @@ public:
         consensus.height_start_ZC_InvalidSerials    = 999999999;
         consensus.height_start_ZC_SerialRangeCheck  = 1;
         consensus.height_ZC_RecalcAccumulators      = 999999999;
-
-        // validation by-pass
-        consensus.nAezoraBadBlockTime = 1489001494; // Skip nBit validation of Block 201 per PR #915
-        consensus.nAezoraBadBlockBits = 0x1e0a20bd; // Skip nBit validation of Block 201 per PR #915
 
         // Zerocoin-related params
         consensus.ZC_Modulus = "25195908475657893494027183240048398571429282126204032027777137836043662020707595556264018525880784"
