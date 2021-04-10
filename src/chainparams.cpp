@@ -176,7 +176,7 @@ public:
         consensus.nFutureTimeDriftPoW = 7200;
         consensus.nFutureTimeDriftPoS = 180;
         consensus.nMasternodeCountDrift = 20;       // num of MN we allow the see-saw payments to be off by
-        consensus.nMaxMoneyOut = 1000000000 * COIN; // ~2040
+        consensus.nMaxMoneyOut = 1000000000 * COIN; // Around 84604500 coins will be produced until block 750k. Another ~915.4M coin for around 17.4 more years until year ~2040. Limit can be increased afterwards if needed. 
         consensus.nPoolMaxTransactions = 3;
         consensus.nProposalEstablishmentTime = 60 * 60 * 24;    // must be at least a day old to make it into a budget
         consensus.nStakeMinAge = 60 * 60; // 1h
