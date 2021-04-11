@@ -1673,7 +1673,6 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 *[cssClass="container-splash"] {
     background-color:transparent;
     background-image: url("://bg-splash-png");
-    font-family: Montserrat;
 }
 
 *[cssClass="img-splash-logo"] {
@@ -1681,7 +1680,6 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     qproperty-iconSize: 395px 348px;
     border:0;
     background-color:transparent;
-	margin-top: 75px;
 }
 
 *[cssClass="bg-progress"] {
