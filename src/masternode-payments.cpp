@@ -639,8 +639,7 @@ bool CMasternodePayments::IsTransactionValid(const CTransaction& txNew, int nBlo
 
 void CMasternodePayments::CleanPaymentList()
 {
-    LOCK(cs_main);
-    LOCK2(cs_mapMasternodePayeeVotes, cs_mapMasternodeBlocks);
+    LOCK3(cs_main, cs_mapMasternodePayeeVotes, cs_mapMasternodeBlocks);
 
     int nHeight;
     {
@@ -743,16 +742,11 @@ bool CMasternodePayments::ProcessBlock(int nBlockHeight)
 
 void CMasternodePayments::Sync(CNode* node, int nCountNeeded)
 {
-    LOCK(cs_main);
-    LOCK(cs_mapMasternodePayeeVotes);
+    LOCK2(cs_main, cs_mapMasternodePayeeVotes);
 
-    int nHeight;
-    {
-        TRY_LOCK(cs_main, locked);
-        if (!locked || chainActive.Tip() == NULL) return;
-        nHeight = chainActive.Tip()->nHeight;
-    }
+    if (chainActive.Tip() == NULL) return;
 
+    int nHeight = chainActive.Tip()->nHeight;
     int nCount = (mnodeman.CountEnabled() * 1.25);
     if (nCountNeeded > nCount) nCountNeeded = nCount;
 

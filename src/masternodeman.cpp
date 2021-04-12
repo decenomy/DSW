@@ -242,8 +242,7 @@ void CMasternodeMan::AskForMN(CNode* pnode, const CTxIn& vin)
 
 void CMasternodeMan::Check()
 {
-    LOCK(cs_main);
-    LOCK(cs);
+    LOCK2(cs_main, cs);
 
     for (CMasternode& mn : vMasternodes) {
         mn.Check();
@@ -485,8 +484,7 @@ CMasternode* CMasternodeMan::Find(const CPubKey& pubKeyMasternode)
 //
 CMasternode* CMasternodeMan::GetNextMasternodeInQueueForPayment(int nBlockHeight, bool fFilterSigTime, int& nCount)
 {
-    LOCK(cs_main);
-    LOCK(cs);
+    LOCK2(cs_main, cs);
 
     CMasternode* pBestMasternode = NULL;
     std::vector<std::pair<int64_t, CTxIn> > vecMasternodeLastPaid;
