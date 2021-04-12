@@ -232,11 +232,11 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0xc8;
-        pchMessageStart[1] = 0x7b;
-        pchMessageStart[2] = 0x86;
-        pchMessageStart[3] = 0x77;
-        nDefaultPort = __PORT_MAINNET__;
+        pchMessageStart[0] = 0xb2;
+        pchMessageStart[1] = 0xda;
+        pchMessageStart[2] = 0x2a;
+        pchMessageStart[3] = 0xc7;
+        nDefaultPort = 91111;
 
         vSeeds.push_back(CDNSSeedData("seeder", "seeder.__decenomy.net__"));
 	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.__decenomy.net__"));
