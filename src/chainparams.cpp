@@ -52,7 +52,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "Sometimes you hit the jackpot and sometimes the jackpot hits you";
+    const char* pszTimestamp = "First results from Fermilab’s Muon g-2 experiment strengthen evidence of new physics, 7/4/2021";
     const CScript genesisOutputScript = CScript() << ParseHex("0478505c5bc438e08c0c8de26a661bc5a4453378d0b149fbf17cb3e1499b1d3e552fe5faaa253673c5349b461bd964a2ee860c114e9d2b9fdb0328f37ed356ed54") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -110,7 +110,7 @@ public:
         // // This is used inorder to mine the genesis block. Once found, we can use the nonce and block hash found to create a valid genesis block
         // /////////////////////////////////////////////////////////////////
 
-        // uint32_t nGenesisTime = 1612360301; // 2021-02-03T13:51:41+00:00
+        // uint32_t nGenesisTime = 1618234551; // 2021-04-12T13:35:51+00:00
 
         // arith_uint256 test;
         // bool fNegative;
@@ -153,10 +153,10 @@ public:
 
         // /////////////////////////////////////////////////////////////////
 
-        genesis = CreateGenesisBlock(1612360301, 4843816, 0x1e0ffff0, 1, 0 * COIN);
+        genesis = CreateGenesisBlock(1618234551, 1669553, 0x1e0ffff0, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x0000095e24c9de08faea91e7dcafda400edcd769c0a4201081966f10bdef7896"));
-        assert(genesis.hashMerkleRoot == uint256S("0xad9cdf0829529533d9ebcda4f6981195860fdc01c7f6d3f14b847695835fc872"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00000c04b3c6c322cb49c918a78359391cdbddc47ae82a6b5eed8452328b362d"));
+        assert(genesis.hashMerkleRoot == uint256S("0xa56097811caae5e43b1eb53963f063569d9edbb17cf01e74dc369407ff820907"));
 
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.powLimit   = ~UINT256_ZERO >> 20;   
