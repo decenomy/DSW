@@ -70,7 +70,7 @@ QPushButton[cssClass="img-nav-logo"] {
     qproperty-iconSize: 24px 40px;
     background-color:transparent;
     font-size:14px;
-    color: #ffffff;
+    color: #938da5;
 }
 
 *[cssClass="btn-nav-receive"]:checked {
