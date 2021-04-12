@@ -38,7 +38,7 @@
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>io.__decenomy__.Peony-Qt</string>
+  <string>io.peony.Peony-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>

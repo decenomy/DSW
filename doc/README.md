@@ -13,8 +13,8 @@ The following are some helpful notes on how to run Peony Core on your native pla
 
 Unpack the files into a directory and run:
 
-- `bin/__decenomy__-qt` (GUI) or
-- `bin/__decenomy__d` (headless)
+- `bin/peony-qt` (GUI) or
+- `bin/peonyd` (headless)
 
 ### Windows
 

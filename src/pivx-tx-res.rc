@@ -17,13 +17,13 @@ BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
             VALUE "CompanyName",        "Peony"
-            VALUE "FileDescription",    "__decenomy__-tx (CLI Peony transaction editor utility)"
+            VALUE "FileDescription",    "peony-tx (CLI Peony transaction editor utility)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "__decenomy__-tx"
+            VALUE "InternalName",       "peony-tx"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "__decenomy__-tx.exe"
-            VALUE "ProductName",        "__decenomy__-tx"
+            VALUE "OriginalFilename",   "peony-tx.exe"
+            VALUE "ProductName",        "peony-tx"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

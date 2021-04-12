@@ -84,8 +84,8 @@
 #include <openssl/crypto.h>
 #include <openssl/rand.h>
 
-const char * const PIVX_CONF_FILENAME = "__decenomy__.conf";
-const char * const PIVX_PID_FILENAME = "__decenomy__.pid";
+const char * const PIVX_CONF_FILENAME = "peony.conf";
+const char * const PIVX_PID_FILENAME = "peony.pid";
 const char * const PIVX_MASTERNODE_CONF_FILENAME = "masternode.conf";
 
 
@@ -269,7 +269,7 @@ static std::string FormatException(const std::exception* pex, const char* pszThr
     char pszModule[MAX_PATH] = "";
     GetModuleFileNameA(NULL, pszModule, sizeof(pszModule));
 #else
-    const char* pszModule = "__decenomy__";
+    const char* pszModule = "peony";
 #endif
     if (pex)
         return strprintf(
@@ -289,10 +289,10 @@ void PrintExceptionContinue(const std::exception* pex, const char* pszThread)
 
 fs::path GetDefaultDataDir()
 {
-// Windows < Vista: C:\Documents and Settings\Username\Application Data\__decenomy__
-// Windows >= Vista: C:\Users\Username\AppData\Roaming\__decenomy__
-// Mac: ~/Library/Application Support/__decenomy__
-// Unix: ~/.__decenomy__
+// Windows < Vista: C:\Documents and Settings\Username\Application Data\peony
+// Windows >= Vista: C:\Users\Username\AppData\Roaming\peony
+// Mac: ~/Library/Application Support/peony
+// Unix: ~/.peony
 #ifdef WIN32
     // Windows
     return GetSpecialFolderPath(CSIDL_APPDATA) / "Peony";
@@ -310,7 +310,7 @@ fs::path GetDefaultDataDir()
     return pathRet / "Peony";
 #else
     // Unix
-    return pathRet / ".__decenomy__";
+    return pathRet / ".peony";
 #endif
 #endif
 }
@@ -323,10 +323,10 @@ static RecursiveMutex csPathCached;
 static fs::path ZC_GetBaseParamsDir()
 {
     // Copied from GetDefaultDataDir and adapter for zcash params.
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\__decenomy__Params
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\__decenomy__Params
-    // Mac: ~/Library/Application Support/__decenomy__Params
-    // Unix: ~/.__decenomy__-params
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\peonyParams
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\peonyParams
+    // Mac: ~/Library/Application Support/peonyParams
+    // Unix: ~/.peony-params
 #ifdef WIN32
     // Windows
     return GetSpecialFolderPath(CSIDL_APPDATA) / "PeonyParams";
@@ -344,7 +344,7 @@ static fs::path ZC_GetBaseParamsDir()
     return pathRet / "PeonyParams";
 #else
     // Unix
-    return pathRet / ".__decenomy__-params";
+    return pathRet / ".peony-params";
 #endif
 #endif
 }
@@ -428,7 +428,7 @@ void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet,
 {
     fs::ifstream streamConfig(GetConfigFile());
     if (!streamConfig.good()) {
-        // Create empty __decenomy__.conf if it does not exist
+        // Create empty peony.conf if it does not exist
         FILE* configFile = fsbridge::fopen(GetConfigFile(), "a");
         if (configFile != NULL)
             fclose(configFile);
@@ -439,7 +439,7 @@ void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet,
     setOptions.insert("*");
 
     for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it) {
-        // Don't overwrite existing settings so command line settings override __decenomy__.conf
+        // Don't overwrite existing settings so command line settings override peony.conf
         std::string strKey = std::string("-") + it->string_key;
         std::string strValue = it->value[0];
         InterpretNegativeSetting(strKey, strValue);

@@ -51,7 +51,7 @@ static const int MAX_URI_LENGTH = 255;
 
 
 #define QAPP_ORG_NAME "Peony"
-#define QAPP_ORG_DOMAIN "__decenomy__.org"
+#define QAPP_ORG_DOMAIN "peony.org"
 #define QAPP_APP_NAME_DEFAULT "Peony-Qt"
 #define QAPP_APP_NAME_TESTNET "Peony-Qt-testnet"
 

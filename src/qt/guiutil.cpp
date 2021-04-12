@@ -70,7 +70,7 @@ extern double NSAppKitVersionNumber;
 #endif
 #endif
 
-#define URI_SCHEME "__decenomy__"
+#define URI_SCHEME "peony"
 
 #if defined(Q_OS_MAC)
 #pragma GCC diagnostic push
@@ -207,9 +207,9 @@ bool parseBitcoinURI(const QUrl& uri, SendCoinsRecipient* out)
 
 bool parseBitcoinURI(QString uri, SendCoinsRecipient* out)
 {
-    // Convert __decenomy__:// to __decenomy__:
+    // Convert peony:// to peony:
     //
-    //    Cannot handle this later, because __decenomy__:// will cause Qt to see the part after // as host,
+    //    Cannot handle this later, because peony:// will cause Qt to see the part after // as host,
     //    which will lower-case it (and thus invalidate the address).
     if (uri.startsWith(URI_SCHEME "://", Qt::CaseInsensitive)) {
         uri.replace(0, std::strlen(URI_SCHEME) + 3, URI_SCHEME ":");
@@ -628,12 +628,12 @@ bool DHMSTableWidgetItem::operator<(QTableWidgetItem const& item) const
 #ifdef WIN32
 fs::path static StartupShortcutPath()
 {
-    return GetSpecialFolderPath(CSIDL_STARTUP) / "__decenomy__.lnk";
+    return GetSpecialFolderPath(CSIDL_STARTUP) / "peony.lnk";
 }
 
 bool GetStartOnSystemStartup()
 {
-    // check for __decenomy__.lnk
+    // check for peony.lnk
     return fs::exists(StartupShortcutPath());
 }
 
@@ -705,7 +705,7 @@ fs::path static GetAutostartDir()
 
 fs::path static GetAutostartFilePath()
 {
-    return GetAutostartDir() / "__decenomy__.desktop";
+    return GetAutostartDir() / "peony.desktop";
 }
 
 bool GetStartOnSystemStartup()
@@ -741,7 +741,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         fs::ofstream optionFile(GetAutostartFilePath(), std::ios_base::out | std::ios_base::trunc);
         if (!optionFile.good())
             return false;
-        // Write a __decenomy__.desktop file to the autostart directory:
+        // Write a peony.desktop file to the autostart directory:
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
         optionFile << "Name=Peony\n";
@@ -760,7 +760,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
 LSSharedFileListItemRef findStartupItemInList(LSSharedFileListRef list, CFURLRef findUrl);
 LSSharedFileListItemRef findStartupItemInList(LSSharedFileListRef list, CFURLRef findUrl)
 {
-    // loop through the list of startup items and try to find the __decenomy__ app
+    // loop through the list of startup items and try to find the peony app
     CFArrayRef listSnapshot = LSSharedFileListCopySnapshot(list, NULL);
     for (int i = 0; i < CFArrayGetCount(listSnapshot); i++) {
         LSSharedFileListItemRef item = (LSSharedFileListItemRef)CFArrayGetValueAtIndex(listSnapshot, i);
@@ -805,7 +805,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
     LSSharedFileListItemRef foundItem = findStartupItemInList(loginItems, bitcoinAppUrl);
 
     if (fAutoStart && !foundItem) {
-        // add __decenomy__ app to startup item list
+        // add peony app to startup item list
         LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemBeforeFirst, NULL, NULL, bitcoinAppUrl, NULL, NULL);
     } else if (!fAutoStart && foundItem) {
         // remove item

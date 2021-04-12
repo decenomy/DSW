@@ -11,7 +11,7 @@ with each other, with the help of a P2P network to check for double-spending.
 
 Setup
 -----
-Unpack the files into a directory and run __decenomy__-qt.exe.
+Unpack the files into a directory and run peony-qt.exe.
 
 Peony Core is the original Peony client and it builds the backbone of the network.
 However, it downloads and stores the entire history of Peony transactions;

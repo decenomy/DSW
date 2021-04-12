@@ -84,7 +84,7 @@ TopBar::TopBar(PIVXGUI* _mainWindow, QWidget* parent) : PWidget(_mainWindow, par
     ui->pushButtonStack->setButtonText(tr("Staking Disabled"));
 
     ui->pushButtonConf->setButtonClassStyle("cssClass", "btn-check-conf");
-    ui->pushButtonConf->setButtonText("__decenomy__.conf");
+    ui->pushButtonConf->setButtonText("peony.conf");
     ui->pushButtonConf->setChecked(false);
 
     ui->pushButtonMasternodes->setButtonClassStyle("cssClass", "btn-check-masternodes");
@@ -349,7 +349,7 @@ void TopBar::onBtnConfClicked()
     ui->pushButtonConf->setChecked(false);
 
     if (!GUIUtil::openConfigfile())
-        inform(tr("Unable to open __decenomy__.conf with default application"));
+        inform(tr("Unable to open peony.conf with default application"));
 }
 
 void TopBar::onBtnMasternodesClicked()

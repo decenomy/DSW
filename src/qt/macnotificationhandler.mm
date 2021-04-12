@@ -15,7 +15,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"io.__decenomy__.Peony-Qt";
+        return @"io.peony.Peony-Qt";
     } else {
         return [self __bundleIdentifier];
     }
