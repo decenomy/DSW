@@ -35,6 +35,9 @@
 #include "crypto/sph_skein.h"
 #include "crypto/sph_whirlpool.h"
 
+#include <crypto/common.h>
+#include <crypto/scrypt.h>
+
 #include <iomanip>
 #include <openssl/sha.h>
 #include <sstream>
@@ -631,6 +634,15 @@ inline uint256 XEVAN(const T1 pbegin, const T1 pend)
     return hash[33].trim256();
 }
 
+template <typename T1>
+inline uint256 Scrypt(const T1 pbegin, const T1 pend)
+{
+    static unsigned char pblank[1];
+	uint256 hash;
+    scrypt_1024_1_1_256((pbegin == pend ? pblank : static_cast<const void*>(&pbegin[0])), hash);
+    return hash;
+}
+
 void scrypt_hash(const char* pass, unsigned int pLen, const char* salt, unsigned int sLen, char* output, unsigned int N, unsigned int r, unsigned int p, unsigned int dkLen);
 
 
@@ -771,23 +783,23 @@ inline uint256 HashX11KV(const T1 pbegin, const T1 pend)
 /* - V, from Variable, variation of the number iterations on the X11K algo - */
 /* - S, from Sapphire ------------------------------------------------------ */
 
-static inline uint32_t le32dec(const void* pp)
-{
-    const uint8_t* p = (uint8_t const*)pp;
-    return ((uint32_t)(p[0]) |
-            ((uint32_t)(p[1]) << 8) |
-            ((uint32_t)(p[2]) << 16) |
-            ((uint32_t)(p[3]) << 24));
-}
+// static inline uint32_t le32dec(const void* pp)
+// {
+//     const uint8_t* p = (uint8_t const*)pp;
+//     return ((uint32_t)(p[0]) |
+//             ((uint32_t)(p[1]) << 8) |
+//             ((uint32_t)(p[2]) << 16) |
+//             ((uint32_t)(p[3]) << 24));
+// }
 
-static inline void le32enc(void* pp, uint32_t x)
-{
-    uint8_t* p = (uint8_t*)pp;
-    p[0] = x & 0xff;
-    p[1] = (x >> 8) & 0xff;
-    p[2] = (x >> 16) & 0xff;
-    p[3] = (x >> 24) & 0xff;
-}
+// static inline void le32enc(void* pp, uint32_t x)
+// {
+//     uint8_t* p = (uint8_t*)pp;
+//     p[0] = x & 0xff;
+//     p[1] = (x >> 8) & 0xff;
+//     p[2] = (x >> 16) & 0xff;
+//     p[3] = (x >> 24) & 0xff;
+// }
 
 const unsigned int HASHX11KVS_MAX_LEVEL = 7;
 const unsigned int HASHX11KVS_MIN_LEVEL = 1;
