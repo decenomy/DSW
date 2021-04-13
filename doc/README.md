@@ -3,7 +3,7 @@ Peony Core
 
 Setup
 ---------------------
-[Peony Core](__decenomy_website_link__/) is the original Peony client and it builds the backbone of the network. However, it downloads and stores the entire history of Peony transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
+[Peony Core]https://peonycoin.io/) is the original Peony client and it builds the backbone of the network. However, it downloads and stores the entire history of Peony transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
 
 Running
 ---------------------
@@ -55,7 +55,7 @@ The Peony repo's [root README](/README.md) contains relevant information on the 
 - [Dnsseed Policy](dnsseed-policy.md)
 
 ### Resources
-* Discuss on the [Peony Homepage](__decenomy_website_link__/).
+* Discuss on the [Peony Homepage]https://peonycoin.io/).
 * Join the [Peony Discord](https://discord.gg/UXGTjfsBFe).
 
 ### Miscellaneous
