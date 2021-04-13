@@ -28,7 +28,7 @@ Drag Peony-Qt to your applications folder, and then run Peony-Qt.
 
 * See the documentation at the [Peony Wiki](https://__decenomy_github_link__/)
 for help and more information.
-* Join our Discord server [Discord Server](__decenomy_discord_link__)
+* Join our Discord server [Discord Server](https://discord.gg/UXGTjfsBFe)
 
 Building
 ---------------------
@@ -56,7 +56,7 @@ The Peony repo's [root README](/README.md) contains relevant information on the 
 
 ### Resources
 * Discuss on the [Peony Homepage](__decenomy_website_link__/).
-* Join the [Peony Discord](__decenomy_discord_link__).
+* Join the [Peony Discord](https://discord.gg/UXGTjfsBFe).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)
