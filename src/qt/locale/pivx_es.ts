@@ -3843,8 +3843,8 @@ Ha habido un error al tratar de guardar la libreta de direcciones en %1. Por fav
         <translation>2) ¿Por qué mis PNY no se pueden gastar?</translation>
     </message>
     <message>
-        <source>__decenomy_website_link__/</source>
-        <translation>__decenomy_website_link__/</translation>
+        <source>https://peonycoin.io/</source>
+        <translation>https://peonycoin.io/</translation>
     </message>
     <message>
         <source>1</source>

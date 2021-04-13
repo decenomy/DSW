@@ -3844,8 +3844,8 @@ Er was een fout opgetreden tijdens het opslaan van deze adreslijst naar %1. Prob
         <translation>2) Waarom is mijn PNY niet besteedbaar?</translation>
     </message>
     <message>
-        <source>__decenomy_website_link__/</source>
-        <translation>__decenomy_website_link__/</translation>
+        <source>https://peonycoin.io/</source>
+        <translation>https://peonycoin.io/</translation>
     </message>
     <message>
         <source>1</source>
