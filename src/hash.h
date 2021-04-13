@@ -637,7 +637,7 @@ inline uint256 XEVAN(const T1 pbegin, const T1 pend)
 template <typename T1>
 inline uint256 Scrypt(const T1 pbegin, const T1 pend)
 {
-    static   char pblank[1];
+    static char pblank[1];
 	uint256 hash;
     scrypt_1024_1_1_256((pbegin == pend ? pblank : static_cast<const char*>(&pbegin[0])), (char*)(&hash));
     return hash;
