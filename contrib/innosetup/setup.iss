@@ -6,7 +6,7 @@
 #define MyAppPublisher "2021 DECENOMY Core Developers"
 #define MyAppURL "https://sappcoin.com"
 #define MyAppExeName "sapphire-qt.exe"
-#define MyAppExtraData "https://sappexplorer.com/bootstrap.zip"
+#define MyAppExtraData "https://explorer.decenomy.net/bootstraps/SAPP/bootstrap.zip"
 
 #include ReadReg(HKLM, 'Software\WOW6432Node\Mitrich Software\Inno Download Plugin', 'InstallDir') + '\idp.iss'
 
