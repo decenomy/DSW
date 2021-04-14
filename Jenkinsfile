@@ -87,10 +87,10 @@ pipeline {
                     mv ${BASE_NAME}* ../../contrib/innosetup/package/
                     cd ../../contrib/innosetup/
                     wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Inno\ Setup\ 6/ISCC.exe setup.iss
-                    mv output/${NAME}Setup.exe ../../deploy/windows/
+                    mv output/${NAME}Setup.exe ../../deploy/windows/${NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-Setup.exe
                     cd ../../deploy/windows/
-                    zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-WindowsSetup.zip ${NAME}Setup.exe
-                    rm -f ${NAME}Setup.exe
+                    zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-WindowsSetup.zip ${NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-Setup.exe
+                    rm -f ${NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-Setup.exe 
                 """
             }
         }
