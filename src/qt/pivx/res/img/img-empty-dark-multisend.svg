@@ -33,48 +33,50 @@
    gridtolerance="10"
    guidetolerance="10"
    id="namedview25"
-   inkscape:current-layer="ic_empty_dark_multisend"
+   inkscape:current-layer="Group_9062"
    inkscape:cx="39.084013"
-   inkscape:cy="50.633181"
+   inkscape:cy="45.645634"
    inkscape:pageopacity="0"
    inkscape:pageshadow="2"
-   inkscape:window-height="997"
-   inkscape:window-width="1737"
+   inkscape:window-height="2066"
+   inkscape:window-width="3840"
    inkscape:zoom="24.059926"
    objecttolerance="10"
    pagecolor="#ffffff"
    showgrid="false"
    inkscape:document-rotation="0"
-   inkscape:window-x="3992"
-   inkscape:window-y="152"
-   inkscape:window-maximized="0">
+   inkscape:window-x="3829"
+   inkscape:window-y="-11"
+   inkscape:window-maximized="1">
 	</sodipodi:namedview>
 <g
    id="Group_9062">
 	<g
-   id="Group_9060">
+   id="Group_9060"
+   style="fill:#6666ff;fill-opacity:0.97095436">
 		<path
    id="Rectangle_4717"
    class="st0"
    d="M45,18h10v9H45V18z"
-   style="fill:#141414;fill-opacity:1" />
+   style="fill:#6666ff;fill-opacity:0.97095436" />
 		<g
-   id="Group_9059">
+   id="Group_9059"
+   style="fill:#6666ff;fill-opacity:0.97095436">
 			<path
    id="Rectangle_4718"
    class="st0"
    d="M14,66h6v10h-6V66z"
-   style="fill:#141414;fill-opacity:1" />
+   style="fill:#6666ff;fill-opacity:0.97095436" />
 			<path
    id="Rectangle_4719"
    class="st0"
    d="M80,66h6v10h-6V66z"
-   style="fill:#141414;fill-opacity:1" />
+   style="fill:#6666ff;fill-opacity:0.97095436" />
 			<path
    id="Rectangle_4720"
    class="st0"
    d="M47,66h6v10h-6V66z"
-   style="fill:#141414;fill-opacity:1" />
+   style="fill:#6666ff;fill-opacity:0.97095436" />
 		</g>
 	</g>
 	<g
@@ -122,7 +124,7 @@
    width="34"
    height="23"
    id="rect20"
-   style="fill:#141414;fill-opacity:1" />
+   style="fill:#141414;fill-opacity:0" />
 
 <g
    transform="matrix(0.06586711,0,0,0.06629284,38.863289,33.722574)"

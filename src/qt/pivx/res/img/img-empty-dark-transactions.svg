@@ -57,12 +57,12 @@
    cy="50"
    id="circle5"
    r="17.9"
-   style="fill:#141414;fill-opacity:1" />
+   style="fill:#141414;fill-opacity:0" />
 	<path
    id="Path_18988"
    class="st0"
    d="M50,26c-13.3,0-24,10.7-24,24s10.7,24,24,24s24-10.7,24-24S63.3,26,50,26z M50,68   c-9.9,0-18-8.1-18-18s8.1-18,18-18s18,8.1,18,18S59.9,68,50,68z"
-   style="fill:#141414;fill-opacity:1" />
+   style="fill:#141414;fill-opacity:0" />
 	<g
    id="Group_9035">
 		<g

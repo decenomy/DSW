@@ -34,7 +34,7 @@
    inkscape:window-x="3829"
    inkscape:window-y="-11"
    inkscape:window-maximized="1"
-   inkscape:current-layer="ic_empty_Dark_zpiv"
+   inkscape:current-layer="Group_9078"
    inkscape:document-rotation="0" /><metadata
    id="metadata34"><rdf:RDF><cc:Work
        rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
@@ -54,7 +54,7 @@
    id="Path_19026"
    class="st0"
    d="M50,26c-13.3,0-24,10.7-24,24s10.7,24,24,24s24-10.7,24-24S63.3,26,50,26z M50,68   c-9.9,0-18-8.1-18-18s8.1-18,18-18s18,8.1,18,18S59.9,68,50,68z"
-   style="fill:#141414;fill-opacity:1" />
+   style="fill:#141414;fill-opacity:0" />
 	<g
    id="Group_9080">
 		<g
@@ -62,7 +62,8 @@
 			<path
    id="Path_19027"
    class="st1"
-   d="M50,31c-10.5,0-19,8.5-19,19s8.5,19,19,19s19-8.5,19-19S60.5,31,50,31z M50,67     c-9.4,0-17-7.6-17-17s7.6-17,17-17s17,7.6,17,17S59.4,67,50,67z" />
+   d="M50,31c-10.5,0-19,8.5-19,19s8.5,19,19,19s19-8.5,19-19S60.5,31,50,31z M50,67     c-9.4,0-17-7.6-17-17s7.6-17,17-17s17,7.6,17,17S59.4,67,50,67z"
+   style="fill:#a09ea5;fill-opacity:0" />
 			<path
    id="Rectangle_4744"
    class="st1"
@@ -93,7 +94,7 @@
    id="circle15"
    rx="19.721924"
    ry="19.383734"
-   style="stroke-width:1.29484;fill:#141414;fill-opacity:1" />
+   style="stroke-width:1.29484;fill:#141414;fill-opacity:0" />
 
 <g
    transform="matrix(0.09204781,0,0,0.09264276,34.195342,41.448525)"

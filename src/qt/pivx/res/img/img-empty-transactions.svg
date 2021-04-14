@@ -32,7 +32,7 @@
    cx="50"
    cy="50"
    id="circle4"
-   style="fill:#141414;fill-opacity:1"
+   style="fill:#141414;fill-opacity:0"
    r="18" />
 <sodipodi:namedview
    bordercolor="#666666"
@@ -40,7 +40,7 @@
    gridtolerance="10"
    guidetolerance="10"
    id="namedview22"
-   inkscape:current-layer="ic_empty_transactions"
+   inkscape:current-layer="Group_9013"
    inkscape:cx="29.224692"
    inkscape:cy="57.544555"
    inkscape:pageopacity="0"
@@ -62,7 +62,7 @@
    id="Path_18970"
    class="st0"
    d="M50,26c-13.3,0-24,10.7-24,24s10.7,24,24,24s24-10.7,24-24S63.3,26,50,26z M50,68   c-9.9,0-18-8.1-18-18s8.1-18,18-18s18,8.1,18,18S59.9,68,50,68z"
-   style="fill:#141414;fill-opacity:1" />
+   style="fill:#141414;fill-opacity:0" />
 	<g
    id="Group_9014">
 		<g
@@ -71,7 +71,7 @@
    id="Path_18972"
    class="st0"
    d="M50,31c-10.5,0-19,8.5-19,19s8.5,19,19,19s19-8.5,19-19S60.5,31,50,31z M50,67     c-9.4,0-17-7.6-17-17s7.6-17,17-17s17,7.6,17,17S59.4,67,50,67z"
-   style="fill:#141414;fill-opacity:1" />
+   style="fill:#141414;fill-opacity:0" />
 			<path
    id="Rectangle_4664"
    class="st1"

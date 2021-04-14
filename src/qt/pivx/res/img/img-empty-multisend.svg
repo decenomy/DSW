@@ -33,7 +33,7 @@
    gridtolerance="10"
    guidetolerance="10"
    id="namedview25"
-   inkscape:current-layer="ic_empty_multisend"
+   inkscape:current-layer="Group_9031"
    inkscape:cx="-3.5940606"
    inkscape:cy="59.833908"
    inkscape:pageopacity="0"
@@ -52,29 +52,31 @@
 <g
    id="Group_9031">
 	<g
-   id="Group_9029">
+   id="Group_9029"
+   style="fill:#6666ff;fill-opacity:0">
 		<path
    id="Rectangle_4683"
    class="st0"
    d="M45,18h10v9H45V18z"
-   style="fill:#141414;fill-opacity:1" />
+   style="fill:#6666ff;fill-opacity:0" />
 		<g
-   id="Group_9028">
+   id="Group_9028"
+   style="fill:#6666ff;fill-opacity:0">
 			<path
    id="Rectangle_4684"
    class="st0"
    d="M14,66h6v10h-6V66z"
-   style="fill:#141414;fill-opacity:1" />
+   style="fill:#6666ff;fill-opacity:0" />
 			<path
    id="Rectangle_4685"
    class="st0"
    d="M80,66h6v10h-6V66z"
-   style="fill:#141414;fill-opacity:1" />
+   style="fill:#6666ff;fill-opacity:0" />
 			<path
    id="Rectangle_4686"
    class="st0"
    d="M47,66h6v10h-6V66z"
-   style="fill:#141414;fill-opacity:1" />
+   style="fill:#6666ff;fill-opacity:0" />
 		</g>
 	</g>
 	<g
@@ -123,7 +125,7 @@
    width="34"
    height="23"
    id="rect20"
-   style="fill:#141414;fill-opacity:1" />
+   style="fill:#141414;fill-opacity:0" />
 
 <g
    transform="matrix(0.0680417,0,0,0.06848149,38.609784,32.463291)"
