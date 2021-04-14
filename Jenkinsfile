@@ -86,7 +86,7 @@ pipeline {
                     zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-Windows.zip ${BASE_NAME}d.exe ${BASE_NAME}-cli.exe ${BASE_NAME}-tx.exe ${BASE_NAME}-qt.exe
                     mv ${BASE_NAME}* ../../contrib/innosetup/package/
                     cd ../../contrib/innosetup/
-                    wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Inno\ Setup\ 6/ISCC.exe setup.iss
+                    wine ~/.wine/drive_c/Program\\ Files\\ \\(x86\\)/Inno\\ Setup\\ 6/ISCC.exe setup.iss
                     mv output/${NAME}Setup.exe ../../deploy/windows/${NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-Setup.exe
                     cd ../../deploy/windows/
                     zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-WindowsSetup.zip ${NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-Setup.exe
