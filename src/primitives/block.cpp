@@ -13,9 +13,16 @@
 #include "tinyformat.h"
 #include "utilstrencodings.h"
 #include "util.h"
+#include <crypto/common.h>
+#include <crypto/scrypt.h>
 
 uint256 CBlockHeader::GetHash() const
 {
+    uint256 thash;
+    scrypt_1024_1_1_256(BEGIN(nVersion), BEGIN(thash));
+    return thash;
+
+/*
 	if (nVersion < 4)  {
 #if defined(WORDS_BIGENDIAN)
         uint8_t data[80];
@@ -33,6 +40,7 @@ uint256 CBlockHeader::GetHash() const
     }
 	
     return SerializeHash(*this); // nVersion >= 4
+*/
 }
 
 std::string CBlock::ToString() const
