@@ -32,7 +32,6 @@ extern std::map<int64_t, uint256> mapCacheBlockHashes;
 
 bool GetBlockHash(uint256& hash, int nBlockHeight);
 
-
 //
 // The Masternode Ping Class : Contains a different serialize method for sending pings from masternodes throughout the network
 //
@@ -269,6 +268,8 @@ public:
     static CAmount GetMasternodeNodeCollateral(int nHeight);
     static CAmount GetBlockValue(int nHeight);
     static CAmount GetMasternodePayment(int nHeight);
+    static void InitMasternodeCollateralList();
+    static std::pair<int, CAmount> GetNextMasternodeCollateral(int nHeight);
 };
 
 
