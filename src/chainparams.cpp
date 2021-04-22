@@ -17,7 +17,7 @@
 
 #include <assert.h>
 
-#define DISABLED 0xFFFFFFFF;
+#define DISABLED 0x7FFFFFFE;
 
 static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesisOutputScript, uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
@@ -263,12 +263,6 @@ public:
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
         //convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main)); // added
-
-        // Sapling
-        // bech32HRPs[SAPLING_PAYMENT_ADDRESS]      = "ps";
-        // bech32HRPs[SAPLING_FULL_VIEWING_KEY]     = "pviews";
-        // bech32HRPs[SAPLING_INCOMING_VIEWING_KEY] = "pivks";
-        // bech32HRPs[SAPLING_EXTENDED_SPEND_KEY]   = "p-secret-spending-key-main";
     }
 
     const Checkpoints::CCheckpointData& Checkpoints() const
@@ -442,12 +436,6 @@ public:
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x00)(0x01).convert_to_container<std::vector<unsigned char> >();
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
-
-        // Sapling
-        // bech32HRPs[SAPLING_PAYMENT_ADDRESS]      = "ptestsapling";
-        // bech32HRPs[SAPLING_FULL_VIEWING_KEY]     = "pviewtestsapling";
-        // bech32HRPs[SAPLING_INCOMING_VIEWING_KEY] = "pivktestsapling";
-        // bech32HRPs[SAPLING_EXTENDED_SPEND_KEY]         = "p-secret-spending-key-test";
     }
 
     const Checkpoints::CCheckpointData& Checkpoints() const
