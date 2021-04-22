@@ -12,7 +12,7 @@ namespace HDChain {
     namespace ChangeType {
         static const uint8_t EXTERNAL = 0;
         static const uint8_t INTERNAL = 1;
-        static const uint8_t STAKING = 2;
+        static const uint8_t DEPRECATED = 2;
     };
 
     namespace ChainCounterType {
@@ -29,11 +29,10 @@ private:
 
 public:
     // Standard hd chain
-    static const int CURRENT_VERSION = 2;
+    static const int CURRENT_VERSION = 3;
     // Single account counters.
     uint32_t nExternalChainCounter{0};
     uint32_t nInternalChainCounter{0};
-    uint32_t nStakingChainCounter{0};
     // Chain counter type
     uint8_t chainType;
 
@@ -47,7 +46,10 @@ public:
         READWRITE(seed_id);
         READWRITE(nExternalChainCounter);
         READWRITE(nInternalChainCounter);
-        READWRITE(nStakingChainCounter);
+        if (nVersion == 2) {
+            uint32_t nStakingChainCounter{0};
+            READWRITE(nStakingChainCounter);
+        } 
         if (nVersion == 1) chainType = HDChain::ChainCounterType::Standard;
         else READWRITE(chainType);
     }
@@ -64,8 +66,6 @@ public:
                 return nExternalChainCounter;
             case HDChain::ChangeType::INTERNAL:
                 return nInternalChainCounter;
-            case HDChain::ChangeType::STAKING:
-                return nStakingChainCounter;
             default:
                 throw std::runtime_error("HD chain type doesn't exist.");
         }
