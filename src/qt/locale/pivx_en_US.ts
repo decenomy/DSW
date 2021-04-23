@@ -5504,20 +5504,8 @@ Aezora Wallet</translation>
         <translation>Bind to given address to listen for JSON-RPC connections. Use [host]:port notation for IPv6. This option can be specified multiple times (default: bind to all interfaces)</translation>
     </message>
     <message>
-        <source>Cannot find the Sapling parameters in the following directory:
-%s
-Please run 'sapling-fetch-params' or './util/fetch-params.sh' and then restart.</source>
-        <translation>Cannot find the Sapling parameters in the following directory:
-%s
-Please run 'sapling-fetch-params' or './util/fetch-params.sh' and then restart.</translation>
-    </message>
-    <message>
         <source>Cannot obtain a lock on data directory %s. Aezora is probably already running.</source>
         <translation>Cannot obtain a lock on data directory %s. Aezora is probably already running.</translation>
-    </message>
-    <message>
-        <source>Cannot upgrade to Sapling wallet (already running Sapling support). Version: %d</source>
-        <translation>Cannot upgrade to Sapling wallet (already running Sapling support). Version: %d</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>

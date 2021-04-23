@@ -52,6 +52,7 @@ pipeline {
 
                 sh """#!/bin/bash
                     mkdir -p deploy/linux
+                    strip -s src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt
                     cp src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt deploy/linux/
                     cd deploy/linux
                     zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt
@@ -67,7 +68,7 @@ pipeline {
                 sh '''#!/bin/bash
                     make clean
                     ./autogen.sh
-                    ./configure --prefix=$(pwd)/depends/x86_64-w64-mingw32 --disable-debug --disable-tests --disable-bench --disable-online-rust CFLAGS="-O3" CXXFLAGS="-O3"
+                    ./configure --prefix=$(pwd)/depends/x86_64-w64-mingw32 --disable-debug --disable-tests --disable-bench CFLAGS="-O3" CXXFLAGS="-O3"
 	                make -j $(nproc) HOST=x86_64-w64-mingw32
                 '''
             }
@@ -79,6 +80,7 @@ pipeline {
                 echo 'deploy windows ...'
                 sh """#!/bin/bash
                     mkdir -p deploy/windows
+                    strip -s src/${BASE_NAME}d.exe src/${BASE_NAME}-cli.exe src/${BASE_NAME}-tx.exe src/qt/${BASE_NAME}-qt.exe
                     cp src/${BASE_NAME}d.exe src/${BASE_NAME}-cli.exe src/${BASE_NAME}-tx.exe src/qt/${BASE_NAME}-qt.exe deploy/windows/
                     cd deploy/windows
                     zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-Windows.zip ${BASE_NAME}d.exe ${BASE_NAME}-cli.exe ${BASE_NAME}-tx.exe ${BASE_NAME}-qt.exe
@@ -94,7 +96,7 @@ pipeline {
                 sh '''#!/bin/bash
                     make clean
                     ./autogen.sh
-                    ./configure --prefix=$(pwd)/depends/x86_64-apple-darwin14 --enable-cxx --enable-static --disable-shared --disable-debug --disable-tests --disable-bench --disable-online-rust
+                    ./configure --prefix=$(pwd)/depends/x86_64-apple-darwin14 --enable-cxx --enable-static --disable-shared --disable-debug --disable-tests --disable-bench
                     make -j $(nproc) HOST=x86_64-apple-darwin14
                 '''
             }
@@ -105,6 +107,7 @@ pipeline {
             steps {
                 echo 'deploy macos ...'
                 sh """#!/bin/bash
+                    strip -s src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt
                     make deploy HOST=x86_64-apple-darwin14
                     mkdir -p deploy/macos
                     cp src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt ${NAME}-Core.dmg deploy/macos/
@@ -122,7 +125,7 @@ pipeline {
                 sh '''#!/bin/bash
                     make clean
                     ./autogen.sh
-                    ./configure --prefix=$(pwd)/depends/aarch64-linux-gnu --disable-debug --disable-tests --disable-bench --disable-online-rust CFLAGS="-O3" CXXFLAGS="-O3"
+                    ./configure --prefix=$(pwd)/depends/aarch64-linux-gnu --disable-debug --disable-tests --disable-bench CFLAGS="-O3" CXXFLAGS="-O3"
 	                make -j $(nproc) HOST=aarch64-linux-gnu
                 '''
             }
@@ -134,6 +137,7 @@ pipeline {
                 echo 'deploy aarch64 ...'
                 sh """#!/bin/bash
                     mkdir -p deploy/aarch64
+                    strip -s src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt
                     cp src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt deploy/aarch64/
                     cd deploy/aarch64
                     zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-aarch64.zip ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt
@@ -149,7 +153,7 @@ pipeline {
                 sh '''#!/bin/bash
                     make clean
                     ./autogen.sh
-                    ./configure --prefix=$(pwd)/depends/arm-linux-gnueabihf --disable-debug --disable-tests --disable-bench --disable-online-rust CFLAGS="-O3" CXXFLAGS="-O3"
+                    ./configure --prefix=$(pwd)/depends/arm-linux-gnueabihf --disable-debug --disable-tests --disable-bench CFLAGS="-O3" CXXFLAGS="-O3"
 	                make -j $(nproc) HOST=arm-linux-gnueabihf
                 '''
             }
@@ -161,6 +165,7 @@ pipeline {
                 echo 'deploy aarch32 ...'
                 sh """#!/bin/bash
                     mkdir -p deploy/aarch32
+                    strip -s src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt
                     cp src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt deploy/aarch32/
                     cd deploy/aarch32
                     zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-aarch32.zip ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt
