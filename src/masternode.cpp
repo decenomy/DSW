@@ -318,14 +318,15 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
-    if (nHeight <= 100000) {
-        return 15000 * COIN;
-    } else if (nHeight <= 200000 && nHeight > 100000) {
-        return 17500 * COIN;
-    } else if (nHeight > 200000) {
+    if (nHeight <= 425000 ) {
+        return 2000 * COIN;
+    } else if (nHeight <= 630000 && nHeight > 425000) {
+        return 5000 * COIN;
+    } else if (nHeight <= 855000 && nHeight > 630000) {
+        return 10000 * COIN;
+    } else {
         return 20000 * COIN;
     }
-    return 0;
 }
 
 CAmount CMasternode::GetBlockValue(int nHeight)
