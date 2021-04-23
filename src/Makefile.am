@@ -22,7 +22,6 @@ endif
 BITCOIN_CONFIG_INCLUDES=-I$(builddir)/config
 BITCOIN_INCLUDES=-I$(builddir) -I$(builddir)/obj $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS) $(SSL_CFLAGS)
 
-BITCOIN_INCLUDES += -I$(srcdir)/rust/include
 BITCOIN_INCLUDES += -I$(srcdir)/secp256k1/include
 BITCOIN_INCLUDES += $(UNIVALUE_CFLAGS)
 
@@ -34,12 +33,6 @@ LIBBITCOIN_CRYPTO=crypto/libbitcoin_crypto.a
 LIBBITCOIN_ZEROCOIN=libzerocoin/libbitcoin_zerocoin.a
 LIBBITCOINQT=qt/libbitcoinqt.a
 LIBSECP256K1=secp256k1/libsecp256k1.la
-LIBSAPLING=libsapling.a
-if ENABLE_ONLINE_RUST
-LIBRUSTZCASH=$(top_builddir)/target/release/librustzcash.a
-else
-LIBRUSTZCASH=$(top_builddir)/target/$(RUST_TARGET)/release/librustzcash.a
-endif
 
 if ENABLE_ZMQ
 LIBBITCOIN_ZMQ=libbitcoin_zmq.a
@@ -49,48 +42,6 @@ LIBBITCOINCONSENSUS=libbitcoinconsensus.la
 endif
 if ENABLE_WALLET
 LIBBITCOIN_WALLET=libbitcoin_wallet.a
-endif
-
-RUST_ENV_VARS = RUSTC="$(RUSTC)" TERM=dumb
-RUST_BUILD_OPTS = --release
-
-if ENABLE_ONLINE_RUST
-# Ensure that .cargo/config does not exist
-CARGO_CONFIGURED = $(top_srcdir)/.cargo/.configured-for-online
-$(CARGO_CONFIGURED):
-	$(AM_V_at)rm -f $(top_srcdir)/.cargo/.configured-for-offline $(top_srcdir)/.cargo/config
-	$(AM_V_at)touch $@
-
-else
-# Enable dependency vendoring
-RUST_BUILD_OPTS += --locked --offline
-if HAVE_RUST_TARGET
-RUST_BUILD_OPTS += --target $(RUST_TARGET)
-endif
-
-CARGO_CONFIGURED = $(top_srcdir)/.cargo/.configured-for-offline
-$(CARGO_CONFIGURED): $(top_srcdir)/.cargo/config.offline
-	$(AM_V_at)rm -f $(top_srcdir)/.cargo/.configured-for-online
-	$(AM_V_at)cp $< $(top_srcdir)/.cargo/config
-	$(AM_V_at)echo "directory = \"$(RUST_VENDORED_SOURCES)\"" >> $(top_srcdir)/.cargo/config
-	$(AM_V_at)touch $@
-endif
-
-cargo-build: $(CARGO_CONFIGURED)
-	$(RUST_ENV_VARS) $(CARGO) build $(RUST_BUILD_OPTS) --manifest-path $(top_srcdir)/Cargo.toml
-
-if TARGET_WINDOWS
-LIBRUSTZCASH_WIN=$(top_builddir)/target/$(RUST_TARGET)/release/rustzcash.lib
-
-$(LIBRUSTZCASH_WIN): cargo-build
-
-# This ensures that the Rust library is correctly linked in by libtool.
-# See https://github.com/rust-lang/rust/issues/69904 for the underlying cause.
-$(LIBRUSTZCASH): $(LIBRUSTZCASH_WIN)
-	$(AM_V_at)cp $< $@
-
-else
-$(LIBRUSTZCASH): cargo-build
 endif
 
 $(LIBSECP256K1): $(wildcard secp256k1/src/*.h) $(wildcard secp256k1/src/*.c) $(wildcard secp256k1/include/*)
@@ -106,8 +57,7 @@ EXTRA_LIBRARIES += \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_CLI) \
   $(LIBBITCOIN_WALLET) \
-  $(LIBBITCOIN_ZMQ) \
-  $(LIBSAPLING)
+  $(LIBBITCOIN_ZMQ)
 
 lib_LTLIBRARIES = $(LIBBITCOINCONSENSUS)
 
@@ -124,19 +74,7 @@ if BUILD_BITCOIN_UTILS
   bin_PROGRAMS += ucr-cli ucr-tx
 endif
 
-LIBSAPLING_H = \
-  sapling/sapling.h \
-  bech32.h \
-  sapling/key_io_sapling.h \
-  sapling/util.h \
-  sapling/prf.h \
-  sapling/noteencryption.hpp \
-  sapling/address.hpp \
-  sapling/note.hpp \
-  sapling/zip32.h \
-  sapling/saplingscriptpubkeyman.h
-
-.PHONY: FORCE cargo-build check-symbols check-security
+.PHONY: FORCE check-symbols check-security
 # ucr core #
 BITCOIN_CORE_H = \
   activemasternode.h \
@@ -254,7 +192,6 @@ BITCOIN_CORE_H = \
   guiinterface.h \
   guiinterfaceutil.h \
   uint256.h \
-  sapling/uint252.h \
   uint512.h \
   blob_uint256.h \
   undo.h \
@@ -335,8 +272,7 @@ libbitcoin_server_a_SOURCES = \
   txmempool.cpp \
   validationinterface.cpp \
   zpivchain.cpp \
-  $(BITCOIN_CORE_H) \
-  $(LIBSAPLING_H)
+  $(BITCOIN_CORE_H)
 
 if ENABLE_ZMQ
 libbitcoin_zmq_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(ZMQ_CFLAGS)
@@ -385,8 +321,7 @@ libbitcoin_wallet_a_SOURCES = \
   stakeinput.cpp \
   zpiv/zpivmodule.cpp \
   zpiv/zpos.cpp \
-  $(BITCOIN_CORE_H) \
-  $(LIBSAPLING_H)
+  $(BITCOIN_CORE_H)
 
 # crypto primitives library
 crypto_libbitcoin_crypto_a_CPPFLAGS = $(AM_CPPFLAGS) $(PIC_FLAGS)
@@ -433,34 +368,17 @@ crypto_libbitcoin_crypto_a_SOURCES = \
   crypto/sph_jh.h \
   crypto/sph_keccak.h \
   crypto/sph_skein.h \
-  crypto/sph_types.h
-
-  # specifically for xevan hash
-crypto_libbitcoin_crypto_a_SOURCES += \
-  crypto/sha3/sph_jh.c \
-  crypto/sha3/sph_blake.c \
-  crypto/sha3/sph_bmw.c \
-  crypto/sha3/sph_groestl.c \
-  crypto/sha3/sph_skein.c \
-  crypto/sha3/sph_keccak.c \
-  crypto/sha3/sph_luffa.c \
-  crypto/sha3/sph_cubehash.c \
-  crypto/sha3/sph_shavite.c \
-  crypto/sha3/sph_simd.c \
-  crypto/sha3/sph_echo.c \
-  crypto/sha3/sph_fugue.c \
-  crypto/sha3/sph_hamsi.c \
-  crypto/sha3/sph_shabal.c \
-  crypto/sha3/sph_whirlpool.c \
-  crypto/sha3/sph_haval.c \
-  crypto/sha3/sph_hefty1.c \
-  crypto/sha3/sph_ripemd.c \
-  crypto/sha3/sph_sha2.c \
-  crypto/sha3/sph_sha2big.c \
-  crypto/sha3/sph_tiger.c \
-  crypto/sha3/blake2s.c \
-  crypto/sha3/blake2b.c \
-  crypto/xevan.c
+  crypto/sph_types.h \
+  crypto/sph_luffa.h \
+  crypto/luffa.c \
+  crypto/sph_cubehash.h \
+  crypto/cubehash.c \
+  crypto/sph_shavite \
+  crypto/shavite.c \
+  crypto/sph_simd.h \
+  crypto/simd.c \
+  crypto/sph_echo \
+  crypto/echo.c
 
 # libzerocoin library
 libzerocoin_libbitcoin_zerocoin_a_CPPFLAGS = $(AM_CPPFLAGS) $(BOOST_CPPFLAGS)
@@ -527,8 +445,7 @@ libbitcoin_common_a_SOURCES = \
   script/script_error.cpp \
   spork.cpp \
   sporkdb.cpp \
-  $(BITCOIN_CORE_H) \
-  $(LIBSAPLING_H)
+  $(BITCOIN_CORE_H)
 
 # util: shared between all executables.
 # This library *must* be included to make sure that the glibc
@@ -557,31 +474,14 @@ libbitcoin_util_a_SOURCES = \
   util/threadnames.cpp \
   utilstrencodings.cpp \
   utiltime.cpp \
-  $(BITCOIN_CORE_H) \
-  $(LIBSAPLING_H)
+  $(BITCOIN_CORE_H)
 
 if GLIBC_BACK_COMPAT
 libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
 AM_LDFLAGS += $(COMPAT_LDFLAGS)
 endif
 
-# sapling protocol primitives #
-libsapling_a_CPPFLAGS = $(AM_CPPFLAGS) $(PIC_FLAGS) $(BITCOIN_INCLUDES)
-libsapling_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libsapling_a_SOURCES = \
-  bech32.cpp \
-  sapling/util.cpp \
-  sapling/key_io_sapling.cpp \
-  sapling/prf.cpp \
-  sapling/noteencryption.cpp \
-  sapling/address.cpp \
-  sapling/note.cpp \
-  sapling/zip32.cpp \
-  sapling/crypter_sapling.cpp \
-  sapling/saplingscriptpubkeyman.cpp
-
 if GLIBC_BACK_COMPAT
-libsapling_a_SOURCES += compat/glibc_compat.cpp
 AM_LDFLAGS += $(COMPAT_LDFLAGS)
 endif
 
@@ -590,8 +490,7 @@ libbitcoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_cli_a_SOURCES = \
   rpc/client.cpp \
-  $(BITCOIN_CORE_H) \
-  $(LIBSAPLING_H)
+  $(BITCOIN_CORE_H)
 
 nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
@@ -614,13 +513,10 @@ ucrd_LDADD = \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_ZMQ) \
   $(LIBBITCOIN_CRYPTO) \
-  $(LIBSAPLING) \
   $(LIBLEVELDB) \
   $(LIBLEVELDB_SSE42) \
   $(LIBMEMENV) \
-  $(LIBSECP256K1) \
-  $(LIBRUSTZCASH) \
-  $(LIBZCASH_LIBS)
+  $(LIBSECP256K1)
 
 ucrd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
@@ -638,10 +534,7 @@ ucr_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
-  $(LIBBITCOIN_CRYPTO) \
-  $(LIBSAPLING) \
-  $(LIBRUSTZCASH) \
-  $(LIBZCASH_LIBS)
+  $(LIBBITCOIN_CRYPTO)
 
 ucr_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
@@ -662,10 +555,7 @@ ucr_tx_LDADD = \
   $(LIBBITCOIN_ZEROCOIN) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO) \
-  $(LIBSECP256K1) \
-  $(LIBSAPLING) \
-  $(LIBRUSTZCASH) \
-  $(LIBZCASH_LIBS)
+  $(LIBSECP256K1)
 
 ucr_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
@@ -728,7 +618,7 @@ CTAES_DIST += crypto/ctaes/ctaes.h
 CTAES_DIST += crypto/ctaes/README.md
 CTAES_DIST += crypto/ctaes/test.c
 
-EXTRA_DIST = $(CTAES_DIST) rust
+EXTRA_DIST = $(CTAES_DIST)
 
 
 config/pivx-config.h: config/stamp-h1

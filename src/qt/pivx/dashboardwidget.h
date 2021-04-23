@@ -45,22 +45,6 @@ namespace Ui {
 class DashboardWidget;
 }
 
-class SortEdit : public QLineEdit{
-    Q_OBJECT
-public:
-    explicit SortEdit(QWidget* parent = nullptr) : QLineEdit(parent){}
-
-    inline void mousePressEvent(QMouseEvent *) override{
-        Q_EMIT Mouse_Pressed();
-    }
-
-    ~SortEdit() override{}
-
-Q_SIGNALS:
-    void Mouse_Pressed();
-
-};
-
 enum SortTx {
     DATE_DESC = 0,
     DATE_ASC = 1,

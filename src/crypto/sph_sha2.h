@@ -43,6 +43,10 @@
 #include <stddef.h>
 #include "sph_types.h"
 
+#ifdef __cplusplus
+extern "C"{
+#endif
+
 /**
  * Output size (in bits) for SHA-224.
  */
@@ -367,5 +371,8 @@ void sph_sha512_comp(const sph_u64 msg[16], sph_u64 val[8]);
 
 #endif
 
+#endif
+#ifdef __cplusplus
+}
 #endif
 

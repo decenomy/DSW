@@ -7,17 +7,16 @@
 
 #include "primitives/block.h"
 
-#include "crypto/xevan.h"
 #include "hash.h"
-#include "script/sign.h"
 #include "script/standard.h"
+#include "script/sign.h"
 #include "tinyformat.h"
-#include "util.h"
 #include "utilstrencodings.h"
+#include "util.h"
 
 uint256 CBlockHeader::GetHash() const
 {
-    if (nVersion < 4) {
+     if (nVersion < 4)  { // nVersion = 1, 2, 3
 #if defined(WORDS_BIGENDIAN)
         uint8_t data[80];
         WriteLE32(&data[0], nVersion);
