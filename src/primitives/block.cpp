@@ -18,11 +18,6 @@
 
 uint256 CBlockHeader::GetHash() const
 {
-    uint256 thash;
-    scrypt_1024_1_1_256(BEGIN(nVersion), BEGIN(thash));
-    return thash;
-
-/*
 	if (nVersion < 4)  {
 #if defined(WORDS_BIGENDIAN)
         uint8_t data[80];
@@ -39,8 +34,7 @@ uint256 CBlockHeader::GetHash() const
 #endif
     }
 	
-    return SerializeHash(*this); // nVersion >= 4
-*/
+    return Scrypt(BEGIN(nVersion), END(nNonce)); // nVersion >= 4
 }
 
 std::string CBlock::ToString() const
