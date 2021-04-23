@@ -13,8 +13,6 @@
 #include "tinyformat.h"
 #include "utilstrencodings.h"
 #include "util.h"
-#include <crypto/common.h>
-#include <crypto/scrypt.h>
 
 uint256 CBlockHeader::GetHash() const
 {
