@@ -22,14 +22,14 @@ const char* GetTxnOutputType(txnouttype t)
 {
     switch (t)
     {
-    case TX_NONSTANDARD: return "nonstandard";
-    case TX_PUBKEY: return "pubkey";
-    case TX_PUBKEYHASH: return "pubkeyhash";
-    case TX_SCRIPTHASH: return "scripthash";
-    case TX_MULTISIG: return "multisig";
-    case TX_COLDSTAKE: return "coldstake";
-    case TX_NULL_DATA: return "nulldata";
-    case TX_ZEROCOINMINT: return "zerocoinmint";
+		case TX_NONSTANDARD: return "nonstandard";
+		case TX_PUBKEY: return "pubkey";
+		case TX_PUBKEYHASH: return "pubkeyhash";
+		case TX_SCRIPTHASH: return "scripthash";
+		case TX_MULTISIG: return "multisig";
+		case TX_COLDSTAKE: return "coldstake";
+		case TX_NULL_DATA: return "nulldata";
+		case TX_ZEROCOINMINT: return "zerocoinmint";
     }
     return NULL;
 }
