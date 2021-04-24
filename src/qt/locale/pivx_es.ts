@@ -5445,20 +5445,8 @@ DashDiamond Wallet</translation>
         <translation>Escuchar únicamente a la tarjeta de red indicada para conexiones JSON-RPC. Use la notación [host]:puerto para IPv6. Esta opción puede ser especificada varias veces (por defecto: escuchar en todas las tarjetas de red)</translation>
     </message>
     <message>
-        <source>Cannot find the Sapling parameters in the following directory:
-%s
-Please run 'sapling-fetch-params' or './util/fetch-params.sh' and then restart.</source>
-        <translation>No se pueden encontrar los parámetros de Sapling en el siguiente directorio:
- %s
-Ejecute 'sapling-fetch-params' o './util/fetch-params.sh' y luego reinicie.</translation>
-    </message>
-    <message>
         <source>Cannot obtain a lock on data directory %s. DashDiamond is probably already running.</source>
         <translation>No se puede obtener un bloqueo sobre el directorio de datos %s. DashDiamond esta probablemente en ejecución.</translation>
-    </message>
-    <message>
-        <source>Cannot upgrade to Sapling wallet (already running Sapling support). Version: %d</source>
-        <translation>No se puede actualizar a la billetera Sapling (ya se está ejecutando el soporte de Sapling). Versión: %d</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>

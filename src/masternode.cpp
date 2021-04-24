@@ -401,14 +401,14 @@ CAmount CMasternode::GetBlockValue(int nHeight)
     return nSubsidy;
 }
 
-CAmount CMasternode::GetMasternodePayment()
+CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
     int64_t ret = 0;
 
-	if (chainActive.Height() <= 200) {
-		ret = GetBlockValue(chainActive.Height())  / 100 * 0;
+	if (nHeight <= 200) {
+		ret = GetBlockValue(nHeight)  / 100 * 0;
 	} else {
-		ret = GetBlockValue(chainActive.Height())  / 100 * 80;
+		ret = GetBlockValue(nHeight)  / 100 * 80;
 	}
 
     return ret;

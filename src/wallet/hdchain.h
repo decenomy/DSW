@@ -17,11 +17,10 @@ namespace HDChain {
 
     namespace ChainCounterType {
         static const uint8_t Standard  = 0;
-        static const uint8_t Sapling   = 1;
     };
 }
 
-/* Simple HD chain data model for regular and sapling addresses */
+/* Simple HD chain data model */
 class CHDChain
 {
 private:
@@ -29,7 +28,7 @@ private:
     CKeyID seed_id;
 
 public:
-    // Standard/Sapling hd chain
+    // Standard hd chain
     static const int CURRENT_VERSION = 2;
     // Single account counters.
     uint32_t nExternalChainCounter{0};

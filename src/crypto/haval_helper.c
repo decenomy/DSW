@@ -32,10 +32,10 @@
  * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
  */
 
-#undef SPH_XCAT_
-#define SPH_XCAT_(a, b)   a ## b
 #undef SPH_XCAT
 #define SPH_XCAT(a, b)    SPH_XCAT_(a, b)
+#undef SPH_XCAT_
+#define SPH_XCAT_(a, b)   a ## b
 
 static void
 #ifdef SPH_UPTR

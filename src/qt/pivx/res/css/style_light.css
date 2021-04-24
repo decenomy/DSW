@@ -2,6 +2,10 @@
 HH       CONTAINER
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
+* {
+  font-family: Nunito;
+}
+
 *[cssClass="container"] {
   background-color: #ffffff;
 }

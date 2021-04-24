@@ -422,7 +422,7 @@ rm -rf %{buildroot}
 %doc COPYING pivx.conf.example doc/README.md
 %attr(0755,root,root) %{_bindir}/pivx-cli
 %attr(0755,root,root) %{_bindir}/pivx-tx
-%attr(0755,root,root) %{_bindir}/bench_pivx
+%attr(0755,root,root) %{_bindir}/bench_dashdiamond
 %attr(0644,root,root) %{_mandir}/man1/pivx-cli.1*
 
 

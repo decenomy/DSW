@@ -3332,7 +3332,7 @@ bool CheckColdStakeFreeOutput(const CTransaction& tx, const int nHeight)
     const unsigned int outs = tx.vout.size();
     const CTxOut& lastOut = tx.vout[outs-1];
     if (outs >=3 && lastOut.scriptPubKey != tx.vout[outs-2].scriptPubKey) {
-        if (lastOut.nValue == CMasternode::GetMasternodePayment())
+        if (lastOut.nValue == CMasternode::GetMasternodePayment(nHeight))
             return true;
 
         // This could be a budget block.
