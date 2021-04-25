@@ -1,84 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   id="ic_piv"
-   width="24"
-   height="24"
-   viewBox="0 0 24 24"
-   version="1.1"
-   sodipodi:docname="ic-coin-piv.svg"
-   inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
-  <metadata
-     id="metadata14">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="640"
-     inkscape:window-height="480"
-     id="namedview12"
-     showgrid="false"
-     inkscape:zoom="11.220616"
-     inkscape:cx="9.7447468"
-     inkscape:cy="14.79955"
-     inkscape:current-layer="Group_8935" />
-  <defs
-     id="defs4">
-    <style
-       type="text/css"
-       id="style2">
-            .cls-1{fill:#5c4b7d}.cls-2{fill:none}
-        </style>
-  </defs>
-  <g
-     id="Group_8935"
-     data-name="Group 8935">
-    <g
-       id="Group_8934"
-       data-name="Group 8934"
-       style="stroke:#ed1c24;stroke-opacity:1">
-      <path
-         id="Path_18928"
-         d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 19.25A9.25 9.25 0 1 1 21.25 12 9.25 9.25 0 0 1 12 21.25z"
-         class="cls-1"
-         data-name="Path 18928"
-         style="stroke:#ed1c24;stroke-opacity:1" />
-    </g>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;opacity:1;fill:#ed1c24;fill-opacity:1;stroke:#ed1c24;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       x="12.120547"
-       y="14.285738"
-       id="text820"><tspan
-         sodipodi:role="line"
-         id="tspan818"
-         x="12.120547"
-         y="14.285738"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'">AZR</tspan></text>
-  </g>
-  <path
-     id="Rectangle_4543"
-     d="M0 0h24v24H0z"
-     class="cls-2"
-     data-name="Rectangle 4543" />
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="ic_azr" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#203F73;}
+	.st1{fill:none;}
+</style>
+<g id="Group_8935">
+	<g id="Group_8934">
+		<path id="Path_18928" class="st0" d="M12,2C6.5,2,2,6.5,2,12s4.5,10,10,10s10-4.5,10-10S17.5,2,12,2z M12,21.3
+			c-5.1,0-9.3-4.1-9.3-9.3S6.9,2.8,12,2.8s9.3,4.1,9.3,9.3S17.1,21.3,12,21.3L12,21.3z"/>
+		<path class="st0" d="M12,3.5c-4.7,0-8.5,3.8-8.5,8.5s3.8,8.5,8.5,8.5c4.7,0,8.5-3.8,8.5-8.5S16.7,3.5,12,3.5z M6.2,16.6l4.7-11.5
+			h2.2L8.4,16.6H6.2z M10.6,13.8l1.3-3.3l1.3,3.3H10.6z M15.6,16.6l-3.1-7.5l1.1-2.7l4.2,10.2H15.6z"/>
+	</g>
+</g>
+<path id="Rectangle_4543" class="st1" d="M0,0h24v24H0V0z"/>
 </svg>

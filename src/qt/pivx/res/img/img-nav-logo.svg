@@ -1,46 +1,82 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-<svg width="33.867mm" height="33.867mm" version="1.1" viewBox="0 0 33.867 33.867" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
- <defs>
-  <style>.cls-1{fill:none;}.cls-2{fill:#ed1c24;}.cls-3{fill:#fff;}.cls-4{font-size:24.1px;fill:#333;font-family:Nunito-Regular, Nunito;letter-spacing:0.2em;}</style>
- </defs>
- <metadata>
-  <rdf:RDF>
-   <cc:Work rdf:about="">
-    <dc:format>image/svg+xml</dc:format>
-    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:title/>
-   </cc:Work>
-  </rdf:RDF>
- </metadata>
- <g transform="translate(-4.9893 -5.656)">
-  <g transform="matrix(.26458 0 0 .26458 4.9893 5.656)" data-name="Layer 2">
-   <g data-name="Layer 1">
-    <g data-name="Layer 2">
-     <g id="Logo">
-      <rect class="cls-1" width="128" height="128" fill="none"/>
-      <g fill="#ed1c24">
-       <path class="cls-2" d="m18 79.29a15.37 15.37 0 0 1-1.65 7.39 11.36 11.36 0 0 1-4.51 4.65 14.35 14.35 0 0 1-6.55 1.75v-4.63a8.41 8.41 0 0 0 5.65-2.45q2.24-2.24 2.24-6.87v-29h4.82z"/>
-       <path class="cls-2" d="m24.43 76.94a5.83 5.83 0 0 1 6.12-6.08 5.73 5.73 0 0 1 6 6v5.57h-2.5v-2.17a4.11 4.11 0 0 1-4 2.52 5.55 5.55 0 0 1-5.62-5.84zm9.41-0.12a3.33 3.33 0 1 0-3.32 3.41 3.21 3.21 0 0 0 3.32-3.41z"/>
-       <path class="cls-2" d="m42.94 76.82a5.82 5.82 0 0 1 6.1-6 5.68 5.68 0 0 1 5.86 4.58h-2.75a3.41 3.41 0 1 0 0 2.84h2.75a5.68 5.68 0 0 1-5.9 4.54 5.82 5.82 0 0 1-6.06-5.96z"/>
-       <path class="cls-2" d="m61.66 66.21h2.73v9.9l4.49-5h3.48l-5.36 5.6 5.53 5.77h-3.53l-4.62-5.11v5.11h-2.72z"/>
-       <path class="cls-2" d="m78.59 76.91a5.73 5.73 0 0 1 6-6 5.83 5.83 0 0 1 6.12 6.08 5.56 5.56 0 0 1-5.64 5.84 4.3 4.3 0 0 1-3.78-2v6.49h-2.7zm9.4-0.09a3.34 3.34 0 1 0-3.35 3.41 3.23 3.23 0 0 0 3.36-3.41z"/>
-       <path class="cls-2" d="m96.65 76.82a6.1 6.1 0 1 1 6.09 6 5.81 5.81 0 0 1-6.09-6zm9.41 0a3.33 3.33 0 1 0-3.32 3.41 3.21 3.21 0 0 0 3.32-3.41z"/>
-       <path class="cls-2" d="m115.21 78.13v-11h2.72v4h5.85v2.48h-5.85v4.49c0 1.51 0.78 2.1 1.9 2.1s1.91-0.57 1.91-2.1v-0.3h2.72v0.3c0 3.14-1.88 4.65-4.63 4.65s-4.62-1.48-4.62-4.62z"/>
-      </g>
-      <g fill="#fff">
-       <circle class="cls-3" cx="42.72" cy="46.09" r="15.19"/>
-       <circle class="cls-3" cx="95.46" cy="46.09" r="15.19"/>
-       <circle class="cls-3" cx="68.68" cy="46.09" r="15.19"/>
-      </g>
-      <g fill="#333333" font-family="Nunito-Regular, Nunito" font-size="24.092px" letter-spacing=".2em" stroke-width=".99968">
-       <text class="cls-4" transform="scale(.99101 1.0091)" x="36.158607" y="54.880756">7</text>
-       <text class="cls-4" transform="scale(.99101 1.0091)" x="63.159412" y="54.880756">7</text>
-       <text class="cls-4" transform="scale(.99101 1.0091)" x="90.252037" y="54.880756">7</text>
-      </g>
-     </g>
-    </g>
-   </g>
-  </g>
- </g>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   height="473.47653"
+   width="516.51672"
+   id="svg22"
+   version="1.1"
+   viewBox="0 0 516.51672 473.47653">
+  <metadata
+     id="metadata26">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs12">
+    <linearGradient
+       gradientUnits="userSpaceOnUse"
+       y2="540"
+       x2="622.58002"
+       y1="540"
+       x1="118.56"
+       id="a">
+      <stop
+         id="stop2"
+         stop-color="#ee357d"
+         offset="0" />
+      <stop
+         id="stop4"
+         stop-color="#da26ee"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       gradientUnits="userSpaceOnUse"
+       y2="907.08398"
+       x2="911.46503"
+       y1="366.27899"
+       x1="602.43298"
+       id="b">
+      <stop
+         id="stop7"
+         stop-color="#5f3cc7"
+         offset="0" />
+      <stop
+         id="stop9"
+         stop-color="#853fd1"
+         offset="1" />
+    </linearGradient>
+  </defs>
+  <path
+     style="fill:#e62fac;stroke-width:1.3144778"
+     id="path18"
+     d="M 103.43415,392.54672 C 18.88695,324.41734 6.6491587,211.33281 72.662234,133.30541 c -4.035449,3.44394 -7.978882,7.00617 -11.751438,10.79186 -77.77764,78.00112 -68.760325,199.30112 20.150951,270.90073 88.911283,71.5996 224.013293,66.40741 301.790953,-11.60684 3.77255,-3.77256 7.2822,-7.6897 10.64727,-11.67256 -79.06584,67.51158 -205.46602,68.9575 -290.06582,0.82812 z"
+     class="cls-2" />
+  <circle
+     style="fill:#222333;stroke:#019def;stroke-width:10.51582241px;stroke-miterlimit:10"
+     id="circle20"
+     r="194.96335"
+     cy="258.81174"
+     cx="308.29547"
+     class="cls-3" />
+  <path
+     style="fill:#7d3ecf;stroke-width:1.3144778"
+     id="path22"
+     d="m 202.83496,10.099404 a 38.119855,38.119855 0 0 0 -39.28974,8.925313 L 125.42537,56.434757 47.135077,22.061152 32.031728,36.91476 95.27125,86.141945 60.56904,120.25264 l -22.398706,-7.68969 -15.103349,14.8536 37.252302,22.79305 22.148953,37.63349 15.103337,-14.81416 -7.295346,-22.53015 34.702209,-34.1107 48.13619,64.08079 15.10335,-14.8536 L 155.18514,86.746605 193.305,49.32343 a 38.119855,38.119855 0 0 0 9.52996,-39.224026 z"
+     class="cls-4" />
+  <path
+     style="fill:#f2f2f2;stroke-width:1.3144778"
+     id="path28"
+     d="m 383.6151,334.01302 -25.77691,-43.2726 h -81.3136 l 14.15692,-24.38357 h 52.73685 l -38.30388,-64.3174 -78.04055,131.97357 h -34.29472 l 98.84873,-164.58576 c 3.54909,-5.91516 8.04461,-9.70085 14.66957,-9.70085 6.62497,0 10.87073,3.78569 14.45925,9.70085 l 99.0459,164.58576 z"
+     class="cls-5" />
 </svg>
