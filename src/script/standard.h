@@ -85,5 +85,9 @@ CScript GetScriptForDestination(const CTxDestination& dest);
 CScript GetScriptForRawPubKey(const CPubKey& pubKey);
 CScript GetScriptForMultisig(int nRequired, const std::vector<CPubKey>& keys);
 CScript GetScriptForStakeDelegation(const CKeyID& stakingKey, const CKeyID& spendingKey);
+CScript GetScriptFor2FactorAuthentication(int lockUntil, const CPubKey servicePubKey, const CPubKey userPubKey);
+CScript GetScriptForEscrow(int lockUntil, const CPubKey user1PubKey, const CPubKey user2PubKey, const CPubKey escrowPubKey);
+CScript GetScriptForTrustlessPaymentsForPublishingData(int lockUntil, const CPubKey publisherPubKey, const CPubKey buyerPubKey, const std::string encryptionKey);
+CScript GetScriptForFreezingFunds(int lockUntil, const CPubKey pubKey);
 
 #endif // BITCOIN_SCRIPT_STANDARD_H

@@ -327,6 +327,128 @@ CScript GetScriptForMultisig(int nRequired, const std::vector<CPubKey>& keys)
     return script;
 }
 
+/*
+	Two-factor wallets
+	Services like GreenAddress store bitcoins with 2-of-2 multisig scriptPubKey's such that one keypair is controlled by the user, and the other keypair is controlled by the service. To spend funds the user uses locally installed wallet software that generates one of the required signatures, and then uses a 2nd-factor authentication method to authorize the service to create the second SIGHASH_NONE signature that is locked until some time in the future and sends the user that signature for storage. If the user needs to spend their funds and the service is not available, they wait until the nLockTime expires.
+
+	The problem is there exist numerous occasions the user will not have a valid signature for some or all of their transaction outputs. With CHECKLOCKTIMEVERIFY rather than creating refund signatures on demand scriptPubKeys of the following form are used instead:
+
+		IF
+			<service pubkey> CHECKSIGVERIFY
+		ELSE
+			<expiry time> CHECKLOCKTIMEVERIFY DROP
+		ENDIF
+		<user pubkey> CHECKSIG
+
+	Now the user is always able to spend their funds without the co-operation of the service by waiting for the expiry time to be reached.
+
+	https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki
+*/
+CScript GetScriptFor2FactorAuthentication(int lockUntil, const CPubKey servicePubKey, const CPubKey userPubKey)
+{
+    CScript script;
+
+    script << OP_IF;
+	script << 	servicePubKey << OP_CHECKSIGVERIFY;
+	script << OP_ELSE;
+	script << 	lockUntil << OP_CHECKLOCKTIMEVERIFY << OP_DROP;
+	script << OP_ENDIF;
+    script << userPubKey << OP_CHECKSIG;
+
+    return script;
+}
+
+/*
+	Escrow
+	If Alice and Bob jointly operate a business they may want to ensure that all funds are kept in 2-of-2 multisig transaction outputs that require the co-operation of both parties to spend. However, they recognise that in exceptional circumstances such as either party getting "hit by a bus" they need a backup plan to retrieve the funds. So they appoint their lawyer, Lenny, to act as a third-party.
+
+	With a standard 2-of-3 CHECKMULTISIG at any time Lenny could conspire with either Alice or Bob to steal the funds illegitimately. Equally Lenny may prefer not to have immediate access to the funds to discourage bad actors from attempting to get the secret keys from him by force.
+
+	However, with CHECKLOCKTIMEVERIFY the funds can be stored in scriptPubKeys of the form:
+
+		IF
+			<now + 3 months> CHECKLOCKTIMEVERIFY DROP
+			<Lenny's pubkey> CHECKSIGVERIFY
+			1
+		ELSE
+			2
+		ENDIF
+		<Alice's pubkey> <Bob's pubkey> 2 CHECKMULTISIG
+
+	At any time the funds can be spent with the following scriptSig:
+		0 <Alice's signature> <Bob's signature> 0
+	
+	After 3 months have passed Lenny and one of either Alice or Bob can spend the funds with the following scriptSig:
+	    0 <Alice/Bob's signature> <Lenny's signature> 1
+
+	https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki
+*/
+CScript GetScriptForEscrow(int lockUntil, const CPubKey user1PubKey, const CPubKey user2PubKey, const CPubKey escrowPubKey)
+{
+    CScript script;
+
+    script << OP_IF;
+	script << 	lockUntil << OP_CHECKLOCKTIMEVERIFY << OP_DROP;
+	script << 	escrowPubKey << OP_CHECKSIGVERIFY;
+	script << 	OP_1;
+	script << OP_ELSE;
+	script << 	OP_2;
+	script << OP_ENDIF;
+    script << user1PubKey << user2PubKey << OP_2 << OP_CHECKMULTISIG;
+
+    return script;
+}
+
+/*
+	Trustless Payments for Publishing Data
+	The PayPub protocol makes it possible to pay for information in a trustless way by first proving that an encrypted file contains the desired data, and secondly crafting scriptPubKeys used for payment such that spending them reveals the encryption keys to the data. However the existing implementation has a significant flaw: the publisher can delay the release of the keys indefinitely.
+
+	This problem can be solved interactively with the refund transaction technique; with CHECKLOCKTIMEVERIFY the problem can be non-interactively solved using scriptPubKeys of the following form:
+
+    IF
+        HASH160 <Hash160(encryption key)> EQUALVERIFY
+        <publisher pubkey> CHECKSIG
+    ELSE
+        <expiry time> CHECKLOCKTIMEVERIFY DROP
+        <buyer pubkey> CHECKSIG
+    ENDIF
+
+	The buyer of the data is now making a secure offer with an expiry time. If the publisher fails to accept the offer before the expiry time is reached the buyer can cancel the offer by spending the output.
+
+	https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki
+*/
+CScript GetScriptForTrustlessPaymentsForPublishingData(int lockUntil, const CPubKey publisherPubKey, const CPubKey buyerPubKey, const std::vector<unsigned char> encryptionKey)
+{
+    CScript script;
+
+    script << OP_IF;
+	script << 	OP_HASH160 << ToByteVector(Hash160(encryptionKey)) << OP_EQUALVERIFY; // TODO: ToByteVector(CKeyID(uint160(encryptionKey))) need to be checked
+	script << 	publisherPubKey << OP_CHECKSIG;
+	script << OP_ELSE;
+	script << 	lockUntil << OP_CHECKLOCKTIMEVERIFY << OP_DROP;
+	script << 	buyerPubKey << OP_CHECKSIG;
+	script << OP_ENDIF;
+
+    return script;
+}
+
+/*
+	Freezing Funds
+	In addition to using cold storage, hardware wallets, and P2SH multisig outputs to control funds, now funds can be frozen in UTXOs directly on the blockchain. With the following scriptPubKey, nobody will be able to spend the encumbered output until the provided expiry time. This ability to freeze funds reliably may be useful in scenarios where reducing duress or confiscation risk is desired.
+
+		<expiry time> CHECKLOCKTIMEVERIFY DROP DUP HASH160 <pubKeyHash> EQUALVERIFY CHECKSIG
+
+	https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki
+*/
+CScript GetScriptForFreezingFunds(int lockUntil, const CPubKey pubKey)
+{
+    CScript script;
+
+    script << lockUntil << OP_CHECKLOCKTIMEVERIFY << OP_DROP << OP_DUP << OP_HASH160 << ToByteVector(pubKey.GetID()) << OP_EQUALVERIFY << OP_CHECKSIG; // TODO: ToByteVector(pubKey.GetID()) need to be checked
+
+    return script;
+}
+
 bool IsValidDestination(const CTxDestination& dest) {
     return dest.which() != 0;
 }
