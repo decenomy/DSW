@@ -972,15 +972,14 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
 				// memory store
 				case OP_MLOAD:
 				case OP_MSTORE:
-				case OP_MSTORE8:
 
 				// storage
 				case OP_SLOAD:
 				case OP_SSTORE:
 
 				// smart contract actions
-				case OP_SC_PUBLISH:
-				case OP_SC_RUN:
+				case OP_PUBLISH:
+				case OP_RUN:
 
                 default:
                     return set_error(serror, SCRIPT_ERR_BAD_OPCODE);

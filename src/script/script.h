@@ -184,15 +184,14 @@ enum opcodetype
 	// memory store
 	OP_MLOAD = 0xc4, // reads a (u)int256 from memory (from Ethereum)
 	OP_MSTORE = 0xc5, // writes a (u)int256 to memory (from Ethereum)
-	OP_MSTORE8 = 0xc6, // writes a uint8 to memory (from Ethereum)
 
 	// storage
 	OP_SLOAD = 0xc7, // reads a (u)int256 from storage (from Ethereum)
 	OP_SSTORE = 0xc8, // writes a (u)int256 to storage (from Ethereum)
 
 	// smart contract actions
-	OP_SC_PUBLISH = 0xc9, // For storing smart-contract
-	OP_SC_RUN = 0xca, // For activating smart-contract
+	OP_PUBLISH = 0xc9, // For storing smart-contract
+	OP_RUN = 0xca, // For activating smart-contract
 
     // cold staking
     OP_CHECKCOLDSTAKEVERIFY = 0xd1,

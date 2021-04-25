@@ -149,15 +149,14 @@ const char* GetOpName(opcodetype opcode)
 	// memory store
 	case OP_MLOAD				   : return "OP_MLOAD";
 	case OP_MSTORE				   : return "OP_MSTORE";
-	case OP_MSTORE8				   : return "OP_MSTORE8";
 
 	// storage
 	case OP_SLOAD				   : return "OP_SLOAD";
 	case OP_SSTORE				   : return "OP_SSTORE";
 
 	// smart contract actions
-	case OP_SC_PUBLISH			   : return "OP_SC_PUBLISH";
-	case OP_SC_RUN			   	   : return "OP_SC_RUN";
+	case OP_PUBLISH			   : return "OP_PUBLISH";
+	case OP_RUN			   	   : return "OP_RUN";
 
 	// cold staking
 	case OP_CHECKCOLDSTAKEVERIFY   : return "OP_CHECKCOLDSTAKEVERIFY";
