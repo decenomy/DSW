@@ -155,8 +155,8 @@ const char* GetOpName(opcodetype opcode)
 	case OP_SSTORE				   : return "OP_SSTORE";
 
 	// smart contract actions
-	case OP_PUBLISH			   : return "OP_PUBLISH";
-	case OP_RUN			   	   : return "OP_RUN";
+	case OP_PUBLISH			       : return "OP_PUBLISH";
+	case OP_RUN			   	       : return "OP_RUN";
 
 	// cold staking
 	case OP_CHECKCOLDSTAKEVERIFY   : return "OP_CHECKCOLDSTAKEVERIFY";
