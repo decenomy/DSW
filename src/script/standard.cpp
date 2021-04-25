@@ -422,7 +422,7 @@ CScript GetScriptForTrustlessPaymentsForPublishingData(int lockUntil, const CPub
     CScript script;
 
     script << OP_IF;
-	script << 	OP_HASH160 << ToByteVector(Hash160(encryptionKey)) << OP_EQUALVERIFY; // TODO: ToByteVector(CKeyID(uint160(encryptionKey))) need to be checked
+	script << 	OP_HASH160 << ToByteVector(Hash160(encryptionKey)) << OP_EQUALVERIFY; // TODO: ToByteVector(Hash160(encryptionKey)) need to be checked
 	script << 	publisherPubKey << OP_CHECKSIG;
 	script << OP_ELSE;
 	script << 	lockUntil << OP_CHECKLOCKTIMEVERIFY << OP_DROP;
