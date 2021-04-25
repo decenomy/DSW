@@ -344,7 +344,7 @@ CScript GetScriptForMultisig(int nRequired, const std::vector<CPubKey>& keys)
 
 	https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki
 */
-CScript GetScriptFor2FactorAuthentication(int lockUntil, const CPubKey servicePubKey, const CPubKey userPubKey)
+CScript GetScriptFor2FactorAuthentication(int lockUntil, const CPubKey servicePubKey, const CPubKey userPubKey) // if lockUntil less than 500M it is block height. Otherwise it's timestamp.
 {
     CScript script;
 
@@ -383,7 +383,7 @@ CScript GetScriptFor2FactorAuthentication(int lockUntil, const CPubKey servicePu
 
 	https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki
 */
-CScript GetScriptForEscrow(int lockUntil, const CPubKey user1PubKey, const CPubKey user2PubKey, const CPubKey escrowPubKey)
+CScript GetScriptForEscrow(int lockUntil, const CPubKey user1PubKey, const CPubKey user2PubKey, const CPubKey escrowPubKey) // if lockUntil less than 500M it is block height. Otherwise it's timestamp.
 {
     CScript script;
 
@@ -417,7 +417,7 @@ CScript GetScriptForEscrow(int lockUntil, const CPubKey user1PubKey, const CPubK
 
 	https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki
 */
-CScript GetScriptForTrustlessPaymentsForPublishingData(int lockUntil, const CPubKey publisherPubKey, const CPubKey buyerPubKey, const std::vector<unsigned char> encryptionKey)
+CScript GetScriptForTrustlessPaymentsForPublishingData(int lockUntil, const CPubKey publisherPubKey, const CPubKey buyerPubKey, const std::vector<unsigned char> encryptionKey) // if lockUntil less than 500M it is block height. Otherwise it's timestamp.
 {
     CScript script;
 
@@ -440,11 +440,12 @@ CScript GetScriptForTrustlessPaymentsForPublishingData(int lockUntil, const CPub
 
 	https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki
 */
-CScript GetScriptForFreezingFunds(int lockUntil, const CPubKey pubKey)
+CScript GetScriptForFreezingFunds(int lockUntil, const CPubKey pubKey) // if lockUntil less than 500M it is block height. Otherwise it's timestamp.
 {
     CScript script;
 
-    script << lockUntil << OP_CHECKLOCKTIMEVERIFY << OP_DROP << OP_DUP << OP_HASH160 << ToByteVector(pubKey.GetID()) << OP_EQUALVERIFY << OP_CHECKSIG; // TODO: ToByteVector(pubKey.GetID()) need to be checked
+    script << lockUntil << OP_CHECKLOCKTIMEVERIFY << OP_DROP;
+	script << OP_DUP << OP_HASH160 << ToByteVector(pubKey.GetID()) << OP_EQUALVERIFY << OP_CHECKSIG; // TODO: ToByteVector(pubKey.GetID()) need to be checked
 
     return script;
 }
