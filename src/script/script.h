@@ -177,9 +177,9 @@ enum opcodetype
     OP_NOP10 = 0xb9,
 
     // zerocoin
-    OP_ZEROCOINMINT = 0xc1,
-    OP_ZEROCOINSPEND = 0xc2,
-    OP_ZEROCOINPUBLICSPEND = 0xc3,
+    OP_ZEROCOINMINT = 0xc1, // TODO: Will be removed in another branch
+    OP_ZEROCOINSPEND = 0xc2, // TODO: Will be removed in another branch
+    OP_ZEROCOINPUBLICSPEND = 0xc3, // TODO: Will be removed in another branch
 
 	// memory store
 	OP_MLOAD = 0xc4, // reads a (u)int256 from memory (from Ethereum)
@@ -194,7 +194,7 @@ enum opcodetype
 	OP_RUN = 0xca, // For activating smart-contract
 
     // cold staking
-    OP_CHECKCOLDSTAKEVERIFY = 0xd1,
+    OP_CHECKCOLDSTAKEVERIFY = 0xd1, // TODO: Will be removed in another branch
 
     OP_INVALIDOPCODE = 0xff,
 };

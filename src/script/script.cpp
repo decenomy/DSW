@@ -142,9 +142,9 @@ const char* GetOpName(opcodetype opcode)
 	case OP_NOP10                  : return "OP_NOP10";                 // OP_NOP10
 
 	// zerocoin
-	case OP_ZEROCOINMINT           : return "OP_ZEROCOINMINT";
-	case OP_ZEROCOINSPEND          : return "OP_ZEROCOINSPEND";
-	case OP_ZEROCOINPUBLICSPEND    : return "OP_ZEROCOINPUBLICSPEND";
+	case OP_ZEROCOINMINT           : return "OP_ZEROCOINMINT"; // TODO: Will be removed in another branch
+	case OP_ZEROCOINSPEND          : return "OP_ZEROCOINSPEND"; // TODO: Will be removed in another branch
+	case OP_ZEROCOINPUBLICSPEND    : return "OP_ZEROCOINPUBLICSPEND"; // TODO: Will be removed in another branch
 
 	// memory store
 	case OP_MLOAD				   : return "OP_MLOAD";
@@ -159,7 +159,7 @@ const char* GetOpName(opcodetype opcode)
 	case OP_RUN			   	       : return "OP_RUN";
 
 	// cold staking
-	case OP_CHECKCOLDSTAKEVERIFY   : return "OP_CHECKCOLDSTAKEVERIFY";
+	case OP_CHECKCOLDSTAKEVERIFY   : return "OP_CHECKCOLDSTAKEVERIFY"; // TODO: Will be removed in another branch
 
 	case OP_INVALIDOPCODE          : return "OP_INVALIDOPCODE";
 

@@ -328,37 +328,6 @@ CScript GetScriptForMultisig(int nRequired, const std::vector<CPubKey>& keys)
 }
 
 /*
-	Two-factor wallets
-	Services like GreenAddress store bitcoins with 2-of-2 multisig scriptPubKey's such that one keypair is controlled by the user, and the other keypair is controlled by the service. To spend funds the user uses locally installed wallet software that generates one of the required signatures, and then uses a 2nd-factor authentication method to authorize the service to create the second SIGHASH_NONE signature that is locked until some time in the future and sends the user that signature for storage. If the user needs to spend their funds and the service is not available, they wait until the nLockTime expires.
-
-	The problem is there exist numerous occasions the user will not have a valid signature for some or all of their transaction outputs. With CHECKLOCKTIMEVERIFY rather than creating refund signatures on demand scriptPubKeys of the following form are used instead:
-
-		IF
-			<service pubkey> CHECKSIGVERIFY
-		ELSE
-			<expiry time> CHECKLOCKTIMEVERIFY DROP
-		ENDIF
-		<user pubkey> CHECKSIG
-
-	Now the user is always able to spend their funds without the co-operation of the service by waiting for the expiry time to be reached.
-
-	https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki
-*/
-CScript GetScriptFor2FactorAuthentication(int lockUntil, const CPubKey servicePubKey, const CPubKey userPubKey) // if lockUntil less than 500M it is block height. Otherwise it's timestamp.
-{
-    CScript script;
-
-    script << OP_IF;
-	script << 	servicePubKey << OP_CHECKSIGVERIFY;
-	script << OP_ELSE;
-	script << 	lockUntil << OP_CHECKLOCKTIMEVERIFY << OP_DROP;
-	script << OP_ENDIF;
-    script << userPubKey << OP_CHECKSIG;
-
-    return script;
-}
-
-/*
 	Escrow
 	If Alice and Bob jointly operate a business they may want to ensure that all funds are kept in 2-of-2 multisig transaction outputs that require the co-operation of both parties to spend. However, they recognise that in exceptional circumstances such as either party getting "hit by a bus" they need a backup plan to retrieve the funds. So they appoint their lawyer, Lenny, to act as a third-party.
 
@@ -383,7 +352,7 @@ CScript GetScriptFor2FactorAuthentication(int lockUntil, const CPubKey servicePu
 
 	https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki
 */
-CScript GetScriptForEscrow(int lockUntil, const CPubKey user1PubKey, const CPubKey user2PubKey, const CPubKey escrowPubKey) // if lockUntil less than 500M it is block height. Otherwise it's timestamp.
+CScript GetScriptForEscrow(int lockUntil, const CPubKey user1PubKey, const CPubKey user2PubKey, const CPubKey escrowPubKey) // if lockUntil is less than 500M it is block height. Otherwise it's timestamp.
 {
     CScript script;
 
@@ -395,6 +364,37 @@ CScript GetScriptForEscrow(int lockUntil, const CPubKey user1PubKey, const CPubK
 	script << 	OP_2;
 	script << OP_ENDIF;
     script << user1PubKey << user2PubKey << OP_2 << OP_CHECKMULTISIG;
+
+    return script;
+}
+
+/*
+	Two-factor wallets
+	Services like GreenAddress store bitcoins with 2-of-2 multisig scriptPubKey's such that one keypair is controlled by the user, and the other keypair is controlled by the service. To spend funds the user uses locally installed wallet software that generates one of the required signatures, and then uses a 2nd-factor authentication method to authorize the service to create the second SIGHASH_NONE signature that is locked until some time in the future and sends the user that signature for storage. If the user needs to spend their funds and the service is not available, they wait until the nLockTime expires.
+
+	The problem is there exist numerous occasions the user will not have a valid signature for some or all of their transaction outputs. With CHECKLOCKTIMEVERIFY rather than creating refund signatures on demand scriptPubKeys of the following form are used instead:
+
+		IF
+			<service pubkey> CHECKSIGVERIFY
+		ELSE
+			<expiry time> CHECKLOCKTIMEVERIFY DROP
+		ENDIF
+		<user pubkey> CHECKSIG
+
+	Now the user is always able to spend their funds without the co-operation of the service by waiting for the expiry time to be reached.
+
+	https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki
+*/
+CScript GetScriptFor2FactorAuthentication(int lockUntil, const CPubKey servicePubKey, const CPubKey userPubKey) // if lockUntil is less than 500M it is block height. Otherwise it's timestamp.
+{
+    CScript script;
+
+    script << OP_IF;
+	script << 	servicePubKey << OP_CHECKSIGVERIFY;
+	script << OP_ELSE;
+	script << 	lockUntil << OP_CHECKLOCKTIMEVERIFY << OP_DROP;
+	script << OP_ENDIF;
+    script << userPubKey << OP_CHECKSIG;
 
     return script;
 }
@@ -417,7 +417,7 @@ CScript GetScriptForEscrow(int lockUntil, const CPubKey user1PubKey, const CPubK
 
 	https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki
 */
-CScript GetScriptForTrustlessPaymentsForPublishingData(int lockUntil, const CPubKey publisherPubKey, const CPubKey buyerPubKey, const std::vector<unsigned char> encryptionKey) // if lockUntil less than 500M it is block height. Otherwise it's timestamp.
+CScript GetScriptForTrustlessPaymentsForPublishingData(int lockUntil, const CPubKey publisherPubKey, const CPubKey buyerPubKey, const std::vector<unsigned char> encryptionKey) // if lockUntil is less than 500M it is block height. Otherwise it's timestamp.
 {
     CScript script;
 
@@ -440,7 +440,7 @@ CScript GetScriptForTrustlessPaymentsForPublishingData(int lockUntil, const CPub
 
 	https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki
 */
-CScript GetScriptForFreezingFunds(int lockUntil, const CPubKey pubKey) // if lockUntil less than 500M it is block height. Otherwise it's timestamp.
+CScript GetScriptForFreezingFunds(int lockUntil, const CPubKey pubKey) // if lockUntil is less than 500M it is block height. Otherwise it's timestamp.
 {
     CScript script;
 
