@@ -13,6 +13,7 @@
 #include "crypto/sha256.h"
 #include "pubkey.h"
 #include "script/script.h"
+#include "script/scriptdb.h"
 #include "uint256.h"
 
 
@@ -979,6 +980,10 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
 
 				// smart contract actions
 				case OP_PUBLISH:
+					// TODO: Implement WriteContract function
+					CScriptDB::WriteContract("contract hash","contract script");
+				break;
+
 				case OP_RUN:
 
                 default:

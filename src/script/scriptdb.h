@@ -68,21 +68,7 @@ public:
     {
     }
 
-    bool WriteName(const std::string& strAddress, const std::string& strName);
-    bool EraseName(const std::string& strAddress);
-
-    bool WriteCScript(const uint160& hash, const CScript& redeemScript);
-
-    bool WriteMultiSig(const CScript& script);
-    bool EraseMultiSig(const CScript& script);
-
-    bool WriteMinVersion(int nVersion);
-
-    /// Write destination data key,value tuple to database
-    bool WriteDestData(const std::string& address, const std::string& key, const std::string& value);
-    /// Erase destination data tuple from wallet database
-    bool EraseDestData(const std::string& address, const std::string& key);
-
+	static bool WriteContract(const std::string& hash, const std::string& contract);
     static void IncrementUpdateCounter();
     static unsigned int GetUpdateCounter();
 private:

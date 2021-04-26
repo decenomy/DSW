@@ -173,6 +173,7 @@ BITCOIN_CORE_H = \
   script/sign.h \
   script/standard.h \
   script/script_error.h \
+  script/scriptdb.h \
   serialize.h \
   spork.h \
   sporkdb.h \
@@ -443,6 +444,7 @@ libbitcoin_common_a_SOURCES = \
   script/sign.cpp \
   script/standard.cpp \
   script/script_error.cpp \
+  script/scriptdb.cpp \
   spork.cpp \
   sporkdb.cpp \
   $(BITCOIN_CORE_H)
