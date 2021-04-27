@@ -132,7 +132,7 @@ const char* GetOpName(opcodetype opcode)
 	// expansion
 	case OP_NOP1                   : return "OP_NOP1";                  // OP_NOP1
 	case OP_CHECKLOCKTIMEVERIFY    : return "OP_CHECKLOCKTIMEVERIFY";   // OP_NOP2
-	case OP_NOP3                   : return "OP_NOP3";                  // OP_NOP3
+    case OP_CHECKSEQUENCEVERIFY    : return "OP_CHECKSEQUENCEVERIFY";	// OP_NOP3
 	case OP_NOP4                   : return "OP_NOP4";                  // OP_NOP4
 	case OP_NOP5                   : return "OP_NOP5";                  // OP_NOP5
 	case OP_NOP6                   : return "OP_NOP6";                  // OP_NOP6
@@ -185,7 +185,7 @@ unsigned int CScript::GetSigOpCount(bool fAccurate) const
             if (fAccurate && lastOpcode >= OP_1 && lastOpcode <= OP_16)
                 n += DecodeOP_N(lastOpcode);
             else
-                n += 20;
+                n += MAX_PUBKEYS_PER_MULTISIG;
         }
         lastOpcode = opcode;
     }
