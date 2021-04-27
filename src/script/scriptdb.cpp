@@ -3,27 +3,36 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "script/scriptdb.h"
-#include "wallet/db.h"
-#include "base58.h"
+#include "fs.h"
+#include "dbwrapper.h"
 
-static std::atomic<unsigned int> nWalletDBUpdateCounter;
 
-//
-// CScriptDB
-//
 
-bool CScriptDB::WriteContract(const std::string& hash, const std::string& contract)
+CScriptDB* scriptDB;
+
+bool CScriptDB::WriteScript(const std::string& name, const uint256 hash, const CScript& contract)
 {
-	// Write contract to db
+	// TODO: Maybe we should check script validity here before we write it to the database
+    LogPrintf("Wrote script %s to database\n", name);
+    // return scriptDB->Write(hash, contract); // TODO: Gives error on compile (‘const class CScript’ has no member named ‘Serialize’). Should be fixed
 	return true;
 }
 
-void CScriptDB::IncrementUpdateCounter()
+bool CScriptDB::ReadScript(const uint256 hash, const CScript& contract)
 {
-    nWalletDBUpdateCounter++;
+    // return scriptDB->Read(hash, contract); // TODO: Gives error on compile (‘const class CScript’ has no member named ‘Serialize’). Should be fixed
+	return true;
 }
 
-unsigned int CScriptDB::GetUpdateCounter()
+// TODO: Erasing Scripts from database can be dangerous so maybe it should just be marked as 'DISABLED' if this it's needed
+bool CScriptDB::EraseScript(const uint256 hash)
 {
-    return nWalletDBUpdateCounter;
+    // return scriptDB->Erase(hash); // TODO: Gives error on compile (‘const class CScript’ has no member named ‘Serialize’). Should be fixed
+	return true;
+}
+
+bool CScriptDB::ScriptExists(const uint256 hash)
+{
+    // return scriptDB->Exists(hash); // TODO: Gives error on compile (‘const class CScript’ has no member named ‘Serialize’). Should be fixed
+	return true;
 }

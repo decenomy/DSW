@@ -1026,12 +1026,21 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
 				// smart contract actions
 				case OP_PUBLISH:
 				{
-					// TODO: Implement WriteContract function
-					CScriptDB::WriteContract("contract hash","contract script");
+					CScript contract;
+					uint256 hash;
+
+					return CScriptDB::WriteScript("Example Contract", hash, contract);
 				}
 				break;
 
 				case OP_RUN:
+				{
+					CScript contract;
+					uint256 hash;
+					contract = CScriptDB::ReadScript(hash, contract);
+
+					return CScript::RunScript(contract);
+				}
 
                 default:
                     return set_error(serror, SCRIPT_ERR_BAD_OPCODE);

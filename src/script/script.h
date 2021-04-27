@@ -644,6 +644,9 @@ public:
      */
     unsigned int GetSigOpCount(const CScript& scriptSig) const;
 
+	/** Run Script for OP_RUN opcode **/
+	static bool RunScript(const CScript& contractScript);
+
     bool IsNormalPaymentScript() const;
     bool IsPayToScriptHash() const;
     bool IsPayToColdStaking() const;

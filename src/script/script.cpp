@@ -216,6 +216,13 @@ unsigned int CScript::GetSigOpCount(const CScript& scriptSig) const
     return subscript.GetSigOpCount(true);
 }
 
+bool CScript::RunScript(const CScript& contractScript)
+{
+	// TODO:: Implement code to run the script and get the result
+	bool result = true;
+	return result;
+}
+
 bool CScript::IsNormalPaymentScript() const
 {
     if(this->size() != 25) return false;

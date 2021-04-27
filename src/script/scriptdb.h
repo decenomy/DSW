@@ -5,7 +5,9 @@
 #ifndef BITCOIN_SCRIPTDB_H
 #define BITCOIN_SCRIPTDB_H
 
-#include "wallet/db.h"
+#include "fs.h"
+#include "dbwrapper.h"
+#include "spork.h"
 
 class CScript;
 class uint160;
@@ -21,61 +23,24 @@ enum DBErrors {
     DB_NEED_REWRITE
 };
 
-class CKeyMetadata
+/** Access to the script database */
+class CScriptDB : public CDBWrapper
 {
 public:
-    // Metadata versions
-    static const int VERSION_BASIC = 1;
-    static const int VERSION_WITH_KEY_ORIGIN = 12;
-    // Active version
-    static const int CURRENT_VERSION = VERSION_WITH_KEY_ORIGIN;
+	CScriptDB(size_t nCacheSize, bool fMemory, bool fWipe) : CDBWrapper(GetDataDir() / "scripts", nCacheSize, fMemory, fWipe)
+	{
+	}
 
-    int nVersion;
-    int64_t nCreateTime; // 0 means unknown
+	static bool WriteScript(const std::string& name, const uint256 hash, const CScript& contract);
+	static bool ReadScript(const uint256 hash, const CScript& contract);
+	static bool EraseScript(const uint256 hash);
+	static bool ScriptExists(const uint256 hash);
 
-    CKeyMetadata()
-    {
-        SetNull();
-    }
+	// TODO: Implement Serialize and Unserialize
 
-    CKeyMetadata(int64_t nCreateTime_)
-    {
-        SetNull();
-        nCreateTime = nCreateTime_;
-    }
-
-    ADD_SERIALIZE_METHODS;
-
-    template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action)
-    {
-        READWRITE(nVersion);
-        READWRITE(nCreateTime);
-    }
-
-    void SetNull()
-    {
-        nVersion = CKeyMetadata::CURRENT_VERSION;
-        nCreateTime = 0;
-    }
-};
-
-/** Access to the wallet database */
-class CScriptDB : public CDB
-{
-public:
-    CScriptDB(const std::string& strFilename, const char* pszMode = "r+", bool fFlushOnClose = true) : CDB(strFilename, pszMode, fFlushOnClose)
-    {
-    }
-
-	static bool WriteContract(const std::string& hash, const std::string& contract);
-    static void IncrementUpdateCounter();
-    static unsigned int GetUpdateCounter();
 private:
     CScriptDB(const CScriptDB&);
     void operator=(const CScriptDB&);
 };
-
-void ThreadFlushWalletDB();
 
 #endif // BITCOIN_SCRIPTDB_H
