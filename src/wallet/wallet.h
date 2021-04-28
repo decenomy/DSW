@@ -157,7 +157,7 @@ public:
 
     bool IsInternal() const { return type == HDChain::ChangeType::INTERNAL; }
     bool IsExternal() const { return type == HDChain::ChangeType::EXTERNAL; }
-    bool IsDeprecated() const { return type == HDChain::ChangeType::DEPRECATED; }
+    bool IsECommerce() const { return type == HDChain::ChangeType::ECOMMERCE; }
 
     ADD_SERIALIZE_METHODS;
 
@@ -587,7 +587,7 @@ public:
     bool UpdatedTransaction(const uint256& hashTx);
 
     unsigned int GetKeyPoolSize();
-    unsigned int GetStakingKeyPoolSize();
+    unsigned int GetECommerceKeyPoolSize();
 
     //! signify that a particular wallet feature is now used. this may change nWalletVersion and nWalletMaxVersion if those are lower
     bool SetMinVersion(enum WalletFeature, CWalletDB* pwalletdbIn = NULL, bool fExplicit = false);

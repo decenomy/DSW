@@ -4042,9 +4042,9 @@ unsigned int CWallet::GetKeyPoolSize()
     return m_spk_man->GetKeyPoolSize();
 }
 
-unsigned int CWallet::GetStakingKeyPoolSize()
+unsigned int CWallet::GetECommerceKeyPoolSize()
 {
-    return m_spk_man->GetStakingKeyPoolSize();
+    return m_spk_man->GetECommerceKeyPoolSize();
 }
 
 int CWallet::GetVersion()

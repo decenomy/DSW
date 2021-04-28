@@ -17,6 +17,7 @@ bool CHDChain::SetNull()
     seed_id = CKeyID();
     nExternalChainCounter = 0;
     nInternalChainCounter = 0;
+    nECommerceChainCounter = 0;
     return IsNull();
 }
 
