@@ -59,7 +59,7 @@ public:
     unsigned int GetKeyPoolSize() const;
 
     /* Staking key pool size */
-    unsigned int GetStakingKeyPoolSize() const;
+    unsigned int GetECommerceKeyPoolSize() const;
 
     /* Whether the wallet has or not keys in the pool */
     bool CanGetAddresses(const uint8_t& type = HDChain::ChangeType::EXTERNAL);
@@ -138,7 +138,7 @@ private:
     // Key pool maps
     std::set<int64_t> setInternalKeyPool;
     std::set<int64_t> setExternalKeyPool;
-    std::set<int64_t> setStakingKeyPool;
+    std::set<int64_t> setECommerceKeyPool;
     int64_t m_max_keypool_index = 0;
     std::map<CKeyID, int64_t> m_pool_key_to_index;
     // Tracks keypool indexes to CKeyIDs of keys that have been taken out of the keypool but may be returned to it
