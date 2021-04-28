@@ -23,8 +23,6 @@ enum SporkId : int32_t {
     SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2         = 10014,
     SPORK_16_ZEROCOIN_MAINTENANCE_MODE          = 10015,
 
-    SPORK_18_COLDSTAKING_ENFORCEMENT            = 10020,
-
     SPORK_19_ZEROCOIN_PUBLICSPEND_V4            = 10018,
     SPORK_20_UPGRADE_CYCLE_FACTOR               = 10019,
 
@@ -37,9 +35,10 @@ enum SporkId : int32_t {
 
 	// Unused dummy sporks.
 	//TODO needed to be removed in the future when the old nodes cut from the network.
-	SPORK_17_NOOP					            = 10017, // Prevents error messages in debug logs due to v1.3.3.x wallets
-	SPORK_21_NOOP					            = 10021, // Prevents error messages in debug logs due to v1.3.3.x wallets
-	SPORK_23_NOOP            					= 10023, // Prevents error messages in debug logs due to v1.3.3.x wallets
+	SPORK_17_NOOP					            = 10017, // Prevents error messages
+    SPORK_21_NOOP                               = 10020, // Prevents error messages
+	SPORK_22_NOOP					            = 10021, // Prevents error messages
+	SPORK_24_NOOP            					= 10023, // Prevents error messages
 
     SPORK_INVALID                               = -1
 };

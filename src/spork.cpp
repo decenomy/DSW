@@ -24,7 +24,6 @@ std::vector<CSporkDef> sporkDefs = {
     MAKE_SPORK_DEF(SPORK_14_NEW_PROTOCOL_ENFORCEMENT,       4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2,     4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_16_ZEROCOIN_MAINTENANCE_MODE,      4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_18_COLDSTAKING_ENFORCEMENT,        4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_19_ZEROCOIN_PUBLICSPEND_V4,        4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_20_UPGRADE_CYCLE_FACTOR,           4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_101_SERVICES_ENFORCEMENT,          4070908800ULL), // OFF
@@ -36,9 +35,10 @@ std::vector<CSporkDef> sporkDefs = {
 
 	// Unused dummy sporks.
 	//TODO: Needed to be removed in the future when the old nodes cut from the network.
-	MAKE_SPORK_DEF(SPORK_17_NOOP,          4070908800ULL), // OFF, // Prevents error messages in debug logs due to v1.3.3.x wallets
-	MAKE_SPORK_DEF(SPORK_21_NOOP,          4070908800ULL), // OFF, // Prevents error messages in debug logs due to v1.3.3.x wallets
-	MAKE_SPORK_DEF(SPORK_23_NOOP,          4070908800ULL), // OFF, // Prevents error messages in debug logs due to v1.3.3.x wallets
+	MAKE_SPORK_DEF(SPORK_17_NOOP,          4070908800ULL), // OFF, // Prevents error messages
+    MAKE_SPORK_DEF(SPORK_21_NOOP,          4070908800ULL), // OFF, // Prevents error messages
+	MAKE_SPORK_DEF(SPORK_22_NOOP,          4070908800ULL), // OFF, // Prevents error messages
+	MAKE_SPORK_DEF(SPORK_24_NOOP,          4070908800ULL), // OFF, // Prevents error messages
 };
 
 CSporkManager sporkManager;

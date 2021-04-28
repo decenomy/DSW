@@ -95,10 +95,6 @@ TopBar::TopBar(PIVXGUI* _mainWindow, QWidget* parent) : PWidget(_mainWindow, par
     ui->pushButtonConsole->setButtonText("Debug Console");
     ui->pushButtonConsole->setChecked(false);
 
-    ui->pushButtonColdStaking->setButtonClassStyle("cssClass", "btn-check-cold-staking-inactive");
-    ui->pushButtonColdStaking->setButtonText(tr("Cold Staking Disabled"));
-    ui->pushButtonColdStaking->setVisible(false);
-
     ui->pushButtonSync->setButtonClassStyle("cssClass", "btn-check-sync");
     ui->pushButtonSync->setButtonText(tr(" %54 Synchronizing.."));
 
@@ -134,7 +130,6 @@ TopBar::TopBar(PIVXGUI* _mainWindow, QWidget* parent) : PWidget(_mainWindow, par
     connect(ui->pushButtonFAQ, &ExpandableButton::Mouse_Pressed, [this]() { window->openFAQ(); });
     connect(ui->pushButtonConf, &ExpandableButton::Mouse_Pressed, this, &TopBar::onBtnConfClicked);
     connect(ui->pushButtonMasternodes, &ExpandableButton::Mouse_Pressed, this, &TopBar::onBtnMasternodesClicked);
-    connect(ui->pushButtonColdStaking, &ExpandableButton::Mouse_Pressed, this, &TopBar::onColdStakingClicked);
     connect(ui->pushButtonSync, &ExpandableButton::Mouse_HoverLeave, this, &TopBar::refreshProgressBarSize);
     connect(ui->pushButtonSync, &ExpandableButton::Mouse_Hover, this, &TopBar::refreshProgressBarSize);
     connect(ui->pushButtonSync, &ExpandableButton::Mouse_Pressed, [this]() { window->goToSettingsInfo(); });
@@ -360,34 +355,6 @@ void TopBar::onBtnMasternodesClicked()
         inform(tr("Unable to open masternode.conf with default application"));
 }
 
-void TopBar::onColdStakingClicked()
-{
-    bool isColdStakingEnabled = walletModel->isColdStaking();
-    ui->pushButtonColdStaking->setChecked(isColdStakingEnabled);
-
-    bool show = (isInitializing) ? walletModel->getOptionsModel()->isColdStakingScreenEnabled() :
-                                   walletModel->getOptionsModel()->invertColdStakingScreenStatus();
-    QString className;
-    QString text;
-
-    if (isColdStakingEnabled) {
-        text = "Cold Staking Active";
-        className = (show) ? "btn-check-cold-staking-checked" : "btn-check-cold-staking-unchecked";
-    } else if (show) {
-        className = "btn-check-cold-staking";
-        text = "Cold Staking Enabled";
-    } else {
-        className = "btn-check-cold-staking-inactive";
-        text = "Cold Staking Disabled";
-    }
-
-    ui->pushButtonColdStaking->setButtonClassStyle("cssClass", className, true);
-    ui->pushButtonColdStaking->setButtonText(text);
-    updateStyle(ui->pushButtonColdStaking);
-
-    Q_EMIT onShowHideColdStakingChanged(show);
-}
-
 TopBar::~TopBar()
 {
     if (timerStakingIcon) {
@@ -580,7 +547,6 @@ void TopBar::loadWalletModel()
     updateDisplayUnit();
 
     refreshStatus();
-    onColdStakingClicked();
 
     isInitializing = false;
 }

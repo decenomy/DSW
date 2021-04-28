@@ -252,10 +252,10 @@ void ReceiveWidget::onCopyClicked()
 
 void ReceiveWidget::onRequestClicked()
 {
-    showAddressGenerationDialog(true);
+    showAddressGenerationDialog();
 }
 
-void ReceiveWidget::showAddressGenerationDialog(bool isPaymentRequest)
+void ReceiveWidget::showAddressGenerationDialog()
 {
     if (walletModel && !isShowingDialog) {
         WalletModel::UnlockContext ctx(walletModel->requestUnlock());
@@ -268,7 +268,6 @@ void ReceiveWidget::showAddressGenerationDialog(bool isPaymentRequest)
         showHideOp(true);
         RequestDialog *dialog = new RequestDialog(window);
         dialog->setWalletModel(walletModel);
-        dialog->setPaymentRequest(isPaymentRequest);
         openDialogWithOpaqueBackgroundY(dialog, window, 3.5, 12);
         if (dialog->res == 1) {
             inform(tr("URI copied to clipboard"));
