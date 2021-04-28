@@ -12,7 +12,7 @@
 #include "wallet/walletdb.h"
 
 //! Default for -keypool
-static const uint32_t DEFAULT_KEYPOOL_SIZE      = 100;
+static const uint32_t DEFAULT_KEYPOOL_SIZE      = 1000;
 static const uint32_t BIP32_HARDENED_KEY_LIMIT  = 0x80000000;
 // https://github.com/satoshilabs/slips/blob/master/slip-0044.md
 static const uint32_t BIP32_HDCHAIN             = 0x340; 
