@@ -5,15 +5,11 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    id="ic_piv"
    width="24"
    height="24"
    viewBox="0 0 24 24"
-   version="1.1"
-   sodipodi:docname="ic-coin-piv.svg"
-   inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
+   version="1.1">
   <metadata
      id="metadata14">
     <rdf:RDF>
@@ -22,26 +18,10 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="640"
-     inkscape:window-height="480"
-     id="namedview12"
-     showgrid="false"
-     inkscape:zoom="11.220616"
-     inkscape:cx="9.7447468"
-     inkscape:cy="14.79955"
-     inkscape:current-layer="Group_8935" />
   <defs
      id="defs4">
     <style
@@ -52,33 +32,57 @@
   </defs>
   <g
      id="Group_8935"
-     data-name="Group 8935">
+     data-name="Group 8935"
+     style="fill:#4498ef;fill-opacity:1;stroke:#4498ef;stroke-opacity:1">
     <g
        id="Group_8934"
        data-name="Group 8934"
-       style="stroke:#ed1c24;stroke-opacity:1">
+       style="stroke:#4498ef;stroke-opacity:1;fill:#4498ef;fill-opacity:1">
       <path
          id="Path_18928"
          d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 19.25A9.25 9.25 0 1 1 21.25 12 9.25 9.25 0 0 1 12 21.25z"
          class="cls-1"
          data-name="Path 18928"
-         style="stroke:#ed1c24;stroke-opacity:1" />
+         style="stroke:#4498ef;stroke-opacity:1;fill:#4498ef;fill-opacity:1" />
     </g>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;opacity:1;fill:#ed1c24;fill-opacity:1;stroke:#ed1c24;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       x="12.120547"
-       y="14.285738"
-       id="text820"><tspan
-         sodipodi:role="line"
-         id="tspan818"
-         x="12.120547"
-         y="14.285738"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'">PNY</tspan></text>
   </g>
   <path
      id="Rectangle_4543"
      d="M0 0h24v24H0z"
      class="cls-2"
      data-name="Rectangle 4543" />
+  <g
+     id="g857"
+     transform="matrix(0.52186001,0,0,0.53525425,-14.075868,-15.042621)"
+     style="fill:#4498ef;fill-opacity:1">
+    <path
+       class="st2"
+       d="m 45.2,45.3 h -1.9 l -4.7,4.8 10.7,9.6 c 0,0 0,0 0,0 L 42,50.2"
+       id="path17"
+       style="fill:#4498ef;fill-opacity:1" />
+    <path
+       class="st2"
+       d="m 55.9,45.8 1.9,0.1 4.3,4.7 -11.2,7.9 c 0,0 0,0 0,0 l 7.9,-8.1"
+       id="path19"
+       style="fill:#4498ef;fill-opacity:1" />
+    <path
+       class="st2"
+       d="m 44.8,51 -1.3,-1.5 -0.1,-7.1 13.7,2 c 0,0 0,0 0,0 l -11.2,0.7"
+       id="path21"
+       style="fill:#4498ef;fill-opacity:1" />
+    <g
+       id="g27"
+       style="fill:#4498ef;fill-opacity:1">
+      <path
+         class="st2"
+         d="m 51,47.6 h -2.2 l -0.2,1.3 h 2 c 1,0 1.3,0.4 1.3,1.2 0,0.4 -0.1,1 -0.2,1.2 -0.2,0.5 -0.5,1.2 -1.6,1.2 H 48.2 L 48,53.8 h 2.2 c 0.8,0 1.1,-0.1 1.5,-0.3 0.8,-0.4 1.2,-1.4 1.4,-2.6 0.2,-2 -0.1,-3.3 -2.1,-3.3"
+         id="path23"
+         style="fill:#4498ef;fill-opacity:1" />
+      <path
+         class="st2"
+         d="m 47.9,50.1 c -0.6,0 -0.7,0.5 -0.7,0.7 -0.1,0.4 -0.1,0.5 -0.1,0.5 h 2.3 c 0.6,0 0.7,-0.5 0.7,-0.7 0.1,-0.4 0.1,-0.5 0.1,-0.5 z"
+         id="path25"
+         style="fill:#4498ef;fill-opacity:1" />
+    </g>
+  </g>
 </svg>
