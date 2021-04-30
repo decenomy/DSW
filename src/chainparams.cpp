@@ -52,7 +52,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "Sometimes you hit the jackpot and sometimes the jackpot hits you";
+    const char* pszTimestamp = "Its the year of Our Lord of 2021, and the new version is here.";
     const CScript genesisOutputScript = CScript() << ParseHex("0478505c5bc438e08c0c8de26a661bc5a4453378d0b149fbf17cb3e1499b1d3e552fe5faaa253673c5349b461bd964a2ee860c114e9d2b9fdb0328f37ed356ed54") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -110,7 +110,7 @@ public:
         // // This is used inorder to mine the genesis block. Once found, we can use the nonce and block hash found to create a valid genesis block
         // /////////////////////////////////////////////////////////////////
 
-        // uint32_t nGenesisTime = 1612360301; // 2021-02-03T13:51:41+00:00
+        // uint32_t nGenesisTime = 1617879916; // Date and time (GMT): Thursday, 8 April 2021 11:05:16
 
         // arith_uint256 test;
         // bool fNegative;
@@ -153,10 +153,10 @@ public:
 
         // /////////////////////////////////////////////////////////////////
 
-        genesis = CreateGenesisBlock(1612360301, 4843816, 0x1e0ffff0, 1, 0 * COIN);
+        genesis = CreateGenesisBlock(1617879916, 293921, 0x1e0ffff0, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x0000095e24c9de08faea91e7dcafda400edcd769c0a4201081966f10bdef7896"));
-        assert(genesis.hashMerkleRoot == uint256S("0xad9cdf0829529533d9ebcda4f6981195860fdc01c7f6d3f14b847695835fc872"));
+        assert(consensus.hashGenesisBlock == uint256S("0x0000065339d558c7ecf0f27a646531bbfaf19dfd592b139378151f5b60a4773c"));
+        assert(genesis.hashMerkleRoot == uint256S("0xb251998bbfd6761149cb640ca554fa5bcdcacd68dba0b9f7a8d38f5063966964"));
 
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.powLimit   = ~UINT256_ZERO >> 20;   
@@ -204,7 +204,7 @@ public:
         consensus.ZC_MinMintConfirmations = 20;
         consensus.ZC_MinMintFee = 1 * CENT;
         consensus.ZC_MinStakeDepth = 200;
-        consensus.ZC_TimeStart = 1893456000;        // 01/01/2030 @ 12:00am (UTC)
+        consensus.ZC_TimeStart = 1617879916;        // (GMT): Thursday, 8 April 2021 11:05:16
         consensus.ZC_WrappedSerialsSupply = 0; //4131563 * COIN;   // zerocoin supply at height_last_ZC_WrappedSerials
 
         // Network upgrades
@@ -232,11 +232,11 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0xc8;
-        pchMessageStart[1] = 0x7b;
-        pchMessageStart[2] = 0x86;
-        pchMessageStart[3] = 0x77;
-        nDefaultPort = __PORT_MAINNET__;
+        pchMessageStart[0] = 0xcb;
+        pchMessageStart[1] = 0x9c;
+        pchMessageStart[2] = 0x87;
+        pchMessageStart[3] = 0x7d;
+        nDefaultPort = PORT_MAINNET;
 
         vSeeds.push_back(CDNSSeedData("seeder", "seeder.__decenomy.net__"));
 	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.__decenomy.net__"));
@@ -364,7 +364,7 @@ public:
         pchMessageStart[1] = 0x76;
         pchMessageStart[2] = 0x65;
         pchMessageStart[3] = 0xba;
-        nDefaultPort = __PORT_TESTNET__;
+        nDefaultPort = PORT_TESTNET;
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -488,7 +488,7 @@ public:
         pchMessageStart[1] = 0xcf;
         pchMessageStart[2] = 0x7e;
         pchMessageStart[3] = 0xac;
-        nDefaultPort = __PORT_REGTEST__;
+        nDefaultPort = PORT_REGTEST;
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
