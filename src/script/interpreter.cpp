@@ -1006,15 +1006,6 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
                 }
                 break;
 
-                case OP_CHECKCOLDSTAKEVERIFY: // TODO: Will be removed in another branch
-                {
-                    // check it is used in a valid cold stake transaction.
-                    if(!checker.CheckColdStake(script)) {
-                        return set_error(serror, SCRIPT_ERR_CHECKCOLDSTAKEVERIFY);
-                    }
-                }
-                break;
-
 				// memory store
 				case OP_MLOAD:
 				case OP_MSTORE:

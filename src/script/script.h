@@ -200,9 +200,6 @@ enum opcodetype
 	OP_PUBLISH = 0xc9, // For storing smart-contract
 	OP_RUN = 0xca, // For activating smart-contract
 
-    // cold staking
-    OP_CHECKCOLDSTAKEVERIFY = 0xd1, // TODO: Will be removed in another branch
-
     OP_INVALIDOPCODE = 0xff,
 };
 
@@ -649,7 +646,6 @@ public:
 
     bool IsNormalPaymentScript() const;
     bool IsPayToScriptHash() const;
-    bool IsPayToColdStaking() const;
     bool StartsWithOpcode(const opcodetype opcode) const;
     bool IsZerocoinMint() const;
     bool IsZerocoinSpend() const;
