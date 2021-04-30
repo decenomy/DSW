@@ -136,6 +136,10 @@ PairResult CWallet::getNewAddress(CTxDestination& ret, const std::string address
         throw std::runtime_error("CWallet::getNewAddress() : SetAddressBook failed");
 
     ret = CTxDestination(keyID);
+
+    mapKeyMetadata[keyID].nCreateTime = GetTime();
+    CWalletDB(strWalletFile).WriteKeyMetadata(newKey, mapKeyMetadata[keyID]);
+
     return PairResult(true);
 }
 
@@ -3655,6 +3659,10 @@ CWallet* CWallet::CreateWalletFromFile(const std::string walletFile)
         }
 
         walletInstance->SetBestChain(chainActive.GetLocator());
+    }
+
+    if(walletInstance->GetECommerceKeyPoolSize() == 0) {
+        walletInstance->TopUpKeyPool();
     }
 
     LogPrintf("Wallet completed loading in %15dms\n", GetTimeMillis() - nStart);

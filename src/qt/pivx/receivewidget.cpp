@@ -201,9 +201,8 @@ void ReceiveWidget::onLabelClicked()
             if (!label.isEmpty() && walletModel->updateAddressBookLabels(
                     address,
                     label.toUtf8().constData(),
-                    AddressBook::AddressBookPurpose::RECEIVE
-            )
-                    ) {
+                    AddressBook::AddressBookPurpose::RECEIVE)
+            ) {
                 // update label status (icon color)
                 updateLabel();
                 inform(tr("Address label saved"));
@@ -235,6 +234,12 @@ void ReceiveWidget::onNewAddressClicked()
 
         updateQr(QString::fromStdString(address.ToString()));
         ui->labelAddress->setText(!info->address.isEmpty() ? info->address : tr("No address"));
+        if(!info->address.isEmpty()) {
+            int64_t time = walletModel->getKeyCreationTime(DecodeDestination(address.ToString()));
+            ui->labelDate->setText(GUIUtil::dateTimeStr(QDateTime::fromTime_t(static_cast<uint>(time))));
+        } else {
+            ui->labelDate->setText(tr("No address"));
+        }
         updateLabel();
         inform(tr("New address created"));
     } catch (const std::runtime_error& error) {
