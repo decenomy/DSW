@@ -1008,15 +1008,45 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
 
 				// memory store
 				case OP_MLOAD:
+				{
+                    int i = 1; // Number of items in the stack. At least the hash of the data in the memory should be in the stack.
+                    if ((int)stack.size() < i)
+                        return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+				}
+				break;
+
 				case OP_MSTORE:
+				{
+                    int i = 1; // Number of items in the stack. At least the serialized data or link to the data to be stored into the memory should be in the stack.
+                    if ((int)stack.size() < i)
+                        return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+				}
+				break;
 
 				// storage
 				case OP_SLOAD:
-				case OP_SSTORE:
+				{
+                    int i = 1; // Number of items in the stack. At least the hash of the data in the storage should be in the stack.
+                    if ((int)stack.size() < i)
+                        return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+				}
+				break;
 
-				// smart contract actions
+				case OP_SSTORE:
+				{
+                    int i = 1; // Number of items in the stack. At least the serialized data or link to the data to be stored into the storage should be in the stack.
+                    if ((int)stack.size() < i)
+                        return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+				}
+				break;
+				
+				// smart contract
 				case OP_PUBLISH:
 				{
+                    int i = 1; // Number of items in the stack. At least the serialized contract or link to the contract script to be stored into the storage should be in the stack.
+                    if ((int)stack.size() < i)
+                        return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+
 					CScript contract;
 					uint256 hash;
 
@@ -1026,6 +1056,11 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
 
 				case OP_RUN:
 				{
+                    // (in -- contract hash)
+                    int i = 1; // Number of items in the stack. At least the contract hash should be in the stack.
+                    if ((int)stack.size() < i)
+                        return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+
 					CScript contract;
 					uint256 hash;
 					contract = CScriptDB::ReadScript(hash, contract);

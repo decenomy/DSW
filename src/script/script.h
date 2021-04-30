@@ -33,6 +33,9 @@ static const int MAX_OPS_PER_SCRIPT = 201;
 // Maximum number of public keys per multisig
 static const int MAX_PUBKEYS_PER_MULTISIG = 20;
 
+// Maximum number of public keys per smart contract
+static const int MAX_PUBKEYS_PER_CONTRACT = 3;
+
 // Maximum script length in bytes
 static const int MAX_SCRIPT_SIZE = 10000;
 
