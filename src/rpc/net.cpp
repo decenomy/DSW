@@ -261,11 +261,7 @@ UniValue getaddednodeinfo(const JSONRPCRequest& request)
             "    \"connected\" : true|false,          (boolean) If connected\n"
             "    \"addresses\" : [                    (list of objects) Only when connected = true\n"
             "       {\n"
-<<<<<<< HEAD
-            "         \"address\" : \"192.168.0.201:__PORT_MAINNET__\",  (string) The peony server IP and port we're connected to\n"
-=======
-            "         \"address\" : \"192.168.0.201:PORT_MAINNET\",  (string) The __decenomy__ server IP and port we're connected to\n"
->>>>>>> 47113631e0b4713e9bc6901a333867df92af2565
+            "         \"address\" : \"192.168.0.201:17777\",  (string) The __decenomy__ server IP and port we're connected to\n"
             "         \"connected\" : \"outbound\"           (string) connection, inbound or outbound\n"
             "       }\n"
             "     ]\n"
