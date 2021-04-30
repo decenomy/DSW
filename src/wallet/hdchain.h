@@ -10,9 +10,10 @@
 
 namespace HDChain {
     namespace ChangeType {
-        static const uint8_t EXTERNAL = 0;
-        static const uint8_t INTERNAL = 1;
-        static const uint8_t ECOMMERCE = 2;
+        static const uint8_t EXTERNAL   = 0;
+        static const uint8_t INTERNAL   = 1;
+        static const uint8_t STAKING    = 2; // obsolete
+        static const uint8_t ECOMMERCE  = 3;
     };
 
     namespace ChainCounterType {
@@ -47,7 +48,11 @@ public:
         READWRITE(seed_id);
         READWRITE(nExternalChainCounter);
         READWRITE(nInternalChainCounter);
-        READWRITE(nECommerceChainCounter);
+        uint32_t nStakingChainCounter{0};
+        READWRITE(nStakingChainCounter);
+        if (nVersion == 3) {
+            READWRITE(nECommerceChainCounter);
+        }
         if (nVersion == 1) chainType = HDChain::ChainCounterType::Standard;
         else READWRITE(chainType);
     }

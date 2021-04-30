@@ -70,6 +70,8 @@ bool ScriptPubKeyMan::CanGetAddresses(const uint8_t& type)
     bool keypool_has_keys = false;
     if (isHDEnabled && type == HDChain::ChangeType::INTERNAL) {
         keypool_has_keys = setInternalKeyPool.size() > 0;
+    } else if (isHDEnabled && type == HDChain::ChangeType::ECOMMERCE) {
+        keypool_has_keys = setECommerceKeyPool.size() > 0;
     } else {
         // either external key was requested or HD is not enabled
         keypool_has_keys = KeypoolCountExternalKeys() > 0;
@@ -177,9 +179,10 @@ bool ScriptPubKeyMan::ReserveKeyFromKeyPool(int64_t& nIndex, CKeyPool& keypool, 
 
         bool isHDEnabled = IsHDEnabled();
         bool fReturningInternal = type == HDChain::ChangeType::INTERNAL && isHDEnabled;
+        bool fReturningECommerce = type == HDChain::ChangeType::ECOMMERCE && isHDEnabled;
         bool use_split_keypool = set_pre_split_keypool.empty();
         std::set<int64_t>& setKeyPool = use_split_keypool ?
-                ( fReturningInternal ? setInternalKeyPool : setExternalKeyPool ) : set_pre_split_keypool;
+                ( fReturningInternal ? setInternalKeyPool : (fReturningECommerce ? setECommerceKeyPool : setExternalKeyPool) ) : set_pre_split_keypool;
 
         // Get the oldest key
         if (setKeyPool.empty()) {
@@ -203,6 +206,10 @@ bool ScriptPubKeyMan::ReserveKeyFromKeyPool(int64_t& nIndex, CKeyPool& keypool, 
             throw std::runtime_error(std::string(__func__) + ": keypool internal entry misclassified");
         }
 
+        if (use_split_keypool && keypool.IsECommerce() != fReturningECommerce) {
+            throw std::runtime_error(std::string(__func__) + ": keypool ecommerce entry misclassified");
+        }
+        
         if (!keypool.vchPubKey.IsValid()) {
             throw std::runtime_error(std::string(__func__) + ": keypool entry invalid");
         }
@@ -380,7 +387,7 @@ bool ScriptPubKeyMan::TopUp(unsigned int kpSize)
         CWalletDB batch(wallet->strWalletFile);
         GeneratePool(batch, missingExternal, HDChain::ChangeType::EXTERNAL);
         GeneratePool(batch, missingInternal, HDChain::ChangeType::INTERNAL);
-        GeneratePool(batch, missingInternal, HDChain::ChangeType::ECOMMERCE);
+        GeneratePool(batch, missingECommerce, HDChain::ChangeType::ECOMMERCE);
 
         if (missingInternal + missingExternal > 0) {
             LogPrintf("keypool added %d keys (%d internal), size=%u (%u internal), \n", missingInternal + missingExternal, missingInternal, setInternalKeyPool.size() + setExternalKeyPool.size() + set_pre_split_keypool.size(), setInternalKeyPool.size());
