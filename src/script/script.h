@@ -196,7 +196,7 @@ enum opcodetype
 	OP_SLOAD = 0xc7, // reads a (u)int256 from storage (from Ethereum)
 	OP_SSTORE = 0xc8, // writes a (u)int256 to storage (from Ethereum)
 
-	// smart contract actions
+	// smart contract
 	OP_PUBLISH = 0xc9, // For storing smart-contract
 	OP_RUN = 0xca, // For activating smart-contract
 
