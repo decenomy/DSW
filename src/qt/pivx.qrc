@@ -26,7 +26,7 @@
         <file alias="bg-splash">pivx/res/img/bg-splash.svg</file>
         <file alias="bg-splash-png">pivx/res/img/bg-splash.png</file>
         <file alias="img-logo-pivx-png">pivx/res/img/img-logo-pivx.png</file>
-        <file alias="img-logo-pivx">pivx/res/img/img-logo-pivx.png</file>
+        <file alias="img-logo-pivx">pivx/res/img/img-logo-pivx.svg</file>
         <file alias="img-logo-pivx-2x">pivx/res/img/img-logo-pivx@2x.png</file>
         <file alias="img-logo-pivx-3x">pivx/res/img/img-logo-pivx@3x.png</file>
         <file alias="img-nav-logo-pivx">pivx/res/img/img-nav-logo-pivx.png</file>
