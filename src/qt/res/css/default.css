@@ -4,15 +4,15 @@
 /* These color codes should be blanket replaced in every file of the build (including   */
 /* the .ui and .cpp files as they are occasionally hard coded in them.                  */
 /*                                                                                      */
-/* standard lighter brand color:                   #c226d6                              */
-/* standard darker brand color:                    #810890                              */
-/* stardard darker brand color 70% transparency:   rgba(129, 8, 144, 0.7)               */
-/* dark tinted background brand color:             #4b1452                              */
+/* standard lighter brand color:                   #019def                              */
+/* standard darker brand color:                    #00659a                              */
+/* stardard darker brand color 70% transparency:   rgba(0, 101, 154, 0.7)               */
+/* dark tinted background brand color:             #222333                              */
 /*                                                                                      */
-/* staking chart POS color:                        #dd8b14                              */
-/* staking chart POS color as RGB:                 QColor(221,139,20)                   */
+/* staking chart POS color:                        #e6c1da                              */
+/* staking chart POS color as RGB:                 QColor(230,193,218)                   */
 /* staking chart MN color:                         #c06416                              */
-/* staking chart MN color as RGB:                  QColor(192,100,22)                   */
+/* staking chart MN color as RGB:                  QColor(149,217,253)                   */
 /*                                                                                      */
 /* dark theme background color:                    #000000                              */
 /****************************************************************************************/
@@ -225,10 +225,10 @@ background-color:#f2f2f2;
 /***************************** Global Qt Objects ***********************************************************/
 
 QPushButton { /* Global Button Style */
-background-color: #c226d6;
+background-color: #019def;
 border-width: 1px;
 border-style: outset;
-border-color: #c226d6;
+border-color: #019def;
 border-radius: 2px;
 color:#262626;
 font-size:12px;
@@ -242,7 +242,7 @@ margin: 2px;
 }
 
 QPushButton:hover {
-background-color: qlineargradient(y1:0, y2: 1, stop: 0 #c226d6, stop: 0.1 #c226d6, stop: 0.101 #c226d6, stop: 0.9 #c226d6, stop: 0.901 #c226d6, stop: 1 #c226d6);
+background-color: qlineargradient(y1:0, y2: 1, stop: 0 #019def, stop: 0.1 #019def, stop: 0.101 #019def, stop: 0.9 #019def, stop: 0.901 #019def, stop: 1 #019def);
 }
 
 QPushButton:focus {
@@ -251,9 +251,9 @@ QPushButton:focus {
 }
 
 QPushButton:pressed {
-background-color: #810890;
-border:1px solid #810890;
-background-color: qlineargradient(y1:0, y2: 1, stop: 0 #c226d6, stop: 0.1 #c226d6, stop: 0.101 #c226d6, stop: 0.9 #c226d6, stop: 0.901 #c226d6, stop: 1 #c226d6);
+background-color: #00659a;
+border:1px solid #00659a;
+background-color: qlineargradient(y1:0, y2: 1, stop: 0 #019def, stop: 0.1 #019def, stop: 0.101 #019def, stop: 0.9 #019def, stop: 0.901 #019def, stop: 1 #019def);
 }
 
 /* Special handling for statusbar-icons (which are partly QPushButtons) */
@@ -278,7 +278,7 @@ background-color: #f2f2f2;
 }
 
 QComboBox { /* Dropdown Menus */
-border:1px solid #810890;
+border:1px solid #00659a;
 padding: 3px 5px 3px 5px;
 background:#fcfcfc;
 min-height:25px;
@@ -571,22 +571,22 @@ border-radius: 4px;
 }
 
 QSlider::sub-page:horizontal {
-background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #810890, stop: 1 #810890);
-border: 1px solid #810890;
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #00659a, stop: 1 #00659a);
+border: 1px solid #00659a;
 height: 10px;
 border-radius: 4px;
 }
 
 QSlider::add-page:horizontal {
-background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #810890, stop: 1 #810890);
-border: 1px solid #810890;
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #00659a, stop: 1 #00659a);
+border: 1px solid #00659a;
 height: 10px;
 border-radius: 4px;
 }
 
 QSlider::handle:horizontal {
 background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #fff, stop:1 #f8f6f6);
-border: 1px solid #810890;
+border: 1px solid #00659a;
 width: 18px;
 height: 18px;
 margin-top: -6px;
@@ -595,8 +595,8 @@ border-radius: 9px;
 }
 
 QSlider::handle:horizontal:hover {
-background-color: qradialgradient(cx: 0.5, cy: 0.5, fx: 0.5, fy: 0.5, radius: 0.7, stop: 0 #c226d6, stop: 0.7 #ffffff);
-border: 2px solid #810890;
+background-color: qradialgradient(cx: 0.5, cy: 0.5, fx: 0.5, fy: 0.5, radius: 0.7, stop: 0 #019def, stop: 0.7 #ffffff);
+border: 2px solid #00659a;
 width: 16px;
 height: 16px;
 margin-top: -6px;
