@@ -238,15 +238,15 @@ public:
         pchMessageStart[3] = 0xc7;
         nDefaultPort = 91111;
 
-        vSeeds.push_back(CDNSSeedData("seeder", "seeder.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed2", "seed2.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed3", "seed3.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed4", "seed4.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.__decenomy.net__"));
+        vSeeds.push_back(CDNSSeedData("seeder", "seeder.beaconcrypto.net"));
+	    vSeeds.push_back(CDNSSeedData("seed1", "seeder1.beaconcrypto.net"));
+        vSeeds.push_back(CDNSSeedData("seed2", "seeder2.beaconcrypto.net"));
+        vSeeds.push_back(CDNSSeedData("seed3", "seeder3.beaconcrypto.net"));
+        vSeeds.push_back(CDNSSeedData("seed4", "seeder4.beaconcrypto.net"));
+	    vSeeds.push_back(CDNSSeedData("seed5", "seeder5.beaconcrypto.net"));
+	    vSeeds.push_back(CDNSSeedData("seed6", "seeder6.beaconcrypto.net"));
+	    vSeeds.push_back(CDNSSeedData("seed7", "seeder7.beaconcrypto.net"));
+	    vSeeds.push_back(CDNSSeedData("seed8", "seeder8.beaconcrypto.net"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 15); // 7
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 16); // 7
@@ -337,7 +337,7 @@ public:
         // Network upgrades
         consensus.vUpgrades[Consensus::BASE_NETWORK].nActivationHeight                  = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
         consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight             = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight                   = 201;
+        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight                   = 1001;
         consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight                = 1441;
         consensus.vUpgrades[Consensus::UPGRADE_ZC].nActivationHeight                    = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight                 = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
