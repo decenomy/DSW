@@ -535,6 +535,117 @@ UniValue getaccountaddress(const JSONRPCRequest& request)
     return ret;
 }
 
+UniValue getrawchangeaddress(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() > 1)
+        throw std::runtime_error(
+            "getrawchangeaddress\n"
+            "\nReturns a new BECN address, for receiving change.\n"
+            "This is for use with raw transactions, NOT normal use.\n"
+
+            "\nResult:\n"
+            "\"address\"    (string) The address\n"
+
+            "\nExamples:\n" +
+            HelpExampleCli("getrawchangeaddress", "") + HelpExampleRpc("getrawchangeaddress", ""));
+
+    LOCK2(cs_main, pwalletMain->cs_wallet);
+
+    if (!pwalletMain->IsLocked())
+        pwalletMain->TopUpKeyPool();
+
+    CReserveKey reservekey(pwalletMain);
+    CPubKey vchPubKey;
+    if (!reservekey.GetReservedKey(vchPubKey, true))
+        throw JSONRPCError(RPC_WALLET_KEYPOOL_RAN_OUT, "Error: Keypool ran out, please call keypoolrefill first");
+
+    reservekey.KeepKey();
+
+    CKeyID keyID = vchPubKey.GetID();
+
+    return EncodeDestination(keyID);
+}
+
+
+UniValue setlabel(const JSONRPCRequest& request)
+{
+    if (!IsDeprecatedRPCEnabled("accounts") && request.strMethod == "setaccount") {
+        if (request.fHelp) {
+            throw std::runtime_error("setaccount (Deprecated, will be removed in v5.0. To use this command, start beacond with -deprecatedrpc=accounts)");
+        }
+        throw JSONRPCError(RPC_METHOD_DEPRECATED, "setaccount is deprecated and will be removed in v5.0. To use this command, start beacond with -deprecatedrpc=accounts.");
+    }
+
+    if (request.fHelp || request.params.size() != 2)
+        throw std::runtime_error(
+            "setlabel \"BECNaddress\" \"label\"\n"
+            "\nSets the label associated with the given address.\n"
+
+            "\nArguments:\n"
+            "1. \"BECNaddress\"   (string, required) The BECN address to be associated with a label.\n"
+            "2. \"label\"         (string, required) The label to assign to the address.\n"
+
+            "\nExamples:\n" +
+            HelpExampleCli("setlabel", "\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\" \"tabby\"") + HelpExampleRpc("setlabel", "\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\", \"tabby\""));
+
+    LOCK2(cs_main, pwalletMain->cs_wallet);
+
+    CTxDestination dest = DecodeDestination(request.params[0].get_str());
+    if (!IsValidDestination(dest))
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BECN address");
+
+    std::string old_label = pwalletMain->mapAddressBook[dest].name;
+    std::string label = LabelFromValue(request.params[1]);
+
+    if (IsMine(*pwalletMain, dest)) {
+        if (request.strMethod == "setaccount" && old_label != label && dest == GetLabelDestination(pwalletMain, old_label)) {
+            // for setaccount, call GetLabelDestination so a new receive address is created for the old account
+            GetLabelDestination(pwalletMain, old_label, true);
+        }
+    }
+
+    pwalletMain->SetAddressBook(dest, label, "");
+
+    // Detect when there are no addresses using this label.
+    // If so, delete the account record for it. Labels, unlike addresses, can be deleted,
+    // and if we wouldn't do this, the record would stick around forever.
+    bool found_address = false;
+    for (const std::pair<CTxDestination, AddressBook::CAddressBookData>& item : pwalletMain->mapAddressBook) {
+        if (item.second.name == label) {
+            found_address = true;
+            break;
+        }
+    }
+    if (!found_address) {
+        pwalletMain->DeleteLabel(old_label);
+    }
+
+    return NullUniValue;
+}
+
+UniValue getaccount(const JSONRPCRequest& request)
+{
+    if (!IsDeprecatedRPCEnabled("accounts")) {
+        if (request.fHelp) {
+            throw std::runtime_error("getaccount (Deprecated, will be removed in v5.0. To use this command, start beacond with -deprecatedrpc=accounts)");
+        }
+        throw JSONRPCError(RPC_METHOD_DEPRECATED, "getaccount is deprecated and will be removed in v5.0. To use this command, start beacond with -deprecatedrpc=accounts.");
+    }
+
+    if (request.fHelp || request.params.size() != 1)
+        throw std::runtime_error(
+            "getaccount \"BECNaddress\"\n"
+            "\nDEPRECATED. Returns the account associated with the given address.\n"
+
+            "\nArguments:\n"
+            "1. \"BECNaddress\"  (string, required) The BECN address for account lookup.\n"
+
+            "\nResult:\n"
+            "\"accountname\"        (string) the account address\n"
+
+            "\nExamples:\n" +
+            HelpExampleCli("getaccount", "\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\"") + HelpExampleRpc("getaccount", "\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\""));
+
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
@@ -548,7 +659,6 @@ UniValue getaccountaddress(const JSONRPCRequest& request)
         strAccount = (*mi).second.name;
     return strAccount;
 }
-
 
 UniValue getaddressesbyaccount(const JSONRPCRequest& request)
 {
