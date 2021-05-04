@@ -236,17 +236,17 @@ public:
         pchMessageStart[1] = 0xda;
         pchMessageStart[2] = 0x2a;
         pchMessageStart[3] = 0xc7;
-        nDefaultPort = 91111;
+        nDefaultPort = __PORT_MAINNET__;
 
-        vSeeds.push_back(CDNSSeedData("seeder", "seeder.beaconcrypto.net"));
-	    vSeeds.push_back(CDNSSeedData("seed1", "seeder1.beaconcrypto.net"));
-        vSeeds.push_back(CDNSSeedData("seed2", "seeder2.beaconcrypto.net"));
-        vSeeds.push_back(CDNSSeedData("seed3", "seeder3.beaconcrypto.net"));
-        vSeeds.push_back(CDNSSeedData("seed4", "seeder4.beaconcrypto.net"));
-	    vSeeds.push_back(CDNSSeedData("seed5", "seeder5.beaconcrypto.net"));
-	    vSeeds.push_back(CDNSSeedData("seed6", "seeder6.beaconcrypto.net"));
-	    vSeeds.push_back(CDNSSeedData("seed7", "seeder7.beaconcrypto.net"));
-	    vSeeds.push_back(CDNSSeedData("seed8", "seeder8.beaconcrypto.net"));
+        vSeeds.push_back(CDNSSeedData("seeder", "seeder.beaconcoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed1", "seeder1.beaconcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed2", "seeder2.beaconcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed3", "seeder3.beaconcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed4", "seeder4.beaconcoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed5", "seeder5.beaconcoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed6", "seeder6.beaconcoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed7", "seeder7.beaconcoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed8", "seeder8.beaconcoin.net"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 85); // b
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 25); // B

@@ -3,7 +3,7 @@ Beacon Core
 
 Setup
 ---------------------
-[Beacon Core](__decenomy_website_link__/) is the original Beacon client and it builds the backbone of the network. However, it downloads and stores the entire history of Beacon transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
+[Beacon Core](https://beaconcoin.net/) is the original Beacon client and it builds the backbone of the network. However, it downloads and stores the entire history of Beacon transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
 
 Running
 ---------------------
@@ -55,7 +55,7 @@ The Beacon repo's [root README](/README.md) contains relevant information on the
 - [Dnsseed Policy](dnsseed-policy.md)
 
 ### Resources
-* Discuss on the [Beacon Homepage](__decenomy_website_link__/).
+* Discuss on the [Beacon Homepage](https://beaconcoin.net/).
 * Join the [Beacon Discord](https://discord.gg/uTar2Sd).
 
 ### Miscellaneous
