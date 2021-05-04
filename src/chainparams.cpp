@@ -236,7 +236,7 @@ public:
         pchMessageStart[1] = 0xda;
         pchMessageStart[2] = 0x2a;
         pchMessageStart[3] = 0xc7;
-        nDefaultPort = 91111;
+        nDefaultPort = __PORT_MAINNET__;
 
         vSeeds.push_back(CDNSSeedData("seeder", "seeder.beaconcoin.net"));
 	    vSeeds.push_back(CDNSSeedData("seed1", "seeder1.beaconcoin.net"));
