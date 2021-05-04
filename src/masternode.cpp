@@ -318,7 +318,7 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
-    if (nHeight <= 100000 && nHeight > 3000) {
+    if (nHeight <= 100000) {
         return 2000 * COIN;
     } else if (nHeight <= 200000 && nHeight > 100000) {
         return 3000 * COIN;
@@ -343,7 +343,7 @@ CAmount CMasternode::GetBlockValue(int nHeight)
     CAmount nSubsidy;
 
     if (nHeight == 1) {
-        nSubsidy = 1700000 * COIN; // BECN coin supply (30M)
+        nSubsidy = 1700000 * COIN; // BECN previous coin supply
     } else if (nHeight <= 100000) {
         nSubsidy = 5 * COIN;
     } else if (nHeight > 100000 && nHeight <= 200000) {
