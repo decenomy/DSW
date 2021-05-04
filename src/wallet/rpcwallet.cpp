@@ -284,7 +284,7 @@ UniValue getaddressesbylabel(const JSONRPCRequest& request)
     UniValue ret(UniValue::VOBJ);
     for (const std::pair<CTxDestination, AddressBook::CAddressBookData>& item : pwallet->mapAddressBook) {
         if (item.second.name == label) {
-            ret.pushKV(EncodeDestination(item.first, AddressBook::IsColdStakingPurpose(item.second.purpose)), AddressBookDataToJSON(item.second, false));
+            ret.pushKV(EncodeDestination(item.first), AddressBookDataToJSON(item.second, false));
         }
     }
 
@@ -308,7 +308,7 @@ UniValue listlabels(const JSONRPCRequest& request)
             "\nReturns the list of all labels, or labels that are assigned to addresses with a specific purpose.\n"
 
             "\nArguments:\n"
-            "1. \"purpose\"    (string, optional) Address purpose to list labels for ('send','receive', 'delegable', 'delegator', 'coldstaking', 'coldstaking_send', 'refund'). An empty string is the same as not providing this argument.\n"
+            "1. \"purpose\"    (string, optional) Address purpose to list labels for ('send','receive'). An empty string is the same as not providing this argument.\n"
 
             "\nResult:\n"
             "[               (json array of string)\n"
@@ -473,110 +473,8 @@ UniValue getnewaddress(const JSONRPCRequest& request)
     return EncodeDestination(GetNewAddressFromLabel(AddressBook::AddressBookPurpose::RECEIVE, request.params));
 }
 
-UniValue getnewstakingaddress(const JSONRPCRequest& request)
-{
-
-    if (request.fHelp || request.params.size() > 1)
-        throw std::runtime_error(
-            "getnewstakingaddress ( \"label\" )\n"
-            "\nReturns a new BECN cold staking address for receiving delegated cold stakes.\n"
-
-            "\nArguments:\n"
-            "1. \"label\"        (string, optional) The label name for the address to be linked to. if not provided, the default label \"\" is used. It can also be set to the empty string \"\" to represent the default label. The label does not need to exist, it will be created if there is no label by the given name.\n"
-
-
-            "\nResult:\n"
-            "\"BECNaddress\"    (string) The new BECN address\n"
-
-            "\nExamples:\n" +
-            HelpExampleCli("getnewstakingaddress", "") + HelpExampleRpc("getnewstakingaddress", ""));
-
-    return EncodeDestination(GetNewAddressFromLabel("coldstaking", request.params, CChainParams::STAKING_ADDRESS), CChainParams::STAKING_ADDRESS);
-}
-
-UniValue delegatoradd(const JSONRPCRequest& request)
-{
-    if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
-        throw std::runtime_error(
-            "delegatoradd \"addr\" ( \"label\" )\n"
-            "\nAdd the provided address <addr> into the allowed delegators AddressBook.\n"
-            "This enables the staking of coins delegated to this wallet, owned by <addr>\n"
-
-            "\nArguments:\n"
-            "1. \"addr\"        (string, required) The address to whitelist\n"
-            "2. \"label\"       (string, optional) A label for the address to whitelist\n"
-
-            "\nResult:\n"
-            "true|false           (boolean) true if successful.\n"
-
-            "\nExamples:\n" +
-            HelpExampleCli("delegatoradd", "DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6") +
-            HelpExampleRpc("delegatoradd", "\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\"") +
-            HelpExampleRpc("delegatoradd", "\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\" \"myPaperWallet\""));
-
-
-    bool isStakingAddress = false;
-    CTxDestination dest = DecodeDestination(request.params[0].get_str(), isStakingAddress);
-    if (!IsValidDestination(dest) || isStakingAddress)
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BECN address");
-
-    const std::string strLabel = (request.params.size() > 1 ? request.params[1].get_str() : "");
-
-    CKeyID keyID = boost::get<CKeyID>(DecodeDestination(request.params[0].get_str()));
-    if (!keyID)
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Unable to get KeyID from BECN address");
-
-    return pwalletMain->SetAddressBook(keyID, strLabel, AddressBook::AddressBookPurpose::DELEGATOR);
-}
-
-UniValue delegatorremove(const JSONRPCRequest& request)
-{
-    if (request.fHelp || request.params.size() != 1)
-        throw std::runtime_error(
-            "delegatorremove \"addr\"\n"
-            "\nUpdates the provided address <addr> from the allowed delegators keystore to a \"delegable\" status.\n"
-            "This disables the staking of coins delegated to this wallet, owned by <addr>\n"
-
-            "\nArguments:\n"
-            "1. \"addr\"        (string, required) The address to blacklist\n"
-
-            "\nResult:\n"
-            "true|false           (boolean) true if successful.\n"
-
-            "\nExamples:\n" +
-            HelpExampleCli("delegatorremove", "DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6") +
-            HelpExampleRpc("delegatorremove", "\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\""));
-
-    bool isStakingAddress = false;
-    CTxDestination dest = DecodeDestination(request.params[0].get_str(), isStakingAddress);
-    if (!IsValidDestination(dest) || isStakingAddress)
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BECN address");
-
-    CKeyID keyID = *boost::get<CKeyID>(&dest);
-    if (!keyID)
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Unable to get KeyID from BECN address");
-
-    if (!pwalletMain->HasAddressBook(keyID))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Unable to get BECN address from addressBook");
-
-    std::string label = "";
-    {
-        LOCK(pwalletMain->cs_wallet);
-        std::map<CTxDestination, AddressBook::CAddressBookData>::iterator mi = pwalletMain->mapAddressBook.find(dest);
-        if (mi != pwalletMain->mapAddressBook.end()) {
-            label = mi->second.name;
-        }
-    }
-
-    return pwalletMain->SetAddressBook(keyID, label, AddressBook::AddressBookPurpose::DELEGABLE);
-}
-
 UniValue ListaddressesForPurpose(const std::string strPurpose)
 {
-    const CChainParams::Base58Type addrType = (
-            AddressBook::IsColdStakingPurpose(strPurpose) ?
-                    CChainParams::STAKING_ADDRESS :
-                    CChainParams::PUBKEY_ADDRESS);
     UniValue ret(UniValue::VARR);
     {
         LOCK(pwalletMain->cs_wallet);
@@ -584,65 +482,12 @@ UniValue ListaddressesForPurpose(const std::string strPurpose)
             if (addr.second.purpose != strPurpose) continue;
             UniValue entry(UniValue::VOBJ);
             entry.push_back(Pair("label", addr.second.name));
-            entry.push_back(Pair("address", EncodeDestination(addr.first, addrType)));
+            entry.push_back(Pair("address", EncodeDestination(addr.first)));
             ret.push_back(entry);
         }
     }
 
     return ret;
-}
-
-UniValue listdelegators(const JSONRPCRequest& request)
-{
-    if (request.fHelp || request.params.size() > 1)
-        throw std::runtime_error(
-            "listdelegators ( fBlacklist )\n"
-            "\nShows the list of allowed delegator addresses for cold staking.\n"
-
-            "\nArguments:\n"
-            "1. fBlacklist             (boolean, optional, default = false) Show addresses removed\n"
-            "                          from the delegators whitelist\n"
-
-            "\nResult:\n"
-            "[\n"
-            "   {\n"
-            "   \"label\": \"yyy\",    (string) Address label\n"
-            "   \"address\": \"xxx\",  (string) BECN address string\n"
-            "   }\n"
-            "  ...\n"
-            "]\n"
-
-            "\nExamples:\n" +
-            HelpExampleCli("listdelegators" , "") +
-            HelpExampleRpc("listdelegators", ""));
-
-    const bool fBlacklist = (request.params.size() > 0 ? request.params[0].get_bool() : false);
-    return (fBlacklist ?
-            ListaddressesForPurpose(AddressBook::AddressBookPurpose::DELEGABLE) :
-            ListaddressesForPurpose(AddressBook::AddressBookPurpose::DELEGATOR));
-}
-
-UniValue liststakingaddresses(const JSONRPCRequest& request)
-{
-    if (request.fHelp || request.params.size() != 0)
-        throw std::runtime_error(
-            "liststakingaddresses \"addr\"\n"
-            "\nShows the list of staking addresses for this wallet.\n"
-
-            "\nResult:\n"
-            "[\n"
-            "   {\n"
-            "   \"label\": \"yyy\",  (string) Address label\n"
-            "   \"address\": \"xxx\",  (string) BECN address string\n"
-            "   }\n"
-            "  ...\n"
-            "]\n"
-
-            "\nExamples:\n" +
-            HelpExampleCli("liststakingaddresses" , "") +
-            HelpExampleRpc("liststakingaddresses", ""));
-
-    return ListaddressesForPurpose(AddressBook::AddressBookPurpose::COLD_STAKING);
 }
 
 CTxDestination GetLabelDestination(CWallet* const pwallet, const std::string& label, bool bForceNew = false)
@@ -690,118 +535,6 @@ UniValue getaccountaddress(const JSONRPCRequest& request)
     return ret;
 }
 
-
-UniValue getrawchangeaddress(const JSONRPCRequest& request)
-{
-    if (request.fHelp || request.params.size() > 1)
-        throw std::runtime_error(
-            "getrawchangeaddress\n"
-            "\nReturns a new BECN address, for receiving change.\n"
-            "This is for use with raw transactions, NOT normal use.\n"
-
-            "\nResult:\n"
-            "\"address\"    (string) The address\n"
-
-            "\nExamples:\n" +
-            HelpExampleCli("getrawchangeaddress", "") + HelpExampleRpc("getrawchangeaddress", ""));
-
-    LOCK2(cs_main, pwalletMain->cs_wallet);
-
-    if (!pwalletMain->IsLocked())
-        pwalletMain->TopUpKeyPool();
-
-    CReserveKey reservekey(pwalletMain);
-    CPubKey vchPubKey;
-    if (!reservekey.GetReservedKey(vchPubKey, true))
-        throw JSONRPCError(RPC_WALLET_KEYPOOL_RAN_OUT, "Error: Keypool ran out, please call keypoolrefill first");
-
-    reservekey.KeepKey();
-
-    CKeyID keyID = vchPubKey.GetID();
-
-    return EncodeDestination(keyID);
-}
-
-
-UniValue setlabel(const JSONRPCRequest& request)
-{
-    if (!IsDeprecatedRPCEnabled("accounts") && request.strMethod == "setaccount") {
-        if (request.fHelp) {
-            throw std::runtime_error("setaccount (Deprecated, will be removed in v5.0. To use this command, start beacond with -deprecatedrpc=accounts)");
-        }
-        throw JSONRPCError(RPC_METHOD_DEPRECATED, "setaccount is deprecated and will be removed in v5.0. To use this command, start beacond with -deprecatedrpc=accounts.");
-    }
-
-    if (request.fHelp || request.params.size() != 2)
-        throw std::runtime_error(
-            "setlabel \"BECNaddress\" \"label\"\n"
-            "\nSets the label associated with the given address.\n"
-
-            "\nArguments:\n"
-            "1. \"BECNaddress\"   (string, required) The BECN address to be associated with a label.\n"
-            "2. \"label\"         (string, required) The label to assign to the address.\n"
-
-            "\nExamples:\n" +
-            HelpExampleCli("setlabel", "\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\" \"tabby\"") + HelpExampleRpc("setlabel", "\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\", \"tabby\""));
-
-    LOCK2(cs_main, pwalletMain->cs_wallet);
-
-    CTxDestination dest = DecodeDestination(request.params[0].get_str());
-    if (!IsValidDestination(dest))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BECN address");
-
-    std::string old_label = pwalletMain->mapAddressBook[dest].name;
-    std::string label = LabelFromValue(request.params[1]);
-
-    if (IsMine(*pwalletMain, dest)) {
-        if (request.strMethod == "setaccount" && old_label != label && dest == GetLabelDestination(pwalletMain, old_label)) {
-            // for setaccount, call GetLabelDestination so a new receive address is created for the old account
-            GetLabelDestination(pwalletMain, old_label, true);
-        }
-    }
-
-    pwalletMain->SetAddressBook(dest, label, "");
-
-    // Detect when there are no addresses using this label.
-    // If so, delete the account record for it. Labels, unlike addresses, can be deleted,
-    // and if we wouldn't do this, the record would stick around forever.
-    bool found_address = false;
-    for (const std::pair<CTxDestination, AddressBook::CAddressBookData>& item : pwalletMain->mapAddressBook) {
-        if (item.second.name == label) {
-            found_address = true;
-            break;
-        }
-    }
-    if (!found_address) {
-        pwalletMain->DeleteLabel(old_label);
-    }
-
-    return NullUniValue;
-}
-
-
-UniValue getaccount(const JSONRPCRequest& request)
-{
-    if (!IsDeprecatedRPCEnabled("accounts")) {
-        if (request.fHelp) {
-            throw std::runtime_error("getaccount (Deprecated, will be removed in v5.0. To use this command, start beacond with -deprecatedrpc=accounts)");
-        }
-        throw JSONRPCError(RPC_METHOD_DEPRECATED, "getaccount is deprecated and will be removed in v5.0. To use this command, start beacond with -deprecatedrpc=accounts.");
-    }
-
-    if (request.fHelp || request.params.size() != 1)
-        throw std::runtime_error(
-            "getaccount \"BECNaddress\"\n"
-            "\nDEPRECATED. Returns the account associated with the given address.\n"
-
-            "\nArguments:\n"
-            "1. \"BECNaddress\"  (string, required) The BECN address for account lookup.\n"
-
-            "\nResult:\n"
-            "\"accountname\"        (string) the account address\n"
-
-            "\nExamples:\n" +
-            HelpExampleCli("getaccount", "\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\"") + HelpExampleRpc("getaccount", "\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\""));
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
@@ -921,9 +654,8 @@ UniValue sendtoaddress(const JSONRPCRequest& request)
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
-    bool isStaking = false;
-    CTxDestination address = DecodeDestination(request.params[0].get_str(), isStaking);
-    if (!IsValidDestination(address) || isStaking)
+    CTxDestination address = DecodeDestination(request.params[0].get_str());
+    if (!IsValidDestination(address))
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BECN address");
 
     // Amount
@@ -941,217 +673,6 @@ UniValue sendtoaddress(const JSONRPCRequest& request)
     SendMoney(address, nAmount, wtx);
 
     return wtx.GetHash().GetHex();
-}
-
-UniValue CreateColdStakeDelegation(const UniValue& params, CWalletTx& wtxNew, CReserveKey& reservekey)
-{
-    LOCK2(cs_main, pwalletMain->cs_wallet);
-
-    // Check that Cold Staking has been enforced or fForceNotEnabled = true
-    bool fForceNotEnabled = false;
-    if (params.size() > 5 && !params[5].isNull())
-        fForceNotEnabled = params[5].get_bool();
-
-    if (!sporkManager.IsSporkActive(SPORK_17_COLDSTAKING_ENFORCEMENT) && !fForceNotEnabled) {
-        std::string errMsg = "Cold Staking disabled with SPORK 17.\n"
-                "You may force the stake delegation setting fForceNotEnabled to true.\n"
-                "WARNING: If relayed before activation, this tx will be rejected resulting in a ban.\n";
-        throw JSONRPCError(RPC_WALLET_ERROR, errMsg);
-    }
-
-    // Get Staking Address
-    bool isStaking = false;
-    CTxDestination stakeAddr = DecodeDestination(params[0].get_str(), isStaking);
-    if (!IsValidDestination(stakeAddr) || !isStaking)
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BECN staking address");
-
-    CKeyID* stakeKey = boost::get<CKeyID>(&stakeAddr);
-    if (!stakeKey)
-        throw JSONRPCError(RPC_WALLET_ERROR, "Unable to get stake pubkey hash from stakingaddress");
-
-    // Get Amount
-    CAmount nValue = AmountFromValue(params[1]);
-    if (nValue < MIN_COLDSTAKING_AMOUNT)
-        throw JSONRPCError(RPC_INVALID_PARAMETER, strprintf("Invalid amount (%d). Min amount: %d",
-                nValue, MIN_COLDSTAKING_AMOUNT));
-
-    // include already delegated coins
-    bool fUseDelegated = false;
-    if (params.size() > 4 && !params[4].isNull())
-        fUseDelegated = params[4].get_bool();
-
-    // Check amount
-    CAmount currBalance = pwalletMain->GetAvailableBalance() + (fUseDelegated ? pwalletMain->GetDelegatedBalance() : 0);
-    if (nValue > currBalance)
-        throw JSONRPCError(RPC_WALLET_INSUFFICIENT_FUNDS, "Insufficient funds");
-
-    std::string strError;
-    EnsureWalletIsUnlocked();
-
-    // Get Owner Address
-    std::string ownerAddressStr;
-    CKeyID ownerKey;
-    if (params.size() > 2 && !params[2].isNull() && !params[2].get_str().empty()) {
-        // Address provided
-        bool isStaking = false;
-        CTxDestination dest = DecodeDestination(params[2].get_str(), isStaking);
-        if (!IsValidDestination(dest) || isStaking)
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BECN spending address");
-        ownerKey = *boost::get<CKeyID>(&dest);
-        if (!ownerKey)
-            throw JSONRPCError(RPC_WALLET_ERROR, "Unable to get spend pubkey hash from owneraddress");
-        // Check that the owner address belongs to this wallet, or fForceExternalAddr is true
-        bool fForceExternalAddr = params.size() > 3 && !params[3].isNull() ? params[3].get_bool() : false;
-        if (!fForceExternalAddr && !pwalletMain->HaveKey(ownerKey)) {
-            std::string errMsg = strprintf("The provided owneraddress \"%s\" is not present in this wallet.\n", params[2].get_str());
-            errMsg += "Set 'fExternalOwner' argument to true, in order to force the stake delegation to an external owner address.\n"
-                    "e.g. delegatestake stakingaddress amount owneraddress true.\n"
-                    "WARNING: Only the owner of the key to owneraddress will be allowed to spend these coins after the delegation.";
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, errMsg);
-        }
-        ownerAddressStr = params[2].get_str();
-    } else {
-        // Get new owner address from keypool
-        CTxDestination ownerAddr = GetNewAddressFromLabel("delegated", NullUniValue);
-        ownerKey = *boost::get<CKeyID>(&ownerAddr);
-        if (!ownerKey)
-            throw JSONRPCError(RPC_WALLET_ERROR, "Unable to get spend pubkey hash from owneraddress");
-        ownerAddressStr = EncodeDestination(ownerAddr);
-    }
-
-    // Get P2CS script for addresses
-    CScript scriptPubKey = GetScriptForStakeDelegation(*stakeKey, ownerKey);
-
-    // Create the transaction
-    CAmount nFeeRequired;
-    if (!pwalletMain->CreateTransaction(scriptPubKey, nValue, wtxNew, reservekey, nFeeRequired, strError, nullptr, ALL_COINS, /*fUseIX*/ false, (CAmount)0, fUseDelegated)) {
-        if (nValue + nFeeRequired > currBalance)
-            strError = strprintf("Error: This transaction requires a transaction fee of at least %s because of its amount, complexity, or use of recently received funds!", FormatMoney(nFeeRequired));
-        LogPrintf("%s : %s\n", __func__, strError);
-        throw JSONRPCError(RPC_WALLET_ERROR, strError);
-    }
-
-    UniValue result(UniValue::VOBJ);
-    result.push_back(Pair("owner_address", ownerAddressStr));
-    result.push_back(Pair("staker_address", EncodeDestination(stakeAddr, true)));
-    return result;
-}
-
-UniValue delegatestake(const JSONRPCRequest& request)
-{
-    if (request.fHelp || request.params.size() < 2 || request.params.size() > 6)
-        throw std::runtime_error(
-            "delegatestake \"stakingaddress\" amount ( \"owneraddress\" fExternalOwner fUseDelegated fForceNotEnabled )\n"
-            "\nDelegate an amount to a given address for cold staking. The amount is a real and is rounded to the nearest 0.00000001\n" +
-            HelpRequiringPassphrase() + "\n"
-
-            "\nArguments:\n"
-            "1. \"stakingaddress\"      (string, required) The BECN staking address to delegate.\n"
-            "2. \"amount\"              (numeric, required) The amount in BECN to delegate for staking. eg 100\n"
-            "3. \"owneraddress\"        (string, optional) The BECN address corresponding to the key that will be able to spend the stake. \n"
-            "                               If not provided, or empty string, a new wallet address is generated.\n"
-            "4. \"fExternalOwner\"      (boolean, optional, default = false) use the provided 'owneraddress' anyway, even if not present in this wallet.\n"
-            "                               WARNING: The owner of the keys to 'owneraddress' will be the only one allowed to spend these coins.\n"
-            "5. \"fUseDelegated\"       (boolean, optional, default = false) include already delegated inputs if needed."
-            "6. \"fForceNotEnabled\"    (boolean, optional, default = false) force the creation even if SPORK 17 is disabled (for tests)."
-
-            "\nResult:\n"
-            "{\n"
-            "   \"owner_address\": \"xxx\"   (string) The owner (delegator) owneraddress.\n"
-            "   \"staker_address\": \"xxx\"  (string) The cold staker (delegate) stakingaddress.\n"
-            "   \"txid\": \"xxx\"            (string) The stake delegation transaction id.\n"
-            "}\n"
-
-            "\nExamples:\n" +
-            HelpExampleCli("delegatestake", "\"S1t2a3kab9c8c71VA78xxxy4MxZg6vgeS6\" 100") +
-            HelpExampleCli("delegatestake", "\"S1t2a3kab9c8c71VA78xxxy4MxZg6vgeS6\" 1000 \"DMJRSsuU9zfyrvxVaAEFQqK4MxZg34fk\"") +
-            HelpExampleRpc("delegatestake", "\"S1t2a3kab9c8c71VA78xxxy4MxZg6vgeS6\", 1000, \"DMJRSsuU9zfyrvxVaAEFQqK4MxZg34fk\""));
-
-    LOCK2(cs_main, pwalletMain->cs_wallet);
-
-    CWalletTx wtx;
-    CReserveKey reservekey(pwalletMain);
-    UniValue ret = CreateColdStakeDelegation(request.params, wtx, reservekey);
-
-    const CWallet::CommitResult& res = pwalletMain->CommitTransaction(wtx, reservekey, g_connman.get(), NetMsgType::TX);
-    if (res.status != CWallet::CommitStatus::OK)
-        throw JSONRPCError(RPC_WALLET_ERROR, res.ToString());
-
-    ret.push_back(Pair("txid", wtx.GetHash().GetHex()));
-    return ret;
-}
-
-UniValue rawdelegatestake(const JSONRPCRequest& request)
-{
-    if (request.fHelp || request.params.size() < 2 || request.params.size() > 5)
-        throw std::runtime_error(
-            "rawdelegatestake \"stakingaddress\" amount ( \"owneraddress\" fExternalOwner fUseDelegated )\n"
-            "\nDelegate an amount to a given address for cold staking. The amount is a real and is rounded to the nearest 0.00000001\n"
-            "\nDelegate transaction is returned as json object." +
-            HelpRequiringPassphrase() + "\n"
-
-            "\nArguments:\n"
-            "1. \"stakingaddress\"      (string, required) The BECN staking address to delegate.\n"
-            "2. \"amount\"              (numeric, required) The amount in BECN to delegate for staking. eg 100\n"
-            "3. \"owneraddress\"        (string, optional) The BECN address corresponding to the key that will be able to spend the stake. \n"
-            "                               If not provided, or empty string, a new wallet address is generated.\n"
-            "4. \"fExternalOwner\"      (boolean, optional, default = false) use the provided 'owneraddress' anyway, even if not present in this wallet.\n"
-            "                               WARNING: The owner of the keys to 'owneraddress' will be the only one allowed to spend these coins.\n"
-            "5. \"fUseDelegated         (boolean, optional, default = false) include already delegated inputs if needed."
-
-            "\nResult:\n"
-            "{\n"
-            "  \"txid\" : \"id\",        (string) The transaction id (same as provided)\n"
-            "  \"version\" : n,          (numeric) The version\n"
-            "  \"size\" : n,             (numeric) The serialized transaction size\n"
-            "  \"locktime\" : ttt,       (numeric) The lock time\n"
-            "  \"vin\" : [               (array of json objects)\n"
-            "     {\n"
-            "       \"txid\": \"id\",    (string) The transaction id\n"
-            "       \"vout\": n,         (numeric) \n"
-            "       \"scriptSig\": {     (json object) The script\n"
-            "         \"asm\": \"asm\",  (string) asm\n"
-            "         \"hex\": \"hex\"   (string) hex\n"
-            "       },\n"
-            "       \"sequence\": n      (numeric) The script sequence number\n"
-            "     }\n"
-            "     ,...\n"
-            "  ],\n"
-            "  \"vout\" : [              (array of json objects)\n"
-            "     {\n"
-            "       \"value\" : x.xxx,            (numeric) The value in BECN\n"
-            "       \"n\" : n,                    (numeric) index\n"
-            "       \"scriptPubKey\" : {          (json object)\n"
-            "         \"asm\" : \"asm\",          (string) the asm\n"
-            "         \"hex\" : \"hex\",          (string) the hex\n"
-            "         \"reqSigs\" : n,            (numeric) The required sigs\n"
-            "         \"type\" : \"pubkeyhash\",  (string) The type, eg 'pubkeyhash'\n"
-            "         \"addresses\" : [           (json array of string)\n"
-            "           \"BECNaddress\"        (string) BECN address\n"
-            "           ,...\n"
-            "         ]\n"
-            "       }\n"
-            "     }\n"
-            "     ,...\n"
-            "  ],\n"
-            "  \"hex\" : \"data\",       (string) The serialized, hex-encoded data for 'txid'\n"
-            "}\n"
-
-            "\nExamples:\n" +
-            HelpExampleCli("rawdelegatestake", "\"S1t2a3kab9c8c71VA78xxxy4MxZg6vgeS6\" 100") +
-            HelpExampleCli("rawdelegatestake", "\"S1t2a3kab9c8c71VA78xxxy4MxZg6vgeS6\" 1000 \"DMJRSsuU9zfyrvxVaAEFQqK4MxZg34fk\"") +
-            HelpExampleRpc("rawdelegatestake", "\"S1t2a3kab9c8c71VA78xxxy4MxZg6vgeS6\", 1000, \"DMJRSsuU9zfyrvxVaAEFQqK4MxZg34fk\""));
-
-    LOCK2(cs_main, pwalletMain->cs_wallet);
-
-    CWalletTx wtx;
-    CReserveKey reservekey(pwalletMain);
-    CreateColdStakeDelegation(request.params, wtx, reservekey);
-
-    UniValue result(UniValue::VOBJ);
-    TxToUniv(wtx, UINT256_ZERO, result);
-
-    return result;
 }
 
 UniValue sendtoaddressix(const JSONRPCRequest& request)
@@ -1181,9 +702,8 @@ UniValue sendtoaddressix(const JSONRPCRequest& request)
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
-    bool isStaking = false;
-    CTxDestination address = DecodeDestination(request.params[0].get_str(), isStaking);
-    if (!IsValidDestination(address) || isStaking)
+    CTxDestination address = DecodeDestination(request.params[0].get_str());
+    if (!IsValidDestination(address))
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BECN address");
 
     // Amount
@@ -1426,7 +946,7 @@ UniValue getbalance(const JSONRPCRequest& request)
         (request.params.size() > 4 && IsDeprecatedRPCEnabled("accounts")) ||
         (request.params.size() > 3 && !IsDeprecatedRPCEnabled("accounts")))
         throw std::runtime_error(
-            "getbalance ( \"account\" minconf includeWatchonly includeDelegated )\n"
+            "getbalance ( \"account\" minconf includeWatchonly )\n"
             "\nIf account is not specified, returns the server's total available balance (excluding zerocoins).\n"
             "If account is specified (DEPRECATED), returns the balance in the account.\n"
             "Note that the account \"\" is not the same as leaving the parameter out.\n"
@@ -1439,9 +959,7 @@ UniValue getbalance(const JSONRPCRequest& request)
             "                    To use this deprecated argument, start beacond with -deprecatedrpc=accounts. Only include transactions confirmed at least this many times.\n"
             "3. includeWatchonly (bool, optional, default=false) DEPRECATED. This argument will be removed in v5.0.\n"
             "                    To use this deprecated argument, start beacond with -deprecatedrpc=accounts. Also include balance in watchonly addresses (see 'importaddress')\n"
-            "4. includeDelegated (bool, optional, default=true) Only available when specifying an account.\n"
-            "                    To use this argument, start beacond with -deprecatedrpc=accounts. Also include balance delegated to cold stakers\n"
-
+            
             "\nResult:\n"
             "amount              (numeric) The total amount in BECN received for this account.\n"
 
@@ -1467,93 +985,15 @@ UniValue getbalance(const JSONRPCRequest& request)
         isminefilter filter = ISMINE_SPENDABLE;
         if (request.params.size() > 2 && request.params[2].get_bool())
             filter = filter | ISMINE_WATCH_ONLY;
-        if (!(request.params.size() > 3) || request.params[3].get_bool())
-            filter = filter | ISMINE_SPENDABLE_DELEGATED;
-
+        
         return ValueFromAmount(pwalletMain->GetLegacyBalance(filter, nMinDepth, account));
     }
 
     const int paramsSize = request.params.size();
     const int nMinDepth = (paramsSize > 0 ? request.params[0].get_int() : 0);
     isminefilter filter = ISMINE_SPENDABLE | (paramsSize > 1 && request.params[1].get_bool() ? ISMINE_WATCH_ONLY : ISMINE_NO);
-    filter |= (paramsSize <= 2 || request.params[2].get_bool() ? ISMINE_SPENDABLE_DELEGATED : ISMINE_NO);
 
     return ValueFromAmount(pwalletMain->GetAvailableBalance(filter, true, nMinDepth));
-}
-
-UniValue getcoldstakingbalance(const JSONRPCRequest& request)
-{
-    if (request.fHelp || (request.params.size() > 1 && IsDeprecatedRPCEnabled("accounts")) || (request.params.size() != 0 && !IsDeprecatedRPCEnabled("accounts")))
-        throw std::runtime_error(
-            "getcoldstakingbalance ( \"account\" )\n"
-            "\nIf account is not specified, returns the server's total available cold balance.\n"
-            "If account is specified (DEPRECATED), returns the cold balance in the account.\n"
-            "Note that the account \"\" is not the same as leaving the parameter out.\n"
-            "The server total may be different to the balance in the default \"\" account.\n"
-
-            "\nArguments:\n"
-            "1. \"account\"      (string, optional) DEPRECATED. This argument will be removed in v5.0.\n"
-            "                        To use this deprecated argument, start beacond with -deprecatedrpc=accounts.\n"
-            "                        The selected account, or \"*\" for entire wallet. It may be the default account using \"\".\n"
-
-            "\nResult:\n"
-            "amount              (numeric) The total amount in BECN received for this account in P2CS contracts.\n"
-
-            "\nExamples:\n"
-            "\nThe total amount in the wallet\n" +
-            HelpExampleCli("getcoldstakingbalance", "") +
-            "\nAs a json rpc call\n" +
-            HelpExampleRpc("getcoldstakingbalance", "\"*\""));
-
-    LOCK2(cs_main, pwalletMain->cs_wallet);
-
-    if (IsDeprecatedRPCEnabled("accounts")) {
-        if (request.params.size() == 0)
-            return ValueFromAmount(pwalletMain->GetColdStakingBalance());
-
-        const std::string* strAccount = request.params[0].get_str() != "*" ? &request.params[0].get_str() : nullptr;
-        return ValueFromAmount(pwalletMain->GetLegacyBalance(ISMINE_COLD, 1, strAccount));
-    }
-
-    return ValueFromAmount(pwalletMain->GetColdStakingBalance());
-}
-
-UniValue getdelegatedbalance(const JSONRPCRequest& request)
-{
-    if (request.fHelp || (request.params.size() > 1 && IsDeprecatedRPCEnabled("accounts")) || (request.params.size() != 0 && !IsDeprecatedRPCEnabled("accounts")))
-        throw std::runtime_error(
-            "getdelegatedbalance ( \"account\" )\n"
-            "\nIf account is not specified, returns the server's total available delegated balance (sum of all utxos delegated\n"
-            "to a cold staking address to stake on behalf of addresses of this wallet).\n"
-            "If account is specified (DEPRECATED), returns the cold balance in the account.\n"
-            "Note that the account \"\" is not the same as leaving the parameter out.\n"
-            "The server total may be different to the balance in the default \"\" account.\n"
-
-            "\nArguments:\n"
-            "1. \"account\"      (string, optional) DEPRECATED. This argument will be removed in v5.0.\n"
-            "                        To use this deprecated argument, start beacond with -deprecatedrpc=accounts.\n"
-            "                        The selected account, or \"*\" for entire wallet. It may be the default account using \"\".\n"
-
-            "\nResult:\n"
-            "amount              (numeric) The total amount in BECN received for this account in P2CS contracts.\n"
-
-            "\nExamples:\n"
-            "\nThe total amount in the wallet\n" +
-            HelpExampleCli("getdelegatedbalance", "") +
-            "\nAs a json rpc call\n" +
-            HelpExampleRpc("getdelegatedbalance", "\"*\""));
-
-    LOCK2(cs_main, pwalletMain->cs_wallet);
-
-    if (IsDeprecatedRPCEnabled("accounts")) {
-        if (request.params.size() == 0)
-            return ValueFromAmount(pwalletMain->GetDelegatedBalance());
-
-        const std::string* strAccount = request.params[0].get_str() != "*" ? &request.params[0].get_str() : nullptr;
-        return ValueFromAmount(pwalletMain->GetLegacyBalance(ISMINE_SPENDABLE_DELEGATED, 1, strAccount));
-    }
-
-    return ValueFromAmount(pwalletMain->GetDelegatedBalance());
 }
 
 UniValue getunconfirmedbalance(const JSONRPCRequest& request)
@@ -1657,7 +1097,7 @@ UniValue sendfrom(const JSONRPCRequest& request)
 
     if (request.fHelp || request.params.size() < 3 || request.params.size() > 7)
         throw std::runtime_error(
-            "sendfrom \"fromaccount\" \"toBECNaddress\" amount ( minconf \"comment\" \"comment-to\" includeDelegated)\n"
+            "sendfrom \"fromaccount\" \"toBECNaddress\" amount ( minconf \"comment\" \"comment-to\" )\n"
             "\nDEPRECATED (use sendtoaddress). Send an amount from an account to a BECN address.\n"
             "The amount is a real and is rounded to the nearest 0.00000001." +
             HelpRequiringPassphrase() + "\n"
@@ -1672,8 +1112,7 @@ UniValue sendfrom(const JSONRPCRequest& request)
             "6. \"comment-to\"        (string, optional) An optional comment to store the name of the person or organization \n"
             "                                     to which you're sending the transaction. This is not part of the transaction, \n"
             "                                     it is just kept in your wallet.\n"
-            "7. includeDelegated     (bool, optional, default=false) Also include balance delegated to cold stakers\n"
-
+            
             "\nResult:\n"
             "\"transactionid\"        (string) The transaction id.\n"
 
@@ -1688,9 +1127,8 @@ UniValue sendfrom(const JSONRPCRequest& request)
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     std::string strAccount = LabelFromValue(request.params[0]);
-    bool isStaking = false;
-    CTxDestination address = DecodeDestination(request.params[1].get_str(), isStaking);
-    if (!IsValidDestination(address) || isStaking)
+    CTxDestination address = DecodeDestination(request.params[1].get_str());
+    if (!IsValidDestination(address))
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BECN address");
     CAmount nAmount = AmountFromValue(request.params[2]);
     int nMinDepth = 1;
@@ -1705,9 +1143,7 @@ UniValue sendfrom(const JSONRPCRequest& request)
         wtx.mapValue["to"] = request.params[5].get_str();
 
     isminefilter filter = ISMINE_SPENDABLE;
-    if ( request.params.size() > 6 && request.params[6].get_bool() )
-        filter = filter | ISMINE_SPENDABLE_DELEGATED;
-
+    
     EnsureWalletIsUnlocked();
 
     // Check funds
@@ -1725,7 +1161,7 @@ UniValue sendmany(const JSONRPCRequest& request)
 {
     std::string help_text;
     if (!IsDeprecatedRPCEnabled("accounts")) {
-        help_text = "sendmany \"\" {\"address\":amount,...} ( minconf \"comment\" includeDelegated )\n"
+        help_text = "sendmany \"\" {\"address\":amount,...} ( minconf \"comment\" )\n"
             "\nSend multiple times. Amounts are double-precision floating point numbers.\n"
             "Note that the \"fromaccount\" argument has been removed in v4.2. To use this RPC with a \"fromaccount\" argument, restart\n"
             "beacond with -deprecatedrpc=accounts\n" +
@@ -1740,8 +1176,7 @@ UniValue sendmany(const JSONRPCRequest& request)
             "    }\n"
             "3. minconf                 (numeric, optional, default=1) Only use the balance confirmed at least this many times.\n"
             "4. \"comment\"             (string, optional) A comment\n"
-            "5. includeDelegated        (bool, optional, default=false) Also include balance delegated to cold stakers\n"
-
+            
             "\nResult:\n"
             "\"transactionid\"          (string) The transaction id for the send. Only 1 transaction is created regardless of \n"
             "                                    the number of addresses.\n"
@@ -1754,8 +1189,8 @@ UniValue sendmany(const JSONRPCRequest& request)
             "\nAs a json rpc call\n" +
             HelpExampleRpc("sendmany", "\"\", \"{\\\"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\\\":0.01,\\\"DAD3Y6ivr8nPQLT1NEPX84DxGCw9jz9Jvg\\\":0.02}\", 6, \"testing\"");
     } else {
-        help_text = "sendmany \"fromaccount\" {\"address\":amount,...} ( minconf \"comment\" includeDelegated )\n"
-            "sendmany \"fromaccount\" {\"address\":amount,...} ( minconf \"comment\" includeDelegated )\n"
+        help_text = "sendmany \"fromaccount\" {\"address\":amount,...} ( minconf \"comment\" )\n"
+            "sendmany \"fromaccount\" {\"address\":amount,...} ( minconf \"comment\" )\n"
             "\nSend multiple times. Amounts are double-precision floating point numbers." +
             HelpRequiringPassphrase() + "\n"
 
@@ -1768,8 +1203,7 @@ UniValue sendmany(const JSONRPCRequest& request)
             "    }\n"
             "3. minconf                 (numeric, optional, default=1) Only use the balance confirmed at least this many times.\n"
             "4. \"comment\"             (string, optional) A comment\n"
-            "5. includeDelegated     (bool, optional, default=false) Also include balance delegated to cold stakers\n"
-
+            
             "\nResult:\n"
             "\"transactionid\"          (string) The transaction id for the send. Only 1 transaction is created regardless of \n"
             "                                    the number of addresses.\n"
@@ -1810,9 +1244,8 @@ UniValue sendmany(const JSONRPCRequest& request)
     CAmount totalAmount = 0;
     std::vector<std::string> keys = sendTo.getKeys();
     for (const std::string& name_ : keys) {
-        bool isStaking = false;
-        CTxDestination dest = DecodeDestination(name_,isStaking);
-        if (!IsValidDestination(dest) || isStaking)
+        CTxDestination dest = DecodeDestination(name_);
+        if (!IsValidDestination(dest))
             throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid BECN address: ")+name_);
 
         if (setAddress.count(dest))
@@ -1827,9 +1260,7 @@ UniValue sendmany(const JSONRPCRequest& request)
     }
 
     isminefilter filter = ISMINE_SPENDABLE;
-    if ( request.params.size() > 5 && request.params[5].get_bool() )
-        filter = filter | ISMINE_SPENDABLE_DELEGATED;
-
+    
     EnsureWalletIsUnlocked();
 
     // Check funds
@@ -2023,7 +1454,7 @@ UniValue ListReceived(const UniValue& params, bool by_label)
             UniValue obj(UniValue::VOBJ);
             if (fIsWatchonly)
                 obj.push_back(Pair("involvesWatchonly", true));
-            obj.push_back(Pair("address", EncodeDestination(address, AddressBook::IsColdStakingPurpose(label))));
+            obj.push_back(Pair("address", EncodeDestination(address)));
             obj.push_back(Pair("account", label));
             obj.push_back(Pair("amount", ValueFromAmount(nAmount)));
             obj.push_back(Pair("confirmations", (nConf == std::numeric_limits<int>::max() ? 0 : nConf)));
@@ -2138,79 +1569,6 @@ UniValue listreceivedbylabel(const JSONRPCRequest& request)
     return ListReceived(request.params, true);
 }
 
-UniValue listcoldutxos(const JSONRPCRequest& request)
-{
-    if (request.fHelp || request.params.size() > 1)
-        throw std::runtime_error(
-            "listcoldutxos ( nonWhitelistedOnly )\n"
-            "\nList P2CS unspent outputs received by this wallet as cold-staker-\n"
-
-            "\nArguments:\n"
-            "1. nonWhitelistedOnly   (boolean, optional, default=false) Whether to exclude P2CS from whitelisted delegators.\n"
-
-            "\nResult:\n"
-            "[\n"
-            "  {\n"
-            "    \"txid\" : \"true\",            (string) The transaction id of the P2CS utxo\n"
-            "    \"txidn\" : n                 (numeric) The output number of the P2CS utxo\n"
-            "    \"amount\" : x.xxx,           (numeric) The amount of the P2CS utxo\n"
-            "    \"confirmations\" : n         (numeric) The number of confirmations of the P2CS utxo\n"
-            "    \"cold-staker\" : \"address\"   (string) The cold-staker address of the P2CS utxo\n"
-            "    \"coin-owner\" : \"address\"    (string) The coin-owner address of the P2CS utxo\n"
-            "    \"whitelisted\" : \"true\"      (boolean) \"true\"/\"false\" coin-owner in delegator whitelist\n"
-            "  }\n"
-            "  ,...\n"
-            "]\n"
-
-            "\nExamples:\n" +
-            HelpExampleCli("listcoldutxos", "") + HelpExampleCli("listcoldutxos", "true"));
-
-    LOCK2(cs_main, pwalletMain->cs_wallet);
-
-    bool fExcludeWhitelisted = false;
-    if (request.params.size() > 0)
-        fExcludeWhitelisted = request.params[0].get_bool();
-    UniValue results(UniValue::VARR);
-
-    for (std::map<uint256, CWalletTx>::const_iterator it =
-            pwalletMain->mapWallet.begin(); it != pwalletMain->mapWallet.end(); ++it) {
-        const uint256& wtxid = it->first;
-        const CWalletTx* pcoin = &(*it).second;
-        if (!CheckFinalTx(*pcoin) || !pcoin->IsTrusted())
-            continue;
-
-        // if this tx has no unspent P2CS outputs for us, skip it
-        if(pcoin->GetColdStakingCredit() == 0 && pcoin->GetStakeDelegationCredit() == 0)
-            continue;
-
-        for (unsigned int i = 0; i < pcoin->vout.size(); i++) {
-            const CTxOut& out = pcoin->vout[i];
-            isminetype mine = pwalletMain->IsMine(out);
-            if (!bool(mine & ISMINE_COLD) && !bool(mine & ISMINE_SPENDABLE_DELEGATED))
-                continue;
-            txnouttype type;
-            std::vector<CTxDestination> addresses;
-            int nRequired;
-            if (!ExtractDestinations(out.scriptPubKey, type, addresses, nRequired))
-                continue;
-            const bool fWhitelisted = pwalletMain->mapAddressBook.count(addresses[1]) > 0;
-            if (fExcludeWhitelisted && fWhitelisted)
-                continue;
-            UniValue entry(UniValue::VOBJ);
-            entry.push_back(Pair("txid", wtxid.GetHex()));
-            entry.push_back(Pair("txidn", (int)i));
-            entry.push_back(Pair("amount", ValueFromAmount(out.nValue)));
-            entry.push_back(Pair("confirmations", pcoin->GetDepthInMainChain(false)));
-            entry.push_back(Pair("cold-staker", EncodeDestination(addresses[0], CChainParams::STAKING_ADDRESS)));
-            entry.push_back(Pair("coin-owner", EncodeDestination(addresses[1])));
-            entry.push_back(Pair("whitelisted", fWhitelisted ? "true" : "false"));
-            results.push_back(entry);
-        }
-    }
-
-    return results;
-}
-
 static void MaybePushAddress(UniValue & entry, const CTxDestination &dest)
 {
     if (IsValidDestination(dest))
@@ -2306,7 +1664,7 @@ UniValue listtransactions(const JSONRPCRequest& request)
 {
     std::string help_text {};
     if (!IsDeprecatedRPCEnabled("accounts")) {
-        help_text = "listtransactions ( \"dummy\" count from includeWatchonly includeDelegated )\n"
+        help_text = "listtransactions ( \"dummy\" count from includeWatchonly )\n"
             "\nReturns up to 'count' most recent transactions skipping the first 'from' transactions for account 'account'.\n"
 
             "\nArguments:\n"
@@ -2314,9 +1672,7 @@ UniValue listtransactions(const JSONRPCRequest& request)
             "2. count          (numeric, optional, default=10) The number of transactions to return\n"
             "3. from           (numeric, optional, default=0) The number of transactions to skip\n"
             "4. includeWatchonly (bool, optional, default=false) Include transactions to watchonly addresses (see 'importaddress')\n"
-            "5. includeDelegated     (bool, optional, default=true) Also include balance delegated to cold stakers\n"
-            "6. includeCold     (bool, optional, default=true) Also include delegated balance received as cold-staker by this node\n"
-
+            
             "\nResult:\n"
             "[\n"
             "  {\n"
@@ -2359,7 +1715,7 @@ UniValue listtransactions(const JSONRPCRequest& request)
             "\nAs a json rpc call\n" +
             HelpExampleRpc("listtransactions", "\"*\", 20, 100");
     } else {
-        help_text = "listtransactions ( \"account\" count from includeWatchonly includeDelegated )\n"
+        help_text = "listtransactions ( \"account\" count from includeWatchonly )\n"
             "\nReturns up to 'count' most recent transactions skipping the first 'from' transactions for account 'account'.\n"
 
             "\nArguments:\n"
@@ -2367,9 +1723,7 @@ UniValue listtransactions(const JSONRPCRequest& request)
             "2. count          (numeric, optional, default=10) The number of transactions to return\n"
             "3. from           (numeric, optional, default=0) The number of transactions to skip\n"
             "4. includeWatchonly (bool, optional, default=false) Include transactions to watchonly addresses (see 'importaddress')\n"
-            "5. includeDelegated     (bool, optional, default=true) Also include balance delegated to cold stakers\n"
-            "6. includeCold     (bool, optional, default=true) Also include delegated balance received as cold-staker by this node\n"
-
+            
             "\nResult:\n"
             "[\n"
             "  {\n"
@@ -2438,11 +1792,7 @@ UniValue listtransactions(const JSONRPCRequest& request)
     isminefilter filter = ISMINE_SPENDABLE;
     if ( request.params.size() > 3 && request.params[3].get_bool() )
             filter = filter | ISMINE_WATCH_ONLY;
-    if ( !(request.params.size() > 4) || request.params[4].get_bool() )
-        filter = filter | ISMINE_SPENDABLE_DELEGATED;
-    if ( !(request.params.size() > 5) || request.params[5].get_bool() )
-        filter = filter | ISMINE_COLD;
-
+    
     if (nCount < 0)
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Negative count");
     if (nFrom < 0)
@@ -2619,7 +1969,7 @@ UniValue listsinceblock(const JSONRPCRequest& request)
 
     CBlockIndex* pindex = NULL;
     int target_confirms = 1;
-    isminefilter filter = ISMINE_SPENDABLE_ALL | ISMINE_COLD;
+    isminefilter filter = ISMINE_SPENDABLE_ALL;
 
     if (request.params.size() > 0) {
         uint256 blockId;
@@ -2707,7 +2057,7 @@ UniValue gettransaction(const JSONRPCRequest& request)
     uint256 hash;
     hash.SetHex(request.params[0].get_str());
 
-    isminefilter filter = ISMINE_SPENDABLE_ALL | ISMINE_COLD;
+    isminefilter filter = ISMINE_SPENDABLE_ALL;
     if (request.params.size() > 1)
         if (request.params[1].get_bool())
             filter = filter | ISMINE_WATCH_ONLY;
@@ -3128,8 +2478,6 @@ UniValue listunspent(const JSONRPCRequest& request)
     LOCK2(cs_main, pwalletMain->cs_wallet);
     pwalletMain->AvailableCoins(&vecOutputs,
                                 &coinControl,    // coin control
-                                true,       // include delegated
-                                false,      // include cold staking
                                 ALL_COINS,  // coin type
                                 false,      // only confirmed
                                 false       // use IX
@@ -3381,21 +2729,17 @@ UniValue getwalletinfo(const JSONRPCRequest& request)
             "\nResult:\n"
             "{\n"
             "  \"walletversion\": xxxxx,                  (numeric) the wallet version\n"
-            "  \"balance\": xxxxxxx,                      (numeric) the total BECN balance of the wallet (cold balance excluded)\n"
-            "  \"delegated_balance\": xxxxx,              (numeric) the BECN balance held in P2CS (cold staking) contracts\n"
-            "  \"cold_staking_balance\": xx,              (numeric) the BECN balance held in cold staking addresses\n"
+            "  \"balance\": xxxxxxx,                      (numeric) the total BECN balance of the wallet\n"
             "  \"unconfirmed_balance\": xxx,              (numeric) the total unconfirmed balance of the wallet in BECN\n"
-            "  \"immature_delegated_balance\": xxxxxx,    (numeric) the delegated immature balance of the wallet in BECN\n"
-            "  \"immature_cold_staking_balance\": xxxxxx, (numeric) the cold-staking immature balance of the wallet in BECN\n"
             "  \"immature_balance\": xxxxxx,              (numeric) the total immature balance of the wallet in BECN\n"
             "  \"txcount\": xxxxxxx,                      (numeric) the total number of transactions in the wallet\n"
             "  \"keypoololdest\": xxxxxx,                 (numeric) the timestamp (seconds since GMT epoch) of the oldest pre-generated key in the key pool\n"
-            "  \"keypoolsize\": xxxx,               (numeric) how many new keys are pre-generated (only counts external keys)\n"
-            "  \"keypoolsize_hd_internal\": xxxx,   (numeric) how many new keys are pre-generated for internal use (used for change outputs, only appears if the wallet is using this feature, otherwise external keys are used)\n"
-            "  \"keypoolsize_hd_staking\": xxxx,    (numeric) how many new keys are pre-generated for staking use (used for staking contracts, only appears if the wallet is using this feature)\n"
+            "  \"keypoolsize\": xxxx,                     (numeric) how many new keys are pre-generated (only counts external keys)\n"
+            "  \"keypoolsize_hd_internal\": xxxx,         (numeric) how many new keys are pre-generated for internal use (used for change outputs, only appears if the wallet is using this feature, otherwise external keys are used)\n"
+            "  \"keypoolsize_hd_ecommerce\": xxxx,        (numeric) how many new keys are pre-generated for ecommerce use\n"
             "  \"unlocked_until\": ttt,                   (numeric) the timestamp in seconds since epoch (midnight Jan 1 1970 GMT) that the wallet is unlocked for transfers, or 0 if the wallet is locked\n"
             "  \"paytxfee\": x.xxxx                       (numeric) the transaction fee configuration, set in BECN/kB\n"
-            "  \"hdseedid\": \"<hash160>\"            (string, optional) the Hash160 of the HD seed (only present when HD is enabled)\n"
+            "  \"hdseedid\": \"<hash160>\"                (string, optional) the Hash160 of the HD seed (only present when HD is enabled)\n"
             "}\n"
 
             "\nExamples:\n" +
@@ -3406,12 +2750,8 @@ UniValue getwalletinfo(const JSONRPCRequest& request)
     UniValue obj(UniValue::VOBJ);
     obj.push_back(Pair("walletversion", pwalletMain->GetVersion()));
     obj.push_back(Pair("balance", ValueFromAmount(pwalletMain->GetAvailableBalance())));
-    obj.push_back(Pair("delegated_balance", ValueFromAmount(pwalletMain->GetDelegatedBalance())));
-    obj.push_back(Pair("cold_staking_balance", ValueFromAmount(pwalletMain->GetColdStakingBalance())));
     obj.push_back(Pair("unconfirmed_balance", ValueFromAmount(pwalletMain->GetUnconfirmedBalance())));
     obj.push_back(Pair("immature_balance",    ValueFromAmount(pwalletMain->GetImmatureBalance())));
-    obj.push_back(Pair("immature_delegated_balance",    ValueFromAmount(pwalletMain->GetImmatureDelegatedBalance())));
-    obj.push_back(Pair("immature_cold_staking_balance",    ValueFromAmount(pwalletMain->GetImmatureColdStakingBalance())));
     obj.push_back(Pair("txcount", (int)pwalletMain->mapWallet.size()));
     obj.push_back(Pair("keypoololdest", pwalletMain->GetOldestKeyPoolTime()));
 
@@ -3427,7 +2767,7 @@ UniValue getwalletinfo(const JSONRPCRequest& request)
     }
     if (pwalletMain->IsHDEnabled()) {
         obj.pushKV("keypoolsize_hd_internal",   (int64_t)(pwalletMain->GetKeyPoolSize() - kpExternalSize));
-        obj.pushKV("keypoolsize_hd_staking",   (int64_t)(pwalletMain->GetStakingKeyPoolSize()));
+        obj.pushKV("keypoolsize_hd_ecommerce",   (int64_t)(pwalletMain->GetECommerceKeyPoolSize()));
     }
 
     if (pwalletMain->IsCrypted())
@@ -4206,9 +3546,8 @@ extern UniValue DoZpivSpend(const CAmount nAmount, std::vector<CZerocoinMint>& v
 
     std::list<std::pair<CTxDestination, CAmount>> outputs;
     if(address_str != "") { // Spend to supplied destination address
-        bool isStaking = false;
-        address = DecodeDestination(address_str, isStaking);
-        if(!IsValidDestination(address) || isStaking)
+        address = DecodeDestination(address_str);
+        if(!IsValidDestination(address))
             throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BECN address");
         outputs.push_back(std::pair<CTxDestination, CAmount>(address, nAmount));
     }
@@ -4975,17 +4314,13 @@ const CRPCCommand vWalletRPCCommands[] =
         {"wallet",              "abandontransaction",       &abandontransaction,       false },
         { "wallet",             "addmultisigaddress",       &addmultisigaddress,       true  },
         { "wallet",             "backupwallet",             &backupwallet,             true  },
-        { "wallet",             "delegatestake",            &delegatestake,            false },
         { "wallet",             "dumpprivkey",              &dumpprivkey,              true  },
         { "wallet",             "dumpwallet",               &dumpwallet,               true  },
         { "wallet",             "encryptwallet",            &encryptwallet,            true  },
         { "wallet",             "getbalance",               &getbalance,               false },
-        { "wallet",             "getcoldstakingbalance",    &getcoldstakingbalance,    false },
-        { "wallet",             "getdelegatedbalance",      &getdelegatedbalance,      false },
         { "wallet",             "upgradewallet",            &upgradewallet,            true  },
         { "wallet",             "sethdseed",                &sethdseed,                true  },
         { "wallet",             "getnewaddress",            &getnewaddress,            true  },
-        { "wallet",             "getnewstakingaddress",     &getnewstakingaddress,     true  },
         { "wallet",             "getrawchangeaddress",      &getrawchangeaddress,      true  },
         { "wallet",             "getreceivedbyaddress",     &getreceivedbyaddress,     false },
         { "wallet",             "gettransaction",           &gettransaction,           false },
@@ -4998,16 +4333,12 @@ const CRPCCommand vWalletRPCCommands[] =
         { "wallet",             "importpubkey",             &importpubkey,             true  },
         { "wallet",             "keypoolrefill",            &keypoolrefill,            true  },
         { "wallet",             "listaddressgroupings",     &listaddressgroupings,     false },
-        { "wallet",             "listdelegators",           &listdelegators,           false },
-        { "wallet",             "liststakingaddresses",     &liststakingaddresses,     false },
-        { "wallet",             "listcoldutxos",            &listcoldutxos,            false },
         { "wallet",             "listlockunspent",          &listlockunspent,          false },
         { "wallet",             "listreceivedbyaddress",    &listreceivedbyaddress,    false },
         { "wallet",             "listsinceblock",           &listsinceblock,           false },
         { "wallet",             "listtransactions",         &listtransactions,         false },
         { "wallet",             "listunspent",              &listunspent,              false },
         { "wallet",             "lockunspent",              &lockunspent,              true  },
-        { "wallet",             "rawdelegatestake",         &rawdelegatestake,         false },
         { "wallet",             "sendmany",                 &sendmany,                 false },
         { "wallet",             "sendtoaddress",            &sendtoaddress,            false },
         { "wallet",             "sendtoaddressix",          &sendtoaddressix,          false },
@@ -5017,8 +4348,6 @@ const CRPCCommand vWalletRPCCommands[] =
         { "wallet",             "walletlock",               &walletlock,               true  },
         { "wallet",             "walletpassphrasechange",   &walletpassphrasechange,   true  },
         { "wallet",             "walletpassphrase",         &walletpassphrase,         true  },
-        { "wallet",             "delegatoradd",             &delegatoradd,             true  },
-        { "wallet",             "delegatorremove",          &delegatorremove,          true  },
 
         /** Account functions (deprecated) */
         { "wallet",             "getaccountaddress",        &getaccountaddress,        true  },

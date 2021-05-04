@@ -129,47 +129,6 @@ QPushButton[cssClass="btn-check-console"] {
 }
 
 /*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
-!############# Cold staking
- ################################*/
-
-*[cssClass="btn-nav-cold-staking"] {
-  qproperty-icon: url("://ic-nav-cold-staking") off,
-    url("://ic-nav-cold-staking-active") on;
-  qproperty-iconSize: 24px 40px;
-  background-color: transparent;
-  font-size: 12px;
-  color: #fff;
-}
-
-*[cssClass="btn-nav-cold-staking"]:checked {
-  background-color: #262626;
-  font-size: 12px;
-  color: #b6492b;
-}
-
-*[cssClass="btn-nav-cold-staking"]:checked:hover {
-  background-color: #262626;
-  font-size: 12px;
-  color: #b6492b;
-}
-
-*[cssClass="btn-nav-cold-staking"]:hover {
-  qproperty-icon: url("://ic-nav-cold-staking-hover");
-  qproperty-iconSize: 24px 40px;
-  background-color: #262626;
-  font-size: 12px;
-  color: #b6492b;
-}
-
-*[cssClass="btn-nav-cold-staking-active"] {
-  qproperty-icon: url("://ic-nav-cold-staking-active");
-  qproperty-iconSize: 24px 40px;
-  background-color: #262626;
-  font-size: 12px;
-  color: #b6492b;
-}
-
-/*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 !#############
  ################################*/
 
@@ -413,7 +372,8 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 *[cssClass="amount-topbar"] {
   color: #262626;
-  font-size: 35px;
+  font-size: 28px;
+  letter-spacing: 1px;
 }
 
 *[cssClass="amount-small-topbar"] {
@@ -554,52 +514,6 @@ QPushButton[cssClass="btn-check-stack"]:checked {
   background-color: #d1d3d4;
   color: #262626;
 }
-
-/*******************
-******cold staking*********
- ********************/
-
-QPushButton[cssClass="btn-check-cold-staking"] {
-  qproperty-icon: url("://ic-check-cold-staking");
-  qproperty-iconSize: 24px 24px;
-  background-color: #d1d3d4;
-  color: #262626;
-  border-radius: 2px;
-}
-
-QPushButton[cssClass="btn-check-cold-staking-inactive"] {
-  qproperty-icon: url("://ic-check-cold-staking-off");
-  qproperty-iconSize: 24px 24px;
-  background-color: #d1d3d4;
-  color: #262626;
-  border-radius: 2px;
-}
-
-QPushButton[cssClass="btn-check-cold-staking-checked"] {
-  qproperty-icon: url("://ic-check-cold-staking-enabled");
-  qproperty-iconSize: 24px 24px;
-  background-color: #d1d3d4;
-  color: #262626;
-}
-
-QPushButton[cssClass="btn-check-cold-staking-unchecked"] {
-  qproperty-icon: url("://ic-check-cold-staking-enabled");
-  qproperty-iconSize: 24px 24px;
-  background-color: #d1d3d4;
-  color: #262626;
-  border-radius: 2px;
-}
-
-QPushButton[cssClass="btn-check-cold-staking"]:checked {
-  qproperty-icon: url("://ic-check-cold-staking-enabled");
-  qproperty-iconSize: 24px 24px;
-  background-color: #d1d3d4;
-  color: #262626;
-}
-
-/*******************
-******end cold staking*********
- ********************/
 
 QPushButton[cssClass="btn-check-connect"] {
   qproperty-icon: url("://ic-check-connect");

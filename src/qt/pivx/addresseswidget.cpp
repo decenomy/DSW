@@ -155,7 +155,7 @@ void AddressesWidget::loadWalletModel()
 {
     if (walletModel) {
         addressTablemodel = walletModel->getAddressTableModel();
-        this->filter = new AddressFilterProxyModel(QStringList({AddressTableModel::Send, AddressTableModel::ColdStakingSend}), this);
+        this->filter = new AddressFilterProxyModel(QStringList({AddressTableModel::Send}), this);
         this->filter->setSourceModel(addressTablemodel);
         this->filter->sort(sortType, sortOrder);
         ui->listAddresses->setModel(this->filter);
@@ -184,8 +184,7 @@ void AddressesWidget::onStoreContactClicked()
             return;
         }
 
-        bool isStakingAddress = false;
-        CTxDestination pivAdd = DecodeDestination(address.toUtf8().constData(), isStakingAddress);
+        CTxDestination pivAdd = DecodeDestination(address.toUtf8().constData());
         if (walletModel->isMine(pivAdd)) {
             setCssEditLine(ui->lineEditAddress, false, true);
             inform(tr("Cannot store your own address as contact"));
@@ -199,9 +198,9 @@ void AddressesWidget::onStoreContactClicked()
             return;
         }
 
-        if (walletModel->updateAddressBookLabels(pivAdd, label.toUtf8().constData(),
-                isStakingAddress ? AddressBook::AddressBookPurpose::COLD_STAKING_SEND : AddressBook::AddressBookPurpose::SEND)
-                ) {
+        if (walletModel->updateAddressBookLabels(
+            pivAdd, label.toUtf8().constData(),AddressBook::AddressBookPurpose::SEND
+        )) {
             ui->lineEditAddress->setText("");
             ui->lineEditName->setText("");
             setCssEditLine(ui->lineEditAddress, true, true);

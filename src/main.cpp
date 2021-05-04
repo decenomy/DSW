@@ -865,9 +865,8 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState &state, const C
 
     // Check transaction
     int chainHeight = chainActive.Height();
-    bool fColdStakingActive = sporkManager.IsSporkActive(SPORK_17_COLDSTAKING_ENFORCEMENT);
     if (!CheckTransaction(tx, consensus.NetworkUpgradeActive(chainHeight, Consensus::UPGRADE_ZC),
-            true, state, isBlockBetweenFakeSerialAttackRange(chainHeight), fColdStakingActive))
+            true, state, isBlockBetweenFakeSerialAttackRange(chainHeight)))
         return error("%s : transaction checks for %s failed with %s", __func__, tx.GetHash().ToString(), FormatStateMessage(state));
 
     // Coinbase is only valid in a block, not as a loose transaction
@@ -3324,52 +3323,6 @@ bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool f
     return true;
 }
 
-bool CheckColdStakeFreeOutput(const CTransaction& tx, const int nHeight)
-{
-    if (!tx.HasP2CSOutputs())
-        return true;
-
-    const unsigned int outs = tx.vout.size();
-    const CTxOut& lastOut = tx.vout[outs-1];
-    if (outs >=3 && lastOut.scriptPubKey != tx.vout[outs-2].scriptPubKey) {
-        if (lastOut.nValue == CMasternode::GetMasternodePayment(nHeight))
-            return true;
-
-        // This could be a budget block.
-        if (Params().IsRegTestNet())
-            return false;
-
-        // if mnsync is incomplete, we cannot verify if this is a budget block.
-        // so we check that the staker is not transferring value to the free output
-        if (!masternodeSync.IsSynced()) {
-            // First try finding the previous transaction in database
-            CTransaction txPrev; uint256 hashBlock;
-            if (!GetTransaction(tx.vin[0].prevout.hash, txPrev, hashBlock, true))
-                return error("%s : read txPrev failed: %s",  __func__, tx.vin[0].prevout.hash.GetHex());
-            CAmount amtIn = txPrev.vout[tx.vin[0].prevout.n].nValue + CMasternode::GetBlockValue(nHeight - 1);
-            CAmount amtOut = 0;
-            for (unsigned int i = 1; i < outs-1; i++) amtOut += tx.vout[i].nValue;
-            if (amtOut != amtIn)
-                return error("%s: non-free outputs value %d less than required %d", __func__, amtOut, amtIn);
-            return true;
-        }
-
-        // Check that this is indeed a superblock.
-        if (budget.IsBudgetPaymentBlock(nHeight)) {
-            // if superblocks are not enabled, reject
-            if (!sporkManager.IsSporkActive(SPORK_13_ENABLE_SUPERBLOCKS))
-                return error("%s: superblocks are not enabled", __func__);
-            return true;
-        }
-
-        // wrong free output
-        return error("%s: Wrong cold staking outputs: vout[%d].scriptPubKey (%s) != vout[%d].scriptPubKey (%s) - value: %s",
-                __func__, outs-1, HexStr(lastOut.scriptPubKey), outs-2, HexStr(tx.vout[outs-2].scriptPubKey), FormatMoney(lastOut.nValue).c_str());
-    }
-
-    return true;
-}
-
 bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bool fCheckMerkleRoot, bool fCheckSig)
 {
     if (block.fChecked)
@@ -3445,9 +3398,6 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
         LogPrintf("%s : skipping transaction locking checks\n", __func__);
     }
 
-    // Cold Staking enforcement (true during sync - reject P2CS outputs when false)
-    bool fColdStakingActive = true;
-
     // Zerocoin activation
     bool fZerocoinActive = block.GetBlockTime() > Params().GetConsensus().ZC_TimeStart;
 
@@ -3470,15 +3420,6 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
         // The case also exists that the sending peer could not have enough data to see
         // that this block is invalid, so don't issue an outright ban.
         if (nHeight != 0 && !IsInitialBlockDownload()) {
-            // Last output of Cold-Stake is not abused
-            if (IsPoS && !CheckColdStakeFreeOutput(block.vtx[1], nHeight)) {
-                mapRejectedBlocks.insert(std::make_pair(block.GetHash(), GetTime()));
-                return state.DoS(0, false, REJECT_INVALID, "bad-p2cs-outs", false, "invalid cold-stake output");
-            }
-
-            // set Cold Staking Spork
-            fColdStakingActive = sporkManager.IsSporkActive(SPORK_17_COLDSTAKING_ENFORCEMENT);
-
             // check masternode/budget payment
             if (!IsBlockPayeeValid(block, nHeight)) {
                 mapRejectedBlocks.insert(std::make_pair(block.GetHash(), GetTime()));
@@ -3499,8 +3440,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                 fZerocoinActive,
                 blockHeight >= Params().GetConsensus().height_start_ZC_SerialRangeCheck,
                 state,
-                isBlockBetweenFakeSerialAttackRange(blockHeight),
-                fColdStakingActive
+                isBlockBetweenFakeSerialAttackRange(blockHeight)
         ))
             return state.Invalid(false, state.GetRejectCode(), state.GetRejectReason(),
                                              strprintf("Transaction check failed (tx hash %s) %s", tx.GetHash().ToString(), state.GetDebugMessage()));
@@ -5321,7 +5261,6 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
         // TODO: Move this to an instant broadcast of the sporks.
         bool fMissingSporks = !pSporkDB->SporkExists(SPORK_14_MIN_PROTOCOL_ACCEPTED) ||
                               !pSporkDB->SporkExists(SPORK_16_ZEROCOIN_MAINTENANCE_MODE) ||
-                              !pSporkDB->SporkExists(SPORK_17_COLDSTAKING_ENFORCEMENT) ||
                               !pSporkDB->SporkExists(SPORK_18_ZEROCOIN_PUBLICSPEND_V4);
 
         if (fMissingSporks || !fRequestedSporksIDB) {

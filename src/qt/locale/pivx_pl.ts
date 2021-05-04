@@ -409,33 +409,6 @@ do stakingu</translation>
     </message>
 </context>
 <context>
-    <name>CSRow</name>
-    <message>
-        <source>Form</source>
-        <translation>Formularz</translation>
-    </message>
-    <message>
-        <source>Savings</source>
-        <translation>Oszczędności</translation>
-    </message>
-    <message>
-        <source>0,00 BECN</source>
-        <translation>0,00 BECN</translation>
-    </message>
-    <message>
-        <source>address</source>
-        <translation>adres</translation>
-    </message>
-    <message>
-        <source>Not Staking</source>
-        <translation>brak Stakingu</translation>
-    </message>
-    <message>
-        <source>Own delegation</source>
-        <translation>Delegacja własna</translation>
-    </message>
-</context>
-<context>
     <name>ClientModel</name>
     <message>
         <source>Total: %1 (IPv4: %2 / IPv6: %3 / Tor: %4 / Unknown: %5)</source>
@@ -641,10 +614,6 @@ do stakingu</translation>
         <translation>tak</translation>
     </message>
     <message>
-        <source>delegated to %1 for cold staking</source>
-        <translation>przekazane do %1 dla cold staking</translation>
-    </message>
-    <message>
         <source>Select All</source>
         <translation>Zaznacz wszystko</translation>
     </message>
@@ -687,217 +656,6 @@ do stakingu</translation>
     <message>
         <source>(change)</source>
         <translation>(reszta)</translation>
-    </message>
-</context>
-<context>
-    <name>ColdStakingWidget</name>
-    <message>
-        <source>Form</source>
-        <translation>Formularz</translation>
-    </message>
-    <message>
-        <source>Owner address (optional, if empty a new address will be created)</source>
-        <translation>Adres właściciela (opcjonalnie, jeśli pusty, zostanie utworzony nowy adres)</translation>
-    </message>
-    <message>
-        <source>Total Staking:</source>
-        <translation>Razem Staking:</translation>
-    </message>
-    <message>
-        <source>Cold Staking</source>
-        <translation>Cold Staking</translation>
-    </message>
-    <message>
-        <source>Staker</source>
-        <translation>Staker</translation>
-    </message>
-    <message>
-        <source>Delegation</source>
-        <translation>Delegacja</translation>
-    </message>
-    <message>
-        <source>Delegate</source>
-        <translation>Deleguj</translation>
-    </message>
-    <message>
-        <source>Clear All</source>
-        <translation>Wyczyść wszystko</translation>
-    </message>
-    <message>
-        <source>Delegated balance history</source>
-        <translation>Historia sald delegowanych</translation>
-    </message>
-    <message>
-        <source>No delegations yet</source>
-        <translation>Brak delegacji</translation>
-    </message>
-    <message>
-        <source>Total Staking: %1</source>
-        <translation>Total Staking: %1</translation>
-    </message>
-    <message>
-        <source>Error loading delegations: %1</source>
-        <translation>Błąd ładowania delegacji: %1</translation>
-    </message>
-    <message>
-        <source>You can delegate your BECNs, letting a hot node (24/7 online node)
-stake on your behalf, while you keep the keys securely offline.</source>
-        <translation>Możesz delegować swoje BECN, używając gorącego węzła (węzeł online 24/7)
-stake w Twoim imieniu, podczas gdy klucze są bezpiecznie offline.</translation>
-    </message>
-    <message>
-        <source>Enter owner address</source>
-        <translation>Wpisz adres właściciela</translation>
-    </message>
-    <message>
-        <source>Accept BECN delegation / Delegate BECN</source>
-        <translation>Zaakceptuj delegację BECN / Deleguj BECN</translation>
-    </message>
-    <message>
-        <source>Cold Staking address</source>
-        <translation>Cold Staking adres</translation>
-    </message>
-    <message>
-        <source>No receive addresses available, you can go to the receive screen and create some there!</source>
-        <translation>Brak dostępnych adresów odbioru, możesz przejść do ekranu odbioru i tam utworzyć!</translation>
-    </message>
-    <message>
-        <source>No contacts available, you can go to the contacts screen and add some there!</source>
-        <translation>Brak dostępnych kontaktów, możesz przejść do ekranu kontaktów i tam dodać!</translation>
-    </message>
-    <message>
-        <source>Cannot send delegation, wallet locked</source>
-        <translation>Nie można przekazać delegacji, portfel zablokowany</translation>
-    </message>
-    <message>
-        <source>Cold staking is networkely disabled</source>
-        <translation>Cold staking jest wyłączony przez sieć</translation>
-    </message>
-    <message>
-        <source>Coin Control</source>
-        <translation>Kontrola monet</translation>
-    </message>
-    <message>
-        <source>Invalid entry</source>
-        <translation>Niewłaściwy wpis</translation>
-    </message>
-    <message>
-        <source>Invalid entry, minimum delegable amount is </source>
-        <translation>Nieprawidłowy wpis, minimalna kwota do przekazania wynosi</translation>
-    </message>
-    <message>
-        <source>Owner address invalid</source>
-        <translation>Niepoprawny adres właściciela</translation>
-    </message>
-    <message>
-        <source>ALERT!</source>
-        <translation>ALARM!</translation>
-    </message>
-    <message>
-        <source>Delegating to an external owner address!
-
-The delegated coins will NOT be spendable by this wallet.
-Spending these coins will need to be done from the wallet or
-device containing the owner address.
-
-Do you wish to proceed?</source>
-        <translation>Delegowanie na zewnętrzny adres właściciela!
-
-Przekazywane monety NIE będą wydawane przez ten portfel.
-Wydawanie tych monet będzie musiało być wykonane z portfela lub
-urządzenie zawierające adres właściciela
-
-Czy chcesz kontynuować?</translation>
-    </message>
-    <message>
-        <source>Staking address corresponds to this wallet, change it to an external node</source>
-        <translation>Staking adres odpowiada temu portfelowi, zmień go na zewnętrzny węzeł</translation>
-    </message>
-    <message>
-        <source>Cannot create transaction.</source>
-        <translation>Nie można utworzyć transakcji.</translation>
-    </message>
-    <message>
-        <source>Coins delegated</source>
-        <translation>Monety przekazane</translation>
-    </message>
-    <message>
-        <source>Cannot perform operation, wallet locked</source>
-        <translation>Nie można wykonać operacji, portfel zablokowany</translation>
-    </message>
-    <message>
-        <source>URI copied to clipboard</source>
-        <translation>URI skopiowany do schowka</translation>
-    </message>
-    <message>
-        <source>Address copied to clipboard</source>
-        <translation>Adres skopiowany do schowka</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation>kopiuj</translation>
-    </message>
-    <message>
-        <source>Edit</source>
-        <translation>Edytuj</translation>
-    </message>
-    <message>
-        <source>Stake</source>
-        <translation>Stake</translation>
-    </message>
-    <message>
-        <source>Blacklist</source>
-        <translation>Czarna lista</translation>
-    </message>
-    <message>
-        <source>Edit Label</source>
-        <translation>Edytuj etykietę</translation>
-    </message>
-    <message>
-        <source>Copy owner
-address</source>
-        <translation>Kopiuj właściciela
-adres</translation>
-    </message>
-    <message>
-        <source>Address copied</source>
-        <translation>Adres skopiowany</translation>
-    </message>
-    <message>
-        <source>Edit Cold Address Label</source>
-        <translation>Edytuj etykietę adresu zimnego</translation>
-    </message>
-    <message>
-        <source>Whitelist failed, please check the logs</source>
-        <translation>Niepowodzenie białej listy, sprawdź dzienniki</translation>
-    </message>
-    <message>
-        <source> staking!</source>
-        <translation>staking!</translation>
-    </message>
-    <message>
-        <source>Blacklist failed, please check the logs</source>
-        <translation>Czarna lista nie powiodła się, sprawdź dzienniki</translation>
-    </message>
-    <message>
-        <source> blacklisted from staking</source>
-        <translation>na czarnej liście staking</translation>
-    </message>
-    <message>
-        <source>Owner address copied</source>
-        <translation>Adres właściciela został skopiowany</translation>
-    </message>
-    <message>
-        <source>Edit Owner Address Label</source>
-        <translation>Edytuj etykietę adresu właściciela</translation>
-    </message>
-    <message>
-        <source>Address label saved</source>
-        <translation>Etykieta adresu została zapisana</translation>
-    </message>
-    <message>
-        <source>Error storing address label</source>
-        <translation>Błąd podczas zapisywania etykiety adresu</translation>
     </message>
 </context>
 <context>
@@ -2192,18 +1950,6 @@ Adres: %4
         <translation>Odbieranie</translation>
     </message>
     <message>
-        <source>Delegator</source>
-        <translation>Delegator</translation>
-    </message>
-    <message>
-        <source>Cold Staking</source>
-        <translation>Cold Staking</translation>
-    </message>
-    <message>
-        <source>Cold Staking Contact</source>
-        <translation>Cold Staking Kontakt</translation>
-    </message>
-    <message>
         <source>Hidden</source>
         <translation>Ukryty</translation>
     </message>
@@ -2264,20 +2010,8 @@ Adres: %4
         <translation>Dla siebie</translation>
     </message>
     <message>
-        <source>Cold stakes</source>
-        <translation>Cold stakes</translation>
-    </message>
-    <message>
         <source>Hot stakes</source>
         <translation>Hot stakes</translation>
-    </message>
-    <message>
-        <source>Delegated</source>
-        <translation>Delegowany</translation>
-    </message>
-    <message>
-        <source>Delegations</source>
-        <translation>Delegacje</translation>
     </message>
     <message>
         <source>by Label</source>
@@ -2883,14 +2617,6 @@ Adres: %4
         <translation>WYGENERUJ</translation>
     </message>
     <message>
-        <source>Creates an address to receive coin delegations and be able to stake them.</source>
-        <translation>Tworzy adres, na który mają być wysyłane delegowane monety do stake.</translation>
-    </message>
-    <message>
-        <source>New Cold Staking Address</source>
-        <translation>Nowy adres do Cold Staking</translation>
-    </message>
-    <message>
         <source>Amount (optional)</source>
         <translation>Kwota (opcjonalnie)</translation>
     </message>
@@ -3031,10 +2757,6 @@ Czy chcesz kontynuować?</translation>
         <translation>Nieprawidłowy wpis, poprzednie wpisy muszą być ważne przed dodaniem nowego</translation>
     </message>
     <message>
-        <source>Possibly spend coins delegated for cold-staking (currently available: %1</source>
-        <translation>Maksymalna kwota delegowania do cold-staking (obecnie dostępne: %1</translation>
-    </message>
-    <message>
         <source>Invalid entry</source>
         <translation>Niewłaściwy wpis</translation>
     </message>
@@ -3049,14 +2771,6 @@ Czy chcesz kontynuować?</translation>
     <message>
         <source>Cannot create transaction.</source>
         <translation>Nie można utworzyć transakcji.</translation>
-    </message>
-    <message>
-        <source>WARNING:
-Transaction spends a cold-stake delegation, voiding it.
-These coins will no longer be cold-staked.</source>
-        <translation>OSTRZEŻENIE:
-Transakcja wydaje cold-stake, unieważniając ją.
-Monety te nie będą już cold-staked.</translation>
     </message>
     <message>
         <source>Transaction sent</source>
@@ -4549,10 +4263,6 @@ kopia zapasowa zostanie utworzona.
         <translation>Otrzymane od</translation>
     </message>
     <message>
-        <source>Stake delegation</source>
-        <translation>Delegacja Stake</translation>
-    </message>
-    <message>
         <source>Sent to</source>
         <translation>Wyślij do</translation>
     </message>
@@ -4563,10 +4273,6 @@ kopia zapasowa zostanie utworzona.
     <message>
         <source>Payment to yourself</source>
         <translation>Zapłata dla siebie</translation>
-    </message>
-    <message>
-        <source>Stake delegation spent by</source>
-        <translation>Delegacja Stake wydana przez</translation>
     </message>
     <message>
         <source>Mined</source>
@@ -4840,10 +4546,6 @@ Portfel Beacon</translation>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
         <translation>Dystrybuowane w ramach licencji oprogramowania MIT, patrz plik towarzyszący COPYING lub &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</translation>
-    </message>
-    <message>
-        <source>Enable cold staking functionality (0-1, default: %u). Disabled if staking=0</source>
-        <translation>Włącz funkcję cold staking (0-1, domyślnie: %u). Wyłączone jeśli staking=0</translation>
     </message>
     <message>
         <source>Enable spork administration functionality with the appropriate private key.</source>
@@ -5907,10 +5609,6 @@ Portfel Beacon</translation>
     <message>
         <source>Reset to default</source>
         <translation>Przywróć ustawienia domyślne</translation>
-    </message>
-    <message>
-        <source>Include delegated</source>
-        <translation>Uwzględnij delegowane</translation>
     </message>
 </context>
 </TS>
