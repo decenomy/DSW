@@ -15,7 +15,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"io.__decenomy__.__Decenomy__-Qt";
+        return @"io.beacon.Beacon-Qt";
     } else {
         return [self __bundleIdentifier];
     }

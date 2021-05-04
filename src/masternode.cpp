@@ -318,19 +318,23 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
-    if (nHeight <= 100000) {
-        return 15000 * COIN;
+    if (nHeight <= 100000 && nHeight > 3000) {
+        return 2000 * COIN;
     } else if (nHeight <= 200000 && nHeight > 100000) {
-        return 17500 * COIN;
-    } else if (nHeight > 200000) {
-        return 20000 * COIN;
+        return 3000 * COIN;
+    } else if (nHeight <= 300000 && nHeight > 200000) {
+        return 5000 * COIN;
+    } else if (nHeight <= 400000 && nHeight > 300000) {
+        return 7000 * COIN;
+    } else if (nHeight > 400000) {
+        return 10000 * COIN;
     }
     return 0;
 }
 
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
-    CAmount maxMoneyOut= Params().GetConsensus().nMaxMoneyOut;
+    CAmount maxMoneyOut = Params().GetConsensus().nMaxMoneyOut;
 
     if(nMoneySupply >= maxMoneyOut) {
         return 0;
@@ -339,17 +343,23 @@ CAmount CMasternode::GetBlockValue(int nHeight)
     CAmount nSubsidy;
 
     if (nHeight == 1) {
-        nSubsidy = 30000000 * COIN; // __DSW__ coin supply (30M)
+        nSubsidy = 1700000 * COIN; // BECN coin supply (30M)
     } else if (nHeight <= 100000) {
-        nSubsidy = 100 * COIN;
+        nSubsidy = 5 * COIN;
     } else if (nHeight > 100000 && nHeight <= 200000) {
-        nSubsidy = 125 * COIN;
+        nSubsidy = 10 * COIN;
     } else if (nHeight > 200000 && nHeight <= 300000) {
-        nSubsidy = 150 * COIN;
+        nSubsidy = 20 * COIN;
     } else if (nHeight > 300000 && nHeight <= 400000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 400000) {
-        nSubsidy = 100 * COIN;
+        nSubsidy = 30 * COIN;
+    } else if (nHeight > 400000 && nHeight <= 500000) {
+        nSubsidy = 40 * COIN;
+    } else if (nHeight > 500000 && nHeight <= 600000) {
+        nSubsidy = 30 * COIN;
+    } else if (nHeight > 600000 && nHeight <= 700000) {
+        nSubsidy = 20 * COIN;
+    } else if (nHeight > 700000) {
+        nSubsidy = 10 * COIN;
     }
 
     if(nMoneySupply + nSubsidy > maxMoneyOut) {
@@ -361,9 +371,9 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    if(nHeight <= 5000) return 0;
+    if(nHeight <= 3000) return 0;
 
-    return CMasternode::GetBlockValue(nHeight) * 95 / 100;
+    return CMasternode::GetBlockValue(nHeight) * 80 / 100;
 }
 
 CMasternodeBroadcast::CMasternodeBroadcast() :
@@ -703,13 +713,13 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
     }
 
     // verify that sig time is legit in past
-    // should be at least not earlier than block when 1000 __DSW__ tx got MASTERNODE_MIN_CONFIRMATIONS
+    // should be at least not earlier than block when 1000 BECN tx got MASTERNODE_MIN_CONFIRMATIONS
     uint256 hashBlock = UINT256_ZERO;
     CTransaction tx2;
     GetTransaction(vin.prevout.hash, tx2, hashBlock, true);
     BlockMap::iterator mi = mapBlockIndex.find(hashBlock);
     if (mi != mapBlockIndex.end() && (*mi).second) {
-        CBlockIndex* pMNIndex = (*mi).second;                                                        // block for 1000 __DSW__ tx -> 1 confirmation
+        CBlockIndex* pMNIndex = (*mi).second;                                                        // block for 1000 BECN tx -> 1 confirmation
         CBlockIndex* pConfIndex = chainActive[pMNIndex->nHeight + MASTERNODE_MIN_CONFIRMATIONS - 1]; // block where tx got MASTERNODE_MIN_CONFIRMATIONS
         if (pConfIndex->GetBlockTime() > sigTime) {
             LogPrint(BCLog::MASTERNODE,"mnb - Bad sigTime %d for Masternode %s (%i conf block is at %d)\n",

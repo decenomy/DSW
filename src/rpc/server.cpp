@@ -266,11 +266,11 @@ UniValue stop(const JSONRPCRequest& jsonRequest)
     if (jsonRequest.fHelp || jsonRequest.params.size() > 1)
         throw std::runtime_error(
             "stop\n"
-            "\nStop __DSW__ server.");
+            "\nStop BECN server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "__DSW__ server stopping";
+    return "BECN server stopping";
 }
 
 
@@ -360,32 +360,32 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblock",           &waitforblock,           true },
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true },
 
-        /* __DSW__ features */
-        {"__decenomy__", "listmasternodes", &listmasternodes, true },
-        {"__decenomy__", "getmasternodecount", &getmasternodecount, true },
-        {"__decenomy__", "createmasternodebroadcast", &createmasternodebroadcast, true },
-        {"__decenomy__", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
-        {"__decenomy__", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
-        {"__decenomy__", "masternodecurrent", &masternodecurrent, true },
-        {"__decenomy__", "startmasternode", &startmasternode, true },
-        {"__decenomy__", "createmasternodekey", &createmasternodekey, true },
-        {"__decenomy__", "getmasternodeoutputs", &getmasternodeoutputs, true },
-        {"__decenomy__", "listmasternodeconf", &listmasternodeconf, true },
-        {"__decenomy__", "getmasternodestatus", &getmasternodestatus, true },
-        {"__decenomy__", "getmasternodewinners", &getmasternodewinners, true },
-        {"__decenomy__", "getmasternodescores", &getmasternodescores, true },
-        {"__decenomy__", "preparebudget", &preparebudget, true },
-        {"__decenomy__", "submitbudget", &submitbudget, true },
-        {"__decenomy__", "mnbudgetvote", &mnbudgetvote, true },
-        {"__decenomy__", "getbudgetvotes", &getbudgetvotes, true },
-        {"__decenomy__", "getnextsuperblock", &getnextsuperblock, true },
-        {"__decenomy__", "getbudgetprojection", &getbudgetprojection, true },
-        {"__decenomy__", "getbudgetinfo", &getbudgetinfo, true },
-        {"__decenomy__", "mnbudgetrawvote", &mnbudgetrawvote, true },
-        {"__decenomy__", "mnfinalbudget", &mnfinalbudget, true },
-        {"__decenomy__", "checkbudgets", &checkbudgets, true },
-        {"__decenomy__", "mnsync", &mnsync, true },
-        {"__decenomy__", "spork", &spork, true },
+        /* BECN features */
+        {"beacon", "listmasternodes", &listmasternodes, true },
+        {"beacon", "getmasternodecount", &getmasternodecount, true },
+        {"beacon", "createmasternodebroadcast", &createmasternodebroadcast, true },
+        {"beacon", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
+        {"beacon", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
+        {"beacon", "masternodecurrent", &masternodecurrent, true },
+        {"beacon", "startmasternode", &startmasternode, true },
+        {"beacon", "createmasternodekey", &createmasternodekey, true },
+        {"beacon", "getmasternodeoutputs", &getmasternodeoutputs, true },
+        {"beacon", "listmasternodeconf", &listmasternodeconf, true },
+        {"beacon", "getmasternodestatus", &getmasternodestatus, true },
+        {"beacon", "getmasternodewinners", &getmasternodewinners, true },
+        {"beacon", "getmasternodescores", &getmasternodescores, true },
+        {"beacon", "preparebudget", &preparebudget, true },
+        {"beacon", "submitbudget", &submitbudget, true },
+        {"beacon", "mnbudgetvote", &mnbudgetvote, true },
+        {"beacon", "getbudgetvotes", &getbudgetvotes, true },
+        {"beacon", "getnextsuperblock", &getnextsuperblock, true },
+        {"beacon", "getbudgetprojection", &getbudgetprojection, true },
+        {"beacon", "getbudgetinfo", &getbudgetinfo, true },
+        {"beacon", "mnbudgetrawvote", &mnbudgetrawvote, true },
+        {"beacon", "mnfinalbudget", &mnfinalbudget, true },
+        {"beacon", "checkbudgets", &checkbudgets, true },
+        {"beacon", "mnsync", &mnsync, true },
+        {"beacon", "spork", &spork, true },
 
 #ifdef ENABLE_WALLET
         /* Wallet */
@@ -598,7 +598,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(std::string methodname, std::string args)
 {
-    return "> __decenomy__-cli " + methodname + " " + args + "\n";
+    return "> beacon-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(std::string methodname, std::string args)

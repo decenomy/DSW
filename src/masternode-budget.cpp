@@ -52,8 +52,8 @@ bool IsBudgetCollateralValid(const uint256& nTxCollateralHash, const uint256& nE
         }
         if (fBudgetFinalization) {
             // Collateral for budget finalization
-            // Note: there are still old valid budgets out there, but the check for the new 5 __DSW__ finalization collateral
-            //       will also cover the old 50 __DSW__ finalization collateral.
+            // Note: there are still old valid budgets out there, but the check for the new 5 BECN finalization collateral
+            //       will also cover the old 50 BECN finalization collateral.
             LogPrint(BCLog::MNBUDGET, "Final Budget: o.scriptPubKey(%s) == findScript(%s) ?\n", HexStr(o.scriptPubKey), HexStr(findScript));
             if (o.scriptPubKey == findScript) {
                 LogPrint(BCLog::MNBUDGET, "Final Budget: o.nValue(%ld) >= BUDGET_FEE_TX(%ld) ?\n", o.nValue, BUDGET_FEE_TX);

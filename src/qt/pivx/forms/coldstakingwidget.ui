@@ -111,7 +111,7 @@
                   </size>
                  </property>
                  <property name="text">
-                  <string>You can delegate your __DSW__s, letting a hot node (24/7 online node)
+                  <string>You can delegate your BECNs, letting a hot node (24/7 online node)
 stake on your behalf, while you keep the keys securely offline.</string>
                  </property>
                 </widget>
@@ -235,7 +235,7 @@ stake on your behalf, while you keep the keys securely offline.</string>
                 <item alignment="Qt::AlignTop">
                  <widget class="QLabel" name="labelSubtitle2">
                   <property name="text">
-                   <string>Accept __DSW__ delegation / Delegate __DSW__</string>
+                   <string>Accept BECN delegation / Delegate BECN</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

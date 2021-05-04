@@ -122,12 +122,12 @@
         <translation>Indirizzi di ricezione</translation>
     </message>
     <message>
-        <source>These are your __DSW__ addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Questi sono gli indirizzi __DSW__ per l'invio di pagamenti. Controlla sempre l'importo e l'indirizzo di ricezione prima di inviare valuta.</translation>
+        <source>These are your BECN addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Questi sono gli indirizzi BECN per l'invio di pagamenti. Controlla sempre l'importo e l'indirizzo di ricezione prima di inviare valuta.</translation>
     </message>
     <message>
-        <source>These are your __DSW__ addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Questi sono gli indirizzi __DSW__ per la ricezione di pagamenti. Si raccomanda di utilizzare un indirizzo diverso per ogni transazione.</translation>
+        <source>These are your BECN addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Questi sono gli indirizzi BECN per la ricezione di pagamenti. Si raccomanda di utilizzare un indirizzo diverso per ogni transazione.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -364,8 +364,8 @@ per lo staking</translation>
         <translation>CANCELLA</translation>
     </message>
     <message>
-        <source>__DSW__ will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your __DSW__s from being stolen by malware infecting your computer.</source>
-        <translation>__DSW__ verrà ora chiuso per completare il processo di cifratura. Ricorda che crittografare il tuo portafoglio non protegge completamente i tuoi __DSW__ dal furto da parte di software malevoli che potrebbero infettare il tuo computer.</translation>
+        <source>BECN will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your BECNs from being stolen by malware infecting your computer.</source>
+        <translation>BECN verrà ora chiuso per completare il processo di cifratura. Ricorda che crittografare il tuo portafoglio non protegge completamente i tuoi BECN dal furto da parte di software malevoli che potrebbero infettare il tuo computer.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -450,8 +450,8 @@ per lo staking</translation>
         <translation>Risparmi</translation>
     </message>
     <message>
-        <source>0,00 __DSW__</source>
-        <translation>0,00 __DSW__</translation>
+        <source>0,00 BECN</source>
+        <translation>0,00 BECN</translation>
     </message>
     <message>
         <source>address</source>
@@ -492,8 +492,8 @@ per lo staking</translation>
         <translation>Selezione valuta</translation>
     </message>
     <message>
-        <source>Select __DSW__ Outputs to Spend</source>
-        <translation>Seleziona __DSW__ da spendere</translation>
+        <source>Select BECN Outputs to Spend</source>
+        <translation>Seleziona BECN da spendere</translation>
     </message>
     <message>
         <source>Dust:</source>
@@ -520,8 +520,8 @@ per lo staking</translation>
         <translation>Ammontare</translation>
     </message>
     <message>
-        <source>0.00 __DSW__</source>
-        <translation>0.00 __DSW__</translation>
+        <source>0.00 BECN</source>
+        <translation>0.00 BECN</translation>
     </message>
     <message>
         <source>0</source>
@@ -775,9 +775,9 @@ per lo staking</translation>
         <translation>Errore durante il caricamento delle deleghe: %1</translation>
     </message>
     <message>
-        <source>You can delegate your __DSW__s, letting a hot node (24/7 online node)
+        <source>You can delegate your BECNs, letting a hot node (24/7 online node)
 stake on your behalf, while you keep the keys securely offline.</source>
-        <translation>Puoi delegare i tuoi __DSW__, delegando ad un nodo attivo (online 24/7)
+        <translation>Puoi delegare i tuoi BECN, delegando ad un nodo attivo (online 24/7)
 lo staking delle tue monete, mantenendo le tue chiavi private in ​​un luogo sicuro e offline.</translation>
     </message>
     <message>
@@ -785,8 +785,8 @@ lo staking delle tue monete, mantenendo le tue chiavi private in ​​un luogo 
         <translation>Inserire l'indirizzo del proprietario</translation>
     </message>
     <message>
-        <source>Accept __DSW__ delegation / Delegate __DSW__</source>
-        <translation>Accettare delegazione __DSW__ / Delega __DSW__</translation>
+        <source>Accept BECN delegation / Delegate BECN</source>
+        <translation>Accettare delegazione BECN / Delega BECN</translation>
     </message>
     <message>
         <source>Cold Staking address</source>
@@ -991,8 +991,8 @@ proprietario</translation>
         <translation>Guarda la cronologia del tuo account</translation>
     </message>
     <message>
-        <source>How to get __DSW__</source>
-        <translation>Come ottenere __DSW__</translation>
+        <source>How to get BECN</source>
+        <translation>Come ottenere BECN</translation>
     </message>
     <message>
         <source>Sort by</source>
@@ -1015,8 +1015,8 @@ proprietario</translation>
         <translation>Filtra per</translation>
     </message>
     <message>
-        <source>Amount of __DSW__ and z__DSW__ staked.</source>
-        <translation>Quantità di __DSW__ e z__DSW__ dallo stake.</translation>
+        <source>Amount of BECN and zBECN staked.</source>
+        <translation>Quantità di BECN e zBECN dallo stake.</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -1111,8 +1111,8 @@ Si avvierà automaticamente non appena il portafoglio avrà sufficienti conferme
         <translation>Modifica indirizzo di invio</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid __DSW__ address.</source>
-        <translation>L'indirizzo inserito "%1" non è un indirizzo __DSW__ valido.</translation>
+        <source>The entered address "%1" is not a valid BECN address.</source>
+        <translation>L'indirizzo inserito "%1" non è un indirizzo BECN valido.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1164,16 +1164,16 @@ Si avvierà automaticamente non appena il portafoglio avrà sufficienti conferme
         <translation>versione</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Beacon</source>
+        <translation>Beacon</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About __Decenomy__</source>
-        <translation>Informazioni su __Decenomy__</translation>
+        <source>About Beacon</source>
+        <translation>Informazioni su Beacon</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1227,16 +1227,16 @@ Si avvierà automaticamente non appena il portafoglio avrà sufficienti conferme
         <translation>Benvenuto</translation>
     </message>
     <message>
-        <source>Welcome to __Decenomy__.</source>
-        <translation>Benvenuto in __Decenomy__.</translation>
+        <source>Welcome to Beacon.</source>
+        <translation>Benvenuto in Beacon.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where __Decenomy__ will store its data.</source>
-        <translation>Essendo il primo avvio dell'applicazione, puoi scegliere dove __Decenomy__ salverà i propri dati.</translation>
+        <source>As this is the first time the program is launched, you can choose where Beacon will store its data.</source>
+        <translation>Essendo il primo avvio dell'applicazione, puoi scegliere dove Beacon salverà i propri dati.</translation>
     </message>
     <message>
-        <source>__Decenomy__ will download and store a copy of the __DSW__ block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>__Decenomy__ scaricherà e salverà una copia della blockchain __DSW__. Verranno salvati almeno %1GB di dati in questa cartella, che cresceranno nel tempo. In questa cartella verrà salvato anche il portafoglio.</translation>
+        <source>Beacon will download and store a copy of the BECN block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Beacon scaricherà e salverà una copia della blockchain BECN. Verranno salvati almeno %1GB di dati in questa cartella, che cresceranno nel tempo. In questa cartella verrà salvato anche il portafoglio.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1255,8 +1255,8 @@ Si avvierà automaticamente non appena il portafoglio avrà sufficienti conferme
         <translation>OK</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Beacon</source>
+        <translation>Beacon</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1363,8 +1363,8 @@ Si avvierà automaticamente non appena il portafoglio avrà sufficienti conferme
         <translation>Crea nuovo controller Masternode</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a __DSW__ Masternode you must dedicate a collateral amount of __DSW__ (the unit of __DSW__) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Per creare un Masternode __DSW__ devi dedicare 10.000 __DSW__ (l'unità di __DSW__) alla rete (tuttavia, queste coin sono ancora tue e saranno sempre in tuo possesso). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Puoi disattivare il nodo e sbloccare le valute in qualsiasi momento.</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a BECN Masternode you must dedicate a collateral amount of BECN (the unit of BECN) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Per creare un Masternode BECN devi dedicare 10.000 BECN (l'unità di BECN) alla rete (tuttavia, queste coin sono ancora tue e saranno sempre in tuo possesso). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Puoi disattivare il nodo e sbloccare le valute in qualsiasi momento.</translation>
     </message>
     <message>
         <source>Set Masternode Name</source>
@@ -1384,7 +1384,7 @@ Si avvierà automaticamente non appena il portafoglio avrà sufficienti conferme
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of collateral amount will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Verrà effettuata una transazione di 10.000 __DSW__&lt;/p&gt;&lt;p&gt;a un nuovo indirizzo vuoto nel tuo portafoglio.&lt;p&gt;L'indirizzo è etichettato con il nome del Masternode.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Verrà effettuata una transazione di 10.000 BECN&lt;/p&gt;&lt;p&gt;a un nuovo indirizzo vuoto nel tuo portafoglio.&lt;p&gt;L'indirizzo è etichettato con il nome del Masternode.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Address of the node that must always be online running the actual master node.</source>
@@ -1590,7 +1590,7 @@ Per favore, attendi qualche minuto (il collaterale del masternode richiede %1 co
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the __decenomy__.conf file
+You will only have to paste the data in the beacon.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1598,7 +1598,7 @@ this controller wallet (select the Masternode in the list and press "start").
 un Masternode su un server remoto .
 
 
-Dovrai solo incollare i dati nel file __decenomy__.conf del server remoto
+Dovrai solo incollare i dati nel file beacon.conf del server remoto
 e avviarlo, quindi avviare il Masternode utilizzando questo portafoglio
 come controller (selezionare il Masternode nell'elenco e premere "start").
 </translation>
@@ -1788,8 +1788,8 @@ STAKING</translation>
         <translation>Dati analizzati troppo grandi</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "__decenomy__" prefix</source>
-        <translation>URI non valido, che non inizia con il prefisso "__decenomy__"</translation>
+        <source>Invalid URI, not starting with "beacon" prefix</source>
+        <translation>URI non valido, che non inizia con il prefisso "beacon"</translation>
     </message>
 </context>
 <context>
@@ -1834,8 +1834,8 @@ STAKING</translation>
         <translation>Se si disabilita la spesa per la modifica non confermata, la modifica da una transazione&lt;br/&gt;non può essere utilizzata fino a quando tale transazione non ha almeno una conferma.&lt;br/&gt;Ciò influisce anche sul modo in cui viene calcolato il saldo.</translation>
     </message>
     <message>
-        <source>Automatically open the __DSW__ client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Apri automaticamente la porta client __DSW__ sul router. Funziona solo quando il router supporta UPnP ed è abilitato.</translation>
+        <source>Automatically open the BECN client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Apri automaticamente la porta client BECN sul router. Funziona solo quando il router supporta UPnP ed è abilitato.</translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -1854,12 +1854,12 @@ STAKING</translation>
         <translation>Esperto</translation>
     </message>
     <message>
-        <source>Automatically start __DSW__ after logging in to the system.</source>
-        <translation>Avvia automaticamente __DSW__ dopo aver effettuato l'accesso al sistema.</translation>
+        <source>Automatically start BECN after logging in to the system.</source>
+        <translation>Avvia automaticamente BECN dopo aver effettuato l'accesso al sistema.</translation>
     </message>
     <message>
-        <source>&amp;Start __DSW__ on system login</source>
-        <translation>&amp;Start __DSW__ all'accesso al sistema</translation>
+        <source>&amp;Start BECN on system login</source>
+        <translation>&amp;Start BECN all'accesso al sistema</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1886,58 +1886,58 @@ STAKING</translation>
         <translation>&amp;Network</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting __DSW__.</source>
-        <translation>La lingua dell'interfaccia utente può essere impostata qui. Questa impostazione avrà effetto dopo il riavvio di __DSW__.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting BECN.</source>
+        <translation>La lingua dell'interfaccia utente può essere impostata qui. Questa impostazione avrà effetto dopo il riavvio di BECN.</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        __decenomy_discord_link__</source>
+        https://discord.gg/uTar2Sd</source>
         <translation>Lingua mancante o traduzione incompleta? Aiutaci a contribuire alle traduzioni qui:
-        __decenomy_discord_link__</translation>
+        https://discord.gg/uTar2Sd</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>Mappa la porta utilizzando &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of __DSW__ units to z__DSW__</source>
-        <translation>Attiva la forgiatura automatica di unità __DSW__ in z__DSW__</translation>
+        <source>Enable automatic minting of BECN units to zBECN</source>
+        <translation>Attiva la forgiatura automatica di unità BECN in zBECN</translation>
     </message>
     <message>
-        <source>Enable z__DSW__ Automint</source>
-        <translation>Attiva forgiatura automatica z__DSW__</translation>
+        <source>Enable zBECN Automint</source>
+        <translation>Attiva forgiatura automatica zBECN</translation>
     </message>
     <message>
-        <source>Enable automatic z__DSW__ minting from specific addresses</source>
-        <translation>Attiva la forgiatura automatica di z__DSW__ da indirizzi specifici</translation>
+        <source>Enable automatic zBECN minting from specific addresses</source>
+        <translation>Attiva la forgiatura automatica di zBECN da indirizzi specifici</translation>
     </message>
     <message>
         <source>Enable Automint Addresses</source>
         <translation>Abilita indirizzi forgiatura automatica</translation>
     </message>
     <message>
-        <source>Percentage of incoming __DSW__ which get automatically converted to z__DSW__ via Zerocoin Protocol (min: 10%)</source>
-        <translation>Percentuale di __DSW__ in entrata che viene automaticamente convertita in z__DSW__ attraverso il protocollo Zerocoin (min: 10%)</translation>
+        <source>Percentage of incoming BECN which get automatically converted to zBECN via Zerocoin Protocol (min: 10%)</source>
+        <translation>Percentuale di BECN in entrata che viene automaticamente convertita in zBECN attraverso il protocollo Zerocoin (min: 10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted z__DSW__</source>
-        <translation>Percentuale di z__DSW__ Percentuale di z__DSW__ da forgiare automaticamente</translation>
+        <source>Percentage of autominted zBECN</source>
+        <translation>Percentuale di zBECN Percentuale di zBECN da forgiare automaticamente</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough __DSW__ for this denomination is available</source>
-        <translation>Attendere la conversione automatica in Zerocoin fino a quando non saranno disponibili abbastanza __DSW__ per questa denominazione</translation>
+        <source>Wait with automatic conversion to Zerocoin until enough BECN for this denomination is available</source>
+        <translation>Attendere la conversione automatica in Zerocoin fino a quando non saranno disponibili abbastanza BECN per questa denominazione</translation>
     </message>
     <message>
-        <source>Preferred Automint z__DSW__ Denomination</source>
-        <translation>Denominazione preferita forgiatura automatica z__DSW__</translation>
+        <source>Preferred Automint zBECN Denomination</source>
+        <translation>Denominazione preferita forgiatura automatica zBECN</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
         <translation>Soglia di divisione dello stake</translation>
     </message>
     <message>
-        <source>Connect to the __DSW__ network through a SOCKS5 proxy.</source>
-        <translation>Connettiti alla rete __DSW__ tramite un proxy SOCKS5.</translation>
+        <source>Connect to the BECN network through a SOCKS5 proxy.</source>
+        <translation>Connettiti alla rete BECN tramite un proxy SOCKS5.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -2083,8 +2083,8 @@ STAKING</translation>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Beacon</source>
+        <translation>Beacon</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -2111,8 +2111,8 @@ STAKING</translation>
         <translation>Chiude l'applicazione</translation>
     </message>
     <message>
-        <source>__Decenomy__ client</source>
-        <translation>__Decenomy__</translation>
+        <source>Beacon client</source>
+        <translation>Beacon</translation>
     </message>
     <message>
         <source>Error</source>
@@ -2178,12 +2178,12 @@ Indirizzo: %4
         <translation>Indirizzo di pagamento %1 invalido</translation>
     </message>
     <message>
-        <source>Cannot start __decenomy__: click-to-pay handler</source>
-        <translation>Impossibile avviare __decenomy__: gestore click-to-pay</translation>
+        <source>Cannot start beacon: click-to-pay handler</source>
+        <translation>Impossibile avviare beacon: gestore click-to-pay</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid __DSW__ address or malformed URI parameters.</source>
-        <translation>Impossibile leggere il file della richiesta di pagamento! Ciò può essere causato da un indirizzo __DSW__ non valido o parametri URI non validi.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid BECN address or malformed URI parameters.</source>
+        <translation>Impossibile leggere il file della richiesta di pagamento! Ciò può essere causato da un indirizzo BECN non valido o parametri URI non validi.</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -2268,8 +2268,8 @@ Indirizzo: %4
         <translation>Ammontare</translation>
     </message>
     <message>
-        <source>Enter __DSW__ address (e.g. %1)</source>
-        <translation>Inserisci un indirizzo __DSW__ (ad es. %1)</translation>
+        <source>Enter BECN address (e.g. %1)</source>
+        <translation>Inserisci un indirizzo BECN (ad es. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2312,12 +2312,12 @@ Indirizzo: %4
         <translation>%1 ms</translation>
     </message>
     <message>
-        <source>A fatal error occurred. __DSW__ can no longer continue safely and will quit.</source>
-        <translation>Si è verificato un errore irreversibile. __DSW__ non può più continuare in modo sicuro e verrà chiuso.</translation>
+        <source>A fatal error occurred. BECN can no longer continue safely and will quit.</source>
+        <translation>Si è verificato un errore irreversibile. BECN non può più continuare in modo sicuro e verrà chiuso.</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Beacon</source>
+        <translation>Beacon</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -2336,8 +2336,8 @@ Indirizzo: %4
         <translation>Errore durante la lettura del file di configurazione del Masternode: %1</translation>
     </message>
     <message>
-        <source>__Decenomy__ didn't yet exit safely...</source>
-        <translation>__Decenomy__ non è ancora uscito in modo sicuro...</translation>
+        <source>Beacon didn't yet exit safely...</source>
+        <translation>Beacon non è ancora uscito in modo sicuro...</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -2575,8 +2575,8 @@ Indirizzo: %4
         <translation>Blockchain</translation>
     </message>
     <message>
-        <source>Open the __DSW__ debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Aprire il file di registro di debug __DSW__ dalla directory dei dati corrente. Questa operazione può richiedere alcuni secondi per file di registro di grandi dimensioni.</translation>
+        <source>Open the BECN debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Aprire il file di registro di debug BECN dalla directory dei dati corrente. Questa operazione può richiedere alcuni secondi per file di registro di grandi dimensioni.</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -2719,8 +2719,8 @@ Indirizzo: %4
         <translation>Percorso di backup personalizzato:</translation>
     </message>
     <message>
-        <source>Custom z__DSW__ Backup Path:</source>
-        <translation>Percorso di backup z__DSW__ personalizzato:</translation>
+        <source>Custom zBECN Backup Path:</source>
+        <translation>Percorso di backup zBECN personalizzato:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -2799,8 +2799,8 @@ Indirizzo: %4
         <translation>Out:</translation>
     </message>
     <message>
-        <source>Welcome to the __DSW__ RPC console.</source>
-        <translation>Benvenuti nella console RPC di __DSW__.</translation>
+        <source>Welcome to the BECN RPC console.</source>
+        <translation>Benvenuti nella console RPC di BECN.</translation>
     </message>
     <message>
         <source>&amp;Disconnect Node</source>
@@ -2941,8 +2941,8 @@ Indirizzo: %4
         <translation>Nessun indirizzo</translation>
     </message>
     <message>
-        <source>Scan the QR code or copy the address to receive __DSW__</source>
-        <translation>Scansiona il codice QR o copia l'indirizzo per ricevere __DSW__</translation>
+        <source>Scan the QR code or copy the address to receive BECN</source>
+        <translation>Scansiona il codice QR o copia l'indirizzo per ricevere BECN</translation>
     </message>
     <message>
         <source>Add Label</source>
@@ -3071,12 +3071,12 @@ Indirizzo: %4
         <translation>Ammontare</translation>
     </message>
     <message>
-        <source>__DSW__</source>
-        <translation>__DSW__</translation>
+        <source>BECN</source>
+        <translation>BECN</translation>
     </message>
     <message>
-        <source>Instead of sharing only a __DSW__ address, you can create a payment request, bundling up more information</source>
-        <translation>Invece di condividere solo un indirizzo __DSW__, è possibile creare un messaggio di richiesta pagamento, raccogliendo più informazioni</translation>
+        <source>Instead of sharing only a BECN address, you can create a payment request, bundling up more information</source>
+        <translation>Invece di condividere solo un indirizzo BECN, è possibile creare un messaggio di richiesta pagamento, raccogliendo più informazioni</translation>
     </message>
     <message>
         <source>D7VFR83SQbiezrW72hjcWJtcfip5krte2Z </source>
@@ -3166,8 +3166,8 @@ Indirizzo: %4
         <translation>Modifica indirizzo personalizzata</translation>
     </message>
     <message>
-        <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" __DSW__ address</source>
-        <translation>Il resto del valore risultante dagli ingressi meno il valore delle uscite va all'indirizzo __DSW__ "cambio"</translation>
+        <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" BECN address</source>
+        <translation>Il resto del valore risultante dagli ingressi meno il valore delle uscite va all'indirizzo BECN "cambio"</translation>
     </message>
     <message>
         <source>SAVE</source>
@@ -3197,8 +3197,8 @@ Indirizzo: %4
         <translation>Raccomandato</translation>
     </message>
     <message>
-        <source>__DSW__/kilobyte</source>
-        <translation>__DSW__/kilobyte</translation>
+        <source>BECN/kilobyte</source>
+        <translation>BECN/kilobyte</translation>
     </message>
     <message>
         <source>0.00 KB</source>
@@ -3481,9 +3481,9 @@ Ricordati di scriverla e conservarla in modo sicuro, altrimenti potresti perdere
         <translation>Strumenti BIP38</translation>
     </message>
     <message>
-        <source>Encrypt your __DSW__ addresses (key pair actually) using BIP38 encryption.
+        <source>Encrypt your BECN addresses (key pair actually) using BIP38 encryption.
 Using this mechanism you can share your keys without middle-man risk, only need to store your passphrase safely</source>
-        <translation>Cifra gli indirizzi __DSW__ (la coppia di chiavi) con la crittografia BIP38.
+        <translation>Cifra gli indirizzi BECN (la coppia di chiavi) con la crittografia BIP38.
 Usando questo meccanismo è possibile condividere le chiavi senza rischi dell'intermediario, basta solo memorizzare la password in modo sicuro</translation>
     </message>
     <message>
@@ -3519,8 +3519,8 @@ Usando questo meccanismo è possibile condividere le chiavi senza rischi dell'in
         <translation>DECRITTOGRAFA LA CHIAVE</translation>
     </message>
     <message>
-        <source>__DSW__ address</source>
-        <translation>Indirizzi __DSW__</translation>
+        <source>BECN address</source>
+        <translation>Indirizzi BECN</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -3652,8 +3652,8 @@ Verify that you have installed a predetermined text editor.</source>
 Verifica di aver installato un editor di testo predeterminato.</translation>
     </message>
     <message>
-        <source>Welcome to the __DSW__ RPC console.</source>
-        <translation>Benvenuti nella console RPC di __DSW__.</translation>
+        <source>Welcome to the BECN RPC console.</source>
+        <translation>Benvenuti nella console RPC di BECN.</translation>
     </message>
     <message>
         <source>Use up and down arrows to navigate history, and %1 to clear screen.</source>
@@ -3837,12 +3837,12 @@ Si è verificato un errore nel tentativo di salvare l'elenco degli indirizzi in 
         <translation>Modulo</translation>
     </message>
     <message>
-        <source>1) What is __DSW__?</source>
-        <translation>1) Che cos'è __DSW__?</translation>
+        <source>1) What is BECN?</source>
+        <translation>1) Che cos'è BECN?</translation>
     </message>
     <message>
-        <source>2) Why are my __DSW__ unspendable?</source>
-        <translation>2) Perché i miei __DSW__ non sono spendibili?</translation>
+        <source>2) Why are my BECN unspendable?</source>
+        <translation>2) Perché i miei BECN non sono spendibili?</translation>
     </message>
     <message>
         <source>__decenomy_website_link__/</source>
@@ -3853,34 +3853,34 @@ Si è verificato un errore nel tentativo di salvare l'elenco degli indirizzi in 
         <translation>1</translation>
     </message>
     <message>
-        <source>What is __DSW__?</source>
-        <translation>Che cos'è __DSW__?</translation>
+        <source>What is BECN?</source>
+        <translation>Che cos'è BECN?</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           __DSW__ is a form of digital online money using blockchain technology
+                           BECN is a form of digital online money using blockchain technology
                            that can be easily transferred globally, instantly, and with near
-                           zero fees.  __DSW__ incorporates market leading security &amp;
+                           zero fees.  BECN incorporates market leading security &amp;
                            privacy and is also the first PoS (Proof of Stake) Cryptocurrency
-                           to implement ZeroCoin(z__DSW__) and Zerocoin staking.
+                           to implement ZeroCoin(zBECN) and Zerocoin staking.
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           __DSW__ utilizes a Proof of Stake (PoS) consensus system algorithm,
-                           allowing all owners of __DSW__ to participate in earning block rewards
+                           BECN utilizes a Proof of Stake (PoS) consensus system algorithm,
+                           allowing all owners of BECN to participate in earning block rewards
                            while securing the network with full node wallets, as well as to
                            run Masternodes to create and vote on proposals.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-__DSW__ è una forma di denaro online digitale che utilizza la tecnologia blockchain
+BECN è una forma di denaro online digitale che utilizza la tecnologia blockchain
 che può essere facilmente trasferito a livello globale, istantaneamente e con quasi
-zero costi. __DSW__ incorpora le tecniche di sicurezza e privacy più avanzate del mercato
+zero costi. BECN incorpora le tecniche di sicurezza e privacy più avanzate del mercato
 ed è anche la prima criptovaluta PoS (Proof of Stake)
-ad implementare lo staking di ZeroCoin (z__DSW__) e Zerocoin.
+ad implementare lo staking di ZeroCoin (zBECN) e Zerocoin.
 &lt;/p&gt;&lt;p align="justify"&gt;
-__DSW__ utilizza un algoritmo del sistema di consenso Proof of Stake (PoS),
-consentendo a tutti i proprietari di __DSW__ di partecipare alle ricompense dei blocchi
+BECN utilizza un algoritmo del sistema di consenso Proof of Stake (PoS),
+consentendo a tutti i proprietari di BECN di partecipare alle ricompense dei blocchi
 proteggendo la rete con portafogli full node, oltre a
 eseguire Masternode per creare e votare proposte.
 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
@@ -3891,25 +3891,25 @@ eseguire Masternode per creare e votare proposte.
         <translation>2</translation>
     </message>
     <message>
-        <source>Why are my __DSW__ unspendable?</source>
-        <translation>Perché i miei __DSW__ non sono spendibili?</translation>
+        <source>Why are my BECN unspendable?</source>
+        <translation>Perché i miei BECN non sono spendibili?</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           Newly received __DSW__ requires 6 confirmations on the network
+                           Newly received BECN requires 6 confirmations on the network
                            to become eligible for spending which can take ~6 minutes.
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           Your __DSW__ wallet also needs to be completely synchronized
+                           Your BECN wallet also needs to be completely synchronized
                            to see and spend balances on the network.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           __DSW__ appeni ricevuti richiedono 6 conferme sulla rete
+                           BECN appeni ricevuti richiedono 6 conferme sulla rete
  per poter essere spendibili, cioè può richiedere ~6 minuti.
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           Anche il tuo portafoglio __DSW__ deve essere completamente sincronizzato
+                           Anche il tuo portafoglio BECN deve essere completamente sincronizzato
 per vedere e spendere i saldi sulla rete.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </translation>
@@ -3919,12 +3919,12 @@ per vedere e spendere i saldi sulla rete.
         <translation>3</translation>
     </message>
     <message>
-        <source>How do I stake __DSW__?</source>
-        <translation>Come posso fare lo stake di __DSW__?</translation>
+        <source>How do I stake BECN?</source>
+        <translation>Come posso fare lo stake di BECN?</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Make sure your wallet is completely synchronized and you are using the latest release. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You must have a balance of __DSW__ with a minimum of 600 confirmations. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Your wallet must stay online and be unlocked for staking purposes. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Once all those steps are followed staking should be enabled. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state &amp;quot;Staking Enabled&amp;quot; to indicate it is staking. Using the command line interface (__decenomy__-cli); the command &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; will confirm that staking is active. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Assicurati che il tuo wallet sia completamente sincronizzato e che tu stia usando l'ultima versione. 56Il bilancio dei tuoi __DSW__ deve avere almeno 600 conferme. Per lo stacking il tuo wallet deve rimanere online e deve essere sbloccato. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Una volta portati a termine questi step, siete pronti per avviare lo stacking. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Potete vedere lo stato dello staking nel wallet, passando il mouse sull'icona del pacchetto nella riga in alto a sinistra dell'interfaccia del portafoglio. Il pacchetto sarà illuminato e indicherà &amp;quot;Staking Enabled&amp;quot; per indicare che lo staking è attivo. Usando nella riga di comando dell'interfaccia (__decenomy__-cli); il comando &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; avrai conferma che lo staking è attivo. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Make sure your wallet is completely synchronized and you are using the latest release. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You must have a balance of BECN with a minimum of 600 confirmations. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Your wallet must stay online and be unlocked for staking purposes. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Once all those steps are followed staking should be enabled. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state &amp;quot;Staking Enabled&amp;quot; to indicate it is staking. Using the command line interface (beacon-cli); the command &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; will confirm that staking is active. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Assicurati che il tuo wallet sia completamente sincronizzato e che tu stia usando l'ultima versione. 56Il bilancio dei tuoi BECN deve avere almeno 600 conferme. Per lo stacking il tuo wallet deve rimanere online e deve essere sbloccato. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Una volta portati a termine questi step, siete pronti per avviare lo stacking. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Potete vedere lo stato dello staking nel wallet, passando il mouse sull'icona del pacchetto nella riga in alto a sinistra dell'interfaccia del portafoglio. Il pacchetto sarà illuminato e indicherà &amp;quot;Staking Enabled&amp;quot; per indicare che lo staking è attivo. Usando nella riga di comando dell'interfaccia (beacon-cli); il comando &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; avrai conferma che lo staking è attivo. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>4</source>
@@ -3946,14 +3946,14 @@ per vedere e spendere i saldi sulla rete.
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            We have support channels in most of our official chat groups, for example
-                           &lt;a style='color: #b088ff' href='__decenomy_discord_link__'&gt;
+                           &lt;a style='color: #b088ff' href='https://discord.gg/uTar2Sd'&gt;
                            #support in our Discord&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            Abbiamo canali di supporto nella maggior parte dei nostri gruppi di chat ufficiali, ad esempio
-                           &lt;a style='color: #b088ff' href='__decenomy_discord_link__'&gt;
+                           &lt;a style='color: #b088ff' href='https://discord.gg/uTar2Sd'&gt;
                            #support nel nostro Discord&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </translation>
@@ -3968,12 +3968,12 @@ per vedere e spendere i saldi sulla rete.
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;A Masternode Controller wallet is where the collateral amount can reside during a Controller-Remote masternode setup. It is a wallet that can activate the remote masternode wallet(s) and allows you to keep your collateral coins offline while the remote masternode remains online. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;Un Masternode Controller wallet è dove i 10.000 __DSW__ collaterali possono risiedere durante l'impostazione del Masternode Controller remoto. È un portafoglio che può attivare uno o più portafogli masternode remoti e ti consente di mantenere offline le tue valute collaterali mentre il masternode remoto rimane online.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;Un Masternode Controller wallet è dove i 10.000 BECN collaterali possono risiedere durante l'impostazione del Masternode Controller remoto. È un portafoglio che può attivare uno o più portafogli masternode remoti e ti consente di mantenere offline le tue valute collaterali mentre il masternode remoto rimane online.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           A masternode is a computer running a full node __DSW__ wallet with a
+                           A masternode is a computer running a full node BECN wallet with a
                            required amount of secured collateral to provide extra services
                            to the network and in return, receive a portion of the block reward
                            regularly.  These services include:
@@ -3996,10 +3996,10 @@ per vedere e spendere i saldi sulla rete.
                            Masternode Perks:
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;Participate in __DSW__ Governance&lt;/li&gt;
+                           &lt;li&gt;Participate in BECN Governance&lt;/li&gt;
                            &lt;li&gt;Earn Masternode Rewards&lt;/li&gt;
                            &lt;li&gt;Commodity option for future sale&lt;/li&gt;
-                           &lt;li&gt;Help secure the __DSW__ network&lt;/li&gt;
+                           &lt;li&gt;Help secure the BECN network&lt;/li&gt;
                            &lt;/ul&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
@@ -4015,8 +4015,8 @@ per vedere e spendere i saldi sulla rete.
                          </source>
         <translation>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           Un masternode è un computer che esegue un portafoglio core __DSW__ a nodo completo
-con un requisito di 10.000 __DSW__ a garanzia per fornire servizi extra
+                           Un masternode è un computer che esegue un portafoglio core BECN a nodo completo
+con un requisito di 10.000 BECN a garanzia per fornire servizi extra
 alla rete e, in cambio, riceve una parte del premio del blocco
 regolarmente. Questi servizi includono:
                            &lt;/p&gt;&lt;p align="justify"&gt;
@@ -4038,17 +4038,17 @@ regolarmente. Questi servizi includono:
                            Vantaggi del Masternode:
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;Partecipare alla Governance di __DSW__ &lt;/li&gt;
+                           &lt;li&gt;Partecipare alla Governance di BECN &lt;/li&gt;
                            &lt;li&gt;Guadagnare i premi del Masternode&lt;/li&gt;
                            &lt;li&gt;Opzione di una commodity per vendita futura&lt;/li&gt;
-                           &lt;li&gt;Aiuta a proteggere la rete __DSW__&lt;/li&gt;
+                           &lt;li&gt;Aiuta a proteggere la rete BECN&lt;/li&gt;
                            &lt;/ul&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            Requisiti:
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;10,000 __DSW__ per singolo Masternode
+                           &lt;li&gt;10,000 BECN per singolo Masternode
                            &lt;li&gt;Devono essere conservati in un portafoglio core&lt;/li&gt;
                            &lt;li&gt;Necessita un indirizzo IP dedicato&lt;/li&gt;
                            &lt;li&gt;Il portafoglio del Masternode deve rimanere online&lt;/li&gt;
@@ -4061,8 +4061,8 @@ regolarmente. Questi servizi includono:
         <translation>Domande frequenti</translation>
     </message>
     <message>
-        <source>3) How do I stake __DSW__?</source>
-        <translation>3) Come faccio lo staking di __DSW__?</translation>
+        <source>3) How do I stake BECN?</source>
+        <translation>3) Come faccio lo staking di BECN?</translation>
     </message>
     <message>
         <source>4) Where I should go if I need support?</source>
@@ -4184,8 +4184,8 @@ regolarmente. Questi servizi includono:
         <translation>Impossibile aprire la cartella dei backup</translation>
     </message>
     <message>
-        <source>Unable to open __decenomy__.conf with default application</source>
-        <translation>Impossibile aprire __decenomy__.conf con l'applicazione predefinita</translation>
+        <source>Unable to open beacon.conf with default application</source>
+        <translation>Impossibile aprire beacon.conf con l'applicazione predefinita</translation>
     </message>
     <message>
         <source>In:</source>
@@ -4239,8 +4239,8 @@ regolarmente. Questi servizi includono:
         <translation>Numero di script e processi di verifica</translation>
     </message>
     <message>
-        <source>Start __DSW__ on system login</source>
-        <translation>Avvia __DSW__ all'accesso al sistema</translation>
+        <source>Start BECN on system login</source>
+        <translation>Avvia BECN all'accesso al sistema</translation>
     </message>
     <message>
         <source>Minimize to the tray instead of the taskbar</source>
@@ -4327,8 +4327,8 @@ Sei sicuro?
         <translation>CheckBox</translation>
     </message>
     <message>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other __DSW__ addresses after it matures.</source>
-        <translation>MultiSend ti consente di inviare automaticamente fino al 100% dei tuoi stake o ricompense masternode a un elenco di altri indirizzi __DSW__ dopo la loro maturazione.</translation>
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other BECN addresses after it matures.</source>
+        <translation>MultiSend ti consente di inviare automaticamente fino al 100% dei tuoi stake o ricompense masternode a un elenco di altri indirizzi BECN dopo la loro maturazione.</translation>
     </message>
     <message>
         <source>Active</source>
@@ -4454,8 +4454,8 @@ Seleziona una o entrambe le caselle di controllo per inviare gli stake e/o i pre
         <translation>Messaggio</translation>
     </message>
     <message>
-        <source>__DSW__ address or contact label</source>
-        <translation>Indirizzo __DSW__ o etichetta contatto</translation>
+        <source>BECN address or contact label</source>
+        <translation>Indirizzo BECN o etichetta contatto</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -4775,8 +4775,8 @@ Seleziona una o entrambe le caselle di controllo per inviare gli stake e/o i pre
         <translation>FAQ</translation>
     </message>
     <message>
-        <source>About __DSW__</source>
-        <translation>Informazioni su __DSW__</translation>
+        <source>About BECN</source>
+        <translation>Informazioni su BECN</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -4846,8 +4846,8 @@ Sei sicuro?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>__Decenomy__ is shutting down...</source>
-        <translation>__Decenomy__ si sta spegnendo...</translation>
+        <source>Beacon is shutting down...</source>
+        <translation>Beacon si sta spegnendo...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4876,8 +4876,8 @@ Sei sicuro?
         <translation>Caricamento...</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Beacon</source>
+        <translation>Beacon</translation>
     </message>
 </context>
 <context>
@@ -5416,25 +5416,25 @@ Selezionare meno ingressi con controllo coin.</translation>
     </message>
     <message>
         <source>Welcome to
-__Decenomy__ Wallet</source>
+Beacon Wallet</source>
         <translation>Benvenuto in
-Portafoglio __Decenomy__.</translation>
+Portafoglio Beacon.</translation>
     </message>
     <message>
-        <source>__DSW__ is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
-        <translation>__DSW__ è la tecnologia basata su blockchain Proof of Stake più innovativa al mondo. Sviluppato da un team di sviluppatori e crittografi di grande esperienza.</translation>
+        <source>BECN is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
+        <translation>BECN è la tecnologia basata su blockchain Proof of Stake più innovativa al mondo. Sviluppato da un team di sviluppatori e crittografi di grande esperienza.</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - __DSW__ believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Come dice il nostro manifesto: la privacy è un diritto umano di base non negoziabile; garantisce agli utenti la libertà di condividere i propri dati quando e con chi vuole - __DSW__ crede nell'auto sovranità.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - BECN believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Come dice il nostro manifesto: la privacy è un diritto umano di base non negoziabile; garantisce agli utenti la libertà di condividere i propri dati quando e con chi vuole - BECN crede nell'auto sovranità.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <source>The masternode network is __DSW__'s second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
-        <translation>La rete masternode è la rete di secondo livello di __DSW__ sopra alla blockchain che consente al nostro DAO di fornire governance decentralizzata e tesoreria.</translation>
+        <source>The masternode network is BECN's second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
+        <translation>La rete masternode è la rete di secondo livello di BECN sopra alla blockchain che consente al nostro DAO di fornire governance decentralizzata e tesoreria.</translation>
     </message>
     <message>
-        <source>How __DSW__ respects your privacy?</source>
-        <translation>In che modo __DSW__ rispetta la tua privacy?</translation>
+        <source>How BECN respects your privacy?</source>
+        <translation>In che modo BECN rispetta la tua privacy?</translation>
     </message>
     <message>
         <source>What is a Masternode?</source>
@@ -5468,8 +5468,8 @@ Portafoglio __Decenomy__.</translation>
         <translation>Associa l'indirizzo indicato per ascoltare le connessioni JSON-RPC. Usa la notazione [host]:porta per IPv6. Questa opzione può essere specificata più volte (impostazione predefinita: associa a tutte le interfacce)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. __Decenomy__ is probably already running.</source>
-        <translation>Impossibile allocare la directory di dati %s. Probabilmente __Decenomy__ è già in esecuzione.</translation>
+        <source>Cannot obtain a lock on data directory %s. Beacon is probably already running.</source>
+        <translation>Impossibile allocare la directory di dati %s. Probabilmente Beacon è già in esecuzione.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -5632,8 +5632,8 @@ Portafoglio __Decenomy__.</translation>
         <translation>La lunghezza totale della stringa della versione di rete (%i) supera la lunghezza massima (%i). Ridurre il numero o la dimensione degli uacomments.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. __Decenomy__ is probably already running.</source>
-        <translation>Impossibile associare %s su questo computer. Probabilmente __Decenomy__ è già in esecuzione.</translation>
+        <source>Unable to bind to %s on this computer. Beacon is probably already running.</source>
+        <translation>Impossibile associare %s su questo computer. Probabilmente Beacon è già in esecuzione.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -5648,8 +5648,8 @@ Portafoglio __Decenomy__.</translation>
         <translation>Attenzione: -paytxfee è impostato molto alto! Questa è la commissione di transazione che dovrai pagare se invii una transazione.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</source>
-        <translation>Avvertenza: verificare che la data e l'ora del computer siano corrette! Se l'orologio è sbagliato, __Decenomy__ non funzionerà correttamente.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Beacon will not work properly.</source>
+        <translation>Avvertenza: verificare che la data e l'ora del computer siano corrette! Se l'orologio è sbagliato, Beacon non funzionerà correttamente.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5864,8 +5864,8 @@ Portafoglio __Decenomy__.</translation>
         <translation>Informazioni</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. __Decenomy__ is shutting down.</source>
-        <translation>Verifica dell'integrità dell'inizializzazione non riuscita. __Decenomy__ si sta spegnendo.</translation>
+        <source>Initialization sanity check failed. Beacon is shutting down.</source>
+        <translation>Verifica dell'integrità dell'inizializzazione non riuscita. Beacon si sta spegnendo.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5896,8 +5896,8 @@ Portafoglio __Decenomy__.</translation>
         <translation>Invalid netmask specificata in -whitelist: '%s'</translation>
     </message>
     <message>
-        <source>Recalculating __DSW__ supply...</source>
-        <translation>Ricalcolo della supply __DSW__...</translation>
+        <source>Recalculating BECN supply...</source>
+        <translation>Ricalcolo della supply BECN...</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>
@@ -5920,8 +5920,8 @@ Portafoglio __Decenomy__.</translation>
         <translation>Questa è una build di test pre-release - utilizzare a proprio rischio - non utilizzare per staking o applicazioni commerciali!</translation>
     </message>
     <message>
-        <source>Disable all __DSW__ specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>Disabilita tutte le funzionalità specifiche di __DSW__ (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</translation>
+        <source>Disable all BECN specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
+        <translation>Disabilita tutte le funzionalità specifiche di BECN (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</translation>
     </message>
     <message>
         <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
@@ -6196,12 +6196,12 @@ Portafoglio __Decenomy__.</translation>
         <translation>Le commissioni (in %s/Kb) inferiori a questa sono considerate zero per la creazione della transazione (default: %s)</translation>
     </message>
     <message>
-        <source>Minimum positive amount (in __DSW__) allowed by GUI and RPC for the stake split threshold (default: %s)</source>
-        <translation>Importo positivo minimo (in __DSW__) consentito da GUI e RPC per la soglia di ripartizione della partecipazione (default: %s)</translation>
+        <source>Minimum positive amount (in BECN) allowed by GUI and RPC for the stake split threshold (default: %s)</source>
+        <translation>Importo positivo minimo (in BECN) consentito da GUI e RPC per la soglia di ripartizione della partecipazione (default: %s)</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</source>
-        <translation>Verificare che la data e l'ora del computer siano corrette! Se l'orologio sincronizzato, __Decenomy__ non funzionerà correttamente.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong Beacon will not work properly.</source>
+        <translation>Verificare che la data e l'ora del computer siano corrette! Se l'orologio sincronizzato, Beacon non funzionerà correttamente.</translation>
     </message>
     <message>
         <source>Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect/-noconnect)</source>
@@ -6474,8 +6474,8 @@ Portafoglio __Decenomy__.</translation>
         <translation>Sincronizzazione sporks...</translation>
     </message>
     <message>
-        <source>Syncing z__DSW__ wallet...</source>
-        <translation>Sincronizzazione del portafoglio z__DSW__...</translation>
+        <source>Syncing zBECN wallet...</source>
+        <translation>Sincronizzazione del portafoglio zBECN...</translation>
     </message>
     <message>
         <source>The threshold value cannot be less than %s</source>
@@ -6594,8 +6594,8 @@ Portafoglio __Decenomy__.</translation>
         <translation>Nome utente per connessioni JSON-RPC</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of z__DSW__</source>
-        <translation>Il valore è inferiore alla denominazione più piccola disponibile (=1) di z__DSW__</translation>
+        <source>Value is below the smallest available denomination (= 1) of zBECN</source>
+        <translation>Il valore è inferiore alla denominazione più piccola disponibile (=1) di zBECN</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
@@ -6610,8 +6610,8 @@ Portafoglio __Decenomy__.</translation>
         <translation>Il portafoglio %s risiede al di fuori della directory di dati %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart __Decenomy__ to complete</source>
-        <translation>Il portafoglio doveva essere riscritto: riavviare __Decenomy__ per completare</translation>
+        <source>Wallet needed to be rewritten: restart Beacon to complete</source>
+        <translation>Il portafoglio doveva essere riscritto: riavviare Beacon per completare</translation>
     </message>
     <message>
         <source>Wallet options:</source>
@@ -6677,12 +6677,12 @@ Portafoglio __Decenomy__.</translation>
         <translation>Invia</translation>
     </message>
     <message>
-        <source>Send public coins (__DSW__)</source>
-        <translation>Inviare monete pubbliche (__DSW__)</translation>
+        <source>Send public coins (BECN)</source>
+        <translation>Inviare monete pubbliche (BECN)</translation>
     </message>
     <message>
-        <source>__DSW__ address or contact label</source>
-        <translation>Indirizzo __DSW__ o etichetta contatto</translation>
+        <source>BECN address or contact label</source>
+        <translation>Indirizzo BECN o etichetta contatto</translation>
     </message>
     <message>
         <source>Amount</source>
