@@ -368,7 +368,15 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.push_back(CDNSSeedData("tseeder", "tseeder.__decenomy.net__", true));
+        vSeeds.push_back(CDNSSeedData("tseeder", "tseeder.beaconcoin.net"));
+	    vSeeds.push_back(CDNSSeedData("tseed1", "tseed1.beaconcoin.net"));
+        vSeeds.push_back(CDNSSeedData("tseed2", "tseed2.beaconcoin.net"));
+        vSeeds.push_back(CDNSSeedData("tseed3", "tseed3.beaconcoin.net"));
+        vSeeds.push_back(CDNSSeedData("tseed4", "tseed4.beaconcoin.net"));
+	    vSeeds.push_back(CDNSSeedData("tseed5", "tseed5.beaconcoin.net"));
+	    vSeeds.push_back(CDNSSeedData("tseed6", "tseed6.beaconcoin.net"));
+	    vSeeds.push_back(CDNSSeedData("tseed7", "tseed7.beaconcoin.net"));
+	    vSeeds.push_back(CDNSSeedData("tseed8", "tseed8.beaconcoin.net"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet beacon addresses start with 'x' or 'y'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet beacon script addresses start with '8' or '9'
