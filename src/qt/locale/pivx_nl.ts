@@ -3844,8 +3844,8 @@ Er was een fout opgetreden tijdens het opslaan van deze adreslijst naar %1. Prob
         <translation>2) Waarom is mijn BECN niet besteedbaar?</translation>
     </message>
     <message>
-        <source>__decenomy_website_link__/</source>
-        <translation>__decenomy_website_link__/</translation>
+        <source>https://beaconcoin.net/</source>
+        <translation>https://beaconcoin.net/</translation>
     </message>
     <message>
         <source>1</source>

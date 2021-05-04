@@ -3843,8 +3843,8 @@ Ha habido un error al tratar de guardar la libreta de direcciones en %1. Por fav
         <translation>2) ¿Por qué mis BECN no se pueden gastar?</translation>
     </message>
     <message>
-        <source>__decenomy_website_link__/</source>
-        <translation>__decenomy_website_link__/</translation>
+        <source>https://beaconcoin.net/</source>
+        <translation>https://beaconcoin.net/</translation>
     </message>
     <message>
         <source>1</source>
