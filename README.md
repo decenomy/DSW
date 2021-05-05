@@ -1,6 +1,3 @@
-**ALERT: This document should be updated for EACH coin individually**
-**The dummy values below belongs to Sapphire Coin**
-
 DECENOMY Standard wallet repository
 =====================================
 
@@ -13,11 +10,11 @@ DECENOMY Standard wallet repository
 • Block Time: 60 Seconds    
 • Maturity: 100 Confirmations  
 • Prefix: BECN adresses start with the lower case letter "b"  
-• Ports: 91111 (p2p) / 19999 (rpc)
+• Ports: 36552 (p2p) / 36553 (rpc)
 
 • Explorer https://explorer.beaconcoin.net/
 
-• Website [sappcoin.com](https://beaconcoin.net/)
+• Website [beaconcoin.net](https://beaconcoin.net/)
 
 ### Rewards Breakdown
 <table border=0 cellpadding=0 cellspacing=0 width=701 class=xl6553517252
