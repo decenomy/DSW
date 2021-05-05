@@ -84,6 +84,7 @@ pipeline {
                     cp src/${BASE_NAME}d.exe src/${BASE_NAME}-cli.exe src/${BASE_NAME}-tx.exe src/qt/${BASE_NAME}-qt.exe deploy/windows/
                     cd deploy/windows
                     zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-Windows.zip ${BASE_NAME}d.exe ${BASE_NAME}-cli.exe ${BASE_NAME}-tx.exe ${BASE_NAME}-qt.exe
+                    mkdir -p ../../contrib/innosetup/package
                     mv ${BASE_NAME}* ../../contrib/innosetup/package/
                     cd ../../contrib/innosetup/
                     wine ~/.wine/drive_c/Program\\ Files\\ \\(x86\\)/Inno\\ Setup\\ 6/ISCC.exe setup.iss
