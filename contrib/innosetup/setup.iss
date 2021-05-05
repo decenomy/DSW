@@ -60,7 +60,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 6.1; Check: not IsAdminInstallMode
 
 [Files]
-Source: ".\package\sapphire-qt.exe"; DestDir: "{app}"; Flags: ignoreversion; Components: app
+Source: ".\package\__decenomy__-qt.exe"; DestDir: "{app}"; Flags: ignoreversion; Components: app
 Source: ".\package\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs; Components: app
 Source: ".\7za.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall; Components: bootstrap
 
@@ -89,7 +89,7 @@ Filename: "{tmp}\7za.exe"; Parameters: "x ""{tmp}\bootstrap.zip"" -o""{code:GetD
 Filename: "{app}\{#MyAppExeName}"; Flags: nowait postinstall skipifsilent; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"
 
 [Registry]
-Root: "HKCU"; Subkey: "Software\Sapphire\Sapphire-Qt"; ValueType: string; ValueName: "strDataDir"; ValueData: "{code:GetDataDir}\"
+Root: "HKCU"; Subkey: "Software\__Decenomy__\__Decenomy__-Qt"; ValueType: string; ValueName: "strDataDir"; ValueData: "{code:GetDataDir}\"
 
 [Code]
 var
@@ -121,7 +121,7 @@ function NextButtonClick(CurPageID: Integer): Boolean;
 begin
   // Set default folder if empty
   if DataDirPage.Values[0] = '' then
-     DataDirPage.Values[0] := ExpandConstant('{reg:HKCU\Software\Sapphire\Sapphire-Qt,strDataDir|{userappdata}\Sapphire\}');
+     DataDirPage.Values[0] := ExpandConstant('{reg:HKCU\Software\__Decenomy__\__Decenomy__-Qt,strDataDir|{userappdata}\__Decenomy__\}');
   Result := True;
 end;
 
