@@ -21,6 +21,8 @@
 std::map<uint256, int> mapSeenMasternodeScanningErrors;
 // cache block hashes as we calculate them
 std::map<int64_t, uint256> mapCacheBlockHashes;
+// cache collaterals
+std::vector<std::pair<int,CAmount>> vecCollaterals;
 
 //Get the last hash that matches the modulus given. Processed in reverse order
 bool GetBlockHash(uint256& hash, int nBlockHeight)
@@ -460,6 +462,27 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
     return (95 * CMasternode::GetBlockValue(chainActive.Height())) / 100; // 95% of the block reward
+}
+
+void CMasternode::InitMasternodeCollateralList() {
+    CAmount prev = -1; 
+    for(int i = 0; i < 9999999; i++) {
+        CAmount c = GetMasternodeNodeCollateral(i);
+        if(prev != c) {
+            LogPrint(BCLog::MASTERNODE, "%s: Found collateral %d at block %d\n", __func__, c / COIN, i); 
+            prev = c;
+            vecCollaterals.push_back(std::make_pair(i, c));
+        }
+    }
+}
+
+std::pair<int, CAmount> CMasternode::GetNextMasternodeCollateral(int nHeight) {
+    for(auto p : vecCollaterals) {
+        if(p.first > nHeight) {
+            return std::make_pair(p.first - nHeight, p.second);
+        }
+    }
+    return std::make_pair(-1, -1);
 }
 
 CMasternodeBroadcast::CMasternodeBroadcast() :

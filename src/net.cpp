@@ -1569,17 +1569,6 @@ void CConnman::ThreadDNSAddressSeed()
     LogPrintf("%d addresses found from DNS seeds\n", found);
 }
 
-
-
-
-
-
-
-
-
-
-
-
 void CConnman::DumpAddresses()
 {
     int64_t nStart = GetTimeMillis();
