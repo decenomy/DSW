@@ -756,6 +756,7 @@ DBErrors CWalletDB::LoadWallet(CWallet* pwallet)
                 if (IsKeyType(strType) || strType == "defaultkey")
                     result = DB_CORRUPT;
                 else {
+                    std::cout << strType << " - " << strErr << std::endl;
                     // Leave other errors alone, if we try to fix them we might make things worse.
                     fNoncriticalErrors = true; // ... but do warn the user there is something wrong.
                     if (strType == "tx")
