@@ -419,6 +419,8 @@ void ScriptPubKeyMan::AddKeypoolPubkeyWithDB(const CPubKey& pubkey, const uint8_
     const bool isHDEnabled = IsHDEnabled();
     if (isHDEnabled && type == HDChain::ChangeType::INTERNAL) {
         setInternalKeyPool.insert(index);
+    } else if (isHDEnabled && type == HDChain::ChangeType::ECOMMERCE) {
+        setECommerceKeyPool.insert(index);
     } else {
         setExternalKeyPool.insert(index);
     }
