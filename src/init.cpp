@@ -943,6 +943,9 @@ void InitLogging()
  */
 bool AppInit2()
 {
+    // ********************************************************* Step 0: masternode collateral init
+    CMasternode::InitMasternodeCollateralList();
+
     // ********************************************************* Step 1: setup
     if (!AppInitBasicSetup())
         return false;
