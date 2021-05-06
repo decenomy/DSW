@@ -12,11 +12,11 @@ fi
 	echo "1" | sudo update-alternatives --config x86_64-w64-mingw32-g++
 
 # Clone code from official Github repository
-	rm -rf DSW
-	git clone https://github.com/decenomy/DSW.git
+	rm -rf beacon
+	git clone https://github.com/beaconcrypto/beacon.git
 
 # Entering directory
-	cd DSW
+	cd beacon
 
 # Compile dependencies
 	cd depends
@@ -30,6 +30,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/__decenomy__d.exe DSW/src/__decenomy__-cli.exe DSW/src/__decenomy__-tx.exe DSW/src/qt/__decenomy__-qt.exe .
-	zip __DSW__-Windows.zip __decenomy__d.exe __decenomy__-cli.exe __decenomy__-tx.exe __decenomy__-qt.exe
-	rm -f __decenomy__d.exe __decenomy__-cli.exe __decenomy__-tx.exe __decenomy__-qt.exe
+	cp DSW/src/beacond.exe DSW/src/beacon-cli.exe DSW/src/beacon-tx.exe DSW/src/qt/beacon-qt.exe .
+	zip BECN-Windows.zip beacond.exe beacon-cli.exe beacon-tx.exe beacon-qt.exe
+	rm -f beacond.exe beacon-cli.exe beacon-tx.exe beacon-qt.exe
