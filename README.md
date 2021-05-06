@@ -1,4 +1,4 @@
-DECENOMY Standard wallet repository
+Beacon Standard wallet repository
 =====================================
 
 ### Coin Specs
