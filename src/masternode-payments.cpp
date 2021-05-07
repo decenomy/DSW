@@ -410,7 +410,7 @@ void CMasternodePayments::ProcessMessageMasternodePayments(CNode* pfrom, std::st
             if (pfrom->HasFulfilledRequest(NetMsgType::GETMNWINNERS)) {
                 LogPrintf("CMasternodePayments::ProcessMessageMasternodePayments() : mnget - peer already asked me for the list\n");
                 LOCK(cs_main);
-                Misbehaving(pfrom->GetId(), 20);
+                if (CMasternode::GetMasternodePayment(chainActive.Height()) > 0) Misbehaving(pfrom->GetId(), 20);
                 return;
             }
         }
