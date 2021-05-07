@@ -7,11 +7,11 @@ then
 fi
 
 # Clone code from official Github repository
-    rm -rf DSW
-    git clone https://github.com/decenomy/DSW.git
+    rm -rf peony
+    git clone https://github.com/PeonyTeam/peony
 
 # Entering directory
-    cd DSW
+    cd peony
 
 # Compile dependencies
     cd depends
@@ -31,6 +31,6 @@ fi
     cd ..
 
 # Create zip file of binaries
-    cp DSW/src/__decenomy__d DSW/src/__decenomy__-cli DSW/src/__decenomy__-tx DSW/src/qt/__decenomy__-qt DSW/__Decenomy__-Core.dmg .
-    zip __DSW__-MacOS.zip __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt __Decenomy__-Core.dmg
-    rm -f __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt __Decenomy__-Core.dmg
+    cp DSW/src/peonyd DSW/src/peony-cli DSW/src/peony-tx DSW/src/qt/peony-qt DSW/Peony-Core.dmg .
+    zip PNY-MacOS.zip peonyd peony-cli peony-tx peony-qt Peony-Core.dmg
+    rm -f peonyd peony-cli peony-tx peony-qt Peony-Core.dmg

@@ -242,8 +242,7 @@ void CMasternodeMan::AskForMN(CNode* pnode, const CTxIn& vin)
 
 void CMasternodeMan::Check()
 {
-    LOCK(cs_main);
-    LOCK(cs);
+    LOCK2(cs_main, cs);
 
     for (CMasternode& mn : vMasternodes) {
         mn.Check();
@@ -485,8 +484,7 @@ CMasternode* CMasternodeMan::Find(const CPubKey& pubKeyMasternode)
 //
 CMasternode* CMasternodeMan::GetNextMasternodeInQueueForPayment(int nBlockHeight, bool fFilterSigTime, int& nCount)
 {
-    LOCK(cs_main);
-    LOCK(cs);
+    LOCK2(cs_main, cs);
 
     CMasternode* pBestMasternode = NULL;
     std::vector<std::pair<int64_t, CTxIn> > vecMasternodeLastPaid;
@@ -752,7 +750,7 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
                     if (GetTime() < t) {
                         LogPrintf("CMasternodeMan::ProcessMessage() : dseg - peer already asked me for the list\n");
                         LOCK(cs_main);
-                        Misbehaving(pfrom->GetId(), 34);
+                        if (CMasternode::GetMasternodePayment(chainActive.Height()) > 0) Misbehaving(pfrom->GetId(), 34);
                         return;
                     }
                 }

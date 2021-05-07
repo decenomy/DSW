@@ -73,8 +73,6 @@ QT_TRANSLATE_NOOP("pivx-core", ""
 QT_TRANSLATE_NOOP("pivx-core", ""
 "Enable SwiftX, show confirmations for locked transactions (bool, default: %s)"),
 QT_TRANSLATE_NOOP("pivx-core", ""
-"Enable cold staking functionality (0-1, default: %u). Disabled if staking=0"),
-QT_TRANSLATE_NOOP("pivx-core", ""
 "Enable spork administration functionality with the appropriate private key."),
 QT_TRANSLATE_NOOP("pivx-core", ""
 "Enter regression test mode, which uses a special chain in which blocks can "

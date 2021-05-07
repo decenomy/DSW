@@ -1031,7 +1031,7 @@ void CBudgetManager::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
                 if (pfrom->HasFulfilledRequest("budgetvotesync")) {
                     LogPrint(BCLog::MNBUDGET,"mnvs - peer already asked me for the list\n");
                     LOCK(cs_main);
-                    Misbehaving(pfrom->GetId(), 20);
+                    if (CMasternode::GetMasternodePayment(chainActive.Height()) > 0) Misbehaving(pfrom->GetId(), 20);
                     return;
                 }
                 pfrom->FulfilledRequest("budgetvotesync");

@@ -12,11 +12,11 @@ fi
 	echo "1" | sudo update-alternatives --config x86_64-w64-mingw32-g++
 
 # Clone code from official Github repository
-	rm -rf DSW
-	git clone https://github.com/decenomy/DSW.git
+	rm -rf peony
+	git clone https://github.com/PeonyTeam/peony
 
 # Entering directory
-	cd DSW
+	cd peony
 
 # Compile dependencies
 	cd depends
@@ -30,6 +30,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/__decenomy__d.exe DSW/src/__decenomy__-cli.exe DSW/src/__decenomy__-tx.exe DSW/src/qt/__decenomy__-qt.exe .
-	zip __DSW__-Windows.zip __decenomy__d.exe __decenomy__-cli.exe __decenomy__-tx.exe __decenomy__-qt.exe
-	rm -f __decenomy__d.exe __decenomy__-cli.exe __decenomy__-tx.exe __decenomy__-qt.exe
+	cp DSW/src/peonyd.exe DSW/src/peony-cli.exe DSW/src/peony-tx.exe DSW/src/qt/peony-qt.exe .
+	zip PNY-Windows.zip peonyd.exe peony-cli.exe peony-tx.exe peony-qt.exe
+	rm -f peonyd.exe peony-cli.exe peony-tx.exe peony-qt.exe
