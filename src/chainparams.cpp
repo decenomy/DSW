@@ -238,15 +238,15 @@ public:
         pchMessageStart[3] = 0x7d;
         nDefaultPort = PORT_MAINNET;
 
-        vSeeds.push_back(CDNSSeedData("seeder", "seeder.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed2", "seed2.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed3", "seed3.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed4", "seed4.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.__decenomy.net__"));
+        vSeeds.push_back(CDNSSeedData("seeder", "seeder.peony.net"));
+	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.peony.net"));
+        vSeeds.push_back(CDNSSeedData("seed2", "seed2.peony.net"));
+        vSeeds.push_back(CDNSSeedData("seed3", "seed3.peony.net"));
+        vSeeds.push_back(CDNSSeedData("seed4", "seed4.peony.net"));
+	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.peony.net"));
+	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.peony.net"));
+	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.peony.net"));
+	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.peony.net"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 55);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 117);
@@ -369,7 +369,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.push_back(CDNSSeedData("tseeder", "tseeder.__decenomy.net__", true));
+        vSeeds.push_back(CDNSSeedData("tseeder", "tseeder.peony.net", true));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet peony addresses start with 'x' or 'y'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet peony script addresses start with '8' or '9'
