@@ -8,6 +8,8 @@
 #include "script.h"
 #include "tinyformat.h"
 #include "utilstrencodings.h"
+#include "uint256.h"
+#include "hash.h"
 
 
 const char* GetOpName(opcodetype opcode)
@@ -146,17 +148,17 @@ const char* GetOpName(opcodetype opcode)
     case OP_ZEROCOINSPEND          : return "OP_ZEROCOINSPEND";
     case OP_ZEROCOINPUBLICSPEND    : return "OP_ZEROCOINPUBLICSPEND";
 
-	// memory store
-	case OP_MLOAD				   : return "OP_MLOAD";
-	case OP_MSTORE				   : return "OP_MSTORE";
+    // memory store
+    case OP_MLOAD				   : return "OP_MLOAD";
+    case OP_MSTORE				   : return "OP_MSTORE";
 
-	// storage
-	case OP_SLOAD				   : return "OP_SLOAD";
-	case OP_SSTORE				   : return "OP_SSTORE";
+    // storage
+    case OP_SLOAD				   : return "OP_SLOAD";
+    case OP_SSTORE				   : return "OP_SSTORE";
 
-	// smart contract actions
-	case OP_PUBLISH			       : return "OP_PUBLISH";
-	case OP_RUN			   	       : return "OP_RUN";
+    // smart contract actions
+    case OP_PUBLISH			       : return "OP_PUBLISH";
+    case OP_RUN			   	       : return "OP_RUN";
 
     case OP_INVALIDOPCODE          : return "OP_INVALIDOPCODE";
 
@@ -211,13 +213,6 @@ unsigned int CScript::GetSigOpCount(const CScript& scriptSig) const
     /// ... and return its opcount:
     CScript subscript(data.begin(), data.end());
     return subscript.GetSigOpCount(true);
-}
-
-bool CScript::RunScript(const CScript& contractScript)
-{
-	// TODO:: Implement code to run the script and get the result
-	bool result = true;
-	return result;
 }
 
 bool CScript::IsNormalPaymentScript() const
@@ -299,3 +294,95 @@ size_t CScript::DynamicMemoryUsage() const
 {
     return memusage::DynamicUsage(*static_cast<const CScriptBase*>(this));
 }
+
+
+
+/*
+* 
+* Contract Scripts
+* This section ....
+* 
+*/
+
+CScript CScriptContract::ConstructContractScript(CScriptContract& contract)
+{
+    // TODO: Implement the Contract Script Construction code
+    CScript contractScript;
+    return contractScript;
+}
+
+bool CScriptContract::RunContractScript(const CScriptContract contract)
+{
+    // TODO:: Implement code to run the script and get the result
+    bool result = true;
+    return result;
+}
+
+uint256 CScriptContract::GetConsensusScriptHash(CScriptContract& contract, HashType hashType) const
+{
+    std::string IpfsHash; // TODO: Generate IPFS hash
+    uint256 hash;
+
+    switch (hashType)
+    {
+        case TYPE_X11KVS:
+            return HashX11KVS(BEGIN(contract.consensusScript), END(contract.consensusScript));
+            break;
+        
+        case TYPE_IPFS:
+            return uint256S(IpfsHash);
+            break;
+
+        case TYPE_SHA256:
+            return Hash(BEGIN(contract.consensusScript), END(contract.consensusScript));
+            break;
+
+        case TYPE_SHA256D:
+            hash = Hash(BEGIN(contract.consensusScript), END(contract.consensusScript));
+            return Hash(BEGIN(hash), END(hash));
+            break;
+
+        case TYPE_SHA512:
+            return Hash512(BEGIN(consensusScript), END(consensusScript)).trim256();
+            break;
+
+        default:
+            return HashX11KVS(BEGIN(consensusScript), END(consensusScript));
+            break;
+    }
+}
+
+uint256 CScriptContract::GetContractHash(CScriptContract& contract, HashType hashType) const
+{
+    std::string IpfsHash; // TODO: Generate IPFS hash
+    uint256 hash;
+
+    switch (hashType)
+    {
+        case 0:
+            return HashX11KVS(BEGIN(contract), END(contract));
+            break;
+        
+        case 1:
+            return uint256S(IpfsHash);
+            break;
+
+        case 2:
+            return Hash(BEGIN(contract), END(contract));
+            break;
+
+        case 3:
+            hash = Hash(BEGIN(contract.consensusScript), END(contract.consensusScript));
+            return Hash(BEGIN(hash), END(hash));
+            break;
+
+        case 4:
+            return Hash512(BEGIN(contract), END(contract)).trim256();
+            break;
+
+        default:
+            return HashX11KVS(BEGIN(contract), END(contract));
+            break;
+    }
+}
+

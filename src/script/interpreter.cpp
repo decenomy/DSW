@@ -81,8 +81,8 @@ bool static IsCompressedOrUncompressedPubKey(const valtype &vchPubKey) {
             return false;
         }
     } else {
-          //  Non-canonical public key: neither compressed nor uncompressed
-          return false;
+        //  Non-canonical public key: neither compressed nor uncompressed
+        return false;
     }
     return true;
 }
@@ -1006,67 +1006,82 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
                 }
                 break;
 
-				// memory store
-				case OP_MLOAD:
-				{
+                // memory store
+                case OP_MLOAD:
+                {
                     int i = 1; // Number of items in the stack. At least the hash of the data in the memory should be in the stack.
                     if ((int)stack.size() < i)
                         return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
-				}
-				break;
+                }
+                break;
 
-				case OP_MSTORE:
-				{
+                case OP_MSTORE:
+                {
                     int i = 1; // Number of items in the stack. At least the serialized data or link to the data to be stored into the memory should be in the stack.
                     if ((int)stack.size() < i)
                         return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
-				}
-				break;
+                }
+                break;
 
-				// storage
-				case OP_SLOAD:
-				{
+                // storage
+                case OP_SLOAD:
+                {
                     int i = 1; // Number of items in the stack. At least the hash of the data in the storage should be in the stack.
                     if ((int)stack.size() < i)
                         return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
-				}
-				break;
+                }
+                break;
 
-				case OP_SSTORE:
-				{
+                case OP_SSTORE:
+                {
                     int i = 1; // Number of items in the stack. At least the serialized data or link to the data to be stored into the storage should be in the stack.
                     if ((int)stack.size() < i)
                         return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
-				}
-				break;
-				
-				// smart contract
-				case OP_PUBLISH:
-				{
-                    int i = 1; // Number of items in the stack. At least the serialized contract or link to the contract script to be stored into the storage should be in the stack.
+                }
+                break;
+                
+                // smart contract
+                case OP_PUBLISH:
+                {
+                    // (in -- contract script)
+                    int i = 7; // Number of items in the stack. At least the serialized contract or link to the contract script to be stored into the storage should be in the stack.
                     if ((int)stack.size() < i)
                         return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
 
-					CScript contract;
-					uint256 hash;
+                    CScriptContract contract;
+                    contract.issuerPubKey.Set(stacktop(-1).begin(), stacktop(-1).end());
+                    contract.receiverPubKey.Set(stacktop(-2).begin(), stacktop(-2).end());
+                    contract.publishTime = uint256(stacktop(-3)).Get64();
+                    contract.runDeadLine = uint256(stacktop(-4)).Get64();
+                    contract.duration = uint256(stacktop(-5)).Get64();
+                    contract.consensusScript = CScript(stacktop(-6));
+                    contract.consensusScriptHash = contract.GetConsensusScriptHash(contract, TYPE_X11KVS);
+                    std::vector<unsigned char> contractName = stacktop(-7);
 
-					return CScriptDB::WriteScript("Example Contract", hash, contract);
-				}
-				break;
+                    CScript contractScript = contract.ConstructContractScript(contract);
 
-				case OP_RUN:
-				{
+                    CScriptDB* scriptDb;
+
+                    // return scriptDb->WriteContract(contractName, contract);
+                    return true;
+                }
+                break;
+
+                case OP_RUN:
+                {
                     // (in -- contract hash)
                     int i = 1; // Number of items in the stack. At least the contract hash should be in the stack.
                     if ((int)stack.size() < i)
                         return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
 
-					CScript contract;
-					uint256 hash;
-					contract = CScriptDB::ReadScript(hash, contract);
+                    CScriptDB* scriptDb;
+                    CScriptContract contract;
 
-					return CScript::RunScript(contract);
-				}
+                    contract.consensusScriptHash = uint256(stacktop(-1));
+                    // scriptDb->ReadContract(contract);
+
+                    return contract.RunContractScript(contract);
+                }
 
                 default:
                     return set_error(serror, SCRIPT_ERR_BAD_OPCODE);
@@ -1174,12 +1189,12 @@ public:
         unsigned int nInputs = fAnyoneCanPay ? 1 : txTo.vin.size();
         ::WriteCompactSize(s, nInputs);
         for (unsigned int nInput = 0; nInput < nInputs; nInput++)
-             SerializeInput(s, nInput);
+            SerializeInput(s, nInput);
         // Serialize vout
         unsigned int nOutputs = fHashNone ? 0 : (fHashSingle ? nIn+1 : txTo.vout.size());
         ::WriteCompactSize(s, nOutputs);
         for (unsigned int nOutput = 0; nOutput < nOutputs; nOutput++)
-             SerializeOutput(s, nOutput);
+            SerializeOutput(s, nOutput);
         // Serialize nLockTime
         ::Serialize(s, txTo.nLockTime);
     }
