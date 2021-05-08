@@ -5,13 +5,13 @@
 #ifndef BITCOIN_SCRIPTDB_H
 #define BITCOIN_SCRIPTDB_H
 
-#include "fs.h"
 #include "dbwrapper.h"
-#include "spork.h"
+#include "script/script.h"
+#include "serialize.h"
 
+class CScriptContract;
 class CScript;
-class uint160;
-class uint256;
+class CDBWrapper;
 
 /** Error statuses for the wallet database */
 enum DBErrors {
@@ -27,16 +27,14 @@ enum DBErrors {
 class CScriptDB : public CDBWrapper
 {
 public:
-	CScriptDB(size_t nCacheSize, bool fMemory, bool fWipe) : CDBWrapper(GetDataDir() / "scripts", nCacheSize, fMemory, fWipe)
-	{
-	}
+    CScriptContract contract;
 
-	static bool WriteScript(const std::string& name, const uint256 hash, const CScript& contract);
-	static bool ReadScript(const uint256 hash, const CScript& contract);
-	static bool EraseScript(const uint256 hash);
-	static bool ScriptExists(const uint256 hash);
+    CScriptDB(size_t nCacheSize, bool fMemory, bool fWipe) : CDBWrapper(GetDataDir() / "scripts", nCacheSize, fMemory, fWipe) {};
 
-	// TODO: Implement Serialize and Unserialize
+    bool WriteContract(const std::vector<unsigned char>& name, CScriptContract& contract);
+    bool ReadContract(CScriptContract& contract);
+    // bool EraseContract(CScriptContract& contract); // TODO: Erasing Scripts from database can be dangerous so maybe it should just be marked as 'DISABLED' if it's strictly needed
+    bool ContractExists(CScriptContract& contract);
 
 private:
     CScriptDB(const CScriptDB&);

@@ -1062,8 +1062,7 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
 
                     CScriptDB* scriptDb;
 
-                    // return scriptDb->WriteContract(contractName, contract);
-                    return true;
+                    return scriptDb->WriteContract(contractName, contract);
                 }
                 break;
 
@@ -1078,7 +1077,7 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
                     CScriptContract contract;
 
                     contract.consensusScriptHash = uint256(stacktop(-1));
-                    // scriptDb->ReadContract(contract);
+                    scriptDb->ReadContract(contract);
 
                     return contract.RunContractScript(contract);
                 }

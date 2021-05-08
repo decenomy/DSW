@@ -3,36 +3,30 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "script/scriptdb.h"
-#include "fs.h"
+#include "script/script.h"
 #include "dbwrapper.h"
 
-
-
-CScriptDB* scriptDB;
-
-bool CScriptDB::WriteScript(const std::string& name, const uint256 hash, const CScript& contract)
+bool CScriptDB::WriteContract(const std::vector<unsigned char>& name, CScriptContract& contract)
 {
-	// TODO: Maybe we should check script validity here before we write it to the database
-    LogPrintf("Wrote script %s to database\n", name);
-    // return scriptDB->Write(hash, contract); // TODO: Gives error on compile (‘const class CScript’ has no member named ‘Serialize’). Should be fixed
-	return true;
+    // TODO: Maybe we should check script validity here before we write it to the database
+    LogPrintf("Wrote script %s to database\n", (std::string&) name);
+    uint256 hash = contract.GetConsensusScriptHash(contract, TYPE_X11KVS);
+    return true; // Write(hash, contract.consensusScript);
 }
 
-bool CScriptDB::ReadScript(const uint256 hash, const CScript& contract)
+bool CScriptDB::ReadContract(CScriptContract& contract)
 {
-    // return scriptDB->Read(hash, contract); // TODO: Gives error on compile (‘const class CScript’ has no member named ‘Serialize’). Should be fixed
-	return true;
+    return true; // Read(contract.GetConsensusScriptHash(contract, TYPE_X11KVS), contract.consensusScript);
 }
 
 // TODO: Erasing Scripts from database can be dangerous so maybe it should just be marked as 'DISABLED' if this it's needed
-bool CScriptDB::EraseScript(const uint256 hash)
-{
-    // return scriptDB->Erase(hash); // TODO: Gives error on compile (‘const class CScript’ has no member named ‘Serialize’). Should be fixed
-	return true;
-}
+// bool CScriptDB::EraseContract(CScriptContract& contract)
+// {
+//     return Erase(contract.GetConsensusScriptHash(contract, TYPE_X11KVS));
+// }
 
-bool CScriptDB::ScriptExists(const uint256 hash)
+bool CScriptDB::ContractExists(CScriptContract& contract)
 {
-    // return scriptDB->Exists(hash); // TODO: Gives error on compile (‘const class CScript’ has no member named ‘Serialize’). Should be fixed
-	return true;
+    uint256 hash = contract.GetConsensusScriptHash(contract, TYPE_X11KVS);
+    return true; // Exists(hash);
 }
