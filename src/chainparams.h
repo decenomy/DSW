@@ -10,8 +10,8 @@
 #define BITCOIN_CHAINPARAMS_H
 
 #define __PORT_MAINNET__ 45328
-#define __PORT_TESTNET__ 46328
-#define __PORT_REGTEST__ 47328
+#define __PORT_TESTNET__ 51474
+#define __PORT_REGTEST__ 51476
 
 #include "chainparamsbase.h"
 #include "checkpoints.h"
