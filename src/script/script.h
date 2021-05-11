@@ -769,7 +769,7 @@ ADD_SERIALIZE_METHODS;
     bool RunContractScript(const CScriptContract contract);
 };
 
-class CScriptDataFile
+class CScriptDataFile : public CScript
 {
 public:
     std::string fileName;
