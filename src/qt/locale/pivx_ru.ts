@@ -3619,7 +3619,6 @@ PNY использует консенсус PoS (Proof of Stake), позволя
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;Instant transactions (SwiftX)&lt;/li&gt;
                            &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
                            &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
@@ -3655,7 +3654,6 @@ PNY использует консенсус PoS (Proof of Stake), позволя
         <translation>
 Мастернода - это компьютер, на котором запущен базовый кошелек PNY с полным узлом и для которого требуется обеспечение в 10000 PNY для обеспечения дополнительных услуг сети и, в свою очередь, регулярного получения части вознаграждения за блок. Эти услуги в себя включают:
 
-Мгновенные транзакции (SwiftX)
 Децентрализованное управление (Голосование по предложениям)
 Децентрализованная система бюджетирования (Казначейство)
 Проверка транзакций в каждом блоке.
@@ -4965,10 +4963,6 @@ backup will be created.
         <translation>Отправить Монеты</translation>
     </message>
     <message>
-        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 %2.</source>
-        <translation>SwiftX пока не поддерживает отправку таких высоких значений. Транзакции в настоящее время ограничены %1 %2.</translation>
-    </message>
-    <message>
         <source>Transaction creation failed!
 %1</source>
         <translation>Ошибка при создании транзакции! %1</translation>
@@ -5364,14 +5358,6 @@ Peony Wallet</source>
         <translation>Загрузка выполнена</translation>
     </message>
     <message>
-        <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>Включить публикацию хеш-транзакции (заблокированной через SwiftX) в &lt;address&gt;</translation>
-    </message>
-    <message>
-        <source>Enable publish raw transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>Включить публикацию необработанных транзакций (заблокированных через SwiftX) в &lt;address&gt;</translation>
-    </message>
-    <message>
         <source>Enable the client to act as a masternode (0-1, default: %u)</source>
         <translation>Разрешить клиенту действовать как мастернод (0-1, по умолчанию: %u)</translation>
     </message>
@@ -5512,20 +5498,12 @@ Peony Wallet</source>
         <translation>Выбранная стоимость монет меньше цели платежа</translation>
     </message>
     <message>
-        <source>SwiftX options:</source>
-        <translation>Параметры SwiftX:</translation>
-    </message>
-    <message>
         <source>This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!</source>
         <translation>Это предварительная версия сборки - используйте на свой страх и риск - не используйте для ставок или коммерческих приложений!</translation>
     </message>
     <message>
-        <source>Disable all PNY specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>Отключите все специфические функции PNY (Masternodes, Zerocoin, SwiftX, Бюджетирование) (0-1, по умолчанию: %u)</translation>
-    </message>
-    <message>
-        <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
-        <translation>Включить SwiftX, показать подтверждения для заблокированных транзакций (bool, default: %s)</translation>
+        <source>Disable all PNY specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
+        <translation>Отключите все специфические функции PNY (Masternodes, Zerocoin, Бюджетирование) (0-1, по умолчанию: %u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -5546,10 +5524,6 @@ Peony Wallet</source>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
         <translation>Укажите собственный путь резервного копирования, чтобы добавить копию любой резервной копии кошелька. Если задано как dir, каждая резервная копия генерирует файл с отметкой времени. Если он установлен как файл, он будет переписывать в этот файл каждую резервную копию.</translation>
-    </message>
-    <message>
-        <source>SwiftX requires inputs with at least 6 confirmations, you might need to wait a few minutes and try again.</source>
-        <translation>SwiftX требует ввода с не менее чем 6 подтверждениями, вам может потребоваться несколько минут и повторите попытку.</translation>
     </message>
     <message>
         <source>&lt;category&gt; can be:</source>

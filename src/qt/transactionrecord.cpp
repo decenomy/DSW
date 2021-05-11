@@ -8,7 +8,6 @@
 #include "transactionrecord.h"
 
 #include "base58.h"
-#include "swifttx.h"
 #include "timedata.h"
 #include "wallet/wallet.h"
 #include "zpivchain.h"
@@ -408,7 +407,6 @@ void TransactionRecord::updateStatus(const CWalletTx& wtx)
     status.countsForBalance = isTrusted && !(nBlocksToMaturity > 0);
     status.cur_num_blocks = chainHeight;
     status.depth = depth;
-    status.cur_num_ix_locks = nCompleteTXLocks;
 
     if (!IsFinalTx(wtx, chainHeight + 1)) {
         if (wtx.nLockTime < LOCKTIME_THRESHOLD) {
@@ -452,7 +450,7 @@ void TransactionRecord::updateStatus(const CWalletTx& wtx)
 bool TransactionRecord::statusUpdateNeeded()
 {
     AssertLockHeld(cs_main);
-    return status.cur_num_blocks != chainActive.Height() || status.cur_num_ix_locks != nCompleteTXLocks;
+    return status.cur_num_blocks != chainActive.Height();
 }
 
 QString TransactionRecord::getTxID() const

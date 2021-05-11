@@ -20,7 +20,6 @@
 #include "script/script_error.h"
 #include "script/sign.h"
 #include "script/standard.h"
-#include "swifttx.h"
 #include "uint256.h"
 #include "utilmoneystr.h"
 #include "zpivchain.h"
@@ -813,7 +812,6 @@ UniValue sendrawtransaction(const JSONRPCRequest& request)
             "\nArguments:\n"
             "1. \"hexstring\"    (string, required) The hex string of the raw transaction)\n"
             "2. allowhighfees    (boolean, optional, default=false) Allow high fees\n"
-            "3. swiftx           (boolean, optional, default=false) Use SwiftX to send this transaction\n"
 
             "\nResult:\n"
             "\"hex\"             (string) The transaction hash in hex\n"
@@ -837,10 +835,6 @@ UniValue sendrawtransaction(const JSONRPCRequest& request)
     if (request.params.size() > 1)
         fOverrideFees = request.params[1].get_bool();
 
-    bool fSwiftX = false;
-    if (request.params.size() > 2)
-        fSwiftX = request.params[2].get_bool();
-
     AssertLockNotHeld(cs_main);
     CCoinsViewCache& view = *pcoinsTip;
     bool fHaveChain = false;
@@ -851,11 +845,6 @@ UniValue sendrawtransaction(const JSONRPCRequest& request)
     bool fHaveMempool = mempool.exists(hashTx);
     if (!fHaveMempool && !fHaveChain) {
         // push to local node and sync with wallets
-        if (fSwiftX) {
-            mapTxLockReq.insert(std::make_pair(tx.GetHash(), tx));
-            CreateNewLock(tx);
-            g_connman->RelayTransactionLockReq(tx, true);
-        }
         CValidationState state;
         bool fMissingInputs;
         if (!AcceptToMemoryPool(mempool, state, tx, false, &fMissingInputs, false, !fOverrideFees)) {

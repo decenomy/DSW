@@ -15,7 +15,6 @@
 #include "interface/wallet.h"
 
 #include "allocators.h" /* for SecureString */
-#include "swifttx.h"
 #include "wallet/wallet.h"
 #include "pairresult.h"
 
@@ -56,8 +55,7 @@ public:
     QString address;
     QString label;
     AvailableCoinsType inputType;
-    bool useSwiftTX = false;
-
+    
     QString ownerAddress;
 
     // Amount
