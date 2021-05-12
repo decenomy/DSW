@@ -80,6 +80,15 @@ src/beacon-cli
 src/beacon-tx
 src/beacond
 
+# Peony
+src/bench/bench_peony
+src/qt/test/test_peony-qt
+src/qt/peony-qt
+src/test/test_peony
+src/peony-cli
+src/peony-tx
+src/peonyd
+
 ##########################################
 # clear this section when it's fixed
 ###
