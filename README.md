@@ -1,22 +1,21 @@
-Peony Standard wallet repository
-=====================================
+# Peony Standard Wallet
 
-### Coin Specs
+## Coin Specs
 
-• PoW Algorithm: Quark  
-• Premine: 7.720.000 PNY
-• PoW Blocks: 1 - 1000  
-• PoS Blocks: Starting from 1001 
-• Block Time: 60 Seconds    
-• Maturity: 100 Confirmations  
-• Prefix: PNY addresses start with the capital letter "P"  
-• Ports: 17777 (p2p) / 47777 (rpc)
+- PoW Algorithm: X11KVS  
+- Premine: 7.750.000 PNY (Total coin supply from previous blockchain, distributed after maturing, the remaining is burned)
+- Max. Supply: 1.200.000.000 PNY 
+- PoW Blocks: 1 - 1000
+- PoS Blocks: Starting from 1001
+- MN Blocks: Starting from 3001
+- Block Time: 60 Seconds
+- Maturity: 100 Confirmations 
+- Prefix: PNY addresses start with the capital letter "P"  
+- Ports: 36779 (p2p) / 36780 (rpc)   
+- Explorer [explorer.peony.net](https://explorer.peony.net/)   
+- Website [peony.net](https://peony.net/)   
 
-• Explorer https://peonycoin.io/explorer/
-
-• Website [https://peonycoin.io/](https://peonycoin.io/)
-
-### Rewards Breakdown
+## Rewards Breakdown
 <table border=0 cellpadding=0 cellspacing=0 width=701 class=xl6553517252
  style='border-collapse:collapse;table-layout:fixed;width:528pt'>
  <col class=xl6553517252 width=139 style='mso-width-source:userset;mso-width-alt:
@@ -42,8 +41,8 @@ Peony Standard wallet repository
   <td class=xl6517252>50</td>
   <td class=xl6617252>80</td>
   <td class=xl6617252>20</td>
-  <td class=xl6717252>40</td>
-  <td class=xl6553517252>10</td>
+  <td class=xl6717252 align=right>40</td>
+  <td class=xl6553517252 align=right>10</td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>100001-200000</td>

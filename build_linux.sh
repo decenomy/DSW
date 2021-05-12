@@ -29,6 +29,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/peonyd DSW/src/peony-cli DSW/src/peony-tx DSW/src/qt/peony-qt .
+	cp peony/src/peonyd peony/src/peony-cli peony/src/peony-tx peony/src/qt/peony-qt .
 	zip PNY-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip peonyd peony-cli peony-tx peony-qt
 	rm -f peonyd peony-cli peony-tx peony-qt
