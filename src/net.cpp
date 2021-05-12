@@ -2374,20 +2374,6 @@ bool CConnman::DisconnectNode(NodeId id)
     return false;
 }
 
-void CConnman::RelayTransactionLockReq(const CTransaction& tx, bool relayToAll)
-{
-    CInv inv(MSG_TXLOCK_REQUEST, tx.GetHash());
-
-    //broadcast the new lock
-    LOCK(cs_vNodes);
-    for (CNode* pnode : vNodes) {
-        if (!relayToAll && !pnode->fRelayTxes)
-            continue;
-
-        g_connman->PushMessage(pnode, CNetMsgMaker(pnode->GetSendVersion()).Make(NetMsgType::IX, tx));
-    }
-}
-
 void CConnman::RelayInv(CInv& inv)
 {
     LOCK(cs_vNodes);
