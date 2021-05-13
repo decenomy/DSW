@@ -1320,14 +1320,14 @@ Espere unos minutos más (las garantías de masternode requieren %1 confirmacion
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the __decenomy__.conf file
+You will only have to paste the data in the monk.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
         <translation>Estás a punto de exportar los datos necesarios para ejecutar un Masternode de un servidor remoto a tu portapapeles.
 
 
-Sólo tendrás que pegar los datos en el archivo __decenomy__.conf de tu servidor remoto e iniciarlo, luego inicia el Masternode usando esta wallet de controladores (selecciona el Masternode en la lista y presione "start").
+Sólo tendrás que pegar los datos en el archivo monk.conf de tu servidor remoto e iniciarlo, luego inicia el Masternode usando esta wallet de controladores (selecciona el Masternode en la lista y presione "start").
 </translation>
     </message>
     <message>
@@ -1508,8 +1508,8 @@ MAESTROS</translation>
         <translation>Los datos analizados son demasiado grandes</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "__decenomy__" prefix</source>
-        <translation>URI inválido, no empezar con el prefijo "__decenomy__"</translation>
+        <source>Invalid URI, not starting with "monk" prefix</source>
+        <translation>URI inválido, no empezar con el prefijo "monk"</translation>
     </message>
 </context>
 <context>
@@ -1898,8 +1898,8 @@ Dirección: %4
         <translation>Dirección de pago inválida %1</translation>
     </message>
     <message>
-        <source>Cannot start __decenomy__: click-to-pay handler</source>
-        <translation>No se puede iniciar __decenomy__: módulo click-to-pay</translation>
+        <source>Cannot start monk: click-to-pay handler</source>
+        <translation>No se puede iniciar monk: módulo click-to-pay</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid MONK address or malformed URI parameters.</source>
@@ -3579,8 +3579,8 @@ Tu cartera MONK también necesita estar completamente sincronizada para que pued
         <translation>¿Cómo apuesto MONK?</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Make sure your wallet is completely synchronized and you are using the latest release. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You must have a balance of MONK with a minimum of 600 confirmations. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Your wallet must stay online and be unlocked for staking purposes. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Once all those steps are followed staking should be enabled. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state &amp;quot;Staking Enabled&amp;quot; to indicate it is staking. Using the command line interface (__decenomy__-cli); the command &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; will confirm that staking is active. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Asegúrese de que su billetera esté completamente sincronizada y de que esté utilizando la última versión. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Debe tener un saldo de MONK con un mínimo de 600 confirmaciones.&lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Su billetera debe permanecer en línea y estar desbloqueada para realizar apuestas. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Una vez que se siguen todos esos pasos, se deberia habilitar el staking. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Puede ver el estado de las apuestas en la billetera colocando el mouse sobre el icono del paquete en la fila en la parte superior izquierda de la interfaz de la billetera. El paquete se iluminará y dirá "Staking Enabled" para indicar que está activo el staking. Usando la interfaz de línea de comando (__decenomy__-cli); El comando &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; confirmará que el staking está activo. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Make sure your wallet is completely synchronized and you are using the latest release. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You must have a balance of MONK with a minimum of 600 confirmations. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Your wallet must stay online and be unlocked for staking purposes. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Once all those steps are followed staking should be enabled. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state &amp;quot;Staking Enabled&amp;quot; to indicate it is staking. Using the command line interface (monk-cli); the command &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; will confirm that staking is active. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Asegúrese de que su billetera esté completamente sincronizada y de que esté utilizando la última versión. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Debe tener un saldo de MONK con un mínimo de 600 confirmaciones.&lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Su billetera debe permanecer en línea y estar desbloqueada para realizar apuestas. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Una vez que se siguen todos esos pasos, se deberia habilitar el staking. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Puede ver el estado de las apuestas en la billetera colocando el mouse sobre el icono del paquete en la fila en la parte superior izquierda de la interfaz de la billetera. El paquete se iluminará y dirá "Staking Enabled" para indicar que está activo el staking. Usando la interfaz de línea de comando (monk-cli); El comando &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; confirmará que el staking está activo. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>4</source>
@@ -3820,8 +3820,8 @@ Requisitos:
         <translation>No se puede abrir la carpeta de copias de seguridad</translation>
     </message>
     <message>
-        <source>Unable to open __decenomy__.conf with default application</source>
-        <translation>No se puede abrir __decenomy__.conf con la aplicación predeterminada</translation>
+        <source>Unable to open monk.conf with default application</source>
+        <translation>No se puede abrir monk.conf con la aplicación predeterminada</translation>
     </message>
     <message>
         <source>In:</source>
