@@ -693,7 +693,7 @@ void ThreadImport(std::vector<fs::path> vImportFiles)
 }
 
 /** Sanity checks
- *  Ensure that __Decenomy__ is running in a usable environment with all
+ *  Ensure that Monk is running in a usable environment with all
  *  necessary library support.
  */
 bool InitSanityCheck(void)
@@ -924,7 +924,7 @@ void InitLogging()
 #else
     version_string += " (release build)";
 #endif
-    LogPrintf("__Decenomy__ version %s (%s)\n", version_string, CLIENT_DATE);
+    LogPrintf("Monk version %s (%s)\n", version_string, CLIENT_DATE);
 }
 
 /** Initialize __decenomy__.
@@ -1086,11 +1086,11 @@ bool AppInit2()
 
     // Sanity check
     if (!InitSanityCheck())
-        return UIError(_("Initialization sanity check failed. __Decenomy__ is shutting down."));
+        return UIError(_("Initialization sanity check failed. Monk is shutting down."));
 
     std::string strDataDir = GetDataDir().string();
 
-    // Make sure only a single __Decenomy__ process is using the data directory.
+    // Make sure only a single Monk process is using the data directory.
     fs::path pathLockFile = GetDataDir() / ".lock";
     FILE* file = fsbridge::fopen(pathLockFile, "a"); // empty lock file; created if it doesn't exist.
     if (file) fclose(file);
@@ -1098,7 +1098,7 @@ bool AppInit2()
 
     // Wait maximum 10 seconds if an old wallet is still running. Avoids lockup during restart
     if (!lock.timed_lock(boost::get_system_time() + boost::posix_time::seconds(10)))
-        return UIError(strprintf(_("Cannot obtain a lock on data directory %s. __Decenomy__ is probably already running."), strDataDir));
+        return UIError(strprintf(_("Cannot obtain a lock on data directory %s. Monk is probably already running."), strDataDir));
 
 #ifndef WIN32
     CreatePidFile(GetPidFile(), getpid());
@@ -1446,7 +1446,7 @@ bool AppInit2()
                 delete zerocoinDB;
                 delete pSporkDB;
 
-                //__Decenomy__ specific: zerocoin and spork DB's
+                //Monk specific: zerocoin and spork DB's
                 zerocoinDB = new CZerocoinDB(0, false, fReindex);
                 pSporkDB = new CSporkDB(0, false, false);
 
@@ -1469,7 +1469,7 @@ bool AppInit2()
                 // End loop if shutdown was requested
                 if (ShutdownRequested()) break;
 
-                // __Decenomy__: load previous sessions sporks if we have them.
+                // Monk: load previous sessions sporks if we have them.
                 uiInterface.InitMessage(_("Loading sporks..."));
                 sporkManager.LoadSporksFromDB();
 
