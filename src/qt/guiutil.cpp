@@ -875,8 +875,8 @@ QString loadStyleSheet()
         if (!theme.isEmpty()) {
             cssName = QString(":/css/") + theme;
         } else {
-            cssName = QString(":/css/default");
-            settings.setValue("theme", "default");
+            cssName = QString(":/css/default-dark");
+            settings.setValue("theme", "default-dark");
         }
     }
 
