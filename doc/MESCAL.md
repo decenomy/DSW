@@ -17,11 +17,11 @@ A JSON formatted language proposal for Smart Contracts for Decenomy coins
 *   Arrays can be used natively in a JSON object.
 *   Any JSON object element can be used as a variable.
 *   Any JSON object can be interpreted as a function.
-*   If DRODRI evolves in a more complex structure, JSON objects can easily define classes.
+*   If MESCAL evolves in a more complex structure, JSON objects can easily define classes.
 
 **Specifications**
-*   Elements in an array object are order sensitive. Arrays elements will be interpreted from start to end.
-*   Elements in an JSON object are order sensitive. JSON object elements will be interpreted from start to end.
+*   Elements in an array object are order sensitive. Array elements will be interpreted starting from first element to the last element.
+*   Elements in an JSON object are order sensitive. JSON object elements will be interpreted starting from first element to the last element.
 more specifications ...
 
 
@@ -41,6 +41,7 @@ language MESCAL {
 // CScript: <pubkey> CHECKSIGVERIFY
 basic My-Check-Signature-Verification {
     "type": "basic", // Optional
+    "name": "My-Check-Signature-Verification", // Optional
     "role": "check-signature-verification",
     "inputs": [
         {
@@ -57,11 +58,12 @@ basic My-Check-Signature-Verification {
 basic My-Any-Number {
     "type": "basic", // Optional
     "role": "number",
+    "name": "My-Any-Number", // Optional
     "inputs": [
         {
             "type": "number",
             "name": "Number",
-            "value": <any number>, // number
+            "value": "<any number>", // number
         },
     ],
 }
@@ -72,6 +74,7 @@ basic My-Any-Number {
 basic My-Number-1 {
     "type": "basic", // Optional
     "role": "number",
+    "name": "My-Number-1", // Optional
     "inputs": [
         {
             "type": "number",
@@ -87,6 +90,7 @@ basic My-Number-1 {
 basic My-Number-2 {
     "type": "basic", // Optional
     "role": "number",
+    "name": "My-Number-2", // Optional
     "inputs": [
         {
             "type": "number",
@@ -102,6 +106,7 @@ basic My-Number-2 {
 basic My-Hash160 {
     "type": "basic", // Optional
     "role": "hash160",
+    "name": "My-Hash160", // Optional
     "inputs": [
         {
             "type": "string-or-number",
@@ -117,6 +122,7 @@ basic My-Hash160 {
 basic My-Multi-Signature {
     "type": "basic", // Optional
 	"role": "multi-signature",
+    "name": "My-Multi-Signature", // Optional
     "inputs": [
         {
             "type": "number",
@@ -146,6 +152,7 @@ basic My-Multi-Signature {
 basic My-Lock-Time {
     "type": "basic", // Optional
 	"role": "lock-time",
+    "name": "My-Lock-Time", // Optional
 	"inputs": [
         {
             "type": "timestamp-or-block-height",
@@ -160,6 +167,7 @@ basic My-Lock-Time {
 condition My-If-Condition {
     "type": "condition", // Optional
     "role": "if-condition",
+    "name": "My-If-Condition", // Optional
     "true": [
         {
             "required": true,
@@ -186,6 +194,7 @@ condition My-If-Condition {
     ],
 }
 
+// Example: A complex Smart Contract
 contract My-Example-Contract {
     "type": "contract", // Optional
     "description": "The contract description. Shouldn't be very long.", // Optional
