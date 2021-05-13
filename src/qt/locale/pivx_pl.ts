@@ -4812,14 +4812,6 @@ Portfel __Decenomy__</translation>
         <translation>Ładowanie ukończone</translation>
     </message>
     <message>
-        <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>Włącz transakcję mieszania (zablokowaną przez SwiftX) w &lt;address&gt;</translation>
-    </message>
-    <message>
-        <source>Enable publish raw transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>Włącz publikowanie surowej transakcji (zablokowanej przez SwiftX) w &lt;address&gt;</translation>
-    </message>
-    <message>
         <source>Enable the client to act as a masternode (0-1, default: %u)</source>
         <translation>Włącz klienta, aby działał jako masternode (0-1, domyślnie: %u)</translation>
     </message>
@@ -4960,20 +4952,12 @@ Portfel __Decenomy__</translation>
         <translation>Wybrana wartość monet jest mniejsza niż docelowa</translation>
     </message>
     <message>
-        <source>SwiftX options:</source>
-        <translation>Opcje SwiftX:</translation>
-    </message>
-    <message>
         <source>This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!</source>
         <translation>Jest to wersja testowa pre-release - korzystaj z niej na własne ryzyko - nie używaj do staking lub prawdziwych transakcji!</translation>
     </message>
     <message>
-        <source>Disable all __DSW__ specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>Wyłącz wszystkie funkcje specyficzne dla __DSW__ (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, domyślnie: %u)</translation>
-    </message>
-    <message>
-        <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
-        <translation>Włącz SwiftX, pokaż potwierdzenia zablokowanych transakcji (bool, domyślnie: %s)</translation>
+        <source>Disable all __DSW__ specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
+        <translation>Wyłącz wszystkie funkcje specyficzne dla __DSW__ (Masternodes, Zerocoin, Budgeting) (0-1, domyślnie: %u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -4994,10 +4978,6 @@ Portfel __Decenomy__</translation>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
         <translation>Określ ścieżkę kopii zapasowej, aby dodać kopię zapasową portfela. Jeśli ustawione jako katalog, każda kopia zapasowa generuje plik ze znacznikiem czasu. Jeśli jest ustawiony jako plik, przepisuje do tego pliku każdą kopię zapasową.</translation>
-    </message>
-    <message>
-        <source>SwiftX requires inputs with at least 6 confirmations, you might need to wait a few minutes and try again.</source>
-        <translation>SwiftX wymaga danych wejściowych z co najmniej 6 potwierdzeniami, być może trzeba będzie poczekać kilka minut i spróbować ponownie.</translation>
     </message>
     <message>
         <source>&lt;category&gt; can be:</source>

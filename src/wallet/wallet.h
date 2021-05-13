@@ -69,7 +69,7 @@ static const unsigned int MAX_FREE_TRANSACTION_CREATE_SIZE = 1000;
 //! -custombackupthreshold default
 static const int DEFAULT_CUSTOMBACKUPTHRESHOLD = 1;
 //! -minstakesplit default
-static const CAmount DEFAULT_MIN_STAKE_SPLIT_THRESHOLD = 100 * COIN;
+static const CAmount DEFAULT_MIN_STAKE_SPLIT_THRESHOLD = 1 * COIN;
 //! Default for -spendzeroconfchange
 static const bool DEFAULT_SPEND_ZEROCONF_CHANGE = true;
 //! Default for -sendfreetransactions
@@ -157,6 +157,7 @@ public:
 
     bool IsInternal() const { return type == HDChain::ChangeType::INTERNAL; }
     bool IsExternal() const { return type == HDChain::ChangeType::EXTERNAL; }
+    bool IsStaking() const { return type == HDChain::ChangeType::STAKING; } // obsolete 
     bool IsECommerce() const { return type == HDChain::ChangeType::ECOMMERCE; }
 
     ADD_SERIALIZE_METHODS;
@@ -377,8 +378,7 @@ public:
     bool AvailableCoins(std::vector<COutput>* pCoins,   // --> populates when != nullptr
                         const CCoinControl* coinControl = nullptr,
                         AvailableCoinsType nCoinType    = ALL_COINS,
-                        bool fOnlyConfirmed             = true,
-                        bool fUseIX                     = false
+                        bool fOnlyConfirmed             = true
                         ) const;
     //! >> Available coins (spending)
     bool SelectCoinsToSpend(const std::vector<COutput>& vAvailableCoins, const CAmount& nTargetValue, std::set<std::pair<const CWalletTx*, unsigned int> >& setCoinsRet, CAmount& nValueRet, const CCoinControl* coinControl = nullptr) const;
@@ -498,9 +498,8 @@ public:
         const CCoinControl* coinControl = NULL,
         AvailableCoinsType coin_type = ALL_COINS,
         bool sign = true,
-        bool useIX = false,
         CAmount nFeePay = 0);
-    bool CreateTransaction(CScript scriptPubKey, const CAmount& nValue, CWalletTx& wtxNew, CReserveKey& reservekey, CAmount& nFeeRet, std::string& strFailReason, const CCoinControl* coinControl = NULL, AvailableCoinsType coin_type = ALL_COINS, bool useIX = false, CAmount nFeePay = 0);
+    bool CreateTransaction(CScript scriptPubKey, const CAmount& nValue, CWalletTx& wtxNew, CReserveKey& reservekey, CAmount& nFeeRet, std::string& strFailReason, const CCoinControl* coinControl = NULL, AvailableCoinsType coin_type = ALL_COINS, CAmount nFeePay = 0);
 
     // enumeration for CommitResult (return status of CommitTransaction)
     enum CommitStatus
@@ -518,7 +517,7 @@ public:
         // converts CommitResult in human-readable format
         std::string ToString() const;
     };
-    CWallet::CommitResult CommitTransaction(CWalletTx& wtxNew, CReserveKey& reservekey, CConnman* connman, std::string strCommand = NetMsgType::TX);
+    CWallet::CommitResult CommitTransaction(CWalletTx& wtxNew, CReserveKey& reservekey, CConnman* connman);
     bool AddAccountingEntry(const CAccountingEntry&, CWalletDB & pwalletdb);
     bool CreateCoinStake(const CKeyStore& keystore,
                          const CBlockIndex* pindexPrev,
@@ -931,7 +930,7 @@ public:
 
     int64_t GetTxTime() const;
     void UpdateTimeSmart();
-    void RelayWalletTransaction(CConnman* connman, std::string strCommand = NetMsgType::TX);
+    void RelayWalletTransaction(CConnman* connman);
     std::set<uint256> GetConflicts() const;
 };
 

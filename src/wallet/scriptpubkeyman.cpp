@@ -419,6 +419,8 @@ void ScriptPubKeyMan::AddKeypoolPubkeyWithDB(const CPubKey& pubkey, const uint8_
     const bool isHDEnabled = IsHDEnabled();
     if (isHDEnabled && type == HDChain::ChangeType::INTERNAL) {
         setInternalKeyPool.insert(index);
+    } else if (isHDEnabled && type == HDChain::ChangeType::ECOMMERCE) {
+        setECommerceKeyPool.insert(index);
     } else {
         setExternalKeyPool.insert(index);
     }
@@ -534,6 +536,7 @@ void ScriptPubKeyMan::LoadKeyPool(int64_t nIndex, const CKeyPool &keypool)
         setExternalKeyPool.insert(nIndex);
     } else if (keypool.IsECommerce()){
         setECommerceKeyPool.insert(nIndex);
+    } else if (keypool.IsStaking()){ // obsolete
     } else {
         throw std::runtime_error(std::string(__func__) + ": invalid CKeypool type");
     }
