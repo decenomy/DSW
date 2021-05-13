@@ -51,7 +51,7 @@ static const int MAX_URI_LENGTH = 255;
 
 
 #define QAPP_ORG_NAME "Monk"
-#define QAPP_ORG_DOMAIN "__decenomy__.org"
+#define QAPP_ORG_DOMAIN "monk.org"
 #define QAPP_APP_NAME_DEFAULT "Monk-Qt"
 #define QAPP_APP_NAME_TESTNET "Monk-Qt-testnet"
 
