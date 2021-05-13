@@ -27,7 +27,7 @@ A JSON formatted language proposal for Smart Contracts for Decenomy coins
 <span style="text-decoration:underline;">Some Examples:</span>
 
 
-```json
+```Javascript
 
 // MESCAL representation of MESCAL
 language MESCAL {
