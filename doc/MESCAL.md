@@ -5,24 +5,25 @@ _(Draft)_
 A JSON formatted language proposal for Smart Contracts for Decenomy coins
 
 **Why a new format?**
-
-
-
 1. Why not?
 2. A new format for a simple to use and minimalist pseudo programming language is needed to KISS.
 3. Because.
 4. A new format that serves a single specific purpose: Create Smart contracts without knowing how to write a programming language code.
 
+
 **Why JSON:**
-
-
-
 *   JSON is easy to parse, manipulate and create. 
 *   Many Programming Languages support JSON natively. 
 *   Arrays can be used natively in a JSON object.
 *   Any JSON object element can be used as a variable.
 *   Any JSON object can be interpreted as a function.
 *   If DRODRI evolves in a more complex structure, JSON objects can easily define classes.
+
+**Specifications**
+*   Elements in an array object are order sensitive. Arrays elements will be interpreted from start to end.
+*   Elements in an JSON object are order sensitive. JSON object elements will be interpreted from start to end.
+more specifications ...
+
 
 <span style="text-decoration:underline;">Some Examples:</span>
 
