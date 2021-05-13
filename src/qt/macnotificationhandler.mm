@@ -15,7 +15,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"io.__decenomy__.Monk-Qt";
+        return @"io.monk.Monk-Qt";
     } else {
         return [self __bundleIdentifier];
     }

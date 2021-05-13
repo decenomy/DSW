@@ -38,7 +38,7 @@
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>io.__decenomy__.Monk-Qt</string>
+  <string>io.monk.Monk-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>

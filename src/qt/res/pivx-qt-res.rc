@@ -22,10 +22,10 @@ BEGIN
             VALUE "CompanyName",        "Monk"
             VALUE "FileDescription",    "Monk Core (OSS GUI client for Monk)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "__decenomy__-qt"
+            VALUE "InternalName",       "monk-qt"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "__decenomy__-qt.exe"
+            VALUE "OriginalFilename",   "monk-qt.exe"
             VALUE "ProductName",        "Monk Core"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
