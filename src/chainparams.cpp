@@ -236,10 +236,10 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0xc8;
-        pchMessageStart[1] = 0x7b;
-        pchMessageStart[2] = 0x86;
-        pchMessageStart[3] = 0x77;
+        pchMessageStart[0] = 0xa3;
+        pchMessageStart[1] = 0x2d;
+        pchMessageStart[2] = 0x95;
+        pchMessageStart[3] = 0x22;
         nDefaultPort = __PORT_MAINNET__;
 
         vSeeds.push_back(CDNSSeedData("seeder", "seeder.__decenomy.net__"));
