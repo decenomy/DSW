@@ -119,7 +119,7 @@
               <item>
                <widget class="QLabel" name="labelAmountPiv">
                 <property name="text">
-                 <string notr="true">-.- __DSW__</string>
+                 <string notr="true">-- __DSW__</string>
                 </property>
                </widget>
               </item>
@@ -162,7 +162,7 @@
                  <string notr="true">padding:0px;margin:0px;</string>
                 </property>
                 <property name="text">
-                 <string notr="true">-.- __DSW__</string>
+                 <string notr="true">-- __DSW__</string>
                 </property>
                </widget>
               </item>
@@ -456,7 +456,7 @@
                  <item>
                   <widget class="QLabel" name="labelAvailablePiv">
                    <property name="text">
-                    <string>-.- __DSW__</string>
+                    <string>-- __DSW__</string>
                    </property>
                   </widget>
                  </item>
@@ -505,7 +505,7 @@
                  <item>
                   <widget class="QLabel" name="labelPendingPiv">
                    <property name="text">
-                    <string notr="true">-.- __DSW__</string>
+                    <string notr="true">-- __DSW__</string>
                    </property>
                   </widget>
                  </item>
