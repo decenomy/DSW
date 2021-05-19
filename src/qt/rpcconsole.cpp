@@ -76,6 +76,12 @@ public Q_SLOTS:
 
 Q_SIGNALS:
     void reply(int category, const QString& command);
+
+private:
+    bool commandNeedsWarning(const std::string& command);
+    QString getCommandWarning(const std::string& command);
+
+    std::map<std::string, int> commandCallCount; /*  Number of times a command has been executed - used to remember if we warned user about dangerous commands yet */
 };
 
 /** Class for handling RPC timers
@@ -219,6 +225,13 @@ void RPCExecutor::request(const QString& command)
     }
     if (args.empty())
         return; // Nothing to do
+
+    if(commandNeedsWarning(args[0])) { //check if this is a dangerous command needing a warning (we only warn once for each dangerouse command and then no longer consider it needing warnings)
+        commandCallCount[args[0]] = (commandCallCount.count(args[0]) == 0 ? 1 : commandCallCount[args[0]] + 1);
+        Q_EMIT reply(RPCConsole::CMD_ERROR, getCommandWarning(args[0]));
+        return;
+    }
+
     try {
         std::string strPrint;
         // Convert argument list to JSON objects in method-dependent way,
@@ -249,6 +262,34 @@ void RPCExecutor::request(const QString& command)
         }
     } catch (const std::exception& e) {
         Q_EMIT reply(RPCConsole::CMD_ERROR, QString("Error: ") + QString::fromStdString(e.what()));
+    }
+}
+
+bool RPCExecutor::commandNeedsWarning(const std::string& command)
+{
+    /*  If command was executed already, return false regardless of the command as we would have already warned user if it was dangerous */
+    if(commandCallCount.count(command) > 0 && commandCallCount.at(command) > 0) {
+        return false;
+    }
+
+    return (command == "dumpprivkey" || command == "dumpwallet");  //only these commands need a warning on first time ran
+}
+
+QString RPCExecutor::getCommandWarning(const std::string& command)
+{
+    if(command == "dumpprivkey") {
+        return "Warning: This command will print your private key! If someone\n"
+                "gains access to this key you will lose all your coins! Hackers/Scammers\n"
+                "are known to use this method. Run the command again to accept this risk.";
+    }
+    else if(command == "dumpwallet") {
+        return "Warning: This command will dump your private keys! If someone\n"
+                "gains access to these keys you will lose all your coins! Hackers/Scammers\n"
+                "are known to use this method. Run the command again to accept this risk.";
+    }
+    else {
+        /*  Should not happen */
+        return "Warning!";
     }
 }
 
