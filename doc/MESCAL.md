@@ -32,8 +32,8 @@ more specifications ...
 
 // MESCAL representation of MESCAL
 language MESCAL {
-    "types": ["basic", "contract", ...],
-    "roles": ["check-signature-verification", "number", "hash160", "multi-signature", ...]
+    "types": ["basic", "condition", "contract", ...],
+    "roles": ["check-signature-verification", "number", "hash160", "multi-signature", "lock-time", ...]
 }
 
 
