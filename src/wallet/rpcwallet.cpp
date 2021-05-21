@@ -136,7 +136,7 @@ UniValue getaddressinfo(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() > 1)
         throw std::runtime_error(
                 "getaddressinfo ( \"address\" )\n"
-                "\nReturn information about the given __DSW__ address.\n"
+                "\nReturn information about the given SAGA address.\n"
                 "Some of the information will only be present if the address is in the active wallet.\n"
                 "{Result:\n"
                 "  \"address\" : \"address\",              (string) The bitcoin address validated.\n"
@@ -456,7 +456,7 @@ UniValue getnewaddress(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() > 1)
         throw std::runtime_error(
             "getnewaddress ( \"label\" )\n"
-            "\nReturns a new __DSW__ address for receiving payments.\n"
+            "\nReturns a new SAGA address for receiving payments.\n"
             "If 'label' is specified, it is added to the address book \n"
             "so payments received with the address will be associated with 'label'.\n"
 
@@ -464,7 +464,7 @@ UniValue getnewaddress(const JSONRPCRequest& request)
             "1. \"label\"        (string, optional) The label name for the address to be linked to. if not provided, the default label \"\" is used. It can also be set to the empty string \"\" to represent the default label. The label does not need to exist, it will be created if there is no label by the given name.\n"
 
             "\nResult:\n"
-            "\"__DSW__address\"    (string) The new __DSW__ address\n"
+            "\"SAGAaddress\"    (string) The new SAGA address\n"
 
             "\nExamples:\n" +
             HelpExampleCli("getnewaddress", "") + HelpExampleRpc("getnewaddress", ""));
@@ -517,7 +517,7 @@ UniValue getaccountaddress(const JSONRPCRequest& request)
             "1. \"account\"       (string, required) The account for the address. It can also be set to the empty string \"\" to represent the default account. The account does not need to exist, it will be created and a new address created  if there is no account by the given name.\n"
 
             "\nResult:\n"
-            "\"__DSW__address\"   (string) The account __DSW__ address.\n"
+            "\"SAGAaddress\"   (string) The account SAGA address.\n"
 
             "\nExamples:\n" +
             HelpExampleCli("getaccountaddress", "") + HelpExampleCli("getaccountaddress", "\"\"") +
@@ -540,7 +540,7 @@ UniValue getrawchangeaddress(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() > 1)
         throw std::runtime_error(
             "getrawchangeaddress\n"
-            "\nReturns a new __DSW__ address, for receiving change.\n"
+            "\nReturns a new SAGA address, for receiving change.\n"
             "This is for use with raw transactions, NOT normal use.\n"
 
             "\nResult:\n"
@@ -578,11 +578,11 @@ UniValue setlabel(const JSONRPCRequest& request)
 
     if (request.fHelp || request.params.size() != 2)
         throw std::runtime_error(
-            "setlabel \"__DSW__address\" \"label\"\n"
+            "setlabel \"SAGAaddress\" \"label\"\n"
             "\nSets the label associated with the given address.\n"
 
             "\nArguments:\n"
-            "1. \"__DSW__address\"   (string, required) The __DSW__ address to be associated with a label.\n"
+            "1. \"SAGAaddress\"   (string, required) The SAGA address to be associated with a label.\n"
             "2. \"label\"         (string, required) The label to assign to the address.\n"
 
             "\nExamples:\n" +
@@ -592,7 +592,7 @@ UniValue setlabel(const JSONRPCRequest& request)
 
     CTxDestination dest = DecodeDestination(request.params[0].get_str());
     if (!IsValidDestination(dest))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid __DSW__ address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid SAGA address");
 
     std::string old_label = pwalletMain->mapAddressBook[dest].name;
     std::string label = LabelFromValue(request.params[1]);
@@ -635,11 +635,11 @@ UniValue getaccount(const JSONRPCRequest& request)
 
     if (request.fHelp || request.params.size() != 1)
         throw std::runtime_error(
-            "getaccount \"__DSW__address\"\n"
+            "getaccount \"SAGAaddress\"\n"
             "\nDEPRECATED. Returns the account associated with the given address.\n"
 
             "\nArguments:\n"
-            "1. \"__DSW__address\"  (string, required) The __DSW__ address for account lookup.\n"
+            "1. \"SAGAaddress\"  (string, required) The SAGA address for account lookup.\n"
 
             "\nResult:\n"
             "\"accountname\"        (string) the account address\n"
@@ -651,7 +651,7 @@ UniValue getaccount(const JSONRPCRequest& request)
 
     CTxDestination address = DecodeDestination(request.params[0].get_str());
     if (!IsValidDestination(address))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid __DSW__ address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid SAGA address");
 
     std::string strAccount;
     std::map<CTxDestination, AddressBook::CAddressBookData>::iterator mi = pwalletMain->mapAddressBook.find(address);
@@ -680,7 +680,7 @@ UniValue getaddressesbyaccount(const JSONRPCRequest& request)
 
             "\nResult:\n"
             "[                     (json array of string)\n"
-            "  \"__DSW__address\"  (string) a __DSW__ address associated with the given account\n"
+            "  \"SAGAaddress\"  (string) a SAGA address associated with the given account\n"
             "  ,...\n"
             "]\n"
 
@@ -721,7 +721,7 @@ void SendMoney(const CTxDestination& address, CAmount nValue, CWalletTx& wtxNew)
         throw JSONRPCError(RPC_WALLET_ERROR, strError);
     }
 
-    // Parse __DSW__ address
+    // Parse SAGA address
     CScript scriptPubKey = GetScriptForDestination(address);
 
     // Create and send the transaction
@@ -742,13 +742,13 @@ UniValue sendtoaddress(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 2 || request.params.size() > 4)
         throw std::runtime_error(
-            "sendtoaddress \"__DSW__address\" amount ( \"comment\" \"comment-to\" )\n"
+            "sendtoaddress \"SAGAaddress\" amount ( \"comment\" \"comment-to\" )\n"
             "\nSend an amount to a given address. The amount is a real and is rounded to the nearest 0.00000001\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"__DSW__address\"  (string, required) The __DSW__ address to send to.\n"
-            "2. \"amount\"      (numeric, required) The amount in __DSW__ to send. eg 0.1\n"
+            "1. \"SAGAaddress\"  (string, required) The SAGA address to send to.\n"
+            "2. \"amount\"      (numeric, required) The amount in SAGA to send. eg 0.1\n"
             "3. \"comment\"     (string, optional) A comment used to store what the transaction is for. \n"
             "                             This is not part of the transaction, just kept in your wallet.\n"
             "4. \"comment-to\"  (string, optional) A comment to store the name of the person or organization \n"
@@ -767,7 +767,7 @@ UniValue sendtoaddress(const JSONRPCRequest& request)
 
     CTxDestination address = DecodeDestination(request.params[0].get_str());
     if (!IsValidDestination(address))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid __DSW__ address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid SAGA address");
 
     // Amount
     CAmount nAmount = AmountFromValue(request.params[1]);
@@ -799,8 +799,8 @@ UniValue listaddressgroupings(const JSONRPCRequest& request)
             "[\n"
             "  [\n"
             "    [\n"
-            "      \"__DSW__address\",     (string) The __DSW__ address\n"
-            "      amount,                 (numeric) The amount in __DSW__\n"
+            "      \"SAGAaddress\",     (string) The SAGA address\n"
+            "      amount,                 (numeric) The amount in SAGA\n"
             "      \"label\"             (string, optional) The label\n"
             "    ]\n"
             "    ,...\n"
@@ -836,12 +836,12 @@ UniValue signmessage(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 2)
         throw std::runtime_error(
-            "signmessage \"__DSW__address\" \"message\"\n"
+            "signmessage \"SAGAaddress\" \"message\"\n"
             "\nSign a message with the private key of an address" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"__DSW__address\"  (string, required) The __DSW__ address to use for the private key.\n"
+            "1. \"SAGAaddress\"  (string, required) The SAGA address to use for the private key.\n"
             "2. \"message\"         (string, required) The message to create a signature of.\n"
 
             "\nResult:\n"
@@ -891,15 +891,15 @@ UniValue getreceivedbyaddress(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
         throw std::runtime_error(
-            "getreceivedbyaddress \"__DSW__address\" ( minconf )\n"
-            "\nReturns the total amount received by the given __DSW__address in transactions with at least minconf confirmations.\n"
+            "getreceivedbyaddress \"SAGAaddress\" ( minconf )\n"
+            "\nReturns the total amount received by the given SAGAaddress in transactions with at least minconf confirmations.\n"
 
             "\nArguments:\n"
-            "1. \"__DSW__address\"  (string, required) The __DSW__ address for transactions.\n"
+            "1. \"SAGAaddress\"  (string, required) The SAGA address for transactions.\n"
             "2. minconf             (numeric, optional, default=1) Only include transactions confirmed at least this many times.\n"
 
             "\nResult:\n"
-            "amount   (numeric) The total amount in __DSW__ received at this address.\n"
+            "amount   (numeric) The total amount in SAGA received at this address.\n"
 
             "\nExamples:\n"
             "\nThe amount from transactions with at least 1 confirmation\n" +
@@ -913,10 +913,10 @@ UniValue getreceivedbyaddress(const JSONRPCRequest& request)
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
-    // __DSW__ address
+    // SAGA address
     CTxDestination address = DecodeDestination(request.params[0].get_str());
     if (!IsValidDestination(address))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid __DSW__ address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid SAGA address");
     CScript scriptPubKey = GetScriptForDestination(address);
     if (!IsMine(*pwalletMain, scriptPubKey))
         throw JSONRPCError(RPC_WALLET_ERROR, "Address not found in wallet");
@@ -962,7 +962,7 @@ UniValue getreceivedbylabel(const JSONRPCRequest& request)
             "2. minconf          (numeric, optional, default=1) Only include transactions confirmed at least this many times.\n"
 
             "\nResult:\n"
-            "amount              (numeric) The total amount in __DSW__ received for this label.\n"
+            "amount              (numeric) The total amount in SAGA received for this label.\n"
 
             "\nExamples:\n"
             "\nAmount received by the default label with at least 1 confirmation\n" +
@@ -1024,7 +1024,7 @@ UniValue getbalance(const JSONRPCRequest& request)
             "                    To use this deprecated argument, start cryptosagad with -deprecatedrpc=accounts. Also include balance in watchonly addresses (see 'importaddress')\n"
             
             "\nResult:\n"
-            "amount              (numeric) The total amount in __DSW__ received for this account.\n"
+            "amount              (numeric) The total amount in SAGA received for this account.\n"
 
             "\nExamples:\n"
             "\nThe total amount in the wallet\n" +
@@ -1089,7 +1089,7 @@ UniValue movecmd(const JSONRPCRequest& request)
             "\nArguments:\n"
             "1. \"fromaccount\"   (string, required) The name of the account to move funds from. May be the default account using \"\".\n"
             "2. \"toaccount\"     (string, required) The name of the account to move funds to. May be the default account using \"\".\n"
-            "3. amount            (numeric, required) Quantity of __DSW__ to move between accounts.\n"
+            "3. amount            (numeric, required) Quantity of SAGA to move between accounts.\n"
             "4. minconf           (numeric, optional, default=1) Only use funds with at least this many confirmations.\n"
             "5. \"comment\"       (string, optional) An optional comment, stored in the wallet only.\n"
 
@@ -1097,9 +1097,9 @@ UniValue movecmd(const JSONRPCRequest& request)
             "true|false           (boolean) true if successful.\n"
 
             "\nExamples:\n"
-            "\nMove 0.01 __DSW__ from the default account to the account named tabby\n" +
+            "\nMove 0.01 SAGA from the default account to the account named tabby\n" +
             HelpExampleCli("move", "\"\" \"tabby\" 0.01") +
-            "\nMove 0.01 __DSW__ from timotei to akiko with a comment\n" +
+            "\nMove 0.01 SAGA from timotei to akiko with a comment\n" +
             HelpExampleCli("move", "\"timotei\" \"akiko\" 0.01 1 \"happy birthday!\"") +
             "\nAs a json rpc call\n" +
             HelpExampleRpc("move", "\"timotei\", \"akiko\", 0.01, 1, \"happy birthday!\""));
@@ -1160,15 +1160,15 @@ UniValue sendfrom(const JSONRPCRequest& request)
 
     if (request.fHelp || request.params.size() < 3 || request.params.size() > 7)
         throw std::runtime_error(
-            "sendfrom \"fromaccount\" \"to__DSW__address\" amount ( minconf \"comment\" \"comment-to\" )\n"
-            "\nDEPRECATED (use sendtoaddress). Send an amount from an account to a __DSW__ address.\n"
+            "sendfrom \"fromaccount\" \"toSAGAaddress\" amount ( minconf \"comment\" \"comment-to\" )\n"
+            "\nDEPRECATED (use sendtoaddress). Send an amount from an account to a SAGA address.\n"
             "The amount is a real and is rounded to the nearest 0.00000001." +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
             "1. \"fromaccount\"       (string, required) The name of the account to send funds from. May be the default account using \"\".\n"
-            "2. \"to__DSW__address\"  (string, required) The __DSW__ address to send funds to.\n"
-            "3. amount                (numeric, required) The amount in __DSW__. (transaction fee is added on top).\n"
+            "2. \"toSAGAaddress\"  (string, required) The SAGA address to send funds to.\n"
+            "3. amount                (numeric, required) The amount in SAGA. (transaction fee is added on top).\n"
             "4. minconf               (numeric, optional, default=1) Only use funds with at least this many confirmations.\n"
             "5. \"comment\"           (string, optional) A comment used to store what the transaction is for. \n"
             "                                     This is not part of the transaction, just kept in your wallet.\n"
@@ -1180,7 +1180,7 @@ UniValue sendfrom(const JSONRPCRequest& request)
             "\"transactionid\"        (string) The transaction id.\n"
 
             "\nExamples:\n"
-            "\nSend 0.01 __DSW__ from the default account to the address, must have at least 1 confirmation\n" +
+            "\nSend 0.01 SAGA from the default account to the address, must have at least 1 confirmation\n" +
             HelpExampleCli("sendfrom", "\"\" \"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\" 0.01") +
             "\nSend 0.01 from the tabby account to the given address, funds must have at least 6 confirmations\n" +
             HelpExampleCli("sendfrom", "\"tabby\" \"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\" 0.01 6 \"donation\" \"seans outpost\"") +
@@ -1192,7 +1192,7 @@ UniValue sendfrom(const JSONRPCRequest& request)
     std::string strAccount = LabelFromValue(request.params[0]);
     CTxDestination address = DecodeDestination(request.params[1].get_str());
     if (!IsValidDestination(address))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid __DSW__ address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid SAGA address");
     CAmount nAmount = AmountFromValue(request.params[2]);
     int nMinDepth = 1;
     if (request.params.size() > 3)
@@ -1234,7 +1234,7 @@ UniValue sendmany(const JSONRPCRequest& request)
             "1. \"dummy\"               (string, required) Must be set to \"\" for backwards compatibility.\n"
             "2. \"amounts\"             (string, required) A json object with addresses and amounts\n"
             "    {\n"
-            "      \"address\":amount   (numeric) The __DSW__ address is the key, the numeric amount in __DSW__ is the value\n"
+            "      \"address\":amount   (numeric) The SAGA address is the key, the numeric amount in SAGA is the value\n"
             "      ,...\n"
             "    }\n"
             "3. minconf                 (numeric, optional, default=1) Only use the balance confirmed at least this many times.\n"
@@ -1261,7 +1261,7 @@ UniValue sendmany(const JSONRPCRequest& request)
             "1. \"fromaccount\"         (string, required) DEPRECATED. The account to send the funds from. Should be \"\" for the default account\n"
             "2. \"amounts\"             (string, required) A json object with addresses and amounts\n"
             "    {\n"
-            "      \"address\":amount   (numeric) The __DSW__ address is the key, the numeric amount in __DSW__ is the value\n"
+            "      \"address\":amount   (numeric) The SAGA address is the key, the numeric amount in SAGA is the value\n"
             "      ,...\n"
             "    }\n"
             "3. minconf                 (numeric, optional, default=1) Only use the balance confirmed at least this many times.\n"
@@ -1309,7 +1309,7 @@ UniValue sendmany(const JSONRPCRequest& request)
     for (const std::string& name_ : keys) {
         CTxDestination dest = DecodeDestination(name_);
         if (!IsValidDestination(dest))
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid __DSW__ address: ")+name_);
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid SAGA address: ")+name_);
 
         if (setAddress.count(dest))
             throw JSONRPCError(RPC_INVALID_PARAMETER, std::string("Invalid parameter, duplicated address: ")+name_);
@@ -1357,20 +1357,20 @@ UniValue addmultisigaddress(const JSONRPCRequest& request)
         throw std::runtime_error(
             "addmultisigaddress nrequired [\"key\",...] ( \"label\" )\n"
             "\nAdd a nrequired-to-sign multisignature address to the wallet.\n"
-            "Each key is a __DSW__ address or hex-encoded public key.\n"
+            "Each key is a SAGA address or hex-encoded public key.\n"
             "If 'label' is specified, assign address to that label.\n"
 
             "\nArguments:\n"
             "1. nrequired        (numeric, required) The number of required signatures out of the n keys or addresses.\n"
-            "2. \"keysobject\"   (string, required) A json array of __DSW__ addresses or hex-encoded public keys\n"
+            "2. \"keysobject\"   (string, required) A json array of SAGA addresses or hex-encoded public keys\n"
             "     [\n"
-            "       \"address\"  (string) __DSW__ address or hex-encoded public key\n"
+            "       \"address\"  (string) SAGA address or hex-encoded public key\n"
             "       ...,\n"
             "     ]\n"
             "3. \"label\"      (string, optional) A label to assign the addresses to.\n"
 
             "\nResult:\n"
-            "\"__DSW__address\"  (string) A __DSW__ address associated with the keys.\n"
+            "\"SAGAaddress\"  (string) A SAGA address associated with the keys.\n"
 
             "\nExamples:\n"
             "\nAdd a multisig address from 2 addresses\n" +
@@ -1573,7 +1573,7 @@ UniValue listreceivedbyaddress(const JSONRPCRequest& request)
             "    \"involvesWatchonly\" : \"true\",    (bool) Only returned if imported addresses were involved in transaction\n"
             "    \"address\" : \"receivingaddress\",  (string) The receiving address\n"
             "    \"account\" : \"accountname\",       (string) DEPRECATED. Backwards compatible alias for label.\n"
-            "    \"amount\" : x.xxx,                  (numeric) The total amount in __DSW__ received by the address\n"
+            "    \"amount\" : x.xxx,                  (numeric) The total amount in SAGA received by the address\n"
             "    \"confirmations\" : n                (numeric) The number of confirmations of the most recent transaction included\n"
             "    \"bcconfirmations\" : n              (numeric) The number of blockchain confirmations of the most recent transaction included\n"
             "    \"label\" : \"label\",               (string) The label of the receiving address. The default label is \"\".\n"
@@ -1739,17 +1739,17 @@ UniValue listtransactions(const JSONRPCRequest& request)
             "\nResult:\n"
             "[\n"
             "  {\n"
-            "    \"address\":\"__DSW__address\",    (string) The __DSW__ address of the transaction. Not present for \n"
+            "    \"address\":\"SAGAaddress\",    (string) The SAGA address of the transaction. Not present for \n"
             "                                                move transactions (category = move).\n"
             "    \"category\":\"send|receive|move\", (string) The transaction category. 'move' is a local (off blockchain)\n"
             "                                                transaction between accounts, and not associated with an address,\n"
             "                                                transaction id or block. 'send' and 'receive' transactions are \n"
             "                                                associated with an address, transaction id and block details\n"
-            "    \"amount\": x.xxx,          (numeric) The amount in __DSW__. This is negative for the 'send' category, and for the\n"
+            "    \"amount\": x.xxx,          (numeric) The amount in SAGA. This is negative for the 'send' category, and for the\n"
             "                                         'move' category for moves outbound. It is positive for the 'receive' category,\n"
             "                                         and for the 'move' category for inbound funds.\n"
             "    \"vout\" : n,               (numeric) the vout value\n"
-            "    \"fee\": x.xxx,             (numeric) The amount of the fee in __DSW__. This is negative and only available for the \n"
+            "    \"fee\": x.xxx,             (numeric) The amount of the fee in SAGA. This is negative and only available for the \n"
             "                                         'send' category of transactions.\n"
             "    \"confirmations\": n,       (numeric) The number of confirmations for the transaction. Available for 'send' and \n"
             "                                         'receive' category of transactions.\n"
@@ -1792,17 +1792,17 @@ UniValue listtransactions(const JSONRPCRequest& request)
             "  {\n"
             "    \"account\":\"accountname\",       (string) DEPRECATED. The account name associated with the transaction. \n"
             "                                                It will be \"\" for the default account.\n"
-            "    \"address\":\"__DSW__address\",    (string) The __DSW__ address of the transaction. Not present for \n"
+            "    \"address\":\"SAGAaddress\",    (string) The SAGA address of the transaction. Not present for \n"
             "                                                move transactions (category = move).\n"
             "    \"category\":\"send|receive|move\", (string) The transaction category. 'move' is a local (off blockchain)\n"
             "                                                transaction between accounts, and not associated with an address,\n"
             "                                                transaction id or block. 'send' and 'receive' transactions are \n"
             "                                                associated with an address, transaction id and block details\n"
-            "    \"amount\": x.xxx,          (numeric) The amount in __DSW__. This is negative for the 'send' category, and for the\n"
+            "    \"amount\": x.xxx,          (numeric) The amount in SAGA. This is negative for the 'send' category, and for the\n"
             "                                         'move' category for moves outbound. It is positive for the 'receive' category,\n"
             "                                         and for the 'move' category for inbound funds.\n"
             "    \"vout\" : n,               (numeric) the vout value\n"
-            "    \"fee\": x.xxx,             (numeric) The amount of the fee in __DSW__. This is negative and only available for the \n"
+            "    \"fee\": x.xxx,             (numeric) The amount of the fee in SAGA. This is negative and only available for the \n"
             "                                         'send' category of transactions.\n"
             "    \"confirmations\": n,       (numeric) The number of confirmations for the transaction. Available for 'send' and \n"
             "                                         'receive' category of transactions.\n"
@@ -2003,12 +2003,12 @@ UniValue listsinceblock(const JSONRPCRequest& request)
             "{\n"
             "  \"transactions\": [\n"
             "    \"account\":\"accountname\",       (string) DEPRECATED. This field will be removed in v5.0. To see this deprecated field, start cryptosagad with -deprecatedrpc=accounts. The account name associated with the transaction. Will be \"\" for the default account.\n"
-            "    \"address\":\"__DSW__address\",    (string) The __DSW__ address of the transaction. Not present for move transactions (category = move).\n"
+            "    \"address\":\"SAGAaddress\",    (string) The SAGA address of the transaction. Not present for move transactions (category = move).\n"
             "    \"category\":\"send|receive\",     (string) The transaction category. 'send' has negative amounts, 'receive' has positive amounts.\n"
-            "    \"amount\": x.xxx,          (numeric) The amount in __DSW__. This is negative for the 'send' category, and for the 'move' category for moves \n"
+            "    \"amount\": x.xxx,          (numeric) The amount in SAGA. This is negative for the 'send' category, and for the 'move' category for moves \n"
             "                                          outbound. It is positive for the 'receive' category, and for the 'move' category for inbound funds.\n"
             "    \"vout\" : n,               (numeric) the vout value\n"
-            "    \"fee\": x.xxx,             (numeric) The amount of the fee in __DSW__. This is negative and only available for the 'send' category of transactions.\n"
+            "    \"fee\": x.xxx,             (numeric) The amount of the fee in SAGA. This is negative and only available for the 'send' category of transactions.\n"
             "    \"confirmations\": n,       (numeric) The number of confirmations for the transaction. Available for 'send' and 'receive' category of transactions.\n"
             "    \"bcconfirmations\" : n,    (numeric) The number of blockchain confirmations for the transaction. Available for 'send' and 'receive' category of transactions.\n"
             "    \"blockhash\": \"hashvalue\",     (string) The block hash containing the transaction. Available for 'send' and 'receive' category of transactions.\n"
@@ -2088,7 +2088,7 @@ UniValue gettransaction(const JSONRPCRequest& request)
 
             "\nResult:\n"
             "{\n"
-            "  \"amount\" : x.xxx,        (numeric) The transaction amount in __DSW__\n"
+            "  \"amount\" : x.xxx,        (numeric) The transaction amount in SAGA\n"
             "  \"confirmations\" : n,     (numeric) The number of confirmations\n"
             "  \"bcconfirmations\" : n,   (numeric) The number of blockchain confirmations\n"
             "  \"blockhash\" : \"hash\",  (string) The block hash\n"
@@ -2100,9 +2100,9 @@ UniValue gettransaction(const JSONRPCRequest& request)
             "  \"details\" : [\n"
             "    {\n"
             "      \"account\" : \"accountname\",  (string) DEPRECATED.This field will be removed in v5.0. To see this deprecated field, start cryptosagad with -deprecatedrpc=accounts. The account name involved in the transaction, can be \"\" for the default account.\n"
-            "      \"address\" : \"__DSW__address\",   (string) The __DSW__ address involved in the transaction\n"
+            "      \"address\" : \"SAGAaddress\",   (string) The SAGA address involved in the transaction\n"
             "      \"category\" : \"send|receive\",    (string) The category, either 'send' or 'receive'\n"
-            "      \"amount\" : x.xxx                  (numeric) The amount in __DSW__\n"
+            "      \"amount\" : x.xxx                  (numeric) The amount in SAGA\n"
             "      \"vout\" : n,                       (numeric) the vout value\n"
             "    }\n"
             "    ,...\n"
@@ -2256,7 +2256,7 @@ UniValue walletpassphrase(const JSONRPCRequest& request)
         throw std::runtime_error(
             "walletpassphrase \"passphrase\" timeout ( stakingonly )\n"
             "\nStores the wallet decryption key in memory for 'timeout' seconds.\n"
-            "This is needed prior to performing transactions related to private keys such as sending __DSW__s\n"
+            "This is needed prior to performing transactions related to private keys such as sending SAGAs\n"
 
             "\nArguments:\n"
             "1. \"passphrase\"     (string, required) The wallet passphrase\n"
@@ -2421,10 +2421,10 @@ UniValue encryptwallet(const JSONRPCRequest& request)
             "\nExamples:\n"
             "\nEncrypt you wallet\n" +
             HelpExampleCli("encryptwallet", "\"my pass phrase\"") +
-            "\nNow set the passphrase to use the wallet, such as for signing or sending __DSW__s\n" +
+            "\nNow set the passphrase to use the wallet, such as for signing or sending SAGAs\n" +
             HelpExampleCli("walletpassphrase", "\"my pass phrase\"") +
             "\nNow we can so something like sign\n" +
-            HelpExampleCli("signmessage", "\"__DSW__address\" \"test message\"") +
+            HelpExampleCli("signmessage", "\"SAGAaddress\" \"test message\"") +
             "\nNow lock the wallet again by removing the passphrase\n" +
             HelpExampleCli("walletlock", "") +
             "\nAs a json rpc call\n" +
@@ -2472,9 +2472,9 @@ UniValue listunspent(const JSONRPCRequest& request)
                 "\nArguments:\n"
                 "1. minconf          (numeric, optional, default=1) The minimum confirmations to filter\n"
                 "2. maxconf          (numeric, optional, default=9999999) The maximum confirmations to filter\n"
-                "3. \"addresses\"    (string) A json array of __DSW__ addresses to filter\n"
+                "3. \"addresses\"    (string) A json array of SAGA addresses to filter\n"
                 "    [\n"
-                "      \"address\"   (string) __DSW__ address\n"
+                "      \"address\"   (string) SAGA address\n"
                 "      ,...\n"
                 "    ]\n"
                 "4. watchonlyconfig  (numeric, optional, default=1) 1 = list regular unspent transactions,  2 = list all unspent transactions (including watchonly)\n"
@@ -2484,12 +2484,12 @@ UniValue listunspent(const JSONRPCRequest& request)
                 "  {\n"
                 "    \"txid\" : \"txid\",        (string) the transaction id\n"
                 "    \"vout\" : n,               (numeric) the vout value\n"
-                "    \"address\" : \"address\",  (string) the __DSW__ address\n"
+                "    \"address\" : \"address\",  (string) the SAGA address\n"
                 "    \"label\" : \"label\",      (string) The associated label, or \"\" for the default label\n"
                 "    \"account\" : \"account\",  (string) DEPRECATED.This field will be removed in v5.0. To see this deprecated field, start cryptosagad with -deprecatedrpc=accounts. Backwards compatible alias for label.\n"
                 "    \"scriptPubKey\" : \"key\", (string) the script key\n"
                 "    \"redeemScript\" : \"key\", (string) the redeemscript key\n"
-                "    \"amount\" : x.xxx,         (numeric) the transaction amount in __DSW__\n"
+                "    \"amount\" : x.xxx,         (numeric) the transaction amount in SAGA\n"
                 "    \"confirmations\" : n,      (numeric) The number of confirmations\n"
                 "    \"spendable\" : true|false  (boolean) Whether we have the private keys to spend this output\n"
                 "    \"solvable\" : xxx          (bool) Whether we know how to spend this output, ignoring the lack of keys\n"
@@ -2517,7 +2517,7 @@ UniValue listunspent(const JSONRPCRequest& request)
             const UniValue& input = inputs[inx];
             CTxDestination dest = DecodeDestination(input.get_str());
             if (!IsValidDestination(dest))
-                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid __DSW__ address: ") + input.get_str());
+                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid SAGA address: ") + input.get_str());
             if (destinations.count(dest))
                 throw JSONRPCError(RPC_INVALID_PARAMETER, std::string("Invalid parameter, duplicated address: ") + input.get_str());
             destinations.insert(dest);
@@ -2599,7 +2599,7 @@ UniValue lockunspent(const JSONRPCRequest& request)
             "lockunspent unlock [{\"txid\":\"txid\",\"vout\":n},...]\n"
             "\nUpdates list of temporarily unspendable outputs.\n"
             "Temporarily lock (unlock=false) or unlock (unlock=true) specified transaction outputs.\n"
-            "A locked transaction output will not be chosen by automatic coin selection, when spending __DSW__s.\n"
+            "A locked transaction output will not be chosen by automatic coin selection, when spending SAGAs.\n"
             "Locks are stored in memory only. Nodes start with zero locked outputs, and the locked output list\n"
             "is always cleared (by virtue of process exit) when a node stops or fails.\n"
             "Also see the listunspent call\n"
@@ -2763,7 +2763,7 @@ UniValue settxfee(const JSONRPCRequest& request)
             "\nSet the transaction fee per kB.\n"
 
             "\nArguments:\n"
-            "1. amount         (numeric, required) The transaction fee in __DSW__/kB rounded to the nearest 0.00000001\n"
+            "1. amount         (numeric, required) The transaction fee in SAGA/kB rounded to the nearest 0.00000001\n"
 
             "\nResult\n"
             "true|false        (boolean) Returns true if successful\n"
@@ -2791,16 +2791,16 @@ UniValue getwalletinfo(const JSONRPCRequest& request)
             "\nResult:\n"
             "{\n"
             "  \"walletversion\": xxxxx,                  (numeric) the wallet version\n"
-            "  \"balance\": xxxxxxx,                      (numeric) the total __DSW__ balance of the wallet\n"
-            "  \"unconfirmed_balance\": xxx,              (numeric) the total unconfirmed balance of the wallet in __DSW__\n"
-            "  \"immature_balance\": xxxxxx,              (numeric) the total immature balance of the wallet in __DSW__\n"
+            "  \"balance\": xxxxxxx,                      (numeric) the total SAGA balance of the wallet\n"
+            "  \"unconfirmed_balance\": xxx,              (numeric) the total unconfirmed balance of the wallet in SAGA\n"
+            "  \"immature_balance\": xxxxxx,              (numeric) the total immature balance of the wallet in SAGA\n"
             "  \"txcount\": xxxxxxx,                      (numeric) the total number of transactions in the wallet\n"
             "  \"keypoololdest\": xxxxxx,                 (numeric) the timestamp (seconds since GMT epoch) of the oldest pre-generated key in the key pool\n"
             "  \"keypoolsize\": xxxx,                     (numeric) how many new keys are pre-generated (only counts external keys)\n"
             "  \"keypoolsize_hd_internal\": xxxx,         (numeric) how many new keys are pre-generated for internal use (used for change outputs, only appears if the wallet is using this feature, otherwise external keys are used)\n"
             "  \"keypoolsize_hd_ecommerce\": xxxx,        (numeric) how many new keys are pre-generated for ecommerce use\n"
             "  \"unlocked_until\": ttt,                   (numeric) the timestamp in seconds since epoch (midnight Jan 1 1970 GMT) that the wallet is unlocked for transfers, or 0 if the wallet is locked\n"
-            "  \"paytxfee\": x.xxxx                       (numeric) the transaction fee configuration, set in __DSW__/kB\n"
+            "  \"paytxfee\": x.xxxx                       (numeric) the transaction fee configuration, set in SAGA/kB\n"
             "  \"hdseedid\": \"<hash160>\"                (string, optional) the Hash160 of the HD seed (only present when HD is enabled)\n"
             "}\n"
 
@@ -2847,11 +2847,11 @@ UniValue setstakesplitthreshold(const JSONRPCRequest& request)
             "Whenever a successful stake is found, the stake amount is split across as many outputs (each with a value\n"
             "higher than the threshold) as possible.\n"
             "E.g. If the coinstake input + the block stake reward is 2000, and the split threshold is 499, the corresponding\n"
-            "coinstake transaction will have 4 outputs (of 500 __DSW__ each)."
+            "coinstake transaction will have 4 outputs (of 500 SAGA each)."
             + HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. value                   (numeric, required) Threshold value (in __DSW__).\n"
+            "1. value                   (numeric, required) Threshold value (in SAGA).\n"
             "                                     Set to 0 to disable stake-splitting\n"
             "                                     If > 0, it must be >= " + FormatMoney(CWallet::minStakeSplitThreshold) + "\n"
 
@@ -2914,7 +2914,7 @@ UniValue autocombinerewards(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() < 1 || (fEnable && request.params.size() != 2) || request.params.size() > 2)
         throw std::runtime_error(
             "autocombinerewards enable ( threshold )\n"
-            "\nWallet will automatically monitor for any coins with value below the threshold amount, and combine them if they reside with the same __DSW__ address\n"
+            "\nWallet will automatically monitor for any coins with value below the threshold amount, and combine them if they reside with the same SAGA address\n"
             "When autocombinerewards runs it will create a transaction, and therefore will be subject to transaction fees.\n"
 
             "\nArguments:\n"
@@ -3119,7 +3119,7 @@ UniValue multisend(const JSONRPCRequest& request)
     std::string strAddress = request.params[0].get_str();
     CBitcoinAddress address(strAddress);
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid __DSW__ address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid SAGA address");
     if (std::stoi(request.params[1].get_str().c_str()) < 0)
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid parameter, expected valid percentage");
     if (pwalletMain->IsLocked())
@@ -3165,11 +3165,11 @@ UniValue getzerocoinbalance(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() != 0)
         throw std::runtime_error(
             "getzerocoinbalance\n"
-            "\nReturn the wallet's total z__DSW__ balance.\n" +
+            "\nReturn the wallet's total zSAGA balance.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nResult:\n"
-            "amount         (numeric) Total z__DSW__ balance.\n"
+            "amount         (numeric) Total zSAGA balance.\n"
 
             "\nExamples:\n" +
             HelpExampleCli("getzerocoinbalance", "") + HelpExampleRpc("getzerocoinbalance", ""));
@@ -3193,7 +3193,7 @@ UniValue listmintedzerocoins(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() > 2)
         throw std::runtime_error(
             "listmintedzerocoins (fVerbose) (fMatureOnly)\n"
-            "\nList all z__DSW__ mints in the wallet.\n" +
+            "\nList all zSAGA mints in the wallet.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
@@ -3212,7 +3212,7 @@ UniValue listmintedzerocoins(const JSONRPCRequest& request)
             "  {\n"
             "    \"serial hash\": \"xxx\",   (string) Mint serial hash in hex format.\n"
             "    \"version\": n,   (numeric) Zerocoin version number.\n"
-            "    \"z__DSW__ ID\": \"xxx\",   (string) Pubcoin in hex format.\n"
+            "    \"zSAGA ID\": \"xxx\",   (string) Pubcoin in hex format.\n"
             "    \"denomination\": n,   (numeric) Coin denomination.\n"
             "    \"mint height\": n     (numeric) Height of the block containing this mint.\n"
             "    \"confirmations\": n   (numeric) Number of confirmations.\n"
@@ -3245,7 +3245,7 @@ UniValue listmintedzerocoins(const JSONRPCRequest& request)
             UniValue objMint(UniValue::VOBJ);
             objMint.push_back(Pair("serial hash", m.hashSerial.GetHex()));  // Serial hash
             objMint.push_back(Pair("version", m.nVersion));                 // Zerocoin version
-            objMint.push_back(Pair("z__DSW__ ID", m.hashPubcoin.GetHex()));     // PubCoin
+            objMint.push_back(Pair("zSAGA ID", m.hashPubcoin.GetHex()));     // PubCoin
             int denom = libzerocoin::ZerocoinDenominationToInt(m.denom);
             objMint.push_back(Pair("denomination", denom));                 // Denomination
             objMint.push_back(Pair("mint height", m.nHeight));              // Mint Height
@@ -3322,7 +3322,7 @@ UniValue listspentzerocoins(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() != 0)
         throw std::runtime_error(
             "listspentzerocoins\n"
-            "\nList all the spent z__DSW__ mints in the wallet.\n" +
+            "\nList all the spent zSAGA mints in the wallet.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nResult:\n"
@@ -3354,11 +3354,11 @@ UniValue mintzerocoin(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
         throw std::runtime_error(
             "mintzerocoin amount ( utxos )\n"
-            "\nMint the specified z__DSW__ amount\n" +
+            "\nMint the specified zSAGA amount\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. amount      (numeric, required) Enter an amount of __DSW__ to convert to z__DSW__\n"
+            "1. amount      (numeric, required) Enter an amount of SAGA to convert to zSAGA\n"
             "2. utxos       (string, optional) A json array of objects.\n"
             "                   Each object needs the txid (string) and vout (numeric)\n"
             "  [\n"
@@ -3395,7 +3395,7 @@ UniValue mintzerocoin(const JSONRPCRequest& request)
 
 
     if (!Params().IsRegTestNet())
-        throw JSONRPCError(RPC_WALLET_ERROR, "z__DSW__ minting is DISABLED");
+        throw JSONRPCError(RPC_WALLET_ERROR, "zSAGA minting is DISABLED");
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
@@ -3409,7 +3409,7 @@ UniValue mintzerocoin(const JSONRPCRequest& request)
 
     int64_t nTime = GetTimeMillis();
     if(sporkManager.IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-        throw JSONRPCError(RPC_WALLET_ERROR, "z__DSW__ is currently disabled due to maintenance.");
+        throw JSONRPCError(RPC_WALLET_ERROR, "zSAGA is currently disabled due to maintenance.");
 
     EnsureWalletIsUnlocked(true);
 
@@ -3474,7 +3474,7 @@ UniValue spendzerocoin(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() > 2 || request.params.size() < 1)
         throw std::runtime_error(
             "spendzerocoin amount ( \"address\" )\n"
-            "\nSpend z__DSW__ to a __DSW__ address.\n" +
+            "\nSpend zSAGA to a SAGA address.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
@@ -3498,8 +3498,8 @@ UniValue spendzerocoin(const JSONRPCRequest& request)
             "  ],\n"
             "  \"outputs\": [                 (array) JSON array of output objects.\n"
             "    {\n"
-            "      \"value\": amount,         (numeric) Value in __DSW__.\n"
-            "      \"address\": \"xxx\"         (string) __DSW__ address or \"zerocoinmint\" for reminted change.\n"
+            "      \"value\": amount,         (numeric) Value in SAGA.\n"
+            "      \"address\": \"xxx\"         (string) SAGA address or \"zerocoinmint\" for reminted change.\n"
             "    }\n"
             "    ,...\n"
             "  ]\n"
@@ -3512,7 +3512,7 @@ UniValue spendzerocoin(const JSONRPCRequest& request)
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     if(sporkManager.IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-        throw JSONRPCError(RPC_WALLET_ERROR, "z__DSW__ is currently disabled due to maintenance.");
+        throw JSONRPCError(RPC_WALLET_ERROR, "zSAGA is currently disabled due to maintenance.");
 
     CAmount nAmount = AmountFromValue(request.params[0]);        // Spending amount
     const std::string address_str = (request.params.size() > 1 ? request.params[1].get_str() : "");
@@ -3527,7 +3527,7 @@ UniValue spendzerocoinmints(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
         throw std::runtime_error(
             "spendzerocoinmints mints_list ( \"address\" ) \n"
-            "\nSpend z__DSW__ mints to a __DSW__ address.\n" +
+            "\nSpend zSAGA mints to a SAGA address.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
@@ -3550,8 +3550,8 @@ UniValue spendzerocoinmints(const JSONRPCRequest& request)
             "  ],\n"
             "  \"outputs\": [                 (array) JSON array of output objects.\n"
             "    {\n"
-            "      \"value\": amount,         (numeric) Value in __DSW__.\n"
-            "      \"address\": \"xxx\"         (string) __DSW__ address or \"zerocoinmint\" for reminted change.\n"
+            "      \"value\": amount,         (numeric) Value in SAGA.\n"
+            "      \"address\": \"xxx\"         (string) SAGA address or \"zerocoinmint\" for reminted change.\n"
             "    }\n"
             "    ,...\n"
             "  ]\n"
@@ -3564,7 +3564,7 @@ UniValue spendzerocoinmints(const JSONRPCRequest& request)
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     if(sporkManager.IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-        throw JSONRPCError(RPC_WALLET_ERROR, "z__DSW__ is currently disabled due to maintenance.");
+        throw JSONRPCError(RPC_WALLET_ERROR, "zSAGA is currently disabled due to maintenance.");
 
     UniValue arrMints = request.params[0].get_array();
     const std::string address_str = (request.params.size() > 1 ? request.params[1].get_str() : "");
@@ -3610,7 +3610,7 @@ extern UniValue DoZpivSpend(const CAmount nAmount, std::vector<CZerocoinMint>& v
     if(address_str != "") { // Spend to supplied destination address
         address = DecodeDestination(address_str);
         if(!IsValidDestination(address))
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid __DSW__ address");
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid SAGA address");
         outputs.push_back(std::pair<CTxDestination, CAmount>(address, nAmount));
     }
 
@@ -3851,12 +3851,12 @@ UniValue exportzerocoins(const JSONRPCRequest& request)
 
             "\nArguments:\n"
             "1. \"include_spent\"        (bool, required) Include mints that have already been spent\n"
-            "2. \"denomination\"         (integer, optional) Export a specific denomination of z__DSW__\n"
+            "2. \"denomination\"         (integer, optional) Export a specific denomination of zSAGA\n"
 
             "\nResult:\n"
             "[                   (array of json object)\n"
             "  {\n"
-            "    \"id\": \"serial hash\",  (string) the mint's z__DSW__ serial hash \n"
+            "    \"id\": \"serial hash\",  (string) the mint's zSAGA serial hash \n"
             "    \"d\": n,         (numeric) the mint's zerocoin denomination \n"
             "    \"p\": \"pubcoin\", (string) The public coin\n"
             "    \"s\": \"serial\",  (string) The secret serial number\n"
@@ -3864,8 +3864,8 @@ UniValue exportzerocoins(const JSONRPCRequest& request)
             "    \"t\": \"txid\",    (string) The txid that the coin was minted in\n"
             "    \"h\": n,         (numeric) The height the tx was added to the blockchain\n"
             "    \"u\": used,      (boolean) Whether the mint has been spent\n"
-            "    \"v\": version,   (numeric) The version of the z__DSW__\n"
-            "    \"k\": \"privkey\"  (string) The z__DSW__ private key (V2+ z__DSW__ only)\n"
+            "    \"v\": version,   (numeric) The version of the zSAGA\n"
+            "    \"k\": \"privkey\"  (string) The zSAGA private key (V2+ zSAGA only)\n"
             "  }\n"
             "  ,...\n"
             "]\n"
@@ -3934,7 +3934,7 @@ UniValue importzerocoins(const JSONRPCRequest& request)
             "\nResult:\n"
             "{\n"
             "  \"added\": n,        (numeric) The quantity of zerocoin mints that were added\n"
-            "  \"value\": amount    (numeric) The total z__DSW__ value of zerocoin mints that were added\n"
+            "  \"value\": amount    (numeric) The total zSAGA value of zerocoin mints that were added\n"
             "}\n"
 
             "\nExamples\n" +
@@ -4012,7 +4012,7 @@ UniValue reconsiderzerocoins(const JSONRPCRequest& request)
     if(request.fHelp || !request.params.empty())
         throw std::runtime_error(
             "reconsiderzerocoins\n"
-            "\nCheck archived z__DSW__ list to see if any mints were added to the blockchain.\n" +
+            "\nCheck archived zSAGA list to see if any mints were added to the blockchain.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nResult:\n"
@@ -4062,19 +4062,19 @@ UniValue setzpivseed(const JSONRPCRequest& request)
 {
     if(request.fHelp || request.params.size() != 1)
         throw std::runtime_error(
-            "setz__DSW__seed \"seed\"\n"
-            "\nSet the wallet's deterministic z__DSW__ seed to a specific value.\n" +
+            "setzSAGAseed \"seed\"\n"
+            "\nSet the wallet's deterministic zSAGA seed to a specific value.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"seed\"        (string, required) The deterministic z__DSW__ seed.\n"
+            "1. \"seed\"        (string, required) The deterministic zSAGA seed.\n"
 
             "\nResult\n"
             "\"success\" : b,  (boolean) Whether the seed was successfully set.\n"
 
             "\nExamples\n" +
-            HelpExampleCli("setz__DSW__seed", "63f793e7895dd30d99187b35fbfb314a5f91af0add9e0a4e5877036d1e392dd5") +
-            HelpExampleRpc("setz__DSW__seed", "63f793e7895dd30d99187b35fbfb314a5f91af0add9e0a4e5877036d1e392dd5"));
+            HelpExampleCli("setzSAGAseed", "63f793e7895dd30d99187b35fbfb314a5f91af0add9e0a4e5877036d1e392dd5") +
+            HelpExampleRpc("setzSAGAseed", "63f793e7895dd30d99187b35fbfb314a5f91af0add9e0a4e5877036d1e392dd5"));
 
     EnsureWalletIsUnlocked();
 
@@ -4096,15 +4096,15 @@ UniValue getzpivseed(const JSONRPCRequest& request)
 {
     if(request.fHelp || !request.params.empty())
         throw std::runtime_error(
-            "getz__DSW__seed\n"
-            "\nCheck archived z__DSW__ list to see if any mints were added to the blockchain.\n" +
+            "getzSAGAseed\n"
+            "\nCheck archived zSAGA list to see if any mints were added to the blockchain.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nResult\n"
-            "\"seed\" : s,  (string) The deterministic z__DSW__ seed.\n"
+            "\"seed\" : s,  (string) The deterministic zSAGA seed.\n"
 
             "\nExamples\n" +
-            HelpExampleCli("getz__DSW__seed", "") + HelpExampleRpc("getz__DSW__seed", ""));
+            HelpExampleCli("getzSAGAseed", "") + HelpExampleRpc("getzSAGAseed", ""));
 
     EnsureWalletIsUnlocked();
 
@@ -4122,12 +4122,12 @@ UniValue generatemintlist(const JSONRPCRequest& request)
     if(request.fHelp || request.params.size() != 2)
         throw std::runtime_error(
             "generatemintlist\n"
-            "\nShow mints that are derived from the deterministic z__DSW__ seed.\n" +
+            "\nShow mints that are derived from the deterministic zSAGA seed.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments\n"
-            "1. \"count\"  : n,  (numeric) Which sequential z__DSW__ to start with.\n"
-            "2. \"range\"  : n,  (numeric) How many z__DSW__ to generate.\n"
+            "1. \"count\"  : n,  (numeric) Which sequential zSAGA to start with.\n"
+            "2. \"range\"  : n,  (numeric) How many zSAGA to generate.\n"
 
             "\nResult:\n"
             "[\n"
@@ -4169,8 +4169,8 @@ UniValue generatemintlist(const JSONRPCRequest& request)
 UniValue dzpivstate(const JSONRPCRequest& request) {
     if (request.fHelp || request.params.size() != 0)
         throw std::runtime_error(
-                "dz__DSW__state\n"
-                        "\nThe current state of the mintpool of the deterministic z__DSW__ wallet.\n" +
+                "dzSAGAstate\n"
+                        "\nThe current state of the mintpool of the deterministic zSAGA wallet.\n" +
                 HelpRequiringPassphrase() + "\n"
 
                         "\nExamples\n" +
@@ -4180,7 +4180,7 @@ UniValue dzpivstate(const JSONRPCRequest& request) {
     UniValue obj(UniValue::VOBJ);
     int nCount, nCountLastUsed;
     zwallet->GetState(nCount, nCountLastUsed);
-    obj.push_back(Pair("dz__DSW___count", nCount));
+    obj.push_back(Pair("dzSAGA_count", nCount));
     obj.push_back(Pair("mintpool_count", nCountLastUsed));
 
     return obj;
@@ -4221,17 +4221,17 @@ UniValue searchdzpiv(const JSONRPCRequest& request)
 {
     if(request.fHelp || request.params.size() != 3)
         throw std::runtime_error(
-            "searchdz__DSW__\n"
-            "\nMake an extended search for deterministically generated z__DSW__ that have not yet been recognized by the wallet.\n" +
+            "searchdzSAGA\n"
+            "\nMake an extended search for deterministically generated zSAGA that have not yet been recognized by the wallet.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments\n"
-            "1. \"count\"       (numeric) Which sequential z__DSW__ to start with.\n"
-            "2. \"range\"       (numeric) How many z__DSW__ to generate.\n"
+            "1. \"count\"       (numeric) Which sequential zSAGA to start with.\n"
+            "2. \"range\"       (numeric) How many zSAGA to generate.\n"
             "3. \"threads\"     (numeric) How many threads should this operation consume.\n"
 
             "\nExamples\n" +
-            HelpExampleCli("searchdz__DSW__", "1, 100, 2") + HelpExampleRpc("searchdz__DSW__", "1, 100, 2"));
+            HelpExampleCli("searchdzSAGA", "1, 100, 2") + HelpExampleRpc("searchdzSAGA", "1, 100, 2"));
 
     EnsureWalletIsUnlocked();
 
@@ -4279,7 +4279,7 @@ UniValue spendrawzerocoin(const JSONRPCRequest& request)
             "2. \"randomnessHex\"    (string, required) A zerocoin randomness value (hex)\n"
             "3. denom                (numeric, required) A zerocoin denomination (decimal)\n"
             "4. \"priv key\"         (string, required) The private key associated with this coin (hex)\n"
-            "5. \"address\"          (string, optional) __DSW__ address to spend to. If not specified, "
+            "5. \"address\"          (string, optional) SAGA address to spend to. If not specified, "
             "                        or empty string, spend to change address.\n"
             "6. \"mintTxId\"         (string, optional) txid of the transaction containing the mint. If not"
             "                        specified, or empty string, the blockchain will be scanned (could take a while)"
@@ -4294,7 +4294,7 @@ UniValue spendrawzerocoin(const JSONRPCRequest& request)
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     if (sporkManager.IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-            throw JSONRPCError(RPC_WALLET_ERROR, "z__DSW__ is currently disabled due to maintenance.");
+            throw JSONRPCError(RPC_WALLET_ERROR, "zSAGA is currently disabled due to maintenance.");
 
     const Consensus::Params& consensus = Params().GetConsensus();
 

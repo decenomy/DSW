@@ -345,7 +345,7 @@ class RawTransactionsTest(PivxTestFramework):
         addrs = [self.nodes[2].getnewaddress() for _ in range(2)]
         mSigAddr = self.nodes[2].addmultisigaddress(2, addrs)
 
-        # Send 50.1 __DSW__ to mSigAddr.
+        # Send 50.1 SAGA to mSigAddr.
         self.nodes[0].sendtoaddress(mSigAddr, 50.1)
         self.nodes[0].generate(1)
         self.sync_all()

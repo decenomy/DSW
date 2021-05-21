@@ -360,7 +360,7 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblock",           &waitforblock,           true },
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true },
 
-        /* __DSW__ features */
+        /* SAGA features */
         {"cryptosaga", "listmasternodes", &listmasternodes, true },
         {"cryptosaga", "getmasternodecount", &getmasternodecount, true },
         {"cryptosaga", "createmasternodebroadcast", &createmasternodebroadcast, true },
