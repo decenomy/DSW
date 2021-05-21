@@ -470,7 +470,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 QPushButton[cssClass="btn-qr"] {
   qproperty-icon: url("://ic-arrow-drop-down-white");
-  qproperty-iconsize: 24px 24px;
+  qproperty-iconSize: 24px 24px;
   background-color: transparent;
 }
 
@@ -1060,18 +1060,18 @@ QPushButton[cssClass="btn-watch-password"] {
 
 QPushButton[cssClass="btn-menu"] {
   qproperty-icon: url("://ic-menu-hover") off, url("://ic-menu-hover") on;
-  qproperty-iconsize: 24px 24px;
+  qproperty-iconSize: 24px 24px;
 }
 
 QPushButton[cssClass="btn-dropdown"] {
   qproperty-icon: url("://ic-arrow-drop-down-white") off,
     url("://ic-arrow-drop-down-white") on;
-  qproperty-iconsize: 24px 24px;
+  qproperty-iconSize: 24px 24px;
 }
 
 QPushButton[cssClass="btn-dropdown"]:checked {
   qproperty-icon: url("://ic-arrow-drop-up") off, url("://ic-arrow-drop-up") on;
-  qproperty-iconsize: 24px 24px;
+  qproperty-iconSize: 24px 24px;
 }
 
 QPushButton[cssClass="btn-switch"] {
@@ -1722,7 +1722,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 *[cssClass="ic-warning"] {
   qproperty-icon: url("://ic-transaction-warning") off,
     url("://ic-transaction-warning") on;
-  qproperty-iconsize: 24px 24px;
+  qproperty-iconSize: 24px 24px;
 }
 
 *[cssClass="text-amount-grey"] {
@@ -1796,7 +1796,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 QPushButton[cssClass="btn-chart-arrow"] {
   qproperty-icon: url("://ic-arrow-left-white");
-  qproperty-iconsize: 12px 12px;
+  qproperty-iconSize: 12px 12px;
   background-color: transparent;
   border: 0px;
   border-radius: 2px;
@@ -1812,7 +1812,7 @@ QPushButton[cssClass="btn-chart-arrow"]:pressed {
 
 QPushButton[cssClass="btn-chart-arrow-right"] {
   qproperty-icon: url("://ic-arrow-right-white");
-  qproperty-iconsize: 12px 12px;
+  qproperty-iconSize: 12px 12px;
   background-color: transparent;
   border: 0px;
   border-radius: 2px;
@@ -2556,26 +2556,26 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 *[cssClass="ic-close-white"] {
   qproperty-icon: url("://ic-close-white") off, url("://ic-close-white") on;
-  qproperty-iconsize: 24px 24px;
+  qproperty-iconSize: 24px 24px;
 }
 
 *[cssClass="ic-arrow"] {
   qproperty-icon: url("://ic-arrow-right-white") off,
     url("://ic-arrow-right-white") on;
-  qproperty-iconsize: 24px 24px;
+  qproperty-iconSize: 24px 24px;
 }
 
 *[cssClass="ic-arrow-down"] {
   qproperty-icon: url("://ic-arrow-drop-down-white") off,
     url("://ic-arrow-drop-down-white") on;
-  qproperty-iconsize: 24px 24px;
+  qproperty-iconSize: 24px 24px;
   background-color: transparent;
   border: none;
 }
 
 *[cssClass="ic-copy"] {
   qproperty-icon: url("://ic-copy-liliac") off, url("://ic-copy-liliac") on;
-  qproperty-iconsize: 24px 24px;
+  qproperty-iconSize: 24px 24px;
   background-color: transparent;
   border: none;
 }
@@ -2583,14 +2583,14 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 *[cssClass="ic-copy-big"] {
   qproperty-icon: url("://ic-copy-big-white") off,
     url("://ic-copy-big-white") on;
-  qproperty-iconsize: 24px 24px;
+  qproperty-iconSize: 24px 24px;
   background-color: transparent;
   border: none;
 }
 
 *[cssClass="ic-close"] {
   qproperty-icon: url("://ic-close-white");
-  qproperty-iconsize: 24px 24px;
+  qproperty-iconSize: 24px 24px;
   background-color: transparent;
   border: none;
 }
@@ -2912,55 +2912,55 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 *[cssClass="img-empty-master"] {
   qproperty-icon: url("://img-empty-dark-masternode");
-  qproperty-iconsize: 100px 100px;
+  qproperty-iconSize: 100px 100px;
   background-color: transparent;
 }
 
 *[cssClass="img-empty-transactions"] {
   qproperty-icon: url("://img-empty-dark-transactions");
-  qproperty-iconsize: 100px 100px;
+  qproperty-iconSize: 100px 100px;
   background-color: transparent;
 }
 
 *[cssClass="img-empty-peers"] {
   qproperty-icon: url("://img-empty-dark-peers");
-  qproperty-iconsize: 100px 100px;
+  qproperty-iconSize: 100px 100px;
   background-color: transparent;
 }
 
 *[cssClass="img-empty-contacts"] {
   qproperty-icon: url("://img-empty-dark-contacts");
-  qproperty-iconsize: 100px 100px;
+  qproperty-iconSize: 100px 100px;
   background-color: transparent;
 }
 
 *[cssClass="img-empty-error"] {
   qproperty-icon: url("://img-empty-dark-error");
-  qproperty-iconsize: 100px 100px;
+  qproperty-iconSize: 100px 100px;
   background-color: transparent;
 }
 
 *[cssClass="img-empty-multisend"] {
   qproperty-icon: url("://img-empty-dark-multisend");
-  qproperty-iconsize: 100px 100px;
+  qproperty-iconSize: 100px 100px;
   background-color: transparent;
 }
 
 *[cssClass="img-empty-staking-on"] {
   qproperty-icon: url("://img-empty-dark-staking-on");
-  qproperty-iconsize: 100px 100px;
+  qproperty-iconSize: 100px 100px;
   background-color: transparent;
 }
 
 *[cssClass="img-empty-staking-off"] {
   qproperty-icon: url("://img-empty-dark-staking-off");
-  qproperty-iconsize: 100px 100px;
+  qproperty-iconSize: 100px 100px;
   background-color: transparent;
 }
 
 *[cssClass="img-empty-privacy"] {
   qproperty-icon: url("://img-empty-dark-privacy");
-  qproperty-iconsize: 100px 100px;
+  qproperty-iconSize: 100px 100px;
   background-color: transparent;
 }
 
