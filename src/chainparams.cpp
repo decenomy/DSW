@@ -266,6 +266,10 @@ public:
 
         //vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
         //convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main)); // added
+
+        //LiquiMining - DASHD uses liquimining for 500 blocks starting at the startheight
+        nLiquiMiningStartHeight = 292000;
+        nLiquiMiningValue = 1001 * COIN;
     }
 
     const Checkpoints::CCheckpointData& Checkpoints() const
