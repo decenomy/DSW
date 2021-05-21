@@ -122,12 +122,12 @@
         <translation>Adrese za primanje</translation>
     </message>
     <message>
-        <source>These are your __DSW__ addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>To su vaše __DSW__ adrese za slanje plaćanja. Uvijek provjerite iznos i adresu primatelja prije slanja novca.</translation>
+        <source>These are your SAGA addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>To su vaše SAGA adrese za slanje plaćanja. Uvijek provjerite iznos i adresu primatelja prije slanja novca.</translation>
     </message>
     <message>
-        <source>These are your __DSW__ addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>To su vaše __DSW__ adrese za primanje uplata. Preporuča se upotreba nove adrese primatelja za svaku transakciju.</translation>
+        <source>These are your SAGA addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>To su vaše SAGA adrese za primanje uplata. Preporuča se upotreba nove adrese primatelja za svaku transakciju.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -360,8 +360,8 @@ za staking</translation>
         <translation>PONIŠTI</translation>
     </message>
     <message>
-        <source>__DSW__ will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your __DSW__s from being stolen by malware infecting your computer.</source>
-        <translation>__DSW__ će se sada zatvoriti kako bi se dovršio proces šifriranja. Ne zaboravite da šifriranje Vašeg novčanika ne može u potpunosti zaštititi vaše __DSW__ od krađje zlonamjernog softvera koji zarazi vaše računalo.</translation>
+        <source>SAGA will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your SAGAs from being stolen by malware infecting your computer.</source>
+        <translation>SAGA će se sada zatvoriti kako bi se dovršio proces šifriranja. Ne zaboravite da šifriranje Vašeg novčanika ne može u potpunosti zaštititi vaše SAGA od krađje zlonamjernog softvera koji zarazi vaše računalo.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -457,8 +457,8 @@ za staking</translation>
         <translation>Odabir novčića</translation>
     </message>
     <message>
-        <source>Select __DSW__ Outputs to Spend</source>
-        <translation>Odaberi __DSW__ za potrošiti</translation>
+        <source>Select SAGA Outputs to Spend</source>
+        <translation>Odaberi SAGA za potrošiti</translation>
     </message>
     <message>
         <source>Dust:</source>
@@ -485,8 +485,8 @@ za staking</translation>
         <translation>Iznos</translation>
     </message>
     <message>
-        <source>0.00 __DSW__</source>
-        <translation>0.00 __DSW__</translation>
+        <source>0.00 SAGA</source>
+        <translation>0.00 SAGA</translation>
     </message>
     <message>
         <source>0</source>
@@ -707,8 +707,8 @@ za staking</translation>
         <translation>Statistika stakinga</translation>
     </message>
     <message>
-        <source>How to get __DSW__</source>
-        <translation>Kako dobiti __DSW__</translation>
+        <source>How to get SAGA</source>
+        <translation>Kako dobiti SAGA</translation>
     </message>
     <message>
         <source>Sort by</source>
@@ -731,8 +731,8 @@ za staking</translation>
         <translation>Filtriraj prema</translation>
     </message>
     <message>
-        <source>Amount of __DSW__ and z__DSW__ staked.</source>
-        <translation>Iznos __DSW__ i z__DSW__ koji se stakea.</translation>
+        <source>Amount of SAGA and zSAGA staked.</source>
+        <translation>Iznos SAGA i zSAGA koji se stakea.</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -827,8 +827,8 @@ Automatski će se pokrenuti čim novčanik dobije dovoljno potvrda o neiskorišt
         <translation>Uredi adresu pošiljatelja</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid __DSW__ address.</source>
-        <translation>Unesena adresa "%1" nije ispravna __DSW__ adresa.</translation>
+        <source>The entered address "%1" is not a valid SAGA address.</source>
+        <translation>Unesena adresa "%1" nije ispravna SAGA adresa.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -951,8 +951,8 @@ Automatski će se pokrenuti čim novčanik dobije dovoljno potvrda o neiskorišt
         <translation>Budući da je prvi put pokrenut program, možete odabrati gdje će CryptoSaga pohraniti svoje podatke.</translation>
     </message>
     <message>
-        <source>CryptoSaga will download and store a copy of the __DSW__ block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>CryptoSaga preuzima i pohranjuje kopiju __DSW__ blok-lanca. Barem će %1GB podataka biti pohranjeno u ovom direktoriju i to će s vremenom rasti. Novčanik će također biti pohranjena u ovom direktoriju.</translation>
+        <source>CryptoSaga will download and store a copy of the SAGA block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>CryptoSaga preuzima i pohranjuje kopiju SAGA blok-lanca. Barem će %1GB podataka biti pohranjeno u ovom direktoriju i to će s vremenom rasti. Novčanik će također biti pohranjena u ovom direktoriju.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1075,8 +1075,8 @@ Automatski će se pokrenuti čim novčanik dobije dovoljno potvrda o neiskorišt
         <translation>Stvori novi Masternode Controller</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a __DSW__ Masternode you must dedicate a collateral amount of __DSW__ (the unit of __DSW__) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Da biste stvoriti __DSW__ Masternode, morate odvojiti 10,000 __DSW__ (jedinica __DSW__-a) prema mreži (međjutim, ti novčići su i dalje vaši i nikad neće napustiti vaše vlasništvo). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt; Možete isključiti node i otključati novčiće u bilo kojem trenutku.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a SAGA Masternode you must dedicate a collateral amount of SAGA (the unit of SAGA) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Da biste stvoriti SAGA Masternode, morate odvojiti 10,000 SAGA (jedinica SAGA-a) prema mreži (međjutim, ti novčići su i dalje vaši i nikad neće napustiti vaše vlasništvo). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt; Možete isključiti node i otključati novčiće u bilo kojem trenutku.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Set Masternode Name</source>
@@ -1096,7 +1096,7 @@ Automatski će se pokrenuti čim novčanik dobije dovoljno potvrda o neiskorišt
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of collateral amount will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Transakcija od 10,000 __DSW__ će biti napravljena&lt;/p&gt;&lt;p&gt;u novu praznu adresu u Vašem novčaniku.&lt;/p&gt;&lt;p&gt;Adresa je označena pod imenom Masternode-a.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Transakcija od 10,000 SAGA će biti napravljena&lt;/p&gt;&lt;p&gt;u novu praznu adresu u Vašem novčaniku.&lt;/p&gt;&lt;p&gt;Adresa je označena pod imenom Masternode-a.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Address of the node that must always be online running the actual master node.</source>
@@ -1520,8 +1520,8 @@ NODEOVI</translation>
         <translation>Ako onemogućite potrošnju nepotvrđjenog ostatka, ostatak od transakcije &lt;br/&gt;ne može se koristiti dok ta transakcija nema barem jednu potvrdu. &lt;br/&gt;Ovo takođjer utječe na izračun vašeg salda.</translation>
     </message>
     <message>
-        <source>Automatically open the __DSW__ client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Automatski otvorite __DSW__ klijentski ulaz na ruteru. To funkcionira samo kada vaš ruter podržava UPnP i omogućen je.</translation>
+        <source>Automatically open the SAGA client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automatski otvorite SAGA klijentski ulaz na ruteru. To funkcionira samo kada vaš ruter podržava UPnP i omogućen je.</translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -1540,12 +1540,12 @@ NODEOVI</translation>
         <translation>Stručnjak</translation>
     </message>
     <message>
-        <source>Automatically start __DSW__ after logging in to the system.</source>
-        <translation>Automatski pokrenite __DSW__ nakon prijave u sustav.</translation>
+        <source>Automatically start SAGA after logging in to the system.</source>
+        <translation>Automatski pokrenite SAGA nakon prijave u sustav.</translation>
     </message>
     <message>
-        <source>&amp;Start __DSW__ on system login</source>
-        <translation>&amp;Pokrenite __DSW__ pri pokretanju sustava</translation>
+        <source>&amp;Start SAGA on system login</source>
+        <translation>&amp;Pokrenite SAGA pri pokretanju sustava</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1572,8 +1572,8 @@ NODEOVI</translation>
         <translation>&amp;Mreža</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting __DSW__.</source>
-        <translation>Jezik korisničkog sučelja možete postaviti ovdje. Postavke će stupiti na snagu nakon ponovnog pokretanja __DSW__ novčanika.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting SAGA.</source>
+        <translation>Jezik korisničkog sučelja možete postaviti ovdje. Postavke će stupiti na snagu nakon ponovnog pokretanja SAGA novčanika.</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
@@ -1586,44 +1586,44 @@ NODEOVI</translation>
         <translation>Mapiranje porta koristeći &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of __DSW__ units to z__DSW__</source>
-        <translation>Omogući automatsko stvaranje __DSW__ jedinica na z__DSW__</translation>
+        <source>Enable automatic minting of SAGA units to zSAGA</source>
+        <translation>Omogući automatsko stvaranje SAGA jedinica na zSAGA</translation>
     </message>
     <message>
-        <source>Enable z__DSW__ Automint</source>
-        <translation>Omogući automatsko stvaranje z__DSW__-a</translation>
+        <source>Enable zSAGA Automint</source>
+        <translation>Omogući automatsko stvaranje zSAGA-a</translation>
     </message>
     <message>
-        <source>Enable automatic z__DSW__ minting from specific addresses</source>
-        <translation>Omogući automatsko stvaranje z__DSW__-a s određjenih adresa</translation>
+        <source>Enable automatic zSAGA minting from specific addresses</source>
+        <translation>Omogući automatsko stvaranje zSAGA-a s određjenih adresa</translation>
     </message>
     <message>
         <source>Enable Automint Addresses</source>
         <translation>Omogući Automint adrese</translation>
     </message>
     <message>
-        <source>Percentage of incoming __DSW__ which get automatically converted to z__DSW__ via Zerocoin Protocol (min: 10%)</source>
-        <translation>Postotak dolaznih __DSW__ koji se automatski pretvara u z__DSW__ putem Zerocoin Protokola (min: 10%)</translation>
+        <source>Percentage of incoming SAGA which get automatically converted to zSAGA via Zerocoin Protocol (min: 10%)</source>
+        <translation>Postotak dolaznih SAGA koji se automatski pretvara u zSAGA putem Zerocoin Protokola (min: 10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted z__DSW__</source>
-        <translation>Postotak automatski stvorenog z__DSW__-a</translation>
+        <source>Percentage of autominted zSAGA</source>
+        <translation>Postotak automatski stvorenog zSAGA-a</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough __DSW__ for this denomination is available</source>
-        <translation>Pričekajte s automatskom pretvorbom u Zerocoin dok ne bude dostupno dovoljno __DSW__-a za ovu denominaciju</translation>
+        <source>Wait with automatic conversion to Zerocoin until enough SAGA for this denomination is available</source>
+        <translation>Pričekajte s automatskom pretvorbom u Zerocoin dok ne bude dostupno dovoljno SAGA-a za ovu denominaciju</translation>
     </message>
     <message>
-        <source>Preferred Automint z__DSW__ Denomination</source>
-        <translation>Preferirana denominacija za automatsko stvaranje z__DSW__-a</translation>
+        <source>Preferred Automint zSAGA Denomination</source>
+        <translation>Preferirana denominacija za automatsko stvaranje zSAGA-a</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
         <translation>Prag razdvajanja Stake-a:</translation>
     </message>
     <message>
-        <source>Connect to the __DSW__ network through a SOCKS5 proxy.</source>
-        <translation>Povežite se s __DSW__ mrežom putem SOCKS5 proxy poslužitelja.</translation>
+        <source>Connect to the SAGA network through a SOCKS5 proxy.</source>
+        <translation>Povežite se s SAGA mrežom putem SOCKS5 proxy poslužitelja.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1868,8 +1868,8 @@ Adresa: %4
         <translation>Ne može se pokrenuti cryptosaga: clik-to-pay handler</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid __DSW__ address or malformed URI parameters.</source>
-        <translation>URI se ne može analizirati! To može biti uzrokovana nevažećom __DSW__ adresom ili nepravilnim URI parametrima.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid SAGA address or malformed URI parameters.</source>
+        <translation>URI se ne može analizirati! To može biti uzrokovana nevažećom SAGA adresom ili nepravilnim URI parametrima.</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -1958,8 +1958,8 @@ Adresa: %4
         <translation>Iznos</translation>
     </message>
     <message>
-        <source>Enter __DSW__ address (e.g. %1)</source>
-        <translation>Upišite __DSW__ adresu (npr. %1)</translation>
+        <source>Enter SAGA address (e.g. %1)</source>
+        <translation>Upišite SAGA adresu (npr. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2002,8 +2002,8 @@ Adresa: %4
         <translation>%1 ms</translation>
     </message>
     <message>
-        <source>A fatal error occurred. __DSW__ can no longer continue safely and will quit.</source>
-        <translation>Dogodila se fatalna pogreška. __DSW__ ne može sigurno nastaviti i izaći će.</translation>
+        <source>A fatal error occurred. SAGA can no longer continue safely and will quit.</source>
+        <translation>Dogodila se fatalna pogreška. SAGA ne može sigurno nastaviti i izaći će.</translation>
     </message>
     <message>
         <source>CryptoSaga</source>
@@ -2237,8 +2237,8 @@ Adresa: %4
         <translation>Block chain</translation>
     </message>
     <message>
-        <source>Open the __DSW__ debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Otvorite __DSW__ debug log datoteku iz aktualnog direktorija podataka. To može potrajati nekoliko sekundi za velike datoteke zapisnika.</translation>
+        <source>Open the SAGA debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Otvorite SAGA debug log datoteku iz aktualnog direktorija podataka. To može potrajati nekoliko sekundi za velike datoteke zapisnika.</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -2381,8 +2381,8 @@ Adresa: %4
         <translation>Put prilagođenog sigurnosnog kopiranja:</translation>
     </message>
     <message>
-        <source>Custom z__DSW__ Backup Path:</source>
-        <translation>Prilagođeni put z__DSW__ sigurnosne kopije:</translation>
+        <source>Custom zSAGA Backup Path:</source>
+        <translation>Prilagođeni put zSAGA sigurnosne kopije:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -2461,8 +2461,8 @@ Adresa: %4
         <translation>Iz:</translation>
     </message>
     <message>
-        <source>Welcome to the __DSW__ RPC console.</source>
-        <translation>Dobrodošli na __DSW__ RPC konzolu.</translation>
+        <source>Welcome to the SAGA RPC console.</source>
+        <translation>Dobrodošli na SAGA RPC konzolu.</translation>
     </message>
     <message>
         <source>&amp;Disconnect Node</source>
@@ -2725,8 +2725,8 @@ Adresa: %4
         <translation>Iznos</translation>
     </message>
     <message>
-        <source>__DSW__</source>
-        <translation>__DSW__</translation>
+        <source>SAGA</source>
+        <translation>SAGA</translation>
     </message>
     <message>
         <source>D7VFR83SQbiezrW72hjcWJtcfip5krte2Z </source>
@@ -2804,8 +2804,8 @@ Adresa: %4
         <translation>Prilagođjena adresa za ostatak</translation>
     </message>
     <message>
-        <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" __DSW__ address</source>
-        <translation>Ostatak vrijednosti koja proizlazi iz ulaza umanjen za izlaznu vrijednost ide na __DSW__ adresu za "ostatak"</translation>
+        <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" SAGA address</source>
+        <translation>Ostatak vrijednosti koja proizlazi iz ulaza umanjen za izlaznu vrijednost ide na SAGA adresu za "ostatak"</translation>
     </message>
     <message>
         <source>SAVE</source>
@@ -2831,8 +2831,8 @@ Adresa: %4
         <translation>Preporučeno</translation>
     </message>
     <message>
-        <source>__DSW__/kilobyte</source>
-        <translation>__DSW__/kilobajt</translation>
+        <source>SAGA/kilobyte</source>
+        <translation>SAGA/kilobajt</translation>
     </message>
     <message>
         <source>0.00 KB</source>
@@ -3115,8 +3115,8 @@ Do you want to continue?</source>
         <translation>DEŠIFRIRAJ KLJUČ</translation>
     </message>
     <message>
-        <source>__DSW__ address</source>
-        <translation>__DSW__ adresa</translation>
+        <source>SAGA address</source>
+        <translation>SAGA adresa</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -3248,8 +3248,8 @@ Verify that you have installed a predetermined text editor.</source>
 Provjerite jeste li instalirali unaprijed određjeni uređjivač teksta.</translation>
     </message>
     <message>
-        <source>Welcome to the __DSW__ RPC console.</source>
-        <translation>Dobrodošli na __DSW__ RPC konzolu.</translation>
+        <source>Welcome to the SAGA RPC console.</source>
+        <translation>Dobrodošli na SAGA RPC konzolu.</translation>
     </message>
     <message>
         <source>Use up and down arrows to navigate history, and %1 to clear screen.</source>
@@ -3433,12 +3433,12 @@ Došlo je do greške prilikom spremanja popisa adresa u %1. Molimo pokušajte po
         <translation>Obrazac</translation>
     </message>
     <message>
-        <source>1) What is __DSW__?</source>
-        <translation>1) Što je __DSW__?</translation>
+        <source>1) What is SAGA?</source>
+        <translation>1) Što je SAGA?</translation>
     </message>
     <message>
-        <source>2) Why are my __DSW__ unspendable?</source>
-        <translation>2) Zašto se moji __DSW__ ne mogu potrošiti?</translation>
+        <source>2) Why are my SAGA unspendable?</source>
+        <translation>2) Zašto se moji SAGA ne mogu potrošiti?</translation>
     </message>
     <message>
         <source>http://www.cryptosaga.net/</source>
@@ -3449,34 +3449,34 @@ Došlo je do greške prilikom spremanja popisa adresa u %1. Molimo pokušajte po
         <translation>1</translation>
     </message>
     <message>
-        <source>What is __DSW__?</source>
-        <translation>Što je __DSW__?</translation>
+        <source>What is SAGA?</source>
+        <translation>Što je SAGA?</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           __DSW__ is a form of digital online money using blockchain technology
+                           SAGA is a form of digital online money using blockchain technology
                            that can be easily transferred globally, instantly, and with near
-                           zero fees.  __DSW__ incorporates market leading security &amp;
+                           zero fees.  SAGA incorporates market leading security &amp;
                            privacy and is also the first PoS (Proof of Stake) Cryptocurrency
-                           to implement ZeroCoin(z__DSW__) and Zerocoin staking.
+                           to implement ZeroCoin(zSAGA) and Zerocoin staking.
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           __DSW__ utilizes a Proof of Stake (PoS) consensus system algorithm,
-                           allowing all owners of __DSW__ to participate in earning block rewards
+                           SAGA utilizes a Proof of Stake (PoS) consensus system algorithm,
+                           allowing all owners of SAGA to participate in earning block rewards
                            while securing the network with full node wallets, as well as to
                            run Masternodes to create and vote on proposals.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-__DSW__ je oblik digitalnog online novca koji koristi blockchain tehnologiju
+SAGA je oblik digitalnog online novca koji koristi blockchain tehnologiju
 koji se lako može slati i primati globalno, trenutno, i gotovo bez naknade.
-__DSW__ uključuje vodeću sigurnost  i privatnost na tržištu
+SAGA uključuje vodeću sigurnost  i privatnost na tržištu
 i takođjer je prva PoS (Proof of Stake) kriptovaluta
-koja je implementirala ZeroCoin (z__DSW__) i Zerocoin staking.
+koja je implementirala ZeroCoin (zSAGA) i Zerocoin staking.
 &lt;/p&gt;&lt;p align="justify"&gt;
-__DSW__ koristi algoritam konsenzusa Proof of Stake (PoS),
-omogućujući svim vlasnicima __DSW__-a sudjelovanje u zarađi blokovih nagrada
+SAGA koristi algoritam konsenzusa Proof of Stake (PoS),
+omogućujući svim vlasnicima SAGA-a sudjelovanje u zarađi blokovih nagrada
 dok osiguravaju mrežu full node novčanicima, kao i
 vodjenje Masternode-ova za stvaranje i glasanje o prijedlozima.
 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
@@ -3487,25 +3487,25 @@ vodjenje Masternode-ova za stvaranje i glasanje o prijedlozima.
         <translation>2</translation>
     </message>
     <message>
-        <source>Why are my __DSW__ unspendable?</source>
-        <translation>Zašto se moji __DSW__ ne mogu potrošiti?</translation>
+        <source>Why are my SAGA unspendable?</source>
+        <translation>Zašto se moji SAGA ne mogu potrošiti?</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           Newly received __DSW__ requires 6 confirmations on the network
+                           Newly received SAGA requires 6 confirmations on the network
                            to become eligible for spending which can take ~6 minutes.
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           Your __DSW__ wallet also needs to be completely synchronized
+                           Your SAGA wallet also needs to be completely synchronized
                            to see and spend balances on the network.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-Novoprimljeni __DSW__ zahtjeva 6 potvrda na mreži
+Novoprimljeni SAGA zahtjeva 6 potvrda na mreži
 da bi se mogao potrošiti što može potrajati ~6 minuta.
 &lt;/p&gt;&lt;p align="justify"&gt;
-Vaš __DSW__ novčanik takođjer treba biti u potpunosti sinkroniziran
+Vaš SAGA novčanik takođjer treba biti u potpunosti sinkroniziran
 da biste vidjeli i mogli potrošiti sredstva na mreži.
 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
 </translation>
@@ -3515,8 +3515,8 @@ da biste vidjeli i mogli potrošiti sredstva na mreži.
         <translation>3</translation>
     </message>
     <message>
-        <source>How do I stake __DSW__?</source>
-        <translation>Kako stakeat __DSW__?</translation>
+        <source>How do I stake SAGA?</source>
+        <translation>Kako stakeat SAGA?</translation>
     </message>
     <message>
         <source>4</source>
@@ -3544,12 +3544,12 @@ da biste vidjeli i mogli potrošiti sredstva na mreži.
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;A Masternode Controller wallet is where the collateral amount can reside during a Controller-Remote masternode setup. It is a wallet that can activate the remote masternode wallet(s) and allows you to keep your collateral coins offline while the remote masternode remains online. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;Masternode Controller novčanik je mjesto gdje zalog od 10,000 __DSW__ može stajati tijekom Controller-Remote podešavanja masternode-a. To je novčanik koji može aktivirati Remote masternode novčanik(e) i omogućiti Vam držanje zaloga novčića offline dok Remote masternode novčanik ostaje online.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;Masternode Controller novčanik je mjesto gdje zalog od 10,000 SAGA može stajati tijekom Controller-Remote podešavanja masternode-a. To je novčanik koji može aktivirati Remote masternode novčanik(e) i omogućiti Vam držanje zaloga novčića offline dok Remote masternode novčanik ostaje online.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           A masternode is a computer running a full node __DSW__ wallet with a
+                           A masternode is a computer running a full node SAGA wallet with a
                            required amount of secured collateral to provide extra services
                            to the network and in return, receive a portion of the block reward
                            regularly.  These services include:
@@ -3571,10 +3571,10 @@ da biste vidjeli i mogli potrošiti sredstva na mreži.
                            Masternode Perks:
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;Participate in __DSW__ Governance&lt;/li&gt;
+                           &lt;li&gt;Participate in SAGA Governance&lt;/li&gt;
                            &lt;li&gt;Earn Masternode Rewards&lt;/li&gt;
                            &lt;li&gt;Commodity option for future sale&lt;/li&gt;
-                           &lt;li&gt;Help secure the __DSW__ network&lt;/li&gt;
+                           &lt;li&gt;Help secure the SAGA network&lt;/li&gt;
                            &lt;/ul&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
@@ -3591,7 +3591,7 @@ da biste vidjeli i mogli potrošiti sredstva na mreži.
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
 Masternode je računalo koje pokreće full node CryptoSaga novčanik sa
-zahtjevanih 10,000 __DSW__-a osiguranog zaloga da pruži dodatne usluge
+zahtjevanih 10,000 SAGA-a osiguranog zaloga da pruži dodatne usluge
 mreži, i zauzvrat redovito primi dio nagrade blokova.
 Te usluge uključuju:
 &lt;/p&gt;&lt;p align="justify"&gt;
@@ -3612,17 +3612,17 @@ vlasnicima masternode-ova umanjeno za troškove održavanja.
 Povlastice masternode-ova:
 &lt;/p&gt;&lt;p align="justify"&gt;
 &lt;ul&gt;
-&lt;li&gt;Sudjelovanje u upravljanju __DSW__-a&lt;/li&gt;
+&lt;li&gt;Sudjelovanje u upravljanju SAGA-a&lt;/li&gt;
 &lt;li&gt;Zaradjivanje Masternode nagrada&lt;/li&gt;
 &lt;li&gt;Robna opcija za buduću prodaju&lt;/li&gt;
-&lt;li&gt;Pomaže u osiguravanju __DSW__ mreže&lt;/li&gt;
+&lt;li&gt;Pomaže u osiguravanju SAGA mreže&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/p&gt;&lt;p align="justify"&gt;
 
 Zahtjevi:
 &lt;/p&gt;&lt;p align="justify"&gt;
 &lt;ul&gt;
-&lt;li&gt;10,000 __DSW__ po svakom Masternode-u&lt;/li&gt;
+&lt;li&gt;10,000 SAGA po svakom Masternode-u&lt;/li&gt;
 &lt;li&gt;Mora biti pohranjem u Core novčaniku&lt;/li&gt;
 &lt;li&gt;Mora biti jedinstvena IP adresa&lt;/li&gt;
 &lt;li&gt;Masternode novčanik treba ostati online&lt;/li&gt;
@@ -3797,8 +3797,8 @@ Zahtjevi:
         <translation>Number of script verification threads</translation>
     </message>
     <message>
-        <source>Start __DSW__ on system login</source>
-        <translation>Pokrenite __DSW__ pri pokretanju računala</translation>
+        <source>Start SAGA on system login</source>
+        <translation>Pokrenite SAGA pri pokretanju računala</translation>
     </message>
     <message>
         <source>Minimize to the tray instead of the taskbar</source>
@@ -3885,8 +3885,8 @@ Jeste li sigurni?
         <translation>PotvrdniOkvir</translation>
     </message>
     <message>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other __DSW__ addresses after it matures.</source>
-        <translation>MultiSend vam omogućuje da automatski pošaljete do 100% svog uloga ili nagrade masternode na popis drugih __DSW__ adresa nakon što sazriju.</translation>
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other SAGA addresses after it matures.</source>
+        <translation>MultiSend vam omogućuje da automatski pošaljete do 100% svog uloga ili nagrade masternode na popis drugih SAGA adresa nakon što sazriju.</translation>
     </message>
     <message>
         <source>Active</source>
@@ -4008,8 +4008,8 @@ Označite jedan ili oba polja za potvrdu da biste poslali staking i/ili masterno
         <translation>Poruka</translation>
     </message>
     <message>
-        <source>__DSW__ address or contact label</source>
-        <translation>__DSW__ adresa ili naziv kontakta</translation>
+        <source>SAGA address or contact label</source>
+        <translation>SAGA adresa ili naziv kontakta</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -4293,8 +4293,8 @@ Označite jedan ili oba polja za potvrdu da biste poslali staking i/ili masterno
         <translation>Najčešće postavljena pitanja</translation>
     </message>
     <message>
-        <source>About __DSW__</source>
-        <translation>O __DSW__-u</translation>
+        <source>About SAGA</source>
+        <translation>O SAGA-u</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -4905,20 +4905,20 @@ CryptoSaga Wallet</source>
         CryptoSaga temeljni novčanik</translation>
     </message>
     <message>
-        <source>__DSW__ is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
-        <translation>__DSW__ je najinovativnija blockchain tehnologija na svijetu bazirana na Proof of Stake tehnologiji. Razvijena je od strane vrlo iskusnih programera i kriptografa.</translation>
+        <source>SAGA is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
+        <translation>SAGA je najinovativnija blockchain tehnologija na svijetu bazirana na Proof of Stake tehnologiji. Razvijena je od strane vrlo iskusnih programera i kriptografa.</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - __DSW__ believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kao što kaže naš manifest: Privatnost je temeljno ljudsko pravo o kojemu se ne pregovara; korisnicima daje slobodu dijeljenja svojih podataka kad god i s kim god žele - __DSW__ vjeruje u suverenitet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - SAGA believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kao što kaže naš manifest: Privatnost je temeljno ljudsko pravo o kojemu se ne pregovara; korisnicima daje slobodu dijeljenja svojih podataka kad god i s kim god žele - SAGA vjeruje u suverenitet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <source>The masternode network is __DSW__'s second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
-        <translation>Masternode mreža je mreža drugog sloja __DSW__-a na vrhu blockchaina koja omogućuje našem DAO-u pružanje decentraliziranog upravljanja i riznice.</translation>
+        <source>The masternode network is SAGA's second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
+        <translation>Masternode mreža je mreža drugog sloja SAGA-a na vrhu blockchaina koja omogućuje našem DAO-u pružanje decentraliziranog upravljanja i riznice.</translation>
     </message>
     <message>
-        <source>How __DSW__ respects your privacy?</source>
-        <translation>Kako __DSW__ poštuje Vašu privatnost?</translation>
+        <source>How SAGA respects your privacy?</source>
+        <translation>Kako SAGA poštuje Vašu privatnost?</translation>
     </message>
     <message>
         <source>What is a Masternode?</source>
@@ -5369,8 +5369,8 @@ CryptoSaga Wallet</source>
         <translation>Nevažeća mrežna maska specificirana u kategoriji -whitelist: '%s'</translation>
     </message>
     <message>
-        <source>Recalculating __DSW__ supply...</source>
-        <translation>Preračunavanje __DSW__-a u optjecaju...</translation>
+        <source>Recalculating SAGA supply...</source>
+        <translation>Preračunavanje SAGA-a u optjecaju...</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>
@@ -5389,8 +5389,8 @@ CryptoSaga Wallet</source>
         <translation>Ovo je priprema za testiranje prije puštanja - upotrebljavajte na vlastiti rizik - nemojte ga koristiti za staking ili trgovinske aplikacije!</translation>
     </message>
     <message>
-        <source>Disable all __DSW__ specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
-        <translation>Onemogući sve specifične funkcije __DSW__ (Masternodes, Zerocoin, Budgeting) (0-1, zadano: %u)</translation>
+        <source>Disable all SAGA specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
+        <translation>Onemogući sve specifične funkcije SAGA (Masternodes, Zerocoin, Budgeting) (0-1, zadano: %u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -5831,8 +5831,8 @@ CryptoSaga Wallet</source>
         <translation>Sinkronizacija sporkova...</translation>
     </message>
     <message>
-        <source>Syncing z__DSW__ wallet...</source>
-        <translation>Sinkronizacija z__DSW__ novčanika...</translation>
+        <source>Syncing zSAGA wallet...</source>
+        <translation>Sinkronizacija zSAGA novčanika...</translation>
     </message>
     <message>
         <source>This help message</source>
@@ -5943,8 +5943,8 @@ CryptoSaga Wallet</source>
         <translation>Korisničko ime za JSON-RPC veze</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of z__DSW__</source>
-        <translation>Vrijednost je niža od najmanje dostupne denominacije (= 1) z__DSW__-a</translation>
+        <source>Value is below the smallest available denomination (= 1) of zSAGA</source>
+        <translation>Vrijednost je niža od najmanje dostupne denominacije (= 1) zSAGA-a</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
@@ -6026,12 +6026,12 @@ CryptoSaga Wallet</source>
         <translation>Pošalji</translation>
     </message>
     <message>
-        <source>Send public coins (__DSW__)</source>
-        <translation>Pošalji javne novčiće (__DSW__)</translation>
+        <source>Send public coins (SAGA)</source>
+        <translation>Pošalji javne novčiće (SAGA)</translation>
     </message>
     <message>
-        <source>__DSW__ address or contact label</source>
-        <translation>__DSW__ adresa ili naziv kontakta</translation>
+        <source>SAGA address or contact label</source>
+        <translation>SAGA adresa ili naziv kontakta</translation>
     </message>
     <message>
         <source>Amount</source>
