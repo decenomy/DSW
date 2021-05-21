@@ -1615,9 +1615,9 @@ NODES</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        https://discord.com/invite/FeU2gHfnT4</source>
+        https://discord.gg/UHZkEP4W</source>
         <translation>Sprache fehlt oder ist unvollständig? Helfe mit und trage zur Übersetzung bei unter:
-        https://discord.com/invite/FeU2gHfnT4</translation>
+        https://discord.gg/UHZkEP4W</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -3593,14 +3593,14 @@ SAGA nutzt einen PoS Konsensalgorithmus, der es den Besitzern von SAGA erlaubt, 
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            We have support channels in most of our official chat groups, for example
-                           &lt;a style='color: #b088ff' href='https://discord.com/invite/FeU2gHfnT4'&gt;
+                           &lt;a style='color: #b088ff' href='https://discord.gg/UHZkEP4W'&gt;
                            #support in our Discord&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
 Wir haben Support-Kanäle in den meisten unserer offiziellen Chatgruppen, z.B.
-&lt;a style='color: #b088ff' href='https://discord.com/invite/FeU2gHfnT4'&gt;
+&lt;a style='color: #b088ff' href='https://discord.gg/UHZkEP4W'&gt;
 #support in Discord&lt;/a&gt;
 &lt;/a&gt;
 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>

@@ -1372,9 +1372,9 @@ Emin misiniz?</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        https://discord.com/invite/FeU2gHfnT4</source>
+        https://discord.gg/UHZkEP4W</source>
         <translation>Dil eksik veya çeviri tamamlanmamış mı? Katkıda bulunan çevirilere yardımcı olun:
-        https://discord.com/invite/FeU2gHfnT4</translation>
+        https://discord.gg/UHZkEP4W</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>

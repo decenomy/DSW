@@ -1617,9 +1617,9 @@ NODES</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        https://discord.com/invite/FeU2gHfnT4</source>
+        https://discord.gg/UHZkEP4W</source>
         <translation>Language missing or translation incomplete? Help contributing translations here:
-        https://discord.com/invite/FeU2gHfnT4</translation>
+        https://discord.gg/UHZkEP4W</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -3620,14 +3620,14 @@ There was an error trying to save the address list to %1. Please try again.</tra
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            We have support channels in most of our official chat groups, for example
-                           &lt;a style='color: #b088ff' href='https://discord.com/invite/FeU2gHfnT4'&gt;
+                           &lt;a style='color: #b088ff' href='https://discord.gg/UHZkEP4W'&gt;
                            #support in our Discord&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            We have support channels in most of our official chat groups, for example
-                           &lt;a style='color: #b088ff' href='https://discord.com/invite/FeU2gHfnT4'&gt;
+                           &lt;a style='color: #b088ff' href='https://discord.gg/UHZkEP4W'&gt;
                            #support in our Discord&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </translation>

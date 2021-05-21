@@ -44,7 +44,7 @@ related to the DNS seed operation.
 If these expectations cannot be satisfied the operator should
 discontinue providing services and contact the active CryptoSaga
 Core development team as well as posting on the
-[CryptoSaga Discord](https://discord.com/invite/FeU2gHfnT4).
+[CryptoSaga Discord](https://discord.gg/UHZkEP4W).
 
 Behavior outside of these expectations may be reasonable in some
 situations but should be discussed in public in advance.
