@@ -4,7 +4,7 @@ pipeline {
 
     environment {
         NAME = 'CryptoSaga'
-        BASE_NAME = '__decenomy__'
+        BASE_NAME = 'cryptosaga'
         ZIP_NAME = '__DSW__'
     }
 

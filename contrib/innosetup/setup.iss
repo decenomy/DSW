@@ -4,8 +4,8 @@
 #define MyAppName "CryptoSaga Core"
 #define MyAppVersion "1.0.0.0"
 #define MyAppPublisher "2021 DECENOMY Core Developers"
-#define MyAppURL "https://__decenomy__.com"
-#define MyAppExeName "__decenomy__-qt.exe"
+#define MyAppURL "http://www.cryptosaga.net/"
+#define MyAppExeName "cryptosaga-qt.exe"
 #define MyAppExtraData "https://explorer.decenomy.net/bootstraps/__DSW__/bootstrap.zip"
 
 #include ReadReg(HKLM, 'Software\WOW6432Node\Mitrich Software\Inno Download Plugin', 'InstallDir') + '\idp.iss'
@@ -60,7 +60,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 6.1; Check: not IsAdminInstallMode
 
 [Files]
-Source: ".\package\__decenomy__-qt.exe"; DestDir: "{app}"; Flags: ignoreversion; Components: app
+Source: ".\package\cryptosaga-qt.exe"; DestDir: "{app}"; Flags: ignoreversion; Components: app
 Source: ".\package\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs; Components: app
 Source: ".\7za.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall; Components: bootstrap
 

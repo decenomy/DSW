@@ -38,7 +38,7 @@
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>io.__decenomy__.CryptoSaga-Qt</string>
+  <string>io.cryptosaga.CryptoSaga-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
