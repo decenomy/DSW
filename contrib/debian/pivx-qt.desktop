@@ -1,9 +1,9 @@
 [Desktop Entry]
 Version=1.0
 Name=CryptoSaga
-Comment= __DSW__ P2P Cryptocurrency
-Comment[fr]= __DSW__, monnaie virtuelle cryptographique pair à pair
-Comment[tr]= __DSW__, eşten eşe kriptografik sanal para birimi
+Comment= SAGA P2P Cryptocurrency
+Comment[fr]= SAGA, monnaie virtuelle cryptographique pair à pair
+Comment[tr]= SAGA, eşten eşe kriptografik sanal para birimi
 Exec=cryptosaga-qt %u
 Terminal=false
 Type=Application

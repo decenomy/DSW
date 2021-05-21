@@ -6,7 +6,7 @@
 #define MyAppPublisher "2021 DECENOMY Core Developers"
 #define MyAppURL "http://www.cryptosaga.net/"
 #define MyAppExeName "cryptosaga-qt.exe"
-#define MyAppExtraData "https://explorer.decenomy.net/bootstraps/__DSW__/bootstrap.zip"
+#define MyAppExtraData "https://explorer.decenomy.net/bootstraps/SAGA/bootstrap.zip"
 
 #include ReadReg(HKLM, 'Software\WOW6432Node\Mitrich Software\Inno Download Plugin', 'InstallDir') + '\idp.iss'
 

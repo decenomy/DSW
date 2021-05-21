@@ -5,7 +5,7 @@ pipeline {
     environment {
         NAME = 'CryptoSaga'
         BASE_NAME = 'cryptosaga'
-        ZIP_NAME = '__DSW__'
+        ZIP_NAME = 'SAGA'
     }
 
     stages {
