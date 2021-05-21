@@ -937,7 +937,7 @@
                      </property>
                      <property name="text">
                       <string>Welcome to
-__Decenomy__ Wallet</string>
+CryptoSaga Wallet</string>
                      </property>
                      <property name="alignment">
                       <set>Qt::AlignCenter</set>
