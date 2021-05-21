@@ -101,7 +101,7 @@ SettingsInformationWidget::SettingsInformationWidget(PIVXGUI* _window,QWidget *p
     });
     connect(ui->pushButtonFile, &QPushButton::clicked, [this](){
         if (!GUIUtil::openConfigfile())
-            inform(tr("Unable to open __decenomy__.conf with default application"));
+            inform(tr("Unable to open cryptosaga.conf with default application"));
     });
     connect(ui->pushButtonNetworkMonitor, &QPushButton::clicked, this, &SettingsInformationWidget::openNetworkMonitor);
 }
