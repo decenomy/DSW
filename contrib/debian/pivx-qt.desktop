@@ -1,6 +1,6 @@
 [Desktop Entry]
 Version=1.0
-Name=__Decenomy__
+Name=CryptoSaga
 Comment= __DSW__ P2P Cryptocurrency
 Comment[fr]= __DSW__, monnaie virtuelle cryptographique pair à pair
 Comment[tr]= __DSW__, eşten eşe kriptografik sanal para birimi
@@ -10,4 +10,4 @@ Type=Application
 Icon=pivx128
 MimeType=x-scheme-handler/pivx;
 Categories=Office;Finance;
-StartupWMClass=__Decenomy__-qt
+StartupWMClass=CryptoSaga-qt
