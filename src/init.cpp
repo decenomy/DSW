@@ -927,7 +927,7 @@ void InitLogging()
     LogPrintf("CryptoSaga version %s (%s)\n", version_string, CLIENT_DATE);
 }
 
-/** Initialize __decenomy__.
+/** Initialize cryptosaga.
  *  @pre Parameters should be parsed and config file should be read.
  */
 bool AppInit2()
