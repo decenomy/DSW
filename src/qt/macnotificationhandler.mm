@@ -15,7 +15,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"io.__decenomy__.CryptoSaga-Qt";
+        return @"io.cryptosaga.CryptoSaga-Qt";
     } else {
         return [self __bundleIdentifier];
     }
