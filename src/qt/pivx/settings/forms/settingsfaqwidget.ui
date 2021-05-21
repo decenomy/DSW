@@ -342,7 +342,7 @@
                   <enum>Qt::NoFocus</enum>
                  </property>
                  <property name="text">
-                  <string>__decenomy_website_link__/</string>
+                  <string>http://www.cryptosaga.net/</string>
                  </property>
                 </widget>
                </item>
