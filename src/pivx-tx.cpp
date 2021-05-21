@@ -47,10 +47,10 @@ static bool AppInitRawTx(int argc, char* argv[])
 
     if (argc < 2 || mapArgs.count("-?") || mapArgs.count("-help")) {
         // First part of help message is specific to this utility
-        std::string strUsage = _("CryptoSaga __decenomy__-tx utility version") + " " + FormatFullVersion() + "\n\n" +
+        std::string strUsage = _("CryptoSaga cryptosaga-tx utility version") + " " + FormatFullVersion() + "\n\n" +
                                _("Usage:") + "\n" +
-                               "  __decenomy__-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded __decenomy__ transaction") + "\n" +
-                               "  __decenomy__-tx [options] -create [commands]   " + _("Create hex-encoded __decenomy__ transaction") + "\n" +
+                               "  cryptosaga-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded cryptosaga transaction") + "\n" +
+                               "  cryptosaga-tx [options] -create [commands]   " + _("Create hex-encoded cryptosaga transaction") + "\n" +
                                "\n";
 
         fprintf(stdout, "%s", strUsage.c_str());
@@ -595,7 +595,7 @@ static int CommandLineRawTx(int argc, char* argv[])
             if (argc < 2)
                 throw std::runtime_error("too few parameters");
 
-            // param: hex-encoded __decenomy__ transaction
+            // param: hex-encoded cryptosaga transaction
             std::string strHexTx(argv[1]);
             if (strHexTx == "-") // "-" implies standard input
                 strHexTx = readStdin();

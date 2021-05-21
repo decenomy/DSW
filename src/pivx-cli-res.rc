@@ -19,10 +19,10 @@ BEGIN
             VALUE "CompanyName",        "CryptoSaga"
             VALUE "FileDescription",    "CryptoSaga-cli (OSS RPC client for CryptoSaga)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "__decenomy__-cli"
+            VALUE "InternalName",       "cryptosaga-cli"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "__decenomy__-cli.exe"
+            VALUE "OriginalFilename",   "cryptosaga-cli.exe"
             VALUE "ProductName",        "CryptoSaga-cli"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
