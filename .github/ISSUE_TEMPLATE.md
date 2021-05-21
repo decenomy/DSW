@@ -1,7 +1,7 @@
 <!--- Remove this description and sections that do not apply -->
 
 This issue tracker is only for technical issues related to CryptoSaga Core.
-General CryptoSaga questions and/or support requests and are best directed to the [CryptoSaga Discord](__decenomy_discord_link__).
+General CryptoSaga questions and/or support requests and are best directed to the [CryptoSaga Discord](https://discord.com/invite/FeU2gHfnT4).
 
 ### Describe the issue
 

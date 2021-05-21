@@ -28,7 +28,7 @@ Build-Depends: debhelper,
  libzmq3-dev,
  dh-systemd
 Standards-Version: 3.9.2
-Homepage: __decenomy_website_link__
+Homepage: http://www.cryptosaga.net/
 Vcs-Git: git://__decenomy_github_link__.git
 Vcs-Browser: https://__decenomy_github_link__
 

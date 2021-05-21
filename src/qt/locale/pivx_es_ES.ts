@@ -1564,9 +1564,9 @@ MAESTROS</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        __decenomy_discord_link__</source>
+        https://discord.com/invite/FeU2gHfnT4</source>
         <translation>¿Falta su lenguaje o la traducción está incompleta? Contribuya con las traducciones aquí:
-        __decenomy_discord_link__</translation>
+        https://discord.com/invite/FeU2gHfnT4</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>

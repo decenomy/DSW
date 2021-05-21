@@ -28,7 +28,7 @@ Drag CryptoSaga-Qt to your applications folder, and then run CryptoSaga-Qt.
 
 * See the documentation at the [CryptoSaga Wiki](https://__decenomy_github_link__/)
 for help and more information.
-* Join our Discord server [Discord Server](__decenomy_discord_link__)
+* Join our Discord server [Discord Server](https://discord.com/invite/FeU2gHfnT4)
 
 Building
 ---------------------
@@ -56,7 +56,7 @@ The CryptoSaga repo's [root README](/README.md) contains relevant information on
 
 ### Resources
 * Discuss on the [CryptoSaga Homepage](http://www.cryptosaga.net/).
-* Join the [CryptoSaga Discord](__decenomy_discord_link__).
+* Join the [CryptoSaga Discord](https://discord.com/invite/FeU2gHfnT4).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)
