@@ -266,7 +266,8 @@ void RPCExecutor::request(const QString& command)
 }
 
 bool RPCExecutor::commandNeedsWarning(const std::string& command)
-{
+{   //Note: There is a duplicate of this functionionality in the new GUI integrated RPC console. Any changes here should also be replicated in src/qt/pivx/settings/settingsconsolewidget.cpp
+
     /*  If command was executed already, return false regardless of the command as we would have already warned user if it was dangerous */
     if(commandCallCount.count(command) > 0 && commandCallCount.at(command) > 0) {
         return false;
@@ -276,7 +277,8 @@ bool RPCExecutor::commandNeedsWarning(const std::string& command)
 }
 
 QString RPCExecutor::getCommandWarning(const std::string& command)
-{
+{   //Note: There is a duplicate of this functionionality in the new GUI integrated RPC console. Any changes here should also be replicated in src/qt/pivx/settings/settingsconsolewidget.cpp
+
     if(command == "dumpprivkey") {
         return "Warning: This command will print your private key! If someone\n"
                 "gains access to this key you will lose all your coins! Hackers/Scammers\n"
