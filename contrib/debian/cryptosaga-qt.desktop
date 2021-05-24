@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=CryptoSaga 
+Comment=CryptoSaga P2P Cryptocurrency
+Comment[fr]=CryptoSaga, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=CryptoSaga, eşten eşe kriptografik sanal para birimi
+Exec=cryptosaga-qt %u
+Terminal=false
+Type=Application
+Icon=pivx128
+MimeType=x-scheme-handler/cryptosaga;
+Categories=Office;Finance;
+StartupWMClass=cryptosaga-qt

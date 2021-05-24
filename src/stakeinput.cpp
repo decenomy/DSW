@@ -14,7 +14,7 @@
 bool CPivStake::InitFromTxIn(const CTxIn& txin)
 {
     if (txin.IsZerocoinSpend())
-        return error("%s: unable to initialize C__DSW__Stake from zerocoin spend", __func__);
+        return error("%s: unable to initialize CSAGAStake from zerocoin spend", __func__);
 
     // Find the previous transaction in database
     uint256 hashBlock;
@@ -121,7 +121,7 @@ bool CPivStake::CreateTxOuts(CWallet* pwallet, std::vector<CTxOut>& vout, CAmoun
 
 CDataStream CPivStake::GetUniqueness() const
 {
-    //The unique identifier for a __DSW__ stake is the outpoint
+    //The unique identifier for a SAGA stake is the outpoint
     CDataStream ss(SER_NETWORK, 0);
     ss << nPosition << txFrom.GetHash();
     return ss;

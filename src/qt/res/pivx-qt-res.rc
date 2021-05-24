@@ -19,14 +19,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "__Decenomy__"
-            VALUE "FileDescription",    "__Decenomy__ Core (OSS GUI client for __Decenomy__)"
+            VALUE "CompanyName",        "CryptoSaga"
+            VALUE "FileDescription",    "CryptoSaga Core (OSS GUI client for CryptoSaga)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "__decenomy__-qt"
+            VALUE "InternalName",       "cryptosaga-qt"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "__decenomy__-qt.exe"
-            VALUE "ProductName",        "__Decenomy__ Core"
+            VALUE "OriginalFilename",   "cryptosaga-qt.exe"
+            VALUE "ProductName",        "CryptoSaga Core"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END
