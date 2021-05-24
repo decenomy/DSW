@@ -168,28 +168,35 @@ condition My-If-Condition {
     "type": "condition", // Optional
     "role": "if-condition",
     "name": "My-If-Condition", // Optional
+    "expressions": [
+        {
+            "required": true,
+            "type": "basic", // Optional if the name is unique
+            "name": "My-Number-2",
+        },
+        {
+            "required": false,
+            "type": "basic", // Optional if the name is unique
+            "name": "My-Check-Signature-Verification",
+        },
+    ],
     "true": [
         {
             "required": true,
             "type": "basic", // Optional if the name is unique
-            "name": "My-Lock-Time", // all the inputs are given in the basic json object declaration.
+            "name": "My-Lock-Time",
         },
         {
             "required": true,
             "type": "basic", // Optional if the name is unique
-            "name": "My-Check-Signature-Verification", // all the inputs are given in the basic json object declaration.
-        },
-        {
-            "required": true,
-            "type": "basic",
             "name": "My-Number-1",
         },
     ],
     "false": [
         {
             "required": true,
-            "type": "basic",
-            "name": "My-Number-2",
+            "type": "basic", // Optional if the name is unique
+            "name": "My-Hash160",
         },
     ],
 }
