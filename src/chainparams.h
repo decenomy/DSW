@@ -9,9 +9,9 @@
 #ifndef BITCOIN_CHAINPARAMS_H
 #define BITCOIN_CHAINPARAMS_H
 
-#define PORT_MAINNET 9999
-#define PORT_TESTNET 19999
-#define PORT_REGTEST 29999
+#define PORT_MAINNET 37552
+#define PORT_TESTNET 47552
+#define PORT_REGTEST 57552
 
 #include "chainparamsbase.h"
 #include "checkpoints.h"
