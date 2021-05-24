@@ -29,8 +29,8 @@ Build-Depends: debhelper,
  dh-systemd
 Standards-Version: 3.9.2
 Homepage: http://www.cryptosaga.net/
-Vcs-Git: git://__decenomy_github_link__.git
-Vcs-Browser: https://__decenomy_github_link__
+Vcs-Git: https://github.com/cryptosagacoin/SAGA.git
+Vcs-Browser: https://github.com/cryptosagacoin/SAGA
 
 Package: cryptosagad
 Architecture: any

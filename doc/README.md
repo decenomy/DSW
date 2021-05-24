@@ -26,7 +26,7 @@ Drag CryptoSaga-Qt to your applications folder, and then run CryptoSaga-Qt.
 
 ### Need Help?
 
-* See the documentation at the [CryptoSaga Wiki](https://__decenomy_github_link__/)
+* See the documentation at the [CryptoSaga Wiki](https://github.com/cryptosagacoin/SAGA/)
 for help and more information.
 * Join our Discord server [Discord Server](https://discord.gg/UHZkEP4W)
 
@@ -48,7 +48,7 @@ The CryptoSaga repo's [root README](/README.md) contains relevant information on
 - [Multiwallet Qt Development](multiwallet-qt.md)
 - [Release Notes](release-notes.md)
 - [Release Process](release-process.md)
-- [Source Code Documentation (External Link)](https://__decenomy_github_link__/)
+- [Source Code Documentation (External Link)](https://github.com/cryptosagacoin/SAGA/)
 - [Translation Process](translation_process.md)
 - [Unit Tests](unit-tests.md)
 - [Unauthenticated REST Interface](REST-interface.md)
