@@ -343,17 +343,23 @@ CAmount CMasternode::GetBlockValue(int nHeight)
     CAmount nSubsidy;
 
     if (nHeight == 1) {
-        nSubsidy = 30000000 * COIN; // SAGA coin supply (30M)
+        nSubsidy = 16000000 * COIN; // SAGA coin supply (30M)
     } else if (nHeight <= 100000) {
-        nSubsidy = 100 * COIN;
+        nSubsidy = 10 * COIN;
     } else if (nHeight > 100000 && nHeight <= 200000) {
-        nSubsidy = 125 * COIN;
+        nSubsidy = 30 * COIN;
     } else if (nHeight > 200000 && nHeight <= 300000) {
-        nSubsidy = 150 * COIN;
+        nSubsidy = 80 * COIN;
     } else if (nHeight > 300000 && nHeight <= 400000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 400000) {
-        nSubsidy = 100 * COIN;
+        nSubsidy = 200 * COIN;
+    } else if (nHeight > 400000 && nHeight <= 500000) {
+        nSubsidy = 160 * COIN;
+    } else if (nHeight > 500000 && nHeight <= 600000) {
+        nSubsidy = 120 * COIN;
+    } else if (nHeight > 600000 && nHeight <= 700000) {
+        nSubsidy = 90 * COIN;
+    } else if (nHeight > 700000) {
+        nSubsidy = 60 * COIN;
     }
 
     if(nMoneySupply + nSubsidy > maxMoneyOut) {
@@ -365,9 +371,9 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    if(nHeight <= 5000) return 0;
+    if(nHeight <= 3000) return 0;
 
-    return CMasternode::GetBlockValue(nHeight) * 95 / 100;
+    return CMasternode::GetBlockValue(nHeight) * 70 / 100;
 }
 
 void CMasternode::InitMasternodeCollateralList() {
