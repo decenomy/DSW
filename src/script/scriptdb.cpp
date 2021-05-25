@@ -11,12 +11,12 @@ bool CScriptDB::WriteContract(const std::vector<unsigned char>& name, CScriptCon
     // TODO: Maybe we should check script validity here before we write it to the database
     LogPrintf("Wrote script %s to database\n", (std::string&) name);
     uint256 hash = contract.GetConsensusScriptHash(contract, TYPE_X11KVS);
-    return true; // Write(hash, contract.consensusScript);
+    return true; // Write(hash, contract);
 }
 
-bool CScriptDB::ReadContract(CScriptContract& contract)
+bool CScriptDB::ReadContract(uint256& hash)
 {
-    return true; // Read(contract.GetConsensusScriptHash(contract, TYPE_X11KVS), contract.consensusScript);
+    return true; // Read(hash, contract);
 }
 
 // TODO: Erasing Scripts from database can be dangerous so maybe it should just be marked as 'DISABLED' if this it's needed

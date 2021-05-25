@@ -509,13 +509,22 @@ public:
         return (*this) << vchKey;
     }
 
-ADD_SERIALIZE_METHODS;
+    ADD_SERIALIZE_METHODS;
 
     template <typename Stream, typename Operation>
     inline void SerializationOp(Stream& s, Operation ser_action) {
         READWRITE(*this);
     }
 
+    void SetNull()
+    {
+        this->clear();
+    }
+
+    bool IsNull() const
+    {
+        return this->empty();
+    }
 
     bool GetOp(iterator& pc, opcodetype& opcodeRet, std::vector<unsigned char>& vchRet)
     {
@@ -707,7 +716,7 @@ public:
     CPubKey issuerPubKey;
     CPubKey receiverPubKey;
     time_t publishTime;
-    time_t runDeadLine;  
+    time_t runDeadLine;
     time_t duration;
     CScript consensusScript;
     uint256 consensusScriptHash;
@@ -715,7 +724,7 @@ public:
     {
         std::string fileName;
         std::string fileType; // image (jpg, png, svg etc.), document (json, xml, pdf, doc, xls etc.), video (mp4, webm etc.)
-        HashType fileHash;
+        uint256 fileHash;
         size_t fileSize;
         std::string filePath;
         time_t fileAccessed; // TODO: this field may not be necessary. If so, remove it.
@@ -723,7 +732,9 @@ public:
         std::map<std::string, std::string> fileMetaData; // Maps to MetaDataFieldName:MetadataFieldValue pair
     } DataFile;
 
-    CScriptContract()
+    DataFile dataFile;
+
+    CScriptContract() : CScript()
     {
         SetNull();
     }
@@ -745,6 +756,7 @@ ADD_SERIALIZE_METHODS;
         READWRITE(duration);
         READWRITE(consensusScript);
         READWRITE(consensusScriptHash);
+        READWRITE(dataFile);
     }
 
     void SetNull()
@@ -760,7 +772,7 @@ ADD_SERIALIZE_METHODS;
 
     bool IsNull() const
     {
-        return consensusScript.empty();
+        return (issuerPubKey.IsValid() && receiverPubKey.IsValid() && publishTime == 0x7FFFFFFE && runDeadLine == 0x7FFFFFFE && duration == 0 && consensusScript.empty() && consensusScriptHash == 0);
     }
 
     CScript ConstructContractScript(CScriptContract& contract);
@@ -774,7 +786,7 @@ class CScriptDataFile : public CScript
 public:
     std::string fileName;
     std::string fileType; // image (jpg, png, svg etc.), document (json, xml, pdf, doc, xls etc.), video (mp4, webm etc.)
-    HashType fileHash;
+    uint256 fileHash;
     size_t fileSize;
     std::string filePath;
     time_t fileAccessed; // TODO: this field may not be necessary. If so, remove it.
@@ -786,10 +798,11 @@ public:
         SetNull();
     }
 
-    inline CPubKey operator=(const CPubKey& rhs) { return CPubKey(rhs); }
+    inline std::string operator=(const std::string& rhs) { return std::string(rhs); }
     inline time_t operator=(const time_t& rhs) { return time_t(rhs); }
-    inline CScript operator=(const CScript& rhs) { CScript script(rhs); }
+    inline size_t operator=(const size_t& rhs) { return size_t(rhs); }
     inline uint256 operator=(const uint256& rhs) { return uint256(rhs); }
+    inline std::map<std::string, std::string> operator=(const std::map<std::string, std::string>& rhs) { return std::map<std::string, std::string>(rhs); }
 
 ADD_SERIALIZE_METHODS;
 
@@ -821,6 +834,14 @@ ADD_SERIALIZE_METHODS;
     {
         return (fileSize == 0);
     }
+
+    std::string GetType();
+    size_t GetSize();
+    uint256 GetHash();
+    std::string GetPath();
+    time_t GetAccessTime();
+    time_t GetModifyTime();
+    std::map<std::string, std::string> GetMetaData();
 };
 
 
