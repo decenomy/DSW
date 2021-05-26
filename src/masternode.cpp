@@ -320,7 +320,7 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
-    if (nHeight <= 100000 && nHeight > 3000) {
+    if (nHeight <= 100000) {
         return 2500 * COIN;
     } else if (nHeight <= 200000 && nHeight > 100000) {
         return 5000 * COIN;
@@ -343,7 +343,7 @@ CAmount CMasternode::GetBlockValue(int nHeight)
     CAmount nSubsidy;
 
     if (nHeight == 1) {
-        nSubsidy = 16000000 * COIN; // SAGA coin supply (30M)
+        nSubsidy = 16000000 * COIN; // DarkSaga final coin supply (aprox. 15.7M) the remaining will be burned
     } else if (nHeight <= 100000) {
         nSubsidy = 10 * COIN;
     } else if (nHeight > 100000 && nHeight <= 200000) {
