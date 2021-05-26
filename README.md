@@ -38,16 +38,16 @@ CryptoSaga Standard Wallet
   <td class=xl6317252 width=107 style='width:81pt'>Staker Reward</td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>2-1000</td>
+  <td height=21 class=xl6417252 style='height:15.75pt'>2-1000 (POW only)</td>
   <td class=xl6517252>-</td>
   <td class=xl6517252>10</td>
   <td class=xl6617252>-</td>
   <td class=xl6617252>-</td>
-  <td class=xl6717252>-</td>
-  <td class=xl6553517252>-</td>
+  <td class=xl6717252 align=right>-</td>
+  <td class=xl6553517252 align=right>-</td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>1001-3000</td>
+  <td height=21 class=xl6417252 style='height:15.75pt'>1001-3000 (POS only)</td>
   <td class=xl6517252>-</td>
   <td class=xl6617252>10</td>
   <td class=xl6617252>-</td>
