@@ -5,12 +5,12 @@ CryptoSaga Standard Wallet
 ### Coin Specs
 
 • PoW Algorithm: x11kvs  
-• Premine: 16,000,000 (Current supply of DarkSaga for swapping)
-• PoW Blocks: 2 - 1000
+• Premine: 16,000,000 (Current supply of DarkSaga for swapping)  
+• PoW Blocks: 2 - 1000  
 • PoS Blocks: Starting from 1001  
 • Block Time: 60 Seconds    
 • Maturity: 100 Confirmations  
-• Prefix: SAGA adresses start with the lowercase letter "s"
+• Prefix: SAGA adresses start with the lowercase letter "s"  
 • Ports: 37552 (p2p) / 37553 (rpc)
 
 • Explorer: https://explorer.decenomy.net/SAGA/blocks
@@ -29,25 +29,25 @@ CryptoSaga Standard Wallet
  <col class=xl6553517252 width=107 span=2 style='mso-width-source:userset;
  mso-width-alt:3702;width:81pt'>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6317252 width=150 style='height:15.75pt;width:104pt'>Block</td>
+  <td height=21 class=xl6317252 width=189 style='height:15.75pt;width:104pt'>Block</td>
   <td class=xl6317252 width=107 style='width:81pt'>Collateral</td>
-  <td class=xl6317252 width=107 style='width:81pt'>Block Reward</td>
+  <td class=xl6317252 width=94 style='width:81pt'>Block Reward</td>
   <td class=xl6317252 width=107 style='width:81pt'>MN Reward %</td>
   <td class=xl6317252 width=134 style='width:100pt'>Staking Reward %</td>
-  <td class=xl6317252 width=107 style='width:81pt'>MN Reward</td>
-  <td class=xl6317252 width=107 style='width:81pt'>Staker Reward</td>
+  <td class=xl6317252 width=94 style='width:81pt'>MN Reward</td>
+  <td class=xl6317252 width=94 style='width:81pt'>Staker Reward</td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>2-1000</td>
+  <td height=21 class=xl6417252 style='height:15.75pt'>2-1000 (POW only)</td>
   <td class=xl6517252>-</td>
   <td class=xl6517252>10</td>
   <td class=xl6617252>-</td>
   <td class=xl6617252>-</td>
-  <td class=xl6717252>-</td>
-  <td class=xl6553517252>-</td>
+  <td class=xl6717252 align=right>-</td>
+  <td class=xl6553517252 align=right>-</td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>1001-3000</td>
+  <td height=21 class=xl6417252 style='height:15.75pt'>1001-3000 (POS only)</td>
   <td class=xl6517252>-</td>
   <td class=xl6617252>10</td>
   <td class=xl6617252>-</td>
