@@ -5,7 +5,7 @@ CryptoSaga Standard Wallet
 ### Coin Specs
 
 • PoW Algorithm: x11kvs  
-• Premine: 16,000,000 (Current supply of DarkSaga for swapping)  
+• Premine: 16,000,000 (Current supply of DarkSaga for swapping to CryptoSaga)  
 • PoW Blocks: 2 - 1000  
 • PoS Blocks: Starting from 1001  
 • Block Time: 60 Seconds    
