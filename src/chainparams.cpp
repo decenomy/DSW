@@ -52,8 +52,8 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "CryptoSaga is coming out, in the good year of 2021 in a computer near you.";
-    const CScript genesisOutputScript = CScript() << ParseHex("0478505c5bc438e08c0c8de26a661bc5a4453378d0b149fbf17cb3e1499b1d3e552fe5faaa253673c5349b461bd964a2ee860c114e9d2b9fdb0328f37ed356ed54") << OP_CHECKSIG;
+    const char* pszTimestamp = "China to socially blacklist Bitcoin miners in Inner Mongolia region. COINTELEGRAPH, 2021/05/26";
+    const CScript genesisOutputScript = CScript() << ParseHex("04cce4f25d4304cd543177aa586cdd618a934022f26c986eca9c7037f4bdda03241a96752373dd49edef35f384368993d65afab7214bb870bd95be32606c477b7c") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
 
@@ -69,13 +69,14 @@ static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits
  */
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("0x0")) // Genesis
+    (0,     uint256("0x00000e5abe79d86f5e7a8adc8a8d0a8afa3d9aad1ae5099eec426df74bf2159e")) // Genesis
+    (102,   uint256("0x000000616289b1396a06cb426545f809d946ee1c7c4c9f98aa5d36750443c8c2"))
 ; 
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1566400614, // * UNIX timestamp of last checkpoint block
-    207,          // * total number of transactions between genesis and last checkpoint
+    1622065192, // * UNIX timestamp of last checkpoint block
+    157,          // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the UpdateTip debug.log lines)
     2000        // * estimated number of transactions per day after checkpoint
 };
@@ -110,7 +111,7 @@ public:
         // // This is used inorder to mine the genesis block. Once found, we can use the nonce and block hash found to create a valid genesis block
         // /////////////////////////////////////////////////////////////////
 
-        // uint32_t nGenesisTime = 1621934936; // Tuesday, 25 May 2021 09:28:56 UTC
+        // uint32_t nGenesisTime = (uint32_t) GetTime();
 
         // arith_uint256 test;
         // bool fNegative;
@@ -123,14 +124,12 @@ public:
         // uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         // for (int i=0;i<40000000;i++) {
         //     genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e0ffff0, 1, 0 * COIN);
-        //     //genesis.hashPrevBlock = TempHashHolding;
         //     consensus.hashGenesisBlock = genesis.GetHash();
 
         //     arith_uint256 BestBlockHashArith = UintToArith256(BestBlockHash);
         //     if (UintToArith256(consensus.hashGenesisBlock) < BestBlockHashArith) {
         //         BestBlockHash = consensus.hashGenesisBlock;
         //         std::cout << BestBlockHash.GetHex() << " Nonce: " << i << "\n";
-        //         std::cout << "   PrevBlockHash: " << genesis.hashPrevBlock.GetHex() << "\n";
         //     }
 
         //     TempHashHolding = consensus.hashGenesisBlock;
@@ -139,24 +138,24 @@ public:
         //         genesisNonce = i - 1;
         //         break;
         //     }
-        //     //std::cout << consensus.hashGenesisBlock.GetHex() << "\n";
         // }
         // std::cout << "\n";
         // std::cout << "\n";
         // std::cout << "\n";
 
-        // std::cout << "hashGenesisBlock to 0x" << BestBlockHash.GetHex() << std::endl;
-        // std::cout << "Genesis Nonce to " << genesisNonce << std::endl;
-        // std::cout << "Genesis Merkle 0x" << genesis.hashMerkleRoot.GetHex() << std::endl;
+        // std::cout << "Genesis timestamp " << nGenesisTime << std::endl;
+        // std::cout << "Nonce " << genesisNonce << std::endl;
+        // std::cout << "Genesis block hash 0x" << BestBlockHash.GetHex() << std::endl;
+        // std::cout << "Merkle root hash 0x" << genesis.hashMerkleRoot.GetHex() << std::endl;
 
         // exit(0);
 
         // /////////////////////////////////////////////////////////////////
 
-        genesis = CreateGenesisBlock(1621934936, 1300357, 0x1e0ffff0, 1, 0 * COIN);
+        genesis = CreateGenesisBlock(1622058209, 1716299, 0x1e0ffff0, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00000d24217a3c7e5c55bec423941eb1db8b46fa9b5d528c77bd1a2d83b9040f"));
-        assert(genesis.hashMerkleRoot == uint256S("0xc5fba54e17e0301cf8e5e1f19cbcf225b0704e84f1a5d74ad9dcef2007898c76"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00000e5abe79d86f5e7a8adc8a8d0a8afa3d9aad1ae5099eec426df74bf2159e"));
+        assert(genesis.hashMerkleRoot == uint256S("0xb81fed5916d638ae849e84e71bb0a920fa6858a0b83cbd596e6ef13c458c84b1"));
 
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.powLimit   = ~UINT256_ZERO >> 20;   
@@ -252,13 +251,13 @@ public:
 	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.cryptosaga.net"));
 	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.cryptosaga.net"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 125); // 7
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 44); // 7
-        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 142);  // J
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 125); 
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 44);
+        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 142); 
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();
         // BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md
-        base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x1d)(0xfc).convert_to_container<std::vector<unsigned char> >();
+        base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x03)(0x4B).convert_to_container<std::vector<unsigned char> >();
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
         //convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main)); // added

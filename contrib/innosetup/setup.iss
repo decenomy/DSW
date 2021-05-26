@@ -2,9 +2,9 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "CryptoSaga Core"
-#define MyAppVersion "1.0.0.0"
+#define MyAppVersion "4.0.0.0"
 #define MyAppPublisher "2021 DECENOMY Core Developers"
-#define MyAppURL "http://www.cryptosaga.net/"
+#define MyAppURL "http://cryptosaga.net/"
 #define MyAppExeName "cryptosaga-qt.exe"
 #define MyAppExtraData "https://explorer.decenomy.net/bootstraps/SAGA/bootstrap.zip"
 
@@ -13,7 +13,7 @@
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{67A6CA9B-71C3-4FE2-AA2E-D0DF3D53C4EB}
+AppId={{2C2A6CB8-9D3E-413A-9646-A584177171ED}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 VersionInfoVersion={#MyAppVersion}
@@ -50,7 +50,7 @@ Name: "custom"; Description: "Custom installation"; Flags: iscustom
 
 [Components]
 Name: app;  Description: "{#MyAppName} {#MyAppVersion}";  Types: full compact custom; Flags: fixed
-Name: bootstrap; Description: "Bootstrap blockchain files";  Types: full; ExtraDiskSpaceRequired: 7368332846;
+Name: bootstrap; Description: "Bootstrap blockchain files";  Types: full; ExtraDiskSpaceRequired: 104857600;
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"

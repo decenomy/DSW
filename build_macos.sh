@@ -7,11 +7,11 @@ then
 fi
 
 # Clone code from official Github repository
-    rm -rf DSW
-    git clone https://github.com/decenomy/DSW.git
+    rm -rf SAGA
+    git clone https://github.com/cryptosagacoin/SAGA.git
 
 # Entering directory
-    cd DSW
+    cd SAGA
 
 # Compile dependencies
     cd depends
@@ -31,6 +31,6 @@ fi
     cd ..
 
 # Create zip file of binaries
-    cp DSW/src/__decenomy__d DSW/src/__decenomy__-cli DSW/src/__decenomy__-tx DSW/src/qt/__decenomy__-qt DSW/__Decenomy__-Core.dmg .
-    zip __DSW__-MacOS.zip __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt __Decenomy__-Core.dmg
-    rm -f __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt __Decenomy__-Core.dmg
+    cp SAGA/src/cryptosagad SAGA/src/cryptosaga-cli SAGA/src/cryptosaga-tx SAGA/src/qt/cryptosaga-qt SAGA/CryptoSaga-Core.dmg .
+    zip SAGA-MacOS.zip cryptosagad cryptosaga-cli cryptosaga-tx cryptosaga-qt CryptoSaga-Core.dmg
+    rm -f cryptosagad cryptosaga-cli cryptosaga-tx cryptosaga-qt CryptoSaga-Core.dmg

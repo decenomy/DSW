@@ -11,11 +11,11 @@ fi
 	sudo apt install git zip unzip build-essential libtool bsdmainutils autotools-dev autoconf pkg-config automake python3 libqt5svg5-dev -y
 
 # Clone code from official Github repository
-	rm -rf DSW
-	git clone https://github.com/decenomy/DSW.git
+	rm -rf SAGA
+	git clone https://github.com/cryptosagacoin/SAGA.git
 
 # Entering directory
-	cd DSW
+	cd SAGA
 
 # Compile dependencies
 	cd depends
@@ -29,6 +29,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/__decenomy__d DSW/src/__decenomy__-cli DSW/src/__decenomy__-tx DSW/src/qt/__decenomy__-qt .
-	zip __DSW__-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt
-	rm -f __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt
+	cp SAGA/src/cryptosagad SAGA/src/cryptosaga-cli SAGA/src/cryptosaga-tx SAGA/src/qt/cryptosaga-qt .
+	zip SAGA-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip cryptosagad cryptosaga-cli cryptosaga-tx cryptosaga-qt
+	rm -f cryptosagad cryptosaga-cli cryptosaga-tx cryptosaga-qt
