@@ -128,7 +128,6 @@ bool Stake(const CBlockIndex* pindexPrev, CStakeInput* stakeInput, unsigned int 
 {
     // Double check stake input contextual checks
     const int nHeightTx = pindexPrev->nHeight + 1;
-    if (!stakeInput || !stakeInput->ContextCheck(nHeightTx, nTimeTx)) return false;
 
     // Get the new time slot (and verify it's not the same as previous block)
     const bool fRegTest = Params().IsRegTestNet();
@@ -136,6 +135,8 @@ bool Stake(const CBlockIndex* pindexPrev, CStakeInput* stakeInput, unsigned int 
     nTimeTx = (fTimeProtocolV2 ? GetCurrentTimeSlot() : GetAdjustedTime());
 
     if (nTimeTx <= pindexPrev->nTime && !fRegTest) return false;
+
+    if (!stakeInput || !stakeInput->ContextCheck(nHeightTx, nTimeTx)) return false;
 
     int slotRange = fTimeProtocolV2 ? 1 : Params().GetConsensus().nFutureTimeDriftPoS;
 
