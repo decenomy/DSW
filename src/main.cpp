@@ -5054,14 +5054,14 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
             return false;
         }
 
-        if (pfrom->DisconnectOldProtocol(nVersion, ActiveProtocol(), strCommand))
-            return false;
-
-        if (pfrom->nServices == NODE_NONE && sporkManager.IsSporkActive(SPORK_101_SERVICES_ENFORCEMENT)) {
+        if (nServices == NODE_NONE && sporkManager.IsSporkActive(SPORK_101_SERVICES_ENFORCEMENT)) {
             LOCK(cs_main);
             Misbehaving(pfrom->GetId(), 100);
             return error("No services on version message");
         }
+
+        if (pfrom->DisconnectOldProtocol(nVersion, ActiveProtocol(), strCommand))
+            return false;
 
         if (nVersion == 10300)
             nVersion = 300;

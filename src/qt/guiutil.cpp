@@ -19,6 +19,7 @@
 #include "script/script.h"
 #include "script/standard.h"
 #include "util.h"
+#include "qt/pivx/qtutils.h"
 
 #ifdef WIN32
 #ifdef _WIN32_WINNT
@@ -876,7 +877,7 @@ QString loadStyleSheet()
             cssName = QString(":/css/") + theme;
         } else {
             cssName = QString(":/css/default-dark");
-            settings.setValue("theme", "default-dark");
+            setTheme(false);
         }
     }
 

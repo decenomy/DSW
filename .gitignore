@@ -89,6 +89,24 @@ src/peony-cli
 src/peony-tx
 src/peonyd
 
+# CryptoSaga
+src/bench/bench_cryptosaga
+src/qt/test/test_cryptosaga-qt
+src/qt/cryptosaga-qt
+src/test/test_cryptosaga
+src/cryptosaga-cli
+src/cryptosaga-tx
+src/cryptosagad
+
+# Monk
+src/bench/bench_monk
+src/qt/test/test_monk-qt
+src/qt/monk-qt
+src/test/test_monk
+src/monk-cli
+src/monk-tx
+src/monkd
+
 ##########################################
 # clear this section when it's fixed
 ###
