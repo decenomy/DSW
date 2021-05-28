@@ -266,11 +266,11 @@ UniValue stop(const JSONRPCRequest& jsonRequest)
     if (jsonRequest.fHelp || jsonRequest.params.size() > 1)
         throw std::runtime_error(
             "stop\n"
-            "\nStop __Decenomy__ server.");
+            "\nStop Monk server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "__Decenomy__ server stopping";
+    return "Monk server stopping";
 }
 
 
@@ -360,32 +360,32 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblock",           &waitforblock,           true },
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true },
 
-        /* __DSW__ features */
-        {"__decenomy__", "listmasternodes", &listmasternodes, true },
-        {"__decenomy__", "getmasternodecount", &getmasternodecount, true },
-        {"__decenomy__", "createmasternodebroadcast", &createmasternodebroadcast, true },
-        {"__decenomy__", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
-        {"__decenomy__", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
-        {"__decenomy__", "masternodecurrent", &masternodecurrent, true },
-        {"__decenomy__", "startmasternode", &startmasternode, true },
-        {"__decenomy__", "createmasternodekey", &createmasternodekey, true },
-        {"__decenomy__", "getmasternodeoutputs", &getmasternodeoutputs, true },
-        {"__decenomy__", "listmasternodeconf", &listmasternodeconf, true },
-        {"__decenomy__", "getmasternodestatus", &getmasternodestatus, true },
-        {"__decenomy__", "getmasternodewinners", &getmasternodewinners, true },
-        {"__decenomy__", "getmasternodescores", &getmasternodescores, true },
-        {"__decenomy__", "preparebudget", &preparebudget, true },
-        {"__decenomy__", "submitbudget", &submitbudget, true },
-        {"__decenomy__", "mnbudgetvote", &mnbudgetvote, true },
-        {"__decenomy__", "getbudgetvotes", &getbudgetvotes, true },
-        {"__decenomy__", "getnextsuperblock", &getnextsuperblock, true },
-        {"__decenomy__", "getbudgetprojection", &getbudgetprojection, true },
-        {"__decenomy__", "getbudgetinfo", &getbudgetinfo, true },
-        {"__decenomy__", "mnbudgetrawvote", &mnbudgetrawvote, true },
-        {"__decenomy__", "mnfinalbudget", &mnfinalbudget, true },
-        {"__decenomy__", "checkbudgets", &checkbudgets, true },
-        {"__decenomy__", "mnsync", &mnsync, true },
-        {"__decenomy__", "spork", &spork, true },
+        /* MONK features */
+        {"monk", "listmasternodes", &listmasternodes, true },
+        {"monk", "getmasternodecount", &getmasternodecount, true },
+        {"monk", "createmasternodebroadcast", &createmasternodebroadcast, true },
+        {"monk", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
+        {"monk", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
+        {"monk", "masternodecurrent", &masternodecurrent, true },
+        {"monk", "startmasternode", &startmasternode, true },
+        {"monk", "createmasternodekey", &createmasternodekey, true },
+        {"monk", "getmasternodeoutputs", &getmasternodeoutputs, true },
+        {"monk", "listmasternodeconf", &listmasternodeconf, true },
+        {"monk", "getmasternodestatus", &getmasternodestatus, true },
+        {"monk", "getmasternodewinners", &getmasternodewinners, true },
+        {"monk", "getmasternodescores", &getmasternodescores, true },
+        {"monk", "preparebudget", &preparebudget, true },
+        {"monk", "submitbudget", &submitbudget, true },
+        {"monk", "mnbudgetvote", &mnbudgetvote, true },
+        {"monk", "getbudgetvotes", &getbudgetvotes, true },
+        {"monk", "getnextsuperblock", &getnextsuperblock, true },
+        {"monk", "getbudgetprojection", &getbudgetprojection, true },
+        {"monk", "getbudgetinfo", &getbudgetinfo, true },
+        {"monk", "mnbudgetrawvote", &mnbudgetrawvote, true },
+        {"monk", "mnfinalbudget", &mnfinalbudget, true },
+        {"monk", "checkbudgets", &checkbudgets, true },
+        {"monk", "mnsync", &mnsync, true },
+        {"monk", "spork", &spork, true },
 
 #ifdef ENABLE_WALLET
         /* Wallet */
@@ -598,14 +598,14 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(std::string methodname, std::string args)
 {
-    return "> __decenomy__-cli " + methodname + " " + args + "\n";
+    return "> monk-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(std::string methodname, std::string args)
 {
     return "> curl --user myusername --data-binary '{\"jsonrpc\": \"1.0\", \"id\":\"curltest\", "
            "\"method\": \"" +
-           methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:__RPCPORT_MAINNET__/\n";
+           methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:15552/\n";
 }
 
 void RPCSetTimerInterfaceIfUnset(RPCTimerInterface *iface)

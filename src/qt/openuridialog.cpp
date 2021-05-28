@@ -18,7 +18,7 @@ OpenURIDialog::OpenURIDialog(QWidget* parent) : QDialog(parent, Qt::WindowSystem
 {
     ui->setupUi(this);
     this->setStyleSheet(parent->styleSheet());
-    ui->uriEdit->setPlaceholderText("__decenomy__:");
+    ui->uriEdit->setPlaceholderText("monk:");
 
     ui->labelSubtitle->setText("URI");
     setCssProperty(ui->labelSubtitle, "text-title2-dialog");
@@ -80,8 +80,8 @@ void OpenURIDialog::on_selectFileButton_clicked()
         }
 
         QString str = QString::fromStdString(std::string(r.constData(), r.length()));
-        if (!str.startsWith("__decenomy__")) {
-            inform(tr("Invalid URI, not starting with \"__decenomy__\" prefix"));
+        if (!str.startsWith("monk")) {
+            inform(tr("Invalid URI, not starting with \"monk\" prefix"));
         }
         ui->uriEdit->setText(str);
     }

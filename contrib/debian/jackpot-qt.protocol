@@ -1,6 +1,6 @@
 [Protocol]
-exec=__decenomy__-qt '%u'
-protocol=__decenomy__
+exec=monk-qt '%u'
+protocol=monk
 input=none
 output=none
 helper=true

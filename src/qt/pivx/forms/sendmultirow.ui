@@ -198,7 +198,7 @@
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
           </property>
           <property name="placeholderText">
-           <string notr="true">0.00 __DSW__</string>
+           <string notr="true">0.00 MONK</string>
           </property>
          </widget>
         </item>

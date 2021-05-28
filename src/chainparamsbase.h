@@ -7,15 +7,15 @@
 #ifndef BITCOIN_CHAINPARAMSBASE_H
 #define BITCOIN_CHAINPARAMSBASE_H
 
-#define __RPCPORT_MAINNET__ 9998
-#define __RPCPORT_TESTNET__ 19998
+#define __RPCPORT_MAINNET__ 15552
+#define __RPCPORT_TESTNET__ 25552
 
 #include <string>
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between __decenomy__-cli and __decenomy__d)
- * of a given instance of the __decenomy__ system.
+ * CBaseChainParams defines the base parameters (shared between monk-cli and monkd)
+ * of a given instance of the monk system.
  */
 class CBaseChainParams
 {
