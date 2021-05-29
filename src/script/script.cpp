@@ -311,14 +311,14 @@ CScript CScriptContract::ConstructContractScript(CScriptContract& contract)
     return contractScript;
 }
 
-bool CScriptContract::RunContractScript(const CScriptContract contract)
+bool CScriptContract::RunContractScript()
 {
     // TODO:: Implement code to run the script and get the result
     bool result = true;
     return result;
 }
 
-uint256 CScriptContract::GetConsensusScriptHash(CScriptContract& contract, HashType hashType) const
+uint256 CScriptContract::GetConsensusScriptHash(HashType hashType = TYPE_X11KVS) const
 {
     std::string IpfsHash; // TODO: Generate IPFS hash
     uint256 hash;
@@ -326,7 +326,7 @@ uint256 CScriptContract::GetConsensusScriptHash(CScriptContract& contract, HashT
     switch (hashType)
     {
         case TYPE_X11KVS:
-            return HashX11KVS(BEGIN(contract.consensusScript), END(contract.consensusScript));
+            return HashX11KVS(BEGIN(this->consensusScript), END(this->consensusScript));
             break;
         
         case TYPE_IPFS:
@@ -334,25 +334,25 @@ uint256 CScriptContract::GetConsensusScriptHash(CScriptContract& contract, HashT
             break;
 
         case TYPE_SHA256:
-            return Hash(BEGIN(contract.consensusScript), END(contract.consensusScript));
+            return Hash(BEGIN(this->consensusScript), END(this->consensusScript));
             break;
 
         case TYPE_SHA256D:
-            hash = Hash(BEGIN(contract.consensusScript), END(contract.consensusScript));
+            hash = Hash(BEGIN(this->consensusScript), END(this->consensusScript));
             return Hash(BEGIN(hash), END(hash));
             break;
 
         case TYPE_SHA512:
-            return Hash512(BEGIN(consensusScript), END(consensusScript)).trim256();
+            return Hash512(BEGIN(this->consensusScript), END(this->consensusScript)).trim256();
             break;
 
         default:
-            return HashX11KVS(BEGIN(consensusScript), END(consensusScript));
+            return HashX11KVS(BEGIN(this->consensusScript), END(this->consensusScript));
             break;
     }
 }
 
-uint256 CScriptContract::GetContractHash(CScriptContract& contract, HashType hashType) const
+uint256 CScriptContract::GetContractHash(HashType hashType = TYPE_X11KVS) const
 {
     std::string IpfsHash; // TODO: Generate IPFS hash
     uint256 hash;
@@ -360,7 +360,7 @@ uint256 CScriptContract::GetContractHash(CScriptContract& contract, HashType has
     switch (hashType)
     {
         case 0:
-            return HashX11KVS(BEGIN(contract), END(contract));
+            return HashX11KVS(BEGIN(*this), END(*this));
             break;
         
         case 1:
@@ -368,21 +368,26 @@ uint256 CScriptContract::GetContractHash(CScriptContract& contract, HashType has
             break;
 
         case 2:
-            return Hash(BEGIN(contract), END(contract));
+            return Hash(BEGIN(*this), END(*this));
             break;
 
         case 3:
-            hash = Hash(BEGIN(contract.consensusScript), END(contract.consensusScript));
+            hash = Hash(BEGIN(this->consensusScript), END(this->consensusScript));
             return Hash(BEGIN(hash), END(hash));
             break;
 
         case 4:
-            return Hash512(BEGIN(contract), END(contract)).trim256();
+            return Hash512(BEGIN(*this), END(*this)).trim256();
             break;
 
         default:
-            return HashX11KVS(BEGIN(contract), END(contract));
+            return HashX11KVS(BEGIN(*this), END(*this));
             break;
     }
+}
+
+void CScriptContract::ChangeStatus(const bool status)
+{
+    this->status = status;
 }
 

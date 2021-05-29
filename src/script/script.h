@@ -215,6 +215,7 @@ enum opcodetype
     // smart contract
     OP_PUBLISH = 0xc9, // For storing smart-contract
     OP_RUN = 0xca, // For activating smart-contract
+    OP_UPDATE_STATUS = 0xcb, // For enabling/disabling a smart-contract and unprevent/prevent it being run by OP_RUN
 
     OP_INVALIDOPCODE = 0xff,
 };
@@ -713,6 +714,8 @@ class CScriptContract : public CScript
 public:
     HashType hashType;
 
+    std::vector<unsigned char> name;
+    bool status; // false: Contract is disabled/inactive. Cannot be run.  -- true: Contract is enabled/active and can be run.
     CPubKey issuerPubKey;
     CPubKey receiverPubKey;
     time_t publishTime;
@@ -722,14 +725,14 @@ public:
     uint256 consensusScriptHash;
     typedef struct DataFile
     {
-        std::string fileName;
-        std::string fileType; // image (jpg, png, svg etc.), document (json, xml, pdf, doc, xls etc.), video (mp4, webm etc.)
-        uint256 fileHash;
-        size_t fileSize;
-        std::string filePath;
-        time_t fileAccessed; // TODO: this field may not be necessary. If so, remove it.
-        time_t fileModified;
-        std::map<std::string, std::string> fileMetaData; // Maps to MetaDataFieldName:MetadataFieldValue pair
+        std::string name;
+        std::string type; // image (jpg, png, svg etc.), document (json, xml, pdf, doc, xls etc.), video (mp4, webm etc.)
+        uint256 hash;
+        size_t size;
+        std::string path;
+        time_t accessed; // TODO: this field may not be necessary. If so, remove it.
+        time_t modified;
+        std::map<std::string, std::string> metaData; // Maps to MetaDataFieldName:MetadataFieldValue pair
     } DataFile;
 
     DataFile dataFile;
@@ -745,10 +748,12 @@ public:
     inline uint256 operator=(const uint256& rhs) { return uint256(rhs); }
     inline DataFile operator=(const DataFile& rhs) { return DataFile(rhs); }
 
-ADD_SERIALIZE_METHODS;
+    ADD_SERIALIZE_METHODS;
 
     template <typename Stream, typename Operation>
     inline void SerializationOp(Stream& s, Operation ser_action) {
+        READWRITE(name);
+        READWRITE(status);
         READWRITE(issuerPubKey);
         READWRITE(receiverPubKey);
         READWRITE(publishTime);
@@ -761,6 +766,9 @@ ADD_SERIALIZE_METHODS;
 
     void SetNull()
     {
+        // Contract properties
+        name.clear();
+        status = false;
         issuerPubKey = CPubKey();
         receiverPubKey = CPubKey();
         publishTime = 0x7FFFFFFE;
@@ -768,6 +776,16 @@ ADD_SERIALIZE_METHODS;
         duration = 0;
         consensusScript.clear();
         consensusScriptHash = 0;
+
+        // Datafile
+        dataFile.name.clear();
+        dataFile.type.clear();
+        dataFile.hash = 0x00;
+        dataFile.size = 0;
+        dataFile.path.clear();
+        dataFile.accessed = 0;
+        dataFile.modified = 0;
+        dataFile.metaData.clear();
     }
 
     bool IsNull() const
@@ -776,22 +794,23 @@ ADD_SERIALIZE_METHODS;
     }
 
     CScript ConstructContractScript(CScriptContract& contract);
-    uint256 GetConsensusScriptHash(CScriptContract& contract, HashType hashType) const;
-    uint256 GetContractHash(CScriptContract& contract, HashType hashType) const;
-    bool RunContractScript(const CScriptContract contract);
+    uint256 GetConsensusScriptHash(HashType hashType) const;
+    uint256 GetContractHash(HashType hashType) const;
+    bool RunContractScript();
+    void ChangeStatus(const bool status);
 };
 
 class CScriptDataFile : public CScript
 {
 public:
-    std::string fileName;
-    std::string fileType; // image (jpg, png, svg etc.), document (json, xml, pdf, doc, xls etc.), video (mp4, webm etc.)
-    uint256 fileHash;
-    size_t fileSize;
-    std::string filePath;
-    time_t fileAccessed; // TODO: this field may not be necessary. If so, remove it.
-    time_t fileModified;
-    std::map<std::string, std::string> fileMetaData; // Maps to MetaDataFieldName:MetadataFieldValue pair
+    std::string name;
+    std::string type; // image (jpg, png, svg etc.), document (json, xml, pdf, doc, xls etc.), video (mp4, webm etc.)
+    uint256 hash;
+    size_t size;
+    std::string path;
+    time_t accessed; // TODO: this field may not be necessary. If so, remove it.
+    time_t modified;
+    std::map<std::string, std::string> metaData; // Maps to MetaDataFieldName:MetadataFieldValue pair
 
     CScriptDataFile()
     {
@@ -804,44 +823,44 @@ public:
     inline uint256 operator=(const uint256& rhs) { return uint256(rhs); }
     inline std::map<std::string, std::string> operator=(const std::map<std::string, std::string>& rhs) { return std::map<std::string, std::string>(rhs); }
 
-ADD_SERIALIZE_METHODS;
+    ADD_SERIALIZE_METHODS;
 
     template <typename Stream, typename Operation>
     inline void SerializationOp(Stream& s, Operation ser_action) {
-        READWRITE(fileName);
-        READWRITE(fileType);
-        READWRITE(fileHash);
-        READWRITE(fileSize);
-        READWRITE(filePath);
-        READWRITE(fileAccessed);
-        READWRITE(fileModified);
-        READWRITE(fileMetaData);
+        READWRITE(name);
+        READWRITE(type);
+        READWRITE(hash);
+        READWRITE(size);
+        READWRITE(path);
+        READWRITE(accessed);
+        READWRITE(modified);
+        READWRITE(metaData);
     }
 
     void SetNull()
     {
-        fileName.clear();
-        fileType.clear();
-        fileHash = TYPE_X11KVS;
-        fileSize = 0;
-        filePath.clear();
-        fileAccessed = 0;
-        fileModified = 0;
-        fileMetaData.clear();
+        name.clear();
+        type.clear();
+        hash = TYPE_X11KVS;
+        size = 0;
+        path.clear();
+        accessed = 0;
+        modified = 0;
+        metaData.clear();
     }
 
     bool IsNull() const
     {
-        return (fileSize == 0);
+        return (size == 0);
     }
 
-    std::string GetType();
-    size_t GetSize();
-    uint256 GetHash();
-    std::string GetPath();
-    time_t GetAccessTime();
-    time_t GetModifyTime();
-    std::map<std::string, std::string> GetMetaData();
+    inline std::string GetType() { return type; }
+    size_t GetSize() { return size; }
+    uint256 GetHash() { return hash; }
+    std::string GetPath() { return path; }
+    time_t GetAccessTime() { return accessed; }
+    time_t GetModifyTime() { return modified; }
+    std::map<std::string, std::string> GetMetaData() { return metaData; }
 };
 
 

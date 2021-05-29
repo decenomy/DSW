@@ -1055,14 +1055,14 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
                     contract.runDeadLine = uint256(stacktop(-4)).Get64();
                     contract.duration = uint256(stacktop(-5)).Get64();
                     contract.consensusScript = CScript(stacktop(-6));
-                    contract.consensusScriptHash = contract.GetConsensusScriptHash(contract, TYPE_X11KVS);
+                    uint256 hash = contract.GetConsensusScriptHash(TYPE_X11KVS);
                     std::vector<unsigned char> contractName = stacktop(-7);
 
                     CScript contractScript = contract.ConstructContractScript(contract);
 
                     CScriptDB* scriptDb;
 
-                    return scriptDb->WriteContract(contractName, contract);
+                    return scriptDb->WriteContract(hash, contract);
                 }
                 break;
 
@@ -1076,10 +1076,27 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
                     CScriptDB* scriptDb;
                     CScriptContract contract;
 
-                    contract.consensusScriptHash = uint256(stacktop(-1));
-                    scriptDb->ReadContract(contract);
+                    uint256 hash = uint256(stacktop(-1));
+                    scriptDb->ReadContract(hash, contract);
 
-                    return contract.RunContractScript(contract);
+                    return contract.RunContractScript();
+                }
+
+                case OP_UPDATE_STATUS:
+                {
+                    // (in -- contract hash)
+                    int i = 2; // Number of items in the stack. At least the contract hash should be in the stack.
+                    if ((int)stack.size() < i)
+                        return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+
+                    CScriptDB* scriptDb;
+                    CScriptContract contract;
+
+                    contract.consensusScriptHash = uint256(stacktop(-1));
+                    CScriptNum status(stacktop(-2), fRequireMinimal);
+                    uint256 hash = uint256(stacktop(-1));
+
+                    scriptDb->UpdateContractStatus(contract.consensusScriptHash, (bool) status.getint(), contract);
                 }
 
                 default:

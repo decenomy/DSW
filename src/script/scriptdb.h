@@ -31,7 +31,7 @@ public:
 
     CScriptDB(size_t nCacheSize, bool fMemory, bool fWipe) : CDBWrapper(GetDataDir() / "scripts", nCacheSize, fMemory, fWipe) {};
 
-ADD_SERIALIZE_METHODS;
+    ADD_SERIALIZE_METHODS;
 
     template <typename Stream, typename Operation>
     inline void SerializationOp(Stream& s, Operation ser_action) {
@@ -47,10 +47,12 @@ ADD_SERIALIZE_METHODS;
     {
         return contract.IsNull();
     }
-    bool WriteContract(const std::vector<unsigned char>& name, CScriptContract& contract);
-    bool ReadContract(uint256& hash);
+    bool WriteContract(const uint256 consensusScriptHash, const CScriptContract contract);
+    bool ReadContract(const uint256 consensusScriptHash, CScriptContract& contract);
     // bool EraseContract(CScriptContract& contract); // TODO: Erasing Scripts from database can be dangerous so maybe it should just be marked as 'DISABLED' if it's strictly needed
-    bool ContractExists(CScriptContract& contract);
+    bool ContractExists(const CScriptContract& contract);
+
+    bool UpdateContractStatus(uint256& consensusScriptHash, const bool status, CScriptContract& contract);
 
 private:
     CScriptDB(const CScriptDB&);
