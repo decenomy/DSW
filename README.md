@@ -10,7 +10,7 @@ Monk Standard Wallet
 • Block Time: 60 Seconds    
 • Maturity: 100 Confirmations  
 • Prefix: Monk addresses start with the capital letter "M"  
-• Ports: 15551 (p2p) / 15552 (rpc)
+• Ports: 32270 (p2p) / 32271 (rpc)
 
 • Explorer: https://explorer.decenomy.net/MONK/blocks
 
@@ -50,7 +50,7 @@ Monk Standard Wallet
   <td class=xl6517252>-</td>
   <td class=xl6617252>12</td>
   <td class=xl6617252>-</td>
-  <td class=xl6617252>-</td>
+  <td class=xl6617252>100</td>
   <td class=xl6717252 align=right>-</td>
   <td class=xl6817252 align=right>12</td>
  </tr>

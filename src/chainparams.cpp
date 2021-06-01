@@ -52,8 +52,8 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "Something written here just to test genesis mining";
-    const CScript genesisOutputScript = CScript() << ParseHex("0478505c5bc438e08c0c8de26a661bc5a4453378d0b149fbf17cb3e1499b1d3e552fe5faaa253673c5349b461bd964a2ee860c114e9d2b9fdb0328f37ed356ed54") << OP_CHECKSIG;
+    const char* pszTimestamp = "Druckenmiller: Ethereum is 'MySpace before Facebook' while Bitcoin won as 'Google', COINTELEGRAPH, 01/06/2021";
+    const CScript genesisOutputScript = CScript() << ParseHex("040f65236f5c763bf979ef7316dfc2edca12b443c3fade71abfebbd931839e8fa775c214fb485003697d28b8fb2408b16114c219584376d283af0ca2fb38026fec") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
 
@@ -110,7 +110,7 @@ public:
         // // This is used inorder to mine the genesis block. Once found, we can use the nonce and block hash found to create a valid genesis block
         // /////////////////////////////////////////////////////////////////
 
-        // uint32_t nGenesisTime = 1612360301; // 2021-02-03T13:51:41+00:00
+        // uint32_t nGenesisTime = GetTime();
 
         // arith_uint256 test;
         // bool fNegative;
@@ -123,14 +123,12 @@ public:
         // uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         // for (int i=0;i<40000000;i++) {
         //     genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e0ffff0, 1, 0 * COIN);
-        //     //genesis.hashPrevBlock = TempHashHolding;
         //     consensus.hashGenesisBlock = genesis.GetHash();
 
         //     arith_uint256 BestBlockHashArith = UintToArith256(BestBlockHash);
         //     if (UintToArith256(consensus.hashGenesisBlock) < BestBlockHashArith) {
         //         BestBlockHash = consensus.hashGenesisBlock;
         //         std::cout << BestBlockHash.GetHex() << " Nonce: " << i << "\n";
-        //         std::cout << "   PrevBlockHash: " << genesis.hashPrevBlock.GetHex() << "\n";
         //     }
 
         //     TempHashHolding = consensus.hashGenesisBlock;
@@ -139,24 +137,24 @@ public:
         //         genesisNonce = i - 1;
         //         break;
         //     }
-        //     //std::cout << consensus.hashGenesisBlock.GetHex() << "\n";
         // }
         // std::cout << "\n";
         // std::cout << "\n";
         // std::cout << "\n";
 
-        // std::cout << "hashGenesisBlock to 0x" << BestBlockHash.GetHex() << std::endl;
-        // std::cout << "Genesis Nonce to " << genesisNonce << std::endl;
-        // std::cout << "Genesis Merkle 0x" << genesis.hashMerkleRoot.GetHex() << std::endl;
+        // std::cout << "Genesis Timestamp: " << nGenesisTime << std::endl;
+        // std::cout << "Genesis Nonce: " << genesisNonce << std::endl;
+        // std::cout << "Genesis Block Hash: 0x" << BestBlockHash.GetHex() << std::endl;
+        // std::cout << "Genesis Merkle Root Hash 0x" << genesis.hashMerkleRoot.GetHex() << std::endl;
 
         // exit(0);
 
         // /////////////////////////////////////////////////////////////////
 
-        genesis = CreateGenesisBlock(1620990000, 1276474, 0x1e0ffff0, 1, 0 * COIN);
+        genesis = CreateGenesisBlock(1622547076, 269467, 0x1e0ffff0, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000002685627d76e5357d9dd7ef52ffcc78618c9ee52eb31e7602a0e492e1f6c"));
-        assert(genesis.hashMerkleRoot == uint256S("0x2eb76bb2d845ee57629315c3ce65729bfab9109a87c5e1d845c7d29ea437d9d9"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00000fbe4cbb6044f6156fa4f4396521b1d28d01307aadb0738d26a88853078d"));
+        assert(genesis.hashMerkleRoot == uint256S("0x83046e5bd611dcf527e4b74c0ff8050042a58902c01b39a3306d31cec7c2c684"));
 
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.powLimit   = ~UINT256_ZERO >> 20;   
@@ -180,7 +178,7 @@ public:
         consensus.nTimeSlotLength = 15;
 
         // spork keys
-        consensus.strSporkPubKey = "0371d4e47e0ab43865206e9df7c065d6c68471b154bab3815d99f8380d46c7015f";
+        consensus.strSporkPubKey = "020f65236f5c763bf979ef7316dfc2edca12b443c3fade71abfebbd931839e8fa7";
         consensus.strSporkPubKeyOld = "";
         consensus.nTime_EnforceNewSporkKey = 0;
         consensus.nTime_RejectOldSporkKey = 0;
@@ -242,15 +240,16 @@ public:
         pchMessageStart[3] = 0x22;
         nDefaultPort = __PORT_MAINNET__;
 
-        vSeeds.push_back(CDNSSeedData("seeder", "seeder.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed2", "seed2.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed3", "seed3.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed4", "seed4.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.__decenomy.net__"));
+        // TODO change it to the final domain
+        vSeeds.push_back(CDNSSeedData("seeder", "seeder.beaconcoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.beaconcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed2", "seed2.beaconcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed3", "seed3.beaconcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed4", "seed4.beaconcoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.beaconcoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.beaconcoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.beaconcoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.beaconcoin.net"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 51); // M
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 33); // E
@@ -376,7 +375,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.push_back(CDNSSeedData("tseeder", "tseeder.__decenomy.net__", true));
+        vSeeds.push_back(CDNSSeedData("tseeder", "tseeder.beaconcoin.net", true));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet monk addresses start with 'x' or 'y'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet monk script addresses start with '8' or '9'
