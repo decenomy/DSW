@@ -322,22 +322,21 @@ CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
 {
     if (nHeight <= 100000) {
         return 4000 * COIN;
-    } else if (nHeight <= 200000 && nHeight > 100000) {
+    } else if (nHeight > 100000 && nHeight <= 200000) {
         return 8000 * COIN;
-    } else if (nHeight <= 300000 && nHeight > 200000) {
+    } else if (nHeight > 200000 && nHeight <= 300000) {
         return 12000 * COIN;
-    } else if (nHeight <= 400000 && nHeight > 300000) {
+    } else if (nHeight > 300000 && nHeight <= 400000) {
         return 20000 * COIN;
-    } else if (nHeight <= 500000 && nHeight > 400000) {
+    } else if (nHeight > 400000 && nHeight <= 500000) {
         return 30000 * COIN;
-    } else if (nHeight <= 600000 && nHeight > 500000) {
+    } else if (nHeight > 500000 && nHeight <= 600000) {
         return 50000 * COIN;
-    } else if (nHeight <= 700000 && nHeight > 600000) {
+    } else if (nHeight > 600000 && nHeight <= 700000) {
         return 70000 * COIN;
-    } else if (nHeight > 700000) {
+    } else {
         return 100000 * COIN;
     }
-    return 0;
 }
 
 CAmount CMasternode::GetBlockValue(int nHeight)
@@ -351,10 +350,8 @@ CAmount CMasternode::GetBlockValue(int nHeight)
     CAmount nSubsidy;
 
     if (nHeight == 1) {
-        nSubsidy = 30000000 * COIN; // MONK coin supply (30M)
-    } else if (nHeight <= 3000) {
-        nSubsidy = 12 * COIN;
-    } else if (nHeight > 3000 && nHeight <= 100000) {
+        nSubsidy = 25000000 * COIN; // MONKey and MALW+token combined coin supply
+    } else if (nHeight <= 100000) {
         nSubsidy = 12 * COIN;
     } else if (nHeight > 100001 && nHeight <= 200000) {
         nSubsidy = 25 * COIN;
@@ -374,7 +371,7 @@ CAmount CMasternode::GetBlockValue(int nHeight)
         nSubsidy = 500 * COIN;
     } else if (nHeight > 900001 && nHeight <= 1000000) {
         nSubsidy = 350 * COIN;
-    } else if (nHeight > 1000000) {
+    } else {
         nSubsidy = 250 * COIN;
     }
 

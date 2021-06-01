@@ -79,15 +79,15 @@ BOOST_AUTO_TEST_CASE(netbase_splithost)
     BOOST_CHECK(TestSplitHost("www.bitcoin.org:80", "www.bitcoin.org", 80));
     BOOST_CHECK(TestSplitHost("[www.bitcoin.org]:80", "www.bitcoin.org", 80));
     BOOST_CHECK(TestSplitHost("127.0.0.1", "127.0.0.1", -1));
-    BOOST_CHECK(TestSplitHost("127.0.0.1:15551", "127.0.0.1", __PORT_MAINNET__));
+    BOOST_CHECK(TestSplitHost("127.0.0.1:32270", "127.0.0.1", __PORT_MAINNET__));
     BOOST_CHECK(TestSplitHost("[127.0.0.1]", "127.0.0.1", -1));
-    BOOST_CHECK(TestSplitHost("[127.0.0.1]:15551", "127.0.0.1", __PORT_MAINNET__));
+    BOOST_CHECK(TestSplitHost("[127.0.0.1]:32270", "127.0.0.1", __PORT_MAINNET__));
     BOOST_CHECK(TestSplitHost("::ffff:127.0.0.1", "::ffff:127.0.0.1", -1));
-    BOOST_CHECK(TestSplitHost("[::ffff:127.0.0.1]:15551", "::ffff:127.0.0.1", __PORT_MAINNET__));
-    BOOST_CHECK(TestSplitHost("[::]:15551", "::", __PORT_MAINNET__));
-    BOOST_CHECK(TestSplitHost("::15551", "::15551", -1));
-    BOOST_CHECK(TestSplitHost(":15551", "", __PORT_MAINNET__));
-    BOOST_CHECK(TestSplitHost("[]:15551", "", __PORT_MAINNET__));
+    BOOST_CHECK(TestSplitHost("[::ffff:127.0.0.1]:32270", "::ffff:127.0.0.1", __PORT_MAINNET__));
+    BOOST_CHECK(TestSplitHost("[::]:32270", "::", __PORT_MAINNET__));
+    BOOST_CHECK(TestSplitHost("::32270", "::32270", -1));
+    BOOST_CHECK(TestSplitHost(":32270", "", __PORT_MAINNET__));
+    BOOST_CHECK(TestSplitHost("[]:32270", "", __PORT_MAINNET__));
     BOOST_CHECK(TestSplitHost("", "", -1));
 }
 
