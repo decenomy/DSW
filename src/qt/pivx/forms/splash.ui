@@ -273,7 +273,7 @@
 									</string>
 								</property>
 								<property name="text">
-									<string>VERSION 1.4.1</string>
+									<string></string>
 								</property>
 								<property name="alignment">
 									<set>Qt::AlignTop|Qt::AlignLeft</set>

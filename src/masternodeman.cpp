@@ -15,7 +15,6 @@
 #include "netbase.h"
 #include "netmessagemaker.h"
 #include "spork.h"
-#include "swifttx.h"
 #include "util.h"
 
 #include <boost/thread/thread.hpp>
@@ -869,7 +868,6 @@ void ThreadCheckMasternodes()
                 if (c % 60 == 0) {
                     mnodeman.CheckAndRemove();
                     masternodePayments.CleanPaymentList();
-                    CleanTransactionLocksList();
                 }
             }
         }
