@@ -183,9 +183,9 @@ public:
 
         // spork keys
         consensus.strSporkPubKey = "02d8e66d000dbe1c014cf7d0a1fe89fec297d78603cb5d0b1a17ec0e6809e9271d";
-        consensus.strSporkPubKeyOld = "04923AAEF36DE7CBC1C400EE34267F05C36C76D68CCC2A0026359E114D87DB2715FE1D22C101BC12E106787910C75CCCC253838840081E4D1FC0FF1DB6ABA487FA";
-        consensus.nTime_EnforceNewSporkKey = 1612483200;    // 02/05/2021 @ 12:00am (UTC)
-        consensus.nTime_RejectOldSporkKey = 1612483200;     // 02/05/2021 @ 12:00am (UTC)
+        consensus.strSporkPubKeyOld = "";
+        consensus.nTime_EnforceNewSporkKey = 0;
+        consensus.nTime_RejectOldSporkKey = 0;
 
         // height-based activations
         consensus.height_last_ZC_AccumCheckpoint    = DISABLED;
