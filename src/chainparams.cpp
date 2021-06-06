@@ -172,8 +172,8 @@ public:
         consensus.nMaxMoneyOut = 43199500 * COIN;
         consensus.nPoolMaxTransactions = 3;
         consensus.nProposalEstablishmentTime = 60 * 60 * 24;    // must be at least a day old to make it into a budget
-        consensus.nStakeMinAge = 1 * 150 * 60;
-        consensus.nStakeMinDepth = 60;
+        consensus.nStakeMinAge = 15 * 150;
+        consensus.nStakeMinDepth = 15;
         consensus.nStakeMinDepthV2 = 600;
         consensus.nTargetTimespan = 40;
         consensus.nTargetTimespanV2 = 30;
