@@ -101,7 +101,7 @@
                <number>0</number>
               </property>
               <property name="topMargin">
-               <number>0</number>
+               <number>8</number>
               </property>
               <property name="rightMargin">
                <number>0</number>
@@ -119,7 +119,7 @@
               <item>
                <widget class="QLabel" name="labelAmountPiv">
                 <property name="text">
-                 <string notr="true">480.0685 SAPP</string>
+                 <string notr="true">-- DASHD</string>
                 </property>
                </widget>
               </item>
@@ -162,7 +162,7 @@
                  <string notr="true">padding:0px;margin:0px;</string>
                 </property>
                 <property name="text">
-                 <string notr="true">480.0685 SAPP</string>
+                 <string notr="true">-- DASHD</string>
                 </property>
                </widget>
               </item>
@@ -306,16 +306,6 @@
                <height>36</height>
               </size>
              </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="ExpandableButton" name="pushButtonColdStaking" native="true">
-             <property name="minimumSize">
-              <size>
-               <width>36</width>
-               <height>36</height>
-              </size>
-             </property>
              <property name="maximumSize">
               <size>
                <width>16777215</width>
@@ -438,6 +428,9 @@
          </property>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <property name="spacing">
+            <number>0</number>
+           </property>
            <property name="bottomMargin">
             <number>9</number>
            </property>
@@ -450,7 +443,7 @@
               <number>0</number>
              </property>
              <property name="rightMargin">
-              <number>30</number>
+              <number>0</number>
              </property>
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -458,7 +451,7 @@
                 <number>0</number>
                </property>
                <item>
-                <layout class="QVBoxLayout" name="verticalLayout_5">
+                <layout class="QVBoxLayout" name="verticalLayout_6">
                  <item>
                   <widget class="QLabel" name="labelTitle5">
                    <property name="text">
@@ -469,7 +462,7 @@
                  <item>
                   <widget class="QLabel" name="labelAvailablePiv">
                    <property name="text">
-                    <string>1.234 DASHD</string>
+                    <string>-- DASHD</string>
                    </property>
                   </widget>
                  </item>
@@ -483,30 +476,17 @@
                  <item>
                   <widget class="QLabel" name="labelImmaturePiv">
                    <property name="text">
-                    <string notr="true">10 DASHD</string>
+                    <string notr="true">- DASHD</string>
                    </property>
                   </widget>
                  </item>
                 </layout>
                </item>
                <item>
-                <spacer name="horizontalSpacer_3">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                <layout class="QVBoxLayout" name="verticalLayout_8">
+                 <property name="leftMargin">
+                  <number>32</number>
                  </property>
-                 <property name="sizeType">
-                  <enum>QSizePolicy::Fixed</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <layout class="QVBoxLayout" name="verticalLayout_6">
                  <item>
                   <widget class="QLabel" name="labelTitle6">
                    <property name="text">
@@ -517,7 +497,7 @@
                  <item>
                   <widget class="QLabel" name="labelLockedPiv">
                    <property name="text">
-                    <string>345 SAPP</string>
+                    <string>-- DASHD</string>
                    </property>
                   </widget>
                  </item>
@@ -531,7 +511,7 @@
                  <item>
                   <widget class="QLabel" name="labelPendingPiv">
                    <property name="text">
-                    <string notr="true">6.943 DASHD</string>
+                    <string notr="true">-- DASHD</string>
                    </property>
                   </widget>
                  </item>
@@ -558,8 +538,11 @@
          </item>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_6">
+           <property name="spacing">
+            <number>0</number>
+           </property>
            <property name="rightMargin">
-            <number>10</number>
+            <number>0</number>
            </property>
            <property name="bottomMargin">
             <number>9</number>
@@ -576,7 +559,7 @@
              <item>
               <widget class="QLabel" name="labelMasternodeCount">
                <property name="text">
-                <string>10/11</string>
+                <string>-/-</string>
                </property>
               </widget>
              </item>
@@ -590,11 +573,57 @@
              <item>
               <widget class="QLabel" name="labelCollateralPiv">
                <property name="text">
-                <string notr="true">200000 SAPP</string>
+                <string notr="true">-- DASHD</string>
                </property>
               </widget>
              </item>
             </layout>
+           </item>
+           <item>
+            <widget class="QWidget" name="widgetNextCollateral" native="true">
+             <layout class="QVBoxLayout" name="verticalLayout_12">
+              <property name="leftMargin">
+               <number>32</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="labelNextMasternodesTitle">
+                <property name="text">
+                 <string>Next Collateral</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="labelNextCollateralValue">
+                <property name="text">
+                 <string>-- DASHD</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="labelTitle9">
+                <property name="text">
+                 <string>In</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="labelNextCollateralBlocks">
+                <property name="text">
+                 <string notr="true">-- Blocks</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
            </item>
           </layout>
          </item>

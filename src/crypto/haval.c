@@ -577,38 +577,6 @@ static const sph_u32 RK5[32] = {
 		UPDATE_STATE; \
 	} while (0)
 
-/*
- * DSTATE declares the state variables "s0" to "s7".
- */
-#define DSTATE   sph_u32 s0, s1, s2, s3, s4, s5, s6, s7
-
-/*
- * RSTATE fills the state variables from the context "sc".
- */
-#define RSTATE   do { \
-		s0 = sc->s0; \
-		s1 = sc->s1; \
-		s2 = sc->s2; \
-		s3 = sc->s3; \
-		s4 = sc->s4; \
-		s5 = sc->s5; \
-		s6 = sc->s6; \
-		s7 = sc->s7; \
-	} while (0)
-
-/*
- * WSTATE updates the context "sc" from the state variables.
- */
-#define WSTATE   do { \
-		sc->s0 = s0; \
-		sc->s1 = s1; \
-		sc->s2 = s2; \
-		sc->s3 = s3; \
-		sc->s4 = s4; \
-		sc->s5 = s5; \
-		sc->s6 = s6; \
-		sc->s7 = s7; \
-	} while (0)
 
 /*
  * Initialize a context. "olen" is the output length, in 32-bit words
@@ -636,26 +604,6 @@ haval_init(sph_haval_context *sc, unsigned olen, unsigned passes)
 #endif
 	
 }
-
-/*
- * IN_PREPARE(data) contains declarations and code to prepare for
- * reading input words pointed to by "data".
- * INW(i) reads the word number "i" (from 0 to 31).
- */
-#if SPH_LITTLE_FAST
-#define IN_PREPARE(indata)   const unsigned char *const load_ptr = \
-                             (const unsigned char *)(indata)
-#define INW(i)   sph_dec32le_aligned(load_ptr + 4 * (i))
-#else
-#define IN_PREPARE(indata) \
-	sph_u32 X_var[32]; \
-	int load_index; \
- \
-	for (load_index = 0; load_index < 32; load_index ++) \
-		X_var[load_index] = sph_dec32le_aligned( \
-			(const unsigned char *)(indata) + 4 * load_index)
-#define INW(i)   X_var[i]
-#endif
 
 /*
  * Mixing operation used for 128-bit output tailoring. This function

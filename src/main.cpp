@@ -37,7 +37,6 @@
 #include "pow.h"
 #include "spork.h"
 #include "sporkdb.h"
-#include "swifttx.h"
 #include "txdb.h"
 #include "txmempool.h"
 #include "guiinterface.h"
@@ -758,21 +757,6 @@ unsigned int LimitOrphanTxSize(unsigned int nMaxOrphans) EXCLUSIVE_LOCKS_REQUIRE
     return nEvicted;
 }
 
-int GetIXConfirmations(uint256 nTXHash)
-{
-    int sigs = 0;
-
-    std::map<uint256, CTransactionLock>::iterator i = mapTxLocks.find(nTXHash);
-    if (i != mapTxLocks.end()) {
-        sigs = (*i).second.CountSignatures();
-    }
-    if (sigs >= SWIFTTX_SIGNATURES_REQUIRED) {
-        return nSwiftTXDepth;
-    }
-
-    return 0;
-}
-
 bool CheckFinalTx(const CTransaction& tx, int flags)
 {
     AssertLockHeld(cs_main);
@@ -865,9 +849,8 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState &state, const C
 
     // Check transaction
     int chainHeight = chainActive.Height();
-    bool fColdStakingActive = sporkManager.IsSporkActive(SPORK_19_COLDSTAKING_ENFORCEMENT);
     if (!CheckTransaction(tx, consensus.NetworkUpgradeActive(chainHeight, Consensus::UPGRADE_ZC),
-            true, state, isBlockBetweenFakeSerialAttackRange(chainHeight), fColdStakingActive))
+            true, state, isBlockBetweenFakeSerialAttackRange(chainHeight)))
         return error("%s : transaction checks for %s failed with %s", __func__, tx.GetHash().ToString(), FormatStateMessage(state));
 
     // Coinbase is only valid in a block, not as a loose transaction
@@ -892,16 +875,6 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState &state, const C
     uint256 hash = tx.GetHash();
     if (pool.exists(hash)) {
         return state.Invalid(false, REJECT_ALREADY_KNOWN, "txn-already-in-mempool");
-    }
-
-    // ----------- swiftTX transaction scanning -----------
-
-    for (const CTxIn& in : tx.vin) {
-        if (mapLockedInputs.count(in.prevout)) {
-            if (mapLockedInputs[in.prevout] != tx.GetHash()) {
-                return state.DoS(0, false, REJECT_INVALID, "tx-lock-conflict");
-            }
-        }
     }
 
     bool hasZcSpendInputs = tx.HasZerocoinSpendInputs();
@@ -1159,18 +1132,6 @@ bool AcceptableInputs(CTxMemPool& pool, CValidationState& state, const CTransact
     uint256 hash = tx.GetHash();
     if (pool.exists(hash))
         return false;
-
-    // ----------- swiftTX transaction scanning -----------
-    std::string reason;
-    for (const CTxIn& in : tx.vin) {
-        if (mapLockedInputs.count(in.prevout)) {
-            if (mapLockedInputs[in.prevout] != tx.GetHash()) {
-                return state.DoS(0,
-                    error("AcceptableInputs : conflicts with existing transaction lock: %s", reason),
-                    REJECT_INVALID, "tx-lock-conflict");
-            }
-        }
-    }
 
     // Check for conflicts with in-memory transactions
     if (!tx.HasZerocoinSpendInputs()) {
@@ -3324,52 +3285,6 @@ bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool f
     return true;
 }
 
-bool CheckColdStakeFreeOutput(const CTransaction& tx, const int nHeight)
-{
-    if (!tx.HasP2CSOutputs())
-        return true;
-
-    const unsigned int outs = tx.vout.size();
-    const CTxOut& lastOut = tx.vout[outs-1];
-    if (outs >=3 && lastOut.scriptPubKey != tx.vout[outs-2].scriptPubKey) {
-        if (lastOut.nValue == CMasternode::GetMasternodePayment(nHeight))
-            return true;
-
-        // This could be a budget block.
-        if (Params().IsRegTestNet())
-            return false;
-
-        // if mnsync is incomplete, we cannot verify if this is a budget block.
-        // so we check that the staker is not transferring value to the free output
-        if (!masternodeSync.IsSynced()) {
-            // First try finding the previous transaction in database
-            CTransaction txPrev; uint256 hashBlock;
-            if (!GetTransaction(tx.vin[0].prevout.hash, txPrev, hashBlock, true))
-                return error("%s : read txPrev failed: %s",  __func__, tx.vin[0].prevout.hash.GetHex());
-            CAmount amtIn = txPrev.vout[tx.vin[0].prevout.n].nValue + CMasternode::GetBlockValue(nHeight - 1);
-            CAmount amtOut = 0;
-            for (unsigned int i = 1; i < outs-1; i++) amtOut += tx.vout[i].nValue;
-            if (amtOut != amtIn)
-                return error("%s: non-free outputs value %d less than required %d", __func__, amtOut, amtIn);
-            return true;
-        }
-
-        // Check that this is indeed a superblock.
-        if (budget.IsBudgetPaymentBlock(nHeight)) {
-            // if superblocks are not enabled, reject
-            if (!sporkManager.IsSporkActive(SPORK_13_ENABLE_SUPERBLOCKS))
-                return error("%s: superblocks are not enabled", __func__);
-            return true;
-        }
-
-        // wrong free output
-        return error("%s: Wrong cold staking outputs: vout[%d].scriptPubKey (%s) != vout[%d].scriptPubKey (%s) - value: %s",
-                __func__, outs-1, HexStr(lastOut.scriptPubKey), outs-2, HexStr(tx.vout[outs-2].scriptPubKey), FormatMoney(lastOut.nValue).c_str());
-    }
-
-    return true;
-}
-
 bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bool fCheckMerkleRoot, bool fCheckSig)
 {
     if (block.fChecked)
@@ -3426,28 +3341,6 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                 return state.DoS(100, false, REJECT_INVALID, "bad-cs-multiple", false, "more than one coinstake");
     }
 
-    // ----------- swiftTX transaction scanning -----------
-    if (sporkManager.IsSporkActive(SPORK_3_SWIFTTX_BLOCK_FILTERING)) {
-        for (const CTransaction& tx : block.vtx) {
-            if (!tx.IsCoinBase()) {
-                //only reject blocks when it's based on complete consensus
-                for (const CTxIn& in : tx.vin) {
-                    if (mapLockedInputs.count(in.prevout)) {
-                        if (mapLockedInputs[in.prevout] != tx.GetHash()) {
-                            mapRejectedBlocks.insert(std::make_pair(block.GetHash(), GetTime()));
-                            return state.DoS(100, false, REJECT_INVALID, "conflicting-tx-ix", false, "conflicting tx with instantsend lock");
-                        }
-                    }
-                }
-            }
-        }
-    } else {
-        LogPrintf("%s : skipping transaction locking checks\n", __func__);
-    }
-
-    // Cold Staking enforcement (true during sync - reject P2CS outputs when false)
-    bool fColdStakingActive = true;
-
     // Zerocoin activation
     bool fZerocoinActive = block.GetBlockTime() > Params().GetConsensus().ZC_TimeStart;
 
@@ -3470,15 +3363,6 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
         // The case also exists that the sending peer could not have enough data to see
         // that this block is invalid, so don't issue an outright ban.
         if (nHeight != 0 && !IsInitialBlockDownload()) {
-            // Last output of Cold-Stake is not abused
-            if (IsPoS && !CheckColdStakeFreeOutput(block.vtx[1], nHeight)) {
-                mapRejectedBlocks.insert(std::make_pair(block.GetHash(), GetTime()));
-                return state.DoS(0, false, REJECT_INVALID, "bad-p2cs-outs", false, "invalid cold-stake output");
-            }
-
-            // set Cold Staking Spork
-            fColdStakingActive = sporkManager.IsSporkActive(SPORK_19_COLDSTAKING_ENFORCEMENT);
-
             // check masternode/budget payment
             if (!IsBlockPayeeValid(block, nHeight)) {
                 mapRejectedBlocks.insert(std::make_pair(block.GetHash(), GetTime()));
@@ -3499,8 +3383,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                 fZerocoinActive,
                 blockHeight >= Params().GetConsensus().height_start_ZC_SerialRangeCheck,
                 state,
-                isBlockBetweenFakeSerialAttackRange(blockHeight),
-                fColdStakingActive
+                isBlockBetweenFakeSerialAttackRange(blockHeight)
         ))
             return state.Invalid(false, state.GetRejectCode(), state.GetRejectReason(),
                                              strprintf("Transaction check failed (tx hash %s) %s", tx.GetHash().ToString(), state.GetDebugMessage()));
@@ -4852,11 +4735,6 @@ bool static AlreadyHave(const CInv& inv) EXCLUSIVE_LOCKS_REQUIRED(cs_main)
 
     case MSG_BLOCK:
         return mapBlockIndex.count(inv.hash);
-    case MSG_TXLOCK_REQUEST:
-        return mapTxLockReq.count(inv.hash) ||
-               mapTxLockReqRejected.count(inv.hash);
-    case MSG_TXLOCK_VOTE:
-        return mapTxLockVote.count(inv.hash);
     case MSG_SPORK:
         return mapSporks.count(inv.hash);
     case MSG_MASTERNODE_WINNER:
@@ -5043,25 +4921,6 @@ void static ProcessGetData(CNode* pfrom, CConnman& connman, std::atomic<bool>& i
                         pushed = true;
                     }
                 }
-
-                if (!pushed && inv.type == MSG_TXLOCK_VOTE) {
-                    if (mapTxLockVote.count(inv.hash)) {
-                        CDataStream ss(SER_NETWORK, PROTOCOL_VERSION);
-                        ss.reserve(1000);
-                        ss << mapTxLockVote[inv.hash];
-                        connman.PushMessage(pfrom, msgMaker.Make(NetMsgType::IXLOCKVOTE, ss));
-                        pushed = true;
-                    }
-                }
-                if (!pushed && inv.type == MSG_TXLOCK_REQUEST) {
-                    if (mapTxLockReq.count(inv.hash)) {
-                        CDataStream ss(SER_NETWORK, PROTOCOL_VERSION);
-                        ss.reserve(1000);
-                        ss << mapTxLockReq[inv.hash];
-                        connman.PushMessage(pfrom, msgMaker.Make(NetMsgType::IX, ss));
-                        pushed = true;
-                    }
-                }
                 if (!pushed && inv.type == MSG_SPORK) {
                     if (mapSporks.count(inv.hash)) {
                         CDataStream ss(SER_NETWORK, PROTOCOL_VERSION);
@@ -5195,14 +5054,14 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
             return false;
         }
 
-        if (pfrom->DisconnectOldProtocol(nVersion, ActiveProtocol(), strCommand))
-            return false;
-
-        if (pfrom->nServices == NODE_NONE && sporkManager.IsSporkActive(SPORK_101_SERVICES_ENFORCEMENT)) {
+        if (nServices == NODE_NONE && sporkManager.IsSporkActive(SPORK_101_SERVICES_ENFORCEMENT)) {
             LOCK(cs_main);
             Misbehaving(pfrom->GetId(), 100);
             return error("No services on version message");
         }
+
+        if (pfrom->DisconnectOldProtocol(nVersion, ActiveProtocol(), strCommand))
+            return false;
 
         if (nVersion == 10300)
             nVersion = 300;
@@ -5321,7 +5180,6 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
         // TODO: Move this to an instant broadcast of the sporks.
         bool fMissingSporks = !pSporkDB->SporkExists(SPORK_14_MIN_PROTOCOL_ACCEPTED) ||
                               !pSporkDB->SporkExists(SPORK_16_ZEROCOIN_MAINTENANCE_MODE) ||
-                              !pSporkDB->SporkExists(SPORK_19_COLDSTAKING_ENFORCEMENT) ||
                               !pSporkDB->SporkExists(SPORK_20_ZEROCOIN_PUBLICSPEND_V4);
 
         if (fMissingSporks || !fRequestedSporksIDB) {
@@ -5985,7 +5843,6 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
             mnodeman.ProcessMessage(pfrom, strCommand, vRecv);
             budget.ProcessMessage(pfrom, strCommand, vRecv);
             masternodePayments.ProcessMessageMasternodePayments(pfrom, strCommand, vRecv);
-            ProcessMessageSwiftTX(pfrom, strCommand, vRecv);
             sporkManager.ProcessSpork(pfrom, strCommand, vRecv);
             masternodeSync.ProcessMessage(pfrom, strCommand, vRecv);
         } else {

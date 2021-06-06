@@ -21,6 +21,8 @@
 std::map<uint256, int> mapSeenMasternodeScanningErrors;
 // cache block hashes as we calculate them
 std::map<int64_t, uint256> mapCacheBlockHashes;
+// cache collaterals
+std::vector<std::pair<int,CAmount>> vecCollaterals;
 
 //Get the last hash that matches the modulus given. Processed in reverse order
 bool GetBlockHash(uint256& hash, int nBlockHeight)
@@ -412,6 +414,27 @@ CAmount CMasternode::GetMasternodePayment(int nHeight)
 	}
 
     return ret;
+}
+
+void CMasternode::InitMasternodeCollateralList() {
+    CAmount prev = -1; 
+    for(int i = 0; i < 9999999; i++) {
+        CAmount c = GetMasternodeNodeCollateral(i);
+        if(prev != c) {
+            LogPrint(BCLog::MASTERNODE, "%s: Found collateral %d at block %d\n", __func__, c / COIN, i); 
+            prev = c;
+            vecCollaterals.push_back(std::make_pair(i, c));
+        }
+    }
+}
+
+std::pair<int, CAmount> CMasternode::GetNextMasternodeCollateral(int nHeight) {
+    for(auto p : vecCollaterals) {
+        if(p.first > nHeight) {
+            return std::make_pair(p.first - nHeight, p.second);
+        }
+    }
+    return std::make_pair(-1, -1);
 }
 
 CMasternodeBroadcast::CMasternodeBroadcast() :
@@ -819,10 +842,12 @@ CMasternodePing::CMasternodePing(CTxIn& newVin) :
 
 uint256 CMasternodePing::GetHash() const
 {
+    int64_t salt = sporkManager.GetSporkValue(SPORK_103_PING_MESSAGE_SALT);
     CHashWriter ss(SER_GETHASH, PROTOCOL_VERSION);
     ss << vin;
     if (nMessVersion == MessageVersion::MESS_VER_HASH) ss << blockHash;
     ss << sigTime;
+    if (salt > 0) ss << salt;
     return ss.GetHash();
 }
 
@@ -830,10 +855,10 @@ std::string CMasternodePing::GetStrMessage() const
 {
     int64_t salt = sporkManager.GetSporkValue(SPORK_103_PING_MESSAGE_SALT);
 
-    if (salt != 0) {
-        return vin.ToString() + blockHash.ToString() + std::to_string(sigTime) + std::to_string(salt);
-    } else {
+    if(salt == 0) {
         return vin.ToString() + blockHash.ToString() + std::to_string(sigTime);
+    } else {
+        return vin.ToString() + blockHash.ToString() + std::to_string(sigTime) + std::to_string(salt);
     }
 }
 
