@@ -1,17 +1,17 @@
-![Example-Logo](https://avatars.githubusercontent.com/u/74193190?v=4)
+![image](https://user-images.githubusercontent.com/69646256/121048362-8bf6c200-c7d8-11eb-9680-85f2dac5c55b.png)
 
-# __Decenomy__ Masternode Setup Guide
+# MONK Masternode Setup Guide
 ***
 ## Required
-1) **__DSW_Collateral_Value__ __DSW__ coins**
-2) **Local Wallet https://github.com/decenomy/DSW/releases**
+1) **4000 MONK**
+2) **Local Wallet https://github.com/decenomy/MONK/releases**
 3) **VPS with UBUNTU 16.04 or 18.04**
 4) **Putty https://www.putty.org/**
 5) **Text editor on your local pc to save data for copy/paste**
 ***
 
 ***On your Local Wallet***
-* Create an address with a label MN1 and send exactly __DSW_Collateral_Value__ __DSW__ to it. Wait to complete 6 confirmations on “ Payment to yourself “ created.
+* Create an address with a label MN1 and send exactly 4000 MONK to it. Wait to complete 6 confirmations on “ Payment to yourself “ created.
 
 * Open the Debug Console ( Tools – Debug Console ) and type ***createmasternodekey***.
 You will then receive your private key, save it in a txt to use it later.
@@ -29,7 +29,7 @@ You will then receive your private key, save it in a txt to use it later.
 
 * Once logged in your vps, *copy/past* each line one by one with *Enter*
 
-	:arrow_forward: `wget -q https://raw.githubusercontent.com/decenomy/DSW/master/contrib/masternodesetup/masternodesetup.sh`
+	:arrow_forward: `wget -q https://raw.githubusercontent.com/decenomy/DSW/MONK-develop/contrib/masternodesetup/masternodesetup.sh`
 
 	:arrow_forward: `bash masternodesetup.sh`
 
@@ -40,14 +40,14 @@ You will then receive your private key, save it in a txt to use it later.
 
 * Last thing script will ask you is to provide Masternode Genkey. Copy the one you got previously (createmasternodekey) and press enter.
 
-Remember to do `__decenomy__-cli getblockcount` to check if VPS catching blocks till it synced with chain, if not follow this procedure:
+Remember to do `monk-cli getblockcount` to check if VPS catching blocks till it synced with chain, if not follow this procedure:
 
-* Go to your wallet-qt and check peers list (tools - peers list) and select one ip from the list. With that ip do the follow command at VPS `__decenomy__-cli addnode "ip" onetry`
+* Go to your wallet-qt and check peers list (tools - peers list) and select one ip from the list. With that ip do the follow command at VPS `monk-cli addnode "ip" onetry`
 
       Example:
-		  __decenomy__-cli addnode 45.32.144.158 onetry
+		  monk-cli addnode 45.32.144.158 onetry
     
-* Check now if VPS already downloading blocks with the command `__decenomy__-cli getblockcount`, and if yes give it time now to catch last block number 
+* Check now if VPS already downloading blocks with the command `monk-cli getblockcount`, and if yes give it time now to catch last block number 
 
 Do not close your terminal/ command prompt window at this point.
 
@@ -55,10 +55,10 @@ Do not close your terminal/ command prompt window at this point.
 
 * Open the Masternode Configuration file (tools – open masternode configuration file) and add a new line (without #) using this template (bold needs to be changed) in the final save it and close the editor
 
-**ALIAS VPS_IP**:__PORT_MAINNET__ **masternodeprivkey TXhash Output**
+**ALIAS VPS_IP**:32270 **masternodeprivkey TXhash Output**
 
 		Example:
-		MN1 125.67.32.10:__PORT_MAINNET__ w8723KqiiqtiLH6y2ktjfwzuSrNucGAbagpmTmCn1KnNEeQTJKf 12fce79c1a5623aa5b5830abff1a9feb6a682b75ee9fe22c647725a3gef42saa 0
+		MN1 125.67.32.10:32270 w8723KqiiqtiLH6y2ktjfwzuSrNucGAbagpmTmCn1KnNEeQTJKf 12fce79c1a5623aa5b5830abff1a9feb6a682b75ee9fe22c647725a3gef42saa 0
 
 * Close and Re-open Local Wallet, and at Masternode Tab you will find your MN with status MISSING
 
@@ -72,8 +72,8 @@ Do not close your terminal/ command prompt window at this point.
 
 ***Go back to Putty***
 
-   :arrow_forward: `__decenomy__-cli getmasternodestatus`
+   :arrow_forward: `monk-cli getmasternodestatus`
 
 You need to get **"status" : 4**
 
-## Congratulations your __Decenomy__ node it's running
+## Congratulations your monk node it's running
