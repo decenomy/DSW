@@ -1,16 +1,16 @@
 #!/bin/bash
 
 TMP_FOLDER=$(mktemp -d)
-CONFIG_FILE='__decenomy__.conf'
-CONFIGFOLDER='/root/.__decenomy__'
-COIN_DAEMON='__decenomy__d'
-COIN_CLI='__decenomy__-cli'
+CONFIG_FILE='monk.conf'
+CONFIGFOLDER='/root/.monk'
+COIN_DAEMON='monkd'
+COIN_CLI='monk-cli'
 COIN_PATH='/usr/local/bin/'
-COIN_TGZ='https://github.com/decenomy/DSW/releases/download/vX.X.X.X/_Decenomy_-X.X.X.X-Linux.zip'
+COIN_TGZ='https://github.com/decenomy/MONK/releases/download/v3.0.0.0/MONK-3.0.0.0-Linux.zip'
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
-COIN_NAME='__decenomy__'
-COIN_PORT=__PORT_MAINNET__
-RPC_PORT=__RPCPORT_MAINNET__
+COIN_NAME='monk'
+COIN_PORT=32270
+RPC_PORT=32271
 
 NODEIP=$(curl -s4 icanhazip.com)
 
@@ -249,8 +249,8 @@ function important_information() {
  echo -e "${GREEN}Stop:${NC}${RED}systemctl stop $COIN_NAME.service${NC}"
  echo -e "${GREEN}VPS_IP:${NC}${GREEN}$NODEIP:$COIN_PORT${NC}"
  echo -e "${GREEN}Usage Commands.${NC}"
- echo -e "${GREEN}__decenomy__-cli getmasternodestatus${NC}"
- echo -e "${GREEN}__decenomy__-cli getinfo${NC}"
+ echo -e "${GREEN}monk-cli getmasternodestatus${NC}"
+ echo -e "${GREEN}monk-cli getinfo${NC}"
  echo -e "${BLUE}================================================================================================================================${NC}"
  
  }
