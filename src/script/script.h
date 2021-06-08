@@ -794,8 +794,8 @@ public:
     }
 
     CScript ConstructContractScript(CScriptContract& contract);
-    uint256 GetConsensusScriptHash(HashType hashType) const;
-    uint256 GetContractHash(HashType hashType) const;
+    uint256 GetConsensusScriptHash(HashType hashType = TYPE_X11KVS) const;
+    uint256 GetContractHash(HashType hashType = TYPE_X11KVS) const;
     bool RunContractScript();
     void ChangeStatus(const bool status);
 };

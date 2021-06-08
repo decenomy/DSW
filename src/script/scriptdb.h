@@ -47,12 +47,12 @@ public:
     {
         return contract.IsNull();
     }
-    bool WriteContract(const uint256 consensusScriptHash, const CScriptContract contract);
-    bool ReadContract(const uint256 consensusScriptHash, CScriptContract& contract);
+    bool WriteContract(const uint256 contractHash, const CScriptContract contract);
+    bool ReadContract(const uint256 contractHash, CScriptContract& contract);
     // bool EraseContract(CScriptContract& contract); // TODO: Erasing Scripts from database can be dangerous so maybe it should just be marked as 'DISABLED' if it's strictly needed
-    bool ContractExists(const CScriptContract& contract);
+    bool ContractExists(const uint256 contractHash, const CScriptContract& contract);
 
-    bool UpdateContractStatus(uint256& consensusScriptHash, const bool status, CScriptContract& contract);
+    bool UpdateContractStatus(uint256& contractHash, const bool status, CScriptContract& contract);
 
 private:
     CScriptDB(const CScriptDB&);

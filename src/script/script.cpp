@@ -318,7 +318,7 @@ bool CScriptContract::RunContractScript()
     return result;
 }
 
-uint256 CScriptContract::GetConsensusScriptHash(HashType hashType = TYPE_X11KVS) const
+uint256 CScriptContract::GetConsensusScriptHash(HashType hashType) const
 {
     std::string IpfsHash; // TODO: Generate IPFS hash
     uint256 hash;
@@ -352,7 +352,7 @@ uint256 CScriptContract::GetConsensusScriptHash(HashType hashType = TYPE_X11KVS)
     }
 }
 
-uint256 CScriptContract::GetContractHash(HashType hashType = TYPE_X11KVS) const
+uint256 CScriptContract::GetContractHash(HashType hashType) const
 {
     std::string IpfsHash; // TODO: Generate IPFS hash
     uint256 hash;

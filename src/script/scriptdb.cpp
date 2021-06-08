@@ -6,39 +6,43 @@
 #include "script/script.h"
 #include "dbwrapper.h"
 
-bool CScriptDB::WriteContract(const uint256 consensusScriptHash, const CScriptContract contract)
+bool CScriptDB::WriteContract(const uint256 contractHash, const CScriptContract contract)
 {
     // TODO: Maybe we should check script validity here before we write it to the database
-    uint256 hash = contract.GetConsensusScriptHash(TYPE_X11KVS);
     return true; // Write(consensusScriptHash, contract);
 }
 
-bool CScriptDB::ReadContract(const uint256 consensusScriptHash, CScriptContract& contract)
+bool CScriptDB::ReadContract(const uint256 contractHash, CScriptContract& contract)
 {
     return true; // Read(consensusScriptHash, contract);
 }
 
 // TODO: Erasing Scripts from database can be dangerous so maybe it should just be marked as 'DISABLED' if this it's needed
-// bool CScriptDB::EraseContract(CScriptContract& contract)
+// bool CScriptDB::EraseContract(const uint256 contractHash)
 // {
-//     return Erase(contract.GetConsensusScriptHash(contract, TYPE_X11KVS));
+//     return Erase(contractHash);
 // }
 
-bool CScriptDB::ContractExists(const CScriptContract& contract)
+bool CScriptDB::ContractExists(const uint256 contractHash, const CScriptContract& contract)
 {
-    uint256 hash = contract.GetConsensusScriptHash(TYPE_X11KVS);
-    return true; // Exists(hash);
+    uint256 hash = contract.GetContractHash();
+    if (hash != contractHash)
+    {
+        LogPrintf("%s : ERROR: Given contract hash is not correct.\n", __func__);
+        return false;
+    }
+    return true; // Exists(contractHash);
 }
 
-bool CScriptDB::UpdateContractStatus(uint256& consensusScriptHash, const bool status, CScriptContract& contract)
+bool CScriptDB::UpdateContractStatus(uint256& contractHash, const bool status, CScriptContract& contract)
 {
-    if (!this->ReadContract(consensusScriptHash, contract))
+    if (!this->ReadContract(contractHash, contract))
     {
         LogPrintf("%s : ERROR: Failed to find the contract\n", __func__);
         return false;
     }
 
     contract.status = status;
-    consensusScriptHash = contract.GetConsensusScriptHash(TYPE_X11KVS);
-    return this->WriteContract(consensusScriptHash, contract);
+    contractHash = contract.GetContractHash();
+    return this->WriteContract(contractHash, contract);
 }

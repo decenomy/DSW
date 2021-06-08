@@ -1055,7 +1055,7 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
                     contract.runDeadLine = uint256(stacktop(-4)).Get64();
                     contract.duration = uint256(stacktop(-5)).Get64();
                     contract.consensusScript = CScript(stacktop(-6));
-                    uint256 hash = contract.GetConsensusScriptHash(TYPE_X11KVS);
+                    uint256 hash = contract.GetContractHash(); // Default 'HashType hashType' is TYPE_X11KVS
                     std::vector<unsigned char> contractName = stacktop(-7);
 
                     CScript contractScript = contract.ConstructContractScript(contract);
