@@ -3,7 +3,7 @@
 # __Decenomy__ Masternode Setup Guide
 ***
 ## Required
-1) **__DSW_Collateral_Value__ __DSW__ coins**
+1) **__DSW__ collateral value at current block** ([consult the collateral table](../../README.md#rewards-breakdown))
 2) **Local Wallet https://github.com/decenomy/DSW/releases**
 3) **VPS with UBUNTU 16.04 or 18.04**
 4) **Putty https://www.putty.org/**
