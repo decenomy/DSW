@@ -706,9 +706,9 @@ public:
 };
 
 /** 
-    * This class manages all the smart contract related scripts.
-    * Writing the smart contracts into a levelDB database is done in CScriptDB class.
-    */
+* This class manages all the smart contract related scripts.
+* Writing the smart contracts into a levelDB database is done in CScriptDB class.
+*/
 class CScriptContract : public CScript
 {
 public:
@@ -790,7 +790,7 @@ public:
 
     bool IsNull() const
     {
-        return (issuerPubKey.IsValid() && receiverPubKey.IsValid() && publishTime == 0x7FFFFFFE && runDeadLine == 0x7FFFFFFE && duration == 0 && consensusScript.empty() && consensusScriptHash == 0);
+        return (!issuerPubKey.IsValid() && !receiverPubKey.IsValid() && publishTime == 0x7FFFFFFE && runDeadLine == 0x7FFFFFFE && duration == 0 && consensusScript.empty() && consensusScriptHash == 0x00);
     }
 
     CScript ConstructContractScript(CScriptContract& contract);
