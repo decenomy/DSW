@@ -5,13 +5,13 @@
 ## Required
 1) **__DSW__ collateral value at current block** ([consult the collateral table](../../README.md#rewards-breakdown))
 2) **Local Wallet https://github.com/decenomy/DSW/releases**
-3) **VPS with UBUNTU 16.04 or 18.04**
+3) **VPS with UBUNTU 18.04** (it is possible to work on other versions but it is not tested)
 4) **Putty https://www.putty.org/**
 5) **Text editor on your local pc to save data for copy/paste**
 ***
 
 ***On your Local Wallet***
-* Create an address with a label MN1 and send exactly __DSW_Collateral_Value__ __DSW__ to it. Wait to complete 6 confirmations on “ Payment to yourself “ created.
+* Create an address with a label MN1 and send exactly the collateral amount to it ([consult the collateral table](../../README.md#rewards-breakdown)). Wait to complete 6 confirmations on “ Payment to yourself “ created.
 
 * Open the Debug Console ( Tools – Debug Console ) and type ***createmasternodekey***.
 You will then receive your private key, save it in a txt to use it later.
@@ -29,10 +29,13 @@ You will then receive your private key, save it in a txt to use it later.
 
 * Once logged in your vps, *copy/past* each line one by one with *Enter*
 
-	:arrow_forward: `wget -q https://raw.githubusercontent.com/decenomy/DSW/master/contrib/masternodesetup/masternodesetup.sh`
+```
+wget -q https://raw.githubusercontent.com/decenomy/DSW/master/contrib/masternodesetup/masternodesetup.sh
+```
 
-	:arrow_forward: `bash masternodesetup.sh`
-
+```
+bash masternodesetup.sh
+```
 
 * Let this run, and when it ask you to install dependencies, if you're not sure press ***y*** and then enter
 
@@ -72,7 +75,9 @@ Do not close your terminal/ command prompt window at this point.
 
 ***Go back to Putty***
 
-   :arrow_forward: `__decenomy__-cli getmasternodestatus`
+```
+__decenomy__-cli getmasternodestatus
+```
 
 You need to get **"status" : 4**
 
