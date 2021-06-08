@@ -37,6 +37,7 @@ enum UpgradeIndex : uint32_t {
     UPGRADE_V5_DUMMY,
     UPGRADE_TESTDUMMY,
 	UPGRADE_STAKE_MIN_DEPTH_V2,
+    UPGRADE_COINBASE_MATURITY_V2,
     UPGRADE_NEW_TARGET_SPACING,
     // NOTE: Also add new upgrades to NetworkUpgradeInfo in upgrades.cpp
     MAX_NETWORK_UPGRADES
@@ -96,6 +97,7 @@ struct Params {
     int nBudgetCycleBlocks;
     int nBudgetFeeConfirmations;
     int nCoinbaseMaturity;
+    int nCoinbaseMaturityV2;
     int nFutureTimeDriftPoW;
     int nFutureTimeDriftPoS;
     int nMasternodeCountDrift;
