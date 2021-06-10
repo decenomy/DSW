@@ -1044,19 +1044,20 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
                 case OP_PUBLISH:
                 {
                     // (in -- contract script)
-                    int i = 7; // Number of items in the stack. At least the serialized contract or link to the contract script to be stored into the storage should be in the stack.
+                    int i = 8; // Number of items in the stack. At least the serialized contract or link to the contract script to be stored into the storage should be in the stack.
                     if ((int)stack.size() < i)
                         return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
 
                     CScriptContract contract;
-                    contract.issuerPubKey.Set(stacktop(-1).begin(), stacktop(-1).end());
-                    contract.receiverPubKey.Set(stacktop(-2).begin(), stacktop(-2).end());
-                    contract.publishTime = uint256(stacktop(-3)).Get64();
-                    contract.runDeadLine = uint256(stacktop(-4)).Get64();
-                    contract.duration = uint256(stacktop(-5)).Get64();
-                    contract.consensusScript = CScript(stacktop(-6));
+                    contract.name = stacktop(-1);
+                    contract.status = bool(uint256(stacktop(-2)).Get32());
+                    contract.issuerPubKey.Set(stacktop(-3).begin(), stacktop(-3).end());
+                    contract.receiverPubKey.Set(stacktop(-4).begin(), stacktop(-4).end());
+                    contract.publishTime = uint256(stacktop(-5)).Get64();
+                    contract.runDeadLine = uint256(stacktop(-6)).Get64();
+                    contract.duration = uint256(stacktop(-7)).Get64();
+                    contract.consensusScript = CScript(stacktop(-8));
                     uint256 hash = contract.GetContractHash(); // Default 'HashType hashType' is TYPE_X11KVS
-                    std::vector<unsigned char> contractName = stacktop(-7);
 
                     CScript contractScript = contract.ConstructContractScript(contract);
 
@@ -1085,18 +1086,17 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
                 case OP_UPDATE_STATUS:
                 {
                     // (in -- contract hash)
-                    int i = 2; // Number of items in the stack. At least the contract hash should be in the stack.
+                    int i = 2; // Number of items in the stack. At least the contract hash and the status (1 or 0) should be in the stack.
                     if ((int)stack.size() < i)
                         return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
 
                     CScriptDB* scriptDb;
                     CScriptContract contract;
 
-                    contract.consensusScriptHash = uint256(stacktop(-1));
-                    CScriptNum status(stacktop(-2), fRequireMinimal);
                     uint256 hash = uint256(stacktop(-1));
+                    CScriptNum status(stacktop(-2), fRequireMinimal);
 
-                    scriptDb->UpdateContractStatus(contract.consensusScriptHash, (bool) status.getint(), contract);
+                    scriptDb->UpdateContractStatus(hash, (bool) status.getint(), contract);
                 }
 
                 default:

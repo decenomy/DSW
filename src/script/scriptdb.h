@@ -52,7 +52,7 @@ public:
     // bool EraseContract(CScriptContract& contract); // TODO: Erasing Scripts from database can be dangerous so maybe it should just be marked as 'DISABLED' if it's strictly needed
     bool ContractExists(const uint256 contractHash, const CScriptContract& contract);
 
-    bool UpdateContractStatus(uint256& contractHash, const bool status, CScriptContract& contract);
+    bool UpdateContractStatus(uint256 contractHash, const bool status, CScriptContract& contract);
 
 private:
     CScriptDB(const CScriptDB&);

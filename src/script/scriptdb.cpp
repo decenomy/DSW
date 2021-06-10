@@ -34,7 +34,7 @@ bool CScriptDB::ContractExists(const uint256 contractHash, const CScriptContract
     return true; // Exists(contractHash);
 }
 
-bool CScriptDB::UpdateContractStatus(uint256& contractHash, const bool status, CScriptContract& contract)
+bool CScriptDB::UpdateContractStatus(uint256 contractHash, const bool status, CScriptContract& contract)
 {
     if (!this->ReadContract(contractHash, contract))
     {

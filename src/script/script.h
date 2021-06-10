@@ -705,7 +705,7 @@ public:
     size_t DynamicMemoryUsage() const;
 };
 
-/** 
+/**
 * This class manages all the smart contract related scripts.
 * Writing the smart contracts into a levelDB database is done in CScriptDB class.
 */
@@ -790,7 +790,7 @@ public:
 
     bool IsNull() const
     {
-        return (!issuerPubKey.IsValid() && !receiverPubKey.IsValid() && publishTime == 0x7FFFFFFE && runDeadLine == 0x7FFFFFFE && duration == 0 && consensusScript.empty() && consensusScriptHash == 0x00);
+        return (name.empty() && status == false && !issuerPubKey.IsValid() && !receiverPubKey.IsValid() && publishTime == 0x7FFFFFFE && runDeadLine == 0x7FFFFFFE && duration == 0 && consensusScript.empty() && consensusScriptHash == 0x00);
     }
 
     CScript ConstructContractScript(CScriptContract& contract);
