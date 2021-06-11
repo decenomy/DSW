@@ -140,6 +140,9 @@ static const bool DEFAULT_BLOCK_SPAM_FILTER = true;
 static const unsigned int DEFAULT_BLOCK_SPAM_FILTER_MAX_SIZE = 100;
 /** Default for -blockspamfiltermaxavg, maximum average size of an index occurrence in the block spam filter */
 static const unsigned int DEFAULT_BLOCK_SPAM_FILTER_MAX_AVG = 10;
+/** Identifier of the old client */
+static const char OLD_CLIENT_NAME[] = "Soverain";
+
 
 struct BlockHasher {
     size_t operator()(const uint256& hash) const { return hash.GetCheapHash(); }
