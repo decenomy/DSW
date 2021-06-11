@@ -51,7 +51,7 @@ static const int MAX_URI_LENGTH = 255;
 
 
 #define QAPP_ORG_NAME "Suvereno"
-#define QAPP_ORG_DOMAIN "__decenomy__.org"
+#define QAPP_ORG_DOMAIN "suvereno.org"
 #define QAPP_APP_NAME_DEFAULT "Suvereno-Qt"
 #define QAPP_APP_NAME_TESTNET "Suvereno-Qt-testnet"
 
