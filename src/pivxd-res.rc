@@ -16,8 +16,8 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "__Decenomy__"
-            VALUE "FileDescription",    "__decenomy__d (OSS daemon/client for __Decenomy__)"
+            VALUE "CompanyName",        "Suvereno"
+            VALUE "FileDescription",    "__decenomy__d (OSS daemon/client for Suvereno)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "__decenomy__d"
             VALUE "LegalCopyright",     COPYRIGHT_STR
