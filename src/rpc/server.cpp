@@ -361,31 +361,31 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true },
 
         /* SUV features */
-        {"__decenomy__", "listmasternodes", &listmasternodes, true },
-        {"__decenomy__", "getmasternodecount", &getmasternodecount, true },
-        {"__decenomy__", "createmasternodebroadcast", &createmasternodebroadcast, true },
-        {"__decenomy__", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
-        {"__decenomy__", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
-        {"__decenomy__", "masternodecurrent", &masternodecurrent, true },
-        {"__decenomy__", "startmasternode", &startmasternode, true },
-        {"__decenomy__", "createmasternodekey", &createmasternodekey, true },
-        {"__decenomy__", "getmasternodeoutputs", &getmasternodeoutputs, true },
-        {"__decenomy__", "listmasternodeconf", &listmasternodeconf, true },
-        {"__decenomy__", "getmasternodestatus", &getmasternodestatus, true },
-        {"__decenomy__", "getmasternodewinners", &getmasternodewinners, true },
-        {"__decenomy__", "getmasternodescores", &getmasternodescores, true },
-        {"__decenomy__", "preparebudget", &preparebudget, true },
-        {"__decenomy__", "submitbudget", &submitbudget, true },
-        {"__decenomy__", "mnbudgetvote", &mnbudgetvote, true },
-        {"__decenomy__", "getbudgetvotes", &getbudgetvotes, true },
-        {"__decenomy__", "getnextsuperblock", &getnextsuperblock, true },
-        {"__decenomy__", "getbudgetprojection", &getbudgetprojection, true },
-        {"__decenomy__", "getbudgetinfo", &getbudgetinfo, true },
-        {"__decenomy__", "mnbudgetrawvote", &mnbudgetrawvote, true },
-        {"__decenomy__", "mnfinalbudget", &mnfinalbudget, true },
-        {"__decenomy__", "checkbudgets", &checkbudgets, true },
-        {"__decenomy__", "mnsync", &mnsync, true },
-        {"__decenomy__", "spork", &spork, true },
+        {"suvereno", "listmasternodes", &listmasternodes, true },
+        {"suvereno", "getmasternodecount", &getmasternodecount, true },
+        {"suvereno", "createmasternodebroadcast", &createmasternodebroadcast, true },
+        {"suvereno", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
+        {"suvereno", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
+        {"suvereno", "masternodecurrent", &masternodecurrent, true },
+        {"suvereno", "startmasternode", &startmasternode, true },
+        {"suvereno", "createmasternodekey", &createmasternodekey, true },
+        {"suvereno", "getmasternodeoutputs", &getmasternodeoutputs, true },
+        {"suvereno", "listmasternodeconf", &listmasternodeconf, true },
+        {"suvereno", "getmasternodestatus", &getmasternodestatus, true },
+        {"suvereno", "getmasternodewinners", &getmasternodewinners, true },
+        {"suvereno", "getmasternodescores", &getmasternodescores, true },
+        {"suvereno", "preparebudget", &preparebudget, true },
+        {"suvereno", "submitbudget", &submitbudget, true },
+        {"suvereno", "mnbudgetvote", &mnbudgetvote, true },
+        {"suvereno", "getbudgetvotes", &getbudgetvotes, true },
+        {"suvereno", "getnextsuperblock", &getnextsuperblock, true },
+        {"suvereno", "getbudgetprojection", &getbudgetprojection, true },
+        {"suvereno", "getbudgetinfo", &getbudgetinfo, true },
+        {"suvereno", "mnbudgetrawvote", &mnbudgetrawvote, true },
+        {"suvereno", "mnfinalbudget", &mnfinalbudget, true },
+        {"suvereno", "checkbudgets", &checkbudgets, true },
+        {"suvereno", "mnsync", &mnsync, true },
+        {"suvereno", "spork", &spork, true },
 
 #ifdef ENABLE_WALLET
         /* Wallet */
@@ -598,7 +598,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(std::string methodname, std::string args)
 {
-    return "> __decenomy__-cli " + methodname + " " + args + "\n";
+    return "> suvereno-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(std::string methodname, std::string args)
