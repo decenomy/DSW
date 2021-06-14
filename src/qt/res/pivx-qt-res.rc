@@ -22,10 +22,10 @@ BEGIN
             VALUE "CompanyName",        "Suvereno"
             VALUE "FileDescription",    "Suvereno Core (OSS GUI client for Suvereno)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "__decenomy__-qt"
+            VALUE "InternalName",       "suvereno-qt"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "__decenomy__-qt.exe"
+            VALUE "OriginalFilename",   "suvereno-qt.exe"
             VALUE "ProductName",        "Suvereno Core"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
