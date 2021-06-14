@@ -1316,7 +1316,7 @@ Please wait few more minutes (masternode collaterals require %1 confirmations).<
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the __decenomy__.conf file
+You will only have to paste the data in the suvereno.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1324,7 +1324,7 @@ this controller wallet (select the Masternode in the list and press "start").
 на удаленном сервере в буфер обмена.
 
 
-Вам необходимо только вставить данные в файл __decenomy__.conf
+Вам необходимо только вставить данные в файл suvereno.conf
 вашего удаленного сервера и запустить его, а затем запустить мастерноду,
 используя этот кошелек контроллера (выберите мастерноду из списка и нажмите «Старт»).
 </translation>
@@ -1508,8 +1508,8 @@ NODES</source>
         <translation>Проанализированные данные слишком большие</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "__decenomy__" prefix</source>
-        <translation>Неверный URI, не начинается с префикса "__decenomy__"</translation>
+        <source>Invalid URI, not starting with "suvereno" prefix</source>
+        <translation>Неверный URI, не начинается с префикса "suvereno"</translation>
     </message>
 </context>
 <context>
@@ -1898,8 +1898,8 @@ Address: %4
         <translation>Неверный адрес оплаты %1</translation>
     </message>
     <message>
-        <source>Cannot start __decenomy__: click-to-pay handler</source>
-        <translation>Не удалось запустить __decenomy__: обработчик click-to-pay </translation>
+        <source>Cannot start suvereno: click-to-pay handler</source>
+        <translation>Не удалось запустить suvereno: обработчик click-to-pay </translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid SUV address or malformed URI parameters.</source>
@@ -3803,8 +3803,8 @@ SUV использует консенсус PoS (Proof of Stake), позволя
         <translation>Невозможно открыть папку резервных копий</translation>
     </message>
     <message>
-        <source>Unable to open __decenomy__.conf with default application</source>
-        <translation>Невозможно открыть __decenomy__.conf с приложением по умолчанию</translation>
+        <source>Unable to open suvereno.conf with default application</source>
+        <translation>Невозможно открыть suvereno.conf с приложением по умолчанию</translation>
     </message>
     <message>
         <source>In:</source>
