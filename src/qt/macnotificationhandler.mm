@@ -15,7 +15,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"io.__decenomy__.Suvereno-Qt";
+        return @"io.suvereno.Suvereno-Qt";
     } else {
         return [self __bundleIdentifier];
     }

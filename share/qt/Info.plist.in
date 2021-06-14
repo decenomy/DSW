@@ -38,7 +38,7 @@
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>io.__decenomy__.Suvereno-Qt</string>
+  <string>io.suvereno.Suvereno-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>

@@ -13,8 +13,8 @@ The following are some helpful notes on how to run Suvereno Core on your native 
 
 Unpack the files into a directory and run:
 
-- `bin/__decenomy__-qt` (GUI) or
-- `bin/__decenomy__d` (headless)
+- `bin/suvereno-qt` (GUI) or
+- `bin/suverenod` (headless)
 
 ### Windows
 
