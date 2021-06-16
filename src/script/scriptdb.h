@@ -55,8 +55,8 @@ public:
     bool UpdateContractStatus(uint256 contractHash, const bool status, CScriptContract& contract);
 
 private:
-    CScriptDB(const CScriptDB&);
-    void operator=(const CScriptDB&);
+    // CScriptDB(const CScriptDB&);
+    // void operator=(const CScriptDB&);
 };
 
 #endif // BITCOIN_SCRIPTDB_H

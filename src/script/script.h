@@ -761,7 +761,7 @@ public:
         READWRITE(duration);
         READWRITE(consensusScript);
         READWRITE(consensusScriptHash);
-        READWRITE(dataFile);
+        // READWRITE(dataFile);
     }
 
     void SetNull()

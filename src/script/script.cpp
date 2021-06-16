@@ -321,7 +321,7 @@ bool CScriptContract::RunContractScript()
 uint256 CScriptContract::GetConsensusScriptHash(HashType hashType) const
 {
     std::string IpfsHash; // TODO: Generate IPFS hash
-    uint256 hash;
+    uint160 hash;
 
     switch (hashType)
     {
@@ -338,7 +338,7 @@ uint256 CScriptContract::GetConsensusScriptHash(HashType hashType) const
             break;
 
         case TYPE_SHA256D:
-            hash = Hash(BEGIN(this->consensusScript), END(this->consensusScript));
+            hash = Hash160(BEGIN(this->consensusScript), END(this->consensusScript));
             return Hash(BEGIN(hash), END(hash));
             break;
 
@@ -355,7 +355,7 @@ uint256 CScriptContract::GetConsensusScriptHash(HashType hashType) const
 uint256 CScriptContract::GetContractHash(HashType hashType) const
 {
     std::string IpfsHash; // TODO: Generate IPFS hash
-    uint256 hash;
+    uint160 hash;
 
     switch (hashType)
     {
@@ -372,7 +372,7 @@ uint256 CScriptContract::GetContractHash(HashType hashType) const
             break;
 
         case 3:
-            hash = Hash(BEGIN(this->consensusScript), END(this->consensusScript));
+            hash = Hash160(BEGIN(this->consensusScript), END(this->consensusScript));
             return Hash(BEGIN(hash), END(hash));
             break;
 
