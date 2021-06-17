@@ -320,12 +320,12 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
-    if (nHeight <= 100000) {
-        return 15000 * COIN;
-    } else if (nHeight <= 200000 && nHeight > 100000) {
-        return 17500 * COIN;
-    } else if (nHeight > 200000) {
-        return 20000 * COIN;
+    if (nHeight <= 403200) {
+        return 3000 * COIN;
+    } else if (nHeight <= 806400 && nHeight > 403200) {
+        return 4500 * COIN;
+    } else if (nHeight > 806400) {
+        return 6000 * COIN;
     }
     return 0;
 }
@@ -341,17 +341,69 @@ CAmount CMasternode::GetBlockValue(int nHeight)
     CAmount nSubsidy;
 
     if (nHeight == 1) {
-        nSubsidy = 30000000 * COIN; // SUV coin supply (30M)
-    } else if (nHeight <= 100000) {
-        nSubsidy = 100 * COIN;
-    } else if (nHeight > 100000 && nHeight <= 200000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 200000 && nHeight <= 300000) {
-        nSubsidy = 150 * COIN;
-    } else if (nHeight > 300000 && nHeight <= 400000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 400000) {
-        nSubsidy = 100 * COIN;
+        nSubsidy = 84000000 * 0.065 * COIN; // SUV coin supply (30M)
+    } else if (nHeight <= 40320) {
+        nSubsidy = 0.1 * COIN;
+    } else if (nHeight > 40320 && nHeight <= 80640) {
+        nSubsidy = 0.75 * COIN;
+    } else if (nHeight > 80640 && nHeight <= 120960) {
+        nSubsidy = 1.5 * COIN;
+    } else if (nHeight > 120960 && nHeight <= 161280) {
+        nSubsidy = 2.25 * COIN;
+    } else if (nHeight > 161280 && nHeight <= 201600) {
+        nSubsidy = 3 * COIN;
+    } else if (nHeight > 201600 && nHeight <= 241920) {
+        nSubsidy = 3.75 * COIN;
+    } else if (nHeight > 241920 && nHeight <= 282240) {
+        nSubsidy = 4.5 * COIN;
+    } else if (nHeight > 282240 && nHeight <= 322560) {
+        nSubsidy = 5.25 * COIN;
+    } else if (nHeight > 322560 && nHeight <= 362880) {
+        nSubsidy = 6 * COIN;
+    } else if (nHeight > 362880 && nHeight <= 403200) {
+        nSubsidy = 6.75 * COIN;
+    } else if (nHeight > 403200 && nHeight <= 443520) {
+        nSubsidy = 7.5 * COIN;
+    } else if (nHeight > 443520 && nHeight <= 483840) {
+        nSubsidy = 8.25 * COIN;
+    } else if (nHeight > 483840 && nHeight <= 524160) {
+        nSubsidy = 9 * COIN;
+    } else if (nHeight > 524160 && nHeight <= 564480) {
+        nSubsidy = 9.75 * COIN;
+    } else if (nHeight > 564480 && nHeight <= 604800) {
+        nSubsidy = 10.5 * COIN;
+    } else if (nHeight > 604800 && nHeight <= 483840) {
+        nSubsidy = 8.25 * COIN;
+    } else if (nHeight > 604800 && nHeight <= 483840) {
+        nSubsidy = 8.25 * COIN;
+    } else if (nHeight > 604800 && nHeight <= 645120) {
+        nSubsidy = 11.25 * COIN;
+    } else if (nHeight > 645120 && nHeight <= 685440) {
+        nSubsidy = 12 * COIN;
+    } else if (nHeight > 685440 && nHeight <= 725760) {
+        nSubsidy = 12.75 * COIN;
+    } else if (nHeight > 725760 && nHeight <= 766080) {
+        nSubsidy = 13.5 * COIN;
+    } else if (nHeight > 766080 && nHeight <= 806400) {
+        nSubsidy = 12.75 * COIN;
+    } else if (nHeight > 806400 && nHeight <= 1000000) {
+        nSubsidy = 15 * COIN;
+    } else if (nHeight > 1000000 && nHeight <= 2000000) {
+        nSubsidy = 13.5 * COIN;
+    } else if (nHeight > 2000000 && nHeight <= 3000000) {
+        nSubsidy = 12 * COIN;
+    } else if (nHeight > 3000000 && nHeight <= 4000000) {
+        nSubsidy = 10.5 * COIN;
+    } else if (nHeight > 4000000 && nHeight <= 5000000) {
+        nSubsidy = 9 * COIN;
+    } else if (nHeight > 5000000 && nHeight <= 6000000) {
+        nSubsidy = 7.5 * COIN;
+    } else if (nHeight > 6000000 && nHeight <= 7000000) {
+        nSubsidy = 6 * COIN;
+    } else if (nHeight > 7000000 && nHeight <= 8000000) {
+        nSubsidy = 4.5 * COIN;
+    } else if (nHeight > 8000000) {
+        nSubsidy = 3 * COIN;
     }
 
     if(nMoneySupply + nSubsidy > maxMoneyOut) {
@@ -363,9 +415,15 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    if(nHeight <= 5000) return 0;
+    if(nHeight <= 1) return 0;
 
-    return CMasternode::GetBlockValue(nHeight) * 95 / 100;
+    if (nHeight <= 201600) {
+        return CMasternode::GetBlockValue(nHeight) * 80 / 100;
+    } else if (nHeight > 201600 && nHeight <= 403200) {
+        return CMasternode::GetBlockValue(nHeight) * 85 / 100;
+    } else if (nHeight > 403200) {
+        return CMasternode::GetBlockValue(nHeight) * 90 / 100;
+    }
 }
 
 void CMasternode::InitMasternodeCollateralList() {
