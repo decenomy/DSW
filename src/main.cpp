@@ -1742,6 +1742,11 @@ int GetSpendHeight(const CCoinsViewCache& inputs)
 namespace Consensus {
 bool CheckTxInputs(const CTransaction& tx, CValidationState& state, const CCoinsViewCache& inputs, int nSpendHeight)
 {
+    // if we have already a checkpoint newer than this block 
+    // then it is OK
+    if (nSpendHeight <= Checkpoints::GetTotalBlocksEstimate())
+        return true;
+
     // This doesn't trigger the DoS code on purpose; if it did, it would make it easier
     // for an attacker to attempt to split the network.
     if (!inputs.HaveInputs(tx))
@@ -3373,59 +3378,59 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
         }
     }
 
-    // Check transactions
-    std::vector<CBigNum> vBlockSerials;
-    // TODO: Check if this is ok... blockHeight is always the tip or should we look for the prevHash and get the height?
-    int blockHeight = chainActive.Height() + 1;
-    for (const CTransaction& tx : block.vtx) {
-        if (!CheckTransaction(
-                tx,
-                fZerocoinActive,
-                blockHeight >= Params().GetConsensus().height_start_ZC_SerialRangeCheck,
-                state,
-                isBlockBetweenFakeSerialAttackRange(blockHeight)
-        ))
-            return state.Invalid(false, state.GetRejectCode(), state.GetRejectReason(),
-                                             strprintf("Transaction check failed (tx hash %s) %s", tx.GetHash().ToString(), state.GetDebugMessage()));
+    if(nHeight > Checkpoints::GetTotalBlocksEstimate()) {
+        // Check transactions
+        std::vector<CBigNum> vBlockSerials;
+        for (const CTransaction& tx : block.vtx) {
+            if (!CheckTransaction(
+                    tx,
+                    fZerocoinActive,
+                    nHeight >= Params().GetConsensus().height_start_ZC_SerialRangeCheck,
+                    state,
+                    isBlockBetweenFakeSerialAttackRange(nHeight)
+            ))
+                return state.Invalid(false, state.GetRejectCode(), state.GetRejectReason(),
+                                                strprintf("Transaction check failed (tx hash %s) %s", tx.GetHash().ToString(), state.GetDebugMessage()));
 
-        // double check that there are no double spent zAZR spends in this block
-        if (tx.HasZerocoinSpendInputs()) {
-            for (const CTxIn& txIn : tx.vin) {
-                bool isPublicSpend = txIn.IsZerocoinPublicSpend();
-                if (txIn.IsZerocoinSpend() || isPublicSpend) {
-                    libzerocoin::CoinSpend spend;
-                    if (isPublicSpend) {
-                        libzerocoin::ZerocoinParams* params = Params().GetConsensus().Zerocoin_Params(false);
-                        PublicCoinSpend publicSpend(params);
-                        if (!ZPIVModule::ParseZerocoinPublicSpend(txIn, tx, state, publicSpend)){
-                            return false;
+            // double check that there are no double spent zAZR spends in this block
+            if (tx.HasZerocoinSpendInputs()) {
+                for (const CTxIn& txIn : tx.vin) {
+                    bool isPublicSpend = txIn.IsZerocoinPublicSpend();
+                    if (txIn.IsZerocoinSpend() || isPublicSpend) {
+                        libzerocoin::CoinSpend spend;
+                        if (isPublicSpend) {
+                            libzerocoin::ZerocoinParams* params = Params().GetConsensus().Zerocoin_Params(false);
+                            PublicCoinSpend publicSpend(params);
+                            if (!ZPIVModule::ParseZerocoinPublicSpend(txIn, tx, state, publicSpend)){
+                                return false;
+                            }
+                            spend = publicSpend;
+                            // check that the version matches the one enforced with SPORK_18 (don't ban if it fails)
+                            if (!IsInitialBlockDownload() && !CheckPublicCoinSpendVersion(spend.getVersion())) {
+                                return state.DoS(0, error("%s : Public Zerocoin spend version %d not accepted. must be version %d.",
+                                        __func__, spend.getVersion(), CurrentPublicCoinSpendVersion()), REJECT_INVALID, "bad-zcspend-version");
+                            }
+                        } else {
+                            spend = TxInToZerocoinSpend(txIn);
                         }
-                        spend = publicSpend;
-                        // check that the version matches the one enforced with SPORK_18 (don't ban if it fails)
-                        if (!IsInitialBlockDownload() && !CheckPublicCoinSpendVersion(spend.getVersion())) {
-                            return state.DoS(0, error("%s : Public Zerocoin spend version %d not accepted. must be version %d.",
-                                    __func__, spend.getVersion(), CurrentPublicCoinSpendVersion()), REJECT_INVALID, "bad-zcspend-version");
-                        }
-                    } else {
-                        spend = TxInToZerocoinSpend(txIn);
+                        if (std::count(vBlockSerials.begin(), vBlockSerials.end(), spend.getCoinSerialNumber()))
+                            return state.DoS(100, error("%s : Double spending of zAZR serial %s in block\n Block: %s",
+                                                        __func__, spend.getCoinSerialNumber().GetHex(), block.ToString()));
+                        vBlockSerials.emplace_back(spend.getCoinSerialNumber());
                     }
-                    if (std::count(vBlockSerials.begin(), vBlockSerials.end(), spend.getCoinSerialNumber()))
-                        return state.DoS(100, error("%s : Double spending of zAZR serial %s in block\n Block: %s",
-                                                    __func__, spend.getCoinSerialNumber().GetHex(), block.ToString()));
-                    vBlockSerials.emplace_back(spend.getCoinSerialNumber());
                 }
             }
         }
-    }
 
-    unsigned int nSigOps = 0;
-    for (const CTransaction& tx : block.vtx) {
-        nSigOps += GetLegacySigOpCount(tx);
+        unsigned int nSigOps = 0;
+        for (const CTransaction& tx : block.vtx) {
+            nSigOps += GetLegacySigOpCount(tx);
+        }
+        unsigned int nMaxBlockSigOps = fZerocoinActive ? MAX_BLOCK_SIGOPS_CURRENT : MAX_BLOCK_SIGOPS_LEGACY;
+        if (nSigOps > nMaxBlockSigOps)
+            return state.DoS(100, error("%s : out-of-bounds SigOpCount", __func__),
+                REJECT_INVALID, "bad-blk-sigops", true);
     }
-    unsigned int nMaxBlockSigOps = fZerocoinActive ? MAX_BLOCK_SIGOPS_CURRENT : MAX_BLOCK_SIGOPS_LEGACY;
-    if (nSigOps > nMaxBlockSigOps)
-        return state.DoS(100, error("%s : out-of-bounds SigOpCount", __func__),
-            REJECT_INVALID, "bad-blk-sigops", true);
 
     if (fCheckPOW && fCheckMerkleRoot && fCheckSig)
         block.fChecked = true;
@@ -5871,7 +5876,7 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
 //       it was the one which was commented out
 int ActiveProtocol()
 {
-    return PROTOCOL_VERSION;
+    return std::min(PROTOCOL_VERSION, (int)sporkManager.GetSporkValue(SPORK_14_MIN_PROTOCOL_ACCEPTED));
 }
 
 bool ProcessMessages(CNode* pfrom, CConnman& connman, std::atomic<bool>& interruptMsgProc)
