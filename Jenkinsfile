@@ -5,7 +5,7 @@ pipeline {
     environment {
         NAME = 'EskaCoin'
         BASE_NAME = 'eskacoin'
-        ZIP_NAME = '__DSW__'
+        ZIP_NAME = 'ESK'
     }
 
     stages {

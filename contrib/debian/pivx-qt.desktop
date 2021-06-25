@@ -1,9 +1,9 @@
 [Desktop Entry]
 Version=1.0
 Name=EskaCoin
-Comment= __DSW__ P2P Cryptocurrency
-Comment[fr]= __DSW__, monnaie virtuelle cryptographique pair à pair
-Comment[tr]= __DSW__, eşten eşe kriptografik sanal para birimi
+Comment= ESK P2P Cryptocurrency
+Comment[fr]= ESK, monnaie virtuelle cryptographique pair à pair
+Comment[tr]= ESK, eşten eşe kriptografik sanal para birimi
 Exec=eskacoin-qt %u
 Terminal=false
 Type=Application
