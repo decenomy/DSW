@@ -1,6 +1,6 @@
 [Protocol]
-exec=__decenomy__-qt '%u'
-protocol=__decenomy__
+exec=eskacoin-qt '%u'
+protocol=eskacoin
 input=none
 output=none
 helper=true

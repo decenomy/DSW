@@ -1242,7 +1242,7 @@ i głosuj na system skarbu otrzymujący okresową nagrodę.</translation>
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the __decenomy__.conf file
+You will only have to paste the data in the eskacoin.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1250,7 +1250,7 @@ this controller wallet (select the Masternode in the list and press "start").
 na zdalnym serwerze do twojego schowka.
 
 
-Wystarczy wkleić dane do pliku __decenomy__.conf
+Wystarczy wkleić dane do pliku eskacoin.conf
 zdalnego serwera i uruchom go, a następnie uruchom Masternode przy użyciu
 portfela kontrolujacego (wybierz Masternode z listy i naciśnij „start”).
 </translation>
@@ -1390,8 +1390,8 @@ Jesteś pewny?</translation>
         <translation>Przetwarzane dane są za duże</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "__decenomy__" prefix</source>
-        <translation>Nieprawidłowy identyfikator URI, nie zaczynający się od prefiksu „__decenomy__”</translation>
+        <source>Invalid URI, not starting with "eskacoin" prefix</source>
+        <translation>Nieprawidłowy identyfikator URI, nie zaczynający się od prefiksu „eskacoin”</translation>
     </message>
 </context>
 <context>
@@ -1780,8 +1780,8 @@ Adres: %4
         <translation>Nieprawidłowy adres płatności %1</translation>
     </message>
     <message>
-        <source>Cannot start __decenomy__: click-to-pay handler</source>
-        <translation>Nie można uruchomić __decenomy__: click-to-pay handler</translation>
+        <source>Cannot start eskacoin: click-to-pay handler</source>
+        <translation>Nie można uruchomić eskacoin: click-to-pay handler</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid __DSW__ address or malformed URI parameters.</source>
@@ -3400,8 +3400,8 @@ Wystąpił błąd podczas próby zapisania listy adresów w %1. Proszę spróbuj
         <translation>Nie można otworzyć folderu kopii zapasowych</translation>
     </message>
     <message>
-        <source>Unable to open __decenomy__.conf with default application</source>
-        <translation>Nie można otworzyć pliku __decenomy__.conf w domyślnej aplikacji</translation>
+        <source>Unable to open eskacoin.conf with default application</source>
+        <translation>Nie można otworzyć pliku eskacoin.conf w domyślnej aplikacji</translation>
     </message>
     <message>
         <source>In:</source>

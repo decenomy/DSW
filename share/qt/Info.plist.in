@@ -38,7 +38,7 @@
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>io.__decenomy__.EskaCoin-Qt</string>
+  <string>io.eskacoin.EskaCoin-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>

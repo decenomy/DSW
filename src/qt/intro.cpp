@@ -207,8 +207,8 @@ bool Intro::pickDataDirectory()
     }
 
     /* Only override -datadir if different from the default, to make it possible to
-     * override -datadir in the __decenomy__.conf file in the default data directory
-     * (to be consistent with __decenomy__d behavior)
+     * override -datadir in the eskacoin.conf file in the default data directory
+     * (to be consistent with eskacoind behavior)
      */
 
     if (dataDir != getDefaultDataDirectory())

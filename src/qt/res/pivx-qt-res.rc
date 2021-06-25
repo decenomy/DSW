@@ -22,10 +22,10 @@ BEGIN
             VALUE "CompanyName",        "EskaCoin"
             VALUE "FileDescription",    "EskaCoin Core (OSS GUI client for EskaCoin)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "__decenomy__-qt"
+            VALUE "InternalName",       "eskacoin-qt"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "__decenomy__-qt.exe"
+            VALUE "OriginalFilename",   "eskacoin-qt.exe"
             VALUE "ProductName",        "EskaCoin Core"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END

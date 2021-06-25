@@ -51,7 +51,7 @@ static const int MAX_URI_LENGTH = 255;
 
 
 #define QAPP_ORG_NAME "EskaCoin"
-#define QAPP_ORG_DOMAIN "__decenomy__.org"
+#define QAPP_ORG_DOMAIN "eskacoin.org"
 #define QAPP_APP_NAME_DEFAULT "EskaCoin-Qt"
 #define QAPP_APP_NAME_TESTNET "EskaCoin-Qt-testnet"
 

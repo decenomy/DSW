@@ -4,7 +4,7 @@ pipeline {
 
     environment {
         NAME = 'EskaCoin'
-        BASE_NAME = '__decenomy__'
+        BASE_NAME = 'eskacoin'
         ZIP_NAME = '__DSW__'
     }
 

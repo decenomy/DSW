@@ -1,14 +1,14 @@
 #!/bin/bash
 
 TMP_FOLDER=$(mktemp -d)
-CONFIG_FILE='__decenomy__.conf'
-CONFIGFOLDER='/root/.__decenomy__'
-COIN_DAEMON='__decenomy__d'
-COIN_CLI='__decenomy__-cli'
+CONFIG_FILE='eskacoin.conf'
+CONFIGFOLDER='/root/.eskacoin'
+COIN_DAEMON='eskacoind'
+COIN_CLI='eskacoin-cli'
 COIN_PATH='/usr/local/bin/'
 COIN_TGZ='https://github.com/decenomy/DSW/releases/download/vX.X.X.X/_Decenomy_-X.X.X.X-Linux.zip'
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
-COIN_NAME='__decenomy__'
+COIN_NAME='eskacoin'
 COIN_PORT=__PORT_MAINNET__
 RPC_PORT=__RPCPORT_MAINNET__
 
