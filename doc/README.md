@@ -26,7 +26,7 @@ Drag EskaCoin-Qt to your applications folder, and then run EskaCoin-Qt.
 
 ### Need Help?
 
-* See the documentation at the [EskaCoin Wiki](https://__decenomy_github_link__/)
+* See the documentation at the [EskaCoin Wiki](https://github.com/decenomy/ESK/)
 for help and more information.
 * Join our Discord server [Discord Server](__decenomy_discord_link__)
 
@@ -48,7 +48,7 @@ The EskaCoin repo's [root README](/README.md) contains relevant information on t
 - [Multiwallet Qt Development](multiwallet-qt.md)
 - [Release Notes](release-notes.md)
 - [Release Process](release-process.md)
-- [Source Code Documentation (External Link)](https://__decenomy_github_link__/)
+- [Source Code Documentation (External Link)](https://github.com/decenomy/ESK/)
 - [Translation Process](translation_process.md)
 - [Unit Tests](unit-tests.md)
 - [Unauthenticated REST Interface](REST-interface.md)
