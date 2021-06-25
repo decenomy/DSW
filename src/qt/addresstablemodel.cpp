@@ -412,7 +412,7 @@ void AddressTableModel::updateEntry(const QString& address,
     const QString& purpose,
     int status)
 {
-    // Update address book model from __Decenomy__ core
+    // Update address book model from EskaCoin core
     priv->updateEntry(address, label, isMine, purpose, status);
 }
 
