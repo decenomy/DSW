@@ -17,7 +17,7 @@
 // TODO: Change X11KVS algorithm call to whatever the coin being adapted is used.
 uint256 CBlockHeader::GetHash() const
 {
-     if (nVersion < 4)  { // nVersion = 1, 2, 3
+/*     if (nVersion < 4)  { // nVersion = 1, 2, 3
 #if defined(WORDS_BIGENDIAN)
         uint8_t data[80];
         WriteLE32(&data[0], nVersion);
@@ -33,7 +33,8 @@ uint256 CBlockHeader::GetHash() const
 #endif
     }
 	
-    return SerializeHash(*this); // nVersion >= 4
+    return SerializeHash(*this); // nVersion >= 4*/
+    return HashX15(BEGIN(nVersion), END(nNonce));
 }
 
 std::string CBlock::ToString() const
