@@ -1981,7 +1981,7 @@ NODES</source>
     <message>
         <location line="+21"/>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        __decenomy_discord_link__</source>
+        https://discord.gg/Z3ueNfWnc3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4395,7 +4395,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
     </message>
     <message>
         <location line="+148"/>
-        <source>__decenomy_website_link__/</source>
+        <source>eskacoin.com/</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4489,7 +4489,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;
                            We have support channels in most of our official chat groups, for example
-                           &lt;a style=&apos;color: #b088ff&apos; href=&apos;__decenomy_discord_link__&apos;&gt;
+                           &lt;a style=&apos;color: #b088ff&apos; href=&apos;https://discord.gg/Z3ueNfWnc3&apos;&gt;
                            #support in our Discord&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>

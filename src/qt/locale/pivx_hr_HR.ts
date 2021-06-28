@@ -1577,9 +1577,9 @@ NODEOVI</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        __decenomy_discord_link__</source>
+        https://discord.gg/Z3ueNfWnc3</source>
         <translation>Jezik nedostaje ili prijevod nije potpun? Pomozite s prijevodom ovdje:
-        __decenomy_discord_link__</translation>
+        https://discord.gg/Z3ueNfWnc3</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -3441,8 +3441,8 @@ Došlo je do greške prilikom spremanja popisa adresa u %1. Molimo pokušajte po
         <translation>2) Zašto se moji ESK ne mogu potrošiti?</translation>
     </message>
     <message>
-        <source>__decenomy_website_link__/</source>
-        <translation>__decenomy_website_link__/</translation>
+        <source>eskacoin.com/</source>
+        <translation>eskacoin.com/</translation>
     </message>
     <message>
         <source>1</source>

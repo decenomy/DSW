@@ -342,7 +342,7 @@
                   <enum>Qt::NoFocus</enum>
                  </property>
                  <property name="text">
-                  <string>__decenomy_website_link__/</string>
+                  <string>eskacoin.com/</string>
                  </property>
                 </widget>
                </item>
@@ -818,7 +818,7 @@
                          <string>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;
                            We have support channels in most of our official chat groups, for example
-                           &lt;a style='color: #b088ff' href='__decenomy_discord_link__'&gt;
+                           &lt;a style='color: #b088ff' href='https://discord.gg/Z3ueNfWnc3'&gt;
                            #support in our Discord&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </string>

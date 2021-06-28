@@ -1615,9 +1615,9 @@ NODES</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        __decenomy_discord_link__</source>
+        https://discord.gg/Z3ueNfWnc3</source>
         <translation>Sprache fehlt oder ist unvollständig? Helfe mit und trage zur Übersetzung bei unter:
-        __decenomy_discord_link__</translation>
+        https://discord.gg/Z3ueNfWnc3</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -3511,8 +3511,8 @@ Es gab ein Problem bei dem Versuch die Adressen unter %1 zu speichern. Bitte ver
         <translation>2) Wieso kann ich meine ESK nicht ausgeben?</translation>
     </message>
     <message>
-        <source>__decenomy_website_link__/</source>
-        <translation>__decenomy_website_link__/</translation>
+        <source>eskacoin.com/</source>
+        <translation>eskacoin.com/</translation>
     </message>
     <message>
         <source>1</source>
@@ -3593,14 +3593,14 @@ ESK nutzt einen PoS Konsensalgorithmus, der es den Besitzern von ESK erlaubt, an
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            We have support channels in most of our official chat groups, for example
-                           &lt;a style='color: #b088ff' href='__decenomy_discord_link__'&gt;
+                           &lt;a style='color: #b088ff' href='https://discord.gg/Z3ueNfWnc3'&gt;
                            #support in our Discord&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
 Wir haben Support-Kanäle in den meisten unserer offiziellen Chatgruppen, z.B.
-&lt;a style='color: #b088ff' href='__decenomy_discord_link__'&gt;
+&lt;a style='color: #b088ff' href='https://discord.gg/Z3ueNfWnc3'&gt;
 #support in Discord&lt;/a&gt;
 &lt;/a&gt;
 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>

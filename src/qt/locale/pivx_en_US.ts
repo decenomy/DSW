@@ -1617,9 +1617,9 @@ NODES</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        __decenomy_discord_link__</source>
+        https://discord.gg/Z3ueNfWnc3</source>
         <translation>Language missing or translation incomplete? Help contributing translations here:
-        __decenomy_discord_link__</translation>
+        https://discord.gg/Z3ueNfWnc3</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -3519,8 +3519,8 @@ There was an error trying to save the address list to %1. Please try again.</tra
         <translation>2) Why are my ESK unspendable?</translation>
     </message>
     <message>
-        <source>__decenomy_website_link__/</source>
-        <translation>__decenomy_website_link__/</translation>
+        <source>eskacoin.com/</source>
+        <translation>eskacoin.com/</translation>
     </message>
     <message>
         <source>1</source>
@@ -3620,14 +3620,14 @@ There was an error trying to save the address list to %1. Please try again.</tra
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            We have support channels in most of our official chat groups, for example
-                           &lt;a style='color: #b088ff' href='__decenomy_discord_link__'&gt;
+                           &lt;a style='color: #b088ff' href='https://discord.gg/Z3ueNfWnc3'&gt;
                            #support in our Discord&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            We have support channels in most of our official chat groups, for example
-                           &lt;a style='color: #b088ff' href='__decenomy_discord_link__'&gt;
+                           &lt;a style='color: #b088ff' href='https://discord.gg/Z3ueNfWnc3'&gt;
                            #support in our Discord&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </translation>
