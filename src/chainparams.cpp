@@ -180,9 +180,9 @@ public:
         consensus.nTimeSlotLength = 15;
 
         // spork keys
-        consensus.strSporkPubKey = "0371d4e47e0ab43865206e9df7c065d6c68471b154bab3815d99f8380d46c7015f";
-        consensus.strSporkPubKeyOld = "";
-        consensus.nTime_EnforceNewSporkKey = 0;
+        consensus.strSporkPubKey = "043B44A0D5F6BFA822208E19096A6F71A144EA1034A5ABB99E458DF1463CF98E72FEA9E5C5038EF7716765D248DAA709A23746606AF41CAC59DC071E89624C9FA2";
+        consensus.strSporkPubKeyOld = "045D4992522898FFFC6E6FD4CFCE18477B9E4BA14AEE23EDF3FD56743B4F4A57B98F9DAD40D5316A30591DF7E6C6D4B267D22175732097275A6B43107E10DEABCF";
+        consensus.nTime_EnforceNewSporkKey = 1566860400;
         consensus.nTime_RejectOldSporkKey = 0;
 
         // height-based activations
