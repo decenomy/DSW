@@ -242,15 +242,15 @@ public:
         pchMessageStart[3] = 0x77;
         nDefaultPort = __PORT_MAINNET__;
 
-        vSeeds.push_back(CDNSSeedData("seeder", "seeder.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed2", "seed2.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed3", "seed3.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed4", "seed4.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.__decenomy.net__"));
+        vSeeds.push_back(CDNSSeedData("seeder", "seeder.suvcoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.suvcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed2", "seed2.suvcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed3", "seed3.suvcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed4", "seed4.suvcoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.suvcoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.suvcoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.suvcoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.suvcoin.net"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 15); // 7
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 16); // 7
@@ -376,7 +376,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.push_back(CDNSSeedData("tseeder", "tseeder.__decenomy.net__", true));
+        vSeeds.push_back(CDNSSeedData("tseeder", "tseeder.suvcoin.net", true));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet suvereno addresses start with 'x' or 'y'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet suvereno script addresses start with '8' or '9'
