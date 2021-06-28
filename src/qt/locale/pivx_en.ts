@@ -4395,7 +4395,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
     </message>
     <message>
         <location line="+148"/>
-        <source>__decenomy_website_link__/</source>
+        <source>http://suvcoin.net/</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
