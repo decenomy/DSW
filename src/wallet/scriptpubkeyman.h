@@ -14,8 +14,8 @@
 //! Default for -keypool
 static const uint32_t DEFAULT_KEYPOOL_SIZE      = 100;
 static const uint32_t BIP32_HARDENED_KEY_LIMIT  = 0x80000000;
-// SUV_HDCHAIN see it on https://github.com/satoshilabs/slips/blob/master/slip-0044.md
-static const uint32_t BIP32_HDCHAIN             = 0x123456; 
+// BIP32_HDCHAIN see it on https://github.com/satoshilabs/slips/blob/master/slip-0044.md
+static const uint32_t BIP32_HDCHAIN             = 0x34C; 
 
 /*
  * A class implementing ScriptPubKeyMan manages some (or all) scriptPubKeys used in a wallet.
