@@ -130,7 +130,7 @@ struct Params {
     NetworkUpgrade vUpgrades[MAX_NETWORK_UPGRADES];
 
     int64_t TargetTimespan(const int nHeight) const { return IsTimeProtocolV2(nHeight) ? nTargetTimespanV2 : nTargetTimespan; }
-    int64_t TargetTimeSpacing(const int nHeight) const { return IsTimeProtocolV2(nHeight) ? nTargetSpacingV2 : nTargetSpacing; }
+    int64_t TargetSpacing(const int nHeight) const { return IsTimeProtocolV2(nHeight) ? nTargetSpacingV2 : nTargetSpacing; }
     int CoinbaseMaturity(const int nHeight) const { return IsTimeProtocolV2(nHeight) ? nCoinbaseMaturityV2 : nCoinbaseMaturity; }
     uint256 ProofOfStakeLimit(const int nHeight) const { return IsTimeProtocolV2(nHeight) ? posLimitV2 : posLimitV1; }
     bool MoneyRange(const CAmount& nValue) const { return (nValue >= 0 && nValue <= nMaxMoneyOut); }

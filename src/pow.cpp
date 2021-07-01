@@ -39,20 +39,21 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
         return consensus.powLimit.GetCompact();
     }
 
+    const int nHeight = pindexLast->nHeight + 1;
+    const int64_t& nTargetSpacing = consensus.TargetSpacing(nHeight);
+
     if (consensus.NetworkUpgradeActive(pindexLast->nHeight, Consensus::UPGRADE_POS)) {
-        const int nHeight = pindexLast->nHeight + 1;
         const bool fTimeV2 = !Params().IsRegTestNet() && consensus.IsTimeProtocolV2(pindexLast->nHeight+1);
         const uint256& bnTargetLimit = consensus.ProofOfStakeLimit(nHeight);
         const int64_t& nTargetTimespan = consensus.TargetTimespan(nHeight);
-        const int64_t& nTargetSpacing = consensus.TargetTimeSpacing(nHeight);
 
         int64_t nActualSpacing = 0;
         if (pindexLast->nHeight != 0)
             nActualSpacing = pindexLast->GetBlockTime() - pindexLast->pprev->GetBlockTime();
         if (nActualSpacing < 0)
             nActualSpacing = 1;
-        if (fTimeV2 && nActualSpacing > consensus.nTargetSpacing*10)
-            nActualSpacing = consensus.nTargetSpacing*10;
+        if (fTimeV2 && nActualSpacing > nTargetSpacing * 10)
+            nActualSpacing = nTargetSpacing * 10;
 
         // ppcoin: target change every block
         // ppcoin: retarget with exponential moving toward target spacing
@@ -63,9 +64,9 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
         if (fTimeV2 && !consensus.IsTimeProtocolV2(pindexLast->nHeight))
             bnNew <<= 4;
 
-        int64_t nInterval = nTargetTimespan / consensus.nTargetSpacing;
-        bnNew *= ((nInterval - 1) * consensus.nTargetSpacing + nActualSpacing + nActualSpacing);
-        bnNew /= ((nInterval + 1) * consensus.nTargetSpacing);
+        int64_t nInterval = nTargetTimespan / nTargetSpacing;
+        bnNew *= ((nInterval - 1) * nTargetSpacing + nActualSpacing + nActualSpacing);
+        bnNew /= ((nInterval + 1) * nTargetSpacing);
 
         if (bnNew <= 0 || bnNew > bnTargetLimit)
             bnNew = bnTargetLimit;
@@ -103,7 +104,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 
     uint256 bnNew(PastDifficultyAverage);
 
-    int64_t _nTargetTimespan = CountBlocks * consensus.nTargetSpacing;
+    int64_t _nTargetTimespan = CountBlocks * nTargetSpacing;
 
     if (nActualTimespan < _nTargetTimespan / 3)
         nActualTimespan = _nTargetTimespan / 3;

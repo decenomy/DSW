@@ -182,7 +182,7 @@ public:
         consensus.nTargetTimespan = 20 * 60;
         consensus.nTargetTimespanV2 = 30 * 60;
         consensus.nTargetSpacing = 30;
-        consensus.nTargetSpacing = 60;
+        consensus.nTargetSpacingV2 = 60;
         consensus.nTimeSlotLength = 15;
 
         // spork keys
@@ -316,6 +316,7 @@ public:
         consensus.nTargetTimespan = 40 * 60;
         consensus.nTargetTimespanV2 = 30 * 60;
         consensus.nTargetSpacing = 1 * 60;
+        consensus.nTargetSpacingV2 = 60;
         consensus.nTimeSlotLength = 15;
 
         // spork keys
@@ -444,6 +445,7 @@ public:
         consensus.nTargetTimespan = 40 * 60;
         consensus.nTargetTimespanV2 = 30 * 60;
         consensus.nTargetSpacing = 1 * 60;
+        consensus.nTargetSpacingV2 = 60;
         consensus.nTimeSlotLength = 15;
 
         /* Spork Key for RegTest:
