@@ -7,9 +7,6 @@
 #ifndef BITCOIN_CHAINPARAMSBASE_H
 #define BITCOIN_CHAINPARAMSBASE_H
 
-#define __RPCPORT_MAINNET__ 18977
-#define __RPCPORT_TESTNET__ 18979
-
 #include <string>
 #include <vector>
 

@@ -170,23 +170,25 @@ public:
         consensus.nBudgetCycleBlocks = 30 * 24 * 60;       // approx. 1 every 30 days
         consensus.nBudgetFeeConfirmations = 6;      // Number of confirmations for the finalization fee
         consensus.nCoinbaseMaturity = 120;
+        consensus.nCoinbaseMaturityV2 = 100;
         consensus.nFutureTimeDriftPoW = 7200;
         consensus.nFutureTimeDriftPoS = 180;
         consensus.nMasternodeCountDrift = 20;       // num of MN we allow the see-saw payments to be off by
-        consensus.nMaxMoneyOut = 84000000 * COIN;
+        consensus.nMaxMoneyOut = 999999999 * COIN;
         consensus.nPoolMaxTransactions = 3;
         consensus.nProposalEstablishmentTime = 60 * 60 * 24;    // must be at least a day old to make it into a budget
         consensus.nStakeMinAge = 3 * 60 * 60; // 3h
         consensus.nStakeMinDepth = 100;
         consensus.nStakeMinDepthV2 = 600;
-        consensus.nTargetTimespan = 20 * 60;
+        consensus.nTargetTimespan = 60;
         consensus.nTargetTimespanV2 = 30 * 60;
-        consensus.nTargetSpacing = 1 * 60 / 2;
+        consensus.nTargetSpacing = 30;
+        consensus.nTargetSpacing = 60;
         consensus.nTimeSlotLength = 15;
 
         // spork keys
         consensus.strSporkPubKey = "04c90538206b7c4921e1e96e93e83dcc39f4351b997fc57934f5beddf916563497b99a315a772b626e072c9a903209c85172cec7052a54739dc392e27cda0d581f";
-        consensus.strSporkPubKeyOld = "";
+        consensus.strSporkPubKeyOld = "04c90538206b7c4921e1e96e93e83dcc39f4351b997fc57934f5beddf916563497b99a315a772b626e072c9a903209c85172cec7052a54739dc392e27cda0d581f";
         consensus.nTime_EnforceNewSporkKey = 0;
         consensus.nTime_RejectOldSporkKey = 0;
 
@@ -247,7 +249,7 @@ public:
         pchMessageStart[1] = 0x4f;
         pchMessageStart[2] = 0x56;
         pchMessageStart[3] = 0x45;
-        nDefaultPort = __PORT_MAINNET__;
+        nDefaultPort = 18976;
 
         vSeeds.push_back(CDNSSeedData("seeder", "seeder.suvcoin.net"));
 	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.suvcoin.net"));
@@ -380,7 +382,7 @@ public:
         pchMessageStart[1] = 0x76;
         pchMessageStart[2] = 0x65;
         pchMessageStart[3] = 0xba;
-        nDefaultPort = __PORT_TESTNET__;
+        nDefaultPort = 18980;
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -503,7 +505,7 @@ public:
         pchMessageStart[1] = 0xcf;
         pchMessageStart[2] = 0x7e;
         pchMessageStart[3] = 0xac;
-        nDefaultPort = __PORT_REGTEST__;
+        nDefaultPort = 18984;
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.

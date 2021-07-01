@@ -96,6 +96,7 @@ struct Params {
     int nBudgetCycleBlocks;
     int nBudgetFeeConfirmations;
     int nCoinbaseMaturity;
+    int nCoinbaseMaturityV2;
     int nFutureTimeDriftPoW;
     int nFutureTimeDriftPoS;
     int nMasternodeCountDrift;
@@ -108,6 +109,7 @@ struct Params {
     int64_t nTargetTimespan;
     int64_t nTargetTimespanV2;
     int64_t nTargetSpacing;
+    int64_t nTargetSpacingV2;
     int nTimeSlotLength;
 
     // spork keys
