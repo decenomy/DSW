@@ -26,9 +26,9 @@ Drag Suvereno-Qt to your applications folder, and then run Suvereno-Qt.
 
 ### Need Help?
 
-* See the documentation at the [Suvereno Wiki](https://__decenomy_github_link__/)
+* See the documentation at the [Suvereno Wiki](https://github.com/decenomy/SUV/)
 for help and more information.
-* Join our Discord server [Discord Server](__decenomy_discord_link__)
+* Join our Discord server [Discord Server](https://discord.gg/fbAazeVX5P)
 
 Building
 ---------------------
@@ -48,7 +48,7 @@ The Suvereno repo's [root README](/README.md) contains relevant information on t
 - [Multiwallet Qt Development](multiwallet-qt.md)
 - [Release Notes](release-notes.md)
 - [Release Process](release-process.md)
-- [Source Code Documentation (External Link)](https://__decenomy_github_link__/)
+- [Source Code Documentation (External Link)](https://github.com/decenomy/SUV/)
 - [Translation Process](translation_process.md)
 - [Unit Tests](unit-tests.md)
 - [Unauthenticated REST Interface](REST-interface.md)
@@ -56,7 +56,7 @@ The Suvereno repo's [root README](/README.md) contains relevant information on t
 
 ### Resources
 * Discuss on the [Suvereno Homepage](__decenomy_website_link__/).
-* Join the [Suvereno Discord](__decenomy_discord_link__).
+* Join the [Suvereno Discord](https://discord.gg/fbAazeVX5P).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)
