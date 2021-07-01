@@ -129,8 +129,10 @@ struct Params {
     // Map with network updates
     NetworkUpgrade vUpgrades[MAX_NETWORK_UPGRADES];
 
-    int64_t TargetTimespan(const bool fV2 = true) const { return fV2 ? nTargetTimespanV2 : nTargetTimespan; }
-    uint256 ProofOfStakeLimit(const bool fV2) const { return fV2 ? posLimitV2 : posLimitV1; }
+    int64_t TargetTimespan(const int nHeight) const { return IsTimeProtocolV2(nHeight) ? nTargetTimespanV2 : nTargetTimespan; }
+    int64_t TargetTimeSpacing(const int nHeight) const { return IsTimeProtocolV2(nHeight) ? nTargetSpacingV2 : nTargetSpacing; }
+    int CoinbaseMaturity(const int nHeight) const { return IsTimeProtocolV2(nHeight) ? nCoinbaseMaturityV2 : nCoinbaseMaturity; }
+    uint256 ProofOfStakeLimit(const int nHeight) const { return IsTimeProtocolV2(nHeight) ? posLimitV2 : posLimitV1; }
     bool MoneyRange(const CAmount& nValue) const { return (nValue >= 0 && nValue <= nMaxMoneyOut); }
     bool IsTimeProtocolV2(const int nHeight) const { return NetworkUpgradeActive(nHeight, UPGRADE_V4_0); }
 

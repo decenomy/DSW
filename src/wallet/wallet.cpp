@@ -3397,7 +3397,7 @@ bool CWallet::MultiSend()
     for (const COutput& out : vCoins) {
 
         //need output with precise confirm count - this is how we identify which is the output to send
-        if (out.tx->GetDepthInMainChain() != Params().GetConsensus().nCoinbaseMaturity + 1)
+        if (out.tx->GetDepthInMainChain() != Params().GetConsensus().CoinbaseMaturity(chainActive.Height()) + 1)
             continue;
 
         bool isCoinStake = out.tx->IsCoinStake();
@@ -3833,9 +3833,8 @@ bool CMerkleTx::IsInMainChainImmature() const
 {
     if (!IsCoinBase() && !IsCoinStake()) return false;
     const int depth = GetDepthInMainChain(false);
-    return (depth > 0 && depth <= Params().GetConsensus().nCoinbaseMaturity);
+    return (depth > 0 && depth <= Params().GetConsensus().CoinbaseMaturity(chainActive.Height()));
 }
-
 
 bool CMerkleTx::AcceptToMemoryPool(bool fLimitFree, bool fRejectInsaneFee, bool ignoreFees)
 {
