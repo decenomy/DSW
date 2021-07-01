@@ -3,7 +3,7 @@ Suvereno Core
 
 Setup
 ---------------------
-[Suvereno Core](__decenomy_website_link__/) is the original Suvereno client and it builds the backbone of the network. However, it downloads and stores the entire history of Suvereno transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
+[Suvereno Core](https://suvcoin.net/) is the original Suvereno client and it builds the backbone of the network. However, it downloads and stores the entire history of Suvereno transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
 
 Running
 ---------------------
@@ -55,7 +55,7 @@ The Suvereno repo's [root README](/README.md) contains relevant information on t
 - [Dnsseed Policy](dnsseed-policy.md)
 
 ### Resources
-* Discuss on the [Suvereno Homepage](__decenomy_website_link__/).
+* Discuss on the [Suvereno Homepage](https://suvcoin.net/).
 * Join the [Suvereno Discord](https://discord.gg/fbAazeVX5P).
 
 ### Miscellaneous
