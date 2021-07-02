@@ -26,7 +26,7 @@ src/qt/sapphire-qt
 src/test/test_sapphire
 src/qt/test/test_sapphire-qt
 
-# Sapphire
+# Kyanite
 src/bench/bench_kyanite
 src/kyanite-cli
 src/kyanite-tx
