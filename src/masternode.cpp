@@ -320,41 +320,42 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
-    if (nHeight <= 100000) {
-        return 15000 * COIN;
-    } else if (nHeight <= 200000 && nHeight > 100000) {
-        return 17500 * COIN;
-    } else if (nHeight > 200000) {
-        return 20000 * COIN;
+    if (nHeight <= 200000) {
+        return 200000 * COIN;
+    } else if (nHeight <= 300000) {
+        return 300000 * COIN;
+    } else if (nHeight <= 400000) {
+        return 400000 * COIN;
+    } else {
+        return 500000 * COIN;
     }
-    return 0;
 }
 
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
     CAmount maxMoneyOut= Params().GetConsensus().nMaxMoneyOut;
 
-    if(nMoneySupply >= maxMoneyOut) {
-        return 0;
+    if (nMoneySupply >= maxMoneyOut) {
+        return 0 * COIN;
     }
 
     CAmount nSubsidy;
 
     if (nHeight == 1) {
-        nSubsidy = 30000000 * COIN; // __DSW__ coin supply (30M)
+        nSubsidy = 600000000 * COIN; // __DSW__ coin supply (30M)
     } else if (nHeight <= 100000) {
+        nSubsidy = 400 * COIN;
+    } else if (nHeight <= 200000) {
+        nSubsidy = 300 * COIN;
+    } else if (nHeight <= 300000) {
+        nSubsidy = 200 * COIN;
+    } else if (nHeight <= 400000) {
         nSubsidy = 100 * COIN;
-    } else if (nHeight > 100000 && nHeight <= 200000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 200000 && nHeight <= 300000) {
-        nSubsidy = 150 * COIN;
-    } else if (nHeight > 300000 && nHeight <= 400000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 400000) {
-        nSubsidy = 100 * COIN;
+    } else {
+        nSubsidy = 50 * COIN;
     }
 
-    if(nMoneySupply + nSubsidy > maxMoneyOut) {
+    if (nMoneySupply + nSubsidy > maxMoneyOut) {
         return nMoneySupply + nSubsidy - maxMoneyOut;
     }
 
@@ -363,16 +364,16 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    if(nHeight <= 5000) return 0;
+    if (nHeight <= 3000) return 0;
 
     return CMasternode::GetBlockValue(nHeight) * 95 / 100;
 }
 
 void CMasternode::InitMasternodeCollateralList() {
     CAmount prev = -1; 
-    for(int i = 0; i < 9999999; i++) {
+    for (int i = 0; i < 9999999; i++) {
         CAmount c = GetMasternodeNodeCollateral(i);
-        if(prev != c) {
+        if (prev != c) {
             LogPrint(BCLog::MASTERNODE, "%s: Found collateral %d at block %d\n", __func__, c / COIN, i); 
             prev = c;
             vecCollaterals.push_back(std::make_pair(i, c));
@@ -381,7 +382,7 @@ void CMasternode::InitMasternodeCollateralList() {
 }
 
 std::pair<int, CAmount> CMasternode::GetNextMasternodeCollateral(int nHeight) {
-    for(auto p : vecCollaterals) {
+    for (auto p : vecCollaterals) {
         if(p.first > nHeight) {
             return std::make_pair(p.first - nHeight, p.second);
         }
