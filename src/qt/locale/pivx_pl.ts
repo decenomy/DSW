@@ -114,12 +114,12 @@
         <translation>Adres odbiorczy</translation>
     </message>
     <message>
-        <source>These are your __DSW__ addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>To są twoje adresy __DSW__ do wysyłania płatności. Zawsze sprawdzaj kwotę i adres odbiorcy przed wysłaniem monet.</translation>
+        <source>These are your ESK addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>To są twoje adresy ESK do wysyłania płatności. Zawsze sprawdzaj kwotę i adres odbiorcy przed wysłaniem monet.</translation>
     </message>
     <message>
-        <source>These are your __DSW__ addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>To są twoje adresy __DSW__ do otrzymywania płatności. Zaleca się użycie nowego adresu odbiorczego dla każdej transakcji.</translation>
+        <source>These are your ESK addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>To są twoje adresy ESK do otrzymywania płatności. Zaleca się użycie nowego adresu odbiorczego dla każdej transakcji.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -349,8 +349,8 @@ do stakingu</translation>
         <translation>ANULUJ</translation>
     </message>
     <message>
-        <source>__DSW__ will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your __DSW__s from being stolen by malware infecting your computer.</source>
-        <translation>__DSW__ zamknie się teraz, aby zakończyć proces szyfrowania. Pamiętaj, że zaszyfrowanie portfela nie chroni w pełni Twoich __DSW__ przed kradzieżą przez złośliwe oprogramowanie infekujące Twój komputer.</translation>
+        <source>ESK will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your ESKs from being stolen by malware infecting your computer.</source>
+        <translation>ESK zamknie się teraz, aby zakończyć proces szyfrowania. Pamiętaj, że zaszyfrowanie portfela nie chroni w pełni Twoich ESK przed kradzieżą przez złośliwe oprogramowanie infekujące Twój komputer.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -434,8 +434,8 @@ do stakingu</translation>
         <translation>Wybór monet</translation>
     </message>
     <message>
-        <source>Select __DSW__ Outputs to Spend</source>
-        <translation>Wybierz adres wyjściowy __DSW__ do wydania</translation>
+        <source>Select ESK Outputs to Spend</source>
+        <translation>Wybierz adres wyjściowy ESK do wydania</translation>
     </message>
     <message>
         <source>Dust:</source>
@@ -462,8 +462,8 @@ do stakingu</translation>
         <translation>Ilość</translation>
     </message>
     <message>
-        <source>0.00 __DSW__</source>
-        <translation>0.00 __DSW__</translation>
+        <source>0.00 ESK</source>
+        <translation>0.00 ESK</translation>
     </message>
     <message>
         <source>0</source>
@@ -704,8 +704,8 @@ do stakingu</translation>
         <translation>Filtruj według</translation>
     </message>
     <message>
-        <source>Amount of __DSW__ and z__DSW__ staked.</source>
-        <translation>Ilość __DSW__ i z__DSW__ staked.</translation>
+        <source>Amount of ESK and zESK staked.</source>
+        <translation>Ilość ESK i zESK staked.</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -801,8 +801,8 @@ Rozpocznie się automatycznie, gdy portfel będzie miał wystarczającą liczbę
         <translation>Edytuj adres wysyłania</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid __DSW__ address.</source>
-        <translation>Wprowadzony adres "%1" nie jest prawidłowym adresem __DSW__.</translation>
+        <source>The entered address "%1" is not a valid ESK address.</source>
+        <translation>Wprowadzony adres "%1" nie jest prawidłowym adresem ESK.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -854,16 +854,16 @@ Rozpocznie się automatycznie, gdy portfel będzie miał wystarczającą liczbę
         <translation>Wersja</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>EskaCoin</source>
+        <translation>EskaCoin</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About __Decenomy__</source>
-        <translation>O __Decenomy__</translation>
+        <source>About EskaCoin</source>
+        <translation>O EskaCoin</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -917,16 +917,16 @@ Rozpocznie się automatycznie, gdy portfel będzie miał wystarczającą liczbę
         <translation>Zapraszamy</translation>
     </message>
     <message>
-        <source>Welcome to __Decenomy__.</source>
-        <translation>Zapraszamy do __Decenomy__</translation>
+        <source>Welcome to EskaCoin.</source>
+        <translation>Zapraszamy do EskaCoin</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where __Decenomy__ will store its data.</source>
-        <translation>Ponieważ program jest uruchamiany po raz pierwszy, możesz wybrać miejsce, w którym __Decenomy__ będzie przechowywać swoje dane.</translation>
+        <source>As this is the first time the program is launched, you can choose where EskaCoin will store its data.</source>
+        <translation>Ponieważ program jest uruchamiany po raz pierwszy, możesz wybrać miejsce, w którym EskaCoin będzie przechowywać swoje dane.</translation>
     </message>
     <message>
-        <source>__Decenomy__ will download and store a copy of the __DSW__ block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>__Decenomy__ pobierze i zapisze kopię łańcucha bloków __DSW__. Przynajmniej %1 GB danych zostanie zapisanych w tym katalogu, a jego liczba będzie rosnąć z czasem. Portfel zostanie również zapisany w tym katalogu.</translation>
+        <source>EskaCoin will download and store a copy of the ESK block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>EskaCoin pobierze i zapisze kopię łańcucha bloków ESK. Przynajmniej %1 GB danych zostanie zapisanych w tym katalogu, a jego liczba będzie rosnąć z czasem. Portfel zostanie również zapisany w tym katalogu.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -945,8 +945,8 @@ Rozpocznie się automatycznie, gdy portfel będzie miał wystarczającą liczbę
         <translation>OK</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>EskaCoin</source>
+        <translation>EskaCoin</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1045,8 +1045,8 @@ Rozpocznie się automatycznie, gdy portfel będzie miał wystarczającą liczbę
         <translation>Utwórz nowy kontroler Masternode</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a __DSW__ Masternode you must dedicate a collateral amount of __DSW__ (the unit of __DSW__) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Aby utworzyć Masternode __DSW__, musisz przeznaczyć 10.000 __DSW__ (jednostkę __DSW__) na sieć (jednak monety te są nadal twoje i nigdy nie zmienią swojego właściciela).&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Możesz dezaktywować węzeł i odblokować monety w dowolnym momencie.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a ESK Masternode you must dedicate a collateral amount of ESK (the unit of ESK) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Aby utworzyć Masternode ESK, musisz przeznaczyć 10.000 ESK (jednostkę ESK) na sieć (jednak monety te są nadal twoje i nigdy nie zmienią swojego właściciela).&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Możesz dezaktywować węzeł i odblokować monety w dowolnym momencie.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Set Masternode Name</source>
@@ -1066,7 +1066,7 @@ Rozpocznie się automatycznie, gdy portfel będzie miał wystarczającą liczbę
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of collateral amount will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Dokonana zostanie transakcja 10 000 __DSW__&lt;/p&gt;&lt;p&gt;na nowy pusty adres w portfelu.&lt;/p&gt;&lt;p&gt;Adres jest oznaczony pod nazwą węzła głównego.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Dokonana zostanie transakcja 10 000 ESK&lt;/p&gt;&lt;p&gt;na nowy pusty adres w portfelu.&lt;/p&gt;&lt;p&gt;Adres jest oznaczony pod nazwą węzła głównego.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Address of the node that must always be online running the actual master node.</source>
@@ -1242,7 +1242,7 @@ i głosuj na system skarbu otrzymujący okresową nagrodę.</translation>
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the __decenomy__.conf file
+You will only have to paste the data in the eskacoin.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1250,7 +1250,7 @@ this controller wallet (select the Masternode in the list and press "start").
 na zdalnym serwerze do twojego schowka.
 
 
-Wystarczy wkleić dane do pliku __decenomy__.conf
+Wystarczy wkleić dane do pliku eskacoin.conf
 zdalnego serwera i uruchom go, a następnie uruchom Masternode przy użyciu
 portfela kontrolujacego (wybierz Masternode z listy i naciśnij „start”).
 </translation>
@@ -1390,8 +1390,8 @@ Jesteś pewny?</translation>
         <translation>Przetwarzane dane są za duże</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "__decenomy__" prefix</source>
-        <translation>Nieprawidłowy identyfikator URI, nie zaczynający się od prefiksu „__decenomy__”</translation>
+        <source>Invalid URI, not starting with "eskacoin" prefix</source>
+        <translation>Nieprawidłowy identyfikator URI, nie zaczynający się od prefiksu „eskacoin”</translation>
     </message>
 </context>
 <context>
@@ -1436,8 +1436,8 @@ Jesteś pewny?</translation>
         <translation>Jeśli wyłączysz wydawanie niepotwierdzonych reszt, reszta z transakcji nie może być użyta, dopóki transakcja nie uzyska co najmniej jednego potwierdzenia. Ma to również wpływ na sposób obliczania salda.</translation>
     </message>
     <message>
-        <source>Automatically open the __DSW__ client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Automatycznie otwórz port klienta __DSW__ na routerze. Działa to tylko wtedy, gdy twój router obsługuje UPnP i jest włączony.</translation>
+        <source>Automatically open the ESK client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automatycznie otwórz port klienta ESK na routerze. Działa to tylko wtedy, gdy twój router obsługuje UPnP i jest włączony.</translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -1456,12 +1456,12 @@ Jesteś pewny?</translation>
         <translation>Ekspert</translation>
     </message>
     <message>
-        <source>Automatically start __DSW__ after logging in to the system.</source>
-        <translation>Automatycznie uruchom __DSW__ po zalogowaniu do systemu</translation>
+        <source>Automatically start ESK after logging in to the system.</source>
+        <translation>Automatycznie uruchom ESK po zalogowaniu do systemu</translation>
     </message>
     <message>
-        <source>&amp;Start __DSW__ on system login</source>
-        <translation>&amp;Uruchom __DSW__ podczas logowania do systemu</translation>
+        <source>&amp;Start ESK on system login</source>
+        <translation>&amp;Uruchom ESK podczas logowania do systemu</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1488,58 +1488,58 @@ Jesteś pewny?</translation>
         <translation>&amp;Sieć</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting __DSW__.</source>
-        <translation>Język interfejsu użytkownika może być wybrany tutaj. Ustawienia ulegną zmianie po restarcie __DSW__</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting ESK.</source>
+        <translation>Język interfejsu użytkownika może być wybrany tutaj. Ustawienia ulegną zmianie po restarcie ESK</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        __decenomy_discord_link__</source>
+        https://discord.gg/Z3ueNfWnc3</source>
         <translation>Brakuje języka bądź nieukończona pełnego tłumaczenia? Pomóż w tłumaczeniu tutaj:
-        __decenomy_discord_link__</translation>
+        https://discord.gg/Z3ueNfWnc3</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>Mapuj port za pomocą &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of __DSW__ units to z__DSW__</source>
-        <translation>Włącz automatyczny minting __DSW__ do z__DSW__</translation>
+        <source>Enable automatic minting of ESK units to zESK</source>
+        <translation>Włącz automatyczny minting ESK do zESK</translation>
     </message>
     <message>
-        <source>Enable z__DSW__ Automint</source>
-        <translation>Włącz z__DSW__ Automint</translation>
+        <source>Enable zESK Automint</source>
+        <translation>Włącz zESK Automint</translation>
     </message>
     <message>
-        <source>Enable automatic z__DSW__ minting from specific addresses</source>
-        <translation>Włącz automatyczne wybijanie z__DSW__-ów z określonych adresów</translation>
+        <source>Enable automatic zESK minting from specific addresses</source>
+        <translation>Włącz automatyczne wybijanie zESK-ów z określonych adresów</translation>
     </message>
     <message>
         <source>Enable Automint Addresses</source>
         <translation>Włącz adresy Automint</translation>
     </message>
     <message>
-        <source>Percentage of incoming __DSW__ which get automatically converted to z__DSW__ via Zerocoin Protocol (min: 10%)</source>
-        <translation>Procent __DSW__, które są automatycznie konwertowane na z__DSW__ za pomocą protokołu Zerocoin (min: 10%)</translation>
+        <source>Percentage of incoming ESK which get automatically converted to zESK via Zerocoin Protocol (min: 10%)</source>
+        <translation>Procent ESK, które są automatycznie konwertowane na zESK za pomocą protokołu Zerocoin (min: 10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted z__DSW__</source>
-        <translation>Procent automint z__DSW__</translation>
+        <source>Percentage of autominted zESK</source>
+        <translation>Procent automint zESK</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough __DSW__ for this denomination is available</source>
-        <translation>Zaczekaj z automatyczną konwersją na Zerocoin, aż będzie dostępna wystarczająca wartość __DSW__ dla tego nominału</translation>
+        <source>Wait with automatic conversion to Zerocoin until enough ESK for this denomination is available</source>
+        <translation>Zaczekaj z automatyczną konwersją na Zerocoin, aż będzie dostępna wystarczająca wartość ESK dla tego nominału</translation>
     </message>
     <message>
-        <source>Preferred Automint z__DSW__ Denomination</source>
-        <translation>Preferowane nominały Automint z__DSW__</translation>
+        <source>Preferred Automint zESK Denomination</source>
+        <translation>Preferowane nominały Automint zESK</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
         <translation>Próg podziału stawki 'stake' :</translation>
     </message>
     <message>
-        <source>Connect to the __DSW__ network through a SOCKS5 proxy.</source>
-        <translation>Połącz z siecią __DSW__ poprzez SOCKS5 proxy.</translation>
+        <source>Connect to the ESK network through a SOCKS5 proxy.</source>
+        <translation>Połącz z siecią ESK poprzez SOCKS5 proxy.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1685,8 +1685,8 @@ Jesteś pewny?</translation>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>EskaCoin</source>
+        <translation>EskaCoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -1713,8 +1713,8 @@ Jesteś pewny?</translation>
         <translation>Wyjdź z aplikacji</translation>
     </message>
     <message>
-        <source>__Decenomy__ client</source>
-        <translation>__Decenomy__ klient</translation>
+        <source>EskaCoin client</source>
+        <translation>EskaCoin klient</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1780,12 +1780,12 @@ Adres: %4
         <translation>Nieprawidłowy adres płatności %1</translation>
     </message>
     <message>
-        <source>Cannot start __decenomy__: click-to-pay handler</source>
-        <translation>Nie można uruchomić __decenomy__: click-to-pay handler</translation>
+        <source>Cannot start eskacoin: click-to-pay handler</source>
+        <translation>Nie można uruchomić eskacoin: click-to-pay handler</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid __DSW__ address or malformed URI parameters.</source>
-        <translation>Nie można przeanalizować identyfikatora URI! Może to być spowodowane nieprawidłowym adresem __DSW__ lub nieprawidłowymi parametrami URI.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid ESK address or malformed URI parameters.</source>
+        <translation>Nie można przeanalizować identyfikatora URI! Może to być spowodowane nieprawidłowym adresem ESK lub nieprawidłowymi parametrami URI.</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -1870,8 +1870,8 @@ Adres: %4
         <translation>Ilość</translation>
     </message>
     <message>
-        <source>Enter __DSW__ address (e.g. %1)</source>
-        <translation>Wpisz adres __DSW__ (np. %1)</translation>
+        <source>Enter ESK address (e.g. %1)</source>
+        <translation>Wpisz adres ESK (np. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1914,12 +1914,12 @@ Adres: %4
         <translation>%1 ms</translation>
     </message>
     <message>
-        <source>A fatal error occurred. __DSW__ can no longer continue safely and will quit.</source>
-        <translation>Wystąpił błąd krytyczny. __DSW__ nie może już działać bezpiecznie i zakończy działanie.</translation>
+        <source>A fatal error occurred. ESK can no longer continue safely and will quit.</source>
+        <translation>Wystąpił błąd krytyczny. ESK nie może już działać bezpiecznie i zakończy działanie.</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>EskaCoin</source>
+        <translation>EskaCoin</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -1938,8 +1938,8 @@ Adres: %4
         <translation>Błąd odczytu pliku konfiguracyjnego masternode: %1</translation>
     </message>
     <message>
-        <source>__Decenomy__ didn't yet exit safely...</source>
-        <translation>__Decenomy__ nie zamkną się jeszcze bezpiecznie ...</translation>
+        <source>EskaCoin didn't yet exit safely...</source>
+        <translation>EskaCoin nie zamkną się jeszcze bezpiecznie ...</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -2097,8 +2097,8 @@ Adres: %4
         <translation>Łańcuch bloków</translation>
     </message>
     <message>
-        <source>Open the __DSW__ debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Otwórz plik dziennika debugowania __DSW__ z bieżącego katalogu danych. Może to potrwać kilka sekund w przypadku dużych plików dziennika.</translation>
+        <source>Open the ESK debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Otwórz plik dziennika debugowania ESK z bieżącego katalogu danych. Może to potrwać kilka sekund w przypadku dużych plików dziennika.</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -2241,8 +2241,8 @@ Adres: %4
         <translation>Standardowa ścieżka kopii zapasowej:</translation>
     </message>
     <message>
-        <source>Custom z__DSW__ Backup Path:</source>
-        <translation>standardowa ścieżka kopii zapasowej z__DSW__:</translation>
+        <source>Custom zESK Backup Path:</source>
+        <translation>standardowa ścieżka kopii zapasowej zESK:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -2321,8 +2321,8 @@ Adres: %4
         <translation>Z</translation>
     </message>
     <message>
-        <source>Welcome to the __DSW__ RPC console.</source>
-        <translation>Witamy w konsoli __DSW__ RPC.</translation>
+        <source>Welcome to the ESK RPC console.</source>
+        <translation>Witamy w konsoli ESK RPC.</translation>
     </message>
     <message>
         <source>&amp;Disconnect Node</source>
@@ -2569,8 +2569,8 @@ Adres: %4
         <translation>Ilość</translation>
     </message>
     <message>
-        <source>__DSW__</source>
-        <translation>__DSW__</translation>
+        <source>ESK</source>
+        <translation>ESK</translation>
     </message>
     <message>
         <source>D7VFR83SQbiezrW72hjcWJtcfip5krte2Z </source>
@@ -2640,7 +2640,7 @@ Adres: %4
         <translation>Niestandardowa adresu reszty</translation>
     </message>
     <message>
-        <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" __DSW__ address</source>
+        <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" ESK address</source>
         <translation>Pozostała wartość wynikająca z wpłat i wypłat trafia na adresu „reszty”</translation>
     </message>
     <message>
@@ -2667,8 +2667,8 @@ Adres: %4
         <translation>Zalecane</translation>
     </message>
     <message>
-        <source>__DSW__/kilobyte</source>
-        <translation>__DSW__/kilobyte</translation>
+        <source>ESK/kilobyte</source>
+        <translation>ESK/kilobyte</translation>
     </message>
     <message>
         <source>0.00 KB</source>
@@ -2927,8 +2927,8 @@ Czy chcesz kontynuować?</translation>
         <translation>KLUCZ DESZYFRUJĄCY</translation>
     </message>
     <message>
-        <source>__DSW__ address</source>
-        <translation>Adres __DSW__</translation>
+        <source>ESK address</source>
+        <translation>Adres ESK</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -3052,8 +3052,8 @@ Verify that you have installed a predetermined text editor.</source>
 Sprawdź, czy zainstalowałeś określony edytor tekstu.</translation>
     </message>
     <message>
-        <source>Welcome to the __DSW__ RPC console.</source>
-        <translation>Witamy w konsoli __DSW__ RPC.</translation>
+        <source>Welcome to the ESK RPC console.</source>
+        <translation>Witamy w konsoli ESK RPC.</translation>
     </message>
     <message>
         <source>Use up and down arrows to navigate history, and %1 to clear screen.</source>
@@ -3237,28 +3237,28 @@ Wystąpił błąd podczas próby zapisania listy adresów w %1. Proszę spróbuj
         <translation>Formularz</translation>
     </message>
     <message>
-        <source>1) What is __DSW__?</source>
-        <translation>1) Co to jest __DSW__?</translation>
+        <source>1) What is ESK?</source>
+        <translation>1) Co to jest ESK?</translation>
     </message>
     <message>
-        <source>2) Why are my __DSW__ unspendable?</source>
-        <translation>2) Dlaczego mojego __DSW__ nie można wydać?</translation>
+        <source>2) Why are my ESK unspendable?</source>
+        <translation>2) Dlaczego mojego ESK nie można wydać?</translation>
     </message>
     <message>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <source>What is __DSW__?</source>
-        <translation>Co to jest __DSW__?</translation>
+        <source>What is ESK?</source>
+        <translation>Co to jest ESK?</translation>
     </message>
     <message>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <source>Why are my __DSW__ unspendable?</source>
-        <translation>Dlaczego mojego __DSW__ nie można wydać?</translation>
+        <source>Why are my ESK unspendable?</source>
+        <translation>Dlaczego mojego ESK nie można wydać?</translation>
     </message>
     <message>
         <source>3</source>
@@ -3400,8 +3400,8 @@ Wystąpił błąd podczas próby zapisania listy adresów w %1. Proszę spróbuj
         <translation>Nie można otworzyć folderu kopii zapasowych</translation>
     </message>
     <message>
-        <source>Unable to open __decenomy__.conf with default application</source>
-        <translation>Nie można otworzyć pliku __decenomy__.conf w domyślnej aplikacji</translation>
+        <source>Unable to open eskacoin.conf with default application</source>
+        <translation>Nie można otworzyć pliku eskacoin.conf w domyślnej aplikacji</translation>
     </message>
     <message>
         <source>In:</source>
@@ -3451,8 +3451,8 @@ Wystąpił błąd podczas próby zapisania listy adresów w %1. Proszę spróbuj
         <translation>Liczba wątków weryfikujących skrypt</translation>
     </message>
     <message>
-        <source>Start __DSW__ on system login</source>
-        <translation>Uruchom __DSW__ przy logowaniu do systemu</translation>
+        <source>Start ESK on system login</source>
+        <translation>Uruchom ESK przy logowaniu do systemu</translation>
     </message>
     <message>
         <source>Minimize to the tray instead of the taskbar</source>
@@ -3539,8 +3539,8 @@ Jesteś pewny?
         <translation>CheckBox</translation>
     </message>
     <message>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other __DSW__ addresses after it matures.</source>
-        <translation>MultiSend pozwala automatycznie wysyłać do 100% stake lub nagrody masternode na listę innych adresów __DSW__ po ich dojrzaniu.</translation>
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other ESK addresses after it matures.</source>
+        <translation>MultiSend pozwala automatycznie wysyłać do 100% stake lub nagrody masternode na listę innych adresów ESK po ich dojrzaniu.</translation>
     </message>
     <message>
         <source>Active</source>
@@ -3662,8 +3662,8 @@ Zaznacz jedno lub oba pola wyboru, aby wysłać stake i / lub nagrode masternode
         <translation>Wiadomość</translation>
     </message>
     <message>
-        <source>__DSW__ address or contact label</source>
-        <translation>Adres __DSW__ lub etykieta kontaktowa</translation>
+        <source>ESK address or contact label</source>
+        <translation>Adres ESK lub etykieta kontaktowa</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -3939,8 +3939,8 @@ Zaznacz jedno lub oba pola wyboru, aby wysłać stake i / lub nagrode masternode
         <translation>FAQ</translation>
     </message>
     <message>
-        <source>About __DSW__</source>
-        <translation>o __DSW__</translation>
+        <source>About ESK</source>
+        <translation>o ESK</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -4006,8 +4006,8 @@ Jesteś pewny?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>__Decenomy__ is shutting down...</source>
-        <translation>__Decenomy__ się wyłącza ...</translation>
+        <source>EskaCoin is shutting down...</source>
+        <translation>EskaCoin się wyłącza ...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4036,8 +4036,8 @@ Jesteś pewny?
         <translation>Ładowanie…</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>EskaCoin</source>
+        <translation>EskaCoin</translation>
     </message>
 </context>
 <context>
@@ -4472,21 +4472,21 @@ kopia zapasowa zostanie utworzona.
     </message>
     <message>
         <source>Welcome to
-__Decenomy__ Wallet</source>
+EskaCoin Wallet</source>
         <translation>Witamy
-Portfel __Decenomy__</translation>
+Portfel EskaCoin</translation>
     </message>
     <message>
-        <source>__DSW__ is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
-        <translation>__DSW__ to najbardziej innowacyjna na świecie technologia oparta na blockchain Proof of Stake. Opracowany przez zespół wysoce doświadczonych programistów i kryptografów.</translation>
+        <source>ESK is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
+        <translation>ESK to najbardziej innowacyjna na świecie technologia oparta na blockchain Proof of Stake. Opracowany przez zespół wysoce doświadczonych programistów i kryptografów.</translation>
     </message>
     <message>
-        <source>The masternode network is __DSW__'s second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
-        <translation>Sieć masternode jest siecią drugiej warstwy __DSW__ na szczycie blockchain, która umożliwia naszemu DAO zapewnienie zdecentralizowanego zarządzania i skarbca.</translation>
+        <source>The masternode network is ESK's second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
+        <translation>Sieć masternode jest siecią drugiej warstwy ESK na szczycie blockchain, która umożliwia naszemu DAO zapewnienie zdecentralizowanego zarządzania i skarbca.</translation>
     </message>
     <message>
-        <source>How __DSW__ respects your privacy?</source>
-        <translation>Jak __DSW__ szanuje twoją prywatność?</translation>
+        <source>How ESK respects your privacy?</source>
+        <translation>Jak ESK szanuje twoją prywatność?</translation>
     </message>
     <message>
         <source>What is a Masternode?</source>
@@ -4520,8 +4520,8 @@ Portfel __Decenomy__</translation>
         <translation>Powiąż z podanym adresem, aby odsłuchać połączenia JSON-RPC. Użyj [host]:port dla IPv6. Ta opcja może być określona wiele razy (domyślnie: powiązanie ze wszystkimi interfejsami)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. __Decenomy__ is probably already running.</source>
-        <translation>Nie można uzyskać dostępu do katalogu danych %s. __Decenomy__ prawdopodobnie już działa.</translation>
+        <source>Cannot obtain a lock on data directory %s. EskaCoin is probably already running.</source>
+        <translation>Nie można uzyskać dostępu do katalogu danych %s. EskaCoin prawdopodobnie już działa.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -4680,8 +4680,8 @@ Portfel __Decenomy__</translation>
         <translation>Całkowita długość string wersji sieciowej (%i) przekracza maksymalną długość (%i). Zmniejsz liczbę lub rozmiar uacomments.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. __Decenomy__ is probably already running.</source>
-        <translation>Nie można podłączyć %s na tym komputerze. __Decenomy__ prawdopodobnie już działa.</translation>
+        <source>Unable to bind to %s on this computer. EskaCoin is probably already running.</source>
+        <translation>Nie można podłączyć %s na tym komputerze. EskaCoin prawdopodobnie już działa.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -4696,8 +4696,8 @@ Portfel __Decenomy__</translation>
         <translation>Ostrzeżenie: -paytxfee jest ustawione bardzo wysoko! Jest to opłata transakcyjna, którą zapłacisz, jeśli wyślesz transakcję.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</source>
-        <translation>Ostrzeżenie: sprawdź, czy data i godzina komputera są poprawne! Jeśli zegar jest nieprawidłowy, __Decenomy__ nie będzie działać poprawnie.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong EskaCoin will not work properly.</source>
+        <translation>Ostrzeżenie: sprawdź, czy data i godzina komputera są poprawne! Jeśli zegar jest nieprawidłowy, EskaCoin nie będzie działać poprawnie.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -4904,8 +4904,8 @@ Portfel __Decenomy__</translation>
         <translation>Informacje</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. __Decenomy__ is shutting down.</source>
-        <translation>Sprawdzenie poprawności inicjalizacji nie powiodło się. __Decenomy__ zamyka się.</translation>
+        <source>Initialization sanity check failed. EskaCoin is shutting down.</source>
+        <translation>Sprawdzenie poprawności inicjalizacji nie powiodło się. EskaCoin zamyka się.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -4936,8 +4936,8 @@ Portfel __Decenomy__</translation>
         <translation>Nieprawidłowa netmask podana w -whitelist: '%s'</translation>
     </message>
     <message>
-        <source>Recalculating __DSW__ supply...</source>
-        <translation>Przeliczanie podaży __DSW__ ...</translation>
+        <source>Recalculating ESK supply...</source>
+        <translation>Przeliczanie podaży ESK ...</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>
@@ -4956,8 +4956,8 @@ Portfel __Decenomy__</translation>
         <translation>Jest to wersja testowa pre-release - korzystaj z niej na własne ryzyko - nie używaj do staking lub prawdziwych transakcji!</translation>
     </message>
     <message>
-        <source>Disable all __DSW__ specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
-        <translation>Wyłącz wszystkie funkcje specyficzne dla __DSW__ (Masternodes, Zerocoin, Budgeting) (0-1, domyślnie: %u)</translation>
+        <source>Disable all ESK specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
+        <translation>Wyłącz wszystkie funkcje specyficzne dla ESK (Masternodes, Zerocoin, Budgeting) (0-1, domyślnie: %u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -5192,8 +5192,8 @@ Portfel __Decenomy__</translation>
         <translation>Przygotowanie do ponownej synchronizacji ...</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</source>
-        <translation>Sprawdź, czy data i godzina komputera są poprawne! Jeśli zegar jest nieprawidłowy, __Decenomy__ nie będzie działać poprawnie.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong EskaCoin will not work properly.</source>
+        <translation>Sprawdź, czy data i godzina komputera są poprawne! Jeśli zegar jest nieprawidłowy, EskaCoin nie będzie działać poprawnie.</translation>
     </message>
     <message>
         <source>Specify location of debug log file: this can be an absolute path or a path relative to the data directory (default: %s)</source>
@@ -5376,8 +5376,8 @@ Portfel __Decenomy__</translation>
         <translation>Synchronizowanie sporks...</translation>
     </message>
     <message>
-        <source>Syncing z__DSW__ wallet...</source>
-        <translation>Synchronizuję portfel z__DSW__ ...</translation>
+        <source>Syncing zESK wallet...</source>
+        <translation>Synchronizuję portfel zESK ...</translation>
     </message>
     <message>
         <source>This help message</source>
@@ -5480,8 +5480,8 @@ Portfel __Decenomy__</translation>
         <translation>Nazwa użytkownika dla połączeń JSON-RPC</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of z__DSW__</source>
-        <translation>Wartość jest mniejsza od najmniejszej dostępnej (= 1) z__DSW__</translation>
+        <source>Value is below the smallest available denomination (= 1) of zESK</source>
+        <translation>Wartość jest mniejsza od najmniejszej dostępnej (= 1) zESK</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
@@ -5496,8 +5496,8 @@ Portfel __Decenomy__</translation>
         <translation>Portfel %s znajduje się poza katalogiem danych %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart __Decenomy__ to complete</source>
-        <translation>Portfel musiał zostać przepisany: zrestartuj __Decenomy__, aby zakończyć</translation>
+        <source>Wallet needed to be rewritten: restart EskaCoin to complete</source>
+        <translation>Portfel musiał zostać przepisany: zrestartuj EskaCoin, aby zakończyć</translation>
     </message>
     <message>
         <source>Wallet options:</source>
@@ -5563,8 +5563,8 @@ Portfel __Decenomy__</translation>
         <translation>Wyślij</translation>
     </message>
     <message>
-        <source>__DSW__ address or contact label</source>
-        <translation>Adres __DSW__ lub etykieta kontaktowa</translation>
+        <source>ESK address or contact label</source>
+        <translation>Adres ESK lub etykieta kontaktowa</translation>
     </message>
     <message>
         <source>Amount</source>

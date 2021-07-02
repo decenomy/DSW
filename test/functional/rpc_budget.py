@@ -42,12 +42,12 @@ class BudgetProposalTest(PivxTestFramework):
         assert_raises_rpc_error(-8, "Invalid block start", self.nodes[0].preparebudget,
                                 name, scheme + url, numcycles, nextsuperblock - budgetcycleblocks, address, cycleamount)
 
-        self.log.info("Test with invalid __Decenomy__ address")
-        assert_raises_rpc_error(-5, "Invalid __Decenomy__ address", self.nodes[0].preparebudget,
+        self.log.info("Test with invalid EskaCoin address")
+        assert_raises_rpc_error(-5, "Invalid EskaCoin address", self.nodes[0].preparebudget,
                                 name, scheme + url, numcycles, nextsuperblock, "DBREvBPNQguwuC4YMoCG5FoH1sA2YntvZm", cycleamount)
 
         self.log.info("Test with too low amount")
-        assert_raises_rpc_error(-8, "Invalid amount - Payment of 9.00 is less than minimum 10 __DSW__ allowed", self.nodes[0].preparebudget,
+        assert_raises_rpc_error(-8, "Invalid amount - Payment of 9.00 is less than minimum 10 ESK allowed", self.nodes[0].preparebudget,
                                 name, scheme + url, numcycles, nextsuperblock, address, 9)
 
         self.log.info("Test with too high amount")

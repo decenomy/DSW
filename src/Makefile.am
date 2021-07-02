@@ -67,15 +67,15 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += __decenomy__d
+  bin_PROGRAMS += eskacoind
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += __decenomy__-cli __decenomy__-tx
+  bin_PROGRAMS += eskacoin-cli eskacoin-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
-# __decenomy__ core #
+# eskacoin core #
 BITCOIN_CORE_H = \
   activemasternode.h \
   addrdb.h \
@@ -227,7 +227,7 @@ obj/build.h: FORCE
 	  "$(abs_top_srcdir)"
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between __decenomy__d and __decenomy__-qt
+# server: shared between eskacoind and eskacoin-qt
 libbitcoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libbitcoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_server_a_SOURCES = \
@@ -282,7 +282,7 @@ libbitcoin_zmq_a_SOURCES = \
   zmq/zmqpublishnotifier.cpp
 endif
 
-# wallet: shared between __decenomy__d and __decenomy__-qt, but only linked
+# wallet: shared between eskacoind and eskacoin-qt, but only linked
 # when wallet enabled
 libbitcoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
@@ -408,7 +408,7 @@ if USE_NUM_OPENSSL
   libzerocoin_libbitcoin_zerocoin_a_SOURCES += libzerocoin/bignum_openssl.cpp
 endif
 
-# common: shared between __decenomy__d, and __decenomy__-qt and non-server tools
+# common: shared between eskacoind, and eskacoin-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_common_a_SOURCES = \
@@ -483,7 +483,7 @@ if GLIBC_BACK_COMPAT
 AM_LDFLAGS += $(COMPAT_LDFLAGS)
 endif
 
-# cli: shared between __decenomy__-cli and __decenomy__-qt
+# cli: shared between eskacoin-cli and eskacoin-qt
 libbitcoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_cli_a_SOURCES = \
@@ -493,16 +493,16 @@ libbitcoin_cli_a_SOURCES = \
 nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# __decenomy__d binary #
-__decenomy__d_SOURCES = pivxd.cpp
-__decenomy__d_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-__decenomy__d_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-__decenomy__d_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# eskacoind binary #
+eskacoind_SOURCES = pivxd.cpp
+eskacoind_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+eskacoind_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+eskacoind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-__decenomy__d_SOURCES += pivxd-res.rc
+eskacoind_SOURCES += pivxd-res.rc
 endif
-__decenomy__d_LDADD = \
+eskacoind_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
   $(LIBBITCOIN_COMMON) \
@@ -516,38 +516,38 @@ __decenomy__d_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-__decenomy__d_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+eskacoind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
-# __decenomy__-cli binary #
-__decenomy___cli_SOURCES = pivx-cli.cpp
-__decenomy___cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-__decenomy___cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-__decenomy___cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# eskacoin-cli binary #
+eskacoin_cli_SOURCES = pivx-cli.cpp
+eskacoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+eskacoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+eskacoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-__decenomy___cli_SOURCES += pivx-cli-res.rc
+eskacoin_cli_SOURCES += pivx-cli-res.rc
 endif
 
-__decenomy___cli_LDADD = \
+eskacoin_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO)
 
-__decenomy___cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+eskacoin_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
-# __decenomy__-tx binary #
-__decenomy___tx_SOURCES = pivx-tx.cpp
-__decenomy___tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-__decenomy___tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-__decenomy___tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# eskacoin-tx binary #
+eskacoin_tx_SOURCES = pivx-tx.cpp
+eskacoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+eskacoin_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+eskacoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-__decenomy___tx_SOURCES += pivx-tx-res.rc
+eskacoin_tx_SOURCES += pivx-tx-res.rc
 endif
 
-__decenomy___tx_LDADD = \
+eskacoin_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_ZEROCOIN) \
@@ -555,7 +555,7 @@ __decenomy___tx_LDADD = \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-__decenomy___tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+eskacoin_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
 # bitcoinconsensus library #
