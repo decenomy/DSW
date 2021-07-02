@@ -3,21 +3,21 @@ Ultra Clear integration/staging repository
 
 
 UltraClear is an open source crypto-currency focused on fast private transactions with low transaction fees & environmental footprint.  
-More information at [clrcoin.net](http://www.clrcoin.net)
+More information at [ucrcoin.net](https://ucrcoin.net)
 
 ### Coin Specs
 <table>
-<tr><td>Ticker</td><td>CLR</td></tr>
+<tr><td>Ticker</td><td>UCR</td></tr>
 <tr><td>Algo</td><td>X13</td></tr>
 <tr><td>Block Time</td><td>60 Seconds</td></tr>
 <tr><td>Difficulty Retargeting</td><td>Every Block</td></tr>
 <tr><td>Max Coin Supply (PoS Phase)</td><td>1000M</td></tr>
-<tr><td>Premine</td><td>500,000 CLR*</td></tr>
+<tr><td>Premine</td><td>500,000 UCR*</td></tr>
 </table>
 
 RPC Port 32627 
 P2P Port 32628 
-Explorer http://explorer.clearnodes.com
+Explorer https://explorer.decenomy.net/UCR/blocks
 
 
 ### Rewards Breakdown
