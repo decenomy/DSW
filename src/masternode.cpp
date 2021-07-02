@@ -366,7 +366,7 @@ CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
     if (nHeight <= 3000) return 0;
 
-    return CMasternode::GetBlockValue(nHeight) * 95 / 100;
+    return CMasternode::GetBlockValue(nHeight) * 90 / 100;
 }
 
 void CMasternode::InitMasternodeCollateralList() {
