@@ -83,7 +83,7 @@ BitcoinAddressCheckValidator::BitcoinAddressCheckValidator(QObject* parent) : QV
 QValidator::State BitcoinAddressCheckValidator::validate(QString& input, int& pos) const
 {
     Q_UNUSED(pos);
-    // Validate the passed __DSW__ address
+    // Validate the passed KYAN address
     CTxDestination addr = DecodeDestination(input.toStdString());
     if (IsValidDestination(addr))
         return QValidator::Acceptable;

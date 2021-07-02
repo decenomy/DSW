@@ -95,11 +95,11 @@
     </message>
     <message>
         <source>Choose the address to send coins to</source>
-        <translation>选择发送__DSW__ coin的地址</translation>
+        <translation>选择发送KYAN coin的地址</translation>
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
-        <translation>选择接收__DSW__ coin的地址</translation>
+        <translation>选择接收KYAN coin的地址</translation>
     </message>
     <message>
         <source>C&amp;hoose</source>
@@ -114,12 +114,12 @@
         <translation>接收地址</translation>
     </message>
     <message>
-        <source>These are your __DSW__ addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>这是用于发送__DSW__的地址。在发送__DSW__之前，请认真核查发送金额和接收地址。</translation>
+        <source>These are your KYAN addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>这是用于发送KYAN的地址。在发送KYAN之前，请认真核查发送金额和接收地址。</translation>
     </message>
     <message>
-        <source>These are your __DSW__ addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>这是用于接收__DSW__的钱包地址。建议每一笔交易都使用一个新的钱包地址。</translation>
+        <source>These are your KYAN addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>这是用于接收KYAN的钱包地址。建议每一笔交易都使用一个新的钱包地址。</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -348,8 +348,8 @@ for staking</source>
         <translation>删除</translation>
     </message>
     <message>
-        <source>__DSW__ will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your __DSW__s from being stolen by malware infecting your computer.</source>
-        <translation>__DSW__将关闭以完成加密过程。但是，仅仅加密您的钱包是不够的，因为它并不能阻止恶意软件从您的电脑里面偷取__DSW__s。</translation>
+        <source>KYAN will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your KYANs from being stolen by malware infecting your computer.</source>
+        <translation>KYAN将关闭以完成加密过程。但是，仅仅加密您的钱包是不够的，因为它并不能阻止恶意软件从您的电脑里面偷取KYANs。</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -433,8 +433,8 @@ for staking</source>
         <translation>币选择</translation>
     </message>
     <message>
-        <source>Select __DSW__ Outputs to Spend</source>
-        <translation>选择__DSW__支出花费</translation>
+        <source>Select KYAN Outputs to Spend</source>
+        <translation>选择KYAN支出花费</translation>
     </message>
     <message>
         <source>Dust:</source>
@@ -461,8 +461,8 @@ for staking</source>
         <translation>金额</translation>
     </message>
     <message>
-        <source>0.00 __DSW__</source>
-        <translation>0.00 __DSW__</translation>
+        <source>0.00 KYAN</source>
+        <translation>0.00 KYAN</translation>
     </message>
     <message>
         <source>0</source>
@@ -703,8 +703,8 @@ for staking</source>
         <translation>过滤</translation>
     </message>
     <message>
-        <source>Amount of __DSW__ and z__DSW__ staked.</source>
-        <translation>已加注的__DSW__ 和 z__DSW__ 金额</translation>
+        <source>Amount of KYAN and zKYAN staked.</source>
+        <translation>已加注的KYAN 和 zKYAN 金额</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -799,8 +799,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>编辑发送地址</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid __DSW__ address.</source>
-        <translation>所输入的地址“%1”不是有效的__DSW__地址。</translation>
+        <source>The entered address "%1" is not a valid KYAN address.</source>
+        <translation>所输入的地址“%1”不是有效的KYAN地址。</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -852,16 +852,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>版本</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Kyanite</source>
+        <translation>Kyanite</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-位)</translation>
     </message>
     <message>
-        <source>About __Decenomy__</source>
-        <translation>关于__Decenomy__</translation>
+        <source>About Kyanite</source>
+        <translation>关于Kyanite</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -915,16 +915,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>欢迎</translation>
     </message>
     <message>
-        <source>Welcome to __Decenomy__.</source>
-        <translation>欢迎使用 __Decenomy__</translation>
+        <source>Welcome to Kyanite.</source>
+        <translation>欢迎使用 Kyanite</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where __Decenomy__ will store its data.</source>
-        <translation>由于这是该程序第一次启动，您可以选择存储__Decenomy__ 数据的位置。</translation>
+        <source>As this is the first time the program is launched, you can choose where Kyanite will store its data.</source>
+        <translation>由于这是该程序第一次启动，您可以选择存储Kyanite 数据的位置。</translation>
     </message>
     <message>
-        <source>__Decenomy__ will download and store a copy of the __DSW__ block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>__Decenomy__将下载并存储__DSW__区块链副本。 至少 %1 GB的数据将存储在此目录中，并且会随着时间的推移而增长。 钱包也将存储在此目录中。</translation>
+        <source>Kyanite will download and store a copy of the KYAN block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Kyanite将下载并存储KYAN区块链副本。 至少 %1 GB的数据将存储在此目录中，并且会随着时间的推移而增长。 钱包也将存储在此目录中。</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -943,8 +943,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>好的</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Kyanite</source>
+        <translation>Kyanite</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1043,8 +1043,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>创建新的主节点控制器</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a __DSW__ Masternode you must dedicate a collateral amount of __DSW__ (the unit of __DSW__) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;要去创建一个__DSW__主节点，你必须奉献10,000 __DSW__（__DSW__的单位）到网络（但是这些币还是属于你的，一直为你所有）。&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;你可以在任何时候关闭该节点并解锁币。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a KYAN Masternode you must dedicate a collateral amount of KYAN (the unit of KYAN) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;要去创建一个KYAN主节点，你必须奉献10,000 KYAN（KYAN的单位）到网络（但是这些币还是属于你的，一直为你所有）。&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;你可以在任何时候关闭该节点并解锁币。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Set Masternode Name</source>
@@ -1064,7 +1064,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of collateral amount will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;将进行10,000 __DSW__的交易&lt;/p&gt;&lt;p&gt;到您的钱包空地址&lt;/p&gt;&lt;p&gt;地址被标记在主节点的名称之下&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;将进行10,000 KYAN的交易&lt;/p&gt;&lt;p&gt;到您的钱包空地址&lt;/p&gt;&lt;p&gt;地址被标记在主节点的名称之下&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Address of the node that must always be online running the actual master node.</source>
@@ -1246,7 +1246,7 @@ Please wait few more minutes (masternode collaterals require %1 confirmations).<
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the __decenomy__.conf file
+You will only have to paste the data in the kyanite.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1254,7 +1254,7 @@ this controller wallet (select the Masternode in the list and press "start").
 到剪贴板的远程服务器上。
 
 
-您只需将数据粘贴到__decenomy__.conf文件中
+您只需将数据粘贴到kyanite.conf文件中
 ，然后使用主节点启动它
 这个控制器钱包(在列表中选择主节点并按“开始”)。
 </translation>
@@ -1394,8 +1394,8 @@ Are you sure?</source>
         <translation>解析的数据太大</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "__decenomy__" prefix</source>
-        <translation>无效的URI，不是以“ __decenomy__”前缀开头</translation>
+        <source>Invalid URI, not starting with "kyanite" prefix</source>
+        <translation>无效的URI，不是以“ kyanite”前缀开头</translation>
     </message>
 </context>
 <context>
@@ -1440,8 +1440,8 @@ Are you sure?</source>
         <translation>如果您要禁用未经确认发送，在至少有一个确认之前&lt;br/&gt;不能更改。&lt;br/&gt;这也将影响您的余额计算。</translation>
     </message>
     <message>
-        <source>Automatically open the __DSW__ client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>自动打开路由器上的__DSW__钱包使用的端口。 这只有当您的路由器支持UPnP并且该享生效时才有用。</translation>
+        <source>Automatically open the KYAN client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>自动打开路由器上的KYAN钱包使用的端口。 这只有当您的路由器支持UPnP并且该享生效时才有用。</translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -1460,12 +1460,12 @@ Are you sure?</source>
         <translation>专家</translation>
     </message>
     <message>
-        <source>Automatically start __DSW__ after logging in to the system.</source>
-        <translation>登录系统后自动启动__DSW__。</translation>
+        <source>Automatically start KYAN after logging in to the system.</source>
+        <translation>登录系统后自动启动KYAN。</translation>
     </message>
     <message>
-        <source>&amp;Start __DSW__ on system login</source>
-        <translation>&amp;开机启动__DSW__</translation>
+        <source>&amp;Start KYAN on system login</source>
+        <translation>&amp;开机启动KYAN</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1492,58 +1492,58 @@ Are you sure?</source>
         <translation>&amp;网络</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting __DSW__.</source>
-        <translation>可以在这里设置用户界面语言。此设置将在重新启动__DSW__后生效。</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting KYAN.</source>
+        <translation>可以在这里设置用户界面语言。此设置将在重新启动KYAN后生效。</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        __decenomy_discord_link__</source>
+        https://discord.gg/R2Racbr</source>
         <translation>语言缺失或翻译不完整?帮助贡献翻译在这里:
-        __decenomy_discord_link__</translation>
+        https://discord.gg/R2Racbr</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>端口使用&amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of __DSW__ units to z__DSW__</source>
-        <translation>启动自动铸造__DSW__到z__DSW__</translation>
+        <source>Enable automatic minting of KYAN units to zKYAN</source>
+        <translation>启动自动铸造KYAN到zKYAN</translation>
     </message>
     <message>
-        <source>Enable z__DSW__ Automint</source>
-        <translation>启动自动铸造z__DSW__</translation>
+        <source>Enable zKYAN Automint</source>
+        <translation>启动自动铸造zKYAN</translation>
     </message>
     <message>
-        <source>Enable automatic z__DSW__ minting from specific addresses</source>
-        <translation>启用从特定地址自动生成z__DSW__</translation>
+        <source>Enable automatic zKYAN minting from specific addresses</source>
+        <translation>启用从特定地址自动生成zKYAN</translation>
     </message>
     <message>
         <source>Enable Automint Addresses</source>
         <translation>启动自动铸造地址</translation>
     </message>
     <message>
-        <source>Percentage of incoming __DSW__ which get automatically converted to z__DSW__ via Zerocoin Protocol (min: 10%)</source>
-        <translation>通过零币协议自动转换为z__DSW__的传入__DSW__的百分比(最小:10%)</translation>
+        <source>Percentage of incoming KYAN which get automatically converted to zKYAN via Zerocoin Protocol (min: 10%)</source>
+        <translation>通过零币协议自动转换为zKYAN的传入KYAN的百分比(最小:10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted z__DSW__</source>
-        <translation>自动铸造的z__DSW__百分比</translation>
+        <source>Percentage of autominted zKYAN</source>
+        <translation>自动铸造的zKYAN百分比</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough __DSW__ for this denomination is available</source>
-        <translation>等待自动转换为零币，直到足够的__DSW__为这种面额可用</translation>
+        <source>Wait with automatic conversion to Zerocoin until enough KYAN for this denomination is available</source>
+        <translation>等待自动转换为零币，直到足够的KYAN为这种面额可用</translation>
     </message>
     <message>
-        <source>Preferred Automint z__DSW__ Denomination</source>
-        <translation>首选自动铸造z__DSW__面额</translation>
+        <source>Preferred Automint zKYAN Denomination</source>
+        <translation>首选自动铸造zKYAN面额</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
         <translation>股权分割阈值:</translation>
     </message>
     <message>
-        <source>Connect to the __DSW__ network through a SOCKS5 proxy.</source>
-        <translation>通过SOCKS5代理连接到__DSW__网络。</translation>
+        <source>Connect to the KYAN network through a SOCKS5 proxy.</source>
+        <translation>通过SOCKS5代理连接到KYAN网络。</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1599,7 +1599,7 @@ Are you sure?</source>
     </message>
     <message>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
-        <translation>选择显示发送__DSW__的默认单位。</translation>
+        <translation>选择显示发送KYAN的默认单位。</translation>
     </message>
     <message>
         <source>Decimal digits</source>
@@ -1689,8 +1689,8 @@ Are you sure?</source>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Kyanite</source>
+        <translation>Kyanite</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -1717,8 +1717,8 @@ Are you sure?</source>
         <translation>关闭应用</translation>
     </message>
     <message>
-        <source>__Decenomy__ client</source>
-        <translation>__Decenomy__ 客户端</translation>
+        <source>Kyanite client</source>
+        <translation>Kyanite 客户端</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1784,12 +1784,12 @@ Address: %4
         <translation>无效支付地址%1</translation>
     </message>
     <message>
-        <source>Cannot start __decenomy__: click-to-pay handler</source>
-        <translation>无法启动__decenomy__:点击支付处理程序</translation>
+        <source>Cannot start kyanite: click-to-pay handler</source>
+        <translation>无法启动kyanite:点击支付处理程序</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid __DSW__ address or malformed URI parameters.</source>
-        <translation>URI不能被解析!这可能是由无效的__DSW__地址或格式错误的URI参数造成的。</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid KYAN address or malformed URI parameters.</source>
+        <translation>URI不能被解析!这可能是由无效的KYAN地址或格式错误的URI参数造成的。</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -1874,8 +1874,8 @@ Address: %4
         <translation>金额</translation>
     </message>
     <message>
-        <source>Enter __DSW__ address (e.g. %1)</source>
-        <translation>输入__DSW__ a地址(e.g. %1)</translation>
+        <source>Enter KYAN address (e.g. %1)</source>
+        <translation>输入KYAN a地址(e.g. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1918,12 +1918,12 @@ Address: %4
         <translation>%1 毫秒</translation>
     </message>
     <message>
-        <source>A fatal error occurred. __DSW__ can no longer continue safely and will quit.</source>
-        <translation>发生了一个致命的错误。__DSW__不能继续安全，将退出。</translation>
+        <source>A fatal error occurred. KYAN can no longer continue safely and will quit.</source>
+        <translation>发生了一个致命的错误。KYAN不能继续安全，将退出。</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Kyanite</source>
+        <translation>Kyanite</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -1942,8 +1942,8 @@ Address: %4
         <translation>读取主节点配置文件出错:%1</translation>
     </message>
     <message>
-        <source>__Decenomy__ didn't yet exit safely...</source>
-        <translation>__Decenomy__心尚未安全退出……</translation>
+        <source>Kyanite didn't yet exit safely...</source>
+        <translation>Kyanite心尚未安全退出……</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -2101,8 +2101,8 @@ Address: %4
         <translation>区块链</translation>
     </message>
     <message>
-        <source>Open the __DSW__ debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>从当前数据目录打开__DSW__调试日志文件。对于大型日志文件，这可能需要几秒钟。</translation>
+        <source>Open the KYAN debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>从当前数据目录打开KYAN调试日志文件。对于大型日志文件，这可能需要几秒钟。</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -2245,8 +2245,8 @@ Address: %4
         <translation>自定义备份路径:</translation>
     </message>
     <message>
-        <source>Custom z__DSW__ Backup Path:</source>
-        <translation>自定义z__DSW__备份路径:</translation>
+        <source>Custom zKYAN Backup Path:</source>
+        <translation>自定义zKYAN备份路径:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -2325,8 +2325,8 @@ Address: %4
         <translation>出：</translation>
     </message>
     <message>
-        <source>Welcome to the __DSW__ RPC console.</source>
-        <translation>欢迎访问__DSW__ RPC控制台</translation>
+        <source>Welcome to the KYAN RPC console.</source>
+        <translation>欢迎访问KYAN RPC控制台</translation>
     </message>
     <message>
         <source>&amp;Disconnect Node</source>
@@ -2573,8 +2573,8 @@ Address: %4
         <translation>金额</translation>
     </message>
     <message>
-        <source>__DSW__</source>
-        <translation>__DSW__</translation>
+        <source>KYAN</source>
+        <translation>KYAN</translation>
     </message>
     <message>
         <source>D7VFR83SQbiezrW72hjcWJtcfip5krte2Z </source>
@@ -2644,8 +2644,8 @@ Address: %4
         <translation>自定义更改地址</translation>
     </message>
     <message>
-        <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" __DSW__ address</source>
-        <translation>输入值减去输出值所得的值的其余部分归为“更改”__DSW__地址</translation>
+        <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" KYAN address</source>
+        <translation>输入值减去输出值所得的值的其余部分归为“更改”KYAN地址</translation>
     </message>
     <message>
         <source>SAVE</source>
@@ -2671,8 +2671,8 @@ Address: %4
         <translation>已推荐</translation>
     </message>
     <message>
-        <source>__DSW__/kilobyte</source>
-        <translation>__DSW__/k字节</translation>
+        <source>KYAN/kilobyte</source>
+        <translation>KYAN/k字节</translation>
     </message>
     <message>
         <source>0.00 KB</source>
@@ -2923,8 +2923,8 @@ Do you want to continue?</source>
         <translation>解密钥匙</translation>
     </message>
     <message>
-        <source>__DSW__ address</source>
-        <translation>__DSW__地址</translation>
+        <source>KYAN address</source>
+        <translation>KYAN地址</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -3048,8 +3048,8 @@ Verify that you have installed a predetermined text editor.</source>
 确认您已经安装了预定的文本编辑器</translation>
     </message>
     <message>
-        <source>Welcome to the __DSW__ RPC console.</source>
-        <translation>欢迎访问__DSW__ RPC控制台</translation>
+        <source>Welcome to the KYAN RPC console.</source>
+        <translation>欢迎访问KYAN RPC控制台</translation>
     </message>
     <message>
         <source>Use up and down arrows to navigate history, and %1 to clear screen.</source>
@@ -3233,46 +3233,46 @@ There was an error trying to save the address list to %1. Please try again.</sou
         <translation>来自</translation>
     </message>
     <message>
-        <source>1) What is __DSW__?</source>
-        <translation>1）什么是__DSW__?</translation>
+        <source>1) What is KYAN?</source>
+        <translation>1）什么是KYAN?</translation>
     </message>
     <message>
-        <source>2) Why are my __DSW__ unspendable?</source>
-        <translation>2) 我的__DSW__为什么不能用？</translation>
+        <source>2) Why are my KYAN unspendable?</source>
+        <translation>2) 我的KYAN为什么不能用？</translation>
     </message>
     <message>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <source>What is __DSW__?</source>
-        <translation>__DSW__是什么?</translation>
+        <source>What is KYAN?</source>
+        <translation>KYAN是什么?</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           __DSW__ is a form of digital online money using blockchain technology
+                           KYAN is a form of digital online money using blockchain technology
                            that can be easily transferred globally, instantly, and with near
-                           zero fees.  __DSW__ incorporates market leading security &amp;
+                           zero fees.  KYAN incorporates market leading security &amp;
                            privacy and is also the first PoS (Proof of Stake) Cryptocurrency
-                           to implement ZeroCoin(z__DSW__) and Zerocoin staking.
+                           to implement ZeroCoin(zKYAN) and Zerocoin staking.
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           __DSW__ utilizes a Proof of Stake (PoS) consensus system algorithm,
-                           allowing all owners of __DSW__ to participate in earning block rewards
+                           KYAN utilizes a Proof of Stake (PoS) consensus system algorithm,
+                           allowing all owners of KYAN to participate in earning block rewards
                            while securing the network with full node wallets, as well as to
                            run Masternodes to create and vote on proposals.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-__DSW__是一种使用区块链技术的数字在线货币
+KYAN是一种使用区块链技术的数字在线货币
 全球范围内快捷交易，即时，基本为
-零的交易费用。__DSW__是市场上领先的安全和
+零的交易费用。KYAN是市场上领先的安全和
 隐私加密货币，也是第一个PoS(股权证明)加密货币
-实现零币(z__DSW__)和零币加注。
+实现零币(zKYAN)和零币加注。
 &lt;/p&gt;&lt;p align="justify"&gt;
-__DSW__使用了一个股权证明(PoS)一致系统算法，
-允许所有__DSW__的所有者参与赚取区块奖励
+KYAN使用了一个股权证明(PoS)一致系统算法，
+允许所有KYAN的所有者参与赚取区块奖励
 同时保护网络与完整的节点钱包，以及
 运行主节点创建和投票来进行提案。</translation>
     </message>
@@ -3281,25 +3281,25 @@ __DSW__使用了一个股权证明(PoS)一致系统算法，
         <translation>2</translation>
     </message>
     <message>
-        <source>Why are my __DSW__ unspendable?</source>
-        <translation>我的__DSW__为什么不能用？</translation>
+        <source>Why are my KYAN unspendable?</source>
+        <translation>我的KYAN为什么不能用？</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           Newly received __DSW__ requires 6 confirmations on the network
+                           Newly received KYAN requires 6 confirmations on the network
                            to become eligible for spending which can take ~6 minutes.
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           Your __DSW__ wallet also needs to be completely synchronized
+                           Your KYAN wallet also needs to be completely synchronized
                            to see and spend balances on the network.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-接收到的__DSW__需要网络上的6个确认
+接收到的KYAN需要网络上的6个确认
 才能成为有资格的花费，可以花~6分钟。
 &lt;/p&gt;&lt;p align="justify"&gt;
-您的__DSW__钱包也需要完全同步
+您的KYAN钱包也需要完全同步
 查看网络收支余额。
 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
 </translation>
@@ -3334,12 +3334,12 @@ __DSW__使用了一个股权证明(PoS)一致系统算法，
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;A Masternode Controller wallet is where the collateral amount can reside during a Controller-Remote masternode setup. It is a wallet that can activate the remote masternode wallet(s) and allows you to keep your collateral coins offline while the remote masternode remains online. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;主节点控制器钱包是控制器-远程主节点建立期间10,000 __DSW__抵押可以驻留的地方。这是一个可以激活远程主节点钱包(s)的钱包，可以让你的抵押币离线但远程主节点保持在线。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;主节点控制器钱包是控制器-远程主节点建立期间10,000 KYAN抵押可以驻留的地方。这是一个可以激活远程主节点钱包(s)的钱包，可以让你的抵押币离线但远程主节点保持在线。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           A masternode is a computer running a full node __DSW__ wallet with a
+                           A masternode is a computer running a full node KYAN wallet with a
                            required amount of secured collateral to provide extra services
                            to the network and in return, receive a portion of the block reward
                            regularly.  These services include:
@@ -3361,10 +3361,10 @@ __DSW__使用了一个股权证明(PoS)一致系统算法，
                            Masternode Perks:
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;Participate in __DSW__ Governance&lt;/li&gt;
+                           &lt;li&gt;Participate in KYAN Governance&lt;/li&gt;
                            &lt;li&gt;Earn Masternode Rewards&lt;/li&gt;
                            &lt;li&gt;Commodity option for future sale&lt;/li&gt;
-                           &lt;li&gt;Help secure the __DSW__ network&lt;/li&gt;
+                           &lt;li&gt;Help secure the KYAN network&lt;/li&gt;
                            &lt;/ul&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
@@ -3380,8 +3380,8 @@ __DSW__使用了一个股权证明(PoS)一致系统算法，
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-主节点是运行完整节点__DSW__核心钱包的计算机
-需要10,000个__DSW__作抵押以提供额外服务
+主节点是运行完整节点KYAN核心钱包的计算机
+需要10,000个KYAN作抵押以提供额外服务
 到网络，会收到一部分的区块奖励作为定期
 回报
 这些服务包括:
@@ -3402,17 +3402,17 @@ __DSW__使用了一个股权证明(PoS)一致系统算法，
 主节点福利：
 &lt;/p&gt;&lt;p align="justify"&gt;
 &lt;ul&gt;
-&lt;li&gt;参与__DSW__治理&lt;/li&gt;
+&lt;li&gt;参与KYAN治理&lt;/li&gt;
 &lt;li&gt;赢取主节点奖励&lt;/li&gt;
 &lt;li&gt;商品期货期权&lt;/li&gt;
-&lt;li&gt;帮助保护__DSW__网络&lt;/li&gt;
+&lt;li&gt;帮助保护KYAN网络&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/p&gt;&lt;p align="justify"&gt;
 
 要求：
 &lt;/p&gt;&lt;p align="justify"&gt;
 &lt;ul&gt;
-&lt;li&gt;每个主节点实例有10,000 __DSW__&lt;/li&gt;
+&lt;li&gt;每个主节点实例有10,000 KYAN&lt;/li&gt;
 &lt;li&gt;必须存储在核心钱包&lt;/li&gt;
 &lt;li&gt;需要专用IP地址&lt;/li&gt;
 主节点钱包保持在线&lt;li&gt;
@@ -3533,8 +3533,8 @@ __DSW__使用了一个股权证明(PoS)一致系统算法，
         <translation>无法打开备份文件夹</translation>
     </message>
     <message>
-        <source>Unable to open __decenomy__.conf with default application</source>
-        <translation>无法使用默认应用程序打开__decenomy__.conf</translation>
+        <source>Unable to open kyanite.conf with default application</source>
+        <translation>无法使用默认应用程序打开kyanite.conf</translation>
     </message>
     <message>
         <source>In:</source>
@@ -3584,8 +3584,8 @@ __DSW__使用了一个股权证明(PoS)一致系统算法，
         <translation>脚本&amp;验证线程数</translation>
     </message>
     <message>
-        <source>Start __DSW__ on system login</source>
-        <translation>开机启动__DSW__</translation>
+        <source>Start KYAN on system login</source>
+        <translation>开机启动KYAN</translation>
     </message>
     <message>
         <source>Minimize to the tray instead of the taskbar</source>
@@ -3672,8 +3672,8 @@ Are you sure?
         <translation>查看列表</translation>
     </message>
     <message>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other __DSW__ addresses after it matures.</source>
-        <translation>成熟以后，多重花费允许您自动发送高达 100% 的股权或主节点奖励到其他__DSW__地址列表</translation>
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other KYAN addresses after it matures.</source>
+        <translation>成熟以后，多重花费允许您自动发送高达 100% 的股权或主节点奖励到其他KYAN地址列表</translation>
     </message>
     <message>
         <source>Active</source>
@@ -3791,8 +3791,8 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation>消息 </translation>
     </message>
     <message>
-        <source>__DSW__ address or contact label</source>
-        <translation>__DSW__ 地址或者联系人标签</translation>
+        <source>KYAN address or contact label</source>
+        <translation>KYAN 地址或者联系人标签</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -4068,8 +4068,8 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation>常见问题</translation>
     </message>
     <message>
-        <source>About __DSW__</source>
-        <translation>关于__DSW__ </translation>
+        <source>About KYAN</source>
+        <translation>关于KYAN </translation>
     </message>
     <message>
         <source>Settings</source>
@@ -4135,8 +4135,8 @@ Are you sure?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>__Decenomy__ is shutting down...</source>
-        <translation>__Decenomy__ 核心正在关闭...</translation>
+        <source>Kyanite is shutting down...</source>
+        <translation>Kyanite 核心正在关闭...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4165,8 +4165,8 @@ Are you sure?
         <translation>正在下载…</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Kyanite</source>
+        <translation>Kyanite</translation>
     </message>
 </context>
 <context>
@@ -4601,25 +4601,25 @@ backup will be created.
     </message>
     <message>
         <source>Welcome to
-__Decenomy__ Wallet</source>
+Kyanite Wallet</source>
         <translation>欢迎
-__Decenomy__心钱包</translation>
+Kyanite心钱包</translation>
     </message>
     <message>
-        <source>__DSW__ is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
-        <translation>__DSW__是世界上最先进的隐私保护技术，由经验丰富的开发人员和密码专家开发。</translation>
+        <source>KYAN is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
+        <translation>KYAN是世界上最先进的隐私保护技术，由经验丰富的开发人员和密码专家开发。</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - __DSW__ believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;正如我们的宣言所说:隐私是一项不容协商的基本人权;它赋予用户随时随地与任何人共享数据的自由——__DSW__相信自我主权&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - KYAN believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;正如我们的宣言所说:隐私是一项不容协商的基本人权;它赋予用户随时随地与任何人共享数据的自由——KYAN相信自我主权&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <source>The masternode network is __DSW__'s second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
-        <translation>主节点网络是__DSW__在区块链之上的第二层网络，它使我们的DAO能够提供去中心的治理。</translation>
+        <source>The masternode network is KYAN's second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
+        <translation>主节点网络是KYAN在区块链之上的第二层网络，它使我们的DAO能够提供去中心的治理。</translation>
     </message>
     <message>
-        <source>How __DSW__ respects your privacy?</source>
-        <translation>__DSW__ 到底是怎么尊重你的隐私的？</translation>
+        <source>How KYAN respects your privacy?</source>
+        <translation>KYAN 到底是怎么尊重你的隐私的？</translation>
     </message>
     <message>
         <source>What is a Masternode?</source>
@@ -4653,8 +4653,8 @@ __Decenomy__心钱包</translation>
         <translation>绑定到给定地址监听JSON-RPC连接。使用[主机]: IPv6的端口符号。可以多次指定此选项(默认:绑定到所有接口)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. __Decenomy__ is probably already running.</source>
-        <translation>无法获取数据目录%s锁。__Decenomy__心可能已经在运行了。</translation>
+        <source>Cannot obtain a lock on data directory %s. Kyanite is probably already running.</source>
+        <translation>无法获取数据目录%s锁。Kyanite心可能已经在运行了。</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -4813,8 +4813,8 @@ __Decenomy__心钱包</translation>
         <translation>网络版本字符串的总长度(%i)超过最大长度(%i)。减少任务的数量或大小。</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. __Decenomy__ is probably already running.</source>
-        <translation>无法绑定到此计算机上的%s。__Decenomy__心可能已经在运行了。</translation>
+        <source>Unable to bind to %s on this computer. Kyanite is probably already running.</source>
+        <translation>无法绑定到此计算机上的%s。Kyanite心可能已经在运行了。</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -4829,8 +4829,8 @@ __Decenomy__心钱包</translation>
         <translation>警告:-支付tx费用设置的非常高!这是您发送交易时要支付的交易费。</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</source>
-        <translation>注意：请检查您的电脑的日期和时间是否正确！ 如果您的时间设置不正确，__Decenomy__将无法正常工作。</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Kyanite will not work properly.</source>
+        <translation>注意：请检查您的电脑的日期和时间是否正确！ 如果您的时间设置不正确，Kyanite将无法正常工作。</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5037,8 +5037,8 @@ __Decenomy__心钱包</translation>
         <translation>信息</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. __Decenomy__ is shutting down.</source>
-        <translation>初始化完整性检查失败。__Decenomy__心快要关闭了。</translation>
+        <source>Initialization sanity check failed. Kyanite is shutting down.</source>
+        <translation>初始化完整性检查失败。Kyanite心快要关闭了。</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5069,8 +5069,8 @@ __Decenomy__心钱包</translation>
         <translation>白名单中指定的无效网络掩码:'%s'</translation>
     </message>
     <message>
-        <source>Recalculating __DSW__ supply...</source>
-        <translation>重新计算__DSW__供应量……</translation>
+        <source>Recalculating KYAN supply...</source>
+        <translation>重新计算KYAN供应量……</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>
@@ -5089,8 +5089,8 @@ __Decenomy__心钱包</translation>
         <translation>这是一个预发行测试版本 - 您自己承担风险 - 不要用于商业应用！</translation>
     </message>
     <message>
-        <source>Disable all __DSW__ specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
-        <translation>禁用所有__DSW__特定功能(主节点, 零币, budget)(0-1，默认值:%u)</translation>
+        <source>Disable all KYAN specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
+        <translation>禁用所有KYAN特定功能(主节点, 零币, budget)(0-1，默认值:%u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -5325,8 +5325,8 @@ __Decenomy__心钱包</translation>
         <translation>准备重新同步……</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</source>
-        <translation>请检查您的电脑的日期和时间是否正确!如果你的时间错误，__Decenomy__将无法正常工作。</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong Kyanite will not work properly.</source>
+        <translation>请检查您的电脑的日期和时间是否正确!如果你的时间错误，Kyanite将无法正常工作。</translation>
     </message>
     <message>
         <source>Specify location of debug log file: this can be an absolute path or a path relative to the data directory (default: %s)</source>
@@ -5509,8 +5509,8 @@ __Decenomy__心钱包</translation>
         <translation>正在同步分叉...</translation>
     </message>
     <message>
-        <source>Syncing z__DSW__ wallet...</source>
-        <translation>正在同步z__DSW__钱包……</translation>
+        <source>Syncing zKYAN wallet...</source>
+        <translation>正在同步zKYAN钱包……</translation>
     </message>
     <message>
         <source>This help message</source>
@@ -5613,8 +5613,8 @@ __Decenomy__心钱包</translation>
         <translation>JSON-RPC连接的用户名</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of z__DSW__</source>
-        <translation>值小于z__DSW__的最小可用面额(= 1)</translation>
+        <source>Value is below the smallest available denomination (= 1) of zKYAN</source>
+        <translation>值小于zKYAN的最小可用面额(= 1)</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
@@ -5629,8 +5629,8 @@ __Decenomy__心钱包</translation>
         <translation>钱包%s驻留在数据目录%s之外</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart __Decenomy__ to complete</source>
-        <translation>钱包需要重写:重新启动__Decenomy__心完成</translation>
+        <source>Wallet needed to be rewritten: restart Kyanite to complete</source>
+        <translation>钱包需要重写:重新启动Kyanite心完成</translation>
     </message>
     <message>
         <source>Wallet options:</source>
@@ -5696,8 +5696,8 @@ __Decenomy__心钱包</translation>
         <translation>发送</translation>
     </message>
     <message>
-        <source>__DSW__ address or contact label</source>
-        <translation>__DSW__ 地址或者联系人标签</translation>
+        <source>KYAN address or contact label</source>
+        <translation>KYAN 地址或者联系人标签</translation>
     </message>
     <message>
         <source>Amount</source>

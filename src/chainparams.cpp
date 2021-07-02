@@ -249,17 +249,17 @@ public:
         pchMessageStart[1] = 0xf6;
         pchMessageStart[2] = 0xa9;
         pchMessageStart[3] = 0xf9;
-        nDefaultPort = __PORT_MAINNET__;
+        nDefaultPort = 7757;
 
-        vSeeds.push_back(CDNSSeedData("seeder", "seeder.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed2", "seed2.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed3", "seed3.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed4", "seed4.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.__decenomy.net__"));
+        vSeeds.push_back(CDNSSeedData("seeder", "seeder.kyancoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.kyancoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed2", "seed2.kyancoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed3", "seed3.kyancoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed4", "seed4.kyancoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.kyancoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.kyancoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.kyancoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.kyancoin.net"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 46); // K
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 16); // 7
@@ -346,7 +346,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x17c6d46ee4758572534f6dec116f61268fe883caa99062c1efd764bbbc975d71"));
 
         consensus.fPowAllowMinDifficultyBlocks = true;
-        consensus.powLimit   = ~UINT256_ZERO >> 20;   // __decenomy__ starting difficulty is 1 / 2^12
+        consensus.powLimit   = ~UINT256_ZERO >> 20;   // kyanite starting difficulty is 1 / 2^12
         consensus.posLimitV1 = ~UINT256_ZERO >> 24;
         consensus.posLimitV2 = ~UINT256_ZERO >> 20;
         consensus.nBudgetCycleBlocks = 144;         // approx 10 cycles per day
@@ -428,17 +428,17 @@ public:
         pchMessageStart[1] = 0x9a;
         pchMessageStart[2] = 0x6f;
         pchMessageStart[3] = 0x9f;
-        nDefaultPort = __PORT_TESTNET__;
+        nDefaultPort = 8757;
 
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.push_back(CDNSSeedData("tseeder", "tseeder.__decenomy.net__", true));
+        vSeeds.push_back(CDNSSeedData("tseeder", "tseeder.kyancoin.net", true));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 107); // Testnet __decenomy__ addresses start with 'k'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet __decenomy__ script addresses start with '8' or '9'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 107); // Testnet kyanite addresses start with 'k'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet kyanite script addresses start with '8' or '9'
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);     // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
-        // Testnet __decenomy__ BIP32 pubkeys start with 'DRKV'
+        // Testnet kyanite BIP32 pubkeys start with 'DRKV'
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x35)(0x87)(0xCF).convert_to_container<std::vector<unsigned char> >();
         // Testnet Kyaninte BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x35)(0x83)(0x94).convert_to_container<std::vector<unsigned char> >();
@@ -518,7 +518,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0xa50c4f55f3df2d2ecf33f0248f631ca20935c49dccad9bf2107911d94c5ab0fe"));
 
         consensus.fPowAllowMinDifficultyBlocks = true;
-        consensus.powLimit   = ~UINT256_ZERO >> 20;   // __decenomy__ starting difficulty is 1 / 2^12
+        consensus.powLimit   = ~UINT256_ZERO >> 20;   // kyanite starting difficulty is 1 / 2^12
         consensus.posLimitV1 = ~UINT256_ZERO >> 24;
         consensus.posLimitV2 = ~UINT256_ZERO >> 20;
         consensus.nBudgetCycleBlocks = 144;         // approx 10 cycles per day
@@ -597,12 +597,12 @@ public:
         pchMessageStart[1] = 0xd9;
         pchMessageStart[2] = 0x6d;
         pchMessageStart[3] = 0x9d;
-        nDefaultPort = __PORT_REGTEST__;
+        nDefaultPort = 9757;
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 140); // Regtest __decenomy__ addresses start with 'y'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Regtest __decenomy__ script addresses start with '8' or '9'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 140); // Regtest kyanite addresses start with 'y'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Regtest kyanite script addresses start with '8' or '9'
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);     // Regtest private keys start with '9' or 'c' (Bitcoin defaults)
-        // Regtest __decenomy__ BIP32 pubkeys start with 'DRKV'
+        // Regtest kyanite BIP32 pubkeys start with 'DRKV'
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x35)(0x87)(0xCF).convert_to_container<std::vector<unsigned char> >();
         // Regtest Kyaninte BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x35)(0x83)(0x94).convert_to_container<std::vector<unsigned char> >();

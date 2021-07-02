@@ -1,13 +1,13 @@
 [Desktop Entry]
 Version=1.0
-Name=__Decenomy__ 
-Comment=__Decenomy__ P2P Cryptocurrency
-Comment[fr]=__Decenomy__, monnaie virtuelle cryptographique pair à pair
-Comment[tr]=__Decenomy__, eşten eşe kriptografik sanal para birimi
-Exec=__decenomy__-qt %u
+Name=Kyanite 
+Comment=Kyanite P2P Cryptocurrency
+Comment[fr]=Kyanite, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Kyanite, eşten eşe kriptografik sanal para birimi
+Exec=kyanite-qt %u
 Terminal=false
 Type=Application
 Icon=pivx128
-MimeType=x-scheme-handler/__decenomy__;
+MimeType=x-scheme-handler/kyanite;
 Categories=Office;Finance;
-StartupWMClass=__decenomy__-qt
+StartupWMClass=kyanite-qt

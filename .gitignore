@@ -26,6 +26,15 @@ src/qt/sapphire-qt
 src/test/test_sapphire
 src/qt/test/test_sapphire-qt
 
+# Sapphire
+src/bench/bench_kyanite
+src/kyanite-cli
+src/kyanite-tx
+src/kyanited
+src/qt/kyanite-qt
+src/test/test_kyanite
+src/qt/test/test_kyanite-qt
+
 # Jackpot
 src/bench/bench_jackpot
 src/jackpot-cli
