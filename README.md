@@ -12,12 +12,12 @@ DECENOMY Standard wallet repository
 • PoS Blocks: Starting from 1001
 • Block Time: 60 Seconds
 • Maturity: 100 Confirmations
-• Prefix: SAPP adresses start with the capital letter "S"
+• Prefix: __DSW__ adresses start with the capital letter "D"
 • Ports: __PORT_MAINNET__ (p2p) / __RPCPORT_MAINNET__ (rpc)
 
 • Explorer https://explorer.decenomy.net/
 
-• Website [decenomy.net](https://www.decenomy.net)
+• Website [__decenomy_website_link__](__decenomy_website_link__)
 
 ### Rewards Breakdown
 <table border=0 cellpadding=0 cellspacing=0 width=701 class=xl6553517252
