@@ -674,6 +674,99 @@ public:
 uint64_t SipHashUint256(uint64_t k0, uint64_t k1, const uint256& val);
 uint64_t SipHashUint256Extra(uint64_t k0, uint64_t k1, const uint256& val, uint32_t extra);
 
+/* ----------- Kyan Hash X11K --------------------------------------------- */
+
+const unsigned char HASHX11K_NUMBER_ITERATIONS  = 64;
+const unsigned char HASHX11K_NUMBER_ALGOS       = 11;
+
+template<typename T1>
+inline uint256 HashX11K(const T1 pbegin, const T1 pend)
+{
+    sph_blake512_context      ctx_blake;
+    sph_bmw512_context        ctx_bmw;
+    sph_groestl512_context    ctx_groestl;
+    sph_jh512_context         ctx_jh;
+    sph_keccak512_context     ctx_keccak;
+    sph_skein512_context      ctx_skein;
+    sph_luffa512_context      ctx_luffa;
+    sph_cubehash512_context   ctx_cubehash;
+    sph_shavite512_context    ctx_shavite;
+    sph_simd512_context       ctx_simd;
+    sph_echo512_context       ctx_echo;
+    static unsigned char      pblank[1];
+
+    uint512 hash;
+    unsigned char* p;
+
+    // Iteration 0
+    sph_blake512_init(&ctx_blake);
+    sph_blake512(&ctx_blake, (pbegin == pend ? pblank : static_cast<const void*>(&pbegin[0])), (pend - pbegin) * sizeof(pbegin[0]));
+    sph_blake512_close(&ctx_blake, static_cast<void*>(&hash));
+
+    for(int i = 1; i < HASHX11K_NUMBER_ITERATIONS; i++) {
+        switch (hash.begin()[i % 64] % HASHX11K_NUMBER_ALGOS) {
+        case 0:
+            sph_blake512_init(&ctx_blake);
+            sph_blake512(&ctx_blake, static_cast<void*>(&hash), 64);
+            sph_blake512_close(&ctx_blake, static_cast<void*>(&hash));
+            break;
+        case 1:
+            sph_bmw512_init(&ctx_bmw);
+            sph_bmw512(&ctx_bmw, static_cast<void*>(&hash), 64);
+            sph_bmw512_close(&ctx_bmw, static_cast<void*>(&hash));
+            break;
+        case 2:
+            sph_groestl512_init(&ctx_groestl);
+            sph_groestl512(&ctx_groestl, static_cast<void*>(&hash), 64);
+            sph_groestl512_close(&ctx_groestl, static_cast<void*>(&hash));
+            break;
+        case 3:
+            sph_skein512_init(&ctx_skein);
+            sph_skein512(&ctx_skein, static_cast<void*>(&hash), 64);
+            sph_skein512_close(&ctx_skein, static_cast<void*>(&hash));
+            break;
+        case 4:
+            sph_jh512_init(&ctx_jh);
+            sph_jh512(&ctx_jh, static_cast<void*>(&hash), 64);
+            sph_jh512_close(&ctx_jh, static_cast<void*>(&hash));
+            break;
+        case 5:
+            sph_keccak512_init(&ctx_keccak);
+            sph_keccak512(&ctx_keccak, static_cast<void*>(&hash), 64);
+            sph_keccak512_close(&ctx_keccak, static_cast<void*>(&hash));
+            break;
+        case 6:
+            sph_luffa512_init(&ctx_luffa);
+            sph_luffa512(&ctx_luffa, static_cast<void*>(&hash), 64);
+            sph_luffa512_close(&ctx_luffa, static_cast<void*>(&hash));
+            break;
+        case 7:
+            sph_cubehash512_init(&ctx_cubehash);
+            sph_cubehash512(&ctx_cubehash, static_cast<void*>(&hash), 64);
+            sph_cubehash512_close(&ctx_cubehash, static_cast<void*>(&hash));
+            break;
+        case 8:
+            sph_shavite512_init(&ctx_shavite);
+            sph_shavite512(&ctx_shavite, static_cast<void*>(&hash), 64);
+            sph_shavite512_close(&ctx_shavite, static_cast<void*>(&hash));
+            break;
+        case 9:
+            sph_simd512_init(&ctx_simd);
+            sph_simd512(&ctx_simd, static_cast<void*>(&hash), 64);
+            sph_simd512_close(&ctx_simd, static_cast<void*>(&hash));
+            break;
+        case 10:
+            sph_echo512_init(&ctx_echo);
+            sph_echo512(&ctx_echo, static_cast<void*>(&hash), 64);
+            sph_echo512_close(&ctx_echo, static_cast<void*>(&hash));
+            break;
+        }
+    }
+
+    return hash.trim256();
+}
+
+
 /* ----------- Kyan Hash X11KV ------------------------------------------- */
 
 const unsigned int HASHX11KV_MIN_NUMBER_ITERATIONS = 2;

@@ -70,7 +70,7 @@ static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits
  */
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("0x000002ac6cd91b01ecbd4f395d97d7309068642f0c0651dfa3f8826fcf17aec1")) // Genesis
+    (0, uint256("0x00000551e93eb0749d40dfafd54b092e78d6612b47bd40de8d099818f65f53c1")) // Genesis
 ; 
 
 static const Checkpoints::CCheckpointData data = {
@@ -161,13 +161,13 @@ public:
          * Salute to old Kyanite code based on DASH code base.
          * Original chain launch was made on 10th of September, 2020 as the pszTimestamp headline.
          * Genesis block creation timestamp (1599766364) is reflecting that day.
-         * Original chain consensus.hashGenesisBlock: 0x000000313693c8b25165dbdc8498b8c0084fa24ffea6a02765733700fbcf7467
+         * Original chain consensus.hashGenesisBlock: 0x00000551e93eb0749d40dfafd54b092e78d6612b47bd40de8d099818f65f53c1
          * Original chain genesis.hashMerkleRoot: 0x17c6d46ee4758572534f6dec116f61268fe883caa99062c1efd764bbbc975d71
          * hashMerkleRoot is the same because the genesis block pszTimestamp message and the genesisOutputScript is the same with the original chain.
          */
-        genesis = CreateGenesisBlock(1599766364, 449395, 0x1e0ffff0, 1, 0 * COIN);
+        genesis = CreateGenesisBlock(1599766364, 112122, 0x1e0ffff0, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000002ac6cd91b01ecbd4f395d97d7309068642f0c0651dfa3f8826fcf17aec1"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00000551e93eb0749d40dfafd54b092e78d6612b47bd40de8d099818f65f53c1"));
         assert(genesis.hashMerkleRoot == uint256S("0x17c6d46ee4758572534f6dec116f61268fe883caa99062c1efd764bbbc975d71"));
 
         consensus.fPowAllowMinDifficultyBlocks = false;
@@ -343,9 +343,9 @@ public:
 
         // /////////////////////////////////////////////////////////////////
 
-        genesis = CreateGenesisBlock(1599766365, 115409, 0x1e0ffff0, 1, 0 * COIN);
+        genesis = CreateGenesisBlock(1599766365, 505453, 0x1e0ffff0, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000002d87ecec573035116e863fd81ef155324721a773601aba7fcbb2e1effd5"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000000313693c8b25165dbdc8498b8c0084fa24ffea6a02765733700fbcf7467"));
         assert(genesis.hashMerkleRoot == uint256S("0x17c6d46ee4758572534f6dec116f61268fe883caa99062c1efd764bbbc975d71"));
 
         consensus.fPowAllowMinDifficultyBlocks = true;
@@ -472,7 +472,7 @@ public:
         // // This is used inorder to mine the genesis block. Once found, we can use the nonce and block hash found to create a valid genesis block
         // /////////////////////////////////////////////////////////////////
 
-        // uint32_t nGenesisTime = 1625155186; // 2021-02-03T13:51:41+00:00
+        // uint32_t nGenesisTime = 1625312841; // 2021-02-03T13:51:41+00:00
 
         // arith_uint256 test;
         // bool fNegative;
@@ -515,9 +515,9 @@ public:
 
         // /////////////////////////////////////////////////////////////////
 
-        genesis = CreateGenesisBlock(1625155186, 0, 0x207fffff, 1, 1000 * COIN);
+        genesis = CreateGenesisBlock(1625312841, 1, 0x207fffff, 1, 1000 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x43cc438cd9c258b3df6a4de79d4b02122fc385e961fc9531ae094f132ff79b02"));
+        assert(consensus.hashGenesisBlock == uint256S("0x430fbdf677d8bd836bc104377a7ab86d62051d927c80315d30e2df6b09df8e7b"));
         assert(genesis.hashMerkleRoot == uint256S("0xa50c4f55f3df2d2ecf33f0248f631ca20935c49dccad9bf2107911d94c5ab0fe"));
 
         consensus.fPowAllowMinDifficultyBlocks = true;
