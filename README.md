@@ -6,18 +6,18 @@ DECENOMY Standard wallet repository
 
 ### Coin Specs
 
-• PoW Algorithm: Quark  
-• Premine: 300,000 SAPP
-• PoW Blocks: 1 - 500  
-• PoS Blocks: Starting from 501  
-• Block Time: 60 Seconds    
-• Maturity: 100 Confirmations  
-• Prefix: SAPP adresses start with the capital letter "S"  
-• Ports: 45328 (p2p) / 45329 (rpc)
+• PoW Algorithm: X11KVS  
+• Premine: 1,000,000,000 KYAN
+• PoW Blocks: 1 - 1000
+• PoS Blocks: Starting from 1001
+• Block Time: 60 Seconds
+• Maturity: 100 Confirmations
+• Prefix: SAPP adresses start with the capital letter "K"
+• Ports: 7757 (p2p) / 7758 (rpc)
 
-• Explorer http://sappexplorer.com
+• Explorer https://explorer.decenomy.net/KYAN/blocks
 
-• Website [sappcoin.com](http://www.sappcoin.com)
+• Website [kyancoin.net](https://kyancoin.net/)
 
 ### Rewards Breakdown
 <table border=0 cellpadding=0 cellspacing=0 width=701 class=xl6553517252
