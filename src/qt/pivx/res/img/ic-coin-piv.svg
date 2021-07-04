@@ -5,11 +5,11 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   id="ic_piv"
-   width="24"
-   height="24"
+   version="1.1"
    viewBox="0 0 24 24"
-   version="1.1">
+   height="24"
+   width="24"
+   id="ic_piv">
   <metadata
      id="metadata14">
     <rdf:RDF>
@@ -25,64 +25,157 @@
   <defs
      id="defs4">
     <style
-       type="text/css"
-       id="style2">
+       id="style2"
+       type="text/css">
             .cls-1{fill:#5c4b7d}.cls-2{fill:none}
         </style>
+    <style
+       id="style231">.cls-1{fill:#db0000;stroke:#d80000;}.cls-1,.cls-2{stroke-miterlimit:10;stroke-width:2px;}.cls-2{fill:#bc0000;stroke:#ff0606;}</style>
   </defs>
+  <path
+     data-name="Rectangle 4543"
+     class="cls-2"
+     d="M0 0h24v24H0z"
+     id="Rectangle_4543" />
   <g
-     id="Group_8935"
-     data-name="Group 8935"
-     style="fill:#4498ef;fill-opacity:1;stroke:#4498ef;stroke-opacity:1">
+     style="display:inline"
+     id="layer3">
     <g
-       id="Group_8934"
-       data-name="Group 8934"
-       style="stroke:#4498ef;stroke-opacity:1;fill:#4498ef;fill-opacity:1">
-      <path
-         id="Path_18928"
-         d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 19.25A9.25 9.25 0 1 1 21.25 12 9.25 9.25 0 0 1 12 21.25z"
-         class="cls-1"
-         data-name="Path 18928"
-         style="stroke:#4498ef;stroke-opacity:1;fill:#4498ef;fill-opacity:1" />
+       style="fill:#bc0000;fill-opacity:1;stroke:#bc0000;stroke-opacity:1"
+       data-name="Group 8935"
+       id="Group_8935">
+      <g
+         style="stroke:#bc0000;stroke-opacity:1;fill:#bc0000;fill-opacity:1"
+         data-name="Group 8934"
+         id="Group_8934">
+        <path
+           style="stroke:#bc0000;stroke-opacity:1;fill:#bc0000;fill-opacity:1"
+           data-name="Path 18928"
+           class="cls-1"
+           d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 19.25A9.25 9.25 0 1 1 21.25 12 9.25 9.25 0 0 1 12 21.25z"
+           id="Path_18928" />
+      </g>
     </g>
   </g>
-  <path
-     id="Rectangle_4543"
-     d="M0 0h24v24H0z"
-     class="cls-2"
-     data-name="Rectangle 4543" />
   <g
-     id="g857"
-     transform="matrix(0.52186001,0,0,0.53525425,-14.075868,-15.042621)"
-     style="fill:#4498ef;fill-opacity:1">
-    <path
-       class="st2"
-       d="m 45.2,45.3 h -1.9 l -4.7,4.8 10.7,9.6 c 0,0 0,0 0,0 L 42,50.2"
-       id="path17"
-       style="fill:#4498ef;fill-opacity:1" />
-    <path
-       class="st2"
-       d="m 55.9,45.8 1.9,0.1 4.3,4.7 -11.2,7.9 c 0,0 0,0 0,0 l 7.9,-8.1"
-       id="path19"
-       style="fill:#4498ef;fill-opacity:1" />
-    <path
-       class="st2"
-       d="m 44.8,51 -1.3,-1.5 -0.1,-7.1 13.7,2 c 0,0 0,0 0,0 l -11.2,0.7"
-       id="path21"
-       style="fill:#4498ef;fill-opacity:1" />
+     style="display:inline"
+     id="layer4">
     <g
-       id="g27"
-       style="fill:#4498ef;fill-opacity:1">
-      <path
-         class="st2"
-         d="m 51,47.6 h -2.2 l -0.2,1.3 h 2 c 1,0 1.3,0.4 1.3,1.2 0,0.4 -0.1,1 -0.2,1.2 -0.2,0.5 -0.5,1.2 -1.6,1.2 H 48.2 L 48,53.8 h 2.2 c 0.8,0 1.1,-0.1 1.5,-0.3 0.8,-0.4 1.2,-1.4 1.4,-2.6 0.2,-2 -0.1,-3.3 -2.1,-3.3"
-         id="path23"
-         style="fill:#4498ef;fill-opacity:1" />
-      <path
-         class="st2"
-         d="m 47.9,50.1 c -0.6,0 -0.7,0.5 -0.7,0.7 -0.1,0.4 -0.1,0.5 -0.1,0.5 h 2.3 c 0.6,0 0.7,-0.5 0.7,-0.7 0.1,-0.4 0.1,-0.5 0.1,-0.5 z"
-         id="path25"
-         style="fill:#4498ef;fill-opacity:1" />
+       transform="matrix(0.01731012,0,0,0.01731012,4.1396829,4.1494631)"
+       id="g289"
+       style="display:inline">
+      <rect
+         style="fill:#db0000;stroke:#d80000;stroke-width:2px;stroke-miterlimit:10"
+         class="cls-1"
+         x="586.09003"
+         y="387.79999"
+         width="246.71001"
+         height="43.209999"
+         transform="rotate(-45,582.60812,461.37582)"
+         id="rect235" />
+      <rect
+         style="fill:#db0000;stroke:#d80000;stroke-width:2px;stroke-miterlimit:10"
+         class="cls-1"
+         x="225.06"
+         y="623.47998"
+         width="244.83"
+         height="43.209999"
+         transform="rotate(-45,220.62865,697.05262)"
+         id="rect237" />
+      <rect
+         style="fill:#db0000;stroke:#d80000;stroke-width:2px;stroke-miterlimit:10"
+         class="cls-1"
+         x="388.76999"
+         y="221.75999"
+         width="43.209999"
+         height="247.67999"
+         transform="rotate(-45.72,285.12264,396.01261)"
+         id="rect239" />
+      <rect
+         style="fill:#db0000;stroke:#d80000;stroke-width:2px;stroke-miterlimit:10"
+         class="cls-1"
+         x="448.84"
+         y="353.76999"
+         width="336.67001"
+         height="43.209999"
+         transform="rotate(-45,490.34162,427.34385)"
+         id="rect241" />
+      <rect
+         style="fill:#db0000;stroke:#d80000;stroke-width:2px;stroke-miterlimit:10"
+         class="cls-1"
+         x="657.91998"
+         y="446.62"
+         width="43.209999"
+         height="336.67001"
+         transform="rotate(-45.72,554.27977,665.36741)"
+         id="rect243" />
+      <rect
+         style="fill:#db0000;stroke:#d80000;stroke-width:2px;stroke-miterlimit:10"
+         class="cls-1"
+         x="357.91"
+         y="272.64001"
+         width="43.209999"
+         height="336.67001"
+         transform="rotate(-45.72,254.26867,491.39426)"
+         id="rect245" />
+      <rect
+         style="fill:#db0000;stroke:#d80000;stroke-width:2px;stroke-miterlimit:10"
+         class="cls-1"
+         x="625.38"
+         y="585.07001"
+         width="43.209999"
+         height="245.89999"
+         transform="rotate(-45.72,521.74245,758.44705)"
+         id="rect247" />
+      <rect
+         style="fill:#db0000;stroke:#d80000;stroke-width:2px;stroke-miterlimit:10"
+         class="cls-1"
+         x="271.35999"
+         y="657.54999"
+         width="336.67001"
+         height="43.209999"
+         transform="rotate(-45,312.86808,731.1158)"
+         id="rect249" />
+      <polygon
+         style="fill:#bc0000;stroke:#ff0606;stroke-width:2px;stroke-miterlimit:10"
+         class="cls-2"
+         points="386.53,46.62 431.65,2.38 431.65,277.36 386.53,233.76 "
+         id="polygon251" />
+      <polygon
+         style="fill:#bc0000;stroke:#ff0606;stroke-width:2px;stroke-miterlimit:10"
+         class="cls-2"
+         points="905.82,430.06 630.85,430.06 675.09,384.94 862.22,384.94 "
+         id="polygon253" />
+      <polygon
+         style="fill:#bc0000;stroke:#ff0606;stroke-width:2px;stroke-miterlimit:10"
+         class="cls-2"
+         points="523.66,861.09 478.54,904.69 478.54,629.71 523.66,673.95 "
+         id="polygon255" />
+      <polygon
+         style="fill:#bc0000;stroke:#ff0606;stroke-width:2px;stroke-miterlimit:10"
+         class="cls-2"
+         points="478.54,2.38 523.66,46.62 523.66,233.76 478.54,277.36 "
+         id="polygon257" />
+      <polygon
+         style="fill:#bc0000;stroke:#ff0606;stroke-width:2px;stroke-miterlimit:10"
+         class="cls-2"
+         points="431.65,904.69 386.53,861.09 386.53,673.95 431.65,629.71 "
+         id="polygon259" />
+      <polygon
+         style="fill:#bc0000;stroke:#ff0606;stroke-width:2px;stroke-miterlimit:10"
+         class="cls-2"
+         points="862.22,522.07 675.09,522.07 630.85,476.94 905.82,476.94 "
+         id="polygon261" />
+      <polygon
+         style="fill:#bc0000;stroke:#ff0606;stroke-width:2px;stroke-miterlimit:10"
+         class="cls-2"
+         points="2.38,476.94 277.36,476.94 233.76,522.07 46.62,522.07 "
+         id="polygon263" />
+      <polygon
+         style="fill:#bc0000;stroke:#ff0606;stroke-width:2px;stroke-miterlimit:10"
+         class="cls-2"
+         points="46.62,384.94 233.76,384.94 277.36,430.06 2.38,430.06 "
+         id="polygon265" />
     </g>
   </g>
 </svg>
