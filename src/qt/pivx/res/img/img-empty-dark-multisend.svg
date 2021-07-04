@@ -43,22 +43,22 @@
 </style>
 
 <path
-   style="fill:#a09ea5;fill-opacity:0.45128205"
+   style="fill:#a09ea5;fill-opacity:0.14901961"
    d="m 45,18 h 10 v 9 H 45 Z"
    class="st0"
    id="Rectangle_4717" /><path
    id="Rectangle_4718"
    class="st0"
    d="m 14,66 h 6 v 10 h -6 z"
-   style="fill:#a09ea5;fill-opacity:0.45128205" /><path
+   style="fill:#a09ea5;fill-opacity:0.14901961" /><path
    id="Rectangle_4719"
    class="st0"
    d="m 80,66 h 6 v 10 h -6 z"
-   style="fill:#a09ea5;fill-opacity:0.45128205" /><path
+   style="fill:#a09ea5;fill-opacity:0.14901961" /><path
    id="Rectangle_4720"
    class="st0"
    d="m 47,66 h 6 v 10 h -6 z"
-   style="fill:#a09ea5;fill-opacity:0.45128205" /><path
+   style="fill:#a09ea5;fill-opacity:0.14901961" /><path
    style="fill:#a09ea5"
    d="m 67,40 h 2 v 4 h -2 z"
    class="st1"
@@ -94,7 +94,7 @@
    class="st1"
    id="Path_19008" />
 <rect
-   style="fill:#a09ea5;fill-opacity:0.45128205"
+   style="fill:#a09ea5;fill-opacity:0.14901961"
    id="rect20"
    height="23"
    width="34"

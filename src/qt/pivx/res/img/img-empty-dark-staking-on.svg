@@ -31,21 +31,21 @@
 </style>
 
 <ellipse
-   style="fill:#a09ea5;fill-opacity:0.4509804"
+   style="fill:#a09ea5;fill-opacity:0.14901961"
    ry="4"
    rx="12"
    cy="56"
    cx="80"
    class="st0"
    id="Ellipse_640" /><ellipse
-   style="fill:#a09ea5;fill-opacity:0.4509804"
+   style="fill:#a09ea5;fill-opacity:0.14901961"
    ry="4"
    rx="12"
    cy="68"
    cx="64"
    class="st0"
    id="Ellipse_641" /><path
-   style="fill:#a09ea5;fill-opacity:0.4509804"
+   style="fill:#a09ea5;fill-opacity:0.14901961"
    d="M 32,24 H 46 V 38 H 32 Z"
    class="st0"
    id="Rectangle_4706" /><g
@@ -65,4 +65,4 @@
 <path
    id="rect20"
    d="m 14,39 v 17 12 7 H 51.300781 C 51.400781,74.6 51.7,74.3 52,74 51.8,73.9 51.69961,73.699609 51.599609,73.599609 50.699609,72.499609 50.9,70.9 52,70 51.4,69.5 51,68.8 51,68 51,64.7 57.499997,63 64,63 V 39 Z"
-   style="fill:#a09ea5;fill-opacity:0.45128252;stroke-width:1.51716518" /></svg>
+   style="fill:#a09ea5;fill-opacity:0.14901961;stroke-width:1.51716518" /></svg>
