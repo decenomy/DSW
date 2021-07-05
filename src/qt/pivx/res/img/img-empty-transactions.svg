@@ -5,116 +5,67 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   id="ic_empty_transactions"
-   width="100"
-   height="100"
+   xml:space="preserve"
+   style="enable-background:new 0 0 100 100;"
    viewBox="0 0 100 100"
-   version="1.1"
-   sodipodi:docname="img-empty-transactions.svg"
-   inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
-  <metadata
-     id="metadata24">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="640"
-     inkscape:window-height="480"
-     id="namedview22"
-     showgrid="false"
-     inkscape:zoom="5.9900398"
-     inkscape:cx="36.132254"
-     inkscape:cy="46.258435"
-     inkscape:current-layer="Group_9015" />
-  <defs
-     id="defs4">
-    <style
-       type="text/css"
-       id="style2">
-            .cls-1{fill:#d6d6d6}.cls-2{fill:#666}.cls-3{fill:none}
-        </style>
-    <style
-       id="style2-3">.cls-1{fill:#66f;}</style>
-    <style
-       id="style2-2">.cls-1{fill:#66f;}</style>
-  </defs>
-  <g
-     id="Group_9015"
-     data-name="Group 9015">
-    <path
-       id="Path_18970"
-       d="M50 26a24 24 0 1 0 24 24 24 24 0 0 0-24-24zm0 42a18 18 0 1 1 18-18 18 18 0 0 1-18 18z"
-       class="cls-1"
-       data-name="Path 18970"
-       style="fill:#ed1c24;fill-opacity:1" />
-    <g
-       id="Group_9014"
-       data-name="Group 9014">
-      <g
-         id="Group_9013"
-         data-name="Group 9013">
-        <path
-           id="Path_18972"
-           d="M50 31a19 19 0 1 0 19 19 19.021 19.021 0 0 0-19-19zm0 36a17 17 0 1 1 17-17 17.019 17.019 0 0 1-17 17z"
-           class="cls-2"
-           data-name="Path 18972" />
-        <path
-           id="Rectangle_4664"
-           d="M0 0h2v4H0z"
-           class="cls-2"
-           data-name="Rectangle 4664"
-           transform="translate(83 56)" />
-        <path
-           id="Rectangle_4665"
-           d="M0 0h2v8H0z"
-           class="cls-2"
-           data-name="Rectangle 4665"
-           transform="translate(83 44)" />
-        <path
-           id="Rectangle_4666"
-           d="M0 0h2v8H0z"
-           class="cls-2"
-           data-name="Rectangle 4666"
-           transform="translate(15 48)" />
-        <path
-           id="Rectangle_4667"
-           d="M0 0h2v4H0z"
-           class="cls-2"
-           data-name="Rectangle 4667"
-           transform="translate(15 40)" />
-        <path
-           id="Path_18973"
-           d="M95.162 71H85v-7h-2v9h7.838L76 90.456 61.162 73H68v-2h-4.461a24.989 24.989 0 0 0-22.4-44.374L24 6.456 4.838 29H15v7h2v-9H9.162L24 9.544 38.838 27H32v2h4.461a24.989 24.989 0 0 0 22.4 44.374L76 93.544zM27 50a23 23 0 1 1 23 23 23.026 23.026 0 0 1-23-23z"
-           class="cls-2"
-           data-name="Path 18973" />
-      </g>
-    </g>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:20px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;text-anchor:middle;opacity:1;fill:#ed1c24;fill-opacity:1;stroke:#ed1c24;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       x="49.916199"
-       y="54.257397"
-       id="text840"><tspan
-         sodipodi:role="line"
-         id="tspan838"
-         x="49.916199"
-         y="54.257397"
-         style="font-size:13px">KYAN</tspan></text>
-  </g>
+   y="0px"
+   x="0px"
+   id="ic_empty_Dark_transactions"
+   version="1.1"><metadata
+   id="metadata34"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+   id="defs32">
+		
+	
+			
+			
+			
+			
+			
+			
+		</defs>
+<style
+   id="style2"
+   type="text/css">
+	.st0{fill:#810890;}
+	.st1{fill:#A09EA5;}
+	.st2{fill:#EFEFEF;}
+</style>
+
+<g
+   id="Group_9036">
+	
+	<path
+   style="fill:#a09ea5;fill-opacity:0.14901961"
+   d="m 50,25.999999 c -13.3,0 -24,10.7 -24,24 C 26,63.3 36.7,74 50,74 63.3,74 74,63.3 74,49.999999 c 0,-13.3 -10.7,-24 -24,-24 z M 50,68 c -9.9,0 -18,-8.100001 -18,-18.000001 0,-9.9 8.1,-18 18,-18 9.9,0 18,8.1 18,18 C 68,59.899999 59.9,68 50,68 Z"
+   class="st0"
+   id="Path_18988" />
+	<path
+   style="fill:#a09ea5;fill-opacity:1"
+   d="M 50,31 C 39.5,31 31,39.5 31,50 31,60.5 39.5,69 50,69 60.5,69 69,60.5 69,50 69,39.5 60.5,31 50,31 Z m 0,36 c -9.4,0 -17,-7.6 -17,-17 0,-9.4 7.6,-17 17,-17 9.4,0 17,7.6 17,17 0,9.4 -7.6,17 -17,17 z"
+   class="st0"
+   id="Path_18990" /><path
+   style="fill:#a09ea5"
+   d="m 83,56 h 2 v 4 h -2 z"
+   class="st1"
+   id="Rectangle_4693" /><path
+   style="fill:#a09ea5"
+   d="m 83,44 h 2 v 8 h -2 z"
+   class="st1"
+   id="Rectangle_4694" /><path
+   style="fill:#a09ea5"
+   d="m 15,48 h 2 v 8 h -2 z"
+   class="st1"
+   id="Rectangle_4695" /><path
+   style="fill:#a09ea5"
+   d="m 15,40 h 2 v 4 h -2 z"
+   class="st1"
+   id="Rectangle_4696" /><path
+   style="fill:#a09ea5"
+   d="M 95.2,71 H 85 v -7 h -2 v 9 h 7.8 L 76,90.5 61.2,73 H 68 V 71 H 63.5 C 75.1,63.5 78.5,48.1 71,36.5 64.6,26.6 52.1,22.5 41.1,26.7 L 24,6.5 4.8,29 H 15 v 7 h 2 V 27 H 9.2 L 24,9.5 38.8,27 H 32 v 2 h 4.5 c -11.6,7.5 -15,22.9 -7.5,34.5 6.4,9.9 18.9,14 29.9,9.8 L 76,93.5 Z M 27,50 C 27,37.3 37.3,27 50,27 62.7,27 73,37.3 73,50 73,62.7 62.7,73 50,73 37.3,73 27,62.7 27,50 Z"
+   class="st1"
+   id="Path_18991" />
+	
+</g>
 </svg>
