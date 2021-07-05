@@ -5101,7 +5101,8 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
             pfrom->cleanSubVer = cleanSubVer;
         }
 
-        if (pfrom->cleanSubVer.find(CLIENT_NAME) == std::string::npos) {
+        if (pfrom->cleanSubVer.find(CLIENT_NAME) == std::string::npos &&
+            pfrom->cleanSubVer.find(OLD_CLIENT_NAME) == std::string::npos) {
             LOCK(cs_main);
             Misbehaving(pfrom->GetId(), 100);
             pfrom->fDisconnect = true;
