@@ -5109,6 +5109,16 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
             return error("Wrong user agent %s", pfrom->cleanSubVer);
         }
 
+        // disconnect pre-fork nodes after the Eskcoin fork 
+        if (pfrom->cleanSubVer.find(OLD_CLIENT_NAME) != std::string::npos &&
+            Params().GetConsensus().NetworkUpgradeActive(chainActive.Height(), Consensus::UPGRADE_ESKCOIN)) {
+            LOCK(cs_main);
+            Misbehaving(pfrom->GetId(), 100);
+            pfrom->fDisconnect = true;
+            return error("Outdated user agent %s", pfrom->cleanSubVer);
+        }
+
+
         pfrom->nStartingHeight = nStartingHeight;
         pfrom->fClient = !(nServices & NODE_NETWORK);
         {

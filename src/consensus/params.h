@@ -37,6 +37,7 @@ enum UpgradeIndex : uint32_t {
     UPGRADE_V5_DUMMY,
     UPGRADE_TESTDUMMY,
     UPGRADE_STAKE_MIN_DEPTH_V2,
+    UPGRADE_ESKCOIN,
     // NOTE: Also add new upgrades to NetworkUpgradeInfo in upgrades.cpp
     MAX_NETWORK_UPGRADES
 };

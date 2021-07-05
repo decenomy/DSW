@@ -58,6 +58,14 @@ const struct NUInfo NetworkUpgradeInfo[Consensus::MAX_NETWORK_UPGRADES] = {
                 /*.strName =*/ "Test_dummy",
                 /*.strInfo =*/ "Test dummy info",
         },
+                {
+                /*.strName =*/ "Stake_min_depth_v2",
+                /*.strInfo =*/ "Increases the stake min depth",
+        },
+        {
+                /*.strName =*/ "Eskacoin",
+                /*.strInfo =*/ "Activates the Eskacoin fork",
+        }
 };
 
 UpgradeState NetworkUpgradeState(
