@@ -11,11 +11,11 @@ fi
 	sudo apt install git zip unzip build-essential libtool bsdmainutils autotools-dev autoconf pkg-config automake python3 libqt5svg5-dev -y
 
 # Clone code from official Github repository
-	rm -rf DSW
-	git clone https://github.com/decenomy/DSW.git
+	rm -rf SUV
+	git clone https://github.com/decenomy/SUV.git
 
 # Entering directory
-	cd DSW
+	cd SUV
 
 # Compile dependencies
 	cd depends
@@ -29,6 +29,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/__decenomy__d DSW/src/__decenomy__-cli DSW/src/__decenomy__-tx DSW/src/qt/__decenomy__-qt .
-	zip __DSW__-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt
-	rm -f __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt
+	cp DSW/src/suverenod DSW/src/suvereno-cli DSW/src/suvereno-tx DSW/src/qt/suvereno-qt .
+	zip SUV-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip suverenod suvereno-cli suvereno-tx suvereno-qt
+	rm -f suverenod suvereno-cli suvereno-tx suvereno-qt

@@ -7,11 +7,11 @@ then
 fi
 
 # Clone code from official Github repository
-    rm -rf DSW
-    git clone https://github.com/decenomy/DSW.git
+    rm -rf SUV
+    git clone https://github.com/decenomy/SUV.git
 
 # Entering directory
-    cd DSW
+    cd SUV
 
 # Compile dependencies
     cd depends
@@ -31,6 +31,6 @@ fi
     cd ..
 
 # Create zip file of binaries
-    cp DSW/src/__decenomy__d DSW/src/__decenomy__-cli DSW/src/__decenomy__-tx DSW/src/qt/__decenomy__-qt DSW/__Decenomy__-Core.dmg .
-    zip __DSW__-MacOS.zip __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt __Decenomy__-Core.dmg
-    rm -f __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt __Decenomy__-Core.dmg
+    cp DSW/src/suverenod DSW/src/suvereno-cli DSW/src/suvereno-tx DSW/src/qt/suvereno-qt DSW/Suvereno-Core.dmg .
+    zip SUV-MacOS.zip suverenod suvereno-cli suvereno-tx suvereno-qt Suvereno-Core.dmg
+    rm -f suverenod suvereno-cli suvereno-tx suvereno-qt Suvereno-Core.dmg
