@@ -43,7 +43,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     const int64_t& nTargetSpacing = consensus.TargetSpacing(nHeight);
 
     if (consensus.NetworkUpgradeActive(pindexLast->nHeight, Consensus::UPGRADE_POS)) {
-        const bool fTimeV2 = !Params().IsRegTestNet() && consensus.IsTimeProtocolV2(pindexLast->nHeight+1);
+        const bool fTimeV2 = !Params().IsRegTestNet() && consensus.IsTimeProtocolV2(nHeight);
         const uint256& bnTargetLimit = consensus.ProofOfStakeLimit(nHeight);
         const int64_t& nTargetTimespan = consensus.TargetTimespan(nHeight);
 
