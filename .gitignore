@@ -44,7 +44,7 @@ src/qt/jackpot-qt
 src/test/test_jackpot
 src/qt/test/test_jackpot-qt
 
-# Dash Diamon
+# Dash Diamond
 src/bench/bench_dashdiamond
 src/dashdiamond-cli
 src/dashdiamond-tx
