@@ -1742,6 +1742,11 @@ int GetSpendHeight(const CCoinsViewCache& inputs)
 namespace Consensus {
 bool CheckTxInputs(const CTransaction& tx, CValidationState& state, const CCoinsViewCache& inputs, int nSpendHeight)
 {
+    // if we have already a checkpoint newer than this block 
+    // then it is OK
+    if (nSpendHeight <= Checkpoints::GetTotalBlocksEstimate())
+        return true;
+
     // This doesn't trigger the DoS code on purpose; if it did, it would make it easier
     // for an attacker to attempt to split the network.
     if (!inputs.HaveInputs(tx))
