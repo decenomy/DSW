@@ -5102,21 +5102,11 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
         }
 
         // Check user agent name
-        if (pfrom->cleanSubVer.find(CLIENT_NAME) == std::string::npos && 
-            pfrom->cleanSubVer.find(OLD_CLIENT_NAME) == std::string::npos) {
+        if (pfrom->cleanSubVer.find(CLIENT_NAME) == std::string::npos) {
             LOCK(cs_main);
             Misbehaving(pfrom->GetId(), 100);
             pfrom->fDisconnect = true;
             return error("Wrong user agent %s", pfrom->cleanSubVer);
-        }
-
-        // disconnect pre-fork nodes after the Suvereno fork 
-        if (pfrom->cleanSubVer.find(OLD_CLIENT_NAME) != std::string::npos &&
-            Params().GetConsensus().NetworkUpgradeActive(chainActive.Height(), Consensus::UPGRADE_SUVERENO)) {
-            LOCK(cs_main);
-            Misbehaving(pfrom->GetId(), 100);
-            pfrom->fDisconnect = true;
-            return error("Outdated user agent %s", pfrom->cleanSubVer);
         }
 
         pfrom->nStartingHeight = nStartingHeight;
@@ -5870,11 +5860,8 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
 //       it was the one which was commented out
 int ActiveProtocol()
 {
-    int chainHeight = chainActive.Height();
-    bool allowOldVersion = !Params().GetConsensus().NetworkUpgradeActive(chainHeight, Consensus::UPGRADE_SUVERENO);
-
     return std::min(
-        allowOldVersion ? OLD_PROTOCOL_VERSION : PROTOCOL_VERSION, 
+        PROTOCOL_VERSION, 
         (int)sporkManager.GetSporkValue(SPORK_14_MIN_PROTOCOL_ACCEPTED));
 }
 
