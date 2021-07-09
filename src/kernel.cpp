@@ -166,6 +166,11 @@ bool Stake(const CBlockIndex* pindexPrev, CStakeInput* stakeInput, unsigned int 
  */
 bool CheckProofOfStake(const CBlock& block, std::string& strError, const CBlockIndex* pindexPrev)
 {
+    // if we have already a checkpoint newer than this block 
+    // then it is OK
+    if (block.nTime <= Params().Checkpoints().nTimeLastCheckpoint)
+        return true;
+
     const int nHeight = pindexPrev->nHeight + 1;
     // Initialize stake input
     std::unique_ptr<CStakeInput> stakeInput;
