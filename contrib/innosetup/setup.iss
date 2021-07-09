@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Suvereno Core"
-#define MyAppVersion "2.0.0.0"
+#define MyAppVersion "2.0.1.0"
 #define MyAppPublisher "2021 DECENOMY Core Developers"
 #define MyAppURL "https://suvcoin.net"
 #define MyAppExeName "suvereno-qt.exe"
