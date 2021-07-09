@@ -408,6 +408,7 @@ for staking</source>
     </message>
 </context>
 <context>
+<<<<<<< HEAD
     <name>CSRow</name>
     <message>
         <source>Form</source>
@@ -435,6 +436,8 @@ for staking</source>
     </message>
 </context>
 <context>
+=======
+>>>>>>> develop
     <name>ClientModel</name>
     <message>
         <source>Total: %1 (IPv4: %2 / IPv6: %3 / Tor: %4 / Unknown: %5)</source>
@@ -640,10 +643,6 @@ for staking</source>
         <translation>是</translation>
     </message>
     <message>
-        <source>delegated to %1 for cold staking</source>
-        <translation>委托到%1进行冷加注</translation>
-    </message>
-    <message>
         <source>Select All</source>
         <translation>选择所有</translation>
     </message>
@@ -689,6 +688,7 @@ for staking</source>
     </message>
 </context>
 <context>
+<<<<<<< HEAD
     <name>ColdStakingWidget</name>
     <message>
         <source>Form</source>
@@ -900,6 +900,8 @@ address</source>
     </message>
 </context>
 <context>
+=======
+>>>>>>> develop
     <name>ContactDropdownRow</name>
     <message>
         <source>Form</source>
@@ -2196,18 +2198,6 @@ Address: %4
         <translation>正在接收</translation>
     </message>
     <message>
-        <source>Delegator</source>
-        <translation>委托人</translation>
-    </message>
-    <message>
-        <source>Cold Staking</source>
-        <translation>冷堆</translation>
-    </message>
-    <message>
-        <source>Cold Staking Contact</source>
-        <translation>冷加注联系人</translation>
-    </message>
-    <message>
         <source>Hidden</source>
         <translation>隐藏</translation>
     </message>
@@ -2268,20 +2258,8 @@ Address: %4
         <translation>给您自己</translation>
     </message>
     <message>
-        <source>Cold stakes</source>
-        <translation>感冒</translation>
-    </message>
-    <message>
         <source>Hot stakes</source>
         <translation>热提</translation>
-    </message>
-    <message>
-        <source>Delegated</source>
-        <translation>委托</translation>
-    </message>
-    <message>
-        <source>Delegations</source>
-        <translation>宪法</translation>
     </message>
     <message>
         <source>by Label</source>
@@ -2887,14 +2865,6 @@ Address: %4
         <translation>生成</translation>
     </message>
     <message>
-        <source>Creates an address to receive coin delegations and be able to stake them.</source>
-        <translation>创建一个地址以接收代币授权并可以放样。</translation>
-    </message>
-    <message>
-        <source>New Cold Staking Address</source>
-        <translation>新冷堆地址</translation>
-    </message>
-    <message>
         <source>Amount (optional)</source>
         <translation>金额（可选项）</translation>
     </message>
@@ -3027,10 +2997,6 @@ Do you want to continue?</source>
         <translation>条目无效，在添加新条目之前，先前的条目必须有效</translation>
     </message>
     <message>
-        <source>Possibly spend coins delegated for cold-staking (currently available: %1</source>
-        <translation>可能花费委托用于冷加注到币（当前可用：%1</translation>
-    </message>
-    <message>
         <source>Invalid entry</source>
         <translation>条目无效</translation>
     </message>
@@ -3045,14 +3011,6 @@ Do you want to continue?</source>
     <message>
         <source>Cannot create transaction.</source>
         <translation>无法创建交易</translation>
-    </message>
-    <message>
-        <source>WARNING:
-Transaction spends a cold-stake delegation, voiding it.
-These coins will no longer be cold-staked.</source>
-        <translation>警告：
-交易花费了冷积累委派，使它无效。
-这些硬币将不再被冷积累。</translation>
     </message>
     <message>
         <source>Transaction sent</source>
@@ -3632,7 +3590,6 @@ TRTT使用了一个股权证明(PoS)一致系统算法，
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;Instant transactions (SwiftX)&lt;/li&gt;
                            &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
                            &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
@@ -3675,7 +3632,6 @@ TRTT使用了一个股权证明(PoS)一致系统算法，
 &lt;/p&gt;&lt;p align="justify"&gt;
 
 &lt;ul&gt;
-&lt;li&gt;即时交易(SwiftX)&lt;/li&gt;
 &lt;li&gt;去中心化治理(提案投票)&lt;/li&gt;
 &lt;li&gt;去中心化预算系统(国库)&lt;/li&gt;
 &lt;li&gt;验证每个区块交易&lt;/li&gt;
@@ -4680,10 +4636,6 @@ backup will be created.
         <translation>接收</translation>
     </message>
     <message>
-        <source>Stake delegation</source>
-        <translation>股权委托</translation>
-    </message>
-    <message>
         <source>Sent to</source>
         <translation>发送</translation>
     </message>
@@ -4694,10 +4646,6 @@ backup will be created.
     <message>
         <source>Payment to yourself</source>
         <translation>支付给您自己</translation>
-    </message>
-    <message>
-        <source>Stake delegation spent by</source>
-        <translation>加注花费委托</translation>
     </message>
     <message>
         <source>Mined</source>
@@ -4977,10 +4925,6 @@ Trittium心钱包</translation>
         <translation>在MIT软件许可下发布，参见附带的文件复制或&lt;http://www.opensource.org/licenses/mit-license.php&gt;。</translation>
     </message>
     <message>
-        <source>Enable cold staking functionality (0-1, default: %u). Disabled if staking=0</source>
-        <translation>启用冷堆叠（0-1，默认值：%u）。 如果累计= 0，则禁用</translation>
-    </message>
-    <message>
         <source>Enable spork administration functionality with the appropriate private key.</source>
         <translation>使用适当的私钥启用spork管理功能。</translation>
     </message>
@@ -5245,14 +5189,6 @@ Trittium心钱包</translation>
         <translation>下载完成</translation>
     </message>
     <message>
-        <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>启用&lt;address&gt;发布哈希交易(通过SwiftX锁定)</translation>
-    </message>
-    <message>
-        <source>Enable publish raw transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>启用&lt;address&gt;发布原始交易(通过SwiftX锁定)</translation>
-    </message>
-    <message>
         <source>Enable the client to act as a masternode (0-1, default: %u)</source>
         <translation>允许客户端充当主节点(0-1，默认值:%u)</translation>
     </message>
@@ -5393,20 +5329,21 @@ Trittium心钱包</translation>
         <translation>所选择币价值低于支付目标金额</translation>
     </message>
     <message>
-        <source>SwiftX options:</source>
-        <translation>SwiftX 选项：</translation>
-    </message>
-    <message>
         <source>This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!</source>
         <translation>这是一个预发行测试版本 - 您自己承担风险 - 不要用于商业应用！</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Disable all TRTT specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
         <translation>禁用所有TRTT特定功能(主节点, 零币, SwiftX, budget)(0-1，默认值:%u)</translation>
     </message>
     <message>
         <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
         <translation>启用SwiftX，显示锁定交易的确认(bool，默认值:%s)</translation>
+=======
+        <source>Disable all __DSW__ specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
+        <translation>禁用所有__DSW__特定功能(主节点, 零币, budget)(0-1，默认值:%u)</translation>
+>>>>>>> develop
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -5427,10 +5364,6 @@ Trittium心钱包</translation>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
         <translation>指定自定义备份路径去添加任何钱包备份的副本。如果将其设置为dir，则每个备份将生成一个时间戳文件。如果设置为文件，将重写到每次备份的该文件</translation>
-    </message>
-    <message>
-        <source>SwiftX requires inputs with at least 6 confirmations, you might need to wait a few minutes and try again.</source>
-        <translation>SwiftX要求输入至少6个确认，您可能需要等待几分钟，然后重试。</translation>
     </message>
     <message>
         <source>&lt;category&gt; can be:</source>
@@ -6042,10 +5975,6 @@ Trittium心钱包</translation>
     <message>
         <source>Reset to default</source>
         <translation>重置到默认值</translation>
-    </message>
-    <message>
-        <source>Include delegated</source>
-        <translation>包含委托</translation>
     </message>
 </context>
 </TS>
