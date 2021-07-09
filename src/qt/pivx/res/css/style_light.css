@@ -427,7 +427,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 *[cssClass="container-qr"] {
   border-radius: 8px;
-  background-color: #ffffff;
+  background-color: #fcfcfc;
 }
 
 QPushButton[cssClass="btn-qr"] {
@@ -757,7 +757,7 @@ QPushButton[cssClass="btn-check-lock-sub-menu-unlocked"] {
   background-image: url("://ic-submenu-unlock");
   background-position: left center;
   background-repeat: no-repeat;
-  background-color: transparent;
+  background-color: #ffffff;
   text-align: left;
   padding-left: 30px;
   color: #fff;
@@ -777,7 +777,7 @@ QPushButton[cssClass="btn-check-lock-sub-menu-locked"] {
   background-image: url("://ic-submenu-lock");
   background-position: left center;
   background-repeat: no-repeat;
-  background-color: transparent;
+  background-color: #ffffff;
   text-align: left;
   padding-left: 30px;
   color: #fff;
@@ -797,7 +797,7 @@ QPushButton[cssClass="btn-check-lock-sub-menu-staking"] {
   background-image: url("://ic-submenu-staking");
   background-position: left center;
   background-repeat: no-repeat;
-  background-color: transparent;
+  background-color: #ffffff;
   text-align: left;
   padding-left: 30px;
   color: #fff;
@@ -814,7 +814,7 @@ QPushButton[cssClass="btn-check-lock-sub-menu-staking"]:hover {
 }
 
 *[cssClass="top-sub-menu"] {
-  background-color: #272727;
+  background-color: #ffffff;
 }
 
 *[cssClass="top-sub-menu-text"] {
@@ -1088,7 +1088,7 @@ QPushButton[cssClass="btn-switch"]:checked {
   background-color: #ffffff;
   text-align: left;
   font-size: 18px;
-  color: #70e67f;
+  color: #c226d6;
 }
 
 QPushButton[cssClass="btn-check"] {
@@ -1904,7 +1904,7 @@ QPushButton[cssClass="btn-check-time"]:checked {
 }
 
 QPushButton[cssClass="btn-check-time"]:hover {
-  background-color: #ffffff;
+  background-color: #262626;
   border-radius: 2px;
   font-size: 14px;
   padding: 4px;
@@ -2066,7 +2066,7 @@ QComboBox[cssClass="btn-combo"]::down-arrow {
 }
 
 QComboBox[cssClass="btn-combo-small"] {
-  background-color: #ffffff;
+  background-color: #f9f9f9;
   padding: 8px 14px 8px 8px;
   font-size: 13px;
   border: 1px solid #ffffff;
@@ -2508,11 +2508,11 @@ QPushButton[cssClass="btn-settings-check"]:checked {
   background-image: url("://ic-arrow-drop-up");
   background-position: right center;
   background-repeat: no-repeat;
-  background-color: #ffffff;
+  background-color: #eeeeee;
   border: none;
   border-bottom: 1px solid #eeeeee;
   font-size: 20px;
-  color: #707070;
+  color: #000000;
   text-align: left;
 }
 
@@ -2526,19 +2526,28 @@ QPushButton[cssClass="btn-settings-options"] {
 }
 
 QPushButton[cssClass="btn-settings-options"]:checked {
-  background-color: #7e7e7e;
+  background-color: #eeeeee;
   border: none;
   font-size: 20px;
-  color: #ffffff;
+  color: #262626;
   padding: 0 20px;
   text-align: left;
 }
 
 QPushButton[cssClass="btn-settings-options"]:hover {
-  background-color: #7e7e7e;
+  background-color: #eeeeee;
   border: none;
   font-size: 20px;
-  color: #ffffff;
+  color: #262626;
+  padding: 0 20px;
+  text-align: left;
+}
+
+QPushButton[cssClass="btn-settings-options"]:checked:hover {
+  background-color: #eeeeee;
+  border: none;
+  font-size: 20px;
+  color: #262626;
   padding: 0 20px;
   text-align: left;
 }
@@ -2603,29 +2612,29 @@ HH        FAQ
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 *[cssClass="text-title-faq"] {
-  color: #ebebeb;
+  color: #a5a5a5;
   font-size: 26px;
 }
 
 *[cssClass="container-faq-buttons"] {
   background: transparent;
-  border: 1px solid #ececec;
+  border: 1px solid #c226d6;
   border-radius: 5px;
 }
 
 *[cssClass="text-subtitle-faq"] {
-  color: #ffffff;
+  color: #a5a5a5;
   font-size: 22px;
 }
 
 *[cssClass="text-content-faq"] {
-  color: #ffffff;
+  color: #a5a5a5;
   font-size: 18px;
 }
 
 *[cssClass="container-number-faq"] {
   color: #ffffff;
-  background-color: #727272a9;
+  background-color: #c226d6;
   font-size: 14px;
   border-radius: 2px;
 }
@@ -2890,12 +2899,15 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 *[cssClass="btn-list-menu"] {
   border: 0;
   background-color: #ffffff;
+  color: #262626;
+  text-align: left;
   font-size: 16px;
-  color: #707070;
+  padding-left: 10px;
 }
 
 *[cssClass="btn-list-menu"]:hover {
-  color: #dddddd;
+  background-color: #eeeeee;
+  color: #262626;
 }
 
 /*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
