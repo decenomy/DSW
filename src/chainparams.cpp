@@ -239,16 +239,15 @@ public:
         pchMessageStart[3] = 0x22;
         nDefaultPort = __PORT_MAINNET__;
 
-        // TODO change it to the final domain
-        vSeeds.push_back(CDNSSeedData("seeder", "seeder.beaconcoin.net"));
-	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.beaconcoin.net"));
-        vSeeds.push_back(CDNSSeedData("seed2", "seed2.beaconcoin.net"));
-        vSeeds.push_back(CDNSSeedData("seed3", "seed3.beaconcoin.net"));
-        vSeeds.push_back(CDNSSeedData("seed4", "seed4.beaconcoin.net"));
-	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.beaconcoin.net"));
-	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.beaconcoin.net"));
-	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.beaconcoin.net"));
-	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.beaconcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seeder", "seeder.monkcoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.monkcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed2", "seed2.monkcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed3", "seed3.monkcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed4", "seed4.monkcoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.monkcoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.monkcoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.monkcoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.monkcoin.net"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 51); // M
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 33); // E
