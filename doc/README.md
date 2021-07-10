@@ -3,7 +3,7 @@ Monk Core
 
 Setup
 ---------------------
-[Monk Core](__decenomy_website_link__/) is the original Monk client and it builds the backbone of the network. However, it downloads and stores the entire history of Monk transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
+[Monk Core](https://monkcoin.net/) is the original Monk client and it builds the backbone of the network. However, it downloads and stores the entire history of Monk transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
 
 Running
 ---------------------
@@ -26,7 +26,7 @@ Drag Monk-Qt to your applications folder, and then run Monk-Qt.
 
 ### Need Help?
 
-* See the documentation at the [Monk Wiki](https://__decenomy_github_link__/)
+* See the documentation at the [Monk Wiki](https://https://github.com/decenomy/MONK/)
 for help and more information.
 * Join our Discord server [Discord Server](https://discord.gg/wgRuhztufG)
 
@@ -48,14 +48,14 @@ The Monk repo's [root README](/README.md) contains relevant information on the d
 - [Multiwallet Qt Development](multiwallet-qt.md)
 - [Release Notes](release-notes.md)
 - [Release Process](release-process.md)
-- [Source Code Documentation (External Link)](https://__decenomy_github_link__/)
+- [Source Code Documentation (External Link)](https://https://github.com/decenomy/MONK/)
 - [Translation Process](translation_process.md)
 - [Unit Tests](unit-tests.md)
 - [Unauthenticated REST Interface](REST-interface.md)
 - [Dnsseed Policy](dnsseed-policy.md)
 
 ### Resources
-* Discuss on the [Monk Homepage](__decenomy_website_link__/).
+* Discuss on the [Monk Homepage](https://monkcoin.net/).
 * Join the [Monk Discord](https://discord.gg/wgRuhztufG).
 
 ### Miscellaneous

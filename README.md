@@ -14,7 +14,7 @@ Monk Standard Wallet
 
 • Explorer: https://explorer.decenomy.net/MONK/blocks
 
-• Website: new site in progress
+• Website: [monkcoin.net](https://monkcoin.net)
 
 ### Rewards Breakdown
 <table border=0 cellpadding=0 cellspacing=0 width=701 class=xl6553517252
