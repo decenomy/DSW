@@ -26,7 +26,7 @@ Drag Monk-Qt to your applications folder, and then run Monk-Qt.
 
 ### Need Help?
 
-* See the documentation at the [Monk Wiki](https://https://github.com/decenomy/MONK/)
+* See the documentation at the [Monk Wiki](https://github.com/decenomy/MONK/)
 for help and more information.
 * Join our Discord server [Discord Server](https://discord.gg/wgRuhztufG)
 
@@ -48,7 +48,7 @@ The Monk repo's [root README](/README.md) contains relevant information on the d
 - [Multiwallet Qt Development](multiwallet-qt.md)
 - [Release Notes](release-notes.md)
 - [Release Process](release-process.md)
-- [Source Code Documentation (External Link)](https://https://github.com/decenomy/MONK/)
+- [Source Code Documentation (External Link)](https://github.com/decenomy/MONK/)
 - [Translation Process](translation_process.md)
 - [Unit Tests](unit-tests.md)
 - [Unauthenticated REST Interface](REST-interface.md)

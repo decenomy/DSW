@@ -29,8 +29,8 @@ Build-Depends: debhelper,
  dh-systemd
 Standards-Version: 3.9.2
 Homepage: https://monkcoin.net
-Vcs-Git: git://https://github.com/decenomy/MONK.git
-Vcs-Browser: https://https://github.com/decenomy/MONK
+Vcs-Git: git://github.com/decenomy/MONK.git
+Vcs-Browser: https://github.com/decenomy/MONK
 
 Package: monkd
 Architecture: any
