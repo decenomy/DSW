@@ -514,7 +514,7 @@ bool CMasternodeBroadcast::Sign(const CKey& key, const CPubKey& pubKey)
     std::string strError = "";
     std::string strMessage;
 
-    if(Params().GetConsensus().NetworkUpgradeActive(chainActive.Height(), Consensus::UPGRADE_V3_4)) {
+    if(Params().GetConsensus().NetworkUpgradeActive(chainActive.Height(), Consensus::UPGRADE_STAKE_MODIFIER_V2)) {
         nMessVersion = MessageVersion::MESS_VER_HASH;
         strMessage = GetSignatureHash().GetHex();
 
@@ -601,9 +601,18 @@ bool CMasternodeBroadcast::CheckDefaultPort(CService service, std::string& strEr
 
 bool CMasternodeBroadcast::CheckAndUpdate(int& nDos)
 {
-    // make sure signature isn't in the future (past is OK)
-    if (sigTime > GetAdjustedTime() + 60 * 60) {
+    bool masternodeRankV2 = Params().GetConsensus().NetworkUpgradeActive(chainActive.Height(), Consensus::UPGRADE_MASTERNODE_RANK_V2);
+
+    // make sure signature isn't too far in the future
+    if (sigTime > GetAdjustedTime() + (masternodeRankV2 ? 5 * 60 : 60 * 60)) {
         LogPrint(BCLog::MASTERNODE, "mnb - Signature rejected, too far into the future %s\n", vin.prevout.ToStringShort());
+        nDos = 1;
+        return false;
+    }
+
+    // make sure signature isn't too far in the past 
+    if(masternodeRankV2 && sigTime < GetAdjustedTime() - (masternodeRankV2 ? 5 * 60 : 60 * 60)) {
+        LogPrint(BCLog::MASTERNODE, "mnb - Signature rejected, too far into the past %s\n", vin.prevout.ToStringShort());
         nDos = 1;
         return false;
     }
@@ -837,13 +846,15 @@ std::string CMasternodePing::GetStrMessage() const
 
 bool CMasternodePing::CheckAndUpdate(int& nDos, bool fRequireEnabled, bool fCheckSigTimeOnly)
 {
-    if (sigTime > GetAdjustedTime() + 60 * 60) {
+    bool masternodeRankV2 = Params().GetConsensus().NetworkUpgradeActive(chainActive.Height(), Consensus::UPGRADE_MASTERNODE_RANK_V2);
+
+    if (sigTime > GetAdjustedTime() + (masternodeRankV2 ? 5 * 60 : 60 * 60)) {
         LogPrint(BCLog::MNPING, "%s: Signature rejected, too far into the future %s\n", __func__, vin.prevout.ToStringShort());
         nDos = 1;
         return false;
     }
 
-    if (sigTime <= GetAdjustedTime() - 60 * 60) {
+    if (sigTime <= GetAdjustedTime() - (masternodeRankV2 ? 5 * 60 : 60 * 60)) {
         LogPrint(BCLog::MNPING, "%s: Signature rejected, too far into the past %s - %d %d \n", __func__, vin.prevout.ToStringShort(), sigTime, GetAdjustedTime());
         nDos = 1;
         return false;

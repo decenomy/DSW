@@ -28,7 +28,7 @@ Drag Monk-Qt to your applications folder, and then run Monk-Qt.
 
 * See the documentation at the [Monk Wiki](https://__decenomy_github_link__/)
 for help and more information.
-* Join our Discord server [Discord Server](__decenomy_discord_link__)
+* Join our Discord server [Discord Server](https://discord.gg/wgRuhztufG)
 
 Building
 ---------------------
@@ -56,7 +56,7 @@ The Monk repo's [root README](/README.md) contains relevant information on the d
 
 ### Resources
 * Discuss on the [Monk Homepage](__decenomy_website_link__/).
-* Join the [Monk Discord](__decenomy_discord_link__).
+* Join the [Monk Discord](https://discord.gg/wgRuhztufG).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

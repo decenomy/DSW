@@ -1615,9 +1615,9 @@ NODES</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        __decenomy_discord_link__</source>
+        https://discord.gg/wgRuhztufG</source>
         <translation>Sprache fehlt oder ist unvollständig? Helfe mit und trage zur Übersetzung bei unter:
-        __decenomy_discord_link__</translation>
+        https://discord.gg/wgRuhztufG</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -3593,14 +3593,14 @@ MONK nutzt einen PoS Konsensalgorithmus, der es den Besitzern von MONK erlaubt, 
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            We have support channels in most of our official chat groups, for example
-                           &lt;a style='color: #b088ff' href='__decenomy_discord_link__'&gt;
+                           &lt;a style='color: #b088ff' href='https://discord.gg/wgRuhztufG'&gt;
                            #support in our Discord&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
 Wir haben Support-Kanäle in den meisten unserer offiziellen Chatgruppen, z.B.
-&lt;a style='color: #b088ff' href='__decenomy_discord_link__'&gt;
+&lt;a style='color: #b088ff' href='https://discord.gg/wgRuhztufG'&gt;
 #support in Discord&lt;/a&gt;
 &lt;/a&gt;
 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>

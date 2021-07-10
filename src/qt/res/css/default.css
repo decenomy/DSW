@@ -1,18 +1,20 @@
 /****************************************************************************************/
 /* Global color codes:                                                                  */
 /*                                                                                      */
-/* These color codes should be blanket replaced in every file of the build (including   */
-/* the .ui and .cpp files as they are occasionally hard coded in them.                  */
+/* These color codes should be blanket find/replaced in every file of the build         */
+/* (all files need to be replaced....including the .ui, .cpp, .svg, any file type)      */
+/* Ensure to persist the spacing used in the rgba() and QColor() constructs as shown    */
 /*                                                                                      */
-/* standard lighter brand color:                   #d8af03                              */
-/* standard darker brand color:                    #bf9b02                              */
-/* stardard darker brand color 70% transparency:   rgba(191, 155, 2, 0.7)               */
-/* dark tinted background brand color:             #141414                              */
+/* standard lighter brand color:                   #c226d6                              */
+/* standard darker brand color:                    #810890                              */
+/* standard darker brand color as RGB                                                   */
+/*    with a 70% transparency indicator:           rgba(129, 8, 144, 0.7)               */
+/* dark tinted background brand color:             #4b1452                              */
 /*                                                                                      */
-/* staking chart POS color:                        #8ef779                              */
-/* staking chart POS color as RGB:                 QColor(142,247,121)                   */
-/* staking chart MN color:                         #fce586                              */
-/* staking chart MN color as RGB:                  QColor(252,229,134)                   */
+/* staking chart POS color:                        #dd8b14                              */
+/* staking chart POS color as RGB:                 QColor(221,139,20)                   */
+/* staking chart MN color:                         #c06416                              */
+/* staking chart MN color as RGB:                  QColor(192,100,22)                   */
 /*                                                                                      */
 /* dark theme background color:                    #000000                              */
 /****************************************************************************************/

@@ -1577,9 +1577,9 @@ NODEOVI</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        __decenomy_discord_link__</source>
+        https://discord.gg/wgRuhztufG</source>
         <translation>Jezik nedostaje ili prijevod nije potpun? Pomozite s prijevodom ovdje:
-        __decenomy_discord_link__</translation>
+        https://discord.gg/wgRuhztufG</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>

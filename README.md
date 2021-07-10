@@ -3,7 +3,7 @@ Monk Standard Wallet
 
 ### Coin Specs
 
-• PoW Algorithm: x11kvs  
+• PoW Algorithm: X11KVS  
 • Premine: 25,000,000 (Current supply of all coins for swapping to Monk)  
 • PoW Blocks: 2 - 1000  
 • PoS Blocks: Starting from 1001  

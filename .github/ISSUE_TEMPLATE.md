@@ -1,7 +1,7 @@
 <!--- Remove this description and sections that do not apply -->
 
 This issue tracker is only for technical issues related to Monk Core.
-General Monk questions and/or support requests and are best directed to the [Monk Discord](__decenomy_discord_link__).
+General Monk questions and/or support requests and are best directed to the [Monk Discord](https://discord.gg/wgRuhztufG).
 
 ### Describe the issue
 

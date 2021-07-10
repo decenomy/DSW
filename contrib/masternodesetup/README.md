@@ -76,7 +76,7 @@ Do not close your terminal/ command prompt window at this point.
 ***Go back to Putty***
 
 ```
-  monk-cli getmasternodestatus
+monk-cli getmasternodestatus
 ```
 
 You need to get **"status" : 4**
