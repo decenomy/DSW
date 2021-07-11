@@ -320,8 +320,18 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
- 
-    if(nHeight > 1000000) return    50000 * COIN;
+
+    if(nHeight > 1900000) return    200000 * COIN;    
+    if(nHeight > 1800000) return    200000 * COIN;
+    if(nHeight > 1700000) return    200000 * COIN;
+    if(nHeight > 1600000) return    200000 * COIN;   
+    if(nHeight > 1500000) return    200000 * COIN;
+    if(nHeight > 1400000) return    175000 * COIN;    
+    if(nHeight > 1300000) return    150000 * COIN;    
+    if(nHeight > 1200000) return    125000 * COIN;
+    if(nHeight > 1100000) return    100000 * COIN;    
+    if(nHeight > 1000000) return    75000 * COIN;
+    if(nHeight > 930000) return    50000 * COIN;
     if(nHeight > 700000)  return    25000 * COIN;
     if(nHeight > 550000)  return    20000 * COIN;
     if(nHeight > 450000)  return    15000 * COIN;
@@ -352,7 +362,18 @@ CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
 
-    if (nHeight > 2000000)     return  50 * COIN ;
+    if(nHeight > 1900000) return    800 * COIN;    
+    if(nHeight > 1800000) return    900 * COIN;
+    if(nHeight > 1700000) return    1000 * COIN;
+    if(nHeight > 1600000) return    1200 * COIN;   
+    if(nHeight > 1500000) return    1400 * COIN;
+    if(nHeight > 1400000) return    1200 * COIN;    
+    if(nHeight > 1300000) return    1000 * COIN;    
+    if(nHeight > 1200000) return    800 * COIN;
+    if(nHeight > 1100000) return    620 * COIN;    
+    if(nHeight > 1000000) return    400 * COIN;
+    if(nHeight > 930000) return    200 * COIN;
+    if (nHeight > 700000)     return  50 * COIN ;
     if (nHeight > 550000)      return  50 * COIN ;
     if (nHeight > 450000)      return  40 * COIN ;
     if (nHeight > 350000)      return  35 * COIN ;
@@ -377,7 +398,7 @@ CAmount CMasternode::GetBlockValue(int nHeight)
     if (nHeight > 251)         return  0.25 * COIN ;
     if (nHeight > 0)         return  40 * COIN ;
 
-    return 50 * COIN;
+    return 800 * COIN;
 
 }
 
