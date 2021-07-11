@@ -320,15 +320,7 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
-    if (nHeight <= 200000) {
-        return 200000 * COIN;
-    } else if (nHeight <= 300000) {
-        return 300000 * COIN;
-    } else if (nHeight <= 400000) {
-        return 400000 * COIN;
-    } else {
-        return 500000 * COIN;
-    }
+    return 200000 * COIN;
 }
 
 CAmount CMasternode::GetBlockValue(int nHeight)
@@ -342,17 +334,9 @@ CAmount CMasternode::GetBlockValue(int nHeight)
     CAmount nSubsidy;
 
     if (nHeight == 1) {
-        nSubsidy = 600000000 * COIN; // __DSW__ coin supply (30M)
-    } else if (nHeight <= 100000) {
-        nSubsidy = 400 * COIN;
-    } else if (nHeight <= 200000) {
-        nSubsidy = 300 * COIN;
-    } else if (nHeight <= 300000) {
-        nSubsidy = 200 * COIN;
-    } else if (nHeight <= 400000) {
-        nSubsidy = 100 * COIN;
+        nSubsidy = 600000000 * COIN;
     } else {
-        nSubsidy = 50 * COIN;
+        nSubsidy = 800 * COIN;
     }
 
     if (nMoneySupply + nSubsidy > maxMoneyOut) {
@@ -366,7 +350,7 @@ CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
     if (nHeight <= 3000) return 0;
 
-    return CMasternode::GetBlockValue(nHeight) * 90 / 100;
+    return CMasternode::GetBlockValue(nHeight) * 65 / 100;
 }
 
 void CMasternode::InitMasternodeCollateralList() {
