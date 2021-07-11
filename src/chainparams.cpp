@@ -246,7 +246,7 @@ public:
         pchMessageStart[1] = 0x41;
         pchMessageStart[2] = 0x51;
         pchMessageStart[3] = 0xf1;
-        nDefaultPort = __PORT_MAINNET__;
+        nDefaultPort = 31001;
 
         vSeeds.push_back(CDNSSeedData("seeder", "seeder.trittium.net"));
         vSeeds.push_back(CDNSSeedData("seed1",  "seed1.trittium.net"));
@@ -422,7 +422,7 @@ public:
         pchMessageStart[1] = 0x42;
         pchMessageStart[2] = 0x52;
         pchMessageStart[3] = 0xf2;
-        nDefaultPort = __PORT_TESTNET__;
+        nDefaultPort = 41001;
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -590,7 +590,7 @@ public:
         pchMessageStart[1] = 0x43;
         pchMessageStart[2] = 0x53;
         pchMessageStart[3] = 0xf3;
-        nDefaultPort = __PORT_REGTEST__;
+        nDefaultPort = 51001;
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
