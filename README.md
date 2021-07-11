@@ -15,7 +15,7 @@ Eskacoin wallet repository
 • Prefix: ESK adresses start with the capital letter "E"  
 • Ports: 14215 (p2p) / 14214 (rpc)
 
-• Explorer https://explorer.eskacoin.com/
+• Explorer https://explorer.decenomy.net/ESK/blocks
 
 • Website [eskacoin.com](https://eskacoin.com)
 
