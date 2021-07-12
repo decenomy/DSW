@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        NAME = 'EskaCoin'
+        NAME = 'Eskacoin'
         BASE_NAME = 'eskacoin'
         ZIP_NAME = 'ESK'
     }

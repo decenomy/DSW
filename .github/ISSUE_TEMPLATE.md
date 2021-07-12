@@ -1,7 +1,7 @@
 <!--- Remove this description and sections that do not apply -->
 
-This issue tracker is only for technical issues related to EskaCoin Core.
-General EskaCoin questions and/or support requests and are best directed to the [EskaCoin Discord](https://discord.gg/Z3ueNfWnc3).
+This issue tracker is only for technical issues related to Eskacoin Core.
+General Eskacoin questions and/or support requests and are best directed to the [Eskacoin Discord](https://discord.gg/Z3ueNfWnc3).
 
 ### Describe the issue
 
@@ -20,7 +20,7 @@ Tell us what happens instead
 ### Screenshots.
 If the issue is related to the GUI, screenshots can be added to this issue via drag & drop.
 
-### What version of EskaCoin Core are you using?
+### What version of Eskacoin Core are you using?
 List the version number/commit ID, and if it is an official binary, self compiled or a distribution package.
 
 ### Machine specs:

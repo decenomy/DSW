@@ -348,7 +348,7 @@ void AskPassphraseDialog::warningMessage()
     openStandardDialog(
             tr("Wallet encrypted"),
             "<qt>" +
-            tr("EskaCoin will close now to finish the encryption process. "
+            tr("Eskacoin will close now to finish the encryption process. "
                "Remember that encrypting your wallet cannot fully protect "
                "your ESKs from being stolen by malware infecting your computer.") +
             "<br><br><b>" +

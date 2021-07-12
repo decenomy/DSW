@@ -19,14 +19,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "EskaCoin"
-            VALUE "FileDescription",    "EskaCoin Core (OSS GUI client for EskaCoin)"
+            VALUE "CompanyName",        "Eskacoin"
+            VALUE "FileDescription",    "Eskacoin Core (OSS GUI client for Eskacoin)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "eskacoin-qt"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
             VALUE "OriginalFilename",   "eskacoin-qt.exe"
-            VALUE "ProductName",        "EskaCoin Core"
+            VALUE "ProductName",        "Eskacoin Core"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

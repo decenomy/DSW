@@ -15,7 +15,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"io.eskacoin.EskaCoin-Qt";
+        return @"io.eskacoin.Eskacoin-Qt";
     } else {
         return [self __bundleIdentifier];
     }

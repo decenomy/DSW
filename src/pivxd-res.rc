@@ -16,8 +16,8 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "EskaCoin"
-            VALUE "FileDescription",    "eskacoind (OSS daemon/client for EskaCoin)"
+            VALUE "CompanyName",        "Eskacoin"
+            VALUE "FileDescription",    "eskacoind (OSS daemon/client for Eskacoin)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "eskacoind"
             VALUE "LegalCopyright",     COPYRIGHT_STR

@@ -1,6 +1,6 @@
 ![Example-Logo](https://avatars.githubusercontent.com/u/74193190?v=4)
 
-# EskaCoin Masternode Setup Guide
+# Eskacoin Masternode Setup Guide
 ***
 ## Required
 1) **ESK collateral value at current block** ([consult the collateral table](../../README.md#rewards-breakdown))
@@ -81,4 +81,4 @@ eskacoin-cli getmasternodestatus
 
 You need to get **"status" : 4**
 
-## Congratulations your EskaCoin node it's running
+## Congratulations your Eskacoin node it's running

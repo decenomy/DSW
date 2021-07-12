@@ -47,7 +47,7 @@ static bool AppInitRawTx(int argc, char* argv[])
 
     if (argc < 2 || mapArgs.count("-?") || mapArgs.count("-help")) {
         // First part of help message is specific to this utility
-        std::string strUsage = _("EskaCoin eskacoin-tx utility version") + " " + FormatFullVersion() + "\n\n" +
+        std::string strUsage = _("Eskacoin eskacoin-tx utility version") + " " + FormatFullVersion() + "\n\n" +
                                _("Usage:") + "\n" +
                                "  eskacoin-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded eskacoin transaction") + "\n" +
                                "  eskacoin-tx [options] -create [commands]   " + _("Create hex-encoded eskacoin transaction") + "\n" +

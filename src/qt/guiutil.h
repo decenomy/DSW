@@ -43,7 +43,7 @@ public:
     GUIException(const std::string &message) : message(message) {}
 };
 
-/** Utility functions used by the EskaCoin Qt UI.
+/** Utility functions used by the Eskacoin Qt UI.
  */
 namespace GUIUtil
 {

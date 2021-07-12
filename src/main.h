@@ -142,7 +142,7 @@ static const unsigned int DEFAULT_BLOCK_SPAM_FILTER_MAX_SIZE = 100;
 static const unsigned int DEFAULT_BLOCK_SPAM_FILTER_MAX_AVG = 10;
 
 /** Identifier of the old client */
-static const char OLD_CLIENT_NAME[] = "ESKACOIN Core";
+static const char OLD_CLIENT_NAME[] = "ESKACOIN";
 
 struct BlockHasher {
     size_t operator()(const uint256& hash) const { return hash.GetCheapHash(); }

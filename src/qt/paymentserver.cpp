@@ -77,7 +77,7 @@ namespace // Anon namespace
 //
 static QString ipcServerName()
 {
-    QString name("EskaCoinQt");
+    QString name("EskacoinQt");
 
     // Append a simple hash of the datadir
     // Note that GetDataDir(true) returns a different path

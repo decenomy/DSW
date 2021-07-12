@@ -1,9 +1,9 @@
 [Desktop Entry]
 Version=1.0
-Name=EskaCoin 
-Comment=EskaCoin P2P Cryptocurrency
-Comment[fr]=EskaCoin, monnaie virtuelle cryptographique pair à pair
-Comment[tr]=EskaCoin, eşten eşe kriptografik sanal para birimi
+Name=Eskacoin 
+Comment=Eskacoin P2P Cryptocurrency
+Comment[fr]=Eskacoin, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Eskacoin, eşten eşe kriptografik sanal para birimi
 Exec=eskacoin-qt %u
 Terminal=false
 Type=Application

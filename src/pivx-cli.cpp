@@ -72,10 +72,10 @@ static bool AppInitRPC(int argc, char* argv[])
     //
     ParseParameters(argc, argv);
     if (argc < 2 || mapArgs.count("-?") || mapArgs.count("-help") || mapArgs.count("-version")) {
-        std::string strUsage = _("EskaCoin RPC client version") + " " + FormatFullVersion() + "\n";
+        std::string strUsage = _("Eskacoin RPC client version") + " " + FormatFullVersion() + "\n";
         if (!mapArgs.count("-version")) {
             strUsage += "\n" + _("Usage:") + "\n" +
-                        "  eskacoin-cli [options] <command> [params]  " + _("Send command to EskaCoin") + "\n" +
+                        "  eskacoin-cli [options] <command> [params]  " + _("Send command to Eskacoin") + "\n" +
                         "  eskacoin-cli [options] help                " + _("List commands") + "\n" +
                         "  eskacoin-cli [options] help <command>      " + _("Get help for a command") + "\n";
 

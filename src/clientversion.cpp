@@ -14,7 +14,7 @@
  * for both eskacoind and eskacoin-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("EskaCoin");
+const std::string CLIENT_NAME("Eskacoin");
 
 /**
  * Client version number

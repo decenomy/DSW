@@ -852,16 +852,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>版本</translation>
     </message>
     <message>
-        <source>EskaCoin</source>
-        <translation>EskaCoin</translation>
+        <source>Eskacoin</source>
+        <translation>Eskacoin</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-位)</translation>
     </message>
     <message>
-        <source>About EskaCoin</source>
-        <translation>关于EskaCoin</translation>
+        <source>About Eskacoin</source>
+        <translation>关于Eskacoin</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -915,16 +915,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>欢迎</translation>
     </message>
     <message>
-        <source>Welcome to EskaCoin.</source>
-        <translation>欢迎使用 EskaCoin</translation>
+        <source>Welcome to Eskacoin.</source>
+        <translation>欢迎使用 Eskacoin</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where EskaCoin will store its data.</source>
-        <translation>由于这是该程序第一次启动，您可以选择存储EskaCoin 数据的位置。</translation>
+        <source>As this is the first time the program is launched, you can choose where Eskacoin will store its data.</source>
+        <translation>由于这是该程序第一次启动，您可以选择存储Eskacoin 数据的位置。</translation>
     </message>
     <message>
-        <source>EskaCoin will download and store a copy of the ESK block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>EskaCoin将下载并存储ESK区块链副本。 至少 %1 GB的数据将存储在此目录中，并且会随着时间的推移而增长。 钱包也将存储在此目录中。</translation>
+        <source>Eskacoin will download and store a copy of the ESK block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Eskacoin将下载并存储ESK区块链副本。 至少 %1 GB的数据将存储在此目录中，并且会随着时间的推移而增长。 钱包也将存储在此目录中。</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -943,8 +943,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>好的</translation>
     </message>
     <message>
-        <source>EskaCoin</source>
-        <translation>EskaCoin</translation>
+        <source>Eskacoin</source>
+        <translation>Eskacoin</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1689,8 +1689,8 @@ Are you sure?</source>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>EskaCoin</source>
-        <translation>EskaCoin</translation>
+        <source>Eskacoin</source>
+        <translation>Eskacoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -1717,8 +1717,8 @@ Are you sure?</source>
         <translation>关闭应用</translation>
     </message>
     <message>
-        <source>EskaCoin client</source>
-        <translation>EskaCoin 客户端</translation>
+        <source>Eskacoin client</source>
+        <translation>Eskacoin 客户端</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1922,8 +1922,8 @@ Address: %4
         <translation>发生了一个致命的错误。ESK不能继续安全，将退出。</translation>
     </message>
     <message>
-        <source>EskaCoin</source>
-        <translation>EskaCoin</translation>
+        <source>Eskacoin</source>
+        <translation>Eskacoin</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -1942,8 +1942,8 @@ Address: %4
         <translation>读取主节点配置文件出错:%1</translation>
     </message>
     <message>
-        <source>EskaCoin didn't yet exit safely...</source>
-        <translation>EskaCoin心尚未安全退出……</translation>
+        <source>Eskacoin didn't yet exit safely...</source>
+        <translation>Eskacoin心尚未安全退出……</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -4135,8 +4135,8 @@ Are you sure?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>EskaCoin is shutting down...</source>
-        <translation>EskaCoin 核心正在关闭...</translation>
+        <source>Eskacoin is shutting down...</source>
+        <translation>Eskacoin 核心正在关闭...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4165,8 +4165,8 @@ Are you sure?
         <translation>正在下载…</translation>
     </message>
     <message>
-        <source>EskaCoin</source>
-        <translation>EskaCoin</translation>
+        <source>Eskacoin</source>
+        <translation>Eskacoin</translation>
     </message>
 </context>
 <context>
@@ -4601,9 +4601,9 @@ backup will be created.
     </message>
     <message>
         <source>Welcome to
-EskaCoin Wallet</source>
+Eskacoin Wallet</source>
         <translation>欢迎
-EskaCoin心钱包</translation>
+Eskacoin心钱包</translation>
     </message>
     <message>
         <source>ESK is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
@@ -4653,8 +4653,8 @@ EskaCoin心钱包</translation>
         <translation>绑定到给定地址监听JSON-RPC连接。使用[主机]: IPv6的端口符号。可以多次指定此选项(默认:绑定到所有接口)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. EskaCoin is probably already running.</source>
-        <translation>无法获取数据目录%s锁。EskaCoin心可能已经在运行了。</translation>
+        <source>Cannot obtain a lock on data directory %s. Eskacoin is probably already running.</source>
+        <translation>无法获取数据目录%s锁。Eskacoin心可能已经在运行了。</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -4813,8 +4813,8 @@ EskaCoin心钱包</translation>
         <translation>网络版本字符串的总长度(%i)超过最大长度(%i)。减少任务的数量或大小。</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. EskaCoin is probably already running.</source>
-        <translation>无法绑定到此计算机上的%s。EskaCoin心可能已经在运行了。</translation>
+        <source>Unable to bind to %s on this computer. Eskacoin is probably already running.</source>
+        <translation>无法绑定到此计算机上的%s。Eskacoin心可能已经在运行了。</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -4829,8 +4829,8 @@ EskaCoin心钱包</translation>
         <translation>警告:-支付tx费用设置的非常高!这是您发送交易时要支付的交易费。</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong EskaCoin will not work properly.</source>
-        <translation>注意：请检查您的电脑的日期和时间是否正确！ 如果您的时间设置不正确，EskaCoin将无法正常工作。</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Eskacoin will not work properly.</source>
+        <translation>注意：请检查您的电脑的日期和时间是否正确！ 如果您的时间设置不正确，Eskacoin将无法正常工作。</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5037,8 +5037,8 @@ EskaCoin心钱包</translation>
         <translation>信息</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. EskaCoin is shutting down.</source>
-        <translation>初始化完整性检查失败。EskaCoin心快要关闭了。</translation>
+        <source>Initialization sanity check failed. Eskacoin is shutting down.</source>
+        <translation>初始化完整性检查失败。Eskacoin心快要关闭了。</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5325,8 +5325,8 @@ EskaCoin心钱包</translation>
         <translation>准备重新同步……</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong EskaCoin will not work properly.</source>
-        <translation>请检查您的电脑的日期和时间是否正确!如果你的时间错误，EskaCoin将无法正常工作。</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong Eskacoin will not work properly.</source>
+        <translation>请检查您的电脑的日期和时间是否正确!如果你的时间错误，Eskacoin将无法正常工作。</translation>
     </message>
     <message>
         <source>Specify location of debug log file: this can be an absolute path or a path relative to the data directory (default: %s)</source>
@@ -5629,8 +5629,8 @@ EskaCoin心钱包</translation>
         <translation>钱包%s驻留在数据目录%s之外</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart EskaCoin to complete</source>
-        <translation>钱包需要重写:重新启动EskaCoin心完成</translation>
+        <source>Wallet needed to be rewritten: restart Eskacoin to complete</source>
+        <translation>钱包需要重写:重新启动Eskacoin心完成</translation>
     </message>
     <message>
         <source>Wallet options:</source>

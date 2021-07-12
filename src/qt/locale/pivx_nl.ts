@@ -896,16 +896,16 @@ Het zal automatisch starten zodra de portemonnee voldoende bevestigingen heeft o
         <translation>versie</translation>
     </message>
     <message>
-        <source>EskaCoin</source>
-        <translation>EskaCoin</translation>
+        <source>Eskacoin</source>
+        <translation>Eskacoin</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About EskaCoin</source>
-        <translation>Over EskaCoin</translation>
+        <source>About Eskacoin</source>
+        <translation>Over Eskacoin</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -959,16 +959,16 @@ Het zal automatisch starten zodra de portemonnee voldoende bevestigingen heeft o
         <translation>Welkom</translation>
     </message>
     <message>
-        <source>Welcome to EskaCoin.</source>
-        <translation>Welkom bij EskaCoin.</translation>
+        <source>Welcome to Eskacoin.</source>
+        <translation>Welkom bij Eskacoin.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where EskaCoin will store its data.</source>
-        <translation>Aangezien dit de eerste keer is dat het programma is gestart, kun je kiezen waar EskaCoin zijn data opslaat.</translation>
+        <source>As this is the first time the program is launched, you can choose where Eskacoin will store its data.</source>
+        <translation>Aangezien dit de eerste keer is dat het programma is gestart, kun je kiezen waar Eskacoin zijn data opslaat.</translation>
     </message>
     <message>
-        <source>EskaCoin will download and store a copy of the ESK block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>EskaCoin zal een kopie van de ESK blockchain downloaden en opslaan. Tenminste %1GB aan data zal worden opgeslagen in deze map en het zal over de tijd groeien. De portemonnee zal ook in deze map worden opgeslagen.</translation>
+        <source>Eskacoin will download and store a copy of the ESK block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Eskacoin zal een kopie van de ESK blockchain downloaden en opslaan. Tenminste %1GB aan data zal worden opgeslagen in deze map en het zal over de tijd groeien. De portemonnee zal ook in deze map worden opgeslagen.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -987,8 +987,8 @@ Het zal automatisch starten zodra de portemonnee voldoende bevestigingen heeft o
         <translation>Akkoord</translation>
     </message>
     <message>
-        <source>EskaCoin</source>
-        <translation>EskaCoin</translation>
+        <source>Eskacoin</source>
+        <translation>Eskacoin</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1809,8 +1809,8 @@ NODES</translation>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>EskaCoin</source>
-        <translation>EskaCoin</translation>
+        <source>Eskacoin</source>
+        <translation>Eskacoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -1837,8 +1837,8 @@ NODES</translation>
         <translation>Programma afsluiten</translation>
     </message>
     <message>
-        <source>EskaCoin client</source>
-        <translation>EskaCoin client</translation>
+        <source>Eskacoin client</source>
+        <translation>Eskacoin client</translation>
     </message>
     <message>
         <source>Error</source>
@@ -2042,8 +2042,8 @@ Adres: %4
         <translation>Een kritieke fout is opgelopen. ESK kan niet langer veilig uitgevoerd worden en zal afsluiten.</translation>
     </message>
     <message>
-        <source>EskaCoin</source>
-        <translation>EskaCoin</translation>
+        <source>Eskacoin</source>
+        <translation>Eskacoin</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -2062,8 +2062,8 @@ Adres: %4
         <translation>Fout bij het lezen van het masternode configuratiebestand: %1</translation>
     </message>
     <message>
-        <source>EskaCoin didn't yet exit safely...</source>
-        <translation>EskaCoin is nog niet veilig afgesloten...</translation>
+        <source>Eskacoin didn't yet exit safely...</source>
+        <translation>Eskacoin is nog niet veilig afgesloten...</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -4514,8 +4514,8 @@ Weet je zeker dat?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>EskaCoin is shutting down...</source>
-        <translation>EskaCoin is aan het afsluiten...</translation>
+        <source>Eskacoin is shutting down...</source>
+        <translation>Eskacoin is aan het afsluiten...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4544,8 +4544,8 @@ Weet je zeker dat?
         <translation>Laden...</translation>
     </message>
     <message>
-        <source>EskaCoin</source>
-        <translation>EskaCoin</translation>
+        <source>Eskacoin</source>
+        <translation>Eskacoin</translation>
     </message>
 </context>
 <context>
@@ -5064,9 +5064,9 @@ Selecteer minder invoeren met muntcontrole.</translation>
     </message>
     <message>
         <source>Welcome to
-EskaCoin Wallet</source>
+Eskacoin Wallet</source>
         <translation>Welkom bij
-EskaCoin Portemonnee</translation>
+Eskacoin Portemonnee</translation>
     </message>
     <message>
         <source>ESK is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
@@ -5116,8 +5116,8 @@ EskaCoin Portemonnee</translation>
         <translation>Bind naar het opgegeven adres om te luisteren naar JSON-RPC verbindingen. Gebruik [host]:poort notatie voor IPv6. Deze optie kan meerdere keren worden opgegeven (standaard: bind aan alle interfaces)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. EskaCoin is probably already running.</source>
-        <translation>Kan geen vergrendeling op data directory %s verkrijgen. EskaCoin loopt waarschijnlijk al.</translation>
+        <source>Cannot obtain a lock on data directory %s. Eskacoin is probably already running.</source>
+        <translation>Kan geen vergrendeling op data directory %s verkrijgen. Eskacoin loopt waarschijnlijk al.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -5276,8 +5276,8 @@ EskaCoin Portemonnee</translation>
         <translation>De totale lengte van de netwerkversie (%i) overschrijdt de maximale lengte (%i). Verminder het aantal of de grootte van uacommentaren.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. EskaCoin is probably already running.</source>
-        <translation>Niet mogelijk te binden aan %s op deze computer. EskaCoin loopt waarschijnlijk al.</translation>
+        <source>Unable to bind to %s on this computer. Eskacoin is probably already running.</source>
+        <translation>Niet mogelijk te binden aan %s op deze computer. Eskacoin loopt waarschijnlijk al.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -5292,8 +5292,8 @@ EskaCoin Portemonnee</translation>
         <translation>Waarschuwing: -paytxfee is zeer hoog ingesteld! Dit zijn de transactie kosten die je betaalt als je een transactie verstuurt.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong EskaCoin will not work properly.</source>
-        <translation>Waarschuwing: Controleer of de datum en tijd van je computer juist zijn! Als je klok verkeerd staat, werkt EskaCoin niet goed.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Eskacoin will not work properly.</source>
+        <translation>Waarschuwing: Controleer of de datum en tijd van je computer juist zijn! Als je klok verkeerd staat, werkt Eskacoin niet goed.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5500,8 +5500,8 @@ EskaCoin Portemonnee</translation>
         <translation>Informatie</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. EskaCoin is shutting down.</source>
-        <translation>Initialisatie saniteitscontrole mislukt. EskaCoin wordt afgesloten.</translation>
+        <source>Initialization sanity check failed. Eskacoin is shutting down.</source>
+        <translation>Initialisatie saniteitscontrole mislukt. Eskacoin wordt afgesloten.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5824,8 +5824,8 @@ EskaCoin Portemonnee</translation>
         <translation>Minimum geldige waarde (in ESK) toegestaan bij GUI en RPC voor de staking splitsdrempel (standaard: %s)</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong EskaCoin will not work properly.</source>
-        <translation>Controleer of de datum en tijd van je computer juist zijn! Als je klok verkeerd ingesteld staat, werkt EskaCoin niet goed.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong Eskacoin will not work properly.</source>
+        <translation>Controleer of de datum en tijd van je computer juist zijn! Als je klok verkeerd ingesteld staat, werkt Eskacoin niet goed.</translation>
     </message>
     <message>
         <source>Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect/-noconnect)</source>
@@ -6234,8 +6234,8 @@ EskaCoin Portemonnee</translation>
         <translation>Portemonnee %s verblijft buiten de data directory %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart EskaCoin to complete</source>
-        <translation>Wallet moest worden herschreven: start EskaCoin opnieuw om te voltooien</translation>
+        <source>Wallet needed to be rewritten: restart Eskacoin to complete</source>
+        <translation>Wallet moest worden herschreven: start Eskacoin opnieuw om te voltooien</translation>
     </message>
     <message>
         <source>Wallet options:</source>

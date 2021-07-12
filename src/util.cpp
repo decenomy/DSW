@@ -89,7 +89,7 @@ const char * const PIVX_PID_FILENAME = "eskacoin.pid";
 const char * const PIVX_MASTERNODE_CONF_FILENAME = "masternode.conf";
 
 
-// EskaCoin only features
+// Eskacoin only features
 // Masternode
 bool fMasterNode = false;
 std::string strMasterNodePrivKey = "";
@@ -292,7 +292,7 @@ fs::path GetDefaultDataDir()
 // Unix: ~/.eskacoin
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "EskaCoin";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "Eskacoin";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -304,7 +304,7 @@ fs::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "EskaCoin";
+    return pathRet / "Eskacoin";
 #else
     // Unix
     return pathRet / ".eskacoin";
@@ -326,7 +326,7 @@ static fs::path ZC_GetBaseParamsDir()
     // Unix: ~/.eskacoin-params
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "EskaCoinParams";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "EskacoinParams";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -338,7 +338,7 @@ static fs::path ZC_GetBaseParamsDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "EskaCoinParams";
+    return pathRet / "EskacoinParams";
 #else
     // Unix
     return pathRet / ".eskacoin-params";

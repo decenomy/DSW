@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "EskaCoin"
-            VALUE "FileDescription",    "EskaCoin-cli (OSS RPC client for EskaCoin)"
+            VALUE "CompanyName",        "Eskacoin"
+            VALUE "FileDescription",    "Eskacoin-cli (OSS RPC client for Eskacoin)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "eskacoin-cli"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
             VALUE "OriginalFilename",   "eskacoin-cli.exe"
-            VALUE "ProductName",        "EskaCoin-cli"
+            VALUE "ProductName",        "Eskacoin-cli"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

@@ -937,7 +937,7 @@
                      </property>
                      <property name="text">
                       <string>Welcome to
-EskaCoin Wallet</string>
+Eskacoin Wallet</string>
                      </property>
                      <property name="alignment">
                       <set>Qt::AlignCenter</set>

@@ -34,7 +34,7 @@ class WalletModel;
 
 
 /**
-  EskaCoin GUI main class. This class represents the main window of the EskaCoin UI. It communicates with both the client and
+  Eskacoin GUI main class. This class represents the main window of the Eskacoin UI. It communicates with both the client and
   wallet models to give the user an up-to-date view of the current core state.
 */
 class PIVXGUI : public QMainWindow

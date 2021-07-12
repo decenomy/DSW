@@ -884,12 +884,12 @@ QDialog#HelpMessageDialog QScrollBar:vertical, QDialog#HelpMessageDialog QScroll
 border:0;
 }
 
-/* About EskaCoin Dialog */
-QDialog#AboutDialog QLabel#label, QDialog#AboutDialog QLabel#copyrightLabel, QDialog#AboutDialog QLabel#label_2 { /* About EskaCoin Contents */
+/* About Eskacoin Dialog */
+QDialog#AboutDialog QLabel#label, QDialog#AboutDialog QLabel#copyrightLabel, QDialog#AboutDialog QLabel#label_2 { /* About Eskacoin Contents */
 margin-left:10px;
 }
 
-QDialog#AboutDialog QLabel#label_2 { /* Margin for About EskaCoin text */
+QDialog#AboutDialog QLabel#label_2 { /* Margin for About Eskacoin text */
 margin-right:10px;
 }
 
@@ -920,7 +920,7 @@ background-image: url(':/images/pivx_logo_horizontal');
 background-repeat: no-repeat;
 }
 
-QWidget .QFrame#frame_Header { /* Header with Page-Title and EskaCoin-image */
+QWidget .QFrame#frame_Header { /* Header with Page-Title and Eskacoin-image */
 min-width:400px;
 background-color:#ffffff;
 }

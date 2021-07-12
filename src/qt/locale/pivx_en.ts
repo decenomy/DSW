@@ -1124,7 +1124,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <location line="+0"/>
-        <source>EskaCoin</source>
+        <source>Eskacoin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1135,7 +1135,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <location line="+6"/>
-        <source>About EskaCoin</source>
+        <source>About Eskacoin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1203,17 +1203,17 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <location line="+90"/>
-        <source>Welcome to EskaCoin.</source>
+        <source>Welcome to Eskacoin.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+35"/>
-        <source>As this is the first time the program is launched, you can choose where EskaCoin will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where Eskacoin will store its data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+18"/>
-        <source>EskaCoin will download and store a copy of the ESK block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>Eskacoin will download and store a copy of the ESK block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1238,7 +1238,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <location filename="../intro.cpp" line="+100"/>
-        <source>EskaCoin</source>
+        <source>Eskacoin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2225,7 +2225,7 @@ NODES</source>
         <location filename="../pivx/pivxgui.cpp" line="+69"/>
         <location line="+298"/>
         <location line="+69"/>
-        <source>EskaCoin</source>
+        <source>Eskacoin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2260,7 +2260,7 @@ NODES</source>
     </message>
     <message>
         <location line="+39"/>
-        <source>EskaCoin client</source>
+        <source>Eskacoin client</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2530,7 +2530,7 @@ Address: %4
         <location line="+7"/>
         <location line="+13"/>
         <location line="+19"/>
-        <source>EskaCoin</source>
+        <source>Eskacoin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2555,7 +2555,7 @@ Address: %4
     </message>
     <message>
         <location line="+64"/>
-        <source>EskaCoin didn&apos;t yet exit safely...</source>
+        <source>Eskacoin didn&apos;t yet exit safely...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5538,7 +5538,7 @@ Are you sure?
     <name>ShutdownWindow</name>
     <message>
         <location filename="../utilitydialog.cpp" line="+71"/>
-        <source>EskaCoin is shutting down...</source>
+        <source>Eskacoin is shutting down...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5574,7 +5574,7 @@ Are you sure?
     </message>
     <message>
         <location filename="../pivx/splash.cpp" line="+30"/>
-        <source>EskaCoin</source>
+        <source>Eskacoin</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6271,7 +6271,7 @@ Select fewer inputs with coin control.</source>
     <message>
         <location line="+89"/>
         <source>Welcome to
-EskaCoin Wallet</source>
+Eskacoin Wallet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6339,7 +6339,7 @@ EskaCoin Wallet</source>
     </message>
     <message>
         <location line="+5"/>
-        <source>Cannot obtain a lock on data directory %s. EskaCoin is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. Eskacoin is probably already running.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6539,7 +6539,7 @@ EskaCoin Wallet</source>
     </message>
     <message>
         <location line="+3"/>
-        <source>Unable to bind to %s on this computer. EskaCoin is probably already running.</source>
+        <source>Unable to bind to %s on this computer. Eskacoin is probably already running.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6559,7 +6559,7 @@ EskaCoin Wallet</source>
     </message>
     <message>
         <location line="+3"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong EskaCoin will not work properly.</source>
+        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong Eskacoin will not work properly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6819,7 +6819,7 @@ EskaCoin Wallet</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Initialization sanity check failed. EskaCoin is shutting down.</source>
+        <source>Initialization sanity check failed. Eskacoin is shutting down.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7259,7 +7259,7 @@ EskaCoin Wallet</source>
     </message>
     <message>
         <location line="+7"/>
-        <source>Please check that your computer&apos;s date and time are correct! If your clock is wrong EskaCoin will not work properly.</source>
+        <source>Please check that your computer&apos;s date and time are correct! If your clock is wrong Eskacoin will not work properly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7314,7 +7314,7 @@ EskaCoin Wallet</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Error loading %s: Wallet requires newer version of EskaCoin</source>
+        <source>Error loading %s: Wallet requires newer version of Eskacoin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7816,7 +7816,7 @@ EskaCoin Wallet</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Wallet needed to be rewritten: restart EskaCoin to complete</source>
+        <source>Wallet needed to be rewritten: restart Eskacoin to complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
