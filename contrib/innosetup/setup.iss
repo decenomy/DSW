@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Eskacoin Core"
-#define MyAppVersion "1.0.0.0"
+#define MyAppVersion "2.0.0.0"
 #define MyAppPublisher "2021 DECENOMY Core Developers"
 #define MyAppURL "https://eskacoin.com"
 #define MyAppExeName "eskacoin-qt.exe"
