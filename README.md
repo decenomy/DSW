@@ -4,7 +4,7 @@ Eskacoin wallet repository
 ### Coin Specs
 
 • PoW Algorithm: Quark  
-• Premine: 60,001 ESK
+• Premine: 90,000 ESK
 • PoW Blocks: 1 - 251  
 • PoS Blocks: Starting from 252  
 • Block Time: 60 Seconds    
