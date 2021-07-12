@@ -18,6 +18,7 @@ Eskacoin wallet repository
 
 ### Rewards Breakdown
 
+---
 | Block     | Collateral | Block Reward | MN Reward % | Staking Reward % | MN Reward | Staker Reward |
 | --------- | ---------- | ------------ | ----------- | ---------------- | --------- | ------------- |
 | 0         | 0          | 50.00        | 0           | 0                | 0.00      | 0.00          |
@@ -57,3 +58,4 @@ Eskacoin wallet repository
 | 1,700,001 | 200,000    | 1,000.00     | 65          | 35               | 650.00    | 350.00        |
 | 1,800,001 | 200,000    | 900.00       | 65          | 35               | 585.00    | 315.00        |
 | 1,900,001 | 200,000    | 800.00       | 65          | 35               | 520.00    | 280.00        |
+---
