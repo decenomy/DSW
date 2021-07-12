@@ -181,10 +181,10 @@ public:
         consensus.nTimeSlotLength = 15;
 
         // spork keys
-        consensus.strSporkPubKey = "043B44A0D5F6BFA822208E19096A6F71A144EA1034A5ABB99E458DF1463CF98E72FEA9E5C5038EF7716765D248DAA709A23746606AF41CAC59DC071E89624C9FA2";
-        consensus.strSporkPubKeyOld = "045D4992522898FFFC6E6FD4CFCE18477B9E4BA14AEE23EDF3FD56743B4F4A57B98F9DAD40D5316A30591DF7E6C6D4B267D22175732097275A6B43107E10DEABCF";
-        consensus.nTime_EnforceNewSporkKey = 1566860400;
-        consensus.nTime_RejectOldSporkKey = 0;
+        consensus.strSporkPubKey = "02aeefc7f24b3919ff05a7d2661aefba6c37ca77c263a20e8516dea630fa74e9bb";
+        consensus.strSporkPubKeyOld = "043B44A0D5F6BFA822208E19096A6F71A144EA1034A5ABB99E458DF1463CF98E72FEA9E5C5038EF7716765D248DAA709A23746606AF41CAC59DC071E89624C9FA2";
+        consensus.nTime_EnforceNewSporkKey = 1626393600;
+        consensus.nTime_RejectOldSporkKey = 1626480000;
 
         // height-based activations
         consensus.height_last_ZC_AccumCheckpoint    = DISABLED;
