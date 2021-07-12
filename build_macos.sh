@@ -7,11 +7,11 @@ then
 fi
 
 # Clone code from official Github repository
-    rm -rf DSW
-    git clone https://github.com/decenomy/DSW.git
+    rm -rf ESK
+    git clone https://github.com/decenomy/ESK.git
 
 # Entering directory
-    cd DSW
+    cd ESK
 
 # Compile dependencies
     cd depends
@@ -31,6 +31,6 @@ fi
     cd ..
 
 # Create zip file of binaries
-    cp DSW/src/__decenomy__d DSW/src/__decenomy__-cli DSW/src/__decenomy__-tx DSW/src/qt/__decenomy__-qt DSW/__Decenomy__-Core.dmg .
-    zip __DSW__-MacOS.zip __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt __Decenomy__-Core.dmg
-    rm -f __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt __Decenomy__-Core.dmg
+    cp ESK/src/eskacoind ESK/src/eskacoin-cli ESK/src/eskacoin-tx ESK/src/qt/eskacoin-qt ESK/Eskacoin-Core.dmg .
+    zip ESK-MacOS.zip eskacoind eskacoin-cli eskacoin-tx eskacoin-qt Eskacoin-Core.dmg
+    rm -f eskacoind eskacoin-cli eskacoin-tx eskacoin-qt Eskacoin-Core.dmg
