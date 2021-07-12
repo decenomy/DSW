@@ -79,15 +79,15 @@ BOOST_AUTO_TEST_CASE(netbase_splithost)
     BOOST_CHECK(TestSplitHost("www.bitcoin.org:80", "www.bitcoin.org", 80));
     BOOST_CHECK(TestSplitHost("[www.bitcoin.org]:80", "www.bitcoin.org", 80));
     BOOST_CHECK(TestSplitHost("127.0.0.1", "127.0.0.1", -1));
-    BOOST_CHECK(TestSplitHost("127.0.0.1:__PORT_MAINNET__", "127.0.0.1", __PORT_MAINNET__));
+    BOOST_CHECK(TestSplitHost("127.0.0.1:14215", "127.0.0.1", 14215));
     BOOST_CHECK(TestSplitHost("[127.0.0.1]", "127.0.0.1", -1));
-    BOOST_CHECK(TestSplitHost("[127.0.0.1]:__PORT_MAINNET__", "127.0.0.1", __PORT_MAINNET__));
+    BOOST_CHECK(TestSplitHost("[127.0.0.1]:14215", "127.0.0.1", 14215));
     BOOST_CHECK(TestSplitHost("::ffff:127.0.0.1", "::ffff:127.0.0.1", -1));
-    BOOST_CHECK(TestSplitHost("[::ffff:127.0.0.1]:__PORT_MAINNET__", "::ffff:127.0.0.1", __PORT_MAINNET__));
-    BOOST_CHECK(TestSplitHost("[::]:__PORT_MAINNET__", "::", __PORT_MAINNET__));
-    BOOST_CHECK(TestSplitHost("::__PORT_MAINNET__", "::__PORT_MAINNET__", -1));
-    BOOST_CHECK(TestSplitHost(":__PORT_MAINNET__", "", __PORT_MAINNET__));
-    BOOST_CHECK(TestSplitHost("[]:__PORT_MAINNET__", "", __PORT_MAINNET__));
+    BOOST_CHECK(TestSplitHost("[::ffff:127.0.0.1]:14215", "::ffff:127.0.0.1", 14215));
+    BOOST_CHECK(TestSplitHost("[::]:14215", "::", 14215));
+    BOOST_CHECK(TestSplitHost("::14215", "::14215", -1));
+    BOOST_CHECK(TestSplitHost(":14215", "", 14215));
+    BOOST_CHECK(TestSplitHost("[]:14215", "", 14215));
     BOOST_CHECK(TestSplitHost("", "", -1));
 }
 
@@ -100,10 +100,10 @@ bool static TestParse(std::string src, std::string canon)
 BOOST_AUTO_TEST_CASE(netbase_lookupnumeric)
 {
     BOOST_CHECK(TestParse("127.0.0.1", "127.0.0.1:65535"));
-    BOOST_CHECK(TestParse("127.0.0.1:__PORT_MAINNET__", "127.0.0.1:__PORT_MAINNET__"));
+    BOOST_CHECK(TestParse("127.0.0.1:14215", "127.0.0.1:14215"));
     BOOST_CHECK(TestParse("::ffff:127.0.0.1", "127.0.0.1:65535"));
     BOOST_CHECK(TestParse("::", "[::]:65535"));
-    BOOST_CHECK(TestParse("[::]:__PORT_MAINNET__", "[::]:__PORT_MAINNET__"));
+    BOOST_CHECK(TestParse("[::]:14215", "[::]:14215"));
     BOOST_CHECK(TestParse("[127.0.0.1]", "127.0.0.1:65535"));
     BOOST_CHECK(TestParse(":::", "[::]:0"));
 }

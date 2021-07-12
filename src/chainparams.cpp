@@ -242,7 +242,7 @@ public:
         pchMessageStart[1] = 0x14;
         pchMessageStart[2] = 0xe6;
         pchMessageStart[3] = 0x1a;
-        nDefaultPort = __PORT_MAINNET__;
+        nDefaultPort = 14215;
 
         vSeeds.push_back(CDNSSeedData("seeder", "seeder.eskacoin.com"));
 	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.eskacoin.com"));
@@ -374,7 +374,7 @@ public:
         pchMessageStart[1] = 0x76;
         pchMessageStart[2] = 0x65;
         pchMessageStart[3] = 0xba;
-        nDefaultPort = __PORT_TESTNET__;
+        nDefaultPort = 14216;
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -498,7 +498,7 @@ public:
         pchMessageStart[1] = 0xcf;
         pchMessageStart[2] = 0x7e;
         pchMessageStart[3] = 0xac;
-        nDefaultPort = __PORT_REGTEST__;
+        nDefaultPort = 14217;
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.

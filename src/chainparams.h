@@ -9,10 +9,6 @@
 #ifndef BITCOIN_CHAINPARAMS_H
 #define BITCOIN_CHAINPARAMS_H
 
-#define __PORT_MAINNET__ 14215
-#define __PORT_TESTNET__ 14216
-#define __PORT_REGTEST__ 14217
-
 #include "chainparamsbase.h"
 #include "checkpoints.h"
 #include "consensus/params.h"
