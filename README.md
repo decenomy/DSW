@@ -16,7 +16,7 @@ DashDiamond Standard wallet repository
 • Prefix: DASHD adresses start with the capital letter "D"  
 • Ports: 12341 (p2p) / 23452 (rpc)
 
-• Explorer https://chains.trittium.cc/DASHD/blocks
+• Explorer https://explorer.decenomy.net/DASHD/blocks
 
 • Website [dashdiamond.net](https://dashdiamond.net)
 
