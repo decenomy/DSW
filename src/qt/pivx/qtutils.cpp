@@ -136,10 +136,6 @@ void setFilterAddressBook(QComboBox* filter)
     filter->addItem(QObject::tr("All"), "");
     filter->addItem(QObject::tr("Receiving"), AddressTableModel::Receive);
     filter->addItem(QObject::tr("Contacts"), AddressTableModel::Send);
-    filter->addItem(QObject::tr("Cold Staking"), AddressTableModel::ColdStaking);
-    filter->addItem(QObject::tr("Delegator"), AddressTableModel::Delegator);
-    filter->addItem(QObject::tr("Delegable"), AddressTableModel::Delegable);
-    filter->addItem(QObject::tr("Staking Contacts"), AddressTableModel::ColdStakingSend);
 }
 
 void setSortTx(QComboBox* filter)
@@ -162,16 +158,12 @@ void setSortTxTypeFilter(QComboBox* filter)
     filter->addItem(QObject::tr("Minted"), TransactionFilterProxy::TYPE(TransactionRecord::StakeMint));
     filter->addItem(QObject::tr("MN reward"), TransactionFilterProxy::TYPE(TransactionRecord::MNReward));
     filter->addItem(QObject::tr("To yourself"), TransactionFilterProxy::TYPE(TransactionRecord::SendToSelf));
-    filter->addItem(QObject::tr("Cold stakes"), TransactionFilterProxy::TYPE(TransactionRecord::StakeDelegated));
-    filter->addItem(QObject::tr("Hot stakes"), TransactionFilterProxy::TYPE(TransactionRecord::StakeHot));
-    filter->addItem(QObject::tr("Delegated"), TransactionFilterProxy::TYPE(TransactionRecord::P2CSDelegationSent) | TransactionFilterProxy::TYPE(TransactionRecord::P2CSDelegationSentOwner));
-    filter->addItem(QObject::tr("Delegations"), TransactionFilterProxy::TYPE(TransactionRecord::P2CSDelegation));
 }
 
 void setupSettings(QSettings* settings)
 {
     if (!settings->contains("lightTheme")) {
-        settings->setValue("lightTheme", true);
+        setTheme(false);
     }
 }
 
@@ -227,7 +219,7 @@ QColor getRowColor(bool isLightTheme, bool isHovered, bool isSelected)
         } else if (isHovered) {
             return QColor("#1a171e");
         } else {
-            return QColor("#0f0b16");
+            return QColor("#4b1452");
         }
     }
 }
