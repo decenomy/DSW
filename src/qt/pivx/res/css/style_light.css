@@ -2613,23 +2613,23 @@ HH        FAQ
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 *[cssClass="text-title-faq"] {
-  color: #a5a5a5;
+  color: #ebebeb;
   font-size: 26px;
 }
 
 *[cssClass="container-faq-buttons"] {
   background: transparent;
-  border: 1px solid #c226d6;
+  border: 1px solid #ececec;
   border-radius: 5px;
 }
 
 *[cssClass="text-subtitle-faq"] {
-  color: #a5a5a5;
+  color: #ffffff;
   font-size: 22px;
 }
 
 *[cssClass="text-content-faq"] {
-  color: #a5a5a5;
+  color: #ffffff;
   font-size: 18px;
 }
 
