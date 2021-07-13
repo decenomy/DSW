@@ -2569,7 +2569,7 @@ QPushButton[cssClass="btn-faq-exit"] {
   border: none;
   padding: 0 30px 0 0;
   font-size: 18px;
-  color: #c226d6;
+  color: rgb(255, 255, 255);
   text-align: left;
 }
 
