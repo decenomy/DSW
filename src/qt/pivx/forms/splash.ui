@@ -86,8 +86,8 @@
       								name="imgLogo">
 								<property name="minimumSize">
 									<size>
-										<width>210</width>
-										<height>149</height>
+										<width>395</width>
+										<height>348</height>
 									</size>
 								</property>
 								<property name="focusPolicy">
@@ -98,95 +98,11 @@
 								</property>
 								<property name="iconSize">
 									<size>
-										<width>210</width>
-										<height>149</height>
+										<width>395</width>
+										<height>348</height>
 									</size>
 								</property>
 							</widget>
-						</item>
-						<item>
-							<spacer name="horizontalSpacer_1">
-								<property name="orientation">
-									<enum>Qt::Vertical</enum>
-								</property>
-								<property name="sizeType">
-									<enum>QSizePolicy::Fixed</enum>
-								</property>
-								<property name="sizeHint"
-        									stdset="0">
-									<size>
-										<width>40</width>
-										<height>19</height>
-									</size>
-								</property>
-							</spacer>
-						</item>
-						<item>
-							<widget class="QLabel"
-      								name="lblLogo">
-								<property name="geometry">
-									<rect>
-										<x>0</x>
-										<y>0</y>
-										<width>235</width>
-										<height>45</height>
-									</rect>
-								</property>
-								<property name="sizePolicy">
-									<sizepolicy hsizetype="Maximum"
-          										vsizetype="Maximum">
-										<horstretch>0</horstretch>
-										<verstretch>0</verstretch>
-									</sizepolicy>
-								</property>
-								<property name="minimumSize">
-									<size>
-										<width>0</width>
-										<height>0</height>
-									</size>
-								</property>
-								<property name="maximumSize">
-									<size>
-										<width>235</width>
-										<height>45</height>
-									</size>
-								</property>
-								<property name="styleSheet">
-									<string notr="true">
-										height: 45px;
-										width: 235px;
-										color: #ED1C24;
-										font-family: "Montserrat Medium";
-										font-size: 37px;
-										letter-spacing: 4.81px;
-										line-height: 45px;
-										text-align: right;
-									</string>
-								</property>
-								<property name="text">
-									<string></string>
-								</property>
-								<property name="alignment">
-									<set>Qt::AlignTop|Qt::AlignHCenter</set>
-								</property>
-							</widget>
-						</item>
-						<item>
-							<spacer name="horizontalSpacer_1">
-								<property name="orientation">
-									<enum>Qt::Vertical</enum>
-								</property>
-								<property name="sizeType">
-									<enum>QSizePolicy::Fixed</enum>
-								</property>
-								<property name="sizeHint"
-        									stdset="0">
-									<size>
-										<width>40</width>
-										<height>9</height>
-									</size>
-								</property>
-							</spacer>
 						</item>
 						<item>
 							<widget class="QWidget"
@@ -194,13 +110,13 @@
       								native="true">
 								<property name="minimumSize">
 									<size>
-										<width>235</width>
+										<width>395</width>
 										<height>12</height>
 									</size>
 								</property>
 								<property name="maximumSize">
 									<size>
-										<width>235</width>
+										<width>395</width>
 										<height>12</height>
 									</size>
 								</property>
@@ -210,7 +126,7 @@
 										<rect>
 											<x>0</x>
 											<y>0</y>
-											<width>235</width>
+											<width>395</width>
 											<height>12</height>
 										</rect>
 									</property>
@@ -245,7 +161,7 @@
 										</string>
 									</property>
 									<property name="text">
-										<string>Loading…</string>
+										<string>Loading...</string>
 									</property>
 									<property name="alignment">
 										<set>Qt::AlignTop|Qt::AlignLeft</set>
@@ -259,13 +175,13 @@
       								native="true">
 								<property name="minimumSize">
 									<size>
-										<width>235</width>
+										<width>395</width>
 										<height>4</height>
 									</size>
 								</property>
 								<property name="maximumSize">
 									<size>
-										<width>235</width>
+										<width>395</width>
 										<height>4</height>
 									</size>
 								</property>
@@ -309,7 +225,7 @@
         									stdset="0">
 									<size>
 										<width>40</width>
-										<height>86</height>
+										<height>20</height>
 									</size>
 								</property>
 							</spacer>
@@ -348,7 +264,7 @@
 									<string notr="true">
 										height: 16px;
 										width: 85px;
-										color: #242424;
+										color: #FFFFFF;
 										font-family: Nunito;
 										font-size: 12px;
 										letter-spacing: 0.2px;
@@ -357,10 +273,10 @@
 									</string>
 								</property>
 								<property name="text">
-									<string>VERSION 2.0.0.0</string>
+									<string>VERSION 0.0.0.0</string>
 								</property>
 								<property name="alignment">
-									<set>Qt::AlignTop|Qt::AlignHCenter</set>
+									<set>Qt::AlignTop|Qt::AlignLeft</set>
 								</property>
 							</widget>
 						</item>

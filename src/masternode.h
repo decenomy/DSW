@@ -24,7 +24,6 @@
 #define MASTERNODE_REMOVAL_SECONDS (130 * 60)
 #define MASTERNODE_CHECK_SECONDS 5
 
-
 class CMasternode;
 class CMasternodeBroadcast;
 class CMasternodePing;
@@ -271,7 +270,6 @@ public:
     static void InitMasternodeCollateralList();
     static std::pair<int, CAmount> GetNextMasternodeCollateral(int nHeight);
 };
-
 
 //
 // The Masternode Broadcast Class : Contains a different serialize method for sending masternodes through the network

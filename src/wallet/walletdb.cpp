@@ -89,6 +89,12 @@ bool CWalletDB::WriteKey(const CPubKey& vchPubKey, const CPrivKey& vchPrivKey, c
     return Write(std::make_pair(std::string("key"), vchPubKey), std::make_pair(vchPrivKey, Hash(vchKey.begin(), vchKey.end())), false);
 }
 
+bool CWalletDB::WriteKeyMetadata(const CPubKey& vchPubKey, const CKeyMetadata& keyMeta) {
+    nWalletDBUpdateCounter++;
+
+    return Write(std::make_pair(std::string("keymeta"), vchPubKey), keyMeta, true);
+}
+
 bool CWalletDB::WriteCryptedKey(const CPubKey& vchPubKey,
     const std::vector<unsigned char>& vchCryptedSecret,
     const CKeyMetadata& keyMeta)
@@ -750,6 +756,7 @@ DBErrors CWalletDB::LoadWallet(CWallet* pwallet)
                 if (IsKeyType(strType) || strType == "defaultkey")
                     result = DB_CORRUPT;
                 else {
+                    std::cout << strType << " - " << strErr << std::endl;
                     // Leave other errors alone, if we try to fix them we might make things worse.
                     fNoncriticalErrors = true; // ... but do warn the user there is something wrong.
                     if (strType == "tx")
