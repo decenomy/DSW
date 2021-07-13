@@ -318,80 +318,42 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
     return false;
 }
 
+// Old blockchain snapshot is taken at 18.03.2021 00:00 UTC at Block 1493071 - Collateral is 100000 * COIN
+// At Block 1500000, collateral increases to 120000 * COIN
+// So we will put 1500000 - 1493071 = 6929 blocks for the collateral change block interval from coll = 100000 to coll = 120000
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
-	// Old blockchain snapshot is taken at 18.03.2021 00:00 UTC at Block 1493071 - Collateral is 100000 * COIN
-	// At Block 1500000, collateral increases to 120000 * COIN
-	// So we will put 1500000 - 1493071 = 6929 blocks for the collateral change block interval from coll = 100000 to coll = 120000
-    if (nHeight <= 6929) { // Old blockchain block 1500000
-        return 100000 * COIN;
-    } else if (nHeight <= 106929) { // Old blockchain block 1600000
-        return 120000 * COIN;
-    } else if (nHeight <= 206929) { // Old blockchain block 1700000
-        return 140000 * COIN;
-    } else if (nHeight <= 306929) { // Old blockchain block 1800000
-        return 160000 * COIN;
-    } else if (nHeight <= 406929) { // Old blockchain block 1900000
-        return 180000 * COIN;
-    }
- 
-    return 200000 * COIN; // Old blockchain block above 1900000
+    if (nHeight > 406928) return 200000 * COIN; // Old blockchain block 1900000
+    if (nHeight > 306928) return 180000 * COIN; // Old blockchain block 1800000
+    if (nHeight > 206928) return 160000 * COIN; // Old blockchain block 1700000
+    if (nHeight > 106928) return 140000 * COIN; // Old blockchain block 1600000
+    if (nHeight >   6928) return 120000 * COIN; // Old blockchain block 1500000
+
+    return 100000 * COIN;
 }
 
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
-    CAmount maxMoneyOut= Params().GetConsensus().nMaxMoneyOut;
+    if (nHeight > 606928) return       600 * COIN; // Old blockchain block 2100000
+    if (nHeight > 506928) return       700 * COIN; // Old blockchain block 2000000
+    if (nHeight > 406928) return       800 * COIN; // Old blockchain block 1900000
+    if (nHeight > 306928) return       900 * COIN; // Old blockchain block 1800000
+    if (nHeight > 206928) return      1000 * COIN; // Old blockchain block 1700000
+    if (nHeight > 166928) return      1200 * COIN; // Fork point
+    if (nHeight > 106928) return       800 * COIN; // Old blockchain block 1600000
+    if (nHeight >   6928) return       900 * COIN; // Old blockchain block 1500000
+    if (nHeight >      1) return      1000 * COIN; 
+    if (nHeight >      0) return 250000000 * COIN; //! Premine for sending coins to the coin holders. Circulating supply at block 1493071 is 242432073.45009165 TRTT so we emit 250M.
 
-    if(nMoneySupply >= maxMoneyOut) {
-        return 0;
-    }
-
-    CAmount nSubsidy;
-
-	if (nHeight == 1) {
-		nSubsidy = 250000000 * COIN;  //! Premine for sending coins to the coin holders. Circulating supply at block 1493071 is 242432073.45009165 TRTT so we emit 250M.
-	}
-	else if (nHeight <= 1000) { // Mining phase for mainnet
-		nSubsidy = 1000 * COIN;
-	}
-	else if (nHeight <= 6929) { // Old blockchain block 1500000
-		nSubsidy = 1000 * COIN;
-	}
-	else if (nHeight <= 106929) { // Old blockchain block 1600000
-		nSubsidy = 900 * COIN;
-	}
-	else if (nHeight <= 206929) { // Old blockchain block 1700000
-		nSubsidy = 800 * COIN;
-	}
-	else if (nHeight <= 306929) { // Old blockchain block 1800000
-		nSubsidy = 700 * COIN;
-	}
-	else if (nHeight <= 406929) { // Old blockchain block 1900000
-		nSubsidy = 600 * COIN;
-	}
-	else if (nHeight <= 506929) { // Old blockchain block 2000000
-		nSubsidy = 500 * COIN;
-	}
-	else if (nHeight <= 606929) { // Old blockchain block 2100000
-		nSubsidy = 450 * COIN;
-	} 
-    else if(nHeight > 606929) {
-		nSubsidy = 400 * COIN;
-	} 
-
-    if(nMoneySupply + nSubsidy > maxMoneyOut) {
-        return nMoneySupply + nSubsidy - maxMoneyOut;
-    }
-
-    return nSubsidy;
+    return 0;
 }
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-	if (nHeight <= 2880)
-		return 0;
-	
-   	return CMasternode::GetBlockValue(nHeight) * 90 / 100; // 90% of the block reward
+    if (nHeight > 166928) return CMasternode::GetBlockValue(nHeight) * 65 / 100; // 65% of the block reward
+    if (nHeight >   2880) return CMasternode::GetBlockValue(nHeight) * 90 / 100; // 90% of the block reward
+    
+    return 0;
 }
 
 void CMasternode::InitMasternodeCollateralList() {
