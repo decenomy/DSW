@@ -343,7 +343,7 @@ public:
         pchMessageStart[1] = 0x14;
         pchMessageStart[2] = 0x12;
         pchMessageStart[3] = 0x19;
-        nDefaultPort = __PORT_MAINNET__;
+        nDefaultPort = 14725;
 
         vSeeds.push_back(CDNSSeedData("seeder", "seeder.aezora.com"));
 	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.aezora.com"));
@@ -520,7 +520,7 @@ public:
         pchMessageStart[1] = 0x21;
         pchMessageStart[2] = 0x33;
         pchMessageStart[3] = 0xff;
-        nDefaultPort = __PORT_TESTNET__;
+        nDefaultPort = 14726;
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -688,7 +688,7 @@ public:
         pchMessageStart[1] = 0x33;
         pchMessageStart[2] = 0x21;
         pchMessageStart[3] = 0x57;
-        nDefaultPort = __PORT_REGTEST__;
+        nDefaultPort = 14728;
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.

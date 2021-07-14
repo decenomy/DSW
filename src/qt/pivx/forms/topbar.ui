@@ -119,7 +119,7 @@
               <item>
                <widget class="QLabel" name="labelAmountPiv">
                 <property name="text">
-                 <string notr="true">-- __DSW__</string>
+                 <string notr="true">-- AZR</string>
                 </property>
                </widget>
               </item>
@@ -598,7 +598,7 @@
               <item>
                <widget class="QLabel" name="labelNextCollateralValue">
                 <property name="text">
-                 <string>-- __DSW__</string>
+                 <string>-- AZR</string>
                 </property>
                </widget>
               </item>

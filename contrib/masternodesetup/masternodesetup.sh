@@ -1,16 +1,16 @@
 #!/bin/bash
 
 TMP_FOLDER=$(mktemp -d)
-CONFIG_FILE='__decenomy__.conf'
-CONFIGFOLDER='/root/.__decenomy__'
-COIN_DAEMON='__decenomy__d'
-COIN_CLI='__decenomy__-cli'
+CONFIG_FILE='aezora.conf'
+CONFIGFOLDER='/root/.aezora'
+COIN_DAEMON='aezorad'
+COIN_CLI='aezora-cli'
 COIN_PATH='/usr/local/bin/'
 COIN_TGZ='https://github.com/decenomy/DSW/releases/download/vX.X.X.X/_Decenomy_-X.X.X.X-Linux.zip'
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
-COIN_NAME='__decenomy__'
-COIN_PORT=__PORT_MAINNET__
-RPC_PORT=__RPCPORT_MAINNET__
+COIN_NAME='aezora'
+COIN_PORT=14725
+RPC_PORT=14724
 
 BLUE="\033[0;34m"
 YELLOW="\033[0;33m"
