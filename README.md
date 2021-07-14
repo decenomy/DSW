@@ -12,7 +12,7 @@ AEZORA wallet repository
 • Prefix: AZR adresses start with the capital letter "A"  
 • Ports: 14725 (p2p) / 14724 (rpc)
 
-• Explorer http://explorer.aezora.com/
+• Explorer https://explorer.decenomy.net/AZR/blocks
 
 • Website [aezora.com](http://aezora.com/)
 

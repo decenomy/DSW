@@ -5537,7 +5537,7 @@ Aezora Wallet</translation>
     </message>
     <message>
         <source>Disable all AZR specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
-        <translation>Desabilitar toda la funcionalidad especifica AZR (Masternodes, Obfuscation, Budgeting) (0-1, predeterminado: %u)</translation>
+        <translation>Desabilitar toda la funcionalidad especifica AZR (Masternodes, Zerocoin, Budgeting) (0-1, predeterminado: %u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
