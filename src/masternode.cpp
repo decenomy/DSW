@@ -590,7 +590,7 @@ bool CMasternodeBroadcast::CheckAndUpdate(int& nDos)
     }
 
     // make sure signature isn't too far in the past 
-    if(masternodeSync.IsSynced() && masternodeRankV2 && sigTime < GetAdjustedTime() - (masternodeRankV2 ? 5 * 60 : 60 * 60)) {
+    if(masternodeSync.IsSynced() && masternodeRankV2 && sigTime < GetAdjustedTime() - 5 * 60)) {
         LogPrint(BCLog::MASTERNODE, "mnb - Signature rejected, too far into the past %s\n", vin.prevout.ToStringShort());
         nDos = 1;
         return false;
