@@ -2,11 +2,11 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Trittium Core"
-#define MyAppVersion "4.0.1.0"
 #define MyAppPublisher "2021 DECENOMY Core Developers"
 #define MyAppURL "https://trittium.com"
 #define MyAppExeName "trittium-qt.exe"
 #define MyAppExtraData "https://explorer.decenomy.net/bootstraps/TRTT/bootstrap.zip"
+#define MyAppVersion GetVersionNumbersString(".\package\" + MyAppExeName)
 
 #include ReadReg(HKLM, 'Software\WOW6432Node\Mitrich Software\Inno Download Plugin', 'InstallDir') + '\idp.iss'
 
