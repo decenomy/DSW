@@ -22,10 +22,32 @@
 #include "crypto/common.h"
 #include "memusage.h"
 #include "prevector.h"
+#include "uint256.h"
+#include "utilstrencodings.h"
+
 
 typedef std::vector<unsigned char> valtype;
 
+enum HashType // X11KVS, SHA256, SHA256D, SHA512, HASH160 or IPFS hash of the file. If IPFS (https://ipfs.io/) is used for storing the files, the IPFS hash of the file will be used in the IPFS file path.
+{
+    TYPE_X11KVS = 0,
+    TYPE_IPFS = 1,
+    TYPE_SHA256 = 2,
+    TYPE_SHA256D = 3,
+    TYPE_SHA512 = 4,
+    TYPE_HASH160 = 5,
+};
+
 static const unsigned int MAX_SCRIPT_ELEMENT_SIZE = 520; // bytes
+
+// Maximum number of non-push operations per script
+static const int MAX_OPS_PER_SCRIPT = 201;
+
+// Maximum number of public keys per multisig
+static const int MAX_PUBKEYS_PER_MULTISIG = 20;
+
+// Maximum number of public keys per smart contract
+static const int MAX_PUBKEYS_PER_CONTRACT = 3;
 
 // Maximum script length in bytes
 static const int MAX_SCRIPT_SIZE = 10000;
@@ -165,9 +187,10 @@ enum opcodetype
 
     // expansion
     OP_NOP1 = 0xb0,
-    OP_NOP2 = 0xb1,
-    OP_CHECKLOCKTIMEVERIFY = OP_NOP2,
-    OP_NOP3 = 0xb2,
+    OP_CHECKLOCKTIMEVERIFY = 0xb1,
+    OP_NOP2 = OP_CHECKLOCKTIMEVERIFY,
+    OP_CHECKSEQUENCEVERIFY = 0xb2,
+    OP_NOP3 = OP_CHECKSEQUENCEVERIFY,
     OP_NOP4 = 0xb3,
     OP_NOP5 = 0xb4,
     OP_NOP6 = 0xb5,
@@ -177,9 +200,22 @@ enum opcodetype
     OP_NOP10 = 0xb9,
 
     // zerocoin
-    OP_ZEROCOINMINT = 0xc1,
-    OP_ZEROCOINSPEND = 0xc2,
-    OP_ZEROCOINPUBLICSPEND = 0xc3,
+    OP_ZEROCOINMINT = 0xc1, // TODO: Will be removed in another branch
+    OP_ZEROCOINSPEND = 0xc2, // TODO: Will be removed in another branch
+    OP_ZEROCOINPUBLICSPEND = 0xc3, // TODO: Will be removed in another branch
+
+    // memory store
+    OP_MLOAD = 0xc4, // reads a (u)int256 from memory (from Ethereum)
+    OP_MSTORE = 0xc5, // writes a (u)int256 to memory (from Ethereum)
+
+    // storage
+    OP_SLOAD = 0xc7, // reads a (u)int256 from storage (from Ethereum)
+    OP_SSTORE = 0xc8, // writes a (u)int256 to storage (from Ethereum)
+
+    // smart contract
+    OP_PUBLISH = 0xc9, // For storing smart-contract
+    OP_RUN = 0xca, // For activating smart-contract
+    OP_UPDATE_STATUS = 0xcb, // For enabling/disabling a smart-contract and unprevent/prevent it being run by OP_RUN
 
     OP_INVALIDOPCODE = 0xff,
 };
@@ -260,6 +296,11 @@ public:
     inline CScriptNum& operator+=( const CScriptNum& rhs)       { return operator+=(rhs.m_value);  }
     inline CScriptNum& operator-=( const CScriptNum& rhs)       { return operator-=(rhs.m_value);  }
 
+    inline CScriptNum operator&(   const int64_t& rhs)    const { return CScriptNum(m_value & rhs);}
+    inline CScriptNum operator&(   const CScriptNum& rhs) const { return operator&(rhs.m_value);   }
+
+    // inline CScriptNum& operator&=( const CScriptNum& rhs)       { return operator&=(rhs.m_value);  }
+
     inline CScriptNum operator-()                         const
     {
         assert(m_value != std::numeric_limits<int64_t>::min());
@@ -275,7 +316,7 @@ public:
     inline CScriptNum& operator+=( const int64_t& rhs)
     {
         assert(rhs == 0 || (rhs > 0 && m_value <= std::numeric_limits<int64_t>::max() - rhs) ||
-                           (rhs < 0 && m_value >= std::numeric_limits<int64_t>::min() - rhs));
+                        (rhs < 0 && m_value >= std::numeric_limits<int64_t>::min() - rhs));
         m_value += rhs;
         return *this;
     }
@@ -283,7 +324,7 @@ public:
     inline CScriptNum& operator-=( const int64_t& rhs)
     {
         assert(rhs == 0 || (rhs > 0 && m_value >= std::numeric_limits<int64_t>::min() + rhs) ||
-                           (rhs < 0 && m_value <= std::numeric_limits<int64_t>::max() + rhs));
+                        (rhs < 0 && m_value <= std::numeric_limits<int64_t>::max() + rhs));
         m_value -= rhs;
         return *this;
     }
@@ -338,19 +379,19 @@ public:
 private:
     static int64_t set_vch(const std::vector<unsigned char>& vch)
     {
-      if (vch.empty())
-          return 0;
+    if (vch.empty())
+        return 0;
 
-      int64_t result = 0;
-      for (size_t i = 0; i != vch.size(); ++i)
-          result |= static_cast<int64_t>(vch[i]) << 8*i;
+    int64_t result = 0;
+    for (size_t i = 0; i != vch.size(); ++i)
+        result |= static_cast<int64_t>(vch[i]) << 8*i;
 
-      // If the input vector's most significant byte is 0x80, remove it from
-      // the result's msb and return a negative.
-      if (vch.back() & 0x80)
-          return -((int64_t)(result & ~(0x80ULL << (8 * (vch.size() - 1)))));
+    // If the input vector's most significant byte is 0x80, remove it from
+    // the result's msb and return a negative.
+    if (vch.back() & 0x80)
+        return -((int64_t)(result & ~(0x80ULL << (8 * (vch.size() - 1)))));
 
-      return result;
+    return result;
     }
 
     int64_t m_value;
@@ -469,22 +510,38 @@ public:
         return (*this) << vchKey;
     }
 
+    ADD_SERIALIZE_METHODS;
+
+    template <typename Stream, typename Operation>
+    inline void SerializationOp(Stream& s, Operation ser_action) {
+        READWRITE(*this);
+    }
+
+    void SetNull()
+    {
+        this->clear();
+    }
+
+    bool IsNull() const
+    {
+        return this->empty();
+    }
 
     bool GetOp(iterator& pc, opcodetype& opcodeRet, std::vector<unsigned char>& vchRet)
     {
-         // Wrapper so it can be called with either iterator or const_iterator
-         const_iterator pc2 = pc;
-         bool fRet = GetOp2(pc2, opcodeRet, &vchRet);
-         pc = begin() + (pc2 - begin());
-         return fRet;
+        // Wrapper so it can be called with either iterator or const_iterator
+        const_iterator pc2 = pc;
+        bool fRet = GetOp2(pc2, opcodeRet, &vchRet);
+        pc = begin() + (pc2 - begin());
+        return fRet;
     }
 
     bool GetOp(iterator& pc, opcodetype& opcodeRet)
     {
-         const_iterator pc2 = pc;
-         bool fRet = GetOp2(pc2, opcodeRet, NULL);
-         pc = begin() + (pc2 - begin());
-         return fRet;
+        const_iterator pc2 = pc;
+        bool fRet = GetOp2(pc2, opcodeRet, NULL);
+        pc = begin() + (pc2 - begin());
+        return fRet;
     }
 
     bool GetOp(const_iterator& pc, opcodetype& opcodeRet, std::vector<unsigned char>& vchRet) const
@@ -603,18 +660,18 @@ public:
     }
 
     /**
-     * Pre-version-0.6, Bitcoin always counted CHECKMULTISIGs
-     * as 20 sigops. With pay-to-script-hash, that changed:
-     * CHECKMULTISIGs serialized in scriptSigs are
-     * counted more accurately, assuming they are of the form
-     *  ... OP_N CHECKMULTISIG ...
-     */
+        * Pre-version-0.6, Bitcoin always counted CHECKMULTISIGs
+        * as 20 sigops. With pay-to-script-hash, that changed:
+        * CHECKMULTISIGs serialized in scriptSigs are
+        * counted more accurately, assuming they are of the form
+        *  ... OP_N CHECKMULTISIG ...
+        */
     unsigned int GetSigOpCount(bool fAccurate) const;
 
     /**
-     * Accurately count sigOps, including sigOps in
-     * pay-to-script-hash transactions:
-     */
+        * Accurately count sigOps, including sigOps in
+        * pay-to-script-hash transactions:
+        */
     unsigned int GetSigOpCount(const CScript& scriptSig) const;
 
     bool IsNormalPaymentScript() const;
@@ -629,10 +686,10 @@ public:
     bool IsPushOnly() const;
 
     /**
-     * Returns whether the script is guaranteed to fail at execution,
-     * regardless of the initial stack. This allows outputs to be pruned
-     * instantly when entering the UTXO set.
-     */
+        * Returns whether the script is guaranteed to fail at execution,
+        * regardless of the initial stack. This allows outputs to be pruned
+        * instantly when entering the UTXO set.
+        */
     bool IsUnspendable() const
     {
         return (size() > 0 && *begin() == OP_RETURN) || (size() > MAX_SCRIPT_SIZE);
@@ -647,5 +704,164 @@ public:
 
     size_t DynamicMemoryUsage() const;
 };
+
+/**
+* This class manages all the smart contract related scripts.
+* Writing the smart contracts into a levelDB database is done in CScriptDB class.
+*/
+class CScriptContract : public CScript
+{
+public:
+    HashType hashType;
+
+    std::vector<unsigned char> name;
+    bool status; // false: Contract is disabled/inactive. Cannot be run.  -- true: Contract is enabled/active and can be run.
+    CPubKey issuerPubKey;
+    CPubKey receiverPubKey;
+    time_t publishTime;
+    time_t runDeadLine;
+    time_t duration;
+    CScript consensusScript;
+    uint256 consensusScriptHash;
+    typedef struct DataFile
+    {
+        std::string name;
+        std::string type; // image (jpg, png, svg etc.), document (json, xml, pdf, doc, xls etc.), video (mp4, webm etc.)
+        uint256 hash;
+        size_t size;
+        std::string path;
+        time_t accessed; // TODO: this field may not be necessary. If so, remove it.
+        time_t modified;
+        std::map<std::string, std::string> metaData; // Maps to MetaDataFieldName:MetadataFieldValue pair
+    } DataFile;
+
+    DataFile dataFile;
+
+    CScriptContract() : CScript()
+    {
+        SetNull();
+    }
+
+    inline CPubKey operator=(const CPubKey& rhs) { return CPubKey(rhs); }
+    inline time_t operator=(const time_t& rhs) { return time_t(rhs); }
+    inline CScript operator=(const CScript& rhs) { CScript script(rhs); }
+    inline uint256 operator=(const uint256& rhs) { return uint256(rhs); }
+    inline DataFile operator=(const DataFile& rhs) { return DataFile(rhs); }
+
+    ADD_SERIALIZE_METHODS;
+
+    template <typename Stream, typename Operation>
+    inline void SerializationOp(Stream& s, Operation ser_action) {
+        READWRITE(name);
+        READWRITE(status);
+        READWRITE(issuerPubKey);
+        READWRITE(receiverPubKey);
+        READWRITE(publishTime);
+        READWRITE(runDeadLine);
+        READWRITE(duration);
+        READWRITE(consensusScript);
+        READWRITE(consensusScriptHash);
+        // READWRITE(dataFile);
+    }
+
+    void SetNull()
+    {
+        // Contract properties
+        name.clear();
+        status = false;
+        issuerPubKey = CPubKey();
+        receiverPubKey = CPubKey();
+        publishTime = 0x7FFFFFFE;
+        runDeadLine = 0x7FFFFFFE;
+        duration = 0;
+        consensusScript.clear();
+        consensusScriptHash = 0;
+
+        // Datafile
+        dataFile.name.clear();
+        dataFile.type.clear();
+        dataFile.hash = 0x00;
+        dataFile.size = 0;
+        dataFile.path.clear();
+        dataFile.accessed = 0;
+        dataFile.modified = 0;
+        dataFile.metaData.clear();
+    }
+
+    bool IsNull() const
+    {
+        return (name.empty() && status == false && !issuerPubKey.IsValid() && !receiverPubKey.IsValid() && publishTime == 0x7FFFFFFE && runDeadLine == 0x7FFFFFFE && duration == 0 && consensusScript.empty() && consensusScriptHash == 0x00);
+    }
+
+    CScript ConstructContractScript(CScriptContract& contract);
+    uint256 GetConsensusScriptHash(HashType hashType = TYPE_X11KVS) const;
+    uint256 GetContractHash(HashType hashType = TYPE_X11KVS) const;
+    bool RunContractScript();
+    void ChangeStatus(const bool status);
+};
+
+class CScriptDataFile : public CScript
+{
+public:
+    std::string name;
+    std::string type; // image (jpg, png, svg etc.), document (json, xml, pdf, doc, xls etc.), video (mp4, webm etc.)
+    uint256 hash;
+    size_t size;
+    std::string path;
+    time_t accessed; // TODO: this field may not be necessary. If so, remove it.
+    time_t modified;
+    std::map<std::string, std::string> metaData; // Maps to MetaDataFieldName:MetadataFieldValue pair
+
+    CScriptDataFile()
+    {
+        SetNull();
+    }
+
+    inline std::string operator=(const std::string& rhs) { return std::string(rhs); }
+    inline time_t operator=(const time_t& rhs) { return time_t(rhs); }
+    inline size_t operator=(const size_t& rhs) { return size_t(rhs); }
+    inline uint256 operator=(const uint256& rhs) { return uint256(rhs); }
+    inline std::map<std::string, std::string> operator=(const std::map<std::string, std::string>& rhs) { return std::map<std::string, std::string>(rhs); }
+
+    ADD_SERIALIZE_METHODS;
+
+    template <typename Stream, typename Operation>
+    inline void SerializationOp(Stream& s, Operation ser_action) {
+        READWRITE(name);
+        READWRITE(type);
+        READWRITE(hash);
+        READWRITE(size);
+        READWRITE(path);
+        READWRITE(accessed);
+        READWRITE(modified);
+        READWRITE(metaData);
+    }
+
+    void SetNull()
+    {
+        name.clear();
+        type.clear();
+        hash = TYPE_X11KVS;
+        size = 0;
+        path.clear();
+        accessed = 0;
+        modified = 0;
+        metaData.clear();
+    }
+
+    bool IsNull() const
+    {
+        return (size == 0);
+    }
+
+    inline std::string GetType() { return type; }
+    size_t GetSize() { return size; }
+    uint256 GetHash() { return hash; }
+    std::string GetPath() { return path; }
+    time_t GetAccessTime() { return accessed; }
+    time_t GetModifyTime() { return modified; }
+    std::map<std::string, std::string> GetMetaData() { return metaData; }
+};
+
 
 #endif // BITCOIN_SCRIPT_SCRIPT_H

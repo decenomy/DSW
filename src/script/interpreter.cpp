@@ -13,6 +13,7 @@
 #include "crypto/sha256.h"
 #include "pubkey.h"
 #include "script/script.h"
+#include "script/scriptdb.h"
 #include "uint256.h"
 
 
@@ -80,8 +81,8 @@ bool static IsCompressedOrUncompressedPubKey(const valtype &vchPubKey) {
             return false;
         }
     } else {
-          //  Non-canonical public key: neither compressed nor uncompressed
-          return false;
+        //  Non-canonical public key: neither compressed nor uncompressed
+        return false;
     }
     return true;
 }
@@ -383,8 +384,42 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
                     break;
                 }
 
-                case OP_NOP1: case OP_NOP3: case OP_NOP4: case OP_NOP5:
-                case OP_NOP6: case OP_NOP7: case OP_NOP8: case OP_NOP9: case OP_NOP10:
+                case OP_CHECKSEQUENCEVERIFY:
+                {
+                    if (!(flags & SCRIPT_VERIFY_CHECKSEQUENCEVERIFY)) {
+                        // not enabled; treat as a NOP3
+                        break;
+                    }
+
+                    if (stack.size() < 1)
+                        return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+
+                    // nSequence, like nLockTime, is a 32-bit unsigned integer
+                    // field. See the comment in CHECKLOCKTIMEVERIFY regarding
+                    // 5-byte numeric operands.
+                    const CScriptNum nSequence(stacktop(-1), fRequireMinimal, 5);
+
+                    // In the rare event that the argument may be < 0 due to
+                    // some arithmetic being done first, you can always use
+                    // 0 MAX CHECKSEQUENCEVERIFY.
+                    if (nSequence < 0)
+                        return set_error(serror, SCRIPT_ERR_NEGATIVE_LOCKTIME);
+
+                    // To provide for future soft-fork extensibility, if the
+                    // operand has the disabled lock-time flag set,
+                    // CHECKSEQUENCEVERIFY behaves as a NOP.
+                    if ((nSequence & CTxIn::SEQUENCE_LOCKTIME_DISABLE_FLAG) != 0)
+                        break;
+
+                    // Compare the specified sequence number with the input.
+                    if (!checker.CheckSequence(nSequence))
+                        return set_error(serror, SCRIPT_ERR_UNSATISFIED_LOCKTIME);
+
+                    break;
+                }
+
+                case OP_NOP1: case OP_NOP4: case OP_NOP5: case OP_NOP6: 
+                case OP_NOP7: case OP_NOP8: case OP_NOP9: case OP_NOP10:
                 {
                     if (flags & SCRIPT_VERIFY_DISCOURAGE_UPGRADABLE_NOPS)
                         return set_error(serror, SCRIPT_ERR_DISCOURAGE_UPGRADABLE_NOPS);
@@ -873,12 +908,15 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
                         return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
 
                     int nKeysCount = CScriptNum(stacktop(-i), fRequireMinimal).getint();
-                    if (nKeysCount < 0 || nKeysCount > 20)
+                    if (nKeysCount < 0 || nKeysCount > MAX_PUBKEYS_PER_MULTISIG)
                         return set_error(serror, SCRIPT_ERR_PUBKEY_COUNT);
                     nOpCount += nKeysCount;
-                    if (nOpCount > 201)
+                    if (nOpCount > MAX_OPS_PER_SCRIPT)
                         return set_error(serror, SCRIPT_ERR_OP_COUNT);
                     int ikey = ++i;
+                    // ikey2 is the position of last non-signature item in the stack. Top stack item = 1.
+                    // With SCRIPT_VERIFY_NULLFAIL, this is used for cleanup if operation fails.
+                    int ikey2 = nKeysCount + 2;
                     i += nKeysCount;
                     if ((int)stack.size() < i)
                         return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
@@ -898,7 +936,9 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
                     for (int k = 0; k < nSigsCount; k++)
                     {
                         valtype& vchSig = stacktop(-isig-k);
-                        scriptCode.FindAndDelete(CScript(vchSig));
+                        if (sigversion == SIGVERSION_BASE) {
+                            scriptCode.FindAndDelete(CScript(vchSig));
+                        }
                     }
 
                     bool fSuccess = true;
@@ -933,8 +973,14 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
                     }
 
                     // Clean up stack of actual arguments
-                    while (i-- > 1)
+                    while (i-- > 1) {
+                        // If the operation failed, we require that all signatures must be empty vector
+                        if (!fSuccess && (flags & SCRIPT_VERIFY_NULLFAIL) && !ikey2 && stacktop(-1).size())
+                            return set_error(serror, SCRIPT_ERR_SIG_NULLFAIL);
+                        if (ikey2 > 0)
+                            ikey2--;
                         popstack(stack);
+                    }
 
                     // A bug causes CHECKMULTISIG to consume one extra argument
                     // whose contents were not checked in any way.
@@ -959,6 +1005,99 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
                     }
                 }
                 break;
+
+                // memory store
+                case OP_MLOAD:
+                {
+                    int i = 1; // Number of items in the stack. At least the hash of the data in the memory should be in the stack.
+                    if ((int)stack.size() < i)
+                        return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+                }
+                break;
+
+                case OP_MSTORE:
+                {
+                    int i = 1; // Number of items in the stack. At least the serialized data or link to the data to be stored into the memory should be in the stack.
+                    if ((int)stack.size() < i)
+                        return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+                }
+                break;
+
+                // storage
+                case OP_SLOAD:
+                {
+                    int i = 1; // Number of items in the stack. At least the hash of the data in the storage should be in the stack.
+                    if ((int)stack.size() < i)
+                        return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+                }
+                break;
+
+                case OP_SSTORE:
+                {
+                    int i = 1; // Number of items in the stack. At least the serialized data or link to the data to be stored into the storage should be in the stack.
+                    if ((int)stack.size() < i)
+                        return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+                }
+                break;
+                
+                // smart contract
+                case OP_PUBLISH:
+                {
+                    // (in -- contract script)
+                    int i = 8; // Number of items in the stack. At least the serialized contract or link to the contract script to be stored into the storage should be in the stack.
+                    if ((int)stack.size() < i)
+                        return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+
+                    CScriptContract contract;
+                    contract.name = stacktop(-1);
+                    contract.status = bool(uint256(stacktop(-2)).Get32());
+                    contract.issuerPubKey.Set(stacktop(-3).begin(), stacktop(-3).end());
+                    contract.receiverPubKey.Set(stacktop(-4).begin(), stacktop(-4).end());
+                    contract.publishTime = uint256(stacktop(-5)).Get64();
+                    contract.runDeadLine = uint256(stacktop(-6)).Get64();
+                    contract.duration = uint256(stacktop(-7)).Get64();
+                    contract.consensusScript = CScript(stacktop(-8));
+                    uint256 hash = contract.GetContractHash(); // Default 'HashType hashType' is TYPE_X11KVS
+
+                    CScript contractScript = contract.ConstructContractScript(contract);
+
+                    CScriptDB* scriptDb;
+
+                    return scriptDb->WriteContract(hash, contract);
+                }
+                break;
+
+                case OP_RUN:
+                {
+                    // (in -- contract hash)
+                    int i = 1; // Number of items in the stack. At least the contract hash should be in the stack.
+                    if ((int)stack.size() < i)
+                        return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+
+                    CScriptDB* scriptDb;
+                    CScriptContract contract;
+
+                    uint256 hash = uint256(stacktop(-1));
+                    scriptDb->ReadContract(hash, contract);
+
+                    return contract.RunContractScript();
+                }
+
+                case OP_UPDATE_STATUS:
+                {
+                    // (in -- contract hash)
+                    int i = 2; // Number of items in the stack. At least the contract hash and the status (1 or 0) should be in the stack.
+                    if ((int)stack.size() < i)
+                        return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
+
+                    CScriptDB* scriptDb;
+                    CScriptContract contract;
+
+                    uint256 hash = uint256(stacktop(-1));
+                    CScriptNum status(stacktop(-2), fRequireMinimal);
+
+                    scriptDb->UpdateContractStatus(hash, (bool) status.getint(), contract);
+                }
 
                 default:
                     return set_error(serror, SCRIPT_ERR_BAD_OPCODE);
@@ -1066,12 +1205,12 @@ public:
         unsigned int nInputs = fAnyoneCanPay ? 1 : txTo.vin.size();
         ::WriteCompactSize(s, nInputs);
         for (unsigned int nInput = 0; nInput < nInputs; nInput++)
-             SerializeInput(s, nInput);
+            SerializeInput(s, nInput);
         // Serialize vout
         unsigned int nOutputs = fHashNone ? 0 : (fHashSingle ? nIn+1 : txTo.vout.size());
         ::WriteCompactSize(s, nOutputs);
         for (unsigned int nOutput = 0; nOutput < nOutputs; nOutput++)
-             SerializeOutput(s, nOutput);
+            SerializeOutput(s, nOutput);
         // Serialize nLockTime
         ::Serialize(s, txTo.nLockTime);
     }
@@ -1241,6 +1380,52 @@ bool TransactionSignatureChecker::CheckLockTime(const CScriptNum& nLockTime) con
     return true;
 }
 
+
+bool TransactionSignatureChecker::CheckSequence(const CScriptNum& nSequence) const
+{
+    // Relative lock times are supported by comparing the passed
+    // in operand to the sequence number of the input.
+    const int64_t txToSequence = (int64_t)txTo->vin[nIn].nSequence;
+
+    // Fail if the transaction's version number is not set high
+    // enough to trigger BIP 68 rules.
+    if (static_cast<uint32_t>(txTo->nVersion) < 2)
+        return false;
+
+    // Sequence numbers with their most significant bit set are not
+    // consensus constrained. Testing that the transaction's sequence
+    // number do not have this bit set prevents using this property
+    // to get around a CHECKSEQUENCEVERIFY check.
+    if (txToSequence & CTxIn::SEQUENCE_LOCKTIME_DISABLE_FLAG)
+        return false;
+
+    // Mask off any bits that do not have consensus-enforced meaning
+    // before doing the integer comparisons
+    const uint32_t nLockTimeMask = CTxIn::SEQUENCE_LOCKTIME_TYPE_FLAG | CTxIn::SEQUENCE_LOCKTIME_MASK;
+    const int64_t txToSequenceMasked = txToSequence & nLockTimeMask;
+    const CScriptNum nSequenceMasked = nSequence & nLockTimeMask;
+
+    // There are two kinds of nSequence: lock-by-blockheight
+    // and lock-by-blocktime, distinguished by whether
+    // nSequenceMasked < CTxIn::SEQUENCE_LOCKTIME_TYPE_FLAG.
+    //
+    // We want to compare apples to apples, so fail the script
+    // unless the type of nSequenceMasked being tested is the same as
+    // the nSequenceMasked in the transaction.
+    if (!(
+        (txToSequenceMasked <  CTxIn::SEQUENCE_LOCKTIME_TYPE_FLAG && nSequenceMasked <  CTxIn::SEQUENCE_LOCKTIME_TYPE_FLAG) ||
+        (txToSequenceMasked >= CTxIn::SEQUENCE_LOCKTIME_TYPE_FLAG && nSequenceMasked >= CTxIn::SEQUENCE_LOCKTIME_TYPE_FLAG)
+    )) {
+        return false;
+    }
+
+    // Now that we know we're comparing apples-to-apples, the
+    // comparison is a simple numeric one.
+    if (nSequenceMasked > txToSequenceMasked)
+        return false;
+
+    return true;
+}
 
 bool VerifyScript(const CScript& scriptSig, const CScript& scriptPubKey, unsigned int flags, const BaseSignatureChecker& checker, ScriptError* serror)
 {
