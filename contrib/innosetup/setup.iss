@@ -2,11 +2,11 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Monk Core"
-#define MyAppVersion "3.0.1.1"
 #define MyAppPublisher "2021 DECENOMY Core Developers"
 #define MyAppURL "https://monk.com"
 #define MyAppExeName "monk-qt.exe"
 #define MyAppExtraData "https://explorer.decenomy.net/bootstraps/MONK/bootstrap.zip"
+#define MyAppVersion GetFileVersion(MyAppExeName)
 
 #include ReadReg(HKLM, 'Software\WOW6432Node\Mitrich Software\Inno Download Plugin', 'InstallDir') + '\idp.iss'
 
