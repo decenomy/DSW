@@ -208,27 +208,29 @@ public:
         consensus.ZC_WrappedSerialsSupply = 0; //4131563 * COIN;   // zerocoin supply at height_last_ZC_WrappedSerials
 
         // Network upgrades
-        consensus.vUpgrades[Consensus::BASE_NETWORK].nActivationHeight                  = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
-        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight             = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight                   = 1001;
-        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight                = 1441;
-        consensus.vUpgrades[Consensus::UPGRADE_ZC].nActivationHeight                    = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight                 = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight                 = 1441;
-        consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight             = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight                  = 1541;
-        consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight                  = 1641;
-        consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].nActivationHeight              = 1741;
-        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].nActivationHeight    = 5001;
+        consensus.vUpgrades[Consensus::BASE_NETWORK].nActivationHeight                   = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
+        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight              = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight                    = 1001;
+        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight                 = 1441;
+        consensus.vUpgrades[Consensus::UPGRADE_ZC].nActivationHeight                     = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight                  = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight                  = 1441;
+        consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight              = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MODIFIER_V2].nActivationHeight      = 1541;
+        consensus.vUpgrades[Consensus::UPGRADE_TIME_PROTOCOL_V2].nActivationHeight       = 1641;
+        consensus.vUpgrades[Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES].nActivationHeight = 1741;
+        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].nActivationHeight     = 5001;
+        consensus.vUpgrades[Consensus::UPGRADE_MASTERNODE_RANK_V2].nActivationHeight     = 5001;
 
-        consensus.vUpgrades[Consensus::UPGRADE_ZC].hashActivationBlock                  = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].hashActivationBlock               = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_BIP65].hashActivationBlock               = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].hashActivationBlock           = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_V3_4].hashActivationBlock                = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_V4_0].hashActivationBlock                = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].hashActivationBlock            = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].hashActivationBlock  = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_ZC].hashActivationBlock                     = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].hashActivationBlock                  = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_BIP65].hashActivationBlock                  = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].hashActivationBlock              = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MODIFIER_V2].hashActivationBlock      = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_TIME_PROTOCOL_V2].hashActivationBlock       = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES].hashActivationBlock = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].hashActivationBlock     = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_MASTERNODE_RANK_V2].hashActivationBlock     = uint256S("0x0");
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -346,18 +348,18 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight                 = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight                 = 1441;
         consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight             = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight                  = 1541;
-        consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight                  = 1641;
-        consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].nActivationHeight              = 1741;
+        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MODIFIER_V2].nActivationHeight                  = 1541;
+        consensus.vUpgrades[Consensus::UPGRADE_TIME_PROTOCOL_V2].nActivationHeight                  = 1641;
+        consensus.vUpgrades[Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES].nActivationHeight              = 1741;
         consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].nActivationHeight    = 1841;
 
         consensus.vUpgrades[Consensus::UPGRADE_ZC].hashActivationBlock                  = uint256S("0x0");
         consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].hashActivationBlock               = uint256S("0x0");
         consensus.vUpgrades[Consensus::UPGRADE_BIP65].hashActivationBlock               = uint256S("0x0");
         consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].hashActivationBlock           = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_V3_4].hashActivationBlock                = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_V4_0].hashActivationBlock                = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].hashActivationBlock            = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MODIFIER_V2].hashActivationBlock                = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_TIME_PROTOCOL_V2].hashActivationBlock                = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES].hashActivationBlock            = uint256S("0x0");
         consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].hashActivationBlock  = uint256S("0x0");
 
         /**
@@ -478,10 +480,10 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight         =
                 Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
         consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight     = 400;
-        consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight          = 251;
-        consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight          =
+        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MODIFIER_V2].nActivationHeight          = 251;
+        consensus.vUpgrades[Consensus::UPGRADE_TIME_PROTOCOL_V2].nActivationHeight          =
                 Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
-        consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].nActivationHeight       = 300;
+        consensus.vUpgrades[Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES].nActivationHeight       = 300;
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.

@@ -582,7 +582,6 @@ endif
 
 RES_IMAGES = \
   qt/res/images/about.png \
-  qt/res/images/about1.png \
   qt/res/images/splash.png \
   qt/res/images/splash_testnet.png \
   qt/res/images/splash_regtest.png
