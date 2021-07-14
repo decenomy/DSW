@@ -5,101 +5,160 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xml:space="preserve"
-   style="enable-background:new 0 0 100 100;"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="ic_empty_multisend"
+   width="100"
+   height="100"
    viewBox="0 0 100 100"
-   y="0px"
-   x="0px"
-   id="ic_empty_dark_multisend"
-   version="1.1"><metadata
-   id="metadata39"><rdf:RDF><cc:Work
-       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
-   id="defs37">
-	
-	
-
-		
-		
-		
-		
-		
-		
-		
-	
-		
-		
-	
-			
-			
-			
-		</defs>
-<style
-   id="style2"
-   type="text/css">
-	.st0{fill:#810890;}
-	.st1{fill:#A09EA5;}
-	.st2{fill:#EFEFEF;}
-</style>
-
-<path
-   style="fill:#a09ea5;fill-opacity:0.14901961"
-   d="m 45,18 h 10 v 9 H 45 Z"
-   class="st0"
-   id="Rectangle_4717" /><path
-   id="Rectangle_4718"
-   class="st0"
-   d="m 14,66 h 6 v 10 h -6 z"
-   style="fill:#a09ea5;fill-opacity:0.14901961" /><path
-   id="Rectangle_4719"
-   class="st0"
-   d="m 80,66 h 6 v 10 h -6 z"
-   style="fill:#a09ea5;fill-opacity:0.14901961" /><path
-   id="Rectangle_4720"
-   class="st0"
-   d="m 47,66 h 6 v 10 h -6 z"
-   style="fill:#a09ea5;fill-opacity:0.14901961" /><path
-   style="fill:#a09ea5"
-   d="m 67,40 h 2 v 4 h -2 z"
-   class="st1"
-   id="Rectangle_4722" /><circle
-   style="fill:#a09ea5"
-   r="1"
-   cy="73"
-   cx="50"
-   class="st1"
-   id="Ellipse_643" /><circle
-   style="fill:#a09ea5"
-   r="1"
-   cy="73"
-   cx="83"
-   class="st1"
-   id="Ellipse_644" /><path
-   style="fill:#a09ea5"
-   d="m 32,58 h 4 v 2 h -4 z"
-   class="st1"
-   id="Rectangle_4723" /><path
-   style="fill:#a09ea5"
-   d="m 16,65 h -3 v 3 H 7 v 4 h 2 v -2 h 4 v 7 h 8 v -7 h 4 V 91 H 9 V 76 H 7 V 93 H 27 V 68 H 21 V 65 H 18 V 60 H 28 V 58 H 16 Z m 3,2 v 8 h -4 v -8 z"
-   class="st1"
-   id="Path_19007" /><circle
-   style="fill:#a09ea5"
-   r="1"
-   cy="73"
-   cx="17"
-   class="st1"
-   id="Ellipse_645" /><path
-   style="fill:#a09ea5"
-   d="M 87,68 V 65 H 84 V 58 H 51 v -5 h 18 v -5 h -2 v 3 H 33 V 28 h 34 v 8 h 2 v -8 h 4 V 17 H 59.5 C 61.7,14.5 61.5,10.7 59,8.5 56.5,6.3 52.7,6.5 50.5,9 50.3,9.2 50.1,9.5 50,9.7 48.2,6.9 44.5,6.2 41.7,8 c -2.8,1.8 -3.5,5.5 -1.7,8.3 0.2,0.3 0.4,0.5 0.6,0.7 H 27 v 11 h 4 v 25 h 18 v 5 h -9 v 2 h 9 v 5 h -3 v 3 h -6 v 16 h 2 V 70 h 4 v 7 h 8 v -7 h 4 V 91 H 42 v -3 h -2 v 5 H 60 V 68 h -6 v -3 h -3 v -5 h 31 v 5 h -3 v 3 h -6 v 12 h 2 V 70 h 4 v 7 h 8 v -7 h 4 V 91 H 75 v -7 h -2 v 9 H 93 V 68 Z M 71,19 v 7 H 56 V 19 Z M 51,13 c 0,-2.2 1.8,-4 4,-4 2.2,0 4,1.8 4,4 0,2.2 -1.8,4 -4,4 h -4 z m 0,6 h 3 v 7 H 46 V 19 Z M 45,9 c 2.2,0 4,1.8 4,4 v 4 h -4 c -2.2,0 -4,-1.8 -4,-4 0,-2.2 1.8,-4 4,-4 z M 29,26 v -7 h 15 v 7 z m 23,41 v 8 h -4 v -8 z m 33,8 h -4 v -8 h 4 z"
-   class="st1"
-   id="Path_19008" />
-<rect
-   style="fill:#a09ea5;fill-opacity:0.14901961"
-   id="rect20"
-   height="23"
-   width="34"
-   class="st0"
-   y="28"
-   x="33" />
-
+   version="1.1"
+   sodipodi:docname="img-empty-multisend.svg"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
+  <metadata
+     id="metadata27">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="640"
+     inkscape:window-height="480"
+     id="namedview25"
+     showgrid="false"
+     inkscape:zoom="5.0286286"
+     inkscape:cx="57.892519"
+     inkscape:cy="39.599266"
+     inkscape:current-layer="Group_9031" />
+  <defs
+     id="defs4">
+    <style
+       type="text/css"
+       id="style2">
+            .cls-1{fill:#d6d6d6}.cls-2{fill:#666}.cls-3{fill:none}
+        </style>
+    <style
+       id="style2-5">.cls-1{fill:#66f;}</style>
+  </defs>
+  <g
+     id="Group_9031"
+     data-name="Group 9031">
+    <g
+       id="Group_9029"
+       data-name="Group 9029">
+      <path
+         id="Rectangle_4683"
+         d="M0 0h10v9H0z"
+         class="cls-1"
+         data-name="Rectangle 4683"
+         transform="translate(45 18)"
+         style="fill:#ed1c24;fill-opacity:1" />
+      <g
+         id="Group_9028"
+         data-name="Group 9028">
+        <path
+           id="Rectangle_4684"
+           d="M0 0h6v10H0z"
+           class="cls-1"
+           data-name="Rectangle 4684"
+           transform="translate(14 66)"
+           style="fill:#ed1c24;fill-opacity:1" />
+        <path
+           id="Rectangle_4685"
+           d="M0 0h6v10H0z"
+           class="cls-1"
+           data-name="Rectangle 4685"
+           transform="translate(80 66)"
+           style="fill:#ed1c24;fill-opacity:1" />
+        <path
+           id="Rectangle_4686"
+           d="M0 0h6v10H0z"
+           class="cls-1"
+           data-name="Rectangle 4686"
+           transform="translate(47 66)"
+           style="fill:#ed1c24;fill-opacity:1" />
+      </g>
+    </g>
+    <g
+       id="Group_9030"
+       data-name="Group 9030">
+      <path
+         id="Rectangle_4688"
+         d="M0 0h2v4H0z"
+         class="cls-2"
+         data-name="Rectangle 4688"
+         transform="translate(67 40)" />
+      <circle
+         id="Ellipse_626"
+         cx="1"
+         cy="1"
+         r="1"
+         class="cls-2"
+         data-name="Ellipse 626"
+         transform="translate(49 72)" />
+      <circle
+         id="Ellipse_627"
+         cx="1"
+         cy="1"
+         r="1"
+         class="cls-2"
+         data-name="Ellipse 627"
+         transform="translate(82 72)" />
+      <path
+         id="Rectangle_4689"
+         d="M0 0h4v2H0z"
+         class="cls-2"
+         data-name="Rectangle 4689"
+         transform="translate(32 58)" />
+      <path
+         id="Path_18986"
+         d="M16 65h-3v3H7v4h2v-2h4v7h8v-7h4v21H9V76H7v17h20V68h-6v-3h-3v-5h10v-2H16zm3 2v8h-4v-8z"
+         class="cls-2"
+         data-name="Path 18986" />
+      <circle
+         id="Ellipse_628"
+         cx="1"
+         cy="1"
+         r="1"
+         class="cls-2"
+         data-name="Ellipse 628"
+         transform="translate(16 72)" />
+      <path
+         id="Path_18987"
+         d="M 87,68 V 65 H 84 V 58 H 51 v -5 h 18 v -5 h -2 v 3 H 33 V 28 h 34 v 8 h 2 v -8 h 4 V 17 H 59.46 C 61.78871,14.40745 61.423299,10.382428 58.66579,8.2516253 55.908281,6.1208229 51.921253,6.7825972 50,9.69 48.081982,6.7734473 44.08759,6.1058972 41.325445,8.2402818 38.5633,10.374666 38.20162,14.408273 40.54,17 H 27 v 11 h 4 v 25 h 18 v 5 h -9 v 2 h 9 v 5 h -3 v 3 h -6 v 16 h 2 V 70 h 4 v 7 h 8 v -7 h 4 V 91 H 42 v -3 h -2 v 5 H 60 V 68 h -6 v -3 h -3 v -5 h 31 v 5 h -3 v 3 h -6 v 12 h 2 V 70 h 4 v 7 h 8 v -7 h 4 V 91 H 75 v -7 h -2 v 9 H 93 V 68 Z M 71,19 v 7 H 56 V 19 Z M 51,13 C 51,9.4361328 55.308554,7.6519873 57.828283,10.171717 60.348013,12.691446 58.563867,17 55,17 h -4 z m 0,6 h 3 v 7 H 46 V 19 Z M 45,9 c 2.209139,0 4,1.790861 4,4 v 4 H 45 C 39.666669,17 39.666669,9 45,9 Z M 29,26 v -7 h 15 v 7 z M 52,67 V 70.170794 75 h -4 v -8 z m 33,8 h -4 v -8 h 4 z"
+         class="cls-2"
+         data-name="Path 18987"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cccccccccccccccccccscscccccccccccccccccccccccccccccccccccccccccccccccccccccccccccssscsccccccsscsscccccccccccccccc" />
+      <g
+         transform="matrix(0.17293233,0,0,0.17293233,35.314977,28.187433)"
+         data-name="Layer 2"
+         id="Layer_2"
+         style="fill:#666666;fill-opacity:1">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:69.39130402px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;text-anchor:middle;opacity:1;fill:#ed1c24;fill-opacity:1;stroke:#ed1c24;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           x="84.421623"
+           y="86.381836"
+           id="text36"><tspan
+             sodipodi:role="line"
+             id="tspan34"
+             x="82.282059"
+             y="86.381836"
+             style="letter-spacing:-4.27913094px;stroke-width:0">7 7 7</tspan></text>
+      </g>
+    </g>
+  </g>
 </svg>
