@@ -418,7 +418,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 *[cssClass="amount-topbar"] {
   color: #0f2941;
-  font-size: 35px;
+  font-size: 28px;
 }
 
 *[cssClass="amount-small-topbar"] {
@@ -427,7 +427,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="container-qr"] {
-  border-radius: 8px;
+  border-radius: 2px;
   background-color: #fcfcfc;
 }
 
