@@ -6,7 +6,7 @@
 #define MyAppURL "https://monk.com"
 #define MyAppExeName "monk-qt.exe"
 #define MyAppExtraData "https://explorer.decenomy.net/bootstraps/MONK/bootstrap.zip"
-#define MyAppVersion GetFileVersion(MyAppExeName)
+#define MyAppVersion GetVersionNumbersString(".\package\" + MyAppExeName)
 
 #include ReadReg(HKLM, 'Software\WOW6432Node\Mitrich Software\Inno Download Plugin', 'InstallDir') + '\idp.iss'
 
