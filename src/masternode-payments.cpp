@@ -160,7 +160,7 @@ uint256 CMasternodePaymentWinner::GetHash() const
 
 std::string CMasternodePaymentWinner::GetStrMessage() const
 {
-    if (Params().GetConsensus().NetworkUpgradeActive(chainActive.Tip()->nHeight, Consensus::UPGRADE_V4_0)) {
+    if (Params().GetConsensus().NetworkUpgradeActive(chainActive.Tip()->nHeight, Consensus::UPGRADE_TIME_PROTOCOL_V2)) {
         return vinMasternode.prevout.ToStringShort() + std::to_string(nBlockHeight) + HexStr(payee);
     } else {
         return vinMasternode.prevout.ToStringShort() + std::to_string(nBlockHeight) + ScriptToAsmStr(payee);
@@ -410,7 +410,7 @@ void CMasternodePayments::ProcessMessageMasternodePayments(CNode* pfrom, std::st
             if (pfrom->HasFulfilledRequest(NetMsgType::GETMNWINNERS)) {
                 LogPrintf("CMasternodePayments::ProcessMessageMasternodePayments() : mnget - peer already asked me for the list\n");
                 LOCK(cs_main);
-                Misbehaving(pfrom->GetId(), 20);
+                if (CMasternode::GetMasternodePayment(chainActive.Height()) > 0) Misbehaving(pfrom->GetId(), 20);
                 return;
             }
         }
@@ -445,7 +445,7 @@ void CMasternodePayments::ProcessMessageMasternodePayments(CNode* pfrom, std::st
         }
 
         // reject old signature version
-        if (Params().GetConsensus().NetworkUpgradeActive(chainActive.Tip()->nHeight, Consensus::UPGRADE_V4_0) &&
+        if (Params().GetConsensus().NetworkUpgradeActive(chainActive.Tip()->nHeight, Consensus::UPGRADE_TIME_PROTOCOL_V2) &&
             winner.nMessVersion != MessageVersion::MESS_VER_HASH) {
             LogPrint(BCLog::MASTERNODE, "mnw - rejecting old message version %d\n", winner.nMessVersion);
             return;
@@ -639,15 +639,14 @@ bool CMasternodePayments::IsTransactionValid(const CTransaction& txNew, int nBlo
 
 void CMasternodePayments::CleanPaymentList()
 {
-    LOCK(cs_main);
-    LOCK2(cs_mapMasternodePayeeVotes, cs_mapMasternodeBlocks);
-
     int nHeight;
     {
         TRY_LOCK(cs_main, locked);
         if (!locked || chainActive.Tip() == NULL) return;
         nHeight = chainActive.Tip()->nHeight;
     }
+
+    LOCK2(cs_mapMasternodePayeeVotes, cs_mapMasternodeBlocks);
 
     //keep up to five cycles for historical sake
     int nLimit = std::max(int(mnodeman.size() * 1.25), 1000);
@@ -743,15 +742,14 @@ bool CMasternodePayments::ProcessBlock(int nBlockHeight)
 
 void CMasternodePayments::Sync(CNode* node, int nCountNeeded)
 {
-    LOCK(cs_main);
-    LOCK(cs_mapMasternodePayeeVotes);
-
     int nHeight;
     {
         TRY_LOCK(cs_main, locked);
         if (!locked || chainActive.Tip() == NULL) return;
         nHeight = chainActive.Tip()->nHeight;
     }
+
+    LOCK(cs_mapMasternodePayeeVotes);
 
     int nCount = (mnodeman.CountEnabled() * 1.25);
     if (nCountNeeded > nCount) nCountNeeded = nCount;

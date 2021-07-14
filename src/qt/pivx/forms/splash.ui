@@ -86,8 +86,8 @@
       								name="imgLogo">
 								<property name="minimumSize">
 									<size>
-										<width>210</width>
-										<height>149</height>
+										<width>395</width>
+										<height>348</height>
 									</size>
 								</property>
 								<property name="focusPolicy">
@@ -98,8 +98,8 @@
 								</property>
 								<property name="iconSize">
 									<size>
-										<width>210</width>
-										<height>149</height>
+										<width>395</width>
+										<height>348</height>
 									</size>
 								</property>
 							</widget>
@@ -110,13 +110,13 @@
       								native="true">
 								<property name="minimumSize">
 									<size>
-										<width>235</width>
+										<width>395</width>
 										<height>12</height>
 									</size>
 								</property>
 								<property name="maximumSize">
 									<size>
-										<width>235</width>
+										<width>395</width>
 										<height>12</height>
 									</size>
 								</property>
@@ -126,7 +126,7 @@
 										<rect>
 											<x>0</x>
 											<y>0</y>
-											<width>235</width>
+											<width>395</width>
 											<height>12</height>
 										</rect>
 									</property>
@@ -154,7 +154,7 @@
 											height: 11px;
 											width: 91px;
 											color: #262626;
-											font-family: Poppins;
+											font-family: Nunito;
 											font-size: 9px;
 											letter-spacing: 1.04px;
 											line-height: 12px;
@@ -175,13 +175,13 @@
       								native="true">
 								<property name="minimumSize">
 									<size>
-										<width>235</width>
+										<width>395</width>
 										<height>4</height>
 									</size>
 								</property>
 								<property name="maximumSize">
 									<size>
-										<width>235</width>
+										<width>395</width>
 										<height>4</height>
 									</size>
 								</property>
@@ -264,8 +264,8 @@
 									<string notr="true">
 										height: 16px;
 										width: 85px;
-										color: #ffffff;
-										font-family: Poppins;
+										color: #FFFFFF;
+										font-family: Nunito;
 										font-size: 12px;
 										letter-spacing: 0.2px;
 										line-height: 16px;
@@ -273,10 +273,10 @@
 									</string>
 								</property>
 								<property name="text">
-									<string>VERSION 2.0.0.0</string>
+									<string>VERSION 0.0.0.0</string>
 								</property>
 								<property name="alignment">
-									<set>Qt::AlignTop|Qt::AlignHCenter</set>
+									<set>Qt::AlignTop|Qt::AlignLeft</set>
 								</property>
 							</widget>
 						</item>

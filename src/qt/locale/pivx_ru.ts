@@ -439,33 +439,6 @@ for staking</source>
     </message>
 </context>
 <context>
-    <name>CSRow</name>
-    <message>
-        <source>Form</source>
-        <translation>Вид</translation>
-    </message>
-    <message>
-        <source>Savings</source>
-        <translation>Сбережения</translation>
-    </message>
-    <message>
-        <source>0,00 CFL</source>
-        <translation>0.00 CFL</translation>
-    </message>
-    <message>
-        <source>address</source>
-        <translation>адрес</translation>
-    </message>
-    <message>
-        <source>Not Staking</source>
-        <translation>Стекинг не запущен</translation>
-    </message>
-    <message>
-        <source>Own delegation</source>
-        <translation>Собственная делегация</translation>
-    </message>
-</context>
-<context>
     <name>ClientModel</name>
     <message>
         <source>Total: %1 (IPv4: %2 / IPv6: %3 / Tor: %4 / Unknown: %5)</source>
@@ -675,10 +648,6 @@ for staking</source>
         <translation>Может варьироваться +/- %1 u%2 на вход.</translation>
     </message>
     <message>
-        <source>delegated to %1 for cold staking</source>
-        <translation>делегирован в %1 для холодного стекинга</translation>
-    </message>
-    <message>
         <source>Select All</source>
         <translation>Выбрать все</translation>
     </message>
@@ -721,241 +690,6 @@ for staking</source>
     <message>
         <source>(change)</source>
         <translation>(изменить)</translation>
-    </message>
-</context>
-<context>
-    <name>ColdStakingWidget</name>
-    <message>
-        <source>Form</source>
-        <translation>Вид</translation>
-    </message>
-    <message>
-        <source>Owner address (optional, if empty a new address will be created)</source>
-        <translation>Адрес владельца (необязательно; если пусто, будет создан новый адрес)</translation>
-    </message>
-    <message>
-        <source>Total Staking:</source>
-        <translation>Общий стекинг:</translation>
-    </message>
-    <message>
-        <source>Cold Staking</source>
-        <translation>Холодный стекинг</translation>
-    </message>
-    <message>
-        <source>Staker</source>
-        <translation>Стекер</translation>
-    </message>
-    <message>
-        <source>Delegation</source>
-        <translation>Делегирование</translation>
-    </message>
-    <message>
-        <source>Delegate</source>
-        <translation>Делегировать</translation>
-    </message>
-    <message>
-        <source>Clear All</source>
-        <translation>Очистить все</translation>
-    </message>
-    <message>
-        <source>Delegated balance history</source>
-        <translation>История делегированного баланса</translation>
-    </message>
-    <message>
-        <source>No delegations yet</source>
-        <translation>Еще нет делегаций</translation>
-    </message>
-    <message>
-        <source>Total Staking: %1</source>
-        <translation>Общий стекинг: %1</translation>
-    </message>
-    <message>
-        <source>Error loading delegations: %1</source>
-        <translation>Ошибка при загрузке делегаций: %1</translation>
-    </message>
-    <message>
-        <source>You can delegate your CFLs, letting a hot node (24/7 online node)
-stake on your behalf, while you keep the keys securely offline.</source>
-        <translation>Вы можете делегировать свои CFL, позволяя горячему узлу (онлайн-узлу, работаещему 24/7) делать стекинг от вашего имени, в то время как ключи надежно хранятся в автономном режиме.</translation>
-    </message>
-    <message>
-        <source>Enter owner address</source>
-        <translation>Введите адрес владельца</translation>
-    </message>
-    <message>
-        <source>Accept CFL delegation / Delegate CFL</source>
-        <translation>Принять делегацию CFL / Делегировать CFL</translation>
-    </message>
-    <message>
-        <source>Cold Staking address</source>
-        <translation>Адрес холодного стекинга</translation>
-    </message>
-    <message>
-        <source>No receive addresses available, you can go to the receive screen and create some there!</source>
-        <translation>Нет доступных адресов получения, вы можете перейти на экран получения и создать там несколько!</translation>
-    </message>
-    <message>
-        <source>No contacts available, you can go to the contacts screen and add some there!</source>
-        <translation>Нет доступных контактов. Вы можете перейти на вкладку контактов и добавить несколько!</translation>
-    </message>
-    <message>
-        <source>Cannot send delegation, wallet locked</source>
-        <translation>Не удается отправить делегацию, кошелек заблокирован</translation>
-    </message>
-    <message>
-        <source>Cold staking is networkely disabled</source>
-        <translation>Холодный стекинг отключен в сети</translation>
-    </message>
-    <message>
-        <source>Coin Control</source>
-        <translation>Контроль Монеты</translation>
-    </message>
-    <message>
-        <source>Select %1 outputs to delegate.</source>
-        <translation>Выбрать %1 выходы для делегирования.</translation>
-    </message>
-    <message>
-        <source>Create Cold Staking Address</source>
-        <translation>Создать адрес холодного стекинга</translation>
-    </message>
-    <message>
-        <source>Creates an address to receive delegated coins
-and stake them on their owner's behalf.</source>
-        <translation>Создает адрес для получения делегированных монет
-и запускает стекинг от имени их владельца.</translation>
-    </message>
-    <message>
-        <source>My Cold Staking Addresses</source>
-        <translation>Мой адрес холодного стекинга</translation>
-    </message>
-    <message>
-        <source>List your own cold staking addresses.</source>
-        <translation>Залистить свои собственные адреса холодного стекинга.</translation>
-    </message>
-    <message>
-        <source>Invalid entry</source>
-        <translation>Неверная запись</translation>
-    </message>
-    <message>
-        <source>Invalid entry, minimum delegable amount is </source>
-        <translation>Неверная запись, минимальная делегируемая сумма</translation>
-    </message>
-    <message>
-        <source>Owner address invalid</source>
-        <translation>Неверный адрес владельца</translation>
-    </message>
-    <message>
-        <source>ALERT!</source>
-        <translation>ПРЕДУПРЕЖДЕНИЕ!</translation>
-    </message>
-    <message>
-        <source>Delegating to an external owner address!
-
-The delegated coins will NOT be spendable by this wallet.
-Spending these coins will need to be done from the wallet or
-device containing the owner address.
-
-Do you wish to proceed?</source>
-        <translation>Делегирование на внешний адрес владельца!
-
-Делегированные монеты НЕ будут потрачены этим кошельком.
-Расходовать эти монеты нужно будет с помощью кошелька или
-устройства, содержащего адрес владельца.
-Вы хотите продолжить?</translation>
-    </message>
-    <message>
-        <source>Staking address corresponds to this wallet, change it to an external node</source>
-        <translation>Адрес стекинга соответствует этому кошельку, измените его на внешний узел</translation>
-    </message>
-    <message>
-        <source>Cannot create transaction.</source>
-        <translation>Невозможно создать транзакцию.</translation>
-    </message>
-    <message>
-        <source>Coins delegated</source>
-        <translation>Монеты делегированы</translation>
-    </message>
-    <message>
-        <source>You don't have any %1 to select.</source>
-        <translation>У вас нет %1 для выбора.</translation>
-    </message>
-    <message>
-        <source>Cannot perform operation, wallet locked</source>
-        <translation>Невозможно выполнить операцию, кошелек заблокирован</translation>
-    </message>
-    <message>
-        <source>URI copied to clipboard</source>
-        <translation>URI скопирован в буфер обмена</translation>
-    </message>
-    <message>
-        <source>Address copied to clipboard</source>
-        <translation>Адрес скопирован в буфер обмена</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation>Копировать</translation>
-    </message>
-    <message>
-        <source>Edit</source>
-        <translation>Редактировать</translation>
-    </message>
-    <message>
-        <source>Stake</source>
-        <translation>Стекинг</translation>
-    </message>
-    <message>
-        <source>Blacklist</source>
-        <translation>Черный список</translation>
-    </message>
-    <message>
-        <source>Edit Label</source>
-        <translation>Изменить ярлык</translation>
-    </message>
-    <message>
-        <source>Copy owner
-address</source>
-        <translation>Копировать адрес
-владельца</translation>
-    </message>
-    <message>
-        <source>Address copied</source>
-        <translation>Адрес скопирован</translation>
-    </message>
-    <message>
-        <source>Edit Cold Address Label</source>
-        <translation>Изменить ярлык холодного адреса</translation>
-    </message>
-    <message>
-        <source>Whitelist failed, please check the logs</source>
-        <translation>Добавление в белый список не удалось, пожалуйста, проверьте логи</translation>
-    </message>
-    <message>
-        <source> staking!</source>
-        <translation>стекинг пошел!</translation>
-    </message>
-    <message>
-        <source>Blacklist failed, please check the logs</source>
-        <translation>Добавление в черный список не удалось, пожалуйста, проверьте логи</translation>
-    </message>
-    <message>
-        <source> blacklisted from staking</source>
-        <translation>занесен в черный список из стекинга</translation>
-    </message>
-    <message>
-        <source>Owner address copied</source>
-        <translation>Адрес владельца скопирован</translation>
-    </message>
-    <message>
-        <source>Edit Owner Address Label</source>
-        <translation>Редактировать ярлык адреса владельца</translation>
-    </message>
-    <message>
-        <source>Address label saved</source>
-        <translation>Адрес ярлыка сохранен</translation>
-    </message>
-    <message>
-        <source>Error storing address label</source>
-        <translation>Ошибка при сохранении адресной метки</translation>
     </message>
 </context>
 <context>
@@ -1721,12 +1455,6 @@ NODES</source>
 НОДЫ</translation>
     </message>
     <message>
-        <source>COLD
-STAKING</source>
-        <translation>ХОЛОДНЫЙ
-СТЕКИНГ</translation>
-    </message>
-    <message>
         <source>SETTINGS
 </source>
         <translation>НАСТРОЙКИ
@@ -2340,22 +2068,6 @@ Address: %4
         <translation>Получающий</translation>
     </message>
     <message>
-        <source>Delegator</source>
-        <translation>Делегатор</translation>
-    </message>
-    <message>
-        <source>Delegable</source>
-        <translation>Делегируемый</translation>
-    </message>
-    <message>
-        <source>Cold Staking</source>
-        <translation>Холодный стекинг</translation>
-    </message>
-    <message>
-        <source>Cold Staking Contact</source>
-        <translation>Контакт холодного стекинга</translation>
-    </message>
-    <message>
         <source>Hidden</source>
         <translation>Спрятан</translation>
     </message>
@@ -2416,20 +2128,8 @@ Address: %4
         <translation>Самому себе</translation>
     </message>
     <message>
-        <source>Cold stakes</source>
-        <translation>Холодные стекинг ставки</translation>
-    </message>
-    <message>
         <source>Hot stakes</source>
         <translation>Горячие стекинг ставки</translation>
-    </message>
-    <message>
-        <source>Delegated</source>
-        <translation>Делегирован</translation>
-    </message>
-    <message>
-        <source>Delegations</source>
-        <translation>Делегирования</translation>
     </message>
     <message>
         <source>by Label</source>
@@ -3116,14 +2816,6 @@ Address: %4
         <translation>ГЕНЕРИРОВАТЬ</translation>
     </message>
     <message>
-        <source>Creates an address to receive coin delegations and be able to stake them.</source>
-        <translation>Создает адрес для приема делегированных монет и возможности их стекить.</translation>
-    </message>
-    <message>
-        <source>New Cold Staking Address</source>
-        <translation>Новый адрес для холодного стекинга</translation>
-    </message>
-    <message>
         <source>Amount (optional)</source>
         <translation>Сумма (необязательно)</translation>
     </message>
@@ -3138,10 +2830,6 @@ Address: %4
     <message>
         <source>Request for </source>
         <translation>Запрос для</translation>
-    </message>
-    <message>
-        <source>Cold Staking Address Generated</source>
-        <translation>Адрес холодного стекинга сгенерирован</translation>
     </message>
 </context>
 <context>
@@ -3173,10 +2861,6 @@ Address: %4
     <message>
         <source>Invalid address</source>
         <translation>Неверный адрес</translation>
-    </message>
-    <message>
-        <source>Cannot use cold staking addresses for change</source>
-        <translation>Невозможно использовать адреса холодного стекинга для изменения</translation>
     </message>
 </context>
 <context>
@@ -3288,10 +2972,6 @@ Do you want to continue?</source>
         <translation>Неверная запись. Прежде чем добавить новую запись, предыдущие записи должны быть действительными</translation>
     </message>
     <message>
-        <source>Possibly spend coins delegated for cold-staking (currently available: %1</source>
-        <translation>Возможно потратить монеты, выделенные для холодного стекинга (в настоящее время доступно: %1</translation>
-    </message>
-    <message>
         <source>Invalid entry</source>
         <translation>Неверная запись</translation>
     </message>
@@ -3306,14 +2986,6 @@ Do you want to continue?</source>
     <message>
         <source>Cannot create transaction.</source>
         <translation>Невозможно создать транзакцию.</translation>
-    </message>
-    <message>
-        <source>WARNING:
-Transaction spends a cold-stake delegation, voiding it.
-These coins will no longer be cold-staked.</source>
-        <translation>ПРЕДУПРЕЖДЕНИЕ:
-Транзакция тратит делегацию холодного стекинга, аннулируя ее.
-Холодного стекинга этих монет больше не будет.</translation>
     </message>
     <message>
         <source>Transaction sent</source>
@@ -3947,7 +3619,6 @@ CFL использует консенсус PoS (Proof of Stake), позволя
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;Instant transactions (SwiftX)&lt;/li&gt;
                            &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
                            &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
@@ -3983,7 +3654,6 @@ CFL использует консенсус PoS (Proof of Stake), позволя
         <translation>
 Мастернода - это компьютер, на котором запущен базовый кошелек CFL с полным узлом и для которого требуется обеспечение в 10000 CFL для обеспечения дополнительных услуг сети и, в свою очередь, регулярного получения части вознаграждения за блок. Эти услуги в себя включают:
 
-Мгновенные транзакции (SwiftX)
 Децентрализованное управление (Голосование по предложениям)
 Децентрализованная система бюджетирования (Казначейство)
 Проверка транзакций в каждом блоке.
@@ -4958,10 +4628,6 @@ backup will be created.
         <translation>Стекинг отключен</translation>
     </message>
     <message>
-        <source>Cold Staking Disabled</source>
-        <translation>Холодный стекинг отключен</translation>
-    </message>
-    <message>
         <source> %54 Synchronizing..</source>
         <translation>Синхронизировано %54.. </translation>
     </message>
@@ -5100,16 +4766,8 @@ backup will be created.
         <translation>z%1 Стекинга</translation>
     </message>
     <message>
-        <source>%1 Cold Stake</source>
-        <translation>%1 Холодного стекинга</translation>
-    </message>
-    <message>
         <source>%1 Stake on behalf of</source>
         <translation>%1 Стекинга от имени</translation>
-    </message>
-    <message>
-        <source>Stake delegation</source>
-        <translation>Делегация стекинга</translation>
     </message>
     <message>
         <source>Sent to</source>
@@ -5122,10 +4780,6 @@ backup will be created.
     <message>
         <source>Payment to yourself</source>
         <translation>Оплата себе</translation>
-    </message>
-    <message>
-        <source>Stake delegation spent by</source>
-        <translation>Делегация стекинга потрачена</translation>
     </message>
     <message>
         <source>Mined</source>
@@ -5309,10 +4963,6 @@ backup will be created.
         <translation>Отправить Монеты</translation>
     </message>
     <message>
-        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 %2.</source>
-        <translation>SwiftX пока не поддерживает отправку таких высоких значений. Транзакции в настоящее время ограничены %1 %2.</translation>
-    </message>
-    <message>
         <source>Transaction creation failed!
 %1</source>
         <translation>Ошибка при создании транзакции! %1</translation>
@@ -5442,10 +5092,6 @@ CryptoFlow Wallet</source>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
         <translation>Распространяется по лицензии программного обеспечения MIT, см. Сопроводительный файл COPYING или &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</translation>
-    </message>
-    <message>
-        <source>Enable cold staking functionality (0-1, default: %u). Disabled if staking=0</source>
-        <translation>Включить функцию холодного стекинга (0-1, по умолчанию:%u). Отключено, если стекинг = 0</translation>
     </message>
     <message>
         <source>Enable spork administration functionality with the appropriate private key.</source>
@@ -5712,14 +5358,6 @@ CryptoFlow Wallet</source>
         <translation>Загрузка выполнена</translation>
     </message>
     <message>
-        <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>Включить публикацию хеш-транзакции (заблокированной через SwiftX) в &lt;address&gt;</translation>
-    </message>
-    <message>
-        <source>Enable publish raw transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>Включить публикацию необработанных транзакций (заблокированных через SwiftX) в &lt;address&gt;</translation>
-    </message>
-    <message>
         <source>Enable the client to act as a masternode (0-1, default: %u)</source>
         <translation>Разрешить клиенту действовать как мастернод (0-1, по умолчанию: %u)</translation>
     </message>
@@ -5860,20 +5498,12 @@ CryptoFlow Wallet</source>
         <translation>Выбранная стоимость монет меньше цели платежа</translation>
     </message>
     <message>
-        <source>SwiftX options:</source>
-        <translation>Параметры SwiftX:</translation>
-    </message>
-    <message>
         <source>This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!</source>
         <translation>Это предварительная версия сборки - используйте на свой страх и риск - не используйте для ставок или коммерческих приложений!</translation>
     </message>
     <message>
-        <source>Disable all CFL specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>Отключите все специфические функции CFL (Masternodes, Zerocoin, SwiftX, Бюджетирование) (0-1, по умолчанию: %u)</translation>
-    </message>
-    <message>
-        <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
-        <translation>Включить SwiftX, показать подтверждения для заблокированных транзакций (bool, default: %s)</translation>
+        <source>Disable all CFL specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
+        <translation>Отключите все специфические функции CFL (Masternodes, Zerocoin, Бюджетирование) (0-1, по умолчанию: %u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -5894,10 +5524,6 @@ CryptoFlow Wallet</source>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
         <translation>Укажите собственный путь резервного копирования, чтобы добавить копию любой резервной копии кошелька. Если задано как dir, каждая резервная копия генерирует файл с отметкой времени. Если он установлен как файл, он будет переписывать в этот файл каждую резервную копию.</translation>
-    </message>
-    <message>
-        <source>SwiftX requires inputs with at least 6 confirmations, you might need to wait a few minutes and try again.</source>
-        <translation>SwiftX требует ввода с не менее чем 6 подтверждениями, вам может потребоваться несколько минут и повторите попытку.</translation>
     </message>
     <message>
         <source>&lt;category&gt; can be:</source>
@@ -6651,10 +6277,6 @@ CryptoFlow Wallet</source>
     <message>
         <source>Reset to default</source>
         <translation>Сбросить настройки по умолчанию</translation>
-    </message>
-    <message>
-        <source>Include delegated</source>
-        <translation>Включить делегированного</translation>
     </message>
 </context>
 </TS>

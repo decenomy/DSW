@@ -21,6 +21,8 @@
 std::map<uint256, int> mapSeenMasternodeScanningErrors;
 // cache block hashes as we calculate them
 std::map<int64_t, uint256> mapCacheBlockHashes;
+// cache collaterals
+std::vector<std::pair<int,CAmount>> vecCollaterals;
 
 //Get the last hash that matches the modulus given. Processed in reverse order
 bool GetBlockHash(uint256& hash, int nBlockHeight)
@@ -382,6 +384,27 @@ CAmount CMasternode::GetMasternodePayment(int nHeight)
     return CMasternode::GetBlockValue(nHeight) * 90 / 100;
 }
 
+void CMasternode::InitMasternodeCollateralList() {
+    CAmount prev = -1; 
+    for(int i = 0; i < 9999999; i++) {
+        CAmount c = GetMasternodeNodeCollateral(i);
+        if(prev != c) {
+            LogPrint(BCLog::MASTERNODE, "%s: Found collateral %d at block %d\n", __func__, c / COIN, i); 
+            prev = c;
+            vecCollaterals.push_back(std::make_pair(i, c));
+        }
+    }
+}
+
+std::pair<int, CAmount> CMasternode::GetNextMasternodeCollateral(int nHeight) {
+    for(auto p : vecCollaterals) {
+        if(p.first > nHeight) {
+            return std::make_pair(p.first - nHeight, p.second);
+        }
+    }
+    return std::make_pair(-1, -1);
+}
+
 CMasternodeBroadcast::CMasternodeBroadcast() :
         CMasternode()
 { }
@@ -486,7 +509,7 @@ bool CMasternodeBroadcast::Sign(const CKey& key, const CPubKey& pubKey)
     std::string strError = "";
     std::string strMessage;
 
-    if(Params().GetConsensus().NetworkUpgradeActive(chainActive.Height(), Consensus::UPGRADE_V3_4)) {
+    if(Params().GetConsensus().NetworkUpgradeActive(chainActive.Height(), Consensus::UPGRADE_STAKE_MODIFIER_V2)) {
         nMessVersion = MessageVersion::MESS_VER_HASH;
         strMessage = GetSignatureHash().GetHex();
 
@@ -573,9 +596,18 @@ bool CMasternodeBroadcast::CheckDefaultPort(CService service, std::string& strEr
 
 bool CMasternodeBroadcast::CheckAndUpdate(int& nDos)
 {
-    // make sure signature isn't in the future (past is OK)
-    if (sigTime > GetAdjustedTime() + 60 * 60) {
+    bool masternodeRankV2 = Params().GetConsensus().NetworkUpgradeActive(chainActive.Height(), Consensus::UPGRADE_MASTERNODE_RANK_V2);
+
+    // make sure signature isn't too far in the future
+    if (sigTime > GetAdjustedTime() + (masternodeRankV2 && masternodeSync.IsSynced() ? 5 * 60 : 60 * 60)) {
         LogPrint(BCLog::MASTERNODE, "mnb - Signature rejected, too far into the future %s\n", vin.prevout.ToStringShort());
+        nDos = 1;
+        return false;
+    }
+
+    // make sure signature isn't too far in the past 
+    if(masternodeSync.IsSynced() && masternodeRankV2 && sigTime < GetAdjustedTime() - 5 * 60) {
+        LogPrint(BCLog::MASTERNODE, "mnb - Signature rejected, too far into the past %s\n", vin.prevout.ToStringShort());
         nDos = 1;
         return false;
     }
@@ -787,10 +819,12 @@ CMasternodePing::CMasternodePing(CTxIn& newVin) :
 
 uint256 CMasternodePing::GetHash() const
 {
+    int64_t salt = sporkManager.GetSporkValue(SPORK_103_PING_MESSAGE_SALT);
     CHashWriter ss(SER_GETHASH, PROTOCOL_VERSION);
     ss << vin;
     if (nMessVersion == MessageVersion::MESS_VER_HASH) ss << blockHash;
     ss << sigTime;
+    if (salt > 0) ss << salt;
     return ss.GetHash();
 }
 
@@ -798,22 +832,24 @@ std::string CMasternodePing::GetStrMessage() const
 {
     int64_t salt = sporkManager.GetSporkValue(SPORK_103_PING_MESSAGE_SALT);
 
-    if (salt != 0) {
-        return vin.ToString() + blockHash.ToString() + std::to_string(sigTime) + std::to_string(salt);
-    } else {
+    if(salt == 0) {
         return vin.ToString() + blockHash.ToString() + std::to_string(sigTime);
+    } else {
+        return vin.ToString() + blockHash.ToString() + std::to_string(sigTime) + std::to_string(salt);
     }
 }
 
 bool CMasternodePing::CheckAndUpdate(int& nDos, bool fRequireEnabled, bool fCheckSigTimeOnly)
 {
-    if (sigTime > GetAdjustedTime() + 60 * 60) {
+    bool masternodeRankV2 = Params().GetConsensus().NetworkUpgradeActive(chainActive.Height(), Consensus::UPGRADE_MASTERNODE_RANK_V2);
+
+    if (sigTime > GetAdjustedTime() + (masternodeRankV2 && masternodeSync.IsSynced() ? 5 * 60 : 60 * 60)) {
         LogPrint(BCLog::MNPING, "%s: Signature rejected, too far into the future %s\n", __func__, vin.prevout.ToStringShort());
         nDos = 1;
         return false;
     }
 
-    if (sigTime <= GetAdjustedTime() - 60 * 60) {
+    if (sigTime <= GetAdjustedTime() - (masternodeRankV2 && masternodeSync.IsSynced() ? 5 * 60 : 60 * 60)) {
         LogPrint(BCLog::MNPING, "%s: Signature rejected, too far into the past %s - %d %d \n", __func__, vin.prevout.ToStringShort(), sigTime, GetAdjustedTime());
         nDos = 1;
         return false;
