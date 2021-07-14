@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Monk Core"
-#define MyAppVersion "3.0.1.0"
+#define MyAppVersion "3.0.1.1"
 #define MyAppPublisher "2021 DECENOMY Core Developers"
 #define MyAppURL "https://monk.com"
 #define MyAppExeName "monk-qt.exe"
