@@ -23,9 +23,8 @@ pipeline {
                     rm -rf SDKs
                     mkdir SDKs
                     cd SDKs
-                    wget -nc https://github.com/phracker/MacOSX-SDKs/releases/download/10.15/MacOSX10.11.sdk.tar.xz
+                    wget -c https://github.com/phracker/MacOSX-SDKs/releases/download/10.15/MacOSX10.11.sdk.tar.xz
                     tar -xf MacOSX10.11.sdk.tar.xz
-                    rm MacOSX10.11.sdk.tar.xz
                     cd ..
                     make -j $(nproc) HOST=x86_64-apple-darwin14
                 '''
