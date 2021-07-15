@@ -27,7 +27,7 @@ You will then receive your private key, save it in a txt to use it later.
 
 ***On Putty***
 
-* Once logged in your vps, *copy/past* each line one by one with *Enter*
+* Once logged in your vps, *copy/paste* each line one by one with *Enter*
 
 ```
 wget -q https://raw.githubusercontent.com/decenomy/SUV/master/contrib/masternodesetup/masternodesetup.sh
