@@ -73,10 +73,11 @@ src/trittiumd
 
 # UCR
 src/ultraclear
-src/ultracleard
 src/ultraclear-cli
+src/ultracleard
 src/ultraclear-tx
-src/bench/bench_ultraclearx
+src/qt/ultraclear-qt
+src/bench/bench_ultraclear
 src/test/test_ultraclear
 src/qt/test/test_ultraclear-qt
 
