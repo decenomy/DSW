@@ -90,7 +90,7 @@ pipeline {
                     mv ${BASE_NAME}* ../../contrib/innosetup/package/
                     cd ../../contrib/innosetup/
                     wine ~/.wine/drive_c/Program\\ Files\\ \\(x86\\)/Inno\\ Setup\\ 6/ISCC.exe setup.iss
-                    mv output/${NAME}Setup.exe ../../deploy/windows/${NAME}-\$(../${BASE_NAME}-cli --version | head -n1 | awk -F'[ -]' '{ print \$5 }' | sed s/v//)-Setup.exe
+                    mv output/${NAME}Setup.exe ../../deploy/windows/${NAME}-\$(../../deploy/${BASE_NAME}-cli --version | head -n1 | awk -F'[ -]' '{ print \$5 }' | sed s/v//)-Setup.exe
                     cd ../../deploy/windows/
                     zip ${ZIP_NAME}-\$(../${BASE_NAME}-cli --version | head -n1 | awk -F'[ -]' '{ print \$5 }' | sed s/v//)-WindowsSetup.zip ${NAME}-\$(../${BASE_NAME}-cli --version | head -n1 | awk -F'[ -]' '{ print \$5 }' | sed s/v//)-Setup.exe
                     rm -f ${NAME}-\$(../${BASE_NAME}-cli --version | head -n1 | awk -F'[ -]' '{ print \$5 }' | sed s/v//)-Setup.exe 
