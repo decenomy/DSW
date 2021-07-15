@@ -56,6 +56,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     border-radius:2px;
 }
 
+
 /*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 HH       NAVIGATION
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
@@ -356,6 +357,7 @@ QPushButton[cssClass="btn-check-console"] {
     color: #43b3ff;
 }
 
+
 /*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 HH       TOP BAR
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
@@ -382,7 +384,6 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 *[cssClass="amount-small-topbar"] {
   color: #e7e7e7;
   font-size: 22px;
-  letter-spacing: 1px;
 }
 
 *[cssClass="container-qr"] {
@@ -750,6 +751,7 @@ QProgressBar[cssClass="progress-sync"]::chunk:horizontal {
     );
   }
 
+
 /*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 HH       LISTS ELEMENTS
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
@@ -785,7 +787,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="text-list-body-unconfirmed"] {
-  color: #b6b6b6;
+  color: #B6B6B6;
   font-size: 16px;
 }
 
@@ -825,7 +827,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="text-list-caption-unconfirmed"] {
-  color: #b6b6b6;
+  color: #B6B6B6;
 }
 
 *[cssClass="text-list-caption-grey"] {
@@ -844,7 +846,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="text-list-amount-unconfirmed"] {
-  color: #b6b6b6;
+  color: #B6B6B6;
   font-size: 16px;
 }
 
@@ -1003,7 +1005,7 @@ QPushButton[cssClass="btn-switch"] {
   background-color: #211f1f;
   font-size: 18px;
   text-align: left;
-  color: #bababa;
+  color: #eeeeee;
 }
 
 QPushButton[cssClass="btn-switch"]:checked {
@@ -2083,11 +2085,12 @@ QComboBox::down-arrow:on {
 }
 
 QComboBox:item {
-  color: #707070;
+  color: #262626;
   font-size: 18px;
 }
 
 QComboBox QAbstractItemView {
+  background-color: #262626;
   margin: 0px;
   min-width: 150px;
   border-radius: 0px;
@@ -2109,6 +2112,7 @@ QComboBox QAbstractItemView::item {
     border-radius:0px;
     outline: 0px;
 }
+
 QComboBox QAbstractItemView::item:selected {
     background-color: #0094f9;
     padding:10px 20px;
@@ -2132,6 +2136,7 @@ QComboBox QAbstractItemView::item:selected QPushButton:hover {
 /*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 HH       RADIO BUTTON
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
+
 QRadioButton:checked {
     color: #43b3ff;
     font-size:20px;
@@ -2165,6 +2170,7 @@ QRadioButton::indicator:unchecked {
   background-position: center;
 }
 
+
 /*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 HH       SCROLL BAR
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
@@ -2187,6 +2193,7 @@ QScrollBar::add-line:vertical {
   subcontrol-position: bottom;
   subcontrol-origin: margin;
 }
+
 QScrollBar::sub-line:vertical {
     background: #211f1f;
     height: 0px;
@@ -2425,7 +2432,7 @@ QPushButton[cssClass="btn-settings-check"] {
   background-image: url("://ic-arrow-drop-down-white");
   background-position: right center;
   background-repeat: no-repeat;
-  background-color: #211f1f;
+  background-color: #0f0b16;
   border: none;
   border-bottom: 1px solid #bababa;
   font-size: 20px;
@@ -2437,11 +2444,10 @@ QPushButton[cssClass="btn-settings-check"]:checked {
   background-image: url("://ic-arrow-drop-up-white");
   background-position: right center;
   background-repeat: no-repeat;
-  background-color: #211f1f;
+  background-color: #212121;
   border: none;
-  border-bottom: 1px solid #211f1f;
   font-size: 20px;
-  color: #707070;
+  color: #bababa;
   text-align: left;
 }
 
@@ -2905,6 +2911,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 #treeWidget::indicator:first:checked {
   image: url("://ic-check-box-dark-active");
 }
+
 #treeWidget::indicator:middle:checked {
   image: url("://ic-check-box-dark-active");
 }

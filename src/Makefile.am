@@ -75,7 +75,7 @@ if BUILD_BITCOIN_UTILS
 endif
 
 .PHONY: FORCE check-symbols check-security
-# __decenomy__ core #
+# dashdiamond core #
 BITCOIN_CORE_H = \
   activemasternode.h \
   addrdb.h \
