@@ -5,7 +5,7 @@ pipeline {
     environment {
         NAME = 'Trittium'
         BASE_NAME = 'trittium'
-        ZIP_NAME = 'Trittium'
+        ZIP_NAME = 'TRTT'
     }
 
     stages {
