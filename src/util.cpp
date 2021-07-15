@@ -84,20 +84,17 @@
 #include <openssl/crypto.h>
 #include <openssl/rand.h>
 
-const char * const PIVX_CONF_FILENAME = "ucr.conf";
-const char * const PIVX_PID_FILENAME = "ucr.pid";
+const char * const PIVX_CONF_FILENAME = "ultraclear.conf";
+const char * const PIVX_PID_FILENAME = "ultraclear.pid";
 const char * const PIVX_MASTERNODE_CONF_FILENAME = "masternode.conf";
 
 
-// Ultra Clear only features
+// UltraClear only features
 // Masternode
 bool fMasterNode = false;
 std::string strMasterNodePrivKey = "";
 std::string strMasterNodeAddr = "";
 bool fLiteMode = false;
-// SwiftX
-bool fEnableSwiftTX = true;
-int nSwiftTXDepth = 5;
 
 /** Spork enforcement enabled time */
 int64_t enforceMasternodePaymentsTime = 4085657524;
@@ -269,7 +266,7 @@ static std::string FormatException(const std::exception* pex, const char* pszThr
     char pszModule[MAX_PATH] = "";
     GetModuleFileNameA(NULL, pszModule, sizeof(pszModule));
 #else
-    const char* pszModule = "ucr";
+    const char* pszModule = "ultraclear";
 #endif
     if (pex)
         return strprintf(
@@ -289,13 +286,13 @@ void PrintExceptionContinue(const std::exception* pex, const char* pszThread)
 
 fs::path GetDefaultDataDir()
 {
-// Windows < Vista: C:\Documents and Settings\Username\Application Data\ucr
-// Windows >= Vista: C:\Users\Username\AppData\Roaming\ucr
-// Mac: ~/Library/Application Support/ucr
-// Unix: ~/.ucr
+// Windows < Vista: C:\Documents and Settings\Username\Application Data\ultraclear
+// Windows >= Vista: C:\Users\Username\AppData\Roaming\ultraclear
+// Mac: ~/Library/Application Support/ultraclear
+// Unix: ~/.ultraclear
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "ucr";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "ultraclear";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -307,10 +304,10 @@ fs::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "ucr";
+    return pathRet / "ultraclear";
 #else
     // Unix
-    return pathRet / ".ucr";
+    return pathRet / ".ultraclear";
 #endif
 #endif
 }
@@ -323,13 +320,13 @@ static RecursiveMutex csPathCached;
 static fs::path ZC_GetBaseParamsDir()
 {
     // Copied from GetDefaultDataDir and adapter for zcash params.
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\ucrParams
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\ucrParams
-    // Mac: ~/Library/Application Support/ucrParams
-    // Unix: ~/.ucr-params
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\ultraclearParams
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\ultraclearParams
+    // Mac: ~/Library/Application Support/ultraclearParams
+    // Unix: ~/.ultraclear-params
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "ucrParams";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "ultraclearParams";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -341,10 +338,10 @@ static fs::path ZC_GetBaseParamsDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "ucrParams";
+    return pathRet / "ultraclearParams";
 #else
     // Unix
-    return pathRet / ".ucr-params";
+    return pathRet / ".ultraclear-params";
 #endif
 #endif
 }
@@ -428,7 +425,7 @@ void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet,
 {
     fs::ifstream streamConfig(GetConfigFile());
     if (!streamConfig.good()) {
-        // Create empty ucr.conf if it does not exist
+        // Create empty ultraclear.conf if it does not exist
         FILE* configFile = fsbridge::fopen(GetConfigFile(), "a");
         if (configFile != NULL)
             fclose(configFile);
@@ -439,7 +436,7 @@ void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet,
     setOptions.insert("*");
 
     for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it) {
-        // Don't overwrite existing settings so command line settings override ucr.conf
+        // Don't overwrite existing settings so command line settings override ultraclear.conf
         std::string strKey = std::string("-") + it->string_key;
         std::string strValue = it->value[0];
         InterpretNegativeSetting(strKey, strValue);

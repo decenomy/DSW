@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Ultra Clear"
-            VALUE "FileDescription",    "ucrd (OSS daemon/client for Ultra Clear)"
+            VALUE "CompanyName",        "UltraClear"
+            VALUE "FileDescription",    "ultracleard (OSS daemon/client for UltraClear)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "ucrd"
+            VALUE "InternalName",       "ultracleard"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "ucrd.exe"
-            VALUE "ProductName",        "ucrd"
+            VALUE "OriginalFilename",   "ultracleard.exe"
+            VALUE "ProductName",        "ultracleard"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

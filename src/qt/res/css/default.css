@@ -1,18 +1,22 @@
 /****************************************************************************************/
 /* Global color codes:                                                                  */
-/* dark-purple:        #382f44                                                          */
-/* transparent-purple: #e9e7ef (for inactive backgrounds)                               */
 /*                                                                                      */
-/* light-purple1:      #b396f6 (main purple for white backgrounds)                      */
-/* light-purple2:      #9179c7 (sligtly darker for gradients)                           */
+/* These color codes should be blanket find/replaced in every file of the build         */
+/* (all files need to be replaced....including the .ui, .cpp, .svg, any file type)      */
+/* Ensure to persist the spacing used in the rgba() and QColor() constructs as shown    */
 /*                                                                                      */
-/* medium-purple1:     #6f5ca3 (on hover)                                               */
-/* medium-purple1:     #5c4c7c (main purple for dark backgrounds)                       */
-/* medium-purple2:     #5b4c86 (sligtly darker for gradients)                           */
+/* standard lighter brand color:                   #88edff                              */
+/* standard darker brand color:                    #27cafc                              */
+/* standard darker brand color as RGB                                                   */
+/*    with a 70% transparency indicator:           rgba(129, 8, 144, 0.7)               */
+/* dark tinted background brand color:             #0A1A29                              */
 /*                                                                                      */
-/* fuchsia:            #df1cca                                                          */
-/* background:         #f8f6f6                                                          */
-/* input fields:       #e7e7e7                                                          */
+/* staking chart POS color:                        #dd8b14                              */
+/* staking chart POS color as RGB:                 QColor(221,139,20)                   */
+/* staking chart MN color:                         #c06416                              */
+/* staking chart MN color as RGB:                  QColor(192,100,22)                   */
+/*                                                                                      */
+/* dark theme background color:                    #000000                              */
 /****************************************************************************************/
 /*                                                                                      */
 /* Note: it's sometimes not easy to figure out all those screen elements, so unused     */
@@ -64,7 +68,7 @@ color:#262626;
 }
 
 QToolBar {
-background-color: qlineargradient(y1:0, y2: 1, stop: 0 #211f1f, stop: 0.75 #211f1f, stop: 0.99 #ffffff, stop: 1 #ffffff);
+background-color: qlineargradient(y1:0, y2: 1, stop: 0 #091621, stop: 0.75 #091621, stop: 0.99 #ffffff, stop: 1 #ffffff);
 border:0px solid #262626;
 padding:1;
 margin:0;
@@ -73,7 +77,7 @@ width: 70px;
 
 QToolBar > QToolButton {
 Alignment: left;
-background-color: #211f1f;
+background-color: #091621;
 selection-background-color:transparent;
 border:0.5px solid #888;
 border-left: 0px;
@@ -88,22 +92,22 @@ height: 60px;
 }
 
 QToolBar > QToolButton:checked {
-background-color: qlineargradient(x1:0, x2: 1, stop: 0 #ffffff, stop: 0.07 #ffffff, stop: 0.0701 #211f1f, stop: 1 #211f1f);
+background-color: qlineargradient(x1:0, x2: 1, stop: 0 #ffffff, stop: 0.07 #ffffff, stop: 0.0701 #091621, stop: 1 #091621);
 color:#fff;
 }
 
 /* QToolBar > QToolButton:hover:!selected { */
 QToolBar > QToolButton:hover {
-background-color: qlineargradient(x1:0, x2: 1, stop: 0 #ffffff, stop: 0.07 #ffffff, stop: 0.0701 #211f1f, stop: 1 #211f1f);
+background-color: qlineargradient(x1:0, x2: 1, stop: 0 #ffffff, stop: 0.07 #ffffff, stop: 0.0701 #091621, stop: 1 #091621);
 color:#fff;
 }
 
 QToolBar > QToolButton#ToolbarSpacer:hover:!selected {
-background-color: #211f1f; /* Do not highlight placeholder on hover */
+background-color: #091621; /* Do not highlight placeholder on hover */
 }
 
 QToolBar > QToolButton:pressed {
-background-color: qlineargradient(x1:0, x2: 1, stop: 0 #00a300, stop: 0.07 #00a300, stop: 0.0701 #211f1f, stop: 1 #211f1f);
+background-color: qlineargradient(x1:0, x2: 1, stop: 0 #00a300, stop: 0.07 #00a300, stop: 0.0701 #091621, stop: 1 #091621);
 color:#fff;
 }
 
@@ -223,10 +227,10 @@ background-color:#f2f2f2;
 /***************************** Global Qt Objects ***********************************************************/
 
 QPushButton { /* Global Button Style */
-background-color: #88cfff;
+background-color: #88edff;
 border-width: 1px;
 border-style: outset;
-border-color: #88cfff;
+border-color: #88edff;
 border-radius: 2px;
 color:#262626;
 font-size:12px;
@@ -240,7 +244,7 @@ margin: 2px;
 }
 
 QPushButton:hover {
-background-color: qlineargradient(y1:0, y2: 1, stop: 0 #88cfff, stop: 0.1 #43b3ff, stop: 0.101 #43b3ff, stop: 0.9 #43b3ff, stop: 0.901 #43b3ff, stop: 1 #88cfff);
+background-color: qlineargradient(y1:0, y2: 1, stop: 0 #88edff, stop: 0.1 #88edff, stop: 0.101 #88edff, stop: 0.9 #88edff, stop: 0.901 #88edff, stop: 1 #88edff);
 }
 
 QPushButton:focus {
@@ -249,9 +253,9 @@ QPushButton:focus {
 }
 
 QPushButton:pressed {
-background-color: #0094f9;
-border:1px solid #0094f9;
-background-color: qlineargradient(y1:0, y2: 1, stop: 0 #88cfff, stop: 0.1 #43b3ff, stop: 0.101 #43b3ff, stop: 0.9 #43b3ff, stop: 0.901 #43b3ff, stop: 1 #88cfff);
+background-color: #27cafc;
+border:1px solid #27cafc;
+background-color: qlineargradient(y1:0, y2: 1, stop: 0 #88edff, stop: 0.1 #88edff, stop: 0.101 #88edff, stop: 0.9 #88edff, stop: 0.901 #88edff, stop: 1 #88edff);
 }
 
 /* Special handling for statusbar-icons (which are partly QPushButtons) */
@@ -276,7 +280,7 @@ background-color: #f2f2f2;
 }
 
 QComboBox { /* Dropdown Menus */
-border:1px solid #0094f9;
+border:1px solid #27cafc;
 padding: 3px 5px 3px 5px;
 background:#fcfcfc;
 min-height:25px;
@@ -569,22 +573,22 @@ border-radius: 4px;
 }
 
 QSlider::sub-page:horizontal {
-background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #0094f9, stop: 1 #0094f9);
-border: 1px solid #0094f9;
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #27cafc, stop: 1 #27cafc);
+border: 1px solid #27cafc;
 height: 10px;
 border-radius: 4px;
 }
 
 QSlider::add-page:horizontal {
-background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #0094f9, stop: 1 #0094f9);
-border: 1px solid #0094f9;
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #27cafc, stop: 1 #27cafc);
+border: 1px solid #27cafc;
 height: 10px;
 border-radius: 4px;
 }
 
 QSlider::handle:horizontal {
 background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #fff, stop:1 #f8f6f6);
-border: 1px solid #0094f9;
+border: 1px solid #27cafc;
 width: 18px;
 height: 18px;
 margin-top: -6px;
@@ -593,8 +597,8 @@ border-radius: 9px;
 }
 
 QSlider::handle:horizontal:hover {
-background-color: qradialgradient(cx: 0.5, cy: 0.5, fx: 0.5, fy: 0.5, radius: 0.7, stop: 0 #43b3ff, stop: 0.7 #ffffff);
-border: 2px solid #0094f9;
+background-color: qradialgradient(cx: 0.5, cy: 0.5, fx: 0.5, fy: 0.5, radius: 0.7, stop: 0 #88edff, stop: 0.7 #ffffff);
+border: 2px solid #27cafc;
 width: 16px;
 height: 16px;
 margin-top: -6px;
@@ -900,7 +904,7 @@ padding-right:5px;
 /* Header design for ALL tabs/pages *****************************************************/
 /* Horizontal lines */
 QFrame[frameShape="4"] { /* QFrame::HLine == 0x0004 */
-border:1px solid #211f1f;
+border:1px solid #091621;
 }
 
 /* Headers */
@@ -995,7 +999,7 @@ margin-left:16px;
 QWidget .QFrame#frame_Balances .QLabel#labelBalanceText { /* Available Balance Label */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
-color:#211f1f;
+color:#091621;
 margin-right:5px;
 padding-right:5px;
 font-weight:bold;
@@ -1019,7 +1023,7 @@ margin-left:16px;
 QWidget .QFrame#frame_Balances .QLabel#labelPendingText { /* Pending Balance Label */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
-color:#211f1f;
+color:#091621;
 margin-right:5px;
 padding-right:5px;
 font-weight:bold;
@@ -1043,7 +1047,7 @@ margin-left:16px;
 QWidget .QFrame#frame_Balances .QLabel#labelImmatureText { /* Immature Balance Label */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
-color:#211f1f;
+color:#091621;
 margin-right:5px;
 padding-right:5px;
 font-weight:bold;
@@ -1067,7 +1071,7 @@ margin-left:16px;
 QWidget .QFrame#frame_Balances .QLabel#labelTotalText { /* Total Balance Label */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
-color:#211f1f;
+color:#091621;
 margin-right:5px;
 padding-right:5px;
 font-weight:bold;
@@ -1091,7 +1095,7 @@ margin-left:16px;
 QWidget .QFrame#frame_Balances .QLabel#labelLockedBalanceText { /* Available z777 Label */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
-color:#211f1f;
+color:#091621;
 margin-right:5px;
 padding-right:5px;
 font-weight:bold;
@@ -1128,7 +1132,7 @@ padding-right:5px;
 QWidget .QFrame#frame_ZerocoinBalances .QLabel#labelzBalanceText { /* Available z777 Label */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
-color:#211f1f;
+color:#091621;
 margin-right:5px;
 padding-right:5px;
 font-weight:bold;
@@ -1146,7 +1150,7 @@ margin-left:0px;
 QWidget .QFrame#frame_ZerocoinBalances .QLabel#labelzBalanceUnconfirmedText { /* Unconfirmed z777 Label */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
-color:#211f1f;
+color:#091621;
 margin-right:5px;
 padding-right:5px;
 font-weight:bold;
@@ -1164,7 +1168,7 @@ margin-left:0px;
 QWidget .QFrame#frame_ZerocoinBalances .QLabel#labelzBalanceMatureText { /* Mature z777 Label */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
-color:#211f1f;
+color:#091621;
 margin-right:5px;
 padding-right:5px;
 font-weight:bold;
@@ -1182,7 +1186,7 @@ margin-left:0px;
 QWidget .QFrame#frame_ZerocoinBalances .QLabel#labelzBalanceImmatureText { /* Immature z777 Label */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
-color:#211f1f;
+color:#091621;
 margin-right:5px;
 padding-right:5px;
 font-weight:bold;
@@ -1211,7 +1215,7 @@ padding-right:5px;
 QWidget .QFrame#frame_CombinedBalances .QLabel#labelBalanceTextz { /* Available 777 Label */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
-color:#211f1f;
+color:#091621;
 margin-right:5px;
 padding-right:5px;
 font-weight:bold;
@@ -1222,13 +1226,13 @@ QWidget .QFrame#frame_CombinedBalances .QLabel#labelBalancez { /* Available 777 
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 font-size:26px;
 font-weight:normal;
-color:#211f1f;
+color:#091621;
 }
 
 QWidget .QFrame#frame_CombinedBalances .QLabel#labelzBalanceTextz { /* Available z777 Label */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
-color:#211f1f;
+color:#091621;
 margin-right:5px;
 padding-right:5px;
 font-weight:bold;
@@ -1246,7 +1250,7 @@ margin-left:0px;
 QWidget .QFrame#frame_CombinedBalances .QLabel#labelTotalTextz { /* Available total Label */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 min-width:160px;
-color:#211f1f;
+color:#091621;
 margin-right:5px;
 padding-right:5px;
 font-weight:bold;
@@ -1257,7 +1261,7 @@ QWidget .QFrame#frame_CombinedBalances .QLabel#labelTotalz { /* Available total 
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 font-size:26px;
 font-weight:normal;
-color:#211f1f;
+color:#091621;
 }
 
 /**************************** RECENT TRANSACTIONS ***************************************/
@@ -1367,17 +1371,6 @@ font-weight:bold;
 border-radius:5px;
 padding-top:20px;
 padding-bottom:18px;
-}
-
-QDialog#SendCoinsDialog .QCheckBox#checkSwiftTX { /* SwiftTX Checkbox */
-color:#616161;
-font-weight:bold;
-/*background: qradialgradient(cx:0.5, cy:0.5, radius: 0.5, fx:0.5, fy:0.5, stop:0 rgba(248, 246, 246, 128), stop: 1 rgba(0, 0, 0, 0));*/
-border-radius:5px;
-padding-top:20px;
-padding-bottom:18px;
-margin-left:10px;
-margin-right:20px;
 }
 
 /* This QLabel uses name = "label" which conflicts with Address Book -> New Address */
@@ -1650,7 +1643,7 @@ border:1px solid #d7d7d7;
 /* QWidget#PrivacyDialog */
 
 QWidget#PrivacyDialog .QFrame[frameShape="4"] { /* QFrame::HLine == 0x0004 */
-border:1px solid #211f1f;
+border:1px solid #091621;
 }
 
 QWidget#PrivacyDialog .QFrame#frame_Content {

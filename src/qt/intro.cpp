@@ -197,7 +197,7 @@ bool Intro::pickDataDirectory()
                 TryCreateDirectory(GUIUtil::qstringToBoostPath(dataDir));
                 break;
             } catch (const fs::filesystem_error& e) {
-                QMessageBox::critical(0, tr("Ultra Clear"),
+                QMessageBox::critical(0, tr("UltraClear"),
                     tr("Error: Specified data directory \"%1\" cannot be created.").arg(dataDir));
                 // fall through, back to choosing screen
             }
@@ -207,8 +207,8 @@ bool Intro::pickDataDirectory()
     }
 
     /* Only override -datadir if different from the default, to make it possible to
-     * override -datadir in the ucr.conf file in the default data directory
-     * (to be consistent with ucrd behavior)
+     * override -datadir in the ultraclear.conf file in the default data directory
+     * (to be consistent with ultracleard behavior)
      */
 
     if (dataDir != getDefaultDataDirectory())

@@ -13,12 +13,9 @@
 */
 
 enum SporkId : int32_t {
-    SPORK_2_SWIFTTX                             = 10001,
-    SPORK_3_SWIFTTX_BLOCK_FILTERING             = 10002,
-    SPORK_4_NOOP                                = 10003,
-    SPORK_5_MAX_VALUE                           = 10004,
-    SPORK_6_NOOP                                = 10005,
-    SPORK_7_NOOP                                = 10006,
+    SPORK_2_NOOP                                = 10001,
+    SPORK_3_NOOP                                = 10002,
+    SPORK_5_NOOP                                = 10004,
     SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT      = 10007,
     SPORK_9_MASTERNODE_BUDGET_ENFORCEMENT       = 10008,
     SPORK_10_MASTERNODE_PAY_UPDATED_NODES       = 10009,
@@ -28,9 +25,8 @@ enum SporkId : int32_t {
     SPORK_14_MIN_PROTOCOL_ACCEPTED              = 10013,
     SPORK_15_NOOP                               = 10014,
     SPORK_16_ZEROCOIN_MAINTENANCE_MODE          = 10015,
-    SPORK_17_NOOP                               = 10016,
-    SPORK_18_COLDSTAKING_ENFORCEMENT            = 10017,
-    SPORK_19_ZEROCOIN_PUBLICSPEND_V4            = 10018,
+    SPORK_17_NOOP                               = 10017,
+    SPORK_18_ZEROCOIN_PUBLICSPEND_V4            = 10018,
 
     SPORK_101_SERVICES_ENFORCEMENT              = 10100,
     SPORK_102_FORCE_ENABLED_MASTERNODE          = 10101,

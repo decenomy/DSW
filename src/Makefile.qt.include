@@ -2,10 +2,10 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-bin_PROGRAMS += qt/ucr-qt
+bin_PROGRAMS += qt/ultraclear-qt
 EXTRA_LIBRARIES += qt/libbitcoinqt.a
 
-# ucr qt core #
+# ultraclear qt core #
 include Makefile.qt_locale.include
 
 QT_FORMS_UI = \
@@ -35,7 +35,6 @@ QT_FORMS_UI = \
   qt/pivx/forms/mnrow.ui \
   qt/pivx/forms/masternodeswidget.ui \
   qt/pivx/forms/myaddressrow.ui \
-  qt/pivx/forms/csrow.ui \
   qt/pivx/forms/sendchangeaddressdialog.ui \
   qt/pivx/forms/sendconfirmdialog.ui \
   qt/pivx/forms/sendcustomfeedialog.ui \
@@ -49,7 +48,6 @@ QT_FORMS_UI = \
   qt/pivx/forms/tooltipmenu.ui \
   qt/pivx/forms/addresseswidget.ui \
   qt/pivx/forms/defaultdialog.ui \
-  qt/pivx/forms/coldstakingwidget.ui \
   qt/pivx/settings/forms/settingsbackupwallet.ui \
   qt/pivx/settings/forms/settingsexportcsv.ui \
   qt/pivx/settings/forms/settingsbittoolwidget.ui \
@@ -116,13 +114,11 @@ QT_MOC_CPP = \
   qt/pivx/moc_contactdropdownrow.cpp \
   qt/pivx/moc_mninfodialog.cpp \
   qt/pivx/moc_optionbutton.cpp \
-  qt/pivx/moc_coldstakingmodel.cpp \
   qt/pivx/moc_mnmodel.cpp \
   qt/pivx/moc_masternodewizarddialog.cpp \
   qt/pivx/moc_mnrow.cpp \
   qt/pivx/moc_masternodeswidget.cpp \
   qt/pivx/moc_myaddressrow.cpp \
-  qt/pivx/moc_csrow.cpp \
   qt/pivx/moc_contactsdropdown.cpp \
   qt/pivx/moc_sendchangeaddressdialog.cpp \
   qt/pivx/moc_sendconfirmdialog.cpp \
@@ -137,7 +133,6 @@ QT_MOC_CPP = \
   qt/pivx/moc_tooltipmenu.cpp \
   qt/pivx/moc_addresseswidget.cpp \
   qt/pivx/moc_defaultdialog.cpp \
-  qt/pivx/moc_coldstakingwidget.cpp \
   qt/pivx/settings/moc_settingsbackupwallet.cpp \
   qt/pivx/settings/moc_settingsexportcsv.cpp \
   qt/pivx/settings/moc_settingsbittoolwidget.cpp \
@@ -237,13 +232,11 @@ BITCOIN_QT_H = \
   qt/pivx/contactdropdownrow.h \
   qt/pivx/mninfodialog.h \
   qt/pivx/optionbutton.h \
-  qt/pivx/coldstakingmodel.h \
   qt/pivx/mnmodel.h \
   qt/pivx/masternodewizarddialog.h \
   qt/pivx/mnrow.h \
   qt/pivx/masternodeswidget.h \
   qt/pivx/myaddressrow.h \
-  qt/pivx/csrow.h \
   qt/pivx/contactsdropdown.h \
   qt/pivx/sendchangeaddressdialog.h \
   qt/pivx/sendconfirmdialog.h \
@@ -258,7 +251,6 @@ BITCOIN_QT_H = \
   qt/pivx/tooltipmenu.h \
   qt/pivx/addresseswidget.h \
   qt/pivx/defaultdialog.h \
-  qt/pivx/coldstakingwidget.h \
   qt/pivx/settings/settingsbackupwallet.h \
   qt/pivx/settings/settingsexportcsv.h \
   qt/pivx/settings/settingsbittoolwidget.h \
@@ -298,8 +290,6 @@ RES_ICONS = \
   qt/pivx/res/img/ic-update.svg \
   qt/pivx/res/img/bg-multi-number.svg \
   qt/pivx/res/img/ic-check-mint-off.svg \
-  qt/pivx/res/img/ic-nav-cold-staking.svg \
-  qt/pivx/res/img/ic-nav-cold-staking-active.svg \
   qt/pivx/res/img/ic-nav-dashboard-active.svg \
   qt/pivx/res/img/ic-wallet-status-locked.svg \
   qt/pivx/res/img/bg-splash.svg \
@@ -442,11 +432,6 @@ RES_ICONS = \
   qt/pivx/res/img/ic-transaction-warning.svg \
   qt/pivx/res/img/ic-transaction-mint.svg \
   qt/pivx/res/img/ic-transaction-mint-inactive.svg \
-  qt/pivx/res/img/ic-check-cold-staking.svg \
-  qt/pivx/res/img/ic-check-cold-staking-off.svg \
-  qt/pivx/res/img/ic-check-cold-staking-enabled.svg \
-  qt/pivx/res/img/dark/ic-transaction-cs-contract.svg \
-  qt/pivx/res/img/dark/ic-transaction-cs-contract-inactive.svg \
   qt/pivx/res/img/img-qr.svg \
   qt/pivx/res/img/ic-check-connect-off.svg \
   qt/pivx/res/img/ic-check-tor-off.svg \
@@ -485,16 +470,6 @@ RES_ICONS = \
   qt/pivx/res/img/ic-arrow-drop-up-purple.svg \
   qt/pivx/res/img/ic-check-liliac-indeterminate.svg \
   qt/pivx/res/img/ic-check-box-liliac-indeterminate.svg \
-  qt/pivx/res/img/ic-transaction-stake-delegated.svg \
-  qt/pivx/res/img/ic-transaction-stake-delegated-inactive.svg \
-  qt/pivx/res/img/ic-transaction-stake-hot.svg \
-  qt/pivx/res/img/ic-transaction-stake-hot-inactive.svg \
-  qt/pivx/res/img/dark/ic-transaction-stake-hot.svg \
-  qt/pivx/res/img/dark/ic-transaction-stake-hot-inactive.svg \
-  qt/pivx/res/img/dark/ic-transaction-stake-delegated.svg \
-  qt/pivx/res/img/dark/ic-transaction-stake-delegated-inactive.svg \
-  qt/pivx/res/img/ic-transaction-cs-contract.svg \
-  qt/pivx/res/img/ic-transaction-cs-contract-inactive.svg \
   qt/pivx/res/img/ic-check-box-indeterminate.svg \
   qt/pivx/res/img/ani-loading-dark.gif \
   qt/pivx/res/img/ani-loading.gif
@@ -562,13 +537,11 @@ BITCOIN_QT_WALLET_CPP = \
   qt/pivx/contactsdropdown.cpp \
   qt/pivx/optionbutton.cpp \
   qt/pivx/mninfodialog.cpp \
-  qt/pivx/coldstakingmodel.cpp \
   qt/pivx/mnmodel.cpp \
   qt/pivx/masternodewizarddialog.cpp \
   qt/pivx/mnrow.cpp \
   qt/pivx/masternodeswidget.cpp \
   qt/pivx/myaddressrow.cpp \
-  qt/pivx/csrow.cpp \
   qt/pivx/sendchangeaddressdialog.cpp \
   qt/pivx/sendconfirmdialog.cpp \
   qt/pivx/sendcustomfeedialog.cpp \
@@ -582,7 +555,6 @@ BITCOIN_QT_WALLET_CPP = \
   qt/pivx/tooltipmenu.cpp \
   qt/pivx/addresseswidget.cpp \
   qt/pivx/defaultdialog.cpp \
-  qt/pivx/coldstakingwidget.cpp \
   qt/pivx/settings/settingsbackupwallet.cpp \
   qt/pivx/settings/settingsexportcsv.cpp \
   qt/pivx/settings/settingsbittoolwidget.cpp \
@@ -611,7 +583,6 @@ endif
 
 RES_IMAGES = \
   qt/res/images/about.png \
-  qt/res/images/about1.png \
   qt/res/images/splash.png \
   qt/res/images/splash_testnet.png \
   qt/res/images/splash_regtest.png
@@ -643,37 +614,37 @@ QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:
 # Most files will depend on the forms and moc files as includes. Generate them
 # before anything else.
 $(QT_MOC): $(QT_FORMS_H)
-$(qt_libbitcoinqt_a_OBJECTS) $(qt_ucr_qt_OBJECTS) : | $(QT_MOC)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_ultraclear_qt_OBJECTS) : | $(QT_MOC)
 
 #Generating these with a half-written protobuf header leads to wacky results.
 #This makes sure it's done.
 $(QT_MOC): $(PROTOBUF_H)
 $(QT_MOC_CPP): $(PROTOBUF_H)
 
-# ucr-qt binary #
-qt_ucr_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+# ultraclear-qt binary #
+qt_ultraclear_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
   $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
-qt_ucr_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_ultraclear_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
 
-qt_ucr_qt_SOURCES = qt/pivx.cpp
+qt_ultraclear_qt_SOURCES = qt/pivx.cpp
 if TARGET_DARWIN
-  qt_ucr_qt_SOURCES += $(BITCOIN_MM)
+  qt_ultraclear_qt_SOURCES += $(BITCOIN_MM)
 endif
 if TARGET_WINDOWS
-  qt_ucr_qt_SOURCES += $(BITCOIN_RC)
+  qt_ultraclear_qt_SOURCES += $(BITCOIN_RC)
 endif
-qt_ucr_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
+qt_ultraclear_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
 if ENABLE_WALLET
-qt_ucr_qt_LDADD += $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
+qt_ultraclear_qt_LDADD += $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
 endif
 if ENABLE_ZMQ
-qt_ucr_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+qt_ultraclear_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 endif
-qt_ucr_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBBITCOIN_ZEROCOIN) $(LIBZCASH_LIBS) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
+qt_ultraclear_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBBITCOIN_ZEROCOIN) $(LIBZCASH_LIBS) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
   $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(SVG_LIBS) $(CHARTS_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
   $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
-qt_ucr_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-qt_ucr_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
+qt_ultraclear_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_ultraclear_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
 
 #locale/foo.ts -> locale/foo.qm
 QT_QM=$(QT_TS:.ts=.qm)
@@ -705,7 +676,7 @@ CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda 
 CLEANFILES += $(CLEAN_QT)
 
 pivx_qt_clean: FORCE
-	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_ucr_qt_OBJECTS) qt/pivx-qt$(EXEEXT) $(LIBBITCOINQT)
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_ultraclear_qt_OBJECTS) qt/pivx-qt$(EXEEXT) $(LIBBITCOINQT)
 
 pivx_qt : qt/pivx-qt$(EXEEXT)
 

@@ -14,8 +14,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between ucr-cli and ucrd)
- * of a given instance of the Ultra Clear system.
+ * CBaseChainParams defines the base parameters (shared between ultraclear-cli and ultracleard)
+ * of a given instance of the UltraClear system.
  */
 class CBaseChainParams
 {

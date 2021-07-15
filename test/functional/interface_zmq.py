@@ -46,14 +46,14 @@ class ZMQTest (PivxTestFramework):
         except ImportError:
             raise SkipTest("python3-zmq module not available.")
 
-        # Check that ucr has been built with ZMQ enabled.
+        # Check that ultraclear has been built with ZMQ enabled.
         config = configparser.ConfigParser()
         if not self.options.configfile:
             self.options.configfile = os.path.abspath(os.path.join(os.path.dirname(__file__), "../config.ini"))
         config.read_file(open(self.options.configfile))
 
         if not config["components"].getboolean("ENABLE_ZMQ"):
-            raise SkipTest("ucrd has not been built with zmq enabled.")
+            raise SkipTest("ultracleard has not been built with zmq enabled.")
 
         # Initialize ZMQ context and socket.
         # All messages are received in the same socket which means

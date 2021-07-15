@@ -267,7 +267,7 @@ public:
     size_t DynamicMemoryUsage() const;
 
     /** 
-     * Amount of ucr coming in to a transaction
+     * Amount of ultraclear coming in to a transaction
      * Note that lightweight clients may not know anything besides the hash of previous transactions,
      * so may not be able to calculate this.
      *
@@ -302,7 +302,7 @@ private:
 };
 
 //! Utility function to add all of a transaction's outputs to a cache.
-// ucr: It assumes that overwrites are never possible due to BIP34 always in effect
+// ultraclear: It assumes that overwrites are never possible due to BIP34 always in effect
 void AddCoins(CCoinsViewCache& cache, const CTransaction& tx, int nHeight);
 
 //! Utility function to find any unspent output with a given txid.

@@ -414,7 +414,7 @@ public:
 
     // Verify and vote on finalized budget
     void CheckAndVote();
-    //total ucr paid out by this budget
+    //total ultraclear paid out by this budget
     CAmount GetTotalPayout() const;
     //vote on this finalized budget as a masternode
     void SubmitVote();

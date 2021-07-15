@@ -15,24 +15,20 @@
 #define MAKE_SPORK_DEF(name, defaultValue) CSporkDef(name, defaultValue, #name)
 
 std::vector<CSporkDef> sporkDefs = {
-    MAKE_SPORK_DEF(SPORK_2_SWIFTTX,                         4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_3_SWIFTTX_BLOCK_FILTERING,         4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_4_NOOP,                            4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_5_MAX_VALUE,                       1000),          // 1000
-    MAKE_SPORK_DEF(SPORK_6_NOOP,                            4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_7_NOOP,                            4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_2_NOOP,                            4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_3_NOOP,                            4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_5_NOOP,                            4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT,  4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_9_MASTERNODE_BUDGET_ENFORCEMENT,   4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_10_MASTERNODE_PAY_UPDATED_NODES,   4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_11_NOOP,                           4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_12_NOOP,                           4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_13_ENABLE_SUPERBLOCKS,             4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_14_MIN_PROTOCOL_ACCEPTED,          70917ULL),      // UCR 2.0
+    MAKE_SPORK_DEF(SPORK_14_MIN_PROTOCOL_ACCEPTED,          4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_15_NOOP,                           4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_16_ZEROCOIN_MAINTENANCE_MODE,      4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_17_NOOP,                           4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_18_COLDSTAKING_ENFORCEMENT,        4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_19_ZEROCOIN_PUBLICSPEND_V4,        4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_18_ZEROCOIN_PUBLICSPEND_V4,        4070908800ULL), // OFF
 
     MAKE_SPORK_DEF(SPORK_101_SERVICES_ENFORCEMENT,          4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_102_FORCE_ENABLED_MASTERNODE ,     4070908800ULL), // OFF
@@ -59,7 +55,7 @@ void CSporkManager::Clear()
     mapSporksActive.clear();
 }
 
-// ucr: on startup load spork values from previous session if they exist in the sporkDB
+// ultraclear: on startup load spork values from previous session if they exist in the sporkDB
 void CSporkManager::LoadSporksFromDB()
 {
     for (const auto& sporkDef : sporkDefs) {
@@ -107,7 +103,7 @@ void CSporkManager::ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStr
             return;
         }
 
-        if (Params().GetConsensus().NetworkUpgradeActive(chainActive.Tip()->nHeight, Consensus::UPGRADE_V4_0) &&
+        if (Params().GetConsensus().NetworkUpgradeActive(chainActive.Tip()->nHeight, Consensus::UPGRADE_TIME_PROTOCOL_V2) &&
             spork.nMessVersion != MessageVersion::MESS_VER_HASH) {
             LogPrintf("%s : nMessVersion=%d not accepted anymore\n", __func__, spork.nMessVersion);
             return;
@@ -164,7 +160,7 @@ void CSporkManager::ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStr
         }
         spork.Relay();
 
-        // ucr: add to spork database.
+        // ultraclear: add to spork database.
         pSporkDB->WriteSpork(spork.nSporkID, spork);
     }
     if (strCommand == NetMsgType::GETSPORKS) {

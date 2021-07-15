@@ -29,16 +29,16 @@
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>ucr-Qt</string>
+  <string>ultraclear-Qt</string>
 
   <key>CFBundleName</key>
-  <string>ucr-Qt</string>
+  <string>ultraclear-Qt</string>
 
   <key>LSHasLocalizedDisplayName</key>
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>io.ucr.ucr-Qt</string>
+  <string>io.ultraclear.ultraclear-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>

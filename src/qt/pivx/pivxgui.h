@@ -21,7 +21,6 @@
 #include "qt/pivx/send.h"
 #include "qt/pivx/receivewidget.h"
 #include "qt/pivx/addresseswidget.h"
-#include "qt/pivx/coldstakingwidget.h"
 #include "qt/pivx/masternodeswidget.h"
 #include "qt/pivx/snackbar.h"
 #include "qt/pivx/settings/settingswidget.h"
@@ -35,7 +34,7 @@ class WalletModel;
 
 
 /**
-  Ultra Clear GUI main class. This class represents the main window of the Ultra Clear UI. It communicates with both the client and
+  UltraClear GUI main class. This class represents the main window of the UltraClear UI. It communicates with both the client and
   wallet models to give the user an up-to-date view of the current core state.
 */
 class PIVXGUI : public QMainWindow
@@ -67,7 +66,6 @@ public Q_SLOTS:
     void goToReceive();
     void goToAddresses();
     void goToMasterNodes();
-    void goToColdStaking();
     void goToSettings();
     void goToSettingsInfo();
     void goToDebugConsole();
@@ -134,7 +132,6 @@ private:
     ReceiveWidget *receiveWidget = nullptr;
     AddressesWidget *addressesWidget = nullptr;
     MasterNodesWidget *masterNodesWidget = nullptr;
-    ColdStakingWidget *coldStakingWidget = nullptr;
     SettingsWidget* settingsWidget = nullptr;
 
     SnackBar *snackBar = nullptr;

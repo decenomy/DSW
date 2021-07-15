@@ -432,33 +432,6 @@ za staking</translation>
     </message>
 </context>
 <context>
-    <name>CSRow</name>
-    <message>
-        <source>Form</source>
-        <translation>Obrazac</translation>
-    </message>
-    <message>
-        <source>Savings</source>
-        <translation>Ušteđjevina</translation>
-    </message>
-    <message>
-        <source>0,00 UCR</source>
-        <translation>0,00 UCR</translation>
-    </message>
-    <message>
-        <source>address</source>
-        <translation>adresa</translation>
-    </message>
-    <message>
-        <source>Not Staking</source>
-        <translation>Staking neaktivan</translation>
-    </message>
-    <message>
-        <source>Own delegation</source>
-        <translation>Vlastita delegacija</translation>
-    </message>
-</context>
-<context>
     <name>ClientModel</name>
     <message>
         <source>Total: %1 (IPv4: %2 / IPv6: %3 / Tor: %4 / Unknown: %5)</source>
@@ -664,10 +637,6 @@ za staking</translation>
         <translation>da</translation>
     </message>
     <message>
-        <source>delegated to %1 for cold staking</source>
-        <translation>delegirano %1 za cold staking</translation>
-    </message>
-    <message>
         <source>Select All</source>
         <translation>Označi sve</translation>
     </message>
@@ -710,227 +679,6 @@ za staking</translation>
     <message>
         <source>(change)</source>
         <translation>(promjena)</translation>
-    </message>
-</context>
-<context>
-    <name>ColdStakingWidget</name>
-    <message>
-        <source>Form</source>
-        <translation>Obrazac</translation>
-    </message>
-    <message>
-        <source>Owner address (optional, if empty a new address will be created)</source>
-        <translation>Adresa vlasnika (neobavezno, ako ostavite prazno nova adresa će biti napravljena)</translation>
-    </message>
-    <message>
-        <source>Total Staking:</source>
-        <translation>Ukupan staking:</translation>
-    </message>
-    <message>
-        <source>Cold Staking</source>
-        <translation>Cold Staking</translation>
-    </message>
-    <message>
-        <source>Staker</source>
-        <translation>Staker</translation>
-    </message>
-    <message>
-        <source>Delegation</source>
-        <translation>Delegacija</translation>
-    </message>
-    <message>
-        <source>Delegate</source>
-        <translation>Delegiraj</translation>
-    </message>
-    <message>
-        <source>Clear All</source>
-        <translation>Očisti sve</translation>
-    </message>
-    <message>
-        <source>Delegated balance history</source>
-        <translation>Povijest delegiranih iznosa</translation>
-    </message>
-    <message>
-        <source>No delegations yet</source>
-        <translation>Nema još delegacija</translation>
-    </message>
-    <message>
-        <source>Total Staking: %1</source>
-        <translation>Ukupan staking: %1</translation>
-    </message>
-    <message>
-        <source>Error loading delegations: %1</source>
-        <translation>Greška pri učitavanju delegacija: %1</translation>
-    </message>
-    <message>
-        <source>You can delegate your UCRs, letting a hot node (24/7 online node)
-stake on your behalf, while you keep the keys securely offline.</source>
-        <translation>Možete delegirati svoje UCR-ove, dopuštajući hot node-u (24/7 online node) da stake-a za Vas, dok su Vaši ključevi offline na sigurnom.</translation>
-    </message>
-    <message>
-        <source>Enter owner address</source>
-        <translation>Unesi adresu vlasnika</translation>
-    </message>
-    <message>
-        <source>Accept UCR delegation / Delegate UCR</source>
-        <translation>Prihvati UCR delegaciju / Delegiraj UCR</translation>
-    </message>
-    <message>
-        <source>Cold Staking address</source>
-        <translation>Cold Staking adresa</translation>
-    </message>
-    <message>
-        <source>No receive addresses available, you can go to the receive screen and create some there!</source>
-        <translation>Nema dostupnih adresa, možete otići na zaslon primanja i tamo ih stvoriti!</translation>
-    </message>
-    <message>
-        <source>No contacts available, you can go to the contacts screen and add some there!</source>
-        <translation>Nema dostupnih kontakata, možete otići na zaslon s kontaktima i tamo ih dodati!</translation>
-    </message>
-    <message>
-        <source>Cannot send delegation, wallet locked</source>
-        <translation>Ne mogu poslati delegaciju, novčanik je zaključan</translation>
-    </message>
-    <message>
-        <source>Cold staking is networkely disabled</source>
-        <translation>Cold staking je mrežno onemogućen</translation>
-    </message>
-    <message>
-        <source>Coin Control</source>
-        <translation>Upravljanje novčićima</translation>
-    </message>
-    <message>
-        <source>Create Cold Staking Address</source>
-        <translation>Stvori Cold Staking adresu</translation>
-    </message>
-    <message>
-        <source>My Cold Staking Addresses</source>
-        <translation>Moje Cold Staking adrese</translation>
-    </message>
-    <message>
-        <source>Invalid entry</source>
-        <translation>Neispravan unos</translation>
-    </message>
-    <message>
-        <source>Invalid entry, minimum delegable amount is </source>
-        <translation>Neispravan unos, minimalni delegirajući iznos je</translation>
-    </message>
-    <message>
-        <source>Owner address invalid</source>
-        <translation>Neispravna adresa vlasnika</translation>
-    </message>
-    <message>
-        <source>ALERT!</source>
-        <translation>PAŽNJA!</translation>
-    </message>
-    <message>
-        <source>Delegating to an external owner address!
-
-The delegated coins will NOT be spendable by this wallet.
-Spending these coins will need to be done from the wallet or
-device containing the owner address.
-
-Do you wish to proceed?</source>
-        <translation>Preusmjeravanje na vanjsku adresu vlasnik!
-
-Delegirani novčići NEĆE se moći potrošiti s ovim novčanikom.
-Potrošnja ovih novčića morat će se obaviti iz novčanika ili uredjaja koji sadržava adresu vlasnika.
-
-Želite li nastaviti?</translation>
-    </message>
-    <message>
-        <source>Staking address corresponds to this wallet, change it to an external node</source>
-        <translation>Adresa za staking odgovara ovom novčaniku, promijenite je na vanjsku adresu</translation>
-    </message>
-    <message>
-        <source>Cannot create transaction.</source>
-        <translation>Neuspjelo stvaranje transakcije.</translation>
-    </message>
-    <message>
-        <source>Coins delegated</source>
-        <translation>Novčići delegirani</translation>
-    </message>
-    <message>
-        <source>You don't have any %1 to select.</source>
-        <translation>Nemate ni jedan %1 za odabrati.</translation>
-    </message>
-    <message>
-        <source>Cannot perform operation, wallet locked</source>
-        <translation>Ne može se izvršiti operacija, novčanik je zaključan</translation>
-    </message>
-    <message>
-        <source>URI copied to clipboard</source>
-        <translation>URI kopiran u medjuspremnik</translation>
-    </message>
-    <message>
-        <source>Address copied to clipboard</source>
-        <translation>Adresa kopirana u medjuspremnik</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation>Kopiraj</translation>
-    </message>
-    <message>
-        <source>Edit</source>
-        <translation>Uredi</translation>
-    </message>
-    <message>
-        <source>Stake</source>
-        <translation>Stakeaj</translation>
-    </message>
-    <message>
-        <source>Blacklist</source>
-        <translation>Crna lista</translation>
-    </message>
-    <message>
-        <source>Edit Label</source>
-        <translation>Uredi naziv</translation>
-    </message>
-    <message>
-        <source>Copy owner
-address</source>
-        <translation>Kopiraj adresu
-vlasnika</translation>
-    </message>
-    <message>
-        <source>Address copied</source>
-        <translation>Adresa kopirana</translation>
-    </message>
-    <message>
-        <source>Edit Cold Address Label</source>
-        <translation>Uredi naziv Cold adrese</translation>
-    </message>
-    <message>
-        <source>Whitelist failed, please check the logs</source>
-        <translation>Dodavanje na popis dozvoljenih neuspjelo, molimo provjerite zapisnik</translation>
-    </message>
-    <message>
-        <source> staking!</source>
-        <translation>staking!</translation>
-    </message>
-    <message>
-        <source>Blacklist failed, please check the logs</source>
-        <translation>Dodavanje na popis zabranjenih neuspjelo, molimo provjerite zapisnik</translation>
-    </message>
-    <message>
-        <source> blacklisted from staking</source>
-        <translation>na crnoj listi za staking</translation>
-    </message>
-    <message>
-        <source>Owner address copied</source>
-        <translation>Adresa vlasnika kopirana</translation>
-    </message>
-    <message>
-        <source>Edit Owner Address Label</source>
-        <translation>Uredi oznaku adrese vlasnika</translation>
-    </message>
-    <message>
-        <source>Address label saved</source>
-        <translation>Naziv adrese spremljen</translation>
-    </message>
-    <message>
-        <source>Error storing address label</source>
-        <translation>Greška pri spremanju oznake adrese</translation>
     </message>
 </context>
 <context>
@@ -1132,16 +880,16 @@ Automatski će se pokrenuti čim novčanik dobije dovoljno potvrda o neiskorišt
         <translation>verzija</translation>
     </message>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Ultra Clear</source>
-        <translation>O Ultra Clear-u</translation>
+        <source>About UltraClear</source>
+        <translation>O UltraClear-u</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1195,16 +943,16 @@ Automatski će se pokrenuti čim novčanik dobije dovoljno potvrda o neiskorišt
         <translation>Dobrodošli</translation>
     </message>
     <message>
-        <source>Welcome to Ultra Clear.</source>
-        <translation>Dobrodošli u Ultra Clear.</translation>
+        <source>Welcome to UltraClear.</source>
+        <translation>Dobrodošli u UltraClear.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Ultra Clear will store its data.</source>
-        <translation>Budući da je prvi put pokrenut program, možete odabrati gdje će Ultra Clear pohraniti svoje podatke.</translation>
+        <source>As this is the first time the program is launched, you can choose where UltraClear will store its data.</source>
+        <translation>Budući da je prvi put pokrenut program, možete odabrati gdje će UltraClear pohraniti svoje podatke.</translation>
     </message>
     <message>
-        <source>Ultra Clear will download and store a copy of the UCR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Ultra Clear preuzima i pohranjuje kopiju UCR blok-lanca. Barem će %1GB podataka biti pohranjeno u ovom direktoriju i to će s vremenom rasti. Novčanik će također biti pohranjena u ovom direktoriju.</translation>
+        <source>UltraClear will download and store a copy of the UCR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>UltraClear preuzima i pohranjuje kopiju UCR blok-lanca. Barem će %1GB podataka biti pohranjeno u ovom direktoriju i to će s vremenom rasti. Novčanik će također biti pohranjena u ovom direktoriju.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1223,8 +971,8 @@ Automatski će se pokrenuti čim novčanik dobije dovoljno potvrda o neiskorišt
         <translation>OK</translation>
     </message>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1538,7 +1286,7 @@ Molimo pričekajte nekoliko minuta (zalog za Masternode zahtjeva %1 potvrda).</t
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the ucr.conf file
+You will only have to paste the data in the ultraclear.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1546,7 +1294,7 @@ this controller wallet (select the Masternode in the list and press "start").
 na udaljenom poslužitelju u medjuspremnik.
 
 
-Podatke ćete morati zalijepiti u datoteku ucr.conf
+Podatke ćete morati zalijepiti u datoteku ultraclear.conf
 na udaljenom poslužitelju i pokrenuti ga, a zatim pokrenite Masternode
 koristeći ovaj controller novčanik (na popisu odaberite Masternode i pritisnite "start").
 </translation>
@@ -1673,12 +1421,6 @@ NODES</source>
 NODEOVI</translation>
     </message>
     <message>
-        <source>COLD
-STAKING</source>
-        <translation>COLD
-STAKING</translation>
-    </message>
-    <message>
         <source>SETTINGS
 </source>
         <translation>POSTAVKE
@@ -1732,8 +1474,8 @@ STAKING</translation>
         <translation>Parsirani podaci preveliki</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "ucr" prefix</source>
-        <translation>Nevažeći URI, ne počinje "ucr" prefiksom</translation>
+        <source>Invalid URI, not starting with "ultraclear" prefix</source>
+        <translation>Nevažeći URI, ne počinje "ultraclear" prefiksom</translation>
     </message>
 </context>
 <context>
@@ -2027,8 +1769,8 @@ STAKING</translation>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -2055,8 +1797,8 @@ STAKING</translation>
         <translation>Napusti aplikaciju</translation>
     </message>
     <message>
-        <source>Ultra Clear client</source>
-        <translation>Ultra Clear Klijent</translation>
+        <source>UltraClear client</source>
+        <translation>UltraClear Klijent</translation>
     </message>
     <message>
         <source>Error</source>
@@ -2122,8 +1864,8 @@ Adresa: %4
         <translation>Nevažeća adresa za plaćanje %1</translation>
     </message>
     <message>
-        <source>Cannot start ucr: click-to-pay handler</source>
-        <translation>Ne može se pokrenuti ucr: clik-to-pay handler</translation>
+        <source>Cannot start ultraclear: click-to-pay handler</source>
+        <translation>Ne može se pokrenuti ultraclear: clik-to-pay handler</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid UCR address or malformed URI parameters.</source>
@@ -2264,8 +2006,8 @@ Adresa: %4
         <translation>Dogodila se fatalna pogreška. UCR ne može sigurno nastaviti i izaći će.</translation>
     </message>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -2284,8 +2026,8 @@ Adresa: %4
         <translation>Greška pri čitanju masternode konfiguracijske datoteke: %1</translation>
     </message>
     <message>
-        <source>Ultra Clear didn't yet exit safely...</source>
-        <translation>Ultra Clear nije ugašen sigurno...</translation>
+        <source>UltraClear didn't yet exit safely...</source>
+        <translation>UltraClear nije ugašen sigurno...</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -2294,18 +2036,6 @@ Adresa: %4
     <message>
         <source>Receiving</source>
         <translation>Primanje</translation>
-    </message>
-    <message>
-        <source>Delegator</source>
-        <translation>Delegator</translation>
-    </message>
-    <message>
-        <source>Cold Staking</source>
-        <translation>Cold Staking</translation>
-    </message>
-    <message>
-        <source>Cold Staking Contact</source>
-        <translation>Cold Staking kontakt</translation>
     </message>
     <message>
         <source>Hidden</source>
@@ -2368,20 +2098,8 @@ Adresa: %4
         <translation>Sebi</translation>
     </message>
     <message>
-        <source>Cold stakes</source>
-        <translation>Cold stake-ovi</translation>
-    </message>
-    <message>
         <source>Hot stakes</source>
         <translation>Hot stake-ovi</translation>
-    </message>
-    <message>
-        <source>Delegated</source>
-        <translation>Delegirano</translation>
-    </message>
-    <message>
-        <source>Delegations</source>
-        <translation>Delegacije</translation>
     </message>
     <message>
         <source>by Label</source>
@@ -3055,14 +2773,6 @@ Adresa: %4
         <translation>GENERIRAJ</translation>
     </message>
     <message>
-        <source>Creates an address to receive coin delegations and be able to stake them.</source>
-        <translation>Stvara adresu za primanje delegacija novčića i mogućnost njihovog stake-anja.</translation>
-    </message>
-    <message>
-        <source>New Cold Staking Address</source>
-        <translation>Nova Cold Staking adresa</translation>
-    </message>
-    <message>
         <source>Amount (optional)</source>
         <translation>Iznos (neobavezno)</translation>
     </message>
@@ -3215,10 +2925,6 @@ Do you want to continue?</source>
         <translation>Neispravan unos, prethodni unosi moraju biti ispravni prije dodavanja novog</translation>
     </message>
     <message>
-        <source>Possibly spend coins delegated for cold-staking (currently available: %1</source>
-        <translation>Moguća potrošnja novčića delegiranih za cold-staking (trenutno dostupno: %1</translation>
-    </message>
-    <message>
         <source>Invalid entry</source>
         <translation>Neispravan unos</translation>
     </message>
@@ -3233,14 +2939,6 @@ Do you want to continue?</source>
     <message>
         <source>Cannot create transaction.</source>
         <translation>Neuspjelo stvaranje transakcije.</translation>
-    </message>
-    <message>
-        <source>WARNING:
-Transaction spends a cold-stake delegation, voiding it.
-These coins will no longer be cold-staked.</source>
-        <translation>UPOZORENJE:
-Transakcija troši cold-stake delegaciju, uklanjajući ju.
-Ovi novčići više neće biti cold-stakeani.</translation>
     </message>
     <message>
         <source>Transaction sent</source>
@@ -3858,7 +3556,6 @@ da biste vidjeli i mogli potrošiti sredstva na mreži.
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;Instant transactions (SwiftX)&lt;/li&gt;
                            &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
                            &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
@@ -3893,14 +3590,13 @@ da biste vidjeli i mogli potrošiti sredstva na mreži.
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-Masternode je računalo koje pokreće full node Ultra Clear novčanik sa
+Masternode je računalo koje pokreće full node UltraClear novčanik sa
 zahtjevanih 10,000 UCR-a osiguranog zaloga da pruži dodatne usluge
 mreži, i zauzvrat redovito primi dio nagrade blokova.
 Te usluge uključuju:
 &lt;/p&gt;&lt;p align="justify"&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Trenutne transakcije (SwiftX)&lt;/li&gt;
 &lt;li&gt;Decentralizirano upravljanje (glasanje o zahtjevima)&lt;/li&gt;
 &lt;li&gt;Decentralizirani sustav proračuna (riznica)&lt;/li&gt;
 &lt;li&gt;Validacija transakcija unutar svakog bloka&lt;/li&gt;
@@ -4046,8 +3742,8 @@ Zahtjevi:
         <translation>Ne može se otvoriti mapa sigurnosne kopije</translation>
     </message>
     <message>
-        <source>Unable to open ucr.conf with default application</source>
-        <translation>Nije moguće otvoriti ucr.conf sa zadanom aplikacijom</translation>
+        <source>Unable to open ultraclear.conf with default application</source>
+        <translation>Nije moguće otvoriti ultraclear.conf sa zadanom aplikacijom</translation>
     </message>
     <message>
         <source>In:</source>
@@ -4664,8 +4360,8 @@ Jeste li sigurni?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Ultra Clear is shutting down...</source>
-        <translation>Ultra Clear se zatvara...</translation>
+        <source>UltraClear is shutting down...</source>
+        <translation>UltraClear se zatvara...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4694,8 +4390,8 @@ Jeste li sigurni?
         <translation>Učitavanje...</translation>
     </message>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
 </context>
 <context>
@@ -4985,16 +4681,8 @@ se nova sigurnosna kopija.
         <translation>z%1 Stake</translation>
     </message>
     <message>
-        <source>%1 Cold Stake</source>
-        <translation>%1 Cold Stake</translation>
-    </message>
-    <message>
         <source>%1 Stake on behalf of</source>
         <translation>%1 Stake u korist</translation>
-    </message>
-    <message>
-        <source>Stake delegation</source>
-        <translation>Stake delegacija</translation>
     </message>
     <message>
         <source>Sent to</source>
@@ -5007,10 +4695,6 @@ se nova sigurnosna kopija.
     <message>
         <source>Payment to yourself</source>
         <translation>Plaćanje sebi</translation>
-    </message>
-    <message>
-        <source>Stake delegation spent by</source>
-        <translation>Stake delegacija potrošena od strane</translation>
     </message>
     <message>
         <source>Mined</source>
@@ -5216,9 +4900,9 @@ se nova sigurnosna kopija.
     </message>
     <message>
         <source>Welcome to
-Ultra Clear Wallet</source>
+UltraClear Wallet</source>
         <translation>Dobrodošli u
-        Ultra Clear temeljni novčanik</translation>
+        UltraClear temeljni novčanik</translation>
     </message>
     <message>
         <source>UCR is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
@@ -5268,8 +4952,8 @@ Ultra Clear Wallet</source>
         <translation>Pridržavajte se na navedenu adresu da biste slušali veze JSON-RPC. Koristite [host]: port notation za IPv6. Ova se opcija može odrediti više puta (zadano: vezati se na sva sučelja)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Ultra Clear is probably already running.</source>
-        <translation>Nije moguće dobiti zaključavanje na direktoriju podataka %s. Ultra Clear vjerojatno već radi.</translation>
+        <source>Cannot obtain a lock on data directory %s. UltraClear is probably already running.</source>
+        <translation>Nije moguće dobiti zaključavanje na direktoriju podataka %s. UltraClear vjerojatno već radi.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -5294,10 +4978,6 @@ Ultra Clear Wallet</source>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
         <translation>Distribuirano pod MIT softverskom licencom, pogledajte priloženu datoteku COPYING ili &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</translation>
-    </message>
-    <message>
-        <source>Enable cold staking functionality (0-1, default: %u). Disabled if staking=0</source>
-        <translation>Omogući cold staking funkcionalnost (0-1, zadano: %u). Onemogućeno ako je staking=0</translation>
     </message>
     <message>
         <source>Enable spork administration functionality with the appropriate private key.</source>
@@ -5432,8 +5112,8 @@ Ultra Clear Wallet</source>
         <translation>Ukupna duljina teksta mrežne verzije (%i) prelazi maksimalnu duljinu (%i). Smanjite broj ili veličinu uacommentsa.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Ultra Clear is probably already running.</source>
-        <translation>Nije moguće vezati se na %s na ovom računalu. Ultra Clear vjerojatno već radi.</translation>
+        <source>Unable to bind to %s on this computer. UltraClear is probably already running.</source>
+        <translation>Nije moguće vezati se na %s na ovom računalu. UltraClear vjerojatno već radi.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -5448,8 +5128,8 @@ Ultra Clear Wallet</source>
         <translation>Upozorenje: -paytxfee je vrlo visoka! To je transakcijska naknada koju ćete platiti ako šaljete transakciju.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Ultra Clear will not work properly.</source>
-        <translation>Upozorenje: Provjerite jesu li datum i vrijeme vašeg računala točni! Ako je vaš sat pogrešan, Ultra Clear neće raditi ispravno.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong UltraClear will not work properly.</source>
+        <translation>Upozorenje: Provjerite jesu li datum i vrijeme vašeg računala točni! Ako je vaš sat pogrešan, UltraClear neće raditi ispravno.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5565,14 +5245,6 @@ Ultra Clear Wallet</source>
         <translation>Završeno učitavanje</translation>
     </message>
     <message>
-        <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>Omogući objavu hasha transakcije (zaključano putem usluge SwiftX) u &lt;address&gt;</translation>
-    </message>
-    <message>
-        <source>Enable publish raw transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>Omogući objavljivanje neobrađjene transakcije (zaključano putem usluge SwiftX) u &lt;address&gt;</translation>
-    </message>
-    <message>
         <source>Enable the client to act as a masternode (0-1, default: %u)</source>
         <translation>Omogućite klijentu da djeluje kao masternode (0-1, zadano: %u)</translation>
     </message>
@@ -5665,8 +5337,8 @@ Ultra Clear Wallet</source>
         <translation>Informacije</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Ultra Clear is shutting down.</source>
-        <translation>Provjera ispravnosti inicijalizacije nije uspjela. Ultra Clear se zatvara.</translation>
+        <source>Initialization sanity check failed. UltraClear is shutting down.</source>
+        <translation>Provjera ispravnosti inicijalizacije nije uspjela. UltraClear se zatvara.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5713,20 +5385,12 @@ Ultra Clear Wallet</source>
         <translation>Odabrana vrijednost novčića je manja od količine za plačanje</translation>
     </message>
     <message>
-        <source>SwiftX options:</source>
-        <translation>SwiftX opcije:</translation>
-    </message>
-    <message>
         <source>This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!</source>
         <translation>Ovo je priprema za testiranje prije puštanja - upotrebljavajte na vlastiti rizik - nemojte ga koristiti za staking ili trgovinske aplikacije!</translation>
     </message>
     <message>
-        <source>Disable all UCR specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>Onemogući sve specifične funkcije UCR (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, zadano: %u)</translation>
-    </message>
-    <message>
-        <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
-        <translation>Omogućite SwiftX, prikažite potvrde za zaključane transakcije (bool, zadano: %s)</translation>
+        <source>Disable all UCR specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
+        <translation>Onemogući sve specifične funkcije UCR (Masternodes, Zerocoin, Budgeting) (0-1, zadano: %u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -5747,10 +5411,6 @@ Ultra Clear Wallet</source>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
         <translation>Navedite put prilagođenog sigurnosnog kopiranja da biste dodali kopiju sigurnosne kopije lisnice. Ako je postavljeno kao dir, svaka sigurnosna kopija generira vremensku datoteku. Ako je postavljen kao datoteka, prepisat će na tu datoteku svaku kopiju.</translation>
-    </message>
-    <message>
-        <source>SwiftX requires inputs with at least 6 confirmations, you might need to wait a few minutes and try again.</source>
-        <translation>SwiftX zahtijeva ulaze s najmanje 6 potvrda, možda ćete morati pričekati nekoliko minuta i pokušati ponovo.</translation>
     </message>
     <message>
         <source>&lt;category&gt; can be:</source>
@@ -5965,8 +5625,8 @@ Ultra Clear Wallet</source>
         <translation>Priprema za resinkronizaciju...</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong Ultra Clear will not work properly.</source>
-        <translation>Provjerite jesu li datum i vrijeme vašeg računala točni! Ako je vaš sat pogrešan, Ultra Clear neće raditi ispravno.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong UltraClear will not work properly.</source>
+        <translation>Provjerite jesu li datum i vrijeme vašeg računala točni! Ako je vaš sat pogrešan, UltraClear neće raditi ispravno.</translation>
     </message>
     <message>
         <source>Specify location of debug log file: this can be an absolute path or a path relative to the data directory (default: %s)</source>
@@ -6299,8 +5959,8 @@ Ultra Clear Wallet</source>
         <translation>Novčanik %s nalazi se izvan direktorija podataka %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Ultra Clear to complete</source>
-        <translation>Potrebno je prepisati novčanik: ponovo pokrenite Ultra Clear</translation>
+        <source>Wallet needed to be rewritten: restart UltraClear to complete</source>
+        <translation>Potrebno je prepisati novčanik: ponovo pokrenite UltraClear</translation>
     </message>
     <message>
         <source>Wallet options:</source>
@@ -6396,10 +6056,6 @@ Ultra Clear Wallet</source>
     <message>
         <source>Reset to default</source>
         <translation>Resetiraj na početno stanje</translation>
-    </message>
-    <message>
-        <source>Include delegated</source>
-        <translation>Uključi delegirane</translation>
     </message>
 </context>
 </TS>

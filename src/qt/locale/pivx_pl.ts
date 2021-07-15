@@ -409,33 +409,6 @@ do stakingu</translation>
     </message>
 </context>
 <context>
-    <name>CSRow</name>
-    <message>
-        <source>Form</source>
-        <translation>Formularz</translation>
-    </message>
-    <message>
-        <source>Savings</source>
-        <translation>Oszczędności</translation>
-    </message>
-    <message>
-        <source>0,00 UCR</source>
-        <translation>0,00 UCR</translation>
-    </message>
-    <message>
-        <source>address</source>
-        <translation>adres</translation>
-    </message>
-    <message>
-        <source>Not Staking</source>
-        <translation>brak Stakingu</translation>
-    </message>
-    <message>
-        <source>Own delegation</source>
-        <translation>Delegacja własna</translation>
-    </message>
-</context>
-<context>
     <name>ClientModel</name>
     <message>
         <source>Total: %1 (IPv4: %2 / IPv6: %3 / Tor: %4 / Unknown: %5)</source>
@@ -641,10 +614,6 @@ do stakingu</translation>
         <translation>tak</translation>
     </message>
     <message>
-        <source>delegated to %1 for cold staking</source>
-        <translation>przekazane do %1 dla cold staking</translation>
-    </message>
-    <message>
         <source>Select All</source>
         <translation>Zaznacz wszystko</translation>
     </message>
@@ -687,217 +656,6 @@ do stakingu</translation>
     <message>
         <source>(change)</source>
         <translation>(reszta)</translation>
-    </message>
-</context>
-<context>
-    <name>ColdStakingWidget</name>
-    <message>
-        <source>Form</source>
-        <translation>Formularz</translation>
-    </message>
-    <message>
-        <source>Owner address (optional, if empty a new address will be created)</source>
-        <translation>Adres właściciela (opcjonalnie, jeśli pusty, zostanie utworzony nowy adres)</translation>
-    </message>
-    <message>
-        <source>Total Staking:</source>
-        <translation>Razem Staking:</translation>
-    </message>
-    <message>
-        <source>Cold Staking</source>
-        <translation>Cold Staking</translation>
-    </message>
-    <message>
-        <source>Staker</source>
-        <translation>Staker</translation>
-    </message>
-    <message>
-        <source>Delegation</source>
-        <translation>Delegacja</translation>
-    </message>
-    <message>
-        <source>Delegate</source>
-        <translation>Deleguj</translation>
-    </message>
-    <message>
-        <source>Clear All</source>
-        <translation>Wyczyść wszystko</translation>
-    </message>
-    <message>
-        <source>Delegated balance history</source>
-        <translation>Historia sald delegowanych</translation>
-    </message>
-    <message>
-        <source>No delegations yet</source>
-        <translation>Brak delegacji</translation>
-    </message>
-    <message>
-        <source>Total Staking: %1</source>
-        <translation>Total Staking: %1</translation>
-    </message>
-    <message>
-        <source>Error loading delegations: %1</source>
-        <translation>Błąd ładowania delegacji: %1</translation>
-    </message>
-    <message>
-        <source>You can delegate your UCRs, letting a hot node (24/7 online node)
-stake on your behalf, while you keep the keys securely offline.</source>
-        <translation>Możesz delegować swoje UCR, używając gorącego węzła (węzeł online 24/7)
-stake w Twoim imieniu, podczas gdy klucze są bezpiecznie offline.</translation>
-    </message>
-    <message>
-        <source>Enter owner address</source>
-        <translation>Wpisz adres właściciela</translation>
-    </message>
-    <message>
-        <source>Accept UCR delegation / Delegate UCR</source>
-        <translation>Zaakceptuj delegację UCR / Deleguj UCR</translation>
-    </message>
-    <message>
-        <source>Cold Staking address</source>
-        <translation>Cold Staking adres</translation>
-    </message>
-    <message>
-        <source>No receive addresses available, you can go to the receive screen and create some there!</source>
-        <translation>Brak dostępnych adresów odbioru, możesz przejść do ekranu odbioru i tam utworzyć!</translation>
-    </message>
-    <message>
-        <source>No contacts available, you can go to the contacts screen and add some there!</source>
-        <translation>Brak dostępnych kontaktów, możesz przejść do ekranu kontaktów i tam dodać!</translation>
-    </message>
-    <message>
-        <source>Cannot send delegation, wallet locked</source>
-        <translation>Nie można przekazać delegacji, portfel zablokowany</translation>
-    </message>
-    <message>
-        <source>Cold staking is networkely disabled</source>
-        <translation>Cold staking jest wyłączony przez sieć</translation>
-    </message>
-    <message>
-        <source>Coin Control</source>
-        <translation>Kontrola monet</translation>
-    </message>
-    <message>
-        <source>Invalid entry</source>
-        <translation>Niewłaściwy wpis</translation>
-    </message>
-    <message>
-        <source>Invalid entry, minimum delegable amount is </source>
-        <translation>Nieprawidłowy wpis, minimalna kwota do przekazania wynosi</translation>
-    </message>
-    <message>
-        <source>Owner address invalid</source>
-        <translation>Niepoprawny adres właściciela</translation>
-    </message>
-    <message>
-        <source>ALERT!</source>
-        <translation>ALARM!</translation>
-    </message>
-    <message>
-        <source>Delegating to an external owner address!
-
-The delegated coins will NOT be spendable by this wallet.
-Spending these coins will need to be done from the wallet or
-device containing the owner address.
-
-Do you wish to proceed?</source>
-        <translation>Delegowanie na zewnętrzny adres właściciela!
-
-Przekazywane monety NIE będą wydawane przez ten portfel.
-Wydawanie tych monet będzie musiało być wykonane z portfela lub
-urządzenie zawierające adres właściciela
-
-Czy chcesz kontynuować?</translation>
-    </message>
-    <message>
-        <source>Staking address corresponds to this wallet, change it to an external node</source>
-        <translation>Staking adres odpowiada temu portfelowi, zmień go na zewnętrzny węzeł</translation>
-    </message>
-    <message>
-        <source>Cannot create transaction.</source>
-        <translation>Nie można utworzyć transakcji.</translation>
-    </message>
-    <message>
-        <source>Coins delegated</source>
-        <translation>Monety przekazane</translation>
-    </message>
-    <message>
-        <source>Cannot perform operation, wallet locked</source>
-        <translation>Nie można wykonać operacji, portfel zablokowany</translation>
-    </message>
-    <message>
-        <source>URI copied to clipboard</source>
-        <translation>URI skopiowany do schowka</translation>
-    </message>
-    <message>
-        <source>Address copied to clipboard</source>
-        <translation>Adres skopiowany do schowka</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation>kopiuj</translation>
-    </message>
-    <message>
-        <source>Edit</source>
-        <translation>Edytuj</translation>
-    </message>
-    <message>
-        <source>Stake</source>
-        <translation>Stake</translation>
-    </message>
-    <message>
-        <source>Blacklist</source>
-        <translation>Czarna lista</translation>
-    </message>
-    <message>
-        <source>Edit Label</source>
-        <translation>Edytuj etykietę</translation>
-    </message>
-    <message>
-        <source>Copy owner
-address</source>
-        <translation>Kopiuj właściciela
-adres</translation>
-    </message>
-    <message>
-        <source>Address copied</source>
-        <translation>Adres skopiowany</translation>
-    </message>
-    <message>
-        <source>Edit Cold Address Label</source>
-        <translation>Edytuj etykietę adresu zimnego</translation>
-    </message>
-    <message>
-        <source>Whitelist failed, please check the logs</source>
-        <translation>Niepowodzenie białej listy, sprawdź dzienniki</translation>
-    </message>
-    <message>
-        <source> staking!</source>
-        <translation>staking!</translation>
-    </message>
-    <message>
-        <source>Blacklist failed, please check the logs</source>
-        <translation>Czarna lista nie powiodła się, sprawdź dzienniki</translation>
-    </message>
-    <message>
-        <source> blacklisted from staking</source>
-        <translation>na czarnej liście staking</translation>
-    </message>
-    <message>
-        <source>Owner address copied</source>
-        <translation>Adres właściciela został skopiowany</translation>
-    </message>
-    <message>
-        <source>Edit Owner Address Label</source>
-        <translation>Edytuj etykietę adresu właściciela</translation>
-    </message>
-    <message>
-        <source>Address label saved</source>
-        <translation>Etykieta adresu została zapisana</translation>
-    </message>
-    <message>
-        <source>Error storing address label</source>
-        <translation>Błąd podczas zapisywania etykiety adresu</translation>
     </message>
 </context>
 <context>
@@ -1096,16 +854,16 @@ Rozpocznie się automatycznie, gdy portfel będzie miał wystarczającą liczbę
         <translation>Wersja</translation>
     </message>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Ultra Clear</source>
-        <translation>O Ultra Clear</translation>
+        <source>About UltraClear</source>
+        <translation>O UltraClear</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1159,16 +917,16 @@ Rozpocznie się automatycznie, gdy portfel będzie miał wystarczającą liczbę
         <translation>Zapraszamy</translation>
     </message>
     <message>
-        <source>Welcome to Ultra Clear.</source>
-        <translation>Zapraszamy do Ultra Clear</translation>
+        <source>Welcome to UltraClear.</source>
+        <translation>Zapraszamy do UltraClear</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Ultra Clear will store its data.</source>
-        <translation>Ponieważ program jest uruchamiany po raz pierwszy, możesz wybrać miejsce, w którym Ultra Clear będzie przechowywać swoje dane.</translation>
+        <source>As this is the first time the program is launched, you can choose where UltraClear will store its data.</source>
+        <translation>Ponieważ program jest uruchamiany po raz pierwszy, możesz wybrać miejsce, w którym UltraClear będzie przechowywać swoje dane.</translation>
     </message>
     <message>
-        <source>Ultra Clear will download and store a copy of the UCR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Ultra Clear pobierze i zapisze kopię łańcucha bloków UCR. Przynajmniej %1 GB danych zostanie zapisanych w tym katalogu, a jego liczba będzie rosnąć z czasem. Portfel zostanie również zapisany w tym katalogu.</translation>
+        <source>UltraClear will download and store a copy of the UCR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>UltraClear pobierze i zapisze kopię łańcucha bloków UCR. Przynajmniej %1 GB danych zostanie zapisanych w tym katalogu, a jego liczba będzie rosnąć z czasem. Portfel zostanie również zapisany w tym katalogu.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1187,8 +945,8 @@ Rozpocznie się automatycznie, gdy portfel będzie miał wystarczającą liczbę
         <translation>OK</translation>
     </message>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1484,7 +1242,7 @@ i głosuj na system skarbu otrzymujący okresową nagrodę.</translation>
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the ucr.conf file
+You will only have to paste the data in the ultraclear.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1492,7 +1250,7 @@ this controller wallet (select the Masternode in the list and press "start").
 na zdalnym serwerze do twojego schowka.
 
 
-Wystarczy wkleić dane do pliku ucr.conf
+Wystarczy wkleić dane do pliku ultraclear.conf
 zdalnego serwera i uruchom go, a następnie uruchom Masternode przy użyciu
 portfela kontrolujacego (wybierz Masternode z listy i naciśnij „start”).
 </translation>
@@ -1632,8 +1390,8 @@ Jesteś pewny?</translation>
         <translation>Przetwarzane dane są za duże</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "ucr" prefix</source>
-        <translation>Nieprawidłowy identyfikator URI, nie zaczynający się od prefiksu „ucr”</translation>
+        <source>Invalid URI, not starting with "ultraclear" prefix</source>
+        <translation>Nieprawidłowy identyfikator URI, nie zaczynający się od prefiksu „ultraclear”</translation>
     </message>
 </context>
 <context>
@@ -1927,8 +1685,8 @@ Jesteś pewny?</translation>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -1955,8 +1713,8 @@ Jesteś pewny?</translation>
         <translation>Wyjdź z aplikacji</translation>
     </message>
     <message>
-        <source>Ultra Clear client</source>
-        <translation>Ultra Clear klient</translation>
+        <source>UltraClear client</source>
+        <translation>UltraClear klient</translation>
     </message>
     <message>
         <source>Error</source>
@@ -2022,8 +1780,8 @@ Adres: %4
         <translation>Nieprawidłowy adres płatności %1</translation>
     </message>
     <message>
-        <source>Cannot start ucr: click-to-pay handler</source>
-        <translation>Nie można uruchomić ucr: click-to-pay handler</translation>
+        <source>Cannot start ultraclear: click-to-pay handler</source>
+        <translation>Nie można uruchomić ultraclear: click-to-pay handler</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid UCR address or malformed URI parameters.</source>
@@ -2160,8 +1918,8 @@ Adres: %4
         <translation>Wystąpił błąd krytyczny. UCR nie może już działać bezpiecznie i zakończy działanie.</translation>
     </message>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -2180,8 +1938,8 @@ Adres: %4
         <translation>Błąd odczytu pliku konfiguracyjnego masternode: %1</translation>
     </message>
     <message>
-        <source>Ultra Clear didn't yet exit safely...</source>
-        <translation>Ultra Clear nie zamkną się jeszcze bezpiecznie ...</translation>
+        <source>UltraClear didn't yet exit safely...</source>
+        <translation>UltraClear nie zamkną się jeszcze bezpiecznie ...</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -2190,18 +1948,6 @@ Adres: %4
     <message>
         <source>Receiving</source>
         <translation>Odbieranie</translation>
-    </message>
-    <message>
-        <source>Delegator</source>
-        <translation>Delegator</translation>
-    </message>
-    <message>
-        <source>Cold Staking</source>
-        <translation>Cold Staking</translation>
-    </message>
-    <message>
-        <source>Cold Staking Contact</source>
-        <translation>Cold Staking Kontakt</translation>
     </message>
     <message>
         <source>Hidden</source>
@@ -2264,20 +2010,8 @@ Adres: %4
         <translation>Dla siebie</translation>
     </message>
     <message>
-        <source>Cold stakes</source>
-        <translation>Cold stakes</translation>
-    </message>
-    <message>
         <source>Hot stakes</source>
         <translation>Hot stakes</translation>
-    </message>
-    <message>
-        <source>Delegated</source>
-        <translation>Delegowany</translation>
-    </message>
-    <message>
-        <source>Delegations</source>
-        <translation>Delegacje</translation>
     </message>
     <message>
         <source>by Label</source>
@@ -2883,14 +2617,6 @@ Adres: %4
         <translation>WYGENERUJ</translation>
     </message>
     <message>
-        <source>Creates an address to receive coin delegations and be able to stake them.</source>
-        <translation>Tworzy adres, na który mają być wysyłane delegowane monety do stake.</translation>
-    </message>
-    <message>
-        <source>New Cold Staking Address</source>
-        <translation>Nowy adres do Cold Staking</translation>
-    </message>
-    <message>
         <source>Amount (optional)</source>
         <translation>Kwota (opcjonalnie)</translation>
     </message>
@@ -3031,10 +2757,6 @@ Czy chcesz kontynuować?</translation>
         <translation>Nieprawidłowy wpis, poprzednie wpisy muszą być ważne przed dodaniem nowego</translation>
     </message>
     <message>
-        <source>Possibly spend coins delegated for cold-staking (currently available: %1</source>
-        <translation>Maksymalna kwota delegowania do cold-staking (obecnie dostępne: %1</translation>
-    </message>
-    <message>
         <source>Invalid entry</source>
         <translation>Niewłaściwy wpis</translation>
     </message>
@@ -3049,14 +2771,6 @@ Czy chcesz kontynuować?</translation>
     <message>
         <source>Cannot create transaction.</source>
         <translation>Nie można utworzyć transakcji.</translation>
-    </message>
-    <message>
-        <source>WARNING:
-Transaction spends a cold-stake delegation, voiding it.
-These coins will no longer be cold-staked.</source>
-        <translation>OSTRZEŻENIE:
-Transakcja wydaje cold-stake, unieważniając ją.
-Monety te nie będą już cold-staked.</translation>
     </message>
     <message>
         <source>Transaction sent</source>
@@ -3686,8 +3400,8 @@ Wystąpił błąd podczas próby zapisania listy adresów w %1. Proszę spróbuj
         <translation>Nie można otworzyć folderu kopii zapasowych</translation>
     </message>
     <message>
-        <source>Unable to open ucr.conf with default application</source>
-        <translation>Nie można otworzyć pliku ucr.conf w domyślnej aplikacji</translation>
+        <source>Unable to open ultraclear.conf with default application</source>
+        <translation>Nie można otworzyć pliku ultraclear.conf w domyślnej aplikacji</translation>
     </message>
     <message>
         <source>In:</source>
@@ -4292,8 +4006,8 @@ Jesteś pewny?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Ultra Clear is shutting down...</source>
-        <translation>Ultra Clear się wyłącza ...</translation>
+        <source>UltraClear is shutting down...</source>
+        <translation>UltraClear się wyłącza ...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4322,8 +4036,8 @@ Jesteś pewny?
         <translation>Ładowanie…</translation>
     </message>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
 </context>
 <context>
@@ -4549,10 +4263,6 @@ kopia zapasowa zostanie utworzona.
         <translation>Otrzymane od</translation>
     </message>
     <message>
-        <source>Stake delegation</source>
-        <translation>Delegacja Stake</translation>
-    </message>
-    <message>
         <source>Sent to</source>
         <translation>Wyślij do</translation>
     </message>
@@ -4563,10 +4273,6 @@ kopia zapasowa zostanie utworzona.
     <message>
         <source>Payment to yourself</source>
         <translation>Zapłata dla siebie</translation>
-    </message>
-    <message>
-        <source>Stake delegation spent by</source>
-        <translation>Delegacja Stake wydana przez</translation>
     </message>
     <message>
         <source>Mined</source>
@@ -4766,9 +4472,9 @@ kopia zapasowa zostanie utworzona.
     </message>
     <message>
         <source>Welcome to
-Ultra Clear Wallet</source>
+UltraClear Wallet</source>
         <translation>Witamy
-Portfel Ultra Clear</translation>
+Portfel UltraClear</translation>
     </message>
     <message>
         <source>UCR is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
@@ -4814,8 +4520,8 @@ Portfel Ultra Clear</translation>
         <translation>Powiąż z podanym adresem, aby odsłuchać połączenia JSON-RPC. Użyj [host]:port dla IPv6. Ta opcja może być określona wiele razy (domyślnie: powiązanie ze wszystkimi interfejsami)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Ultra Clear is probably already running.</source>
-        <translation>Nie można uzyskać dostępu do katalogu danych %s. Ultra Clear prawdopodobnie już działa.</translation>
+        <source>Cannot obtain a lock on data directory %s. UltraClear is probably already running.</source>
+        <translation>Nie można uzyskać dostępu do katalogu danych %s. UltraClear prawdopodobnie już działa.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -4840,10 +4546,6 @@ Portfel Ultra Clear</translation>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
         <translation>Dystrybuowane w ramach licencji oprogramowania MIT, patrz plik towarzyszący COPYING lub &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</translation>
-    </message>
-    <message>
-        <source>Enable cold staking functionality (0-1, default: %u). Disabled if staking=0</source>
-        <translation>Włącz funkcję cold staking (0-1, domyślnie: %u). Wyłączone jeśli staking=0</translation>
     </message>
     <message>
         <source>Enable spork administration functionality with the appropriate private key.</source>
@@ -4978,8 +4680,8 @@ Portfel Ultra Clear</translation>
         <translation>Całkowita długość string wersji sieciowej (%i) przekracza maksymalną długość (%i). Zmniejsz liczbę lub rozmiar uacomments.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Ultra Clear is probably already running.</source>
-        <translation>Nie można podłączyć %s na tym komputerze. Ultra Clear prawdopodobnie już działa.</translation>
+        <source>Unable to bind to %s on this computer. UltraClear is probably already running.</source>
+        <translation>Nie można podłączyć %s na tym komputerze. UltraClear prawdopodobnie już działa.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -4994,8 +4696,8 @@ Portfel Ultra Clear</translation>
         <translation>Ostrzeżenie: -paytxfee jest ustawione bardzo wysoko! Jest to opłata transakcyjna, którą zapłacisz, jeśli wyślesz transakcję.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Ultra Clear will not work properly.</source>
-        <translation>Ostrzeżenie: sprawdź, czy data i godzina komputera są poprawne! Jeśli zegar jest nieprawidłowy, Ultra Clear nie będzie działać poprawnie.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong UltraClear will not work properly.</source>
+        <translation>Ostrzeżenie: sprawdź, czy data i godzina komputera są poprawne! Jeśli zegar jest nieprawidłowy, UltraClear nie będzie działać poprawnie.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5110,14 +4812,6 @@ Portfel Ultra Clear</translation>
         <translation>Ładowanie ukończone</translation>
     </message>
     <message>
-        <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>Włącz transakcję mieszania (zablokowaną przez SwiftX) w &lt;address&gt;</translation>
-    </message>
-    <message>
-        <source>Enable publish raw transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>Włącz publikowanie surowej transakcji (zablokowanej przez SwiftX) w &lt;address&gt;</translation>
-    </message>
-    <message>
         <source>Enable the client to act as a masternode (0-1, default: %u)</source>
         <translation>Włącz klienta, aby działał jako masternode (0-1, domyślnie: %u)</translation>
     </message>
@@ -5210,8 +4904,8 @@ Portfel Ultra Clear</translation>
         <translation>Informacje</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Ultra Clear is shutting down.</source>
-        <translation>Sprawdzenie poprawności inicjalizacji nie powiodło się. Ultra Clear zamyka się.</translation>
+        <source>Initialization sanity check failed. UltraClear is shutting down.</source>
+        <translation>Sprawdzenie poprawności inicjalizacji nie powiodło się. UltraClear zamyka się.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5258,20 +4952,12 @@ Portfel Ultra Clear</translation>
         <translation>Wybrana wartość monet jest mniejsza niż docelowa</translation>
     </message>
     <message>
-        <source>SwiftX options:</source>
-        <translation>Opcje SwiftX:</translation>
-    </message>
-    <message>
         <source>This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!</source>
         <translation>Jest to wersja testowa pre-release - korzystaj z niej na własne ryzyko - nie używaj do staking lub prawdziwych transakcji!</translation>
     </message>
     <message>
-        <source>Disable all UCR specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>Wyłącz wszystkie funkcje specyficzne dla UCR (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, domyślnie: %u)</translation>
-    </message>
-    <message>
-        <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
-        <translation>Włącz SwiftX, pokaż potwierdzenia zablokowanych transakcji (bool, domyślnie: %s)</translation>
+        <source>Disable all UCR specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
+        <translation>Wyłącz wszystkie funkcje specyficzne dla UCR (Masternodes, Zerocoin, Budgeting) (0-1, domyślnie: %u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -5292,10 +4978,6 @@ Portfel Ultra Clear</translation>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
         <translation>Określ ścieżkę kopii zapasowej, aby dodać kopię zapasową portfela. Jeśli ustawione jako katalog, każda kopia zapasowa generuje plik ze znacznikiem czasu. Jeśli jest ustawiony jako plik, przepisuje do tego pliku każdą kopię zapasową.</translation>
-    </message>
-    <message>
-        <source>SwiftX requires inputs with at least 6 confirmations, you might need to wait a few minutes and try again.</source>
-        <translation>SwiftX wymaga danych wejściowych z co najmniej 6 potwierdzeniami, być może trzeba będzie poczekać kilka minut i spróbować ponownie.</translation>
     </message>
     <message>
         <source>&lt;category&gt; can be:</source>
@@ -5510,8 +5192,8 @@ Portfel Ultra Clear</translation>
         <translation>Przygotowanie do ponownej synchronizacji ...</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong Ultra Clear will not work properly.</source>
-        <translation>Sprawdź, czy data i godzina komputera są poprawne! Jeśli zegar jest nieprawidłowy, Ultra Clear nie będzie działać poprawnie.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong UltraClear will not work properly.</source>
+        <translation>Sprawdź, czy data i godzina komputera są poprawne! Jeśli zegar jest nieprawidłowy, UltraClear nie będzie działać poprawnie.</translation>
     </message>
     <message>
         <source>Specify location of debug log file: this can be an absolute path or a path relative to the data directory (default: %s)</source>
@@ -5814,8 +5496,8 @@ Portfel Ultra Clear</translation>
         <translation>Portfel %s znajduje się poza katalogiem danych %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Ultra Clear to complete</source>
-        <translation>Portfel musiał zostać przepisany: zrestartuj Ultra Clear, aby zakończyć</translation>
+        <source>Wallet needed to be rewritten: restart UltraClear to complete</source>
+        <translation>Portfel musiał zostać przepisany: zrestartuj UltraClear, aby zakończyć</translation>
     </message>
     <message>
         <source>Wallet options:</source>
@@ -5907,10 +5589,6 @@ Portfel Ultra Clear</translation>
     <message>
         <source>Reset to default</source>
         <translation>Przywróć ustawienia domyślne</translation>
-    </message>
-    <message>
-        <source>Include delegated</source>
-        <translation>Uwzględnij delegowane</translation>
     </message>
 </context>
 </TS>

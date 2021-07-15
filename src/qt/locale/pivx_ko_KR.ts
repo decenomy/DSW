@@ -405,33 +405,6 @@ for staking</source>
     </message>
 </context>
 <context>
-    <name>CSRow</name>
-    <message>
-        <source>Form</source>
-        <translation>양식</translation>
-    </message>
-    <message>
-        <source>Savings</source>
-        <translation>계좌</translation>
-    </message>
-    <message>
-        <source>0,00 UCR</source>
-        <translation>0,00 UCR</translation>
-    </message>
-    <message>
-        <source>address</source>
-        <translation>주소</translation>
-    </message>
-    <message>
-        <source>Not Staking</source>
-        <translation>스테이킹 비활성 상태</translation>
-    </message>
-    <message>
-        <source>Own delegation</source>
-        <translation>오너 위임</translation>
-    </message>
-</context>
-<context>
     <name>ClientModel</name>
     <message>
         <source>Total: %1 (IPv4: %2 / IPv6: %3 / Tor: %4 / Unknown: %5)</source>
@@ -637,10 +610,6 @@ for staking</source>
         <translation>예</translation>
     </message>
     <message>
-        <source>delegated to %1 for cold staking</source>
-        <translation>콜드 스테이킹 주소 %1 로 위임 됨</translation>
-    </message>
-    <message>
         <source>Select All</source>
         <translation>모두 선택</translation>
     </message>
@@ -683,215 +652,6 @@ for staking</source>
     <message>
         <source>(change)</source>
         <translation>(잔돈)</translation>
-    </message>
-</context>
-<context>
-    <name>ColdStakingWidget</name>
-    <message>
-        <source>Form</source>
-        <translation>양식</translation>
-    </message>
-    <message>
-        <source>Owner address (optional, if empty a new address will be created)</source>
-        <translation>오너 주소 (선택과목, 입력 하지 않을경우 새로운 주소가 생성됨)</translation>
-    </message>
-    <message>
-        <source>Total Staking:</source>
-        <translation>스테이킹 총 액수</translation>
-    </message>
-    <message>
-        <source>Cold Staking</source>
-        <translation>콜드 스테이킹</translation>
-    </message>
-    <message>
-        <source>Staker</source>
-        <translation>스테이커</translation>
-    </message>
-    <message>
-        <source>Delegation</source>
-        <translation>위임</translation>
-    </message>
-    <message>
-        <source>Delegate</source>
-        <translation>위임 함</translation>
-    </message>
-    <message>
-        <source>Clear All</source>
-        <translation>전체 지우기</translation>
-    </message>
-    <message>
-        <source>Delegated balance history</source>
-        <translation>위임된 액수 기록</translation>
-    </message>
-    <message>
-        <source>No delegations yet</source>
-        <translation>아직 위임된 액수가 없습니다</translation>
-    </message>
-    <message>
-        <source>Total Staking: %1</source>
-        <translation>스테이킹 총 액수: %1</translation>
-    </message>
-    <message>
-        <source>Error loading delegations: %1</source>
-        <translation>위임 데이터 로딩 에러: %1</translation>
-    </message>
-    <message>
-        <source>You can delegate your UCRs, letting a hot node (24/7 online node)
-stake on your behalf, while you keep the keys securely offline.</source>
-        <translation>안전히 개인 프라이빗 키를 오프라인으로 보관한 상태로, 가지고 계신 UCR 를 매일 24시간 온라인으로 돌아가는 핫 노드로 위임하여, 대신 스테이킹을 하게 할수 있습니다. </translation>
-    </message>
-    <message>
-        <source>Enter owner address</source>
-        <translation>Owner 주소 입력</translation>
-    </message>
-    <message>
-        <source>Accept UCR delegation / Delegate UCR</source>
-        <translation>UCR 위임권 수락하기 / UCR 위임 하기</translation>
-    </message>
-    <message>
-        <source>Cold Staking address</source>
-        <translation>콜드 스테이킹 주소</translation>
-    </message>
-    <message>
-        <source>No receive addresses available, you can go to the receive screen and create some there!</source>
-        <translation>존재하는 입금 주소가 없습니다. 입금 화면에서 생성 하실수 있습니다.</translation>
-    </message>
-    <message>
-        <source>No contacts available, you can go to the contacts screen and add some there!</source>
-        <translation>존재하는 연락처가 없습니다. 연락처 화면에서 추가 하실수 있습니다.</translation>
-    </message>
-    <message>
-        <source>Cannot send delegation, wallet locked</source>
-        <translation>위임을 할수가 없습니다. 지갑이 잠겨 있습니다.</translation>
-    </message>
-    <message>
-        <source>Cold staking is networkely disabled</source>
-        <translation>콜드 스테이킹 네트워크가 비활성화 된 상태입니다.</translation>
-    </message>
-    <message>
-        <source>Coin Control</source>
-        <translation>코인 설정</translation>
-    </message>
-    <message>
-        <source>Invalid entry</source>
-        <translation>잘못된 입력</translation>
-    </message>
-    <message>
-        <source>Invalid entry, minimum delegable amount is </source>
-        <translation>유효한 입력이 아닙니다. 최소 위임 액수: </translation>
-    </message>
-    <message>
-        <source>Owner address invalid</source>
-        <translation>유효한 오너 주소가 아닙니다.</translation>
-    </message>
-    <message>
-        <source>ALERT!</source>
-        <translation>경보!</translation>
-    </message>
-    <message>
-        <source>Delegating to an external owner address!
-
-The delegated coins will NOT be spendable by this wallet.
-Spending these coins will need to be done from the wallet or
-device containing the owner address.
-
-Do you wish to proceed?</source>
-        <translation>지갑 밖의 오너 주소로 위임을 선택 하셨습니다.
-
-위임된 코인들은 이 지갑에서 더 이상 전송이 불가해집니다.
-위임된 코인들의 사용/전송권은 위임된 오너 주소를 보유하고 있는 지갑으로 넘어갑니다.
-
-계속 진행 하시겠습니까?</translation>
-    </message>
-    <message>
-        <source>Staking address corresponds to this wallet, change it to an external node</source>
-        <translation>스테이킹 주소가 이 지갑과 일치합니다. 스테이킹 주소를 외부 노드로 변경하십시오.</translation>
-    </message>
-    <message>
-        <source>Cannot create transaction.</source>
-        <translation>전송 불가</translation>
-    </message>
-    <message>
-        <source>Coins delegated</source>
-        <translation>위임된 코인</translation>
-    </message>
-    <message>
-        <source>Cannot perform operation, wallet locked</source>
-        <translation>명령을 수행할 수 없습니다. 지갑이 잠겨 있습니다.</translation>
-    </message>
-    <message>
-        <source>URI copied to clipboard</source>
-        <translation>URI가 클립보드에 복사되었습니다.</translation>
-    </message>
-    <message>
-        <source>Address copied to clipboard</source>
-        <translation>주소가 클립보드에 복사됨</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation>복사</translation>
-    </message>
-    <message>
-        <source>Edit</source>
-        <translation>수정</translation>
-    </message>
-    <message>
-        <source>Stake</source>
-        <translation>스테이크</translation>
-    </message>
-    <message>
-        <source>Blacklist</source>
-        <translation>블랙리스트</translation>
-    </message>
-    <message>
-        <source>Edit Label</source>
-        <translation>라벨 수정하기</translation>
-    </message>
-    <message>
-        <source>Copy owner
-address</source>
-        <translation>소유자 복사
-주소</translation>
-    </message>
-    <message>
-        <source>Address copied</source>
-        <translation>주소가 복사되었습니다.</translation>
-    </message>
-    <message>
-        <source>Edit Cold Address Label</source>
-        <translation>콜드 주소 라벨 수정하기</translation>
-    </message>
-    <message>
-        <source>Whitelist failed, please check the logs</source>
-        <translation>화이트 리스트 설정 실패, 로그를 확인해주세요.</translation>
-    </message>
-    <message>
-        <source> staking!</source>
-        <translation>스테이킹!</translation>
-    </message>
-    <message>
-        <source>Blacklist failed, please check the logs</source>
-        <translation>블랙리스트 설정 실패, 로그를 확인해주세요.</translation>
-    </message>
-    <message>
-        <source> blacklisted from staking</source>
-        <translation>블랙리스트 처리됨</translation>
-    </message>
-    <message>
-        <source>Owner address copied</source>
-        <translation>소유자 주소 복사됨</translation>
-    </message>
-    <message>
-        <source>Edit Owner Address Label</source>
-        <translation>소유자 주소 라벨 수정하기</translation>
-    </message>
-    <message>
-        <source>Address label saved</source>
-        <translation>주소 라벨이 저장됨</translation>
-    </message>
-    <message>
-        <source>Error storing address label</source>
-        <translation>주소 라벨 저장 오류</translation>
     </message>
 </context>
 <context>
@@ -1088,16 +848,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>버전</translation>
     </message>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Ultra Clear</source>
-        <translation>Ultra Clear 정보</translation>
+        <source>About UltraClear</source>
+        <translation>UltraClear 정보</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1151,16 +911,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>환영합니다</translation>
     </message>
     <message>
-        <source>Welcome to Ultra Clear.</source>
-        <translation>Ultra Clear에 오신 것을 환영합니다.</translation>
+        <source>Welcome to UltraClear.</source>
+        <translation>UltraClear에 오신 것을 환영합니다.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Ultra Clear will store its data.</source>
-        <translation>이 프로그램이 처음 실행되었으므로 Ultra Clear가 데이터를 저장할 위치를 선택할 수 있습니다.</translation>
+        <source>As this is the first time the program is launched, you can choose where UltraClear will store its data.</source>
+        <translation>이 프로그램이 처음 실행되었으므로 UltraClear가 데이터를 저장할 위치를 선택할 수 있습니다.</translation>
     </message>
     <message>
-        <source>Ultra Clear will download and store a copy of the UCR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Ultra Clear는 UCR 블록체인을 다운로드하여 저장합니다. 최소 %1GB의 데이터가 디렉토리에 저장되며 시간이 지날수록 증가합니다. 또한 지갑도 해당 디렉토리에 저장됩니다.</translation>
+        <source>UltraClear will download and store a copy of the UCR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>UltraClear는 UCR 블록체인을 다운로드하여 저장합니다. 최소 %1GB의 데이터가 디렉토리에 저장되며 시간이 지날수록 증가합니다. 또한 지갑도 해당 디렉토리에 저장됩니다.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1179,8 +939,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>선택</translation>
     </message>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1481,7 +1241,7 @@ Please wait few more minutes (masternode collaterals require %1 confirmations).<
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the ucr.conf file
+You will only have to paste the data in the ultraclear.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1489,7 +1249,7 @@ this controller wallet (select the Masternode in the list and press "start").
 클립보드로 내보내려고 합니다.
 
 
-그 데이터를 리모트 서버의 ucr.conf 파일에
+그 데이터를 리모트 서버의 ultraclear.conf 파일에
 붙여넣고 시작합니다. 그리고 컨트롤러 지갑에서 마스터노드를
 시작합니다. (리스트에서 마스터노드를 선택하고 "시작"을 누르십시오.)
 </translation>
@@ -1628,8 +1388,8 @@ Are you sure?</source>
         <translation>구문 분석된 데이터가 너무 큽니다.</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "ucr" prefix</source>
-        <translation>"ucr"로 시작하지 않아 유효하지 않은 URI</translation>
+        <source>Invalid URI, not starting with "ultraclear" prefix</source>
+        <translation>"ultraclear"로 시작하지 않아 유효하지 않은 URI</translation>
     </message>
 </context>
 <context>
@@ -1923,8 +1683,8 @@ Are you sure?</source>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -1951,8 +1711,8 @@ Are you sure?</source>
         <translation>어플리케이션 종료</translation>
     </message>
     <message>
-        <source>Ultra Clear client</source>
-        <translation>Ultra Clear 클라이언트</translation>
+        <source>UltraClear client</source>
+        <translation>UltraClear 클라이언트</translation>
     </message>
     <message>
         <source>Error</source>
@@ -2018,8 +1778,8 @@ Address: %4
         <translation>잘못된 결제 주소 %1</translation>
     </message>
     <message>
-        <source>Cannot start ucr: click-to-pay handler</source>
-        <translation>ucr을 시작할 수 없습니다: 결제하기 위한 클릭 처리</translation>
+        <source>Cannot start ultraclear: click-to-pay handler</source>
+        <translation>ultraclear을 시작할 수 없습니다: 결제하기 위한 클릭 처리</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid UCR address or malformed URI parameters.</source>
@@ -2156,16 +1916,16 @@ Address: %4
         <translation>치명적인 오류가 발생하였습니다. UCR는 더 이상 안전하게 계속될 수 없으며, 곧 종료됩니다.</translation>
     </message>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
         <translation>Error: Specified data directory "%1" does not exist.</translation>
     </message>
     <message>
-        <source>Ultra Clear didn't yet exit safely...</source>
-        <translation>Ultra Clear가 아직 안전하게 종료되지 않았습니다....</translation>
+        <source>UltraClear didn't yet exit safely...</source>
+        <translation>UltraClear가 아직 안전하게 종료되지 않았습니다....</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -2174,14 +1934,6 @@ Address: %4
     <message>
         <source>Receiving</source>
         <translation>받는중</translation>
-    </message>
-    <message>
-        <source>Cold Staking</source>
-        <translation>콜드 스테이킹</translation>
-    </message>
-    <message>
-        <source>Cold Staking Contact</source>
-        <translation>콜드 스테이킹 연락처</translation>
     </message>
     <message>
         <source>Hidden</source>
@@ -2242,10 +1994,6 @@ Address: %4
     <message>
         <source>To yourself</source>
         <translation>자신에게</translation>
-    </message>
-    <message>
-        <source>Cold stakes</source>
-        <translation>콜드 스테이크</translation>
     </message>
     </context>
 <context>
@@ -2836,10 +2584,6 @@ Address: %4
         <translation>생성</translation>
     </message>
     <message>
-        <source>New Cold Staking Address</source>
-        <translation>새로운 콜드 스테이킹 주소</translation>
-    </message>
-    <message>
         <source>Amount (optional)</source>
         <translation>액수 (선택 과목)</translation>
     </message>
@@ -2962,14 +2706,6 @@ Address: %4
     <message>
         <source>Cannot create transaction.</source>
         <translation>전송 불가</translation>
-    </message>
-    <message>
-        <source>WARNING:
-Transaction spends a cold-stake delegation, voiding it.
-These coins will no longer be cold-staked.</source>
-        <translation>주의 :
-Cold-staking 중인 코인을 사용하여 전송하며, 무효화됩니다.
-이 코인은 더이상  cold-staking 되지 않습니다.</translation>
     </message>
     <message>
         <source>Transaction sent</source>
@@ -3507,8 +3243,8 @@ Verify that you have installed a predetermined text editor.</source>
         <translation>백업 폴더를 열 수 없습니다.</translation>
     </message>
     <message>
-        <source>Unable to open ucr.conf with default application</source>
-        <translation>ucr.conf 파일을 기본 앱으로 열 수 없습니다.</translation>
+        <source>Unable to open ultraclear.conf with default application</source>
+        <translation>ultraclear.conf 파일을 기본 앱으로 열 수 없습니다.</translation>
     </message>
     <message>
         <source>In:</source>
@@ -4075,8 +3811,8 @@ Are you sure?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Ultra Clear is shutting down...</source>
-        <translation>Ultra Clear가 종료됩니다...</translation>
+        <source>UltraClear is shutting down...</source>
+        <translation>UltraClear가 종료됩니다...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4105,8 +3841,8 @@ Are you sure?
         <translation>로딩중...</translation>
     </message>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
 </context>
 <context>
@@ -4326,10 +4062,6 @@ NOTE: 업그레이드 이후에는
         <translation>수신됨</translation>
     </message>
     <message>
-        <source>Stake delegation</source>
-        <translation>Stake delegation</translation>
-    </message>
-    <message>
         <source>Sent to</source>
         <translation>대상 전송</translation>
     </message>
@@ -4531,9 +4263,9 @@ NOTE: 업그레이드 이후에는
     </message>
     <message>
         <source>Welcome to
-Ultra Clear Wallet</source>
+UltraClear Wallet</source>
         <translation>환영합니다.
-Ultra Clear Wallet</translation>
+UltraClear Wallet</translation>
     </message>
     <message>
         <source>UCR is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
@@ -4579,8 +4311,8 @@ Ultra Clear Wallet</translation>
         <translation>JSON-RPC연결 수신을 위해 주어진 주소를 지정합니다. [host]: IPv6 포트 표기법 사용. 이 옵션은 여러번 지정할 수 있습니다. (기본값 : 모든 인터페이스에 지정)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Ultra Clear is probably already running.</source>
-        <translation>        &lt;translation&gt;잠겨진 데이터 디렉토리 %s 를 가져올 수 없습니다. Ultra Clear는 이미 실행 중입니다.</translation>
+        <source>Cannot obtain a lock on data directory %s. UltraClear is probably already running.</source>
+        <translation>        &lt;translation&gt;잠겨진 데이터 디렉토리 %s 를 가져올 수 없습니다. UltraClear는 이미 실행 중입니다.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -4719,8 +4451,8 @@ Ultra Clear Wallet</translation>
         <translation>이 제품은 OpenSSL이 개발한 Open SSL 툴킷 &lt;https://www.openssl.org/&gt; 에서 사용하기 위한 프로젝트 소프트웨어, Eric Young이 개발한 암호화 소프트웨어, Thomas Bernard가 개발한 UPnP 소프트웨어가 포함되어 있습니다.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Ultra Clear is probably already running.</source>
-        <translation>이 컴퓨터를 %s 로 지정하는것은 불가능합니다. Ultra Clear는 이미 실행 중입니다.</translation>
+        <source>Unable to bind to %s on this computer. UltraClear is probably already running.</source>
+        <translation>이 컴퓨터를 %s 로 지정하는것은 불가능합니다. UltraClear는 이미 실행 중입니다.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -4735,8 +4467,8 @@ Ultra Clear Wallet</translation>
         <translation>경고 : -paytxfee가 매우 높게 설정되었습니다! 이것은 전송할 경우 지불 할 트랜잭션 수수료입니다.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Ultra Clear will not work properly.</source>
-        <translation>경고: 컴퓨터의 날짜와 시간이 올바르게 설정되어 있는지 확인해 주세요! 만일 시계가 잘못되어 있다면 Ultra Clear 코어는 정상적으로 작동하지 않을 수 있습니다.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong UltraClear will not work properly.</source>
+        <translation>경고: 컴퓨터의 날짜와 시간이 올바르게 설정되어 있는지 확인해 주세요! 만일 시계가 잘못되어 있다면 UltraClear 코어는 정상적으로 작동하지 않을 수 있습니다.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -4847,14 +4579,6 @@ Ultra Clear Wallet</translation>
         <translation>로딩 완료</translation>
     </message>
     <message>
-        <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>&lt;address&gt; 에서 해시 전송 게시 가능 (SwiftTX로 설정된)</translation>
-    </message>
-    <message>
-        <source>Enable publish raw transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>&lt;address&gt;에서 Raw 트랜잭션 게시 지원 (SwiftTX를 통해 잠겨진)</translation>
-    </message>
-    <message>
         <source>Enable the client to act as a masternode (0-1, default: %u)</source>
         <translation>클라이언트가 마스터노드로 작동하는 것을 활성화 (0-1, 기본값: %u)</translation>
     </message>
@@ -4947,8 +4671,8 @@ Ultra Clear Wallet</translation>
         <translation>정보</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Ultra Clear is shutting down.</source>
-        <translation>초기화 정확성 검사에 실패 했습니다. Ultra Clear가 종료됩니다.</translation>
+        <source>Initialization sanity check failed. UltraClear is shutting down.</source>
+        <translation>초기화 정확성 검사에 실패 했습니다. UltraClear가 종료됩니다.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -4995,20 +4719,12 @@ Ultra Clear Wallet</translation>
         <translation>지불대상보다 적은 코인 선택됨</translation>
     </message>
     <message>
-        <source>SwiftX options:</source>
-        <translation>SwiftX 옵션:</translation>
-    </message>
-    <message>
         <source>This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!</source>
         <translation>이것은 사전 릴리스 테스트 빌드입니다 - 사용상 책임은 귀하에게 있습니다. - staking이나 상업적인 용도로는 절대 사용하지 마십시오!</translation>
     </message>
     <message>
-        <source>Disable all UCR specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>UCR의 모든 특정 기능들을 비활성화합니다(마스터노드, 난독화, SwiftTX, Budgeting) (0-1, 기본값: %u)</translation>
-    </message>
-    <message>
-        <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
-        <translation>swiftTX 활성화, 잠긴 트랜잭션들에 대한 확인 표시 (bool, 기본값: %s)</translation>
+        <source>Disable all UCR specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
+        <translation>UCR의 모든 특정 기능들을 비활성화합니다(마스터노드, 난독화, Budgeting) (0-1, 기본값: %u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -5029,10 +4745,6 @@ Ultra Clear Wallet</translation>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
         <translation>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</translation>
-    </message>
-    <message>
-        <source>SwiftX requires inputs with at least 6 confirmations, you might need to wait a few minutes and try again.</source>
-        <translation>SwiftTX는 최소 6회 확인이 필요한 입력으로 몇 분 후에 다시 시도해야 할 수 있습니다.</translation>
     </message>
     <message>
         <source>&lt;category&gt; can be:</source>
@@ -5227,8 +4939,8 @@ Ultra Clear Wallet</translation>
         <translation>재동기화 준비중...</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong Ultra Clear will not work properly.</source>
-        <translation>컴퓨터의 날짜와 시간이 올바르게 설정되어 있는지 확인해 주세요! 만일 시계가 잘못되어 있다면 Ultra Clear 코어는 정상적으로 작동하지 않을 수 있습니다.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong UltraClear will not work properly.</source>
+        <translation>컴퓨터의 날짜와 시간이 올바르게 설정되어 있는지 확인해 주세요! 만일 시계가 잘못되어 있다면 UltraClear 코어는 정상적으로 작동하지 않을 수 있습니다.</translation>
     </message>
     <message>
         <source>Cannot resolve -%s address: '%s'</source>
@@ -5515,8 +5227,8 @@ Ultra Clear Wallet</translation>
         <translation>지갑 %s 가 데이터 디렉토리 외부에 존재합니다 %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Ultra Clear to complete</source>
-        <translation>지갑을 다시 작성해야 합니다: 완료하려면 Ultra Clear 코어를 재시작해야 합니다</translation>
+        <source>Wallet needed to be rewritten: restart UltraClear to complete</source>
+        <translation>지갑을 다시 작성해야 합니다: 완료하려면 UltraClear 코어를 재시작해야 합니다</translation>
     </message>
     <message>
         <source>Wallet options:</source>
@@ -5604,10 +5316,6 @@ Ultra Clear Wallet</translation>
     <message>
         <source>Reset to default</source>
         <translation>기본값으로 리셋</translation>
-    </message>
-    <message>
-        <source>Include delegated</source>
-        <translation>위임된 코인 포함</translation>
     </message>
 </context>
 </TS>

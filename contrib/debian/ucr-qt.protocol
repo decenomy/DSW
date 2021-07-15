@@ -1,6 +1,6 @@
 [Protocol]
-exec=ucr-qt '%u'
-protocol=ucr
+exec=ultraclear-qt '%u'
+protocol=ultraclear
 input=none
 output=none
 helper=true

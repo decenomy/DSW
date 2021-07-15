@@ -1,24 +1,18 @@
-Ultra Clear integration/staging repository
+UltraClear integration/staging repository
 =====================================
 
+• PoW Algorithm: X13
+• Premine: 1,000,000,000 UCR
+• PoW Blocks: 1 - 1000
+• PoS Blocks: Starting from 1001
+• Block Time: 60 Seconds
+• Maturity: 100 Confirmations
+• Prefix: UCR adresses start with the capital letter "C"
+• Ports: 32628 (p2p) / 32627 (rpc)
 
-UltraClear is an open source crypto-currency focused on fast private transactions with low transaction fees & environmental footprint.  
-More information at [ucrcoin.net](https://ucrcoin.net)
+• Explorer https://explorer.decenomy.net/UCR/blocks
 
-### Coin Specs
-<table>
-<tr><td>Ticker</td><td>UCR</td></tr>
-<tr><td>Algo</td><td>X13</td></tr>
-<tr><td>Block Time</td><td>60 Seconds</td></tr>
-<tr><td>Difficulty Retargeting</td><td>Every Block</td></tr>
-<tr><td>Max Coin Supply (PoS Phase)</td><td>1000M</td></tr>
-<tr><td>Premine</td><td>500,000 UCR*</td></tr>
-</table>
-
-RPC Port 32627 
-P2P Port 32628 
-Explorer https://explorer.decenomy.net/UCR/blocks
-
+• Website [ucrcoin.net/](https://ucrcoin.net/)
 
 ### Rewards Breakdown
 <table border=0 cellpadding=0 cellspacing=0 width=701 class=xl6553517252

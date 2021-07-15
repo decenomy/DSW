@@ -75,24 +75,18 @@ std::string DecodeDumpString(const std::string& str)
     return ret.str();
 }
 
-bool IsStakingDerPath(KeyOriginInfo keyOrigin)
-{
-    return keyOrigin.path.size() > 3 && keyOrigin.path[3] == (2 | BIP32_HARDENED_KEY_LIMIT);
-}
-
 UniValue importprivkey(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 4)
         throw std::runtime_error(
-            "importprivkey \"ucrprivkey\" ( \"label\" rescan fStakingAddress )\n"
+            "importprivkey \"ultraclearprivkey\" ( \"label\" rescan fStakingAddress )\n"
             "\nAdds a private key (as returned by dumpprivkey) to your wallet.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"ucrprivkey\"      (string, required) The private key (see dumpprivkey)\n"
+            "1. \"ultraclearprivkey\"      (string, required) The private key (see dumpprivkey)\n"
             "2. \"label\"            (string, optional, default=\"\") An optional label\n"
             "3. rescan               (boolean, optional, default=true) Rescan the wallet for transactions\n"
-            "4. fStakingAddress      (boolean, optional, default=false) Whether this key refers to a (cold) staking address\n"
 
             "\nNote: This call can take minutes to complete if rescan is true.\n"
 
@@ -109,7 +103,6 @@ UniValue importprivkey(const JSONRPCRequest& request)
     const std::string strSecret = request.params[0].get_str();
     const std::string strLabel = (request.params.size() > 1 ? request.params[1].get_str() : "");
     const bool fRescan = (request.params.size() > 2 ? request.params[2].get_bool() : true);
-    const bool fStakingAddress = (request.params.size() > 3 ? request.params[3].get_bool() : false);
 
     CKey key = DecodeSecret(strSecret);
     if (!key.IsValid()) throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid private key encoding");
@@ -122,10 +115,7 @@ UniValue importprivkey(const JSONRPCRequest& request)
         EnsureWalletIsUnlocked();
 
         pwalletMain->MarkDirty();
-        pwalletMain->SetAddressBook(vchAddress, strLabel, (
-                fStakingAddress ?
-                        AddressBook::AddressBookPurpose::COLD_STAKING :
-                        AddressBook::AddressBookPurpose::RECEIVE));
+        pwalletMain->SetAddressBook(vchAddress, strLabel, AddressBook::AddressBookPurpose::RECEIVE);
 
         // Don't throw error in case a key is already there
         if (pwalletMain->HaveKey(vchAddress))
@@ -141,10 +131,6 @@ UniValue importprivkey(const JSONRPCRequest& request)
 
         if (fRescan) {
             CBlockIndex *pindex = chainActive.Genesis();
-            if (fStakingAddress && !Params().IsRegTestNet()) {
-                // cold staking was activated after nBlockTimeProtocolV2 (PIVX v4.0). No need to scan the whole chain
-                pindex = chainActive[Params().GetConsensus().vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight];
-            }
             pwalletMain->ScanForWalletTransactions(pindex, true);
         }
     }
@@ -213,15 +199,12 @@ UniValue importaddress(const JSONRPCRequest& request)
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
-    bool isStakingAddress = false;
-    CTxDestination dest = DecodeDestination(request.params[0].get_str(), isStakingAddress);
+    CTxDestination dest = DecodeDestination(request.params[0].get_str());
 
     if (IsValidDestination(dest)) {
         if (fP2SH)
             throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Cannot use the p2sh flag with an address - use a script instead");
-        ImportAddress(dest, strLabel, isStakingAddress ?
-                                        AddressBook::AddressBookPurpose::COLD_STAKING :
-                                        AddressBook::AddressBookPurpose::RECEIVE);
+        ImportAddress(dest, strLabel, AddressBook::AddressBookPurpose::RECEIVE);
 
     } else if (IsHex(request.params[0].get_str())) {
         std::vector<unsigned char> data(ParseHex(request.params[0].get_str()));
@@ -393,13 +376,13 @@ UniValue dumpprivkey(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 1)
         throw std::runtime_error(
-            "dumpprivkey \"ucraddress\"\n"
-            "\nReveals the private key corresponding to 'ucraddress'.\n"
+            "dumpprivkey \"ultraclearaddress\"\n"
+            "\nReveals the private key corresponding to 'ultraclearaddress'.\n"
             "Then the importprivkey can be used with this output\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"ucraddress\"   (string, required) The ucr address for the private key\n"
+            "1. \"ultraclearaddress\"   (string, required) The ultraclear address for the private key\n"
 
             "\nResult:\n"
             "\"key\"                (string) The private key\n"
@@ -414,7 +397,7 @@ UniValue dumpprivkey(const JSONRPCRequest& request)
     std::string strAddress = request.params[0].get_str();
     CTxDestination dest = DecodeDestination(strAddress);
     if (!IsValidDestination(dest))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Ultra Clear address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid UltraClear address");
     CKeyID keyID = *boost::get<CKeyID>(&dest);
     if (!keyID)
         throw JSONRPCError(RPC_TYPE_ERROR, "Address does not refer to a key");
@@ -476,7 +459,7 @@ UniValue dumpwallet(const JSONRPCRequest& request)
 
     CBlockIndex* tip = chainActive.Tip();
     // produce output
-    file << strprintf("# Wallet dump created by Ultra Clear %s (%s)\n", CLIENT_BUILD, CLIENT_DATE);
+    file << strprintf("# Wallet dump created by UltraClear %s (%s)\n", CLIENT_BUILD, CLIENT_DATE);
     file << strprintf("# * Created on %s\n", EncodeDumpTime(GetTime()));
     if (tip) {
         file << strprintf("# * Best block at time of backup was %i (%s),\n", tip->nHeight,
@@ -496,7 +479,24 @@ UniValue dumpwallet(const JSONRPCRequest& request)
             CExtKey masterKey;
             masterKey.SetSeed(seed.begin(), seed.size());
 
-            file << "# extended private masterkey: " << KeyIO::EncodeExtKey(masterKey) << "\n\n";
+            file << "# extended private masterkey: " << KeyIO::EncodeExtKey(masterKey) << "\n";
+
+            CExtKey purposeKey;            //key at m/purpose' --> key at m/44'
+            CExtKey cointypeKey;           //key at m/purpose'/coin_type'  --> key at m/44'/BIP32_HDCHAIN'
+            CExtKey accountKey;            //key at m/purpose'/coin_type'/account' ---> key at m/44'/BIP32_HDCHAIN'/0'
+            CExtKey changeKey;             //key at m/purpose'/coin_type'/account'/change ---> key at m/44'/BIP32_HDCHAIN'/0'/HDChain::ChangeType::ECOMMERCE.
+
+            // derive m/0'
+            // use hardened derivation (child keys >= 0x80000000 are hardened after bip32)
+            masterKey.Derive(purposeKey, 44 | BIP32_HARDENED_KEY_LIMIT);
+            // derive m/purpose'/coin_type'
+            purposeKey.Derive(cointypeKey, BIP32_HDCHAIN | BIP32_HARDENED_KEY_LIMIT);
+            // derive m/purpose'/coin_type'/account' // Hardcoded to account 0 for now.
+            cointypeKey.Derive(accountKey, 0 | BIP32_HARDENED_KEY_LIMIT);
+            // derive m/purpose'/coin_type'/account'/change'
+            accountKey.Derive(changeKey, HDChain::ChangeType::ECOMMERCE);
+
+            file << "# extended public masterkey: " << KeyIO::EncodeExtPubKey(changeKey.Neuter()) << "\n\n";
         }
     }
 
@@ -506,9 +506,7 @@ UniValue dumpwallet(const JSONRPCRequest& request)
         CKey key;
         if (pwalletMain->GetKey(keyid, key)) {
             const CKeyMetadata& metadata = pwalletMain->mapKeyMetadata[keyid];
-            std::string strAddr = EncodeDestination(keyid, (metadata.HasKeyOrigin() && IsStakingDerPath(metadata.key_origin) ?
-                                                          CChainParams::STAKING_ADDRESS :
-                                                          CChainParams::PUBKEY_ADDRESS));
+            std::string strAddr = EncodeDestination(keyid);
 
             file << strprintf("%s %s ", KeyIO::EncodeSecret(key), strTime);
             if (pwalletMain->mapAddressBook.count(keyid)) {
@@ -538,12 +536,12 @@ UniValue bip38encrypt(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 2)
         throw std::runtime_error(
-            "bip38encrypt \"ucraddress\" \"passphrase\"\n"
-            "\nEncrypts a private key corresponding to 'ucraddress'.\n" +
+            "bip38encrypt \"ultraclearaddress\" \"passphrase\"\n"
+            "\nEncrypts a private key corresponding to 'ultraclearaddress'.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"ucraddress\"   (string, required) The ucr address for the private key (you must hold the key already)\n"
+            "1. \"ultraclearaddress\"   (string, required) The ultraclear address for the private key (you must hold the key already)\n"
             "2. \"passphrase\"   (string, required) The passphrase you want the private key to be encrypted with - Valid special chars: !#$%&'()*+,-./:;<=>?`{|}~ \n"
 
             "\nResult:\n"
@@ -562,7 +560,7 @@ UniValue bip38encrypt(const JSONRPCRequest& request)
 
     CTxDestination address = DecodeDestination(strAddress);
     if (!IsValidDestination(address))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Ultra Clear address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid UltraClear address");
     CKeyID keyID = *boost::get<CKeyID>(&address);
     if (!keyID)
         throw JSONRPCError(RPC_TYPE_ERROR, "Address does not refer to a key");
@@ -584,7 +582,7 @@ UniValue bip38decrypt(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 2)
         throw std::runtime_error(
-            "bip38decrypt \"ucraddress\" \"passphrase\"\n"
+            "bip38decrypt \"ultraclearaddress\" \"passphrase\"\n"
             "\nDecrypts and then imports password protected private key.\n" +
             HelpRequiringPassphrase() + "\n"
 

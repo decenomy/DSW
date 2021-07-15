@@ -266,11 +266,11 @@ UniValue stop(const JSONRPCRequest& jsonRequest)
     if (jsonRequest.fHelp || jsonRequest.params.size() > 1)
         throw std::runtime_error(
             "stop\n"
-            "\nStop UCR server.");
+            "\nStop UltraClear server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "UCR server stopping";
+    return "UltraClear server stopping";
 }
 
 
@@ -361,31 +361,31 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true },
 
         /* UCR features */
-        {"ucr", "listmasternodes", &listmasternodes, true },
-        {"ucr", "getmasternodecount", &getmasternodecount, true },
-        {"ucr", "createmasternodebroadcast", &createmasternodebroadcast, true },
-        {"ucr", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
-        {"ucr", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
-        {"ucr", "masternodecurrent", &masternodecurrent, true },
-        {"ucr", "startmasternode", &startmasternode, true },
-        {"ucr", "createmasternodekey", &createmasternodekey, true },
-        {"ucr", "getmasternodeoutputs", &getmasternodeoutputs, true },
-        {"ucr", "listmasternodeconf", &listmasternodeconf, true },
-        {"ucr", "getmasternodestatus", &getmasternodestatus, true },
-        {"ucr", "getmasternodewinners", &getmasternodewinners, true },
-        {"ucr", "getmasternodescores", &getmasternodescores, true },
-        {"ucr", "preparebudget", &preparebudget, true },
-        {"ucr", "submitbudget", &submitbudget, true },
-        {"ucr", "mnbudgetvote", &mnbudgetvote, true },
-        {"ucr", "getbudgetvotes", &getbudgetvotes, true },
-        {"ucr", "getnextsuperblock", &getnextsuperblock, true },
-        {"ucr", "getbudgetprojection", &getbudgetprojection, true },
-        {"ucr", "getbudgetinfo", &getbudgetinfo, true },
-        {"ucr", "mnbudgetrawvote", &mnbudgetrawvote, true },
-        {"ucr", "mnfinalbudget", &mnfinalbudget, true },
-        {"ucr", "checkbudgets", &checkbudgets, true },
-        {"ucr", "mnsync", &mnsync, true },
-        {"ucr", "spork", &spork, true },
+        {"ultraclear", "listmasternodes", &listmasternodes, true },
+        {"ultraclear", "getmasternodecount", &getmasternodecount, true },
+        {"ultraclear", "createmasternodebroadcast", &createmasternodebroadcast, true },
+        {"ultraclear", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
+        {"ultraclear", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
+        {"ultraclear", "masternodecurrent", &masternodecurrent, true },
+        {"ultraclear", "startmasternode", &startmasternode, true },
+        {"ultraclear", "createmasternodekey", &createmasternodekey, true },
+        {"ultraclear", "getmasternodeoutputs", &getmasternodeoutputs, true },
+        {"ultraclear", "listmasternodeconf", &listmasternodeconf, true },
+        {"ultraclear", "getmasternodestatus", &getmasternodestatus, true },
+        {"ultraclear", "getmasternodewinners", &getmasternodewinners, true },
+        {"ultraclear", "getmasternodescores", &getmasternodescores, true },
+        {"ultraclear", "preparebudget", &preparebudget, true },
+        {"ultraclear", "submitbudget", &submitbudget, true },
+        {"ultraclear", "mnbudgetvote", &mnbudgetvote, true },
+        {"ultraclear", "getbudgetvotes", &getbudgetvotes, true },
+        {"ultraclear", "getnextsuperblock", &getnextsuperblock, true },
+        {"ultraclear", "getbudgetprojection", &getbudgetprojection, true },
+        {"ultraclear", "getbudgetinfo", &getbudgetinfo, true },
+        {"ultraclear", "mnbudgetrawvote", &mnbudgetrawvote, true },
+        {"ultraclear", "mnfinalbudget", &mnfinalbudget, true },
+        {"ultraclear", "checkbudgets", &checkbudgets, true },
+        {"ultraclear", "mnsync", &mnsync, true },
+        {"ultraclear", "spork", &spork, true },
 
 #ifdef ENABLE_WALLET
         /* Wallet */
@@ -598,7 +598,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(std::string methodname, std::string args)
 {
-    return "> ucr-cli " + methodname + " " + args + "\n";
+    return "> ultraclear-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(std::string methodname, std::string args)

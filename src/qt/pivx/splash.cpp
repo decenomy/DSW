@@ -28,7 +28,7 @@ Splash::Splash(Qt::WindowFlags f, const NetworkStyle* networkStyle) :
     QWidget(0, f | Qt::SplashScreen), ui(new Ui::Splash)
 {
     ui->setupUi(this);
-    QString titleText = tr("Ultra Clear");
+    QString titleText = tr("UltraClear");
     QString titleAddText = networkStyle->getTitleAddText();
     setWindowTitle(titleText + " " + titleAddText);
 

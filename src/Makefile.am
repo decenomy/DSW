@@ -67,15 +67,15 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += ucrd
+  bin_PROGRAMS += ultracleard
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += ucr-cli ucr-tx
+  bin_PROGRAMS += ultraclear-cli ultraclear-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
-# ucr core #
+# ultraclear core #
 BITCOIN_CORE_H = \
   activemasternode.h \
   addrdb.h \
@@ -128,7 +128,6 @@ BITCOIN_CORE_H = \
   invalid_serials.json.h \
   legacy/stakemodifier.h \
   kernel.h \
-  swifttx.h \
   key.h \
   key_io.h \
   keystore.h \
@@ -228,7 +227,7 @@ obj/build.h: FORCE
 	  "$(abs_top_srcdir)"
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between ucrd and ucr-qt
+# server: shared between ultracleard and ultraclear-qt
 libbitcoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libbitcoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_server_a_SOURCES = \
@@ -283,7 +282,7 @@ libbitcoin_zmq_a_SOURCES = \
   zmq/zmqpublishnotifier.cpp
 endif
 
-# wallet: shared between ucrd and ucr-qt, but only linked
+# wallet: shared between ultracleard and ultraclear-qt, but only linked
 # when wallet enabled
 libbitcoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
@@ -295,7 +294,6 @@ libbitcoin_wallet_a_SOURCES = \
   addressbook.cpp \
   crypter.cpp \
   key_io.cpp \
-  swifttx.cpp \
   masternode.cpp \
   masternode-budget.cpp \
   masternode-payments.cpp \
@@ -370,6 +368,7 @@ crypto_libbitcoin_crypto_a_SOURCES = \
   crypto/sph_skein.h \
   crypto/sph_types.h \
   crypto/sph_luffa.h \
+  crypto/sph_haval.h \
   crypto/luffa.c \
   crypto/sph_cubehash.h \
   crypto/cubehash.c \
@@ -378,7 +377,13 @@ crypto_libbitcoin_crypto_a_SOURCES = \
   crypto/sph_simd.h \
   crypto/simd.c \
   crypto/sph_echo \
-  crypto/echo.c
+  crypto/echo.c \
+  crypto/shabal.c \
+  crypto/whirlpool.c \
+  crypto/haval.c \
+  crypto/hamsi.c \
+  crypto/fugue.c \
+  crypto/sph_sha2big.c
 
 # libzerocoin library
 libzerocoin_libbitcoin_zerocoin_a_CPPFLAGS = $(AM_CPPFLAGS) $(BOOST_CPPFLAGS)
@@ -410,7 +415,7 @@ if USE_NUM_OPENSSL
   libzerocoin_libbitcoin_zerocoin_a_SOURCES += libzerocoin/bignum_openssl.cpp
 endif
 
-# common: shared between ucrd, and ucr-qt and non-server tools
+# common: shared between ultracleard, and ultraclear-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_common_a_SOURCES = \
@@ -485,7 +490,7 @@ if GLIBC_BACK_COMPAT
 AM_LDFLAGS += $(COMPAT_LDFLAGS)
 endif
 
-# cli: shared between ucr-cli and ucr-qt
+# cli: shared between ultraclear-cli and ultraclear-qt
 libbitcoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_cli_a_SOURCES = \
@@ -495,16 +500,16 @@ libbitcoin_cli_a_SOURCES = \
 nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# ucrd binary #
-ucrd_SOURCES = pivxd.cpp
-ucrd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-ucrd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-ucrd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# ultracleard binary #
+ultracleard_SOURCES = pivxd.cpp
+ultracleard_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+ultracleard_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+ultracleard_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-ucrd_SOURCES += pivxd-res.rc
+ultracleard_SOURCES += pivxd-res.rc
 endif
-ucrd_LDADD = \
+ultracleard_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
   $(LIBBITCOIN_COMMON) \
@@ -518,38 +523,38 @@ ucrd_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-ucrd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+ultracleard_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
-# ucr-cli binary #
-ucr_cli_SOURCES = pivx-cli.cpp
-ucr_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-ucr_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-ucr_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# ultraclear-cli binary #
+ultraclear_cli_SOURCES = pivx-cli.cpp
+ultraclear_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+ultraclear_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+ultraclear_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-ucr_cli_SOURCES += pivx-cli-res.rc
+ultraclear_cli_SOURCES += pivx-cli-res.rc
 endif
 
-ucr_cli_LDADD = \
+ultraclear_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO)
 
-ucr_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+ultraclear_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
-# ucr-tx binary #
-ucr_tx_SOURCES = pivx-tx.cpp
-ucr_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-ucr_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-ucr_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# ultraclear-tx binary #
+ultraclear_tx_SOURCES = pivx-tx.cpp
+ultraclear_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+ultraclear_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+ultraclear_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-ucr_tx_SOURCES += pivx-tx-res.rc
+ultraclear_tx_SOURCES += pivx-tx-res.rc
 endif
 
-ucr_tx_LDADD = \
+ultraclear_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_ZEROCOIN) \
@@ -557,7 +562,7 @@ ucr_tx_LDADD = \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-ucr_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+ultraclear_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
 # bitcoinconsensus library #

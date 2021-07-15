@@ -11,10 +11,10 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both ucrd and ucr-qt, to make it harder for attackers to
+ * for both ultracleard and ultraclear-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("Ultra Clear");
+const std::string CLIENT_NAME("UltraClear");
 
 /**
  * Client version number

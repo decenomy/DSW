@@ -937,7 +937,7 @@
                      </property>
                      <property name="text">
                       <string>Welcome to
-Ultra Clear Wallet</string>
+UltraClear Wallet</string>
                      </property>
                      <property name="alignment">
                       <set>Qt::AlignCenter</set>

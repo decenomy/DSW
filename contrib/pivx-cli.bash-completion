@@ -1,9 +1,9 @@
-# bash programmable completion for ucr-cli(1)
+# bash programmable completion for ultraclear-cli(1)
 # Copyright (c) 2012-2016 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-# call $ucr-cli for RPC
+# call $ultraclear-cli for RPC
 _pivx_rpc() {
     # determine already specified args necessary for RPC
     local rpcargs=()
@@ -28,8 +28,8 @@ _pivx_cli() {
     local cur prev words=() cword
     local pivx_cli
 
-    # save and use original argument to invoke ucr-cli for -help, help and RPC
-    # as ucr-cli might not be in $PATH
+    # save and use original argument to invoke ultraclear-cli for -help, help and RPC
+    # as ultraclear-cli might not be in $PATH
     pivx_cli="$1"
 
     COMPREPLY=()
@@ -143,7 +143,7 @@ _pivx_cli() {
             ;;
     esac
 } &&
-complete -F _pivx_cli ucr-cli
+complete -F _pivx_cli ultraclear-cli
 
 # Local variables:
 # mode: shell-script

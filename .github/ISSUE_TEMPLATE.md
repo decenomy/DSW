@@ -1,7 +1,7 @@
 <!--- Remove this description and sections that do not apply -->
 
-This issue tracker is only for technical issues related to Ultra Clear Core.
-General Ultra Clear questions and/or support requests and are best directed to the [Ultra Clear Discord](https://discord.gg/VyEGKeZBrV).
+This issue tracker is only for technical issues related to UltraClear Core.
+General UltraClear questions and/or support requests and are best directed to the [UltraClear Discord](https://discord.gg/VyEGKeZBrV).
 
 ### Describe the issue
 
@@ -20,7 +20,7 @@ Tell us what happens instead
 ### Screenshots.
 If the issue is related to the GUI, screenshots can be added to this issue via drag & drop.
 
-### What version of Ultra Clear Core are you using?
+### What version of UltraClear Core are you using?
 List the version number/commit ID, and if it is an official binary, self compiled or a distribution package.
 
 ### Machine specs:

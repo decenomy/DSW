@@ -47,10 +47,10 @@ static bool AppInitRawTx(int argc, char* argv[])
 
     if (argc < 2 || mapArgs.count("-?") || mapArgs.count("-help")) {
         // First part of help message is specific to this utility
-        std::string strUsage = _("ucr ucr-tx utility version") + " " + FormatFullVersion() + "\n\n" +
+        std::string strUsage = _("ultraclear ultraclear-tx utility version") + " " + FormatFullVersion() + "\n\n" +
                                _("Usage:") + "\n" +
-                               "  ucr-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded ucr transaction") + "\n" +
-                               "  ucr-tx [options] -create [commands]   " + _("Create hex-encoded ucr transaction") + "\n" +
+                               "  ultraclear-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded ultraclear transaction") + "\n" +
+                               "  ultraclear-tx [options] -create [commands]   " + _("Create hex-encoded ultraclear transaction") + "\n" +
                                "\n";
 
         fprintf(stdout, "%s", strUsage.c_str());
@@ -454,8 +454,7 @@ static void MutateTxSign(CMutableTransaction& tx, const std::string& flagStr)
             ProduceSignature(
                     MutableTransactionSignatureCreator(&keystore, &mergedTx, i, amount, nHashType),
                     prevPubKey,
-                    sigdata,
-                    false // no cold stake
+                    sigdata
             );
 
         // ... and merge in other signatures:
@@ -596,7 +595,7 @@ static int CommandLineRawTx(int argc, char* argv[])
             if (argc < 2)
                 throw std::runtime_error("too few parameters");
 
-            // param: hex-encoded ucr transaction
+            // param: hex-encoded ultraclear transaction
             std::string strHexTx(argv[1]);
             if (strHexTx == "-") // "-" implies standard input
                 strHexTx = readStdin();

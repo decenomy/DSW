@@ -1,4 +1,4 @@
-# bash programmable completion for ucr-tx(1)
+# bash programmable completion for ultraclear-tx(1)
 # Copyright (c) 2016 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -7,7 +7,7 @@ _pivx_tx() {
     local cur prev words=() cword
     local pivx_tx
 
-    # save and use original argument to invoke ucr-tx for -help
+    # save and use original argument to invoke ultraclear-tx for -help
     # it might not be in $PATH
     pivx_tx="$1"
 
@@ -27,7 +27,7 @@ _pivx_tx() {
 
     if [[ "$cword" == 1 || ( "$prev" != "-create" && "$prev" == -* ) ]]; then
         # only options (or an uncompletable hex-string) allowed
-        # parse ucr-tx -help for options
+        # parse ultraclear-tx -help for options
         local helpopts
         helpopts=$($pivx_tx -help | sed -e '/^  -/ p' -e d )
         COMPREPLY=( $( compgen -W "$helpopts" -- "$cur" ) )
@@ -46,7 +46,7 @@ _pivx_tx() {
 
     return 0
 } &&
-complete -F _pivx_tx ucr-tx
+complete -F _pivx_tx ultraclear-tx
 
 # Local variables:
 # mode: shell-script

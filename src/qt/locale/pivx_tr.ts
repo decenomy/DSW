@@ -408,33 +408,6 @@ Stake için kaldırın</translation>
     </message>
 </context>
 <context>
-    <name>CSRow</name>
-    <message>
-        <source>Form</source>
-        <translation>Form</translation>
-    </message>
-    <message>
-        <source>Savings</source>
-        <translation>Birikimler</translation>
-    </message>
-    <message>
-        <source>0,00 UCR</source>
-        <translation>0,00 UCR</translation>
-    </message>
-    <message>
-        <source>address</source>
-        <translation>adres</translation>
-    </message>
-    <message>
-        <source>Not Staking</source>
-        <translation>Stake yapılmıyor</translation>
-    </message>
-    <message>
-        <source>Own delegation</source>
-        <translation>Kendi delegasyonum</translation>
-    </message>
-</context>
-<context>
     <name>ClientModel</name>
     <message>
         <source>Total: %1 (IPv4: %2 / IPv6: %3 / Tor: %4 / Unknown: %5)</source>
@@ -636,10 +609,6 @@ Stake için kaldırın</translation>
         <translation>evet</translation>
     </message>
     <message>
-        <source>delegated to %1 for cold staking</source>
-        <translation>soğuk stakin  için %1'e devredildi</translation>
-    </message>
-    <message>
         <source>Select All</source>
         <translation>Tümünü Seç</translation>
     </message>
@@ -682,193 +651,6 @@ Stake için kaldırın</translation>
     <message>
         <source>(change)</source>
         <translation>(değişiklik)</translation>
-    </message>
-</context>
-<context>
-    <name>ColdStakingWidget</name>
-    <message>
-        <source>Form</source>
-        <translation>Form</translation>
-    </message>
-    <message>
-        <source>Owner address (optional, if empty a new address will be created)</source>
-        <translation>Sahibinin adresi (isteğe bağlı, boş ise yeni bir adres oluşturulur)</translation>
-    </message>
-    <message>
-        <source>Total Staking:</source>
-        <translation>Toplam Staking:</translation>
-    </message>
-    <message>
-        <source>Cold Staking</source>
-        <translation>Soğuk Stakleme</translation>
-    </message>
-    <message>
-        <source>Staker</source>
-        <translation>Stakleyen</translation>
-    </message>
-    <message>
-        <source>Delegation</source>
-        <translation>Delegasyon</translation>
-    </message>
-    <message>
-        <source>Delegate</source>
-        <translation>Delege et</translation>
-    </message>
-    <message>
-        <source>Clear All</source>
-        <translation>Hepsini temizle</translation>
-    </message>
-    <message>
-        <source>Delegated balance history</source>
-        <translation>Delege edilmiş tutar tarihçesi</translation>
-    </message>
-    <message>
-        <source>No delegations yet</source>
-        <translation>Henüz bir delegasyon bulunmuyor</translation>
-    </message>
-    <message>
-        <source>Total Staking: %1</source>
-        <translation>Toplam Stakeleme:%1</translation>
-    </message>
-    <message>
-        <source>Error loading delegations: %1</source>
-        <translation>Delegasyonların yüklenmesinde hata:%1</translation>
-    </message>
-    <message>
-        <source>You can delegate your UCRs, letting a hot node (24/7 online node)
-stake on your behalf, while you keep the keys securely offline.</source>
-        <translation>Sıcak bir düğüme izin vererek UCR'lerinizi devredebilirsiniz (7/24 çevrimiçi düğüm)
-anahtarları çevrimdışı bir şekilde güvenli tutarken, kendi adınıza stake yapın.</translation>
-    </message>
-    <message>
-        <source>Enter owner address</source>
-        <translation>Varlıkların sahibinin adresini girin</translation>
-    </message>
-    <message>
-        <source>No contacts available, you can go to the contacts screen and add some there!</source>
-        <translation>Uygun adres bulunmuyor, AL ekranına giderek adres ekleyebilirsin.</translation>
-    </message>
-    <message>
-        <source>Cold staking is networkely disabled</source>
-        <translation>Soğuk Stakeleme ağ üzerinde etkin değil</translation>
-    </message>
-    <message>
-        <source>Coin Control</source>
-        <translation>Koin kontrolü</translation>
-    </message>
-    <message>
-        <source>Invalid entry</source>
-        <translation>Geçersiz giriş</translation>
-    </message>
-    <message>
-        <source>Owner address invalid</source>
-        <translation>Sahip adresi geçersiz</translation>
-    </message>
-    <message>
-        <source>ALERT!</source>
-        <translation>DİKKAT!</translation>
-    </message>
-    <message>
-        <source>Delegating to an external owner address!
-
-The delegated coins will NOT be spendable by this wallet.
-Spending these coins will need to be done from the wallet or
-device containing the owner address.
-
-Do you wish to proceed?</source>
-        <translation>Dış bir adrese delege ediliyor!
-
-Delege edilmiş koinler bu cüzdan tarafından harcanamaz.
-Bu koinler owner adresinin olduğu cüzdan veya cihaz
-tarafından harcanabilir.
-
-Devam etmek istiyor musunuz?</translation>
-    </message>
-    <message>
-        <source>Staking address corresponds to this wallet, change it to an external node</source>
-        <translation>Stakeleme adresi bu cüzdana karşılık gelmektedir, dış bir düğüme değiştir</translation>
-    </message>
-    <message>
-        <source>Cannot create transaction.</source>
-        <translation>İşlem yaratılamıyor.</translation>
-    </message>
-    <message>
-        <source>Coins delegated</source>
-        <translation>Koinler delege edildi</translation>
-    </message>
-    <message>
-        <source>URI copied to clipboard</source>
-        <translation>URI panoya kopyalandı</translation>
-    </message>
-    <message>
-        <source>Address copied to clipboard</source>
-        <translation>Adres panoya kopyalandı</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation>Kopyala</translation>
-    </message>
-    <message>
-        <source>Edit</source>
-        <translation>Güncelle</translation>
-    </message>
-    <message>
-        <source>Stake</source>
-        <translation>Stake</translation>
-    </message>
-    <message>
-        <source>Blacklist</source>
-        <translation>Karaliste</translation>
-    </message>
-    <message>
-        <source>Edit Label</source>
-        <translation>Etiketi Düzenle</translation>
-    </message>
-    <message>
-        <source>Copy owner
-address</source>
-        <translation>Sahip adresi
-kopyala</translation>
-    </message>
-    <message>
-        <source>Address copied</source>
-        <translation>Adres kopyalandı</translation>
-    </message>
-    <message>
-        <source>Edit Cold Address Label</source>
-        <translation>Soğuk Adresin Etiketini Düzenle</translation>
-    </message>
-    <message>
-        <source>Whitelist failed, please check the logs</source>
-        <translation>Beyazliste başarısız oldu, logları kontrol ediniz</translation>
-    </message>
-    <message>
-        <source> staking!</source>
-        <translation>Stakeleniyor!</translation>
-    </message>
-    <message>
-        <source>Blacklist failed, please check the logs</source>
-        <translation>Karaliste başarısız oldu, logları kontrol ediniz</translation>
-    </message>
-    <message>
-        <source> blacklisted from staking</source>
-        <translation>Stakeleme için karalisteye alındı</translation>
-    </message>
-    <message>
-        <source>Owner address copied</source>
-        <translation>Sahip adresi kopyalandı</translation>
-    </message>
-    <message>
-        <source>Edit Owner Address Label</source>
-        <translation>Sahip Adresinin Etiketini Düzenle</translation>
-    </message>
-    <message>
-        <source>Address label saved</source>
-        <translation>Adres etiketi kaydedildi</translation>
-    </message>
-    <message>
-        <source>Error storing address label</source>
-        <translation>Adres etiketini kaydederken hata oluştu</translation>
     </message>
 </context>
 <context>
@@ -1066,16 +848,16 @@ Cüzdanınız senkronize olduktan ve harcanmamış bakiyeniz yeterli miktarda on
         <translation>versiyon</translation>
     </message>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Ultra Clear</source>
-        <translation>Ultra Clear Hakkında </translation>
+        <source>About UltraClear</source>
+        <translation>UltraClear Hakkında </translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1125,16 +907,16 @@ Cüzdanınız senkronize olduktan ve harcanmamış bakiyeniz yeterli miktarda on
         <translation>Hoşgeldiniz</translation>
     </message>
     <message>
-        <source>Welcome to Ultra Clear.</source>
-        <translation>Ultra Clear'a hoşgeldiniz.</translation>
+        <source>Welcome to UltraClear.</source>
+        <translation>UltraClear'a hoşgeldiniz.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Ultra Clear will store its data.</source>
-        <translation>Program ilk başlatıldığında Ultra Clear'un verilerini nerede saklayacağını seçebilirsiniz.</translation>
+        <source>As this is the first time the program is launched, you can choose where UltraClear will store its data.</source>
+        <translation>Program ilk başlatıldığında UltraClear'un verilerini nerede saklayacağını seçebilirsiniz.</translation>
     </message>
     <message>
-        <source>Ultra Clear will download and store a copy of the UCR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Ultra Clear, UCR blok zincirinin bir kopyasını indirecek ve depolayacaktır. Bu dizinde en az %1GB veri saklanacak ve zamanla büyüyecektir. Ayrıca cüzdanınız da bu dizinde saklanır.</translation>
+        <source>UltraClear will download and store a copy of the UCR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>UltraClear, UCR blok zincirinin bir kopyasını indirecek ve depolayacaktır. Bu dizinde en az %1GB veri saklanacak ve zamanla büyüyecektir. Ayrıca cüzdanınız da bu dizinde saklanır.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1153,8 +935,8 @@ Cüzdanınız senkronize olduktan ve harcanmamış bakiyeniz yeterli miktarda on
         <translation>TAMAM</translation>
     </message>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1351,7 +1133,7 @@ and vote on the treasury system receiving a periodic reward.</source>
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the ucr.conf file
+You will only have to paste the data in the ultraclear.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1359,7 +1141,7 @@ this controller wallet (select the Masternode in the list and press "start").
 panoya almak üzeresiniz.
 
 
-Bilgiyi uzak sunucunuzdaki ucr.conf dosyasına yapıştırmanız ve
+Bilgiyi uzak sunucunuzdaki ultraclear.conf dosyasına yapıştırmanız ve
  başlatmanız gerekecektir, ondan sonra bu kontrol cüzdanını kullanan
 Masternodu başlatın (Listeden Masternodu seçip "başlat" tuşuna basın).
 </translation>
@@ -1487,8 +1269,8 @@ Emin misiniz?</translation>
         <translation>Ayrıştırılmış bilgi çok büyük</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "ucr" prefix</source>
-        <translation>Geçersiz URI, "ucr" ön adıyla başlamıyor</translation>
+        <source>Invalid URI, not starting with "ultraclear" prefix</source>
+        <translation>Geçersiz URI, "ultraclear" ön adıyla başlamıyor</translation>
     </message>
 </context>
 <context>
@@ -1782,8 +1564,8 @@ Emin misiniz?</translation>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -1810,8 +1592,8 @@ Emin misiniz?</translation>
         <translation>Uygulamayı sonlandır</translation>
     </message>
     <message>
-        <source>Ultra Clear client</source>
-        <translation>Ultra Clear istemci</translation>
+        <source>UltraClear client</source>
+        <translation>UltraClear istemci</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1877,8 +1659,8 @@ Adres: %4
         <translation>Geçersiz ödeme adresi %1</translation>
     </message>
     <message>
-        <source>Cannot start ucr: click-to-pay handler</source>
-        <translation>Ultra Clear başlatılamıyor: tıkla ve ödeme işleyicisi</translation>
+        <source>Cannot start ultraclear: click-to-pay handler</source>
+        <translation>UltraClear başlatılamıyor: tıkla ve ödeme işleyicisi</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid UCR address or malformed URI parameters.</source>
@@ -2011,8 +1793,8 @@ Adres: %4
         <translation>Onarılamaz bir hata oluştu. UCR güvenli bir şekilde çalışamaz, kapanacaktır.</translation>
     </message>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -2031,12 +1813,8 @@ Adres: %4
         <translation>Masternode konfigürasyon dosyası okuma hatası: %1</translation>
     </message>
     <message>
-        <source>Ultra Clear didn't yet exit safely...</source>
-        <translation>Ultra Clear henüz güvenle kapanmadı..</translation>
-    </message>
-    <message>
-        <source>Cold Staking</source>
-        <translation>Soğuk Stakleme</translation>
+        <source>UltraClear didn't yet exit safely...</source>
+        <translation>UltraClear henüz güvenle kapanmadı..</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -2075,22 +1853,10 @@ Adres: %4
         <translation>Kendine</translation>
     </message>
     <message>
-        <source>Cold stakes</source>
-        <translation>Soğuk Stakeler</translation>
-    </message>
-    <message>
         <source>Hot stakes</source>
         <translation>Sıcak Stakeler</translation>
     </message>
-    <message>
-        <source>Delegated</source>
-        <translation>Delege edilmiş</translation>
-    </message>
-    <message>
-        <source>Delegations</source>
-        <translation>Delegasyonlar</translation>
-    </message>
-    </context>
+</context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -2662,14 +2428,6 @@ Adres: %4
         <translation>OLUŞTUR</translation>
     </message>
     <message>
-        <source>Creates an address to receive coin delegations and be able to stake them.</source>
-        <translation>Koin delegasyonlarını almak ve stake edebilmek için adres yaratır.</translation>
-    </message>
-    <message>
-        <source>New Cold Staking Address</source>
-        <translation>Yeni Stakeleme Adresi</translation>
-    </message>
-    <message>
         <source>Invalid amount</source>
         <translation>Geçersiz miktar</translation>
     </message>
@@ -2788,14 +2546,6 @@ Adres: %4
     <message>
         <source>Cannot create transaction.</source>
         <translation>İşlem yaratılamıyor.</translation>
-    </message>
-    <message>
-        <source>WARNING:
-Transaction spends a cold-stake delegation, voiding it.
-These coins will no longer be cold-staked.</source>
-        <translation>UYARI::
-Transfer soğuk stakleme delegasyonunu harcıyor, onu boşaltıyor.
-Bu koinler artık soğuk stakelenmeyecektir.</translation>
     </message>
     <message>
         <source>Transaction sent</source>
@@ -3285,7 +3035,6 @@ bu sayede UCR sahipleri blok ödülü kazanımına katılabilmektedir
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;Instant transactions (SwiftX)&lt;/li&gt;
                            &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
                            &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
@@ -3327,7 +3076,6 @@ bu sayede UCR sahipleri blok ödülü kazanımına katılabilmektedir
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;Anlık transferler (SwiftX)&lt;/li&gt;
                            &lt;li&gt;Merkeziyetsiz yönetim (Teklif Onaylama)&lt;/li&gt;
                            &lt;li&gt;Merkeziyetsiz bütçe sistemi (Hazine)&lt;/li&gt;
                            &lt;li&gt;Her blogun içinde işlem onayı&lt;/li&gt;
@@ -3433,8 +3181,8 @@ işletim maliyetleri sonrası pasif bir gelir sunar.
         <translation>Yedek klasörü açılamadı</translation>
     </message>
     <message>
-        <source>Unable to open ucr.conf with default application</source>
-        <translation>ucr.conf dosyası uygulama tarafından açılamadı</translation>
+        <source>Unable to open ultraclear.conf with default application</source>
+        <translation>ultraclear.conf dosyası uygulama tarafından açılamadı</translation>
     </message>
     <message>
         <source>In:</source>
@@ -4011,8 +3759,8 @@ Emin misiniz?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Ultra Clear is shutting down...</source>
-        <translation>Ultra Clear kapanıyor ...</translation>
+        <source>UltraClear is shutting down...</source>
+        <translation>UltraClear kapanıyor ...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4041,8 +3789,8 @@ Emin misiniz?
         <translation>Yükleniyor...</translation>
     </message>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
 </context>
 <context>
@@ -4198,10 +3946,6 @@ Emin misiniz?
     <message>
         <source>Received from</source>
         <translation>Tarafından alındı</translation>
-    </message>
-    <message>
-        <source>Stake delegation</source>
-        <translation>Stake delegasyonu</translation>
     </message>
     <message>
         <source>Sent to</source>
@@ -4393,8 +4137,8 @@ Emin misiniz?
     </message>
     <message>
         <source>Welcome to
-Ultra Clear Wallet</source>
-        <translation>Ultra Clear Cüzdanı'na
+UltraClear Wallet</source>
+        <translation>UltraClear Cüzdanı'na
 Hoşgeldiniz</translation>
     </message>
     <message>
@@ -4445,8 +4189,8 @@ Hoşgeldiniz</translation>
         <translation>JSON-RPC bağlantılarını dinlemek için verilen adrese bağlanın. IPv6 için [host]: port gösterimini kullanın. Bu seçenek birden çok kez belirtilebilir (varsayılan: tüm arabirimlere bağlanır)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Ultra Clear is probably already running.</source>
-        <translation>Veri dizini %s üzerinde bir kilit elde edemiyor. Ultra Clear muhtemelen zaten çalışıyor.</translation>
+        <source>Cannot obtain a lock on data directory %s. UltraClear is probably already running.</source>
+        <translation>Veri dizini %s üzerinde bir kilit elde edemiyor. UltraClear muhtemelen zaten çalışıyor.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -4471,10 +4215,6 @@ Hoşgeldiniz</translation>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
         <translation>MIT yazılım lisansı altında dağıtılmıştır, eşlik eden KOPYALAMA dosyasına bakın veya &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</translation>
-    </message>
-    <message>
-        <source>Enable cold staking functionality (0-1, default: %u). Disabled if staking=0</source>
-        <translation>Soğuk stakeleme fonksiyonunu etkinleştirin (0-1, varsayılan: %u). Staking=0 ise etkin değildir</translation>
     </message>
     <message>
         <source>Enable spork administration functionality with the appropriate private key.</source>
@@ -4605,8 +4345,8 @@ Hoşgeldiniz</translation>
         <translation>Ağ versiyon dizisi toplam uzunluğu(%i) maksimum uzunluğu aşıyor(%i). Yorumların büyüklüğünü veya sayısını azaltın.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Ultra Clear is probably already running.</source>
-        <translation>Bu bilgisayarda %s 'e bağlanılamıyor. Ultra Clear muhtemelen zaten çalışıyor.</translation>
+        <source>Unable to bind to %s on this computer. UltraClear is probably already running.</source>
+        <translation>Bu bilgisayarda %s 'e bağlanılamıyor. UltraClear muhtemelen zaten çalışıyor.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -4621,8 +4361,8 @@ Hoşgeldiniz</translation>
         <translation>Uyarı: paytxfee değeri çok yüksek ayarlanmış! Bu para gönderirken ödeyeceğiniz transfer ücretidir.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Ultra Clear will not work properly.</source>
-        <translation>Uyarı: Bilgisayarınızın tarih ve saat ayarlarının doğruluğunu kontrol edin! Saatiniz yanlış ise Ultra Clear düzgün çalışmayacaktır. </translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong UltraClear will not work properly.</source>
+        <translation>Uyarı: Bilgisayarınızın tarih ve saat ayarlarının doğruluğunu kontrol edin! Saatiniz yanlış ise UltraClear düzgün çalışmayacaktır. </translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -4737,14 +4477,6 @@ Hoşgeldiniz</translation>
         <translation>Yükleme tamamlandı</translation>
     </message>
     <message>
-        <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>&lt;address&gt;içindeki hash transfer yayınlamayı etkinleştir (SwiftX ile kilitlenmiş)</translation>
-    </message>
-    <message>
-        <source>Enable publish raw transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>&lt;address&gt; içindeki ham işlem yayınlamayı etkinleştir (SwiftX ile kilitlenmiş)</translation>
-    </message>
-    <message>
         <source>Enable the client to act as a masternode (0-1, default: %u)</source>
         <translation>İstemciyi Masternode olarak hareket etmesi için etkinleştir. (0-1, varsayılan: %u)</translation>
     </message>
@@ -4837,8 +4569,8 @@ Hoşgeldiniz</translation>
         <translation>Bilgi</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Ultra Clear is shutting down.</source>
-        <translation>Sağlama kontrolü başlatımı başarısız. Ultra Clear kapatılıyor.</translation>
+        <source>Initialization sanity check failed. UltraClear is shutting down.</source>
+        <translation>Sağlama kontrolü başlatımı başarısız. UltraClear kapatılıyor.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -4885,20 +4617,12 @@ Hoşgeldiniz</translation>
         <translation>Seçili koinlerin değeri hedeflenen ödeme tutarından düşük</translation>
     </message>
     <message>
-        <source>SwiftX options:</source>
-        <translation>SwiftX seçenekleri:</translation>
-    </message>
-    <message>
         <source>This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!</source>
         <translation>Bu ön-sürümdeki bir test programıdır - riski kabullenerek kullanınız - staking ve ticaret uygulamalarında kullanmayın.</translation>
     </message>
     <message>
-        <source>Disable all UCR specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>UCR spesifik tüm fonksiyonaliteyi devre dışı bırak (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, varsayılan: %u)</translation>
-    </message>
-    <message>
-        <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
-        <translation>SwiftX'i etkinleştir, kilitli işlemler için doğrulamaları göster (bool, varsayılan: %s)</translation>
+        <source>Disable all UCR specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
+        <translation>UCR spesifik tüm fonksiyonaliteyi devre dışı bırak (Masternodes, Zerocoin, Budgeting) (0-1, varsayılan: %u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -4919,10 +4643,6 @@ Hoşgeldiniz</translation>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
         <translation>Herhangi bir yedek kopyası eklemek için bir yedekleme özel yolu belirleyin. Eğer dizin olarak belirlerseniz her yedek zaman damgası adı ile dosyalanır. Dosya olarak belirlerseniz, her yedeklemede üstüne yazar.</translation>
-    </message>
-    <message>
-        <source>SwiftX requires inputs with at least 6 confirmations, you might need to wait a few minutes and try again.</source>
-        <translation>SwiftX en az 6 onaya sahip girdilere ihtiyaç duyar, birkaç dakika bekledikten sonra tekrar deneyin.</translation>
     </message>
     <message>
         <source>&lt;category&gt; can be:</source>
@@ -5401,8 +5121,8 @@ Hoşgeldiniz</translation>
         <translation>Cüzdan %s bilgi dizini %s dışında bulunuyor</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Ultra Clear to complete</source>
-        <translation>Cüzdanın tekrar yazılması gerekiyor: tamamlamak için Ultra Clear uygulamasını tekrar başlatın.</translation>
+        <source>Wallet needed to be rewritten: restart UltraClear to complete</source>
+        <translation>Cüzdanın tekrar yazılması gerekiyor: tamamlamak için UltraClear uygulamasını tekrar başlatın.</translation>
     </message>
     <message>
         <source>Wallet options:</source>

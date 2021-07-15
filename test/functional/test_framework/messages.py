@@ -216,8 +216,8 @@ class CInv():
         1: "MSG_TX",
         2: "MSG_BLOCK",
         3: "MSG_FILTERED_BLOCK",
-        4: "MSG_TXLOCK_REQUEST",
-        5: "MSG_TXLOCK_VOTE",
+        # 4: "MSG_TXLOCK_REQUEST",
+        # 5: "MSG_TXLOCK_VOTE",
         6: "MSG_SPORK",
         7: "MSG_MASTERNODE_WINNER",
         8: "MSG_MASTERNODE_SCANNING_ERROR",
@@ -511,7 +511,7 @@ class CBlockHeader():
         self.calc_sha256()
         return self.sha256
 
-    # ucr
+    # ultraclear
     def solve_stake(self, stakeInputs, prevModifier):
         target0 = uint256_from_compact(self.nBits)
         loop = True

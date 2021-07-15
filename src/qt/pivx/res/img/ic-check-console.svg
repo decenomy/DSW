@@ -28,27 +28,10 @@
   </metadata>
   <defs
      id="defs10" />
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="3840"
-     inkscape:window-height="2066"
-     id="namedview8"
-     showgrid="false"
-     inkscape:zoom="11.083333"
-     inkscape:cx="12"
-     inkscape:cy="12"
-     inkscape:current-layer="text16"
-     inkscape:document-rotation="0"
-     inkscape:window-x="3829"
-     inkscape:window-y="-11"
-     inkscape:window-maximized="1" />
+  <path
+     id="path2"
+     d="M0 0h24v24H0z"
+     fill="none" />
   <path
      d="M0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0z"
      fill="none"

@@ -102,7 +102,7 @@ UniValue getgenerate(const JSONRPCRequest& request)
         throw std::runtime_error(
             "getgenerate\n"
             "\nReturn if the server is set to generate coins or not. The default is false.\n"
-            "It is set with the command line argument -gen (or ucr.conf setting gen)\n"
+            "It is set with the command line argument -gen (or ultraclear.conf setting gen)\n"
             "It can also be set with the setgenerate call.\n"
 
             "\nResult\n"

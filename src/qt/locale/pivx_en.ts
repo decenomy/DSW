@@ -548,39 +548,6 @@ for staking</source>
     </message>
 </context>
 <context>
-    <name>CSRow</name>
-    <message>
-        <location filename="../pivx/forms/csrow.ui" line="+14"/>
-        <source>Form</source>
-        <translation type="unfinished">Form</translation>
-    </message>
-    <message>
-        <location line="+71"/>
-        <source>Savings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+20"/>
-        <source>0,00 UCR</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+14"/>
-        <source>address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+20"/>
-        <source>Not Staking</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../pivx/csrow.cpp" line="+27"/>
-        <source>Own delegation</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>ClientModel</name>
     <message>
         <location filename="../clientmodel.cpp" line="+83"/>
@@ -848,11 +815,6 @@ for staking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+177"/>
-        <source>delegated to %1 for cold staking</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location line="+56"/>
         <source>Select All</source>
         <translation type="unfinished"></translation>
@@ -909,288 +871,6 @@ for staking</source>
         <location line="+1"/>
         <source>(change)</source>
         <translation>(change)</translation>
-    </message>
-</context>
-<context>
-    <name>ColdStakingWidget</name>
-    <message>
-        <location filename="../pivx/forms/coldstakingwidget.ui" line="+14"/>
-        <source>Form</source>
-        <translation type="unfinished">Form</translation>
-    </message>
-    <message>
-        <location line="+341"/>
-        <source>Owner address (optional, if empty a new address will be created)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+217"/>
-        <source>Total Staking:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-471"/>
-        <source>Cold Staking</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+90"/>
-        <source>Staker</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+28"/>
-        <source>Delegation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+279"/>
-        <source>Delegate</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-38"/>
-        <source>Clear All</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+89"/>
-        <source>Delegated balance history</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+168"/>
-        <source>No delegations yet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../pivx/coldstakingwidget.cpp" line="+797"/>
-        <source>Total Staking: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-507"/>
-        <source>Error loading delegations: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../pivx/forms/coldstakingwidget.ui" line="-603"/>
-        <source>You can delegate your UCRs, letting a hot node (24/7 online node)
-stake on your behalf, while you keep the keys securely offline.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+263"/>
-        <source>Enter owner address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-139"/>
-        <source>Accept UCR delegation / Delegate UCR</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+65"/>
-        <source>Cold Staking address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../pivx/coldstakingwidget.cpp" line="+18"/>
-        <source>No receive addresses available, you can go to the receive screen and create some there!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>No contacts available, you can go to the contacts screen and add some there!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+161"/>
-        <source>Cannot send delegation, wallet locked</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-49"/>
-        <source>Cold staking is networkely disabled</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-290"/>
-        <source>Coin Control</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Select %1 outputs to delegate.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+2"/>
-        <source>Create Cold Staking Address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Creates an address to receive delegated coins
-and stake them on their owner&apos;s behalf.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+36"/>
-        <source>My Cold Staking Addresses</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>List your own cold staking addresses.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+254"/>
-        <source>Invalid entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+10"/>
-        <source>Invalid entry, minimum delegable amount is </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+8"/>
-        <source>Owner address invalid</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+9"/>
-        <source>ALERT!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Delegating to an external owner address!
-
-The delegated coins will NOT be spendable by this wallet.
-Spending these coins will need to be done from the wallet or
-device containing the owner address.
-
-Do you wish to proceed?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+8"/>
-        <source>Staking address corresponds to this wallet, change it to an external node</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+30"/>
-        <source>Cannot create transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+23"/>
-        <source>Coins delegated</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+26"/>
-        <source>You don&apos;t have any %1 to select.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+23"/>
-        <source>Cannot perform operation, wallet locked</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+10"/>
-        <source>URI copied to clipboard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+2"/>
-        <source>Address copied to clipboard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+20"/>
-        <source>Copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Edit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+28"/>
-        <source>Stake</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Blacklist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Edit Label</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Copy owner
-address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+40"/>
-        <source>Address copied</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+6"/>
-        <source>Edit Cold Address Label</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+10"/>
-        <source>Whitelist failed, please check the logs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+8"/>
-        <source> staking!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+7"/>
-        <source>Blacklist failed, please check the logs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+8"/>
-        <source> blacklisted from staking</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>Owner address copied</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+6"/>
-        <source>Edit Owner Address Label</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+29"/>
-        <source>Address label saved</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+2"/>
-        <source>Error storing address label</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1444,7 +1124,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <location line="+0"/>
-        <source>Ultra Clear</source>
+        <source>UltraClear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1455,7 +1135,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <location line="+6"/>
-        <source>About Ultra Clear</source>
+        <source>About UltraClear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1523,17 +1203,17 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <location line="+90"/>
-        <source>Welcome to Ultra Clear.</source>
+        <source>Welcome to UltraClear.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+35"/>
-        <source>As this is the first time the program is launched, you can choose where Ultra Clear will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where UltraClear will store its data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+18"/>
-        <source>Ultra Clear will download and store a copy of the UCR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>UltraClear will download and store a copy of the UCR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1558,7 +1238,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <location filename="../intro.cpp" line="+100"/>
-        <source>Ultra Clear</source>
+        <source>UltraClear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1960,7 +1640,7 @@ Please wait few more minutes (masternode collaterals require %1 confirmations).<
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the ucr.conf file
+You will only have to paste the data in the ultraclear.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press &quot;start&quot;).
 </source>
@@ -2110,12 +1790,6 @@ NODES</source>
     </message>
     <message>
         <location line="+26"/>
-        <source>COLD
-STAKING</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+26"/>
         <source>SETTINGS
 </source>
         <translation type="unfinished"></translation>
@@ -2180,7 +1854,7 @@ STAKING</source>
     </message>
     <message>
         <location line="+6"/>
-        <source>Invalid URI, not starting with &quot;ucr&quot; prefix</source>
+        <source>Invalid URI, not starting with &quot;ultraclear&quot; prefix</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2551,7 +2225,7 @@ STAKING</source>
         <location filename="../pivx/pivxgui.cpp" line="+69"/>
         <location line="+298"/>
         <location line="+69"/>
-        <source>Ultra Clear</source>
+        <source>UltraClear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2586,7 +2260,7 @@ STAKING</source>
     </message>
     <message>
         <location line="+39"/>
-        <source>Ultra Clear client</source>
+        <source>UltraClear client</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2674,7 +2348,7 @@ Address: %4
     </message>
     <message>
         <location line="-101"/>
-        <source>Cannot start ucr: click-to-pay handler</source>
+        <source>Cannot start ultraclear: click-to-pay handler</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2856,7 +2530,7 @@ Address: %4
         <location line="+7"/>
         <location line="+13"/>
         <location line="+19"/>
-        <source>Ultra Clear</source>
+        <source>UltraClear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2881,7 +2555,7 @@ Address: %4
     </message>
     <message>
         <location line="+64"/>
-        <source>Ultra Clear didn&apos;t yet exit safely...</source>
+        <source>UltraClear didn&apos;t yet exit safely...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2893,29 +2567,6 @@ Address: %4
         <location line="+2"/>
         <location filename="../pivx/qtutils.cpp" line="+136"/>
         <source>Receiving</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+2"/>
-        <location filename="../pivx/qtutils.cpp" line="+3"/>
-        <source>Delegator</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+2"/>
-        <location filename="../pivx/qtutils.cpp" line="+1"/>
-        <source>Delegable</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+2"/>
-        <location filename="../pivx/qtutils.cpp" line="-2"/>
-        <source>Cold Staking</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+2"/>
-        <source>Cold Staking Contact</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2996,22 +2647,7 @@ Address: %4
     </message>
     <message>
         <location line="+1"/>
-        <source>Cold stakes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
         <source>Hot stakes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Delegated</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Delegations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3087,11 +2723,6 @@ Address: %4
     <message>
         <location line="+0"/>
         <source>Dec</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../pivx/coldstakingwidget.cpp" line="-707"/>
-        <source>Address with no label</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3906,16 +3537,6 @@ Address: %4
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pivx/requestdialog.cpp" line="+27"/>
-        <source>Creates an address to receive coin delegations and be able to stake them.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>New Cold Staking Address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location line="+1"/>
         <source>Amount (optional)</source>
         <translation type="unfinished"></translation>
@@ -3933,11 +3554,6 @@ Address: %4
     <message>
         <location line="+17"/>
         <source>Request for </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+3"/>
-        <source>Cold Staking Address Generated</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3977,11 +3593,6 @@ Address: %4
     <message>
         <location line="+33"/>
         <source>Invalid address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+2"/>
-        <source>Cannot use cold staking addresses for change</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4116,11 +3727,6 @@ Do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+42"/>
-        <source>Possibly spend coins delegated for cold-staking (currently available: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location line="+18"/>
         <source>Invalid entry</source>
         <translation type="unfinished"></translation>
@@ -4138,13 +3744,6 @@ Do you want to continue?</source>
     <message>
         <location line="+29"/>
         <source>Cannot create transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+8"/>
-        <source>WARNING:
-Transaction spends a cold-stake delegation, voiding it.
-These coins will no longer be cold-staked.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4862,7 +4461,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
     </message>
     <message>
         <location line="+26"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Make sure your wallet is completely synchronized and you are using the latest release. &lt;/li&gt;&lt;li align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You must have a balance of UCR with a minimum of 600 confirmations. &lt;/li&gt;&lt;li align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Your wallet must stay online and be unlocked for staking purposes. &lt;/li&gt;&lt;li align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Once all those steps are followed staking should be enabled. &lt;/li&gt;&lt;li align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state &amp;quot;Staking Enabled&amp;quot; to indicate it is staking. Using the command line interface (ucr-cli); the command &lt;span style=&quot; font-style:italic;&quot;&gt;getstakingstatus&lt;/span&gt; will confirm that staking is active. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Make sure your wallet is completely synchronized and you are using the latest release. &lt;/li&gt;&lt;li align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You must have a balance of UCR with a minimum of 600 confirmations. &lt;/li&gt;&lt;li align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Your wallet must stay online and be unlocked for staking purposes. &lt;/li&gt;&lt;li align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Once all those steps are followed staking should be enabled. &lt;/li&gt;&lt;li align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state &amp;quot;Staking Enabled&amp;quot; to indicate it is staking. Using the command line interface (ultraclear-cli); the command &lt;span style=&quot; font-style:italic;&quot;&gt;getstakingstatus&lt;/span&gt; will confirm that staking is active. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4922,7 +4521,6 @@ There was an error trying to save the address list to %1. Please try again.</sou
                            &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;Instant transactions (SwiftX)&lt;/li&gt;
                            &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
                            &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
@@ -5117,7 +4715,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
     </message>
     <message>
         <location line="+4"/>
-        <source>Unable to open ucr.conf with default application</source>
+        <source>Unable to open ultraclear.conf with default application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5940,7 +5538,7 @@ Are you sure?
     <name>ShutdownWindow</name>
     <message>
         <location filename="../utilitydialog.cpp" line="+71"/>
-        <source>Ultra Clear is shutting down...</source>
+        <source>UltraClear is shutting down...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5976,7 +5574,7 @@ Are you sure?
     </message>
     <message>
         <location filename="../pivx/splash.cpp" line="+30"/>
-        <source>Ultra Clear</source>
+        <source>UltraClear</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6175,11 +5773,6 @@ backup will be created.
     </message>
     <message>
         <location line="+3"/>
-        <source>Cold Staking Disabled</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+3"/>
         <source> %54 Synchronizing..</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6370,17 +5963,7 @@ backup will be created.
     </message>
     <message>
         <location line="+2"/>
-        <source>%1 Cold Stake</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+2"/>
         <source>%1 Stake on behalf of</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+4"/>
-        <source>Stake delegation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6397,11 +5980,6 @@ backup will be created.
         <location line="+44"/>
         <source>Payment to yourself</source>
         <translation>Payment to yourself</translation>
-    </message>
-    <message>
-        <location line="+15"/>
-        <source>Stake delegation spent by</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
@@ -6631,12 +6209,6 @@ backup will be created.
         <translation>Send Coins</translation>
     </message>
     <message>
-        <location line="-30"/>
-        <location line="+20"/>
-        <source>SwiftX doesn&apos;t support sending values that high yet. Transactions are currently limited to %1 %2.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location line="+10"/>
         <source>Transaction creation failed!
 %1</source>
@@ -6699,7 +6271,7 @@ Select fewer inputs with coin control.</source>
     <message>
         <location line="+89"/>
         <source>Welcome to
-Ultra Clear Wallet</source>
+UltraClear Wallet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6734,7 +6306,7 @@ Ultra Clear Wallet</source>
     </message>
 </context>
 <context>
-    <name>ucr</name>
+    <name>ultraclear</name>
     <message>
         <location filename="../pivxstrings.cpp" line="+12"/>
         <source>(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</source>
@@ -6767,7 +6339,7 @@ Ultra Clear Wallet</source>
     </message>
     <message>
         <location line="+5"/>
-        <source>Cannot obtain a lock on data directory %s. Ultra Clear is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. UltraClear is probably already running.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6799,11 +6371,6 @@ Ultra Clear Wallet</source>
         <location line="+6"/>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
         <translation type="unfinished">Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</translation>
-    </message>
-    <message>
-        <location line="+19"/>
-        <source>Enable cold staking functionality (0-1, default: %u). Disabled if staking=0</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
@@ -6972,7 +6539,7 @@ Ultra Clear Wallet</source>
     </message>
     <message>
         <location line="+3"/>
-        <source>Unable to bind to %s on this computer. Ultra Clear is probably already running.</source>
+        <source>Unable to bind to %s on this computer. UltraClear is probably already running.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6992,7 +6559,7 @@ Ultra Clear Wallet</source>
     </message>
     <message>
         <location line="+3"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong Ultra Clear will not work properly.</source>
+        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong UltraClear will not work properly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7136,16 +6703,6 @@ Ultra Clear Wallet</source>
         <translation type="unfinished">Done loading</translation>
     </message>
     <message>
-        <location line="+2"/>
-        <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+3"/>
-        <source>Enable publish raw transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location line="+3"/>
         <source>Enable the client to act as a masternode (0-1, default: %u)</source>
         <translation type="unfinished">Enable the client to act as a masternode (0-1, default: %u)</translation>
@@ -7262,7 +6819,7 @@ Ultra Clear Wallet</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Initialization sanity check failed. Ultra Clear is shutting down.</source>
+        <source>Initialization sanity check failed. UltraClear is shutting down.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7331,23 +6888,13 @@ Ultra Clear Wallet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+4"/>
-        <source>SwiftX options:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location line="-228"/>
         <source>This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="-144"/>
-        <source>Disable all UCR specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+20"/>
-        <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
+        <source>Disable all UCR specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7373,11 +6920,6 @@ Ultra Clear Wallet</source>
     <message>
         <location line="+59"/>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+9"/>
-        <source>SwiftX requires inputs with at least 6 confirmations, you might need to wait a few minutes and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7717,7 +7259,7 @@ Ultra Clear Wallet</source>
     </message>
     <message>
         <location line="+7"/>
-        <source>Please check that your computer&apos;s date and time are correct! If your clock is wrong Ultra Clear will not work properly.</source>
+        <source>Please check that your computer&apos;s date and time are correct! If your clock is wrong UltraClear will not work properly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7772,7 +7314,7 @@ Ultra Clear Wallet</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Error loading %s: Wallet requires newer version of Ultra Clear</source>
+        <source>Error loading %s: Wallet requires newer version of UltraClear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8274,7 +7816,7 @@ Ultra Clear Wallet</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Wallet needed to be rewritten: restart Ultra Clear to complete</source>
+        <source>Wallet needed to be rewritten: restart UltraClear to complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8394,11 +7936,6 @@ Ultra Clear Wallet</source>
     <message>
         <location line="+236"/>
         <source>Reset to default</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-418"/>
-        <source>Include delegated</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
