@@ -125,7 +125,7 @@ src/suvereno-cli
 src/suvereno-tx
 src/suverenod
 
-# EskaCoin
+# Eskacoin
 src/bench/bench_eskacoin
 src/qt/test/test_eskacoin-qt
 src/qt/eskacoin-qt
