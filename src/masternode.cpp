@@ -392,14 +392,6 @@ CAmount CMasternode::GetBlockValue(int nHeight)
         nSubsidy += Params().GetLiquiMiningValue(prevHeight + 1);
     }
 
-	// Check if we reached the coin max supply.
-
-    if (nMoneySupply + nSubsidy >= Params().MaxMoneyOut())
-        nSubsidy = Params().MaxMoneyOut() - nMoneySupply;
-
-    if (nMoneySupply >= Params().MaxMoneyOut())
-        nSubsidy = 0;
-
     return nSubsidy;
 }
 
