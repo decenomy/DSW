@@ -1234,7 +1234,7 @@ QPushButton[cssClass="btn-check-right"]:hover {
 
 QPushButton[cssClass="btn-check-right"]:pressed {
   border: 1px solid #bc5b57;
-  background-color: #4db088ff;
+  background-color: #bc5b57;
   font-size: 18px;
   color: #707070;
   border-top-right-radius: 2px;
@@ -1290,7 +1290,7 @@ QPushButton[cssClass="btn-check-left"]:hover {
 
 QPushButton[cssClass="btn-check-left"]:pressed {
   border: 1px solid #bc5b57;
-  background-color: #4db088ff;
+  background-color: #bc5b57;
   font-size: 18px;
   color: #707070;
   border-top-left-radius: 2px;
