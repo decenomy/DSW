@@ -3616,14 +3616,14 @@ per vedere e spendere i saldi sulla rete.
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            We have support channels in most of our official chat groups, for example
-                           &lt;a style='color: #b088ff' href='https://discord.gg/CeJb7Yxku3'&gt;
+                           &lt;a style='color: #0094f9' href='https://discord.gg/CeJb7Yxku3'&gt;
                            #support in our Discord&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            Abbiamo canali di supporto nella maggior parte dei nostri gruppi di chat ufficiali, ad esempio
-                           &lt;a style='color: #b088ff' href='https://discord.gg/CeJb7Yxku3'&gt;
+                           &lt;a style='color: #0094f9' href='https://discord.gg/CeJb7Yxku3'&gt;
                            #support nel nostro Discord&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </translation>

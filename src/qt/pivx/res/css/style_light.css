@@ -1089,7 +1089,7 @@ QPushButton[cssClass="btn-switch"]:checked {
   background-color: #ffffff;
   text-align: left;
   font-size: 18px;
-  color: #c226d6;
+  color: #2ea1ff;
 }
 
 QPushButton[cssClass="btn-check"] {
@@ -1977,18 +1977,18 @@ HH        REQUEST DIALOG
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 QComboBox[cssClass="btn-combo-coins"] {
-  background-color: #262626;
+  background-color: #43b3ff;
   padding: 10px 20px 10px 10px;
   font-size: 16px;
-  border: 1px solid #262626;
+  border: 1px solid #43b3ff;
   color: #ffffff;
 }
 
 QLabel[cssClass="btn-combo-coins"] {
-  background-color: #262626;
+  background-color: #43b3ff;
   padding: 10px 10px 10px 10px;
   font-size: 16px;
-  border: 1px solid #262626;
+  border: 1px solid #43b3ff;
   color: #ffffff;
 }
 
