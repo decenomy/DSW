@@ -55,6 +55,10 @@ const struct NUInfo NetworkUpgradeInfo[Consensus::MAX_NETWORK_UPGRADES] = {
                 /*.strInfo =*/ "activation of p2pkh block signatures",
         },
         {
+                /*.strName =*/ "new_target_spacing",
+                /*.strInfo =*/ "new target spacing",
+        },
+        {
                 /*.strName =*/ "Stake_min_depth_v2",
                 /*.strInfo =*/ "Increases the stake min depth",
         },
@@ -63,12 +67,12 @@ const struct NUInfo NetworkUpgradeInfo[Consensus::MAX_NETWORK_UPGRADES] = {
                 /*.strInfo =*/ "new masternode ranking system",
         },
         {
-                /*.strName =*/ "Test_dummy",
-                /*.strInfo =*/ "Test dummy info",
+                /*.strName =*/ "coinbase_maturity_v2",
+                /*.strInfo =*/ "new coinbase maturity back to the regular 100 confirmations",
         },
         {
-                /*.strName =*/ "new_target_spacing",
-                /*.strInfo =*/ "new target spacing",
+                /*.strName =*/ "Test_dummy",
+                /*.strInfo =*/ "Test dummy info",
         },
 };
 
