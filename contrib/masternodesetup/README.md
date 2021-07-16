@@ -79,6 +79,6 @@ Do not close your terminal/ command prompt window at this point.
 suvereno-cli getmasternodestatus
 ```
 
-You need to get **"status" : 4**
+You need to get **"status" : 4** 
 
 ## Congratulations your Suvereno node it's running
