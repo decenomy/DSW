@@ -1603,11 +1603,13 @@ QPushButton[cssClass="btn-secundary-new-address"] {
 QPushButton[cssClass="btn-secundary-new-address"]:hover {
   border: 1px solid #dd514e;
   background-color: #211f1f;
+  color: #ffffff;
 }
 
 QPushButton[cssClass="btn-secundary-new-address"]:pressed {
-    border:  1px solid #dd514e;
-    background-color:#211f1f;
+  border:  1px solid #dd514e;
+  background-color:#211f1f;
+  color: #ffffff;
 }
 
 QPushButton[cssClass="btn-secundary-label"] {
@@ -1626,12 +1628,14 @@ QPushButton[cssClass="btn-secundary-label"] {
 
 QPushButton[cssClass="btn-secundary-label"]:hover {
   border: 1px solid #dd514e;
-  background-color: #211f1f;
+  background-color: #dd514e;
+  color: #ffffff;
 }
 
 QPushButton[cssClass="btn-secundary-label"]:pressed {
-    border:  1px solid #dd514e;
-    background-color:#211f1f;
+  border:  1px solid #dd514e;
+  background-color:#dd514e;
+  color: #ffffff;
 }
 
 QPushButton[cssClass="btn-secundary-copy"] {
@@ -1650,12 +1654,14 @@ QPushButton[cssClass="btn-secundary-copy"] {
 
 QPushButton[cssClass="btn-secundary-copy"]:hover {
   border: 1px solid #dd514e;
-  background-color: #211f1f;
+  background-color: #dd514e;
+  color: #ffffff;
 }
 
 QPushButton[cssClass="btn-secundary-copy"]:pressed {
     border:  1px solid #dd514e;
-    background-color:#211f1f;
+    background-color:#dd514e;
+    color: #ffffff;
 }
 
 QPushButton[cssClass="btn-secundary-add"] {
