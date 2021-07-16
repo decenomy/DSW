@@ -2,11 +2,11 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "__Decenomy__ Core"
-#define MyAppVersion "1.0.0.0"
 #define MyAppPublisher "2021 DECENOMY Core Developers"
 #define MyAppURL "https://__decenomy__.com"
 #define MyAppExeName "__decenomy__-qt.exe"
 #define MyAppExtraData "https://explorer.decenomy.net/bootstraps/__DSW__/bootstrap.zip"
+#define MyAppVersion GetVersionNumbersString(".\package\" + MyAppExeName)
 
 #include ReadReg(HKLM, 'Software\WOW6432Node\Mitrich Software\Inno Download Plugin', 'InstallDir') + '\idp.iss'
 
