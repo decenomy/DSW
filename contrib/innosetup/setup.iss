@@ -2,11 +2,11 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "DashDiamond Core"
-#define MyAppVersion "1.0.0.0"
 #define MyAppPublisher "2021 DECENOMY Core Developers"
 #define MyAppURL "https://dashdiamond.com"
 #define MyAppExeName "dashdiamond-qt.exe"
 #define MyAppExtraData "https://explorer.decenomy.net/bootstraps/DASHD/bootstrap.zip"
+#define MyAppVersion GetVersionNumbersString(".\package\" + MyAppExeName)
 
 #include ReadReg(HKLM, 'Software\WOW6432Node\Mitrich Software\Inno Download Plugin', 'InstallDir') + '\idp.iss'
 

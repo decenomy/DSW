@@ -23,9 +23,8 @@ pipeline {
                     rm -rf SDKs
                     mkdir SDKs
                     cd SDKs
-                    wget -nc https://github.com/phracker/MacOSX-SDKs/releases/download/10.15/MacOSX10.11.sdk.tar.xz
+                    wget -c https://github.com/phracker/MacOSX-SDKs/releases/download/10.15/MacOSX10.11.sdk.tar.xz
                     tar -xf MacOSX10.11.sdk.tar.xz
-                    rm MacOSX10.11.sdk.tar.xz
                     cd ..
                     make -j $(nproc) HOST=x86_64-apple-darwin14
                 '''
@@ -55,7 +54,10 @@ pipeline {
                     strip -s src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt
                     cp src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt deploy/linux/
                     cd deploy/linux
-                    zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt
+                    touch ${BASE_NAME}-cli
+                    rm ../${BASE_NAME}-cli
+                    cp ${BASE_NAME}-cli ../
+                    zip ${ZIP_NAME}-\$(../${BASE_NAME}-cli --version | head -n1 | awk -F'[ -]' '{ print \$5 }' | sed s/v//)-Linux.zip ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt
                     rm -f ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt
                 """
             }
@@ -83,15 +85,15 @@ pipeline {
                     strip -s src/${BASE_NAME}d.exe src/${BASE_NAME}-cli.exe src/${BASE_NAME}-tx.exe src/qt/${BASE_NAME}-qt.exe
                     cp src/${BASE_NAME}d.exe src/${BASE_NAME}-cli.exe src/${BASE_NAME}-tx.exe src/qt/${BASE_NAME}-qt.exe deploy/windows/
                     cd deploy/windows
-                    zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-Windows.zip ${BASE_NAME}d.exe ${BASE_NAME}-cli.exe ${BASE_NAME}-tx.exe ${BASE_NAME}-qt.exe
+                    zip ${ZIP_NAME}-\$(../${BASE_NAME}-cli --version | head -n1 | awk -F'[ -]' '{ print \$5 }' | sed s/v//)-Windows.zip ${BASE_NAME}d.exe ${BASE_NAME}-cli.exe ${BASE_NAME}-tx.exe ${BASE_NAME}-qt.exe
                     mkdir -p ../../contrib/innosetup/package
                     mv ${BASE_NAME}* ../../contrib/innosetup/package/
                     cd ../../contrib/innosetup/
                     wine ~/.wine/drive_c/Program\\ Files\\ \\(x86\\)/Inno\\ Setup\\ 6/ISCC.exe setup.iss
-                    mv output/${NAME}Setup.exe ../../deploy/windows/${NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-Setup.exe
+                    mv output/${NAME}Setup.exe ../../deploy/windows/${NAME}-\$(../../deploy/${BASE_NAME}-cli --version | head -n1 | awk -F'[ -]' '{ print \$5 }' | sed s/v//)-Setup.exe
                     cd ../../deploy/windows/
-                    zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-WindowsSetup.zip ${NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-Setup.exe
-                    rm -f ${NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-Setup.exe 
+                    zip ${ZIP_NAME}-\$(../${BASE_NAME}-cli --version | head -n1 | awk -F'[ -]' '{ print \$5 }' | sed s/v//)-WindowsSetup.zip ${NAME}-\$(../${BASE_NAME}-cli --version | head -n1 | awk -F'[ -]' '{ print \$5 }' | sed s/v//)-Setup.exe
+                    rm -f ${NAME}-\$(../${BASE_NAME}-cli --version | head -n1 | awk -F'[ -]' '{ print \$5 }' | sed s/v//)-Setup.exe 
                 """
             }
         }
@@ -119,7 +121,7 @@ pipeline {
                     mkdir -p deploy/macos
                     cp src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt ${NAME}-Core.dmg deploy/macos/
                     cd deploy/macos
-                    zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-MacOS.zip ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt ${NAME}-Core.dmg
+                    zip ${ZIP_NAME}-\$(../${BASE_NAME}-cli --version | head -n1 | awk -F'[ -]' '{ print \$5 }' | sed s/v//)-MacOS.zip ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt ${NAME}-Core.dmg
                     rm -f ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt ${NAME}-Core.dmg
                 """
             }
@@ -147,7 +149,7 @@ pipeline {
                     strip -s src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt
                     cp src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt deploy/aarch64/
                     cd deploy/aarch64
-                    zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-aarch64.zip ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt
+                    zip ${ZIP_NAME}-\$(../${BASE_NAME}-cli --version | head -n1 | awk -F'[ -]' '{ print \$5 }' | sed s/v//)-aarch64.zip ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt
                     rm -f ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt
                 """
             }
@@ -175,7 +177,7 @@ pipeline {
                     strip -s src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt
                     cp src/${BASE_NAME}d src/${BASE_NAME}-cli src/${BASE_NAME}-tx src/qt/${BASE_NAME}-qt deploy/aarch32/
                     cd deploy/aarch32
-                    zip ${ZIP_NAME}-\$(git describe --abbrev=0 --tags | sed s/v//)-aarch32.zip ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt
+                    zip ${ZIP_NAME}-\$(../${BASE_NAME}-cli --version | head -n1 | awk -F'[ -]' '{ print \$5 }' | sed s/v//)-aarch32.zip ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt
                     rm -f ${BASE_NAME}d ${BASE_NAME}-cli ${BASE_NAME}-tx ${BASE_NAME}-qt
                 """
             }
