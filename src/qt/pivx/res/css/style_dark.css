@@ -77,7 +77,7 @@ QPushButton[cssClass="img-nav-logo"] {
 *[cssClass="btn-nav-receive"] {
   qproperty-icon: url("://ic-nav-receive") off,
     url("://ic-nav-receive-active") on;
-  qproperty-iconsize: 24px 40px;
+  qproperty-iconSize: 24px 40px;
   background-color: transparent;
   font-size: 12px;
   color: #ffffff;
@@ -248,7 +248,7 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
 *[cssClass="btn-nav-settings"] {
   qproperty-icon: url("://ic-nav-settings") off,
     url("://ic-nav-settings-active") on;
-  qproperty-iconsize: 24px 40px;
+  qproperty-iconSize: 24px 40px;
   background-color: transparent;
   font-size: 12px;
   color: #ffffff;
@@ -294,7 +294,7 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
 *[cssClass="btn-nav-dash"] {
   qproperty-icon: url("://ic-nav-dashboard") off,
     url("://ic-nav-dashboard-active") on;
-  qproperty-iconsize: 24px 40px;
+  qproperty-iconSize: 24px 40px;
   background-color: transparent;
   font-size: 12px;
   color: #ffffff;
@@ -339,7 +339,7 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
 
 *[cssClass="btn-nav-send"] {
   qproperty-icon: url("://ic-nav-send") off, url("://ic-nav-send") on;
-  qproperty-iconsize: 24px 40px;
+  qproperty-iconSize: 24px 40px;
   background-color: transparent;
   font-size: 12px;
   color: #ffffff;
@@ -385,7 +385,7 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
 *[cssClass="btn-nav-address"] {
   qproperty-icon: url("://ic-nav-address") off,
     url("://ic-nav-address-active") on;
-  qproperty-iconsize: 24px 40px;
+  qproperty-iconSize: 24px 40px;
   background-color: transparent;
   font-size: 12px;
   color: #ffffff;
@@ -479,7 +479,7 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
 
 *[cssClass="btn-nav-master"] {
   qproperty-icon: url("://ic-nav-master") off, url("://ic-nav-master-active") on;
-  qproperty-iconsize: 24px 30px;
+  qproperty-iconSize: 24px 30px;
   background-color: transparent;
   font-size: 12px;
   color: #ffffff;
