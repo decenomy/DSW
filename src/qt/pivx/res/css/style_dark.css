@@ -1443,13 +1443,13 @@ QPushButton[cssClass="btn-secundary-new-address"] {
 
 QPushButton[cssClass="btn-secundary-new-address"]:hover {
   border: 1px solid #d8af03;
-  background-color: #282828;
+  background-color: #d8af03;
   color: #ffffff;
 }
 
 QPushButton[cssClass="btn-secundary-new-address"]:pressed {
   border: 1px solid #d8af03;
-  background-color: #282828;
+  background-color: #d8af03;
   color: #ffffff;
 }
 
