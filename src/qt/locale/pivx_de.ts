@@ -3593,7 +3593,7 @@ TRTT nutzt einen PoS Konsensalgorithmus, der es den Besitzern von TRTT erlaubt, 
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            We have support channels in most of our official chat groups, for example
-                           &lt;a style='color: #b088ff' href='https://discordapp.com/invite/MkdqhHDqsr'&gt;
+                           &lt;a style='color: #39a1e1' href='https://discordapp.com/invite/MkdqhHDqsr'&gt;
                            #support in our Discord&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>

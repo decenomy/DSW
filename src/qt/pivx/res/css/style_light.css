@@ -989,10 +989,10 @@ QPushButton[cssClass="btn-switch"] {
   background-image: url("://ic-switch-off");
   background-position: right center;
   background-repeat: no-repeat;
-  background-color: #ffffff;
+  background-color: #fafafa;
   font-size: 18px;
   text-align: left;
-  color: #ececec;
+  color: #707070;
 }
 
 QPushButton[cssClass="btn-switch"]:checked {
