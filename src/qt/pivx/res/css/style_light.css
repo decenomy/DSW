@@ -997,7 +997,7 @@ QPushButton[cssClass="btn-switch"] {
   background-image: url("://ic-switch-off");
   background-position: right center;
   background-repeat: no-repeat;
-  background-color: #ffffff;
+  background-color: #fafafa;
   font-size: 18px;
   text-align: left;
   color: #707070;
@@ -1007,7 +1007,7 @@ QPushButton[cssClass="btn-switch"]:checked {
   background-image: url("://ic-switch-on");
   background-position: right center;
   background-repeat: no-repeat;
-  background-color: #ffffff;
+  background-color: #fafafa;
   text-align: left;
   font-size: 18px;
   color: #88edff;
@@ -1896,18 +1896,18 @@ HH        REQUEST DIALOG
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 QComboBox[cssClass="btn-combo-coins"] {
-  background-color: #27cafc;
+  background-color: #88edff;
   padding: 10px 20px 10px 10px;
   font-size: 16px;
-  border: 1px solid #27cafc;
+  border: 1px solid #88edff;
   color: #ffffff;
 }
 
 QLabel[cssClass="btn-combo-coins"] {
-  background-color: #27cafc;
+  background-color: #88edff;
   padding: 10px 10px 10px 10px;
   font-size: 16px;
-  border: 1px solid #27cafc;
+  border: 1px solid #88edff;
   color: #ffffff;
 }
 
