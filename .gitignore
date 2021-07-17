@@ -134,6 +134,15 @@ src/eskacoin-cli
 src/eskacoin-tx
 src/eskacoind
 
+# UltraClear
+src/bench/bench_ultraclear
+src/qt/test/test_ultraclear-qt
+src/qt/ultraclear-qt
+src/test/test_ultraclear
+src/ultraclear-cli
+src/ultraclear-tx
+src/ultracleard
+
 ##########################################
 # clear this section when it's fixed
 ###
