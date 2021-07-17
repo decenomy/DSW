@@ -397,7 +397,7 @@
              <item>
               <widget class="QLineEdit" name="lineEditAddress">
                <property name="placeholderText">
-                <string notr="true">e.g. D8FpnBdmahyJNRsVzoKzyFHbGjcUbX43QN</string>
+                <string notr="true">e.g. SQ8kFSDC4VfeaNgyd9WaPDjrzfwXdyuGLg</string>
                </property>
               </widget>
              </item>
