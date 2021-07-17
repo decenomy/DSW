@@ -119,7 +119,7 @@
               <item>
                <widget class="QLabel" name="labelAmountPiv">
                 <property name="text">
-                 <string notr="true">480.0685 PNY</string>
+                 <string notr="true">-- PNY</string>
                 </property>
                </widget>
               </item>
@@ -162,7 +162,7 @@
                  <string notr="true">padding:0px;margin:0px;</string>
                 </property>
                 <property name="text">
-                 <string notr="true">480.0685 PNY</string>
+                 <string notr="true">-- PNY</string>
                 </property>
                </widget>
               </item>
@@ -456,7 +456,7 @@
                  <item>
                   <widget class="QLabel" name="labelAvailablePiv">
                    <property name="text">
-                    <string>1.234 PNY</string>
+                    <string>-- PNY</string>
                    </property>
                   </widget>
                  </item>
@@ -470,7 +470,7 @@
                  <item>
                   <widget class="QLabel" name="labelImmaturePiv">
                    <property name="text">
-                    <string notr="true">10 PNY</string>
+                    <string notr="true">- PNY</string>
                    </property>
                   </widget>
                  </item>
@@ -491,7 +491,7 @@
                  <item>
                   <widget class="QLabel" name="labelLockedPiv">
                    <property name="text">
-                    <string>345 PNY</string>
+                    <string>- PNY</string>
                    </property>
                   </widget>
                  </item>
@@ -505,7 +505,7 @@
                  <item>
                   <widget class="QLabel" name="labelPendingPiv">
                    <property name="text">
-                    <string notr="true">6.943 PNY</string>
+                    <string notr="true">-- PNY</string>
                    </property>
                   </widget>
                  </item>
@@ -553,7 +553,7 @@
              <item>
               <widget class="QLabel" name="labelMasternodeCount">
                <property name="text">
-                <string>10/11</string>
+                <string>-/-</string>
                </property>
               </widget>
              </item>
@@ -567,7 +567,7 @@
              <item>
               <widget class="QLabel" name="labelCollateralPiv">
                <property name="text">
-                <string notr="true">200000 PNY</string>
+                <string notr="true">-- PNY</string>
                </property>
               </widget>
              </item>

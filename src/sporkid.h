@@ -20,7 +20,7 @@ enum SporkId : int32_t {
     SPORK_9_MASTERNODE_BUDGET_ENFORCEMENT       = 10008,
     SPORK_13_ENABLE_SUPERBLOCKS                 = 10012,
     SPORK_14_MIN_PROTOCOL_ACCEPTED              = 10013,
-    SPORK_15_NOOP                               = 10013,
+    SPORK_15_NOOP                               = 10014,
     SPORK_16_ZEROCOIN_MAINTENANCE_MODE          = 10015,
     SPORK_17_NOOP                               = 10017,
     SPORK_18_ZEROCOIN_PUBLICSPEND_V4            = 10018,

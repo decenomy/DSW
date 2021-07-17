@@ -160,7 +160,7 @@ uint256 CMasternodePaymentWinner::GetHash() const
 
 std::string CMasternodePaymentWinner::GetStrMessage() const
 {
-    if (Params().GetConsensus().NetworkUpgradeActive(chainActive.Tip()->nHeight, Consensus::UPGRADE_V4_0)) {
+    if (Params().GetConsensus().NetworkUpgradeActive(chainActive.Tip()->nHeight, Consensus::UPGRADE_TIME_PROTOCOL_V2)) {
         return vinMasternode.prevout.ToStringShort() + std::to_string(nBlockHeight) + HexStr(payee);
     } else {
         return vinMasternode.prevout.ToStringShort() + std::to_string(nBlockHeight) + ScriptToAsmStr(payee);
@@ -409,8 +409,6 @@ void CMasternodePayments::ProcessMessageMasternodePayments(CNode* pfrom, std::st
         if (Params().NetworkID() == CBaseChainParams::MAIN) {
             if (pfrom->HasFulfilledRequest(NetMsgType::GETMNWINNERS)) {
                 LogPrintf("CMasternodePayments::ProcessMessageMasternodePayments() : mnget - peer already asked me for the list\n");
-                LOCK(cs_main);
-                if (CMasternode::GetMasternodePayment(chainActive.Height()) > 0) Misbehaving(pfrom->GetId(), 20);
                 return;
             }
         }
@@ -445,7 +443,7 @@ void CMasternodePayments::ProcessMessageMasternodePayments(CNode* pfrom, std::st
         }
 
         // reject old signature version
-        if (Params().GetConsensus().NetworkUpgradeActive(chainActive.Tip()->nHeight, Consensus::UPGRADE_V4_0) &&
+        if (Params().GetConsensus().NetworkUpgradeActive(chainActive.Tip()->nHeight, Consensus::UPGRADE_TIME_PROTOCOL_V2) &&
             winner.nMessVersion != MessageVersion::MESS_VER_HASH) {
             LogPrint(BCLog::MASTERNODE, "mnw - rejecting old message version %d\n", winner.nMessVersion);
             return;
