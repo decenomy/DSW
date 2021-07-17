@@ -1458,13 +1458,13 @@ QPushButton[cssClass="btn-secundary-new-address"] {
 
 QPushButton[cssClass="btn-secundary-new-address"]:hover {
     border:  1px solid #019def;
-    background-color:#211f1f;
+    background-color:#019def;
     color: #ffffff;
 }
 
 QPushButton[cssClass="btn-secundary-new-address"]:pressed {
     border:  1px solid  #019def;
-    background-color:#211f1f;
+    background-color:#019def;
     color: #ffffff;
 }
 
