@@ -46,7 +46,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="container-purple"] {
-    background-color:#5786bc;
+    background-color:#0094f9;
     border:0;
 }
 
@@ -1440,13 +1440,13 @@ QPushButton[cssClass="btn-secundary-new-address"] {
 
 QPushButton[cssClass="btn-secundary-new-address"]:hover {
     border:  1px solid #43b3ff;
-    ackground-color:#211f1f;
+    background-color:#43b3ff;
     color: #ffffff;
 }
 
 QPushButton[cssClass="btn-secundary-new-address"]:pressed {
     border:  1px solid  #43b3ff;
-    background-color:#211f1f;
+    background-color:#43b3ff;
     color: #ffffff;
 }
 
@@ -1913,18 +1913,18 @@ HH        REQUEST DIALOG
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 QComboBox[cssClass="btn-combo-coins"] {
-    background-color:#88cfff;
+    background-color:#0094f9;
     padding:10px 20px 10px 10px;
     font-size:16px;
-    border:1px solid #43b3ff;
+    border:1px solid #0094f9;
     color: #ffffff;
 }
 
 QLabel[cssClass="btn-combo-coins"] {
-    background-color:#88cfff;
+    background-color:#0094f9;
     padding:10px 10px 10px 10px;
     font-size:16px;
-    border:1px solid #43b3ff;
+    border:1px solid #0094f9;
     color: #ffffff;
 }
 
