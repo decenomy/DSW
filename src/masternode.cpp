@@ -322,90 +322,49 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
-    if(nHeight <= 500000)
-        return 1000 * COIN;
-    else if(nHeight <= 600000 && nHeight > 500000)
-        return 2000 * COIN;
-    else if(nHeight <= 700000 && nHeight > 600000)
-        return 3000 * COIN;
-    else if(nHeight <= 800000 && nHeight > 700000)
-        return 5000 * COIN;
-    else if(nHeight <= 900000 && nHeight > 800000)
-        return 7000 * COIN;
-    else
-        return 10000 * COIN;
+    if (nHeight > 900000) return 10000 * COIN;
+    if (nHeight > 800000) return  7000 * COIN;
+    if (nHeight > 700000) return  5000 * COIN;
+    if (nHeight > 600000) return  3000 * COIN;
+    if (nHeight > 500000) return  2000 * COIN;
+    
+    return  1000 * COIN;
 }
 
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
-	int prevHeight = nHeight - 1; // In the original DASHD the nHeight refers to the previous block  
-	
-    if (Params().NetworkID() == CBaseChainParams::TESTNET) {
-        if (nHeight < 200 && nHeight > 0)
-            return 250000 * COIN;
-    }
+    if (nHeight > 1700000) return     80.00 * COIN;
+    if (nHeight > 1600000) return    120.00 * COIN;
+    if (nHeight > 1500000) return    140.00 * COIN;
+    if (nHeight > 1400000) return    220.00 * COIN;
+    if (nHeight > 1300000) return    300.00 * COIN;
+    if (nHeight > 1200000) return    380.00 * COIN;
+    if (nHeight > 1100000) return    440.00 * COIN;
+    if (nHeight > 1000000) return    600.00 * COIN;
+    if (nHeight >  900000) return    700.00 * COIN;
+    if (nHeight >  800000) return    440.00 * COIN;
+    if (nHeight >  700000) return    300.00 * COIN;
+    if (nHeight >  600000) return    140.00 * COIN;
+    if (nHeight >  525000) return     80.00 * COIN;
+    if (nHeight >  500000) return     60.00 * COIN;
+    if (nHeight >  350000) return     25.00 * COIN;
+    if (nHeight >  292500) return      4.50 * COIN;
+    if (nHeight >  292000) return   1005.50 * COIN; // +1001 LiquiMining
+    if (nHeight >  210241) return      4.50 * COIN;
+    if (nHeight >       1) return      5.00 * COIN;
+    if (nHeight >       0) return 180000.00 * COIN;
 
-    if (Params().IsRegTestNet()) {
-        if (nHeight == 0)
-            return 250 * COIN;
-    }
-
-    CAmount nSubsidy = 0;
-
-    if (nHeight == 0) {
-        nSubsidy = 180000 * COIN;
-    } else if (prevHeight <= 210240 && prevHeight > 0) {
-        nSubsidy = 5 * COIN;
-    } else if (nHeight <= 350000 && prevHeight > 210240) {
-        nSubsidy = 4.5 * COIN;
-    } else if (nHeight <= 500000 && nHeight > 350000) {
-        nSubsidy = 25 * COIN;
-    } else if (nHeight <= 600000 && nHeight > 500000) {
-        nSubsidy = 60 * COIN;
-    } else if (nHeight <= 700000 && nHeight > 600000) {
-        nSubsidy = 100 * COIN;
-    } else if (nHeight <= 800000 && nHeight > 700000) {
-        nSubsidy = 200 * COIN;
-    } else if (nHeight <= 900000 && nHeight > 800000) {
-        nSubsidy = 300 * COIN;
-    } else if (nHeight <= 1000000 && nHeight > 900000) {
-        nSubsidy = 450 * COIN;
-    } else if (nHeight <= 1100000 && nHeight > 1000000) {
-        nSubsidy = 400 * COIN;
-    } else if (nHeight <= 1200000 && nHeight > 1100000) {
-        nSubsidy = 300 * COIN;
-    } else if (nHeight <= 1300000 && nHeight > 1200000) {
-        nSubsidy = 250 * COIN;
-    } else if (nHeight <= 1400000 && nHeight > 1300000) {
-        nSubsidy = 200 * COIN;
-    } else if (nHeight <= 1500000 && nHeight > 1400000) {
-        nSubsidy = 150 * COIN;
-    } else if (nHeight <= 1600000 && nHeight > 1500000) {
-        nSubsidy = 100 * COIN;
-    } else if (nHeight <= 1700000 && nHeight > 1600000) {
-        nSubsidy = 80 * COIN;
-    } else {
-        nSubsidy = 50 * COIN;
-    }
-	
-	if(Params().IsLiquiMiningBlock(prevHeight + 1)) {
-        nSubsidy += Params().GetLiquiMiningValue(prevHeight + 1);
-    }
-
-    return nSubsidy;
+    return 1 * COIN;
 }
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    int64_t ret = 0;
+    if (nHeight > 525000) return GetBlockValue(nHeight) * 65 / 100;
+    if (nHeight > 292500) return GetBlockValue(nHeight) * 80 / 100;
+    if (nHeight > 292000) return                       1001 * COIN; // +1001 LiquiMining
+    if (nHeight >    200) return GetBlockValue(nHeight) * 80 / 100;
 
-	if (nHeight <= 200) {
-		ret = GetBlockValue(nHeight)  / 100 * 0;
-	} else {
-		ret = GetBlockValue(nHeight)  / 100 * 80;
-	}
-
-    return ret;
+    return 0;
 }
 
 void CMasternode::InitMasternodeCollateralList() {
