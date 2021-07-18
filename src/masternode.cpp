@@ -320,61 +320,34 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
-    if (nHeight <= 100000) {
-        return 2500 * COIN;
-    } else if (nHeight <= 200000 && nHeight > 100000) {
-        return 5000 * COIN;
-    } else if (nHeight <= 300000 && nHeight > 200000) {
-        return 10000 * COIN;
-    } else if (nHeight > 300000) {
-        return 20000 * COIN;
-    } 
+    if (nHeight >  300000) return    20000 * COIN;
+    if (nHeight >  200000) return    10000 * COIN;
+    if (nHeight >  100000) return     5000 * COIN;
+    if (nHeight >    3000) return     2500 * COIN;
+     
     return 0;
 }
 
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
-    CAmount maxMoneyOut= Params().GetConsensus().nMaxMoneyOut;
+    if (nHeight >    700000) return       80 * COIN;
+    if (nHeight >    600000) return      100 * COIN;
+    if (nHeight >    500000) return      160 * COIN;
+    if (nHeight >    400000) return      200 * COIN;
+    if (nHeight >    300000) return      240 * COIN;
+    if (nHeight >    200000) return      100 * COIN;
+    if (nHeight >    100000) return       40 * COIN;
+    if (nHeight >     78000) return       20 * COIN;
+    if (nHeight >         1) return       10 * COIN;
+    if (nHeight >         0) return 16000000 * COIN;
 
-    if(nMoneySupply >= maxMoneyOut) {
-        return 0;
-    }
-
-    CAmount nSubsidy;
-
-    if (nHeight == 1) {
-        nSubsidy = 16000000 * COIN; // DarkSaga final coin supply (aprox. 15.7M) the remaining will be burned
-    } else if (nHeight > 3000 && nHeight <= 78000) {
-        nSubsidy = 10 * COIN;
-    } else if (nHeight > 78000 && nHeight <= 100000) {
-        nSubsidy = 20 * COIN;
-    } else if (nHeight > 100000 && nHeight <= 200000) {
-        nSubsidy = 40 * COIN;
-    } else if (nHeight > 200000 && nHeight <= 300000) {
-        nSubsidy = 100 * COIN;
-    } else if (nHeight > 300000 && nHeight <= 400000) {
-        nSubsidy = 240 * COIN;
-    } else if (nHeight > 400000 && nHeight <= 500000) {
-        nSubsidy = 200 * COIN;
-    } else if (nHeight > 500000 && nHeight <= 600000) {
-        nSubsidy = 160 * COIN;
-    } else if (nHeight > 600000 && nHeight <= 700000) {
-        nSubsidy = 100 * COIN;
-    } else if (nHeight > 700000) {
-        nSubsidy = 80 * COIN;
-    }
-
-    if(nMoneySupply + nSubsidy > maxMoneyOut) {
-        return nMoneySupply + nSubsidy - maxMoneyOut;
-    }
-
-    return nSubsidy;
+    return 80;
 }
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
     if (nHeight > 78000) return GetBlockValue(nHeight) * 65 / 100;
-    if (nHeight > 3000 && nHeight <= 78000 return GetBlockValue(nHeight) * 70 / 100;
+    if (nHeight > 3000 && nHeight <= 78000) return GetBlockValue(nHeight) * 70 / 100;
     if (nHeight <= 3000) return 0;
 
     return 0;
