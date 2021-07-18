@@ -344,22 +344,24 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
     if (nHeight == 1) {
         nSubsidy = 16000000 * COIN; // DarkSaga final coin supply (aprox. 15.7M) the remaining will be burned
-    } else if (nHeight <= 100000) {
+    } else if (nHeight > 3000 && nHeight <= 78000) {
         nSubsidy = 10 * COIN;
+    } else if (nHeight > 78000 && nHeight <= 100000) {
+        nSubsidy = 20 * COIN;
     } else if (nHeight > 100000 && nHeight <= 200000) {
-        nSubsidy = 30 * COIN;
+        nSubsidy = 40 * COIN;
     } else if (nHeight > 200000 && nHeight <= 300000) {
-        nSubsidy = 80 * COIN;
+        nSubsidy = 100 * COIN;
     } else if (nHeight > 300000 && nHeight <= 400000) {
-        nSubsidy = 200 * COIN;
+        nSubsidy = 240 * COIN;
     } else if (nHeight > 400000 && nHeight <= 500000) {
-        nSubsidy = 160 * COIN;
+        nSubsidy = 200 * COIN;
     } else if (nHeight > 500000 && nHeight <= 600000) {
-        nSubsidy = 120 * COIN;
+        nSubsidy = 160 * COIN;
     } else if (nHeight > 600000 && nHeight <= 700000) {
-        nSubsidy = 90 * COIN;
+        nSubsidy = 100 * COIN;
     } else if (nHeight > 700000) {
-        nSubsidy = 60 * COIN;
+        nSubsidy = 80 * COIN;
     }
 
     if(nMoneySupply + nSubsidy > maxMoneyOut) {
@@ -371,9 +373,11 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    if(nHeight <= 3000) return 0;
+    if (nHeight > 78000) return GetBlockValue(nHeight) * 65 / 100;
+    if (nHeight > 3000 && nHeight <= 78000 return GetBlockValue(nHeight) * 70 / 100;
+    if (nHeight <= 3000) return 0;
 
-    return CMasternode::GetBlockValue(nHeight) * 70 / 100;
+    return 0;
 }
 
 void CMasternode::InitMasternodeCollateralList() {
