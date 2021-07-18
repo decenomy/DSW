@@ -12,11 +12,11 @@ fi
 	echo "1" | sudo update-alternatives --config x86_64-w64-mingw32-g++
 
 # Clone code from official Github repository
-	rm -rf DSW
-	git clone https://github.com/decenomy/DSW.git
+	rm -rf DASHD
+	git clone https://github.com/Dash-Diamond/DASHD.git
 
 # Entering directory
-	cd DSW
+	cd DASHD
 
 # Compile dependencies
 	cd depends
@@ -30,6 +30,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/dashdiamondd.exe DSW/src/dashdiamond-cli.exe DSW/src/dashdiamond-tx.exe DSW/src/qt/dashdiamond-qt.exe .
+	cp DASHD/src/dashdiamondd.exe DASHD/src/dashdiamond-cli.exe DASHD/src/dashdiamond-tx.exe DASHD/src/qt/dashdiamond-qt.exe .
 	zip DASHD-Windows.zip dashdiamondd.exe dashdiamond-cli.exe dashdiamond-tx.exe dashdiamond-qt.exe
 	rm -f dashdiamondd.exe dashdiamond-cli.exe dashdiamond-tx.exe dashdiamond-qt.exe

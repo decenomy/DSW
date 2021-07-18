@@ -7,11 +7,11 @@ then
 fi
 
 # Clone code from official Github repository
-    rm -rf DSW
-    git clone https://github.com/decenomy/DSW.git
+    rm -rf DASHD
+    git clone https://github.com/Dash-Diamond/DASHD.git
 
 # Entering directory
-    cd DSW
+    cd DASHD
 
 # Compile dependencies
     cd depends
@@ -31,6 +31,6 @@ fi
     cd ..
 
 # Create zip file of binaries
-    cp DSW/src/dashdiamondd DSW/src/dashdiamond-cli DSW/src/dashdiamond-tx DSW/src/qt/dashdiamond-qt DSW/DashDiamond-Core.dmg .
+    cp DASHD/src/dashdiamondd DASHD/src/dashdiamond-cli DASHD/src/dashdiamond-tx DASHD/src/qt/dashdiamond-qt DASHD/DashDiamond-Core.dmg .
     zip DASHD-MacOS.zip dashdiamondd dashdiamond-cli dashdiamond-tx dashdiamond-qt DashDiamond-Core.dmg
     rm -f dashdiamondd dashdiamond-cli dashdiamond-tx dashdiamond-qt DashDiamond-Core.dmg

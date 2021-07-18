@@ -11,11 +11,11 @@ fi
 	sudo apt install git zip unzip build-essential libtool bsdmainutils autotools-dev autoconf pkg-config automake python3 libqt5svg5-dev -y
 
 # Clone code from official Github repository
-	rm -rf DSW
-	git clone https://github.com/decenomy/DSW.git
+	rm -rf DASHD
+	git clone https://github.com/Dash-Diamond/DASHD.git
 
 # Entering directory
-	cd DSW
+	cd DASHD
 
 # Compile dependencies
 	cd depends
@@ -29,6 +29,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/dashdiamondd DSW/src/dashdiamond-cli DSW/src/dashdiamond-tx DSW/src/qt/dashdiamond-qt .
+	cp DASHD/src/dashdiamondd DASHD/src/dashdiamond-cli DASHD/src/dashdiamond-tx DASHD/src/qt/dashdiamond-qt .
 	zip DASHD-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip dashdiamondd dashdiamond-cli dashdiamond-tx dashdiamond-qt
 	rm -f dashdiamondd dashdiamond-cli dashdiamond-tx dashdiamond-qt
