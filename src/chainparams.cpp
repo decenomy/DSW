@@ -207,50 +207,6 @@ public:
         networkID = CBaseChainParams::MAIN;
         strNetworkID = "main";
 
-        // // This is used inorder to mine the genesis block. Once found, we can use the nonce and block hash found to create a valid genesis block
-        // /////////////////////////////////////////////////////////////////
-
-        // uint32_t nGenesisTime = (uint32_t) GetTime();
-
-        // arith_uint256 test;
-        // bool fNegative;
-        // bool fOverflow;
-        // test.SetCompact(0x1e0ffff0, &fNegative, &fOverflow);
-        // std::cout << "Test threshold: " << test.GetHex() << "\n\n";
-
-        // int genesisNonce = 0;
-        // uint256 TempHashHolding = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
-        // uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        // for (int i=0;i<40000000;i++) {
-        //     genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e0ffff0, 1, 0 * COIN);
-        //     consensus.hashGenesisBlock = genesis.GetHash();
-
-        //     arith_uint256 BestBlockHashArith = UintToArith256(BestBlockHash);
-        //     if (UintToArith256(consensus.hashGenesisBlock) < BestBlockHashArith) {
-        //         BestBlockHash = consensus.hashGenesisBlock;
-        //         std::cout << BestBlockHash.GetHex() << " Nonce: " << i << "\n";
-        //     }
-
-        //     TempHashHolding = consensus.hashGenesisBlock;
-
-        //     if (BestBlockHashArith < test) {
-        //         genesisNonce = i - 1;
-        //         break;
-        //     }
-        // }
-        // std::cout << "\n";
-        // std::cout << "\n";
-        // std::cout << "\n";
-
-        // std::cout << "Genesis timestamp " << nGenesisTime << std::endl;
-        // std::cout << "Nonce " << genesisNonce << std::endl;
-        // std::cout << "Genesis block hash 0x" << BestBlockHash.GetHex() << std::endl;
-        // std::cout << "Merkle root hash 0x" << genesis.hashMerkleRoot.GetHex() << std::endl;
-
-        // exit(0);
-
-        // /////////////////////////////////////////////////////////////////
-
         genesis = CreateGenesisBlock(1622058209, 1716299, 0x1e0ffff0, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x00000e5abe79d86f5e7a8adc8a8d0a8afa3d9aad1ae5099eec426df74bf2159e"));
