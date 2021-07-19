@@ -2,7 +2,6 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "CryptoSaga Core"
-#define MyAppVersion "4.0.0.0"
 #define MyAppPublisher "2021 DECENOMY Core Developers"
 #define MyAppURL "http://cryptosaga.net/"
 #define MyAppExeName "cryptosaga-qt.exe"
