@@ -140,47 +140,6 @@ QPushButton[cssClass="btn-check-console"] {
 }
 
 /*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
-!############# Cold staking
- ################################*/
-
-*[cssClass="btn-nav-cold-staking"] {
-  qproperty-icon: url("://ic-nav-cold-staking") off,
-    url("://ic-nav-cold-staking-active") on;
-  qproperty-iconSize: 24px 40px;
-  background-color: transparent;
-  font-size: 12px;
-  color: #fff;
-}
-
-*[cssClass="btn-nav-cold-staking"]:checked {
-  background-color: #262626;
-  font-size: 12px;
-  color: #f4b400;
-}
-
-*[cssClass="btn-nav-cold-staking"]:checked:hover {
-  background-color: #262626;
-  font-size: 12px;
-  color: #f4b400;
-}
-
-*[cssClass="btn-nav-cold-staking"]:hover {
-  qproperty-icon: url("://ic-nav-cold-staking-hover");
-  qproperty-iconSize: 24px 40px;
-  background-color: #262626;
-  font-size: 12px;
-  color: #fff;
-}
-
-*[cssClass="btn-nav-cold-staking-active"] {
-  qproperty-icon: url("://ic-nav-cold-staking-active");
-  qproperty-iconSize: 24px 40px;
-  background-color: #262626;
-  font-size: 12px;
-  color: #f4b400;
-}
-
-/*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 !#############
  ################################*/
 
@@ -1085,7 +1044,7 @@ QPushButton[cssClass="btn-switch"] {
   background-color: #ffffff;
   font-size: 18px;
   text-align: left;
-  color: #ececec;
+  color: #707070;
 }
 
 QPushButton[cssClass="btn-switch"]:checked {
@@ -1095,7 +1054,7 @@ QPushButton[cssClass="btn-switch"]:checked {
   background-color: #ffffff;
   text-align: left;
   font-size: 18px;
-  color: #c226d6;
+  color: #f4b400;
 }
 
 QPushButton[cssClass="btn-check"] {
@@ -1983,18 +1942,18 @@ HH        REQUEST DIALOG
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 QComboBox[cssClass="btn-combo-coins"] {
-  background-color: #262626;
+  background-color: #ffce55;
   padding: 10px 20px 10px 10px;
   font-size: 16px;
-  border: 1px solid #262626;
+  border: 1px solid #ffce55;
   color: #ffffff;
 }
 
 QLabel[cssClass="btn-combo-coins"] {
-  background-color: #262626;
+  background-color: #ffce55;
   padding: 10px 10px 10px 10px;
   font-size: 16px;
-  border: 1px solid #262626;
+  border: 1px solid #ffce55;
   color: #ffffff;
 }
 
@@ -2625,7 +2584,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 *[cssClass="container-faq-buttons"] {
   background: transparent;
-  border: 1px solid #c226d6;
+  border: 1px solid #f4b400;
   border-radius: 5px;
 }
 
@@ -2641,7 +2600,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 *[cssClass="container-number-faq"] {
   color: #ffffff;
-  background-color: #c226d6;
+  background-color: #f4b400;
   font-size: 14px;
   border-radius: 2px;
 }
@@ -3057,7 +3016,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
   border-bottom: 1px solid #eeeeee;
   border-radius: 0px;
   color: #ffffff;
-  background-color: #c226d6;
+  background-color: #ffde8a;
 }
 
 #treeWidget::item:selected {
@@ -3065,7 +3024,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
   border-bottom: 1px solid #e6e6e6;
   border-radius: 0px;
   color: #ffffff;
-  background-color: #c226d6;
+  background-color: #ffce55;
 }
 
 #treeWidget::item:hover:selected {
@@ -3073,16 +3032,16 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
   border-bottom: 1px solid #e6e6e6;
   border-radius: 0px;
   color: #ffffff;
-  background-color: #c226d6;
+  background-color: #ffde8a;
 }
 
 #treeWidget::branch {
   background-color: #ffffff;
-  selection-background-color: #c226d6;
+  selection-background-color: #f4b400;
 }
 
 #treeWidget::branch:selected {
-  background-color: #c226d6;
+  background-color: #f4b400;
 }
 
 #treeWidget::branch:!selected {

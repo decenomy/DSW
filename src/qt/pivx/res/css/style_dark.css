@@ -17,13 +17,13 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 *[cssClass="container-border-light"] {
     background-color:#211f1f;
-    border:  1px solid #534930;
+    border:  1px solid #f4b400;
     border-radius:2px;
 }
 
 *[cssClass="container_right"] {
     background-color:#211f1f;
-    border-left:  1px solid #534930;
+    border-left:  1px solid #f4b400;
 }
 
 *[cssClass="container-right"] {
@@ -33,7 +33,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 *[cssClass="container-square"] {
     background-color:#211f1f;
-    border:  1px solid #534930;
+    border:  1px solid #f4b400;
 }
 
 *[cssClass="container-options"] {
@@ -42,11 +42,11 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="container-divider"] {
-    background-color:#534930;
+    background-color:#f4b400;
 }
 
 *[cssClass="container-purple"] {
-    background-color:#534930;
+    background-color:#f4b400;
     border:  0;
 }
 
@@ -1139,10 +1139,10 @@ QPushButton[cssClass="btn-switch"]:checked {
     background-image: url("://ic-switch-liliac-on");
     background-position:right center;
     background-repeat:no-repeat;
-    background-color: #262626;
+    background-color: #211f1f;
     text-align:left;
     font-size:18px;
-    color: #eeeeee;
+    color: #f4b400;
 }
 
 QPushButton[cssClass="btn-check"] {
@@ -1567,13 +1567,13 @@ QPushButton[cssClass="btn-secundary-new-address"] {
 
 QPushButton[cssClass="btn-secundary-new-address"]:hover {
     border:  1px solid #f4b400;
-    ackground-color:#211f1f;
+    background-color:#f4b400;
     color: #ffffff;
 }
 
 QPushButton[cssClass="btn-secundary-new-address"]:pressed {
     border:  1px solid  #f4b400;
-    background-color:#211f1f;
+    background-color:#f4b400;
     color: #ffffff;
 }
 
@@ -2561,7 +2561,7 @@ QPushButton[cssClass="btn-settings-check"] {
   background-image: url("://ic-arrow-drop-down-white");
   background-position: right center;
   background-repeat: no-repeat;
-  background-color: #4b1452;
+  background-color: #0f0b16;
   border: none;
   border-bottom: 1px solid #bababa;
   font-size: 20px;
@@ -2695,7 +2695,7 @@ QPushButton[cssClass="btn-faq-exit"] {
   border: none;
   padding: 0 30px 0 0;
   font-size: 18px;
-  color: #c226d6;
+  color: #f4b400;
   text-align: left;
 }
 
