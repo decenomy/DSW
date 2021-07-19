@@ -7,6 +7,7 @@
 #define MyAppURL "http://cryptosaga.net/"
 #define MyAppExeName "cryptosaga-qt.exe"
 #define MyAppExtraData "https://explorer.decenomy.net/bootstraps/SAGA/bootstrap.zip"
+#define MyAppVersion GetVersionNumbersString(".\package\" + MyAppExeName)
 
 #include ReadReg(HKLM, 'Software\WOW6432Node\Mitrich Software\Inno Download Plugin', 'InstallDir') + '\idp.iss'
 
