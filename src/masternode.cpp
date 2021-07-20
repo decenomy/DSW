@@ -323,65 +323,32 @@ CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
     // Assumed old blockchain snapshot taken at 16.03.2021 00:00 at Block 1343545 - Collateral is 100000 * COIN
     // At former block 1400001, collateral increases to 200000 * COIN
     // So we will put 1400000 − 1343545 = 56455 blocks for the collateral change block interval from coll = 100000 to coll = 200000
-    if (nHeight <= 56455) { // Old blockchain block 1400000
-        return 100000 * COIN;
-    } 
-    return 200000 * COIN;
+    if (nHeight > 56455) return 200000 * COIN; // Old blockchain block 1400000
+ 
+    return 100000 * COIN;
 }
 
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
-    CAmount maxMoneyOut= Params().GetConsensus().nMaxMoneyOut;
+    if (nHeight > 656455)   return 400 * COIN;          // Old blockchain after block 2000000
+    if (nHeight > 556455)   return 450 * COIN;          // Old blockchain after block 1900000
+    if (nHeight > 456455)   return 500 * COIN;          // Old blockchain after block 1800000
+    if (nHeight > 356455)   return 550 * COIN;          // Old blockchain after block 1700000
+    if (nHeight > 256455)   return 600 * COIN;          // Old blockchain after block 1600000
+    if (nHeight > 156455)   return 650 * COIN;          // Old blockchain after block 1500000
+    if (nHeight > 56455)    return 700 * COIN;          // Old blockchain after block 1400000
+    if (nHeight > 1)        return 300 * COIN;          // Old blockchain after block 2000000
+    if (nHeight > 0)        return 610000000 * COIN;    //! Premine for sending coins to the coin holders. Final circulating supply is 607,146,002.03072373 CFL so we will emit 610M.
 
-    if(nMoneySupply >= maxMoneyOut) {
-        return 0;
-    }
-
-    CAmount nSubsidy;
-
-    if (nHeight == 1) {
-        nSubsidy = 610000000 * COIN; //! Premine for sending coins to the coin holders. Final circulating supply is 607,146,002.03072373 CFL so we will emit 610M.
-    }
-    else if (nHeight <= 1000) {  // Mining phase for mainnet
-        nSubsidy = 300 * COIN;
-    }
-    else if (nHeight <= 56455) { // Old blockchain block 1400000
-        nSubsidy = 300 * COIN;
-    }
-    else if (nHeight <= 156455) { // Old blockchain block 1500000
-        nSubsidy = 700 * COIN;
-    }
-    else if (nHeight <= 256455) { // Old blockchain block 1600000
-        nSubsidy = 650 * COIN;
-    }
-    else if (nHeight <= 356455) { // Old blockchain block 1700000
-        nSubsidy = 600 * COIN;
-    }
-    else if (nHeight <= 456455) { // Old blockchain block 1800000
-        nSubsidy = 550 * COIN;
-    }
-    else if (nHeight <= 556455) { // Old blockchain block 1900000
-        nSubsidy = 500 * COIN;
-    }
-    else if (nHeight <= 656455) { // Old blockchain block 2000000
-        nSubsidy = 450 * COIN;
-    }
-    else if (nHeight > 656455) { // Old blockchain after block 2000000
-        nSubsidy = 400 * COIN;
-    }
-
-    if(nMoneySupply + nSubsidy > maxMoneyOut) {
-        return nMoneySupply + nSubsidy - maxMoneyOut;
-    }
-
-    return nSubsidy;
+    return 1 * COIN;
 }
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    if(nHeight <= 2880) return 0;
+    if (nHeight > 2880) return CMasternode::GetBlockValue(nHeight) * 90 / 100;
+    if (nHeight > 0)    return 0;
 
-    return CMasternode::GetBlockValue(nHeight) * 90 / 100;
+    return 0;
 }
 
 void CMasternode::InitMasternodeCollateralList() {
