@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        NAME = 'UltraClear'
+        NAME = 'Ultra Clear'
         BASE_NAME = 'ultraclear'
         ZIP_NAME = 'UCR'
     }

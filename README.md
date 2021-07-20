@@ -1,4 +1,4 @@
-UltraClear integration/staging repository
+Ultra Clear integration/staging repository
 =====================================
 
 • PoW Algorithm: X13
