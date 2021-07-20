@@ -3346,7 +3346,6 @@ BECN使用了一个股权证明(PoS)一致系统算法，
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;Instant transactions (SwiftX)&lt;/li&gt;
                            &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
                            &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
@@ -3389,7 +3388,6 @@ BECN使用了一个股权证明(PoS)一致系统算法，
 &lt;/p&gt;&lt;p align="justify"&gt;
 
 &lt;ul&gt;
-&lt;li&gt;即时交易(SwiftX)&lt;/li&gt;
 &lt;li&gt;去中心化治理(提案投票)&lt;/li&gt;
 &lt;li&gt;去中心化预算系统(国库)&lt;/li&gt;
 &lt;li&gt;验证每个区块交易&lt;/li&gt;
@@ -4947,14 +4945,6 @@ Beacon心钱包</translation>
         <translation>下载完成</translation>
     </message>
     <message>
-        <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>启用&lt;address&gt;发布哈希交易(通过SwiftX锁定)</translation>
-    </message>
-    <message>
-        <source>Enable publish raw transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>启用&lt;address&gt;发布原始交易(通过SwiftX锁定)</translation>
-    </message>
-    <message>
         <source>Enable the client to act as a masternode (0-1, default: %u)</source>
         <translation>允许客户端充当主节点(0-1，默认值:%u)</translation>
     </message>
@@ -5095,10 +5085,6 @@ Beacon心钱包</translation>
         <translation>所选择币价值低于支付目标金额</translation>
     </message>
     <message>
-        <source>SwiftX options:</source>
-        <translation>SwiftX 选项：</translation>
-    </message>
-    <message>
         <source>This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!</source>
         <translation>这是一个预发行测试版本 - 您自己承担风险 - 不要用于商业应用！</translation>
     </message>
@@ -5129,10 +5115,6 @@ Beacon心钱包</translation>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
         <translation>指定自定义备份路径去添加任何钱包备份的副本。如果将其设置为dir，则每个备份将生成一个时间戳文件。如果设置为文件，将重写到每次备份的该文件</translation>
-    </message>
-    <message>
-        <source>SwiftX requires inputs with at least 6 confirmations, you might need to wait a few minutes and try again.</source>
-        <translation>SwiftX要求输入至少6个确认，您可能需要等待几分钟，然后重试。</translation>
     </message>
     <message>
         <source>&lt;category&gt; can be:</source>

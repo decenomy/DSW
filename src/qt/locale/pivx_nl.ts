@@ -3650,7 +3650,6 @@ Er was een fout opgetreden tijdens het opslaan van deze adreslijst naar %1. Prob
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;Instant transactions (SwiftX)&lt;/li&gt;
                            &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
                            &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
@@ -3692,7 +3691,6 @@ Er was een fout opgetreden tijdens het opslaan van deze adreslijst naar %1. Prob
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;Directe transacties (SwiftX)&lt;/li&gt;
                            &lt;li&gt;Een gedecentralizeerd bestuur (Stemming Voorstel)&lt;/li&gt;
                            &lt;li&gt;Een gedecentralizeerd budgeteringssysteem (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validatie van transacties binnen elk blok&lt;/li&gt;
@@ -5014,10 +5012,6 @@ nieuwe back-up aangemaakt worden.
         <translation>Verzend Munten</translation>
     </message>
     <message>
-        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 %2.</source>
-        <translation>SwiftTX ondersteunt geen verzendwaarden die zo hoog zijn. Transacties zijn momenteel beperkt tot %1 %2.</translation>
-    </message>
-    <message>
         <source>Transaction creation failed!
 %1</source>
         <translation>Transactie creatie mislukt!
@@ -5414,14 +5408,6 @@ Beacon Portemonnee</translation>
         <translation>Klaar met laden</translation>
     </message>
     <message>
-        <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>Activeer publicatie hash transactie (vergrendeld via SwiftTX) in &lt;address&gt;</translation>
-    </message>
-    <message>
-        <source>Enable publish raw transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>Activeer publicatie raw transactie (vergrendeld via SwiftTX) in &lt;address&gt;</translation>
-    </message>
-    <message>
         <source>Enable the client to act as a masternode (0-1, default: %u)</source>
         <translation>Schakel de client in als masternode (0-1, standaard: %u)</translation>
     </message>
@@ -5562,10 +5548,6 @@ Beacon Portemonnee</translation>
         <translation>Geselecteerde munt waarde is minder dan het betalingsdoel</translation>
     </message>
     <message>
-        <source>SwiftX options:</source>
-        <translation>SwiftTX opties:</translation>
-    </message>
-    <message>
         <source>This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!</source>
         <translation>Dit is een pre-release test build - gebruik op eigen risico - niet gebruiken voor staking of handel applicaties!</translation>
     </message>
@@ -5596,10 +5578,6 @@ Beacon Portemonnee</translation>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
         <translation>Specificeer aangepast back-up pad om een kopie van elke portemonnee back-up toe te voegen. Indien ingesteld als dir zal elke back-up een bestand genereren met een tijdstempel. Indien ingesteld als file zal elke back-up herschreven worden naar dat bestand.</translation>
-    </message>
-    <message>
-        <source>SwiftX requires inputs with at least 6 confirmations, you might need to wait a few minutes and try again.</source>
-        <translation>SwiftTX vereist invoer van tenminste 6 bevestigingen, je dient wellicht een paar minuten te wachten en het opnieuw proberen.</translation>
     </message>
     <message>
         <source>&lt;category&gt; can be:</source>

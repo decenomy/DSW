@@ -639,8 +639,6 @@ void CoinControlDialog::updateLabels()
         // Fee
         nPayFee = CWallet::GetMinimumFee(nBytes, nTxConfirmTarget, mempool);
 
-        // IX Fee
-        if (coinControl->useSwiftTX) nPayFee = std::max(nPayFee, CENT);
         // Allow free? (require at least hard-coded threshold and default to that if no estimate)
         double dPriorityNeeded = std::max(mempoolEstimatePriority, AllowFreeThreshold());
         if (dPriorityNeeded <= 0)

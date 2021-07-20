@@ -3645,7 +3645,6 @@ pour voir votre solde de monnaie dépensable sur le réseau.
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;Instant transactions (SwiftX)&lt;/li&gt;
                            &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
                            &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
@@ -3685,7 +3684,6 @@ exigence de 10 000 BECN déposé en garantie pour fournir au réseau des service
 Ces services comprennent:
 &lt;/p&gt;&lt;p align="justify"&gt;
 &lt;ul&gt;
-&lt;li&gt;des transactions instantanées (SwiftX)&lt;/li&gt;
 &lt;li&gt;une gouvernance décentralisée (vote des motions)&lt;/li&gt;
 &lt;li&gt;un système de budget décentralisé (financement)&lt;/li&gt;
 &lt;li&gt;validation des transactions dans chaque bloc&lt;/li&gt;
@@ -5003,10 +5001,6 @@ sauvegarde sera créée.
         <translation>Envoyer des pièces</translation>
     </message>
     <message>
-        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 %2.</source>
-        <translation>SwiftX ne supporte pas l'envoi de montants aussi élevés. Les transactions sont actuellement limitées à %1 %2.</translation>
-    </message>
-    <message>
         <source>Transaction creation failed!
 %1</source>
         <translation>Création de la transaction échouée!
@@ -5402,14 +5396,6 @@ Portefeuille Beacon</translation>
         <translation>Chargement effectué</translation>
     </message>
     <message>
-        <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>Activer la publication du hash des transactions (vérouillées via SwiftX) dans &lt;address&gt;</translation>
-    </message>
-    <message>
-        <source>Enable publish raw transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>Activer la publication des transactions brut (vérouillées via SwiftX) dans &lt;address&gt;</translation>
-    </message>
-    <message>
         <source>Enable the client to act as a masternode (0-1, default: %u)</source>
         <translation>Activer le client pour agir en tant que Masternode (0-1, défaut: %u)</translation>
     </message>
@@ -5550,10 +5536,6 @@ Portefeuille Beacon</translation>
         <translation>La valeur des monnaies choisies est inférieure au montant cible</translation>
     </message>
     <message>
-        <source>SwiftX options:</source>
-        <translation>Options SwiftX:</translation>
-    </message>
-    <message>
         <source>This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!</source>
         <translation>Il s'agit d'une pré-version de test - à utiliser à vos risques et périls - ne pas utiliser pour le staking ni pour les applications marchandes!</translation>
     </message>
@@ -5584,10 +5566,6 @@ Portefeuille Beacon</translation>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
         <translation>Spécifier un chemin de sauvegarde personnalisé pour y ajouter les sauvegardes automatiques zBECN. S'il est paramétré comme un dossier, chaque sauvegarde génère un fichier horodaté. S'il est paramétré comme fichier, chaque sauvegarde écrasera la précédente.</translation>
-    </message>
-    <message>
-        <source>SwiftX requires inputs with at least 6 confirmations, you might need to wait a few minutes and try again.</source>
-        <translation>SwiftX requiert des entrées avec un minimum de 6 confirmations, attendez quelques minutes et réessayez.</translation>
     </message>
     <message>
         <source>&lt;category&gt; can be:</source>

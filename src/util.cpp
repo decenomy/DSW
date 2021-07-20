@@ -95,9 +95,6 @@ bool fMasterNode = false;
 std::string strMasterNodePrivKey = "";
 std::string strMasterNodeAddr = "";
 bool fLiteMode = false;
-// SwiftX
-bool fEnableSwiftTX = true;
-int nSwiftTXDepth = 5;
 
 /** Spork enforcement enabled time */
 int64_t enforceMasternodePaymentsTime = 4085657524;

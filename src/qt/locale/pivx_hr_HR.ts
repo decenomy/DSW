@@ -3556,7 +3556,6 @@ da biste vidjeli i mogli potrošiti sredstva na mreži.
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;Instant transactions (SwiftX)&lt;/li&gt;
                            &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
                            &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
@@ -3598,7 +3597,6 @@ Te usluge uključuju:
 &lt;/p&gt;&lt;p align="justify"&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Trenutne transakcije (SwiftX)&lt;/li&gt;
 &lt;li&gt;Decentralizirano upravljanje (glasanje o zahtjevima)&lt;/li&gt;
 &lt;li&gt;Decentralizirani sustav proračuna (riznica)&lt;/li&gt;
 &lt;li&gt;Validacija transakcija unutar svakog bloka&lt;/li&gt;
@@ -5247,14 +5245,6 @@ Beacon Wallet</source>
         <translation>Završeno učitavanje</translation>
     </message>
     <message>
-        <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>Omogući objavu hasha transakcije (zaključano putem usluge SwiftX) u &lt;address&gt;</translation>
-    </message>
-    <message>
-        <source>Enable publish raw transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>Omogući objavljivanje neobrađjene transakcije (zaključano putem usluge SwiftX) u &lt;address&gt;</translation>
-    </message>
-    <message>
         <source>Enable the client to act as a masternode (0-1, default: %u)</source>
         <translation>Omogućite klijentu da djeluje kao masternode (0-1, zadano: %u)</translation>
     </message>
@@ -5395,10 +5385,6 @@ Beacon Wallet</source>
         <translation>Odabrana vrijednost novčića je manja od količine za plačanje</translation>
     </message>
     <message>
-        <source>SwiftX options:</source>
-        <translation>SwiftX opcije:</translation>
-    </message>
-    <message>
         <source>This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!</source>
         <translation>Ovo je priprema za testiranje prije puštanja - upotrebljavajte na vlastiti rizik - nemojte ga koristiti za staking ili trgovinske aplikacije!</translation>
     </message>
@@ -5429,10 +5415,6 @@ Beacon Wallet</source>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
         <translation>Navedite put prilagođenog sigurnosnog kopiranja da biste dodali kopiju sigurnosne kopije lisnice. Ako je postavljeno kao dir, svaka sigurnosna kopija generira vremensku datoteku. Ako je postavljen kao datoteka, prepisat će na tu datoteku svaku kopiju.</translation>
-    </message>
-    <message>
-        <source>SwiftX requires inputs with at least 6 confirmations, you might need to wait a few minutes and try again.</source>
-        <translation>SwiftX zahtijeva ulaze s najmanje 6 potvrda, možda ćete morati pričekati nekoliko minuta i pokušati ponovo.</translation>
     </message>
     <message>
         <source>&lt;category&gt; can be:</source>

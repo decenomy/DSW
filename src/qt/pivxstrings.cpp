@@ -71,8 +71,6 @@ QT_TRANSLATE_NOOP("pivx-core", ""
 QT_TRANSLATE_NOOP("pivx-core", ""
 "Do not keep transactions in the mempool longer than <n> hours (default: %u)"),
 QT_TRANSLATE_NOOP("pivx-core", ""
-"Enable SwiftX, show confirmations for locked transactions (bool, default: %s)"),
-QT_TRANSLATE_NOOP("pivx-core", ""
 "Enable spork administration functionality with the appropriate private key."),
 QT_TRANSLATE_NOOP("pivx-core", ""
 "Enter regression test mode, which uses a special chain in which blocks can "
@@ -185,9 +183,6 @@ QT_TRANSLATE_NOOP("pivx-core", ""
 QT_TRANSLATE_NOOP("pivx-core", ""
 "Support filtering of blocks and transaction with bloom filters (default: %u)"),
 QT_TRANSLATE_NOOP("pivx-core", ""
-"SwiftX requires inputs with at least 6 confirmations, you might need to wait "
-"a few minutes and try again."),
-QT_TRANSLATE_NOOP("pivx-core", ""
 "The block database contains a block which appears to be from the future. "
 "This may be due to your computer's date and time being set incorrectly. Only "
 "rebuild the block database if you are sure that your computer's date and "
@@ -279,10 +274,8 @@ QT_TRANSLATE_NOOP("pivx-core", "Do not load the wallet and disable wallet RPC ca
 QT_TRANSLATE_NOOP("pivx-core", "Do you want to rebuild the block database now?"),
 QT_TRANSLATE_NOOP("pivx-core", "Done loading"),
 QT_TRANSLATE_NOOP("pivx-core", "Enable publish hash block in <address>"),
-QT_TRANSLATE_NOOP("pivx-core", "Enable publish hash transaction (locked via SwiftX) in <address>"),
 QT_TRANSLATE_NOOP("pivx-core", "Enable publish hash transaction in <address>"),
 QT_TRANSLATE_NOOP("pivx-core", "Enable publish raw block in <address>"),
-QT_TRANSLATE_NOOP("pivx-core", "Enable publish raw transaction (locked via SwiftX) in <address>"),
 QT_TRANSLATE_NOOP("pivx-core", "Enable publish raw transaction in <address>"),
 QT_TRANSLATE_NOOP("pivx-core", "Enable staking functionality (0-1, default: %u)"),
 QT_TRANSLATE_NOOP("pivx-core", "Enable the client to act as a masternode (0-1, default: %u)"),
@@ -420,7 +413,6 @@ QT_TRANSLATE_NOOP("pivx-core", "Specify zk params directory (default: %s)"),
 QT_TRANSLATE_NOOP("pivx-core", "Spend Valid"),
 QT_TRANSLATE_NOOP("pivx-core", "Spend unconfirmed change when sending transactions (default: %u)"),
 QT_TRANSLATE_NOOP("pivx-core", "Stop running after importing blocks from disk (default: %u)"),
-QT_TRANSLATE_NOOP("pivx-core", "SwiftX options:"),
 QT_TRANSLATE_NOOP("pivx-core", "Synchronization failed"),
 QT_TRANSLATE_NOOP("pivx-core", "Synchronization finished"),
 QT_TRANSLATE_NOOP("pivx-core", "Synchronizing budgets..."),

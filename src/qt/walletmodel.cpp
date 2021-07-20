@@ -355,13 +355,6 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
         CWalletTx* newTx = transaction.getTransaction();
         CReserveKey* keyChange = transaction.getPossibleKeyChange();
 
-
-        if (recipients[0].useSwiftTX && total > sporkManager.GetSporkValue(SPORK_5_MAX_VALUE) * COIN) {
-            Q_EMIT message(tr("Send Coins"), tr("SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 %2.").arg(sporkManager.GetSporkValue(SPORK_5_MAX_VALUE)).arg(CURRENCY_UNIT.c_str()),
-                CClientUIInterface::MSG_ERROR);
-            return TransactionCreationFailed;
-        }
-
         bool fCreated = wallet->CreateTransaction(vecSend,
                                                   *newTx,
                                                   *keyChange,
@@ -371,15 +364,8 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
                                                   coinControl,
                                                   recipients[0].inputType,
                                                   true,
-                                                  recipients[0].useSwiftTX,
                                                   0);
         transaction.setTransactionFee(nFeeRequired);
-
-        if (recipients[0].useSwiftTX && newTx->GetValueOut() > sporkManager.GetSporkValue(SPORK_5_MAX_VALUE) * COIN) {
-            Q_EMIT message(tr("Send Coins"), tr("SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 %2.").arg(sporkManager.GetSporkValue(SPORK_5_MAX_VALUE)).arg(CURRENCY_UNIT.c_str()),
-                CClientUIInterface::MSG_ERROR);
-            return TransactionCreationFailed;
-        }
 
         if (!fCreated) {
             if ((total + nFeeRequired) > nSpendableBalance) {
@@ -435,7 +421,7 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(WalletModelTransaction& tran
         }
 
         CReserveKey* keyChange = transaction.getPossibleKeyChange();
-        const CWallet::CommitResult& res = wallet->CommitTransaction(*newTx, *keyChange, g_connman.get(), (recipients[0].useSwiftTX) ? NetMsgType::IX : NetMsgType::TX);
+        const CWallet::CommitResult& res = wallet->CommitTransaction(*newTx, *keyChange, g_connman.get());
         if (res.status != CWallet::CommitStatus::OK) {
             return SendCoinsReturn(res);
         }

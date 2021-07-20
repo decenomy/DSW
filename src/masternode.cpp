@@ -503,7 +503,7 @@ bool CMasternodeBroadcast::Sign(const CKey& key, const CPubKey& pubKey)
     std::string strError = "";
     std::string strMessage;
 
-    if(Params().GetConsensus().NetworkUpgradeActive(chainActive.Height(), Consensus::UPGRADE_V3_4)) {
+    if(Params().GetConsensus().NetworkUpgradeActive(chainActive.Height(), Consensus::UPGRADE_STAKE_MODIFIER_V2)) {
         nMessVersion = MessageVersion::MESS_VER_HASH;
         strMessage = GetSignatureHash().GetHex();
 
@@ -804,10 +804,12 @@ CMasternodePing::CMasternodePing(CTxIn& newVin) :
 
 uint256 CMasternodePing::GetHash() const
 {
+    int64_t salt = sporkManager.GetSporkValue(SPORK_103_PING_MESSAGE_SALT);
     CHashWriter ss(SER_GETHASH, PROTOCOL_VERSION);
     ss << vin;
     if (nMessVersion == MessageVersion::MESS_VER_HASH) ss << blockHash;
     ss << sigTime;
+    if (salt > 0) ss << salt;
     return ss.GetHash();
 }
 
@@ -815,10 +817,10 @@ std::string CMasternodePing::GetStrMessage() const
 {
     int64_t salt = sporkManager.GetSporkValue(SPORK_103_PING_MESSAGE_SALT);
 
-    if (salt != 0) {
-        return vin.ToString() + blockHash.ToString() + std::to_string(sigTime) + std::to_string(salt);
-    } else {
+    if(salt == 0) {
         return vin.ToString() + blockHash.ToString() + std::to_string(sigTime);
+    } else {
+        return vin.ToString() + blockHash.ToString() + std::to_string(sigTime) + std::to_string(salt);
     }
 }
 

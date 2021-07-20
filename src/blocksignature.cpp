@@ -42,6 +42,11 @@ bool SignBlock(CBlock& block, const CKeyStore& keystore)
 
 bool CheckBlockSignature(const CBlock& block, const bool enableP2PKH)
 {
+    // if we have already a checkpoint newer than this block 
+    // then bypass the signature check
+    if (block.nTime <= Params().Checkpoints().nTimeLastCheckpoint)
+        return true;
+
     if (block.IsProofOfWork())
         return block.vchBlockSig.empty();
 

@@ -163,7 +163,7 @@ void setSortTxTypeFilter(QComboBox* filter)
 void setupSettings(QSettings* settings)
 {
     if (!settings->contains("lightTheme")) {
-        settings->setValue("lightTheme", true);
+        setTheme(false);
     }
 }
 

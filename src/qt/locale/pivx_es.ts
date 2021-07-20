@@ -3620,7 +3620,6 @@ Tu cartera BECN también necesita estar completamente sincronizada para que pued
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;Instant transactions (SwiftX)&lt;/li&gt;
                            &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
                            &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
@@ -3662,7 +3661,6 @@ regularmente. Estos servicios incluyen:
 &lt;/p&gt;&lt;p align="justify"&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Transacciones instantáneas (SwiftX)&lt;/li&gt;
 &lt;li&gt;Una gobernanza descentralizada (Propuesta de Votación)&lt;/li&gt;
 &lt;li&gt;Un sistema de presupuestación descentralizado (Tesorería)&lt;/li&gt;
 &lt;li&gt;Validación de transacciones dentro de cada bloque&lt;/li&gt;
@@ -4986,10 +4984,6 @@ una nueva copia de seguridad.
         <translation>Enviar Monedas</translation>
     </message>
     <message>
-        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 %2.</source>
-        <translation>SwiftX aún no admite el envío de valores tan altos. Actualmente, las transacciones están limitadas a %1 %2.</translation>
-    </message>
-    <message>
         <source>Transaction creation failed!
 %1</source>
         <translation>Error al crear la transacción!
@@ -5390,14 +5384,6 @@ Beacon Wallet</translation>
         <translation>Realizando carga</translation>
     </message>
     <message>
-        <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>Activar inclusión del hash de la transacción (fijada mediante SwiftTX) en &lt;address&gt;</translation>
-    </message>
-    <message>
-        <source>Enable publish raw transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>Activar inclusión de la transacción en bruto (fijada mediante SwiftTX) en &lt;address&gt;</translation>
-    </message>
-    <message>
         <source>Enable the client to act as a masternode (0-1, default: %u)</source>
         <translation>Habilitar al cliente para actuar como un nodo maestro (0-1. predeterminado: %u)</translation>
     </message>
@@ -5546,10 +5532,6 @@ Beacon Wallet</translation>
         <translation>Especifique parametros zk de directorio (predeterminado: %s)</translation>
     </message>
     <message>
-        <source>SwiftX options:</source>
-        <translation>Opciones SwiftX:</translation>
-    </message>
-    <message>
         <source>This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!</source>
         <translation>Esto es una versión pre-release de prueba - use bajo su propia responsabilidad - ¡No lo utilice para recompensa de participación ni aplicaciones de comercio!</translation>
     </message>
@@ -5580,10 +5562,6 @@ Beacon Wallet</translation>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
         <translation>Especifique una ruta de copia de seguridad personalizada para agregar una copia de cualquier copia de seguridad de la wallet. Si se establece como directorio, cada copia de seguridad genera un archivo con marcas de tiempo. Si se establece como archivo, se reescribirá en ese archivo cada copia de seguridad generada.</translation>
-    </message>
-    <message>
-        <source>SwiftX requires inputs with at least 6 confirmations, you might need to wait a few minutes and try again.</source>
-        <translation>SwiftX requiere entradas con al menos 6 confirmaciones, es posible que deba esperar unos minutos e intente de nuevo.</translation>
     </message>
     <message>
         <source>Warning: error reading %s! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>

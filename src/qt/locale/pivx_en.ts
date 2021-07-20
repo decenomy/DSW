@@ -4521,7 +4521,6 @@ There was an error trying to save the address list to %1. Please try again.</sou
                            &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;Instant transactions (SwiftX)&lt;/li&gt;
                            &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
                            &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
@@ -6210,12 +6209,6 @@ backup will be created.
         <translation>Send Coins</translation>
     </message>
     <message>
-        <location line="-30"/>
-        <location line="+20"/>
-        <source>SwiftX doesn&apos;t support sending values that high yet. Transactions are currently limited to %1 %2.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location line="+10"/>
         <source>Transaction creation failed!
 %1</source>
@@ -6710,16 +6703,6 @@ Beacon Wallet</source>
         <translation type="unfinished">Done loading</translation>
     </message>
     <message>
-        <location line="+2"/>
-        <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+3"/>
-        <source>Enable publish raw transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location line="+3"/>
         <source>Enable the client to act as a masternode (0-1, default: %u)</source>
         <translation type="unfinished">Enable the client to act as a masternode (0-1, default: %u)</translation>
@@ -6905,11 +6888,6 @@ Beacon Wallet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+4"/>
-        <source>SwiftX options:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location line="-228"/>
         <source>This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!</source>
         <translation type="unfinished"></translation>
@@ -6947,11 +6925,6 @@ Beacon Wallet</source>
     <message>
         <location line="+59"/>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+9"/>
-        <source>SwiftX requires inputs with at least 6 confirmations, you might need to wait a few minutes and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

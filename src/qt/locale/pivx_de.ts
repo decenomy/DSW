@@ -3627,7 +3627,6 @@ Wir haben Support-Kanäle in den meisten unserer offiziellen Chatgruppen, z.B.
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;Instant transactions (SwiftX)&lt;/li&gt;
                            &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
                            &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
@@ -4948,10 +4947,6 @@ BEDENKEN SIE: Nach dem Upgrade wird ein neues Backup erstellt.
         <translation>BECNs überweisen</translation>
     </message>
     <message>
-        <source>SwiftX doesn't support sending values that high yet. Transactions are currently limited to %1 %2.</source>
-        <translation>SwiftX unterstützt das Senden von so hohen Werten noch nicht. Transaktionen sind derzeit auf beschränkt auf %1 %2.</translation>
-    </message>
-    <message>
         <source>Transaction creation failed!
 %1</source>
         <translation>Transaktionserstellung fehlgeschlagen!
@@ -5347,14 +5342,6 @@ Beacon Wallet</source>
         <translation>Geladen</translation>
     </message>
     <message>
-        <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>Aktivieren Sie die Veröffentlichung der Hash-Transaktion (gesperrt über SwiftX) in &lt;address&gt;</translation>
-    </message>
-    <message>
-        <source>Enable publish raw transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>Aktivieren Sie die Publish-Raw-Transaktion (gesperrt über SwiftX) in&lt;address&gt;</translation>
-    </message>
-    <message>
         <source>Enable the client to act as a masternode (0-1, default: %u)</source>
         <translation>Ermögliche dem Client als Masternode zu fungieren (0-1, Standard: %u)</translation>
     </message>
@@ -5495,10 +5482,6 @@ Beacon Wallet</source>
         <translation>Ausgewählter Coinwert ist geringer als der Zielbetrag</translation>
     </message>
     <message>
-        <source>SwiftX options:</source>
-        <translation>SwiftX Optionen:</translation>
-    </message>
-    <message>
         <source>This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!</source>
         <translation>Dies ist ein Pre-Release-Testbuild - Nutzung auf eigene Gefahr - Nutzen Sie diese Version nicht für Staking oder Handelsanwendungen.</translation>
     </message>
@@ -5529,10 +5512,6 @@ Beacon Wallet</source>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
         <translation>Benutzerdefinierten Sicherungspfad festlegen, in den Kopien von allen Wallet-Sicherungen abgelegt werden. Wenn ein Verzeichnis ausgewählt ist, wird jede Sicherung als Datei mit Zeitstempel erstellt. Wenn eine Datei ausgewählt ist, wird diese Datei bei jeder Sicherung überschrieben.</translation>
-    </message>
-    <message>
-        <source>SwiftX requires inputs with at least 6 confirmations, you might need to wait a few minutes and try again.</source>
-        <translation>SwiftTX benötigt mindestens 6 confirmations, Sie sollten ggf. einige Minuten abwarten und dann erneut probieren.</translation>
     </message>
     <message>
         <source>&lt;category&gt; can be:</source>

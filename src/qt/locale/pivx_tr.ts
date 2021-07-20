@@ -3035,7 +3035,6 @@ bu sayede BECN sahipleri blok ödülü kazanımına katılabilmektedir
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;Instant transactions (SwiftX)&lt;/li&gt;
                            &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
                            &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
@@ -3077,7 +3076,6 @@ bu sayede BECN sahipleri blok ödülü kazanımına katılabilmektedir
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;Anlık transferler (SwiftX)&lt;/li&gt;
                            &lt;li&gt;Merkeziyetsiz yönetim (Teklif Onaylama)&lt;/li&gt;
                            &lt;li&gt;Merkeziyetsiz bütçe sistemi (Hazine)&lt;/li&gt;
                            &lt;li&gt;Her blogun içinde işlem onayı&lt;/li&gt;
@@ -4479,14 +4477,6 @@ Hoşgeldiniz</translation>
         <translation>Yükleme tamamlandı</translation>
     </message>
     <message>
-        <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>&lt;address&gt;içindeki hash transfer yayınlamayı etkinleştir (SwiftX ile kilitlenmiş)</translation>
-    </message>
-    <message>
-        <source>Enable publish raw transaction (locked via SwiftX) in &lt;address&gt;</source>
-        <translation>&lt;address&gt; içindeki ham işlem yayınlamayı etkinleştir (SwiftX ile kilitlenmiş)</translation>
-    </message>
-    <message>
         <source>Enable the client to act as a masternode (0-1, default: %u)</source>
         <translation>İstemciyi Masternode olarak hareket etmesi için etkinleştir. (0-1, varsayılan: %u)</translation>
     </message>
@@ -4627,10 +4617,6 @@ Hoşgeldiniz</translation>
         <translation>Seçili koinlerin değeri hedeflenen ödeme tutarından düşük</translation>
     </message>
     <message>
-        <source>SwiftX options:</source>
-        <translation>SwiftX seçenekleri:</translation>
-    </message>
-    <message>
         <source>This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!</source>
         <translation>Bu ön-sürümdeki bir test programıdır - riski kabullenerek kullanınız - staking ve ticaret uygulamalarında kullanmayın.</translation>
     </message>
@@ -4661,10 +4647,6 @@ Hoşgeldiniz</translation>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
         <translation>Herhangi bir yedek kopyası eklemek için bir yedekleme özel yolu belirleyin. Eğer dizin olarak belirlerseniz her yedek zaman damgası adı ile dosyalanır. Dosya olarak belirlerseniz, her yedeklemede üstüne yazar.</translation>
-    </message>
-    <message>
-        <source>SwiftX requires inputs with at least 6 confirmations, you might need to wait a few minutes and try again.</source>
-        <translation>SwiftX en az 6 onaya sahip girdilere ihtiyaç duyar, birkaç dakika bekledikten sonra tekrar deneyin.</translation>
     </message>
     <message>
         <source>&lt;category&gt; can be:</source>

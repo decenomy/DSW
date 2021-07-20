@@ -52,6 +52,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     border-radius:2px;
 }
 
+
 /*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 HH       NAVIGATION
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
@@ -349,6 +350,7 @@ QPushButton[cssClass="btn-check-console"] {
     color: #e55c36;
 }
 
+
 /*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 HH       TOP BAR
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
@@ -369,7 +371,6 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 *[cssClass="amount-topbar"] {
   color: #e7e7e7;
   font-size: 28px;
-  letter-spacing: 1px;
 }
 
 *[cssClass="amount-small-topbar"] {
@@ -762,6 +763,7 @@ QProgressBar[cssClass="progress-sync"]::chunk:horizontal {
       stop: 2 #262626
     );
   }
+
 
 /*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 HH       LISTS ELEMENTS
@@ -2118,6 +2120,7 @@ QComboBox QAbstractItemView::item {
     border-radius:0px;
     outline: 0px;
 }
+
 QComboBox QAbstractItemView::item:selected {
     background-color: rgba(182, 73, 43, 0.7);
     padding:10px 20px;
@@ -2141,6 +2144,7 @@ QComboBox QAbstractItemView::item:selected QPushButton:hover{
 /*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 HH       RADIO BUTTON
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
+
 QRadioButton:checked {
     color: #e55c36;
     font-size:20px;
@@ -2174,6 +2178,7 @@ QRadioButton::indicator:unchecked {
     background-position:center;
 }
 
+
 /*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 HH       SCROLL BAR
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
@@ -2196,6 +2201,7 @@ QScrollBar::add-line:vertical {
     subcontrol-position: bottom;
     subcontrol-origin: margin;
 }
+
 QScrollBar::sub-line:vertical {
     background: #2b1f1f;
     height: 0px;
