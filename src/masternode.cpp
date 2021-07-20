@@ -320,52 +320,31 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
-    if (nHeight <= 100000) {
-        return 15000 * COIN;
-    } else if (nHeight <= 200000 && nHeight > 100000) {
-        return 17500 * COIN;
-    } else if (nHeight > 200000) {
-        return 20000 * COIN;
-    }
-    return 0;
+    if(nHeight > 200000) return 20000 * COIN;
+    if(nHeight > 100000) return 17500 * COIN;
+
+    return 15000 * COIN;
 }
 
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
-    CAmount maxMoneyOut= Params().GetConsensus().nMaxMoneyOut;
+    if(nHeight > 400000) return      200 * COIN;
+    if(nHeight > 300000) return      250 * COIN;
+    if(nHeight > 240000) return      300 * COIN;
+    if(nHeight > 200000) return      150 * COIN;
+    if(nHeight > 100000) return      125 * COIN;
+    if(nHeight >      1) return      100 * COIN;
+    if(nHeight >      0) return 30000000 * COIN;
 
-    if(nMoneySupply >= maxMoneyOut) {
-        return 0;
-    }
-
-    CAmount nSubsidy;
-
-    if (nHeight == 1) {
-        nSubsidy = 30000000 * COIN; // 777 coin supply (30M)
-    } else if (nHeight <= 100000) {
-        nSubsidy = 100 * COIN;
-    } else if (nHeight > 100000 && nHeight <= 200000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 200000 && nHeight <= 300000) {
-        nSubsidy = 150 * COIN;
-    } else if (nHeight > 300000 && nHeight <= 400000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 400000) {
-        nSubsidy = 100 * COIN;
-    }
-
-    if(nMoneySupply + nSubsidy > maxMoneyOut) {
-        return nMoneySupply + nSubsidy - maxMoneyOut;
-    }
-
-    return nSubsidy;
+    return 0;
 }
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    if(nHeight <= 5000) return 0;
+    if(nHeight > 240000) return GetBlockValue(nHeight) * 65 / 100;
+    if(nHeight >   5000) return GetBlockValue(nHeight) * 95 / 100;
 
-    return CMasternode::GetBlockValue(nHeight) * 95 / 100;
+    return 0;
 }
 
 void CMasternode::InitMasternodeCollateralList() {
