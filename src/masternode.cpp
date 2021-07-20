@@ -324,7 +324,7 @@ CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
     if (nHeight > 900000)   return   90000 * COIN;
     if (nHeight > 800000)   return   80000 * COIN;
     if (nHeight > 700000)   return   70000 * COIN;
-    if (nHeight > 600000)   return   60000 * COIN; // 600000 = Params().Ultra ClearStart()
+    if (nHeight > 600000)   return   60000 * COIN; // 600000, Ultra Clear forks here from Clear Coin
     if (nHeight > 400000)   return   50000 * COIN;
     if (nHeight > 350000)   return   35000 * COIN;
     if (nHeight > 300000)   return   20000 * COIN;
@@ -345,7 +345,7 @@ CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
     if (nHeight > 10000)    return     500 * COIN;
     if (nHeight > 2000)     return     100 * COIN;
     if (nHeight > 1000)     return      50 * COIN;
-    if (nHeight > 500)      return      10 * COIN; // 500 = Params().LAST_POW_BLOCK() = Params().GetConsensus().vUpgrades[Consensus::UPGRADE_POS].nActivationHeight -1
+    if (nHeight > 500)      return      10 * COIN; // 500 = Params().GetConsensus().vUpgrades[Consensus::UPGRADE_POS].nActivationHeight -1
 
     return 0;
 }
@@ -358,7 +358,7 @@ CAmount CMasternode::GetBlockValue(int nHeight)
     if (nHeight > 900000)   return    120 * COIN;
     if (nHeight > 800000)   return    105 * COIN;
     if (nHeight > 700000)   return     90 * COIN;
-    if (nHeight > 600000)   return     70 * COIN; // 600000 = Params().Ultra ClearStart()
+    if (nHeight > 600000)   return     70 * COIN; // 600000, Ultra Clear forks here from Clear Coin
     if (nHeight > 550000)   return     50 * COIN;
     if (nHeight > 500000)   return     45 * COIN;
     if (nHeight > 450000)   return     40 * COIN;
@@ -385,9 +385,9 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    if (nHeight > 600000)   return GetBlockValue(nHeight) - (5 * COIN); // 600000 = Params().Ultra ClearStart()
+    if (nHeight > 600000)   return GetBlockValue(nHeight) - (5 * COIN); // 600000, Ultra Clear forks here from Clear Coin
     if (nHeight > 12000)    return GetBlockValue(nHeight) * 9998/10000;
-    if (nHeight > 500)      return GetBlockValue(nHeight) * 98/100; // 500 = Params().LAST_POW_BLOCK() = Params().GetConsensus().vUpgrades[Consensus::UPGRADE_POS].nActivationHeight -1
+    if (nHeight > 500)      return GetBlockValue(nHeight) * 98/100; // 500 = Params().GetConsensus().vUpgrades[Consensus::UPGRADE_POS].nActivationHeight -1
     if (nHeight > 0)        return 0;
 
     return 0;
