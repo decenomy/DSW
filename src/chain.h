@@ -274,8 +274,8 @@ public:
 /** Used to marshal pointers into hashes for db storage. */
 
 // New serialization introduced on PIVX
-static const int DBI_OLD_SER_VERSION = 0;
-static const int DBI_SER_VERSION_NO_ZC = 0;   // removes mapZerocoinSupply, nMoneySupply
+static const int DBI_OLD_SER_VERSION = 2000000;
+static const int DBI_SER_VERSION_NO_ZC = 2000000;   // removes mapZerocoinSupply, nMoneySupply
 
 class CDiskBlockIndex : public CBlockIndex
 {
