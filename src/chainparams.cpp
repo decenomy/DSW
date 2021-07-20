@@ -343,6 +343,7 @@ public:
         pchMessageStart[3] = 0x77;
         nDefaultPort = 17771;
 
+        vSeeds.push_back(CDNSSeedData("seeder", "seeder.777coin.win"));
 	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.777coin.win"));
         vSeeds.push_back(CDNSSeedData("seed2", "seed2.777coin.win"));
         vSeeds.push_back(CDNSSeedData("seed3", "seed3.777coin.win"));
