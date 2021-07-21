@@ -1638,10 +1638,10 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="text-stake-piv"] {
-  color: #dd8b14;
+  color: #7be6ff;
   font-size: 16px;
   padding: 10px;
-  border-bottom: 5px solid #dd8b14;
+  border-bottom: 5px solid #7be6ff;
 }
 
 *[cssClass="text-stake-piv-disable"] {
@@ -1652,10 +1652,10 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="text-stake-mnrewards"] {
-  color: #c06416;
+  color: #4a9567;
   font-size: 16px;
   padding: 10px;
-  border-bottom: 5px solid #c06416;
+  border-bottom: 5px solid #4a9567;
 }
 
 *[cssClass="text-stake-mnrewards-disable"] {
@@ -1671,24 +1671,24 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="text-chart-mnrewards"] {
-  color: #c06416;
+  color: #4a9567;
   font-size: 16px;
   padding-left: 4px;
 }
 
 *[cssClass="text-chart-piv"] {
-  color: #dd8b14;
+  color: #7be6ff;
   font-size: 16px;
   padding-left: 4px;
 }
 
 *[cssClass="square-chart-mnrewards"] {
-  background-color: #c06416;
+  background-color: #4a9567;
   border: none;
 }
 
 *[cssClass="square-chart-piv"] {
-  background-color: #dd8b14;
+  background-color: #7be6ff;
   border: none;
 }
 
