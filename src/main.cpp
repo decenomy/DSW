@@ -866,9 +866,9 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState &state, const C
     if (pfMissingInputs)
         *pfMissingInputs = false;
 
-    //Temporarily disable zerocoin for maintenance
-    if (sporkManager.IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE) && tx.ContainsZerocoins())
-        return state.DoS(10, error("%s : Zerocoin transactions are temporarily disabled for maintenance",
+    // Disable zerocoin
+    if (tx.ContainsZerocoins())
+        return state.DoS(10, error("%s : Zerocoin transactions are disabled",
                 __func__), REJECT_INVALID, "bad-tx");
 
     const Consensus::Params& consensus = Params().GetConsensus();
@@ -1785,6 +1785,11 @@ int GetSpendHeight(const CCoinsViewCache& inputs)
 namespace Consensus {
 bool CheckTxInputs(const CTransaction& tx, CValidationState& state, const CCoinsViewCache& inputs, int nSpendHeight)
 {
+    // if we have already a checkpoint newer than this block 
+    // then it is OK
+    if (nSpendHeight <= Checkpoints::GetTotalBlocksEstimate())
+        return true;
+
     // This doesn't trigger the DoS code on purpose; if it did, it would make it easier
     // for an attacker to attempt to split the network.
     if (!inputs.HaveInputs(tx))
@@ -2220,8 +2225,8 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         if (nSigOps > nMaxBlockSigOps)
             return state.DoS(100, error("ConnectBlock() : too many sigops"), REJECT_INVALID, "bad-blk-sigops");
 
-        //Temporarily disable zerocoin transactions for maintenance
-        if (block.nTime > sporkManager.GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE) && !IsInitialBlockDownload() && tx.ContainsZerocoins()) {
+        // Disable zerocoin transactions
+        if (!IsInitialBlockDownload() && tx.ContainsZerocoins()) {
             return state.DoS(100, error("ConnectBlock() : zerocoin transactions are currently in maintenance mode"));
         }
 
@@ -3164,7 +3169,7 @@ CBlockIndex* AddToBlockIndex(const CBlock& block)
         pindexNew->BuildSkip();
 
         const Consensus::Params& consensus = Params().GetConsensus();
-        if (!consensus.NetworkUpgradeActive(pindexNew->nHeight, Consensus::UPGRADE_V3_4)) {
+        if (!consensus.NetworkUpgradeActive(pindexNew->nHeight, Consensus::UPGRADE_STAKE_MODIFIER_V2)) {
             // compute and set new V1 stake modifier (entropy bits)
             pindexNew->SetNewStakeModifier();
 
@@ -3558,8 +3563,8 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
     if((block.nVersion < 3 && nHeight >= 1) ||
         (block.nVersion < 4 && consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_ZC)) ||
         (block.nVersion < 5 && consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_BIP65)) ||
-        (block.nVersion < 6 && consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_V3_4)) ||
-        (block.nVersion < 7 && consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_V4_0)))
+        (block.nVersion < 6 && consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_STAKE_MODIFIER_V2)) ||
+        (block.nVersion < 7 && consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_TIME_PROTOCOL_V2)))
     {
         std::string stringErr = strprintf("rejected block version %d at height %d", block.nVersion, nHeight);
         return state.Invalid(false, REJECT_OBSOLETE, "bad-version", stringErr);
@@ -4039,7 +4044,7 @@ bool ProcessNewBlock(CValidationState& state, CNode* pfrom, const CBlock* pblock
     // For now, we need the tip to know whether p2pkh block signatures are accepted or not.
     // After 5.0, this can be removed and replaced by the enforcement block time.
     const int newHeight = chainActive.Height() + 1;
-    const bool enableP2PKH = consensus.NetworkUpgradeActive(newHeight, Consensus::UPGRADE_V5_DUMMY);
+    const bool enableP2PKH = consensus.NetworkUpgradeActive(newHeight, Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES);
     if (!CheckBlockSignature(*pblock, enableP2PKH))
         return error("%s : bad proof-of-stake block signature", __func__);
 
@@ -5246,9 +5251,7 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
         // Sapphire: We use certain sporks during IBD, so check to see if they are
         // available. If not, ask the first peer connected for them.
         // TODO: Move this to an instant broadcast of the sporks.
-        bool fMissingSporks = !pSporkDB->SporkExists(SPORK_14_MIN_PROTOCOL_ACCEPTED) ||
-                              !pSporkDB->SporkExists(SPORK_16_ZEROCOIN_MAINTENANCE_MODE) ||
-                              !pSporkDB->SporkExists(SPORK_19_ZEROCOIN_PUBLICSPEND_V4);
+        bool fMissingSporks = !pSporkDB->SporkExists(SPORK_14_MIN_PROTOCOL_ACCEPTED);
 
         if (fMissingSporks || !fRequestedSporksIDB) {
             LogPrintf("asking peer for sporks\n");

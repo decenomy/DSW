@@ -6,13 +6,11 @@ CONFIGFOLDER='/root/.__decenomy__'
 COIN_DAEMON='__decenomy__d'
 COIN_CLI='__decenomy__-cli'
 COIN_PATH='/usr/local/bin/'
-COIN_TGZ='https://github.com/decenomy/DSW/releases/download/vX.X.X.X/_Decenomy_-X.X.X.X-Linux.zip'
+COIN_TGZ=`curl -s https://api.github.com/repos/__GITHUB_ACCOUNT__/__GITHUB_REPOSITORY__/releases/latest | grep "browser_download_url.*Linux\\.zip" | cut -d : -f 2,3 | tr -d \" | xargs`
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
 COIN_NAME='__decenomy__'
-COIN_PORT=__PORT_MAINNET__
-RPC_PORT=__RPCPORT_MAINNET__
-
-NODEIP=$(curl -s4 icanhazip.com)
+COIN_PORT=45328
+RPC_PORT=45329
 
 BLUE="\033[0;34m"
 YELLOW="\033[0;33m"
@@ -23,6 +21,13 @@ GREEN="\033[0;32m"
 NC='\033[0m'
 MAG='\e[1;35m'
 
+NODEIP=$(curl --fail --retry 3 -s4 icanhazip.com)
+if [[ -z "$NODEIP" ]]; then
+  #if we get here, then most likely icanhazip.com is timing out
+  echo -e "${RED}Failed to determine IP address. Please wait a couple minutes and rerun script. If this continues, ask for assistance in discord.${NC}"
+  exit 1
+fi;
+
 purgeOldInstallation() {
     echo -e "${GREEN}Searching and removing old $COIN_NAME files and configurations${NC}"
     #kill wallet daemon
@@ -31,7 +36,6 @@ purgeOldInstallation() {
     #remove old ufw port allow
     sudo ufw delete allow $COIN_PORT/tcp > /dev/null 2>&1
     #remove old files
-	rm -- "$0" > /dev/null 2>&1
 	rm /root/$CONFIGFOLDER/bootstrap.dat.old > /dev/null 2>&1
 	cd /usr/local/bin && sudo rm $COIN_CLI $COIN_DAEMON > /dev/null 2>&1 && cd
     cd /usr/bin && sudo rm $COIN_CLI $COIN_DAEMON > /dev/null 2>&1 && cd
@@ -167,7 +171,7 @@ function get_ip() {
   declare -a NODE_IPS
   for ips in $(netstat -i | awk '!/Kernel|Iface|lo/ {print $1," "}')
   do
-    NODE_IPS+=($(curl --interface $ips --connect-timeout 2 -s4 icanhazip.com))
+    NODE_IPS+=($(curl --retry 3 --interface $ips --connect-timeout 2 -s4 icanhazip.com))
   done
 
   if [ ${#NODE_IPS[@]} -gt 1 ]
@@ -184,6 +188,12 @@ function get_ip() {
   else
     NODEIP=${NODE_IPS[0]}
   fi
+  
+  if [[ -z "$NODEIP" ]]; then
+      #Couldn't determine IP, most likely icanhazip.com is timed out
+      echo -e "${RED}Failed to determine IP address. Please wait a couple minutes and rerun script. If this continues, ask for assistance in discord.${NC}"
+      exit 1
+  fi;
 }
 
 
@@ -249,8 +259,8 @@ function important_information() {
  echo -e "${GREEN}Stop:${NC}${RED}systemctl stop $COIN_NAME.service${NC}"
  echo -e "${GREEN}VPS_IP:${NC}${GREEN}$NODEIP:$COIN_PORT${NC}"
  echo -e "${GREEN}Usage Commands.${NC}"
- echo -e "${GREEN}__decenomy__-cli getmasternodestatus${NC}"
- echo -e "${GREEN}__decenomy__-cli getinfo${NC}"
+ echo -e "${GREEN}$COIN_CLI getmasternodestatus${NC}"
+ echo -e "${GREEN}$COIN_CLI getinfo${NC}"
  echo -e "${BLUE}================================================================================================================================${NC}"
  
  }
@@ -263,6 +273,8 @@ function setup_node() {
   enable_firewall
   important_information
   configure_systemd
+  #if we made it this far, then it was successful. Remove this script
+  rm -- "$0" > /dev/null 2>&1
 }
 
 

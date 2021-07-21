@@ -218,29 +218,30 @@ public:
         consensus.ZC_WrappedSerialsSupply = 0; //4131563 * COIN;   // zerocoin supply at height_last_ZC_WrappedSerials
 
         // Network upgrades
-        consensus.vUpgrades[Consensus::BASE_NETWORK].nActivationHeight                  = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
-        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight             = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight                   = 501;
-        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight                = 905001;
-        consensus.vUpgrades[Consensus::UPGRADE_ZC].nActivationHeight                    = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight                 = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight                 = 905101;
-        consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight             = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight                  = 905201;
-        consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight                  = 905301;
-        consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].nActivationHeight              = 905401;
-        consensus.vUpgrades[Consensus::UPGRADE_CHECK_WORK_V2].nActivationHeight         = 910001;
-        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].nActivationHeight    = 1236091;
+        consensus.vUpgrades[Consensus::BASE_NETWORK].nActivationHeight                   = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
+        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight              = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight                    = 501;
+        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight                 = 905001;
+        consensus.vUpgrades[Consensus::UPGRADE_ZC].nActivationHeight                     = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight                  = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight                  = 905101;
+        consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight              = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MODIFIER_V2].nActivationHeight      = 905201;
+        consensus.vUpgrades[Consensus::UPGRADE_TIME_PROTOCOL_V2].nActivationHeight       = 905301;
+        consensus.vUpgrades[Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES].nActivationHeight = 905401;
+        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].nActivationHeight     = 905501;
+        consensus.vUpgrades[Consensus::UPGRADE_CHECK_WORK_V2].nActivationHeight          = 910001;
+        consensus.vUpgrades[Consensus::UPGRADE_MASTERNODE_RANK_V2].nActivationHeight     = 1180001;
 
-        consensus.vUpgrades[Consensus::UPGRADE_ZC].hashActivationBlock                  = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].hashActivationBlock               = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_BIP65].hashActivationBlock               = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].hashActivationBlock           = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_V3_4].hashActivationBlock                = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_V4_0].hashActivationBlock                = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].hashActivationBlock            = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].hashActivationBlock  = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_CHECK_WORK_V2].hashActivationBlock       = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_POS].hashActivationBlock                    = uint256S("ef544e9c4181e103bdcaae6153aa90495f1f830a91368364c4b8b97a3782e579");
+        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].hashActivationBlock                 = uint256S("c36a49839903e01bc2d6c44f20516fd5f3d816cf2d16cd30c488986668bdf269");
+        consensus.vUpgrades[Consensus::UPGRADE_BIP65].hashActivationBlock                  = uint256S("2033cd79c94ef01e04c0b886944350af7af4ee2dcdf2bb2a8f417ea48dabecf3");
+        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MODIFIER_V2].hashActivationBlock      = uint256S("502226d6ce3e3fd036452b59b0045ff478658b00a42fbf3434630cfe775d84ae");
+        consensus.vUpgrades[Consensus::UPGRADE_TIME_PROTOCOL_V2].hashActivationBlock       = uint256S("9002e71bbefb2a10d5208b7e8e0a2182d2b13a55585c595752454c65dc9cda02");
+        consensus.vUpgrades[Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES].hashActivationBlock = uint256S("5b37c32d7c08cf98df958953dd4c32820f0609a4f4bed452fcb0811bec60500e");
+        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].hashActivationBlock     = uint256S("f6326f790d1c0d01843913b301b56dc0d984e9d76e0949669cbeebda37336cf7");
+        consensus.vUpgrades[Consensus::UPGRADE_CHECK_WORK_V2].hashActivationBlock          = uint256S("96dc6197a2d0cc2b9dfe5487b35f0d5b051d1dd958de19e00043897223c08ea4");
+        consensus.vUpgrades[Consensus::UPGRADE_MASTERNODE_RANK_V2].hashActivationBlock     = uint256S("0x0");
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -251,18 +252,18 @@ public:
         pchMessageStart[1] = 0xb2;
         pchMessageStart[2] = 0x3e;
         pchMessageStart[3] = 0x58;
-        nDefaultPort = __PORT_MAINNET__;
+        nDefaultPort = 45328;
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         vSeeds.emplace_back(CDNSSeedData("seeder", "seeder.sappcoin.com", true));
-        vSeeds.emplace_back(CDNSSeedData("seed1", "seed1.sappcoin.com", true));
-        vSeeds.emplace_back(CDNSSeedData("seed2", "seed2.sappcoin.com", true));
-        vSeeds.emplace_back(CDNSSeedData("seed3", "seed3.sappcoin.com", true));
-        vSeeds.emplace_back(CDNSSeedData("seed4", "seed4.sappcoin.com", true));
-        vSeeds.emplace_back(CDNSSeedData("seed5", "seed5.sappcoin.com", true));
-        vSeeds.emplace_back(CDNSSeedData("seed6", "seed6.sappcoin.com", true));
-        vSeeds.emplace_back(CDNSSeedData("seed7", "seed7.sappcoin.com", true));
-        vSeeds.emplace_back(CDNSSeedData("seed8", "seed8.sappcoin.com", true));
+        vSeeds.emplace_back(CDNSSeedData("seed1",  "seed1.sappcoin.com", true));
+        vSeeds.emplace_back(CDNSSeedData("seed2",  "seed2.sappcoin.com", true));
+        vSeeds.emplace_back(CDNSSeedData("seed3",  "seed3.sappcoin.com", true));
+        vSeeds.emplace_back(CDNSSeedData("seed4",  "seed4.sappcoin.com", true));
+        vSeeds.emplace_back(CDNSSeedData("seed5",  "seed5.sappcoin.com", true));
+        vSeeds.emplace_back(CDNSSeedData("seed6",  "seed6.sappcoin.com", true));
+        vSeeds.emplace_back(CDNSSeedData("seed7",  "seed7.sappcoin.com", true));
+        vSeeds.emplace_back(CDNSSeedData("seed8",  "seed8.sappcoin.com", true));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 63);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 18);
@@ -351,29 +352,28 @@ public:
         consensus.ZC_WrappedSerialsSupply = 0;   // WrappedSerials only on main net
 
         // Network upgrades
-        consensus.vUpgrades[Consensus::BASE_NETWORK].nActivationHeight                  = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
-        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight             = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight                   = 501;
-        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight                = 878611;
-        consensus.vUpgrades[Consensus::UPGRADE_ZC].nActivationHeight                    = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight                 = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight                 = 878631;
-        consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight             = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight                  = 878651;
-        consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight                  = 878671;
-        consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].nActivationHeight              = 878691;
-        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].nActivationHeight    = 1000001;
-        consensus.vUpgrades[Consensus::UPGRADE_CHECK_WORK_V2].nActivationHeight         = 1000001;
+        consensus.vUpgrades[Consensus::BASE_NETWORK].nActivationHeight                   = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
+        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight              = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight                    = 501;
+        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight                 = 878611;
+        consensus.vUpgrades[Consensus::UPGRADE_ZC].nActivationHeight                     = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight                  = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight                  = 878631;
+        consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight              = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MODIFIER_V2].nActivationHeight      = 1541;
+        consensus.vUpgrades[Consensus::UPGRADE_TIME_PROTOCOL_V2].nActivationHeight       = 1641;
+        consensus.vUpgrades[Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES].nActivationHeight = 1741;
+        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].nActivationHeight     = 1841;
 
-        consensus.vUpgrades[Consensus::UPGRADE_ZC].hashActivationBlock                  = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].hashActivationBlock               = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_BIP65].hashActivationBlock               = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].hashActivationBlock           = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_V3_4].hashActivationBlock                = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_V4_0].hashActivationBlock                = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].hashActivationBlock            = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].hashActivationBlock  = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_CHECK_WORK_V2].hashActivationBlock       = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_ZC].hashActivationBlock                     = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].hashActivationBlock                  = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_BIP65].hashActivationBlock                  = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].hashActivationBlock              = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MODIFIER_V2].hashActivationBlock      = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_TIME_PROTOCOL_V2].hashActivationBlock       = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES].hashActivationBlock = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].hashActivationBlock     = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_CHECK_WORK_V2].hashActivationBlock          = uint256S("0x0");
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -385,21 +385,20 @@ public:
         pchMessageStart[1] = 0x32;
         pchMessageStart[2] = 0x64;
         pchMessageStart[3] = 0x23;
-        nDefaultPort = __PORT_TESTNET__;
+        nDefaultPort = 51474;
 
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back(CDNSSeedData("kyan-testnet.572133.club", "kyan-testnet.572133.club", true));
-        vSeeds.emplace_back(CDNSSeedData("kyan-testnet2.572133.club", "kyan-testnet2.572133.club", true));
-        vSeeds.emplace_back(CDNSSeedData("seed1.sappcoin.com", "seed1.sappcoin.com", true));
-        vSeeds.emplace_back(CDNSSeedData("seed2.sappcoin.com", "seed2.sappcoin.com", true));
-        vSeeds.emplace_back(CDNSSeedData("seed3.sappcoin.com", "seed3.sappcoin.com", true));
-        vSeeds.emplace_back(CDNSSeedData("seed4.sappcoin.com", "seed4.sappcoin.com", true));
-        vSeeds.emplace_back(CDNSSeedData("seed5.sappcoin.com", "seed5.sappcoin.com", true));
-        vSeeds.emplace_back(CDNSSeedData("seed6.sappcoin.com", "seed6.sappcoin.com", true));
-        vSeeds.emplace_back(CDNSSeedData("seed7.sappcoin.com", "seed7.sappcoin.com", true));
-        vSeeds.emplace_back(CDNSSeedData("seed8.sappcoin.com", "seed8.sappcoin.com", true));
+        vSeeds.emplace_back(CDNSSeedData("tseeder", "tseeder.sappcoin.com", true));
+        vSeeds.emplace_back(CDNSSeedData("tseed1",  "tseed1.sappcoin.com", true));
+        vSeeds.emplace_back(CDNSSeedData("tseed2",  "tseed2.sappcoin.com", true));
+        vSeeds.emplace_back(CDNSSeedData("tseed3",  "tseed3.sappcoin.com", true));
+        vSeeds.emplace_back(CDNSSeedData("tseed4",  "tseed4.sappcoin.com", true));
+        vSeeds.emplace_back(CDNSSeedData("tseed5",  "tseed5.sappcoin.com", true));
+        vSeeds.emplace_back(CDNSSeedData("tseed6",  "tseed6.sappcoin.com", true));
+        vSeeds.emplace_back(CDNSSeedData("tseed7",  "tseed7.sappcoin.com", true));
+        vSeeds.emplace_back(CDNSSeedData("tseed8",  "tseed8.sappcoin.com", true));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet sapphire addresses start with 'x' or 'y'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet sapphire script addresses start with '8' or '9'
@@ -492,22 +491,27 @@ public:
 
         // Network upgrades
         consensus.vUpgrades[Consensus::BASE_NETWORK].nActivationHeight =
-                Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
+            Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
         consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight =
-                Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight           = 251;
-        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight        = 251;
-        consensus.vUpgrades[Consensus::UPGRADE_ZC].nActivationHeight            = 300;
-        consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight         = 300;
-        consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight         =
-                Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
-        consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight     = 400;
-        consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight          = 251;
-        consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight          =
-                Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
-        consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].nActivationHeight       = 300;
-        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].nActivationHeight    = 1001;
-        consensus.vUpgrades[Consensus::UPGRADE_CHECK_WORK_V2].nActivationHeight = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
+            Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight           
+            = 251;
+        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight        
+            = 251;
+        consensus.vUpgrades[Consensus::UPGRADE_ZC].nActivationHeight            
+            = 300;
+        consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight         
+            = 300;
+        consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight
+            = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
+        consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight     
+            = 400;
+        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MODIFIER_V2].nActivationHeight          
+            = 251;
+        consensus.vUpgrades[Consensus::UPGRADE_TIME_PROTOCOL_V2].nActivationHeight
+            = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
+        consensus.vUpgrades[Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES].nActivationHeight
+            = 300;
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -519,7 +523,7 @@ public:
         pchMessageStart[1] = 0xc3;
         pchMessageStart[2] = 0x72;
         pchMessageStart[3] = 0xa8;
-        nDefaultPort = __PORT_REGTEST__;
+        nDefaultPort = 51476;
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.

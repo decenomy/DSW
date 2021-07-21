@@ -17,7 +17,7 @@
         <file alias="default">pivx/res/css/style_light.css</file>
     </qresource>
     <qresource prefix="/images">
-        <file alias="about">res/images/about1.png</file>
+        <file alias="about">res/images/about.png</file>
         <file alias="splash">res/images/splash.png</file>
         <file alias="splash_testnet">res/images/splash_testnet.png</file>
         <file alias="splash_regtest">res/images/splash_regtest.png</file>
