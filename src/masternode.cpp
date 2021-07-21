@@ -320,148 +320,72 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
-    if (nHeight <= 2000 && nHeight > 500) {
-        return 10 * COIN;
-    } else if (nHeight <= 20000 && nHeight > 2000) {
-        return 50 * COIN;
-    } else if (nHeight <= 30000 && nHeight > 20000) {
-        return 500 * COIN;
-    } else if (nHeight <= 40000 && nHeight > 30000) {
-        return 750 * COIN;
-    } else if (nHeight <= 50000 && nHeight > 40000) {
-        return 1000 * COIN;
-    } else if (nHeight <= 60000 && nHeight > 50000) {
-        return 1250 * COIN;
-    } else if (nHeight <= 100000 && nHeight > 60000) {
-        return 2500 * COIN;
-    } else if (nHeight <= 130000 && nHeight > 100000) {
-        return 5000 * COIN;
-    } else if (nHeight <= 150000 && nHeight > 130000) {
-        return 10000 * COIN;
-    } else if (nHeight <= 175000 && nHeight > 150000) {
-        return 20000 * COIN;
-    } else if (nHeight <= 200000 && nHeight > 175000) {
-        return 30000 * COIN;
-    } else if (nHeight <= 250000 && nHeight > 200000) {
-        return 40000 * COIN;
-    } else if (nHeight <= 400000 && nHeight > 250000) {
-        return 50000 * COIN;
-    } else if (nHeight <= 450000 && nHeight > 400000) {
-        return 75000 * COIN;
-    } else if (nHeight <= 500000 && nHeight > 450000) {
-        return 100000 * COIN;
-    } else if (nHeight <= 550000 && nHeight > 500000) {
-        return 125000 * COIN;
-    } else if (nHeight <= 600000 && nHeight > 550000) {
-        return 150000 * COIN;
-    } else if (nHeight <= 650000 && nHeight > 600000) {
-        return 175000 * COIN;
-    } else if (nHeight > 650000) {
-        return 200000 * COIN;
-    }
+    if(nHeight > 650000) return 200000 * COIN;
+    if(nHeight > 600000) return 175000 * COIN;
+    if(nHeight > 550000) return 150000 * COIN;
+    if(nHeight > 500000) return 125000 * COIN;
+    if(nHeight > 450000) return 100000 * COIN;
+    if(nHeight > 400000) return  75000 * COIN;
+    if(nHeight > 250000) return  50000 * COIN;
+    if(nHeight > 200000) return  40000 * COIN;
+    if(nHeight > 175000) return  30000 * COIN;
+    if(nHeight > 150000) return  20000 * COIN;
+    if(nHeight > 130000) return  10000 * COIN;
+    if(nHeight > 100000) return   5000 * COIN;
+    if(nHeight >  60000) return   2500 * COIN;
+    if(nHeight >  50000) return   1250 * COIN;
+    if(nHeight >  40000) return   1000 * COIN;
+    if(nHeight >  30000) return    750 * COIN;
+    if(nHeight >  20000) return    500 * COIN;
+    if(nHeight >   2000) return     50 * COIN;
+    if(nHeight >    500) return     10 * COIN;
+
+    return 0;
 }
 
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
-    CAmount maxMoneyOut= Params().GetConsensus().nMaxMoneyOut;
+    // Exceptions made to force a fork
+    if (nHeight == 574010 || nHeight == 585330 || nHeight == 586594) return 801 * COIN;
 
-    if(nMoneySupply >= maxMoneyOut) {
-        return 0;
-    }
+    if(nHeight > 1180000) return    800 * COIN;
+    if(nHeight > 1000000) return    400 * COIN;
+    if(nHeight >  950000) return    450 * COIN;
+    if(nHeight >  900000) return    500 * COIN;
+    if(nHeight >  850000) return    600 * COIN;
+    if(nHeight >  800000) return    700 * COIN;
+    if(nHeight >  750000) return    800 * COIN;
+    if(nHeight >  700000) return    900 * COIN;
+    if(nHeight >  650000) return   1000 * COIN;
+    if(nHeight >  600000) return    900 * COIN;
+    if(nHeight >  550000) return    800 * COIN;
+    if(nHeight >  500000) return    700 * COIN;
+    if(nHeight >  450000) return    600 * COIN;
+    if(nHeight >  400000) return    500 * COIN;
+    if(nHeight >  300000) return    400 * COIN;
+    if(nHeight >  250000) return    450 * COIN;
+    if(nHeight >  200000) return    500 * COIN;
+    if(nHeight >  175000) return    400 * COIN;
+    if(nHeight >  150000) return    250 * COIN;
+    if(nHeight >  130000) return    150 * COIN;
+    if(nHeight >  100000) return    100 * COIN;
+    if(nHeight >   60000) return     50 * COIN;
+    if(nHeight >   50000) return     25 * COIN;
+    if(nHeight >   40000) return     20 * COIN;
+    if(nHeight >   30000) return     15 * COIN;
+    if(nHeight >   20000) return     10 * COIN;
+    if(nHeight >    2000) return      2 * COIN;
+    if(nHeight >       1) return      1 * COIN;
+    if(nHeight >       0) return 300000 * COIN;
 
-    if (Params().NetworkID() == CBaseChainParams::TESTNET) {
-        if (nHeight < 200 && nHeight > 0)
-            return 250000 * COIN;
-    }
-
-    if (Params().IsRegTestNet()) {
-        if (nHeight == 0)
-            return 250 * COIN;
-    }
-
-    //Create a fork to ensure all old wallets update
-    if (nHeight == 574010) {
-        return 801 * COIN;
-    }
-
-    if (nHeight == 585330) {
-        return 801 * COIN;
-    }
-
-    if (nHeight == 586594) { // to be set at phase 2 compile
-        return 801 * COIN;
-    }
-
-    CAmount nSubsidy = 0;
-    if (nHeight == 1)
-        nSubsidy = 300000 * COIN;
-    else if (nHeight <= 500)
-        nSubsidy = 1 * COIN;
-    else if (nHeight <= 2000 && nHeight > 500)
-        nSubsidy = 1 * COIN;
-    else if (nHeight <= 20000 && nHeight > 2000)
-        nSubsidy = 2 * COIN;
-    else if (nHeight <= 30000 && nHeight > 20000)
-        nSubsidy = 10 * COIN;
-    else if (nHeight <= 40000 && nHeight > 30000)
-        nSubsidy = 15 * COIN;
-    else if (nHeight <= 50000 && nHeight > 40000)
-        nSubsidy = 20 * COIN;
-    else if (nHeight <= 60000 && nHeight > 50000)
-        nSubsidy = 25 * COIN;
-    else if (nHeight <= 100000 && nHeight > 60000)
-        nSubsidy = 50 * COIN;
-    else if (nHeight <= 130000 && nHeight > 100000)
-        nSubsidy = 100 * COIN;
-    else if (nHeight <= 150000 && nHeight > 130000)
-        nSubsidy = 150 * COIN;
-    else if (nHeight <= 175000 && nHeight > 150000)
-        nSubsidy = 250 * COIN;
-    else if (nHeight <= 200000 && nHeight > 175000)
-        nSubsidy = 400 * COIN;
-    else if (nHeight <= 250000 && nHeight > 200000)
-        nSubsidy = 500 * COIN;
-    else if (nHeight <= 300000 && nHeight > 250000)
-        nSubsidy = 450 * COIN;
-    else if (nHeight <= 400000 && nHeight > 300000)
-        nSubsidy = 400 * COIN;
-    else if (nHeight <= 450000 && nHeight > 400000)
-        nSubsidy = 500 * COIN;
-    else if (nHeight <= 500000 && nHeight > 450000)
-        nSubsidy = 600 * COIN;
-    else if (nHeight <= 550000 && nHeight > 500000)
-        nSubsidy = 700 * COIN;
-    else if (nHeight <= 600000 && nHeight > 550000)
-        nSubsidy = 800 * COIN;
-    else if (nHeight <= 650000 && nHeight > 600000)
-        nSubsidy = 900 * COIN;
-    else if (nHeight <= 700000 && nHeight > 650000)
-        nSubsidy = 1000 * COIN;
-    else if (nHeight <= 750000 && nHeight > 700000)
-        nSubsidy = 900 * COIN;
-    else if (nHeight <= 800000 && nHeight > 750000)
-        nSubsidy = 800 * COIN;
-    else if (nHeight <= 850000 && nHeight > 800000)
-        nSubsidy = 700 * COIN;
-    else if (nHeight <= 900000 && nHeight > 850000)
-        nSubsidy = 600 * COIN;
-    else if (nHeight <= 950000 && nHeight > 900000)
-        nSubsidy = 500 * COIN;
-    else if (nHeight <= 1000000 && nHeight > 950000)
-        nSubsidy = 450 * COIN;
-    else
-        nSubsidy = 400 * COIN;
-
-    if(nMoneySupply + nSubsidy > maxMoneyOut) {
-        return nMoneySupply + nSubsidy - maxMoneyOut;
-    }
-
-    return nSubsidy;
+    return 0;
 }
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    return (95 * CMasternode::GetBlockValue(chainActive.Height())) / 100; // 95% of the block reward
+    if(nHeight > 1180000) return GetBlockValue(chainActive.Height())) * 65 / 100;
+
+    return GetBlockValue(chainActive.Height()) * 95 / 100;
 }
 
 void CMasternode::InitMasternodeCollateralList() {
