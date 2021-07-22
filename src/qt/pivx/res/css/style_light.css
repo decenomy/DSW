@@ -95,35 +95,6 @@ QPushButton[cssClass="img-nav-logo"] {
   color: #6666ff;
 }
 
-/*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
-!#############
-################################*/
-
-QPushButton[cssClass="btn-check-conf"] {
-  qproperty-icon: url("://ic-check-coin-conf") ;
-  qproperty-iconSize: 24px 24px;
-  color:#262626;
-  background-color:#d1d3d4;
-  border-radius:2px;
-}
-
-QPushButton[cssClass="btn-check-masternodes"] {
-  qproperty-icon: url("://ic-check-mn-conf") ;
-  qproperty-iconSize: 24px 24px;
-  color:#262626;
-  background-color:#d1d3d4;
-  border-radius:2px;
-}
-
-QPushButton[cssClass="btn-check-console"] {
-  qproperty-icon: url("://ic-check-console") ;
-  qproperty-iconSize: 24px 24px;
-  color:#262626;
-  background-color:#d1d3d4;
-  border-radius:2px;
-}
-
-
 *[cssClass="btn-nav-settings"] {
   qproperty-icon: url("://ic-nav-settings") off,
   url("://ic-nav-settings-active") on;
@@ -483,6 +454,30 @@ QPushButton[cssClass="btn-check-stack-inactive"] {
 QPushButton[cssClass="btn-check-stack"]:checked {
   background-color:#d1d3d4;
   color:#262626;
+}
+
+QPushButton[cssClass="btn-check-conf"] {
+  qproperty-icon: url("://ic-check-coin-conf") ;
+  qproperty-iconSize: 24px 24px;
+  color:#262626;
+  background-color:#d1d3d4;
+  border-radius:2px;
+}
+
+QPushButton[cssClass="btn-check-masternodes"] {
+  qproperty-icon: url("://ic-check-mn-conf") ;
+  qproperty-iconSize: 24px 24px;
+  color:#262626;
+  background-color:#d1d3d4;
+  border-radius:2px;
+}
+
+QPushButton[cssClass="btn-check-console"] {
+  qproperty-icon: url("://ic-check-console") ;
+  qproperty-iconSize: 24px 24px;
+  color:#262626;
+  background-color:#d1d3d4;
+  border-radius:2px;
 }
 
 QPushButton[cssClass="btn-check-connect"] {
