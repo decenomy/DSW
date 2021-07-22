@@ -70,7 +70,7 @@ QPushButton[cssClass="img-nav-logo"] {
   url("://ic-nav-receive-active") on;
   qproperty-iconSize: 24px 40px;
   background-color:transparent;
-  font-size:14px;
+  font-size:12px;
   color: #938da5;
 }
 
@@ -296,7 +296,7 @@ QPushButton[cssClass="btn-check-console"] {
 
 *[cssClass="btn-nav-master"]:checked {
   qproperty-icon: url("://ic-nav-master-active");
-  font-size:14px;
+  font-size:12px;
   color: #6666ff;
 }
 
