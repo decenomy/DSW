@@ -340,7 +340,7 @@ CAmount CMasternode::GetBlockValue(int nHeight)
     if (nHeight > 1)        return 300 * COIN;          // Old blockchain after block 2000000
     if (nHeight > 0)        return 610000000 * COIN;    //! Premine for sending coins to the coin holders. Final circulating supply is 607,146,002.03072373 CFL so we will emit 610M.
 
-    return 1 * COIN;
+    return 0 * COIN;
 }
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
