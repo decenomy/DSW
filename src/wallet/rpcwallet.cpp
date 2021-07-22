@@ -3406,9 +3406,13 @@ UniValue mintzerocoin(const JSONRPCRequest& request)
     }
 
     int64_t nTime = GetTimeMillis();
+<<<<<<< HEAD
     if(sporkManager.IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
         throw JSONRPCError(RPC_WALLET_ERROR, "zPNY is currently disabled due to maintenance.");
 
+=======
+    
+>>>>>>> develop
     EnsureWalletIsUnlocked(true);
 
     CAmount nAmount = request.params[0].get_int() * COIN;
@@ -3507,10 +3511,15 @@ UniValue spendzerocoin(const JSONRPCRequest& request)
             HelpExampleCli("spendzerocoin", "5000 \"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\"") +
             HelpExampleRpc("spendzerocoin", "5000 \"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\""));
 
-    LOCK2(cs_main, pwalletMain->cs_wallet);
+    if (!Params().IsRegTestNet())
+        throw JSONRPCError(RPC_WALLET_ERROR, "z__DSW__ minting is DISABLED");
 
+<<<<<<< HEAD
     if(sporkManager.IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
         throw JSONRPCError(RPC_WALLET_ERROR, "zPNY is currently disabled due to maintenance.");
+=======
+    LOCK2(cs_main, pwalletMain->cs_wallet);
+>>>>>>> develop
 
     CAmount nAmount = AmountFromValue(request.params[0]);        // Spending amount
     const std::string address_str = (request.params.size() > 1 ? request.params[1].get_str() : "");
@@ -3559,10 +3568,15 @@ UniValue spendzerocoinmints(const JSONRPCRequest& request)
             HelpExampleCli("spendzerocoinmints", "'[\"0d8c16eee7737e3cc1e4e70dc006634182b175e039700931283b202715a0818f\", \"dfe585659e265e6a509d93effb906d3d2a0ac2fe3464b2c3b6d71a3ef34c8ad7\"]' \"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\"") +
             HelpExampleRpc("spendzerocoinmints", "[\"0d8c16eee7737e3cc1e4e70dc006634182b175e039700931283b202715a0818f\", \"dfe585659e265e6a509d93effb906d3d2a0ac2fe3464b2c3b6d71a3ef34c8ad7\"], \"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\""));
 
-    LOCK2(cs_main, pwalletMain->cs_wallet);
+    if (!Params().IsRegTestNet())
+        throw JSONRPCError(RPC_WALLET_ERROR, "z__DSW__ minting is DISABLED");
 
+<<<<<<< HEAD
     if(sporkManager.IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
         throw JSONRPCError(RPC_WALLET_ERROR, "zPNY is currently disabled due to maintenance.");
+=======
+    LOCK2(cs_main, pwalletMain->cs_wallet);
+>>>>>>> develop
 
     UniValue arrMints = request.params[0].get_array();
     const std::string address_str = (request.params.size() > 1 ? request.params[1].get_str() : "");
@@ -4289,10 +4303,15 @@ UniValue spendrawzerocoin(const JSONRPCRequest& request)
             HelpExampleCli("spendrawzerocoin", "\"f80892e78c30a393ef4ab4d5a9d5a2989de6ebc7b976b241948c7f489ad716a2\" \"a4fd4d7248e6a51f1d877ddd2a4965996154acc6b8de5aa6c83d4775b283b600\" 100 \"xxx\"") +
             HelpExampleRpc("spendrawzerocoin", "\"f80892e78c30a393ef4ab4d5a9d5a2989de6ebc7b976b241948c7f489ad716a2\", \"a4fd4d7248e6a51f1d877ddd2a4965996154acc6b8de5aa6c83d4775b283b600\", 100, \"xxx\""));
 
-    LOCK2(cs_main, pwalletMain->cs_wallet);
+    if (!Params().IsRegTestNet())
+        throw JSONRPCError(RPC_WALLET_ERROR, "z__DSW__ minting is DISABLED");
 
+<<<<<<< HEAD
     if (sporkManager.IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
             throw JSONRPCError(RPC_WALLET_ERROR, "zPNY is currently disabled due to maintenance.");
+=======
+    LOCK2(cs_main, pwalletMain->cs_wallet);
+>>>>>>> develop
 
     const Consensus::Params& consensus = Params().GetConsensus();
 
