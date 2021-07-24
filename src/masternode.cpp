@@ -331,11 +331,11 @@ CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
 
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
-    if (nHeight > 656455)   return 600  *  COIN;          // Old blockchain after block 2000000
-    if (nHeight > 556455)   return 680  *  COIN;          // Old blockchain after block 1900000
-    if (nHeight > 456455)   return 760  *  COIN;          // Old blockchain after block 1800000
-    if (nHeight > 356455)   return 860  *  COIN;          // Old blockchain after block 1700000
-    if (nHeight > 256455)   return 900  *  COIN;          // Old blockchain after block 1600000
+    if (nHeight > 656455)   return 600  *  COIN;          // Old blockchain after block 2000000 - Approximately 50% increase in the rewards
+    if (nHeight > 556455)   return 680  *  COIN;          // Old blockchain after block 1900000 - Approximately 50% increase in the rewards
+    if (nHeight > 456455)   return 760  *  COIN;          // Old blockchain after block 1800000 - Approximately 50% increase in the rewards
+    if (nHeight > 356455)   return 860  *  COIN;          // Old blockchain after block 1700000 - Approximately 50% increase in the rewards
+    if (nHeight > 256455)   return 900  *  COIN;          // Old blockchain after block 1600000 - Approximately 50% increase in the rewards
     if (nHeight > 185000)   return 1000 *  COIN;          // Fork block - Approximately 50% increase in the rewards
     if (nHeight > 156455)   return 650  *  COIN;          // Old blockchain after block 1500000
     if (nHeight > 56455)    return 700  *  COIN;          // Old blockchain after block 1400000

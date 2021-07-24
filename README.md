@@ -16,113 +16,16 @@ CryptoFlow wallet repository
 • Website [cryptoflow.eu](https://cryptoflow.eu/)
 
 ### Rewards Breakdown
-<table border=0 cellpadding=0 cellspacing=0 width=701 class=xl6553517252
- style='border-collapse:collapse;table-layout:fixed;width:528pt'>
- <col class=xl6553517252 width=139 style='mso-width-source:userset;mso-width-alt:
- 4785;width:104pt'>
- <col class=xl6553517252 width=107 span=2 style='mso-width-source:userset;
- mso-width-alt:3702;width:81pt'>
- <col class=xl6553517252 width=134 style='mso-width-source:userset;mso-width-alt:
- 4608;width:100pt'>
- <col class=xl6553517252 width=107 span=2 style='mso-width-source:userset;
- mso-width-alt:3702;width:81pt'>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6317252 width=150 style='height:15.75pt;width:104pt'>Block</td>
-  <td class=xl6317252 width=107 style='width:81pt'>Collateral</td>
-  <td class=xl6317252 width=107 style='width:81pt'>Block Reward</td>
-  <td class=xl6317252 width=107 style='width:81pt'>MN Reward %</td>
-  <td class=xl6317252 width=134 style='width:100pt'>Staking Reward %</td>
-  <td class=xl6317252 width=107 style='width:81pt'>MN Reward</td>
-  <td class=xl6317252 width=107 style='width:81pt'>Staker Reward</td>
- </tr>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>1</td>
-  <td class=xl6517252>-</td>  
-  <td class=xl6517252>610,000,000</td>  
-  <td class=xl6617252>-</td>
-  <td class=xl6617252>-</td>
-  <td class=xl6717252 align=right>-</td>
-  <td class=xl6553517252 align=right>-</td>
- </tr>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>2-2,880</td>
-  <td class=xl6517252>100,000</td>
-  <td class=xl6517252>300</td>
-  <td class=xl6617252>-</td>
-  <td class=xl6617252>100</td>
-  <td class=xl6717252 align=right>-</td>
-  <td class=xl6553517252 align=right>300</td>
- </tr>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>2,880-56,455</td>
-  <td class=xl6517252>100,000</td>
-  <td class=xl6617252>300</td>
-  <td class=xl6617252>90</td>
-  <td class=xl6617252>10</td>
-  <td class=xl6717252 align=right>270</td>
-  <td class=xl6817252 align=right>30</td>
- </tr>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>56,456-156,455</td>
-  <td class=xl6517252>200,000</td>
-  <td class=xl6617252>700</td>
-  <td class=xl6617252>90</td>
-  <td class=xl6617252>10</td>
-  <td class=xl6717252 align=right>630</td>
-  <td class=xl6817252 align=right>70</td>
- </tr>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>156,456-256,455</td>
-  <td class=xl6517252>200,000</td>
-  <td class=xl6617252>650</td>
-  <td class=xl6617252>90</td>
-  <td class=xl6617252>10</td>
-  <td class=xl6717252 align=right>585</td>
-  <td class=xl6817252 align=right>65</td>
- </tr>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>256,456-356,455</td>
-  <td class=xl6517252>200,000</td>
-  <td class=xl6617252>600</td>
-  <td class=xl6617252>90</td>
-  <td class=xl6617252>10</td>
-  <td class=xl6717252 align=right>540</td>
-  <td class=xl6817252 align=right>60</td>
- </tr>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>356,456-456,455</td>
-  <td class=xl6517252>200,000</td>
-  <td class=xl6617252>550</td>
-  <td class=xl6617252>90</td>
-  <td class=xl6617252>10</td>
-  <td class=xl6717252 align=right>495</td>
-  <td class=xl6817252 align=right>55</td>
- </tr>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>456,456-556,455</td>
-  <td class=xl6517252>200,000</td>
-  <td class=xl6617252>500</td>
-  <td class=xl6617252>90</td>
-  <td class=xl6617252>10</td>
-  <td class=xl6717252 align=right>450</td>
-  <td class=xl6817252 align=right>50</td>
- </tr>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>556,456-656,455</td>
-  <td class=xl6517252>200,000</td>
-  <td class=xl6617252>450</td>
-  <td class=xl6617252>90</td>
-  <td class=xl6617252>10</td>
-  <td class=xl6717252 align=right>405</td>
-  <td class=xl6817252 align=right>45</td>
- </tr>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-   <td height=21 class=xl6417252 style='height:15.75pt'>656,456-...</td>
-   <td class=xl6517252>200,000</td>
-   <td class=xl6617252>400</td>
-   <td class=xl6617252>90</td>
-   <td class=xl6617252>10</td>
-   <td class=xl6717252 align=right>360</td>
-   <td class=xl6817252 align=right>40</td>
- </tr>
- </table>
+---
+| Block     | Collateral  | Block Reward  |   MN Reward % | Staking Reward %  | MN Reward | Staker Reward |
+| 0         | 100000      | 610000000     | \-            | \-                | \-        | \-            |
+| 1         | 100000      | 300           | 90            | 10                | 270       | 30            |
+| 56455     | 200000      | 700           | 90            | 10                | 630       | 70            |
+| 156455    | 200000      | 650           | 90            | 10                | 585       | 65            |
+| 185000    | 200000      | 1000          | 65            | 35                | 650       | 350           |
+| 256455    | 200000      | 900           | 65            | 35                | 585       | 315           | 
+| 356455    | 200000      | 860           | 65            | 35                | 559       | 281           |
+| 456455    | 200000      | 760           | 65            | 35                | 494       | 266           |
+| 556455    | 200000      | 680           | 65            | 35                | 442       | 188           |
+| 656455    | 200000      | 600           | 65            | 35                | 390       | 210           |
+---
