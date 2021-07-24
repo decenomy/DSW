@@ -3406,13 +3406,7 @@ UniValue mintzerocoin(const JSONRPCRequest& request)
     }
 
     int64_t nTime = GetTimeMillis();
-<<<<<<< HEAD
-    if(sporkManager.IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-        throw JSONRPCError(RPC_WALLET_ERROR, "zPNY is currently disabled due to maintenance.");
-
-=======
     
->>>>>>> develop
     EnsureWalletIsUnlocked(true);
 
     CAmount nAmount = request.params[0].get_int() * COIN;
@@ -3514,12 +3508,7 @@ UniValue spendzerocoin(const JSONRPCRequest& request)
     if (!Params().IsRegTestNet())
         throw JSONRPCError(RPC_WALLET_ERROR, "z__DSW__ minting is DISABLED");
 
-<<<<<<< HEAD
-    if(sporkManager.IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-        throw JSONRPCError(RPC_WALLET_ERROR, "zPNY is currently disabled due to maintenance.");
-=======
     LOCK2(cs_main, pwalletMain->cs_wallet);
->>>>>>> develop
 
     CAmount nAmount = AmountFromValue(request.params[0]);        // Spending amount
     const std::string address_str = (request.params.size() > 1 ? request.params[1].get_str() : "");
@@ -3571,12 +3560,7 @@ UniValue spendzerocoinmints(const JSONRPCRequest& request)
     if (!Params().IsRegTestNet())
         throw JSONRPCError(RPC_WALLET_ERROR, "z__DSW__ minting is DISABLED");
 
-<<<<<<< HEAD
-    if(sporkManager.IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-        throw JSONRPCError(RPC_WALLET_ERROR, "zPNY is currently disabled due to maintenance.");
-=======
     LOCK2(cs_main, pwalletMain->cs_wallet);
->>>>>>> develop
 
     UniValue arrMints = request.params[0].get_array();
     const std::string address_str = (request.params.size() > 1 ? request.params[1].get_str() : "");
@@ -4306,12 +4290,7 @@ UniValue spendrawzerocoin(const JSONRPCRequest& request)
     if (!Params().IsRegTestNet())
         throw JSONRPCError(RPC_WALLET_ERROR, "z__DSW__ minting is DISABLED");
 
-<<<<<<< HEAD
-    if (sporkManager.IsSporkActive(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-            throw JSONRPCError(RPC_WALLET_ERROR, "zPNY is currently disabled due to maintenance.");
-=======
     LOCK2(cs_main, pwalletMain->cs_wallet);
->>>>>>> develop
 
     const Consensus::Params& consensus = Params().GetConsensus();
 
