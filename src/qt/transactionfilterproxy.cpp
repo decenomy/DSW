@@ -13,7 +13,7 @@
 
 #include <QDateTime>
 
-#define SKIP_ROWCOUNT_N_TIMES 4
+#define SKIP_ROWCOUNT_N_TIMES 10
 
 // Earliest date that can be represented (far in the past)
 const QDateTime TransactionFilterProxy::MIN_DATE = QDateTime::fromTime_t(0);
