@@ -1,16 +1,16 @@
 #!/bin/bash
 
 TMP_FOLDER=$(mktemp -d)
-CONFIG_FILE='__decenomy__.conf'
-CONFIGFOLDER='/root/.__decenomy__'
-COIN_DAEMON='__decenomy__d'
-COIN_CLI='__decenomy__-cli'
+CONFIG_FILE='peony.conf'
+CONFIGFOLDER='/root/.peony'
+COIN_DAEMON='peonyd'
+COIN_CLI='peony-cli'
 COIN_PATH='/usr/local/bin/'
-COIN_TGZ=`curl -s https://api.github.com/repos/__GITHUB_ACCOUNT__/__GITHUB_REPOSITORY__/releases/latest | grep "browser_download_url.*Linux\\.zip" | cut -d : -f 2,3 | tr -d \" | xargs`
+COIN_TGZ=`curl -s https://api.github.com/repos/PeonyTeam/peony/releases/latest | grep "browser_download_url.*Linux\\.zip" | cut -d : -f 2,3 | tr -d \" | xargs`
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
-COIN_NAME='__decenomy__'
-COIN_PORT=__PORT_MAINNET__
-RPC_PORT=__RPCPORT_MAINNET__
+COIN_NAME='peony'
+COIN_PORT=36779
+RPC_PORT=36780
 
 BLUE="\033[0;34m"
 YELLOW="\033[0;33m"
