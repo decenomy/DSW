@@ -347,8 +347,8 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    if (nHeight > 2880) return CMasternode::GetBlockValue(nHeight) * 90 / 100;
-    if (nHeight > 0)    return 0;
+    if (nHeight > 185000)   return CMasternode::GetBlockValue(nHeight) * 65 / 100 *  COIN;          // Fork block - Approximately 50% increase in the rewards
+    if (nHeight > 2880)     return CMasternode::GetBlockValue(nHeight) * 90 / 100;
 
     return 0;
 }
