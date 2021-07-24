@@ -37,6 +37,10 @@ enum SporkId : int32_t {
     SPORK_17_NOOP                               = 10016,
     SPORK_18_NOOP                               = 10017,
     SPORK_19_NOOP                               = 10018,
+    SPORK_20_NOOP                               = 10019,
+    SPORK_21_NOOP                               = 10020,
+    SPORK_22_NOOP                               = 10021,
+    SPORK_24_NOOP                               = 10023,
     SPORK_INVALID                               = -1
 };
 
