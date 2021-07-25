@@ -3049,7 +3049,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 #treeWidget::branch:hover {
-  background-color: #810890;
+  background-color: #f4b400;
 }
 
 #treeWidget::branch:!has-children {
