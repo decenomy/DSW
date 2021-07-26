@@ -14,7 +14,7 @@
  * for both __decenomy__d and __decenomy__-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("__Decenomy__");
+const std::string CLIENT_NAME("OneWorld Core");
 
 /**
  * Client version number
