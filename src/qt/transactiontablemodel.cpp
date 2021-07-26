@@ -94,7 +94,7 @@ public:
     void refreshWallet()
     {
         qDebug() << "TransactionTablePriv::refreshWallet";
-
+        
         {
             LOCK(cs_cachedWallet);
             cachedWallet.clear();
@@ -147,7 +147,7 @@ public:
             auto res = convertTxToRecords(this, wallet,
                                               std::vector<CWalletTx>(walletTxes.end() - remainingSize, walletTxes.end())
             );
-
+            
             {
                 LOCK(cs_cachedWallet);
                 cachedWallet.append(res.records);
@@ -158,7 +158,7 @@ public:
             for (auto &future : tasks) {
                 future.waitForFinished();
                 ConvertTxToVectorResult convertRes = future.result();
-
+                
                 {
                     LOCK(cs_cachedWallet);
                     cachedWallet.append(convertRes.records);
@@ -171,7 +171,7 @@ public:
         } else {
             // Single thread flow
             ConvertTxToVectorResult convertRes = convertTxToRecords(this, wallet, walletTxes);
-
+            
             {
                 LOCK(cs_cachedWallet);
                 cachedWallet.append(convertRes.records);   
