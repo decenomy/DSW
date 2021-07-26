@@ -3651,8 +3651,12 @@ CWallet* CWallet::CreateWalletFromFile(const std::string walletFile)
         walletInstance->SetBestChain(chainActive.GetLocator());
     }
 
-    if(walletInstance->GetECommerceKeyPoolSize() == 0) {
-        walletInstance->TopUpKeyPool();
+    {
+        LOCK(walletInstance->cs_wallet);
+
+        if(walletInstance->GetECommerceKeyPoolSize() == 0) {
+            walletInstance->TopUpKeyPool();
+        }
     }
 
     LogPrintf("Wallet completed loading in %15dms\n", GetTimeMillis() - nStart);

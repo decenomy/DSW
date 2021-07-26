@@ -13,6 +13,8 @@
 
 #include <QDateTime>
 
+#define SKIP_ROWCOUNT_N_TIMES 10
+
 // Earliest date that can be represented (far in the past)
 const QDateTime TransactionFilterProxy::MIN_DATE = QDateTime::fromTime_t(0);
 // Last date that can be represented (far in the future)
@@ -134,6 +136,10 @@ void TransactionFilterProxy::setOnlyStakesandMN(bool fOnlyStakesandMN)
 
 int TransactionFilterProxy::rowCount(const QModelIndex& parent) const
 {
+    static int entryCount = 0;
+
+    if(entryCount++ < SKIP_ROWCOUNT_N_TIMES) return SINGLE_THREAD_MAX_TXES_SIZE;
+
     if (limitRows != -1) {
         return std::min(QSortFilterProxyModel::rowCount(parent), limitRows);
     } else {
