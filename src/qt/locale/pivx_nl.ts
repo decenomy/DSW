@@ -122,12 +122,12 @@
         <translation>Ontvangstadressen</translation>
     </message>
     <message>
-        <source>These are your __DSW__ addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Dit zijn uw __DSW__ adressen om betalingen mee te verzenden. Controleer altijd zowel het bedrag als het ontvangstadres voor het verzenden van geld.</translation>
+        <source>These are your OWO addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Dit zijn uw OWO adressen om betalingen mee te verzenden. Controleer altijd zowel het bedrag als het ontvangstadres voor het verzenden van geld.</translation>
     </message>
     <message>
-        <source>These are your __DSW__ addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Dit zijn uw __DSW__ adressen waarop betalingen kunnen worden ontvangen. Het wordt aangeraden om een nieuw ontvangstadres voor elke transactie te gebruiken.</translation>
+        <source>These are your OWO addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Dit zijn uw OWO adressen waarop betalingen kunnen worden ontvangen. Het wordt aangeraden om een nieuw ontvangstadres voor elke transactie te gebruiken.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -364,8 +364,8 @@ voor bewijs van Inzet</translation>
         <translation>Annuleren</translation>
     </message>
     <message>
-        <source>__DSW__ will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your __DSW__s from being stolen by malware infecting your computer.</source>
-        <translation>__DSW__ zal nu afsluiten om het versleutelingsproces te voltooien. Onthoud dat het versleutelen van uw portemonnee u niet volledig kan beschermen tegen malware infecties op uw computer die uw __DSW__'s kunnen stelen.</translation>
+        <source>OWO will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your OWOs from being stolen by malware infecting your computer.</source>
+        <translation>OWO zal nu afsluiten om het versleutelingsproces te voltooien. Onthoud dat het versleutelen van uw portemonnee u niet volledig kan beschermen tegen malware infecties op uw computer die uw OWO's kunnen stelen.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -465,8 +465,8 @@ voor bewijs van Inzet</translation>
         <translation>Munt Selectie</translation>
     </message>
     <message>
-        <source>Select __DSW__ Outputs to Spend</source>
-        <translation>Selecteer __DSW__ Outputs om te besteden</translation>
+        <source>Select OWO Outputs to Spend</source>
+        <translation>Selecteer OWO Outputs om te besteden</translation>
     </message>
     <message>
         <source>Dust:</source>
@@ -493,8 +493,8 @@ voor bewijs van Inzet</translation>
         <translation>Bedrag</translation>
     </message>
     <message>
-        <source>0.00 __DSW__</source>
-        <translation>0.00 __DSW__</translation>
+        <source>0.00 OWO</source>
+        <translation>0.00 OWO</translation>
     </message>
     <message>
         <source>0</source>
@@ -723,8 +723,8 @@ voor bewijs van Inzet</translation>
         <translation>Bekijk de geschiedenis van uw account</translation>
     </message>
     <message>
-        <source>How to get __DSW__</source>
-        <translation>Hoe __DSW__ verkrijgen</translation>
+        <source>How to get OWO</source>
+        <translation>Hoe OWO verkrijgen</translation>
     </message>
     <message>
         <source>Sort by</source>
@@ -747,8 +747,8 @@ voor bewijs van Inzet</translation>
         <translation>Filter volgens</translation>
     </message>
     <message>
-        <source>Amount of __DSW__ and z__DSW__ staked.</source>
-        <translation>Hoeveelheid aan gestaked __DSW__ en z__DSW__.</translation>
+        <source>Amount of OWO and zOWO staked.</source>
+        <translation>Hoeveelheid aan gestaked OWO en zOWO.</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -843,8 +843,8 @@ Het zal automatisch starten zodra de portemonnee voldoende bevestigingen heeft o
         <translation>Wijzig verzend adres</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid __DSW__ address.</source>
-        <translation>Het ingevoerde adres: "%1" is geen geldig __DSW__ adres.</translation>
+        <source>The entered address "%1" is not a valid OWO address.</source>
+        <translation>Het ingevoerde adres: "%1" is geen geldig OWO adres.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -967,8 +967,8 @@ Het zal automatisch starten zodra de portemonnee voldoende bevestigingen heeft o
         <translation>Aangezien dit de eerste keer is dat het programma is gestart, kun je kiezen waar __Decenomy__ zijn data opslaat.</translation>
     </message>
     <message>
-        <source>__Decenomy__ will download and store a copy of the __DSW__ block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>__Decenomy__ zal een kopie van de __DSW__ blockchain downloaden en opslaan. Tenminste %1GB aan data zal worden opgeslagen in deze map en het zal over de tijd groeien. De portemonnee zal ook in deze map worden opgeslagen.</translation>
+        <source>__Decenomy__ will download and store a copy of the OWO block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>__Decenomy__ zal een kopie van de OWO blockchain downloaden en opslaan. Tenminste %1GB aan data zal worden opgeslagen in deze map en het zal over de tijd groeien. De portemonnee zal ook in deze map worden opgeslagen.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1095,8 +1095,8 @@ Het zal automatisch starten zodra de portemonnee voldoende bevestigingen heeft o
         <translation>Creëer Nieuwe Masternode Controller</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a __DSW__ Masternode you must dedicate a collateral amount of __DSW__ (the unit of __DSW__) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Om een __DSW__ Masternode te creëren moet u 10.000 __DSW__ (de eenheid van __DSW__) aan het netwerk wijden (deze munten zijn echter nog steeds van u en zullen nooit uw bezit verlaten). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;U kunt de node op elk gewenst moment deactiveren en de munten ontgrendelen.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a OWO Masternode you must dedicate a collateral amount of OWO (the unit of OWO) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Om een OWO Masternode te creëren moet u 10.000 OWO (de eenheid van OWO) aan het netwerk wijden (deze munten zijn echter nog steeds van u en zullen nooit uw bezit verlaten). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;U kunt de node op elk gewenst moment deactiveren en de munten ontgrendelen.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Set Masternode Name</source>
@@ -1116,7 +1116,7 @@ Het zal automatisch starten zodra de portemonnee voldoende bevestigingen heeft o
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of collateral amount will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Een transactie van 10,000 __DSW__ zal gemaakt worden&lt;/p&gt;&lt;p&gt;naar een nieuw leeg adres in uw portemonnee.&lt;/p&gt;&lt;p&gt;Het adres is gelabeld onder de masternode's naam.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Een transactie van 10,000 OWO zal gemaakt worden&lt;/p&gt;&lt;p&gt;naar een nieuw leeg adres in uw portemonnee.&lt;/p&gt;&lt;p&gt;Het adres is gelabeld onder de masternode's naam.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Address of the node that must always be online running the actual master node.</source>
@@ -1560,8 +1560,8 @@ NODES</translation>
         <translation>Als je de uitgaven van onbevestigde wijzigingen uitschakelt, de wijziging van een transactie&lt;br/&gt;kan niet worden gebruikt tot die transactie tenminste één bevestiging heeft.&lt;br/&gt;Dit beïnvloedt ook hoe uw saldo is berekend.</translation>
     </message>
     <message>
-        <source>Automatically open the __DSW__ client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Open de __DSW__ client poort automatisch op de router. Dit werkt alleen als je router UPnP ondersteunt en het is ingeschakeld.</translation>
+        <source>Automatically open the OWO client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Open de OWO client poort automatisch op de router. Dit werkt alleen als je router UPnP ondersteunt en het is ingeschakeld.</translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -1580,12 +1580,12 @@ NODES</translation>
         <translation>Expert</translation>
     </message>
     <message>
-        <source>Automatically start __DSW__ after logging in to the system.</source>
-        <translation>__DSW__ automatisch opstarten na inloggen op het systeem.</translation>
+        <source>Automatically start OWO after logging in to the system.</source>
+        <translation>OWO automatisch opstarten na inloggen op het systeem.</translation>
     </message>
     <message>
-        <source>&amp;Start __DSW__ on system login</source>
-        <translation>&amp;__DSW__ starten bij systeemlogin</translation>
+        <source>&amp;Start OWO on system login</source>
+        <translation>&amp;OWO starten bij systeemlogin</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1612,8 +1612,8 @@ NODES</translation>
         <translation>&amp;Netwerk</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting __DSW__.</source>
-        <translation>De gebruikersinterface taal kan hier ingesteld worden. Deze instelling zal uitgevoerd na herstart van __DSW__.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting OWO.</source>
+        <translation>De gebruikersinterface taal kan hier ingesteld worden. Deze instelling zal uitgevoerd na herstart van OWO.</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
@@ -1626,44 +1626,44 @@ NODES</translation>
         <translation>Map poort gebruikt &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of __DSW__ units to z__DSW__</source>
-        <translation>Schakel automatisch slaan van __DSW__-eenheden in op z__DSW__</translation>
+        <source>Enable automatic minting of OWO units to zOWO</source>
+        <translation>Schakel automatisch slaan van OWO-eenheden in op zOWO</translation>
     </message>
     <message>
-        <source>Enable z__DSW__ Automint</source>
-        <translation>Schakel z__DSW__ Automint in</translation>
+        <source>Enable zOWO Automint</source>
+        <translation>Schakel zOWO Automint in</translation>
     </message>
     <message>
-        <source>Enable automatic z__DSW__ minting from specific addresses</source>
-        <translation>Automatische z__DSW__ munting inschakelen vanuit specifiek adres</translation>
+        <source>Enable automatic zOWO minting from specific addresses</source>
+        <translation>Automatische zOWO munting inschakelen vanuit specifiek adres</translation>
     </message>
     <message>
         <source>Enable Automint Addresses</source>
         <translation>Automint Adressen Inschakelen</translation>
     </message>
     <message>
-        <source>Percentage of incoming __DSW__ which get automatically converted to z__DSW__ via Zerocoin Protocol (min: 10%)</source>
-        <translation>Percentage inkomende __DSW__ die automatisch wordt omgezet naar z__DSW__ via Zerocoin Protocol (min: 10%)</translation>
+        <source>Percentage of incoming OWO which get automatically converted to zOWO via Zerocoin Protocol (min: 10%)</source>
+        <translation>Percentage inkomende OWO die automatisch wordt omgezet naar zOWO via Zerocoin Protocol (min: 10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted z__DSW__</source>
-        <translation>Percentage autominted z__DSW__</translation>
+        <source>Percentage of autominted zOWO</source>
+        <translation>Percentage autominted zOWO</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough __DSW__ for this denomination is available</source>
-        <translation>Wacht met automatische omzetting naar Zerocoin totdat er genoeg __DSW__ voor deze denominatie beschikbaar is</translation>
+        <source>Wait with automatic conversion to Zerocoin until enough OWO for this denomination is available</source>
+        <translation>Wacht met automatische omzetting naar Zerocoin totdat er genoeg OWO voor deze denominatie beschikbaar is</translation>
     </message>
     <message>
-        <source>Preferred Automint z__DSW__ Denomination</source>
-        <translation>Gewenste Automint z__DSW__ denominatie</translation>
+        <source>Preferred Automint zOWO Denomination</source>
+        <translation>Gewenste Automint zOWO denominatie</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
         <translation>Stake splitsdrempel:</translation>
     </message>
     <message>
-        <source>Connect to the __DSW__ network through a SOCKS5 proxy.</source>
-        <translation>Maak verbinding met het __DSW__ netwerk via een SOCKS5 proxy.</translation>
+        <source>Connect to the OWO network through a SOCKS5 proxy.</source>
+        <translation>Maak verbinding met het OWO netwerk via een SOCKS5 proxy.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1908,8 +1908,8 @@ Adres: %4
         <translation>Kan __decenomy__ niet starten: click-to-pay handler</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid __DSW__ address or malformed URI parameters.</source>
-        <translation>URL kan niet ontleed worden! Dit kan worden veroorzaakt door een ongeldig __DSW__ adres of misvormde URL parameters.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid OWO address or malformed URI parameters.</source>
+        <translation>URL kan niet ontleed worden! Dit kan worden veroorzaakt door een ongeldig OWO adres of misvormde URL parameters.</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -1994,8 +1994,8 @@ Adres: %4
         <translation>Bedrag</translation>
     </message>
     <message>
-        <source>Enter __DSW__ address (e.g. %1)</source>
-        <translation>Voer een __DSW__ adres in (b.v. %1)</translation>
+        <source>Enter OWO address (e.g. %1)</source>
+        <translation>Voer een OWO adres in (b.v. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2038,8 +2038,8 @@ Adres: %4
         <translation>%1 ms</translation>
     </message>
     <message>
-        <source>A fatal error occurred. __DSW__ can no longer continue safely and will quit.</source>
-        <translation>Een kritieke fout is opgelopen. __DSW__ kan niet langer veilig uitgevoerd worden en zal afsluiten.</translation>
+        <source>A fatal error occurred. OWO can no longer continue safely and will quit.</source>
+        <translation>Een kritieke fout is opgelopen. OWO kan niet langer veilig uitgevoerd worden en zal afsluiten.</translation>
     </message>
     <message>
         <source>__Decenomy__</source>
@@ -2273,8 +2273,8 @@ Adres: %4
         <translation>Blockchain</translation>
     </message>
     <message>
-        <source>Open the __DSW__ debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Open het __DSW__ debug log bestand uit de huidige data directory. Dit kan enkele seconden duren voor grote logbestanden.</translation>
+        <source>Open the OWO debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Open het OWO debug log bestand uit de huidige data directory. Dit kan enkele seconden duren voor grote logbestanden.</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -2417,8 +2417,8 @@ Adres: %4
         <translation>Aangepast back-up pad:</translation>
     </message>
     <message>
-        <source>Custom z__DSW__ Backup Path:</source>
-        <translation>Aangepast z__DSW__ back-up pad:</translation>
+        <source>Custom zOWO Backup Path:</source>
+        <translation>Aangepast zOWO back-up pad:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -2497,8 +2497,8 @@ Adres: %4
         <translation>Uit:</translation>
     </message>
     <message>
-        <source>Welcome to the __DSW__ RPC console.</source>
-        <translation>Welkom bij de __DSW__ RPC console.</translation>
+        <source>Welcome to the OWO RPC console.</source>
+        <translation>Welkom bij de OWO RPC console.</translation>
     </message>
     <message>
         <source>&amp;Disconnect Node</source>
@@ -2639,8 +2639,8 @@ Adres: %4
         <translation>Geen adres</translation>
     </message>
     <message>
-        <source>Scan the QR code or copy the address to receive __DSW__</source>
-        <translation>Scan de QR code of kopieer het adres om __DSW__ te ontvangen</translation>
+        <source>Scan the QR code or copy the address to receive OWO</source>
+        <translation>Scan de QR code of kopieer het adres om OWO te ontvangen</translation>
     </message>
     <message>
         <source>Add Label</source>
@@ -2769,12 +2769,12 @@ Adres: %4
         <translation>Bedrag</translation>
     </message>
     <message>
-        <source>__DSW__</source>
-        <translation>__DSW__</translation>
+        <source>OWO</source>
+        <translation>OWO</translation>
     </message>
     <message>
-        <source>Instead of sharing only a __DSW__ address, you can create a payment request, bundling up more information</source>
-        <translation>In plaats van een __DSW__-adres te delen, kunt u een betalingsverzoek creëren dat meer informatie bundelt.</translation>
+        <source>Instead of sharing only a OWO address, you can create a payment request, bundling up more information</source>
+        <translation>In plaats van een OWO-adres te delen, kunt u een betalingsverzoek creëren dat meer informatie bundelt.</translation>
     </message>
     <message>
         <source>D7VFR83SQbiezrW72hjcWJtcfip5krte2Z </source>
@@ -2852,8 +2852,8 @@ Adres: %4
         <translation>Aangepast wijzigingsadres</translation>
     </message>
     <message>
-        <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" __DSW__ address</source>
-        <translation>De rest van de waarde die resulteert uit de ingangen minus de waarde van de uitgangen gaat naar het "wijzig" __DSW__-adres</translation>
+        <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" OWO address</source>
+        <translation>De rest van de waarde die resulteert uit de ingangen minus de waarde van de uitgangen gaat naar het "wijzig" OWO-adres</translation>
     </message>
     <message>
         <source>SAVE</source>
@@ -2879,8 +2879,8 @@ Adres: %4
         <translation>Aanbevolen</translation>
     </message>
     <message>
-        <source>__DSW__/kilobyte</source>
-        <translation>__DSW__/kilobyte</translation>
+        <source>OWO/kilobyte</source>
+        <translation>OWO/kilobyte</translation>
     </message>
     <message>
         <source>0.00 KB</source>
@@ -3151,9 +3151,9 @@ Vergeet deze niet op te schrijven en veilig te bewaren, anders verlies je mogeli
         <translation>BIP38 Tool</translation>
     </message>
     <message>
-        <source>Encrypt your __DSW__ addresses (key pair actually) using BIP38 encryption.
+        <source>Encrypt your OWO addresses (key pair actually) using BIP38 encryption.
 Using this mechanism you can share your keys without middle-man risk, only need to store your passphrase safely</source>
-        <translation>Encrypteer uw __DSW__-adressen (met key pair) gebruikmakende van BIP38 versleuteling.
+        <translation>Encrypteer uw OWO-adressen (met key pair) gebruikmakende van BIP38 versleuteling.
 Door gebruik te maken van dit mechanisme kan je jouw sleutels delen zonder het risico van een tussenpersoon, je moet enkel je wachtwoordzin veilig opbergen</translation>
     </message>
     <message>
@@ -3189,8 +3189,8 @@ Door gebruik te maken van dit mechanisme kan je jouw sleutels delen zonder het r
         <translation>DECRYPTEER SLEUTEL</translation>
     </message>
     <message>
-        <source>__DSW__ address</source>
-        <translation>__DSW__ adres</translation>
+        <source>OWO address</source>
+        <translation>OWO adres</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -3322,8 +3322,8 @@ Verify that you have installed a predetermined text editor.</source>
 Controleer of u een vooraf bepaalde teksteditor hebt geïnstalleerd.</translation>
     </message>
     <message>
-        <source>Welcome to the __DSW__ RPC console.</source>
-        <translation>Welkom bij de __DSW__ RPC console.</translation>
+        <source>Welcome to the OWO RPC console.</source>
+        <translation>Welkom bij de OWO RPC console.</translation>
     </message>
     <message>
         <source>Use up and down arrows to navigate history, and %1 to clear screen.</source>
@@ -3507,12 +3507,12 @@ Er was een fout opgetreden tijdens het opslaan van deze adreslijst naar %1. Prob
         <translation>Formulier</translation>
     </message>
     <message>
-        <source>1) What is __DSW__?</source>
-        <translation>1) Wat is __DSW__?</translation>
+        <source>1) What is OWO?</source>
+        <translation>1) Wat is OWO?</translation>
     </message>
     <message>
-        <source>2) Why are my __DSW__ unspendable?</source>
-        <translation>2) Waarom is mijn __DSW__ niet besteedbaar?</translation>
+        <source>2) Why are my OWO unspendable?</source>
+        <translation>2) Waarom is mijn OWO niet besteedbaar?</translation>
     </message>
     <message>
         <source>__decenomy_website_link__/</source>
@@ -3523,34 +3523,34 @@ Er was een fout opgetreden tijdens het opslaan van deze adreslijst naar %1. Prob
         <translation>1</translation>
     </message>
     <message>
-        <source>What is __DSW__?</source>
-        <translation>Wat is __DSW__?</translation>
+        <source>What is OWO?</source>
+        <translation>Wat is OWO?</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           __DSW__ is a form of digital online money using blockchain technology
+                           OWO is a form of digital online money using blockchain technology
                            that can be easily transferred globally, instantly, and with near
-                           zero fees.  __DSW__ incorporates market leading security &amp;
+                           zero fees.  OWO incorporates market leading security &amp;
                            privacy and is also the first PoS (Proof of Stake) Cryptocurrency
-                           to implement ZeroCoin(z__DSW__) and Zerocoin staking.
+                           to implement ZeroCoin(zOWO) and Zerocoin staking.
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           __DSW__ utilizes a Proof of Stake (PoS) consensus system algorithm,
-                           allowing all owners of __DSW__ to participate in earning block rewards
+                           OWO utilizes a Proof of Stake (PoS) consensus system algorithm,
+                           allowing all owners of OWO to participate in earning block rewards
                            while securing the network with full node wallets, as well as to
                            run Masternodes to create and vote on proposals.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           __DSW__ is een vorm van digitaal online geld dat gebruik maakt van blockchain technologie.
+                           OWO is een vorm van digitaal online geld dat gebruik maakt van blockchain technologie.
                            die gemakkelijk wereldwijd kan worden overgebracht, onmiddellijk en met bijna
-                           geen kosten.  __DSW__ omvat marktleidende beveiliging &amp;
+                           geen kosten.  OWO omvat marktleidende beveiliging &amp;
                            privacy en is ook de eerste PoS (Proof of Stake) Cryptovaluta
-                           om ZeroCoin (z__DSW__) en Zerocoin staking te implementeren.
+                           om ZeroCoin (zOWO) en Zerocoin staking te implementeren.
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           __DSW__ gebruikt een Proof of Stake (PoS) consensussysteemalgoritme,
-                           waardoor alle eigenaren van __DSW__ kunnen deelnemen aan het verdienen van blokbeloningen
+                           OWO gebruikt een Proof of Stake (PoS) consensussysteemalgoritme,
+                           waardoor alle eigenaren van OWO kunnen deelnemen aan het verdienen van blokbeloningen
                            en tegelijkertijd het netwerk te beveiligen met volledige node portemonnees, en ook om
                            Masternodes uit te voeren en om voorstellen op te stellen en daarover te stemmen.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
@@ -3561,25 +3561,25 @@ Er was een fout opgetreden tijdens het opslaan van deze adreslijst naar %1. Prob
         <translation>2</translation>
     </message>
     <message>
-        <source>Why are my __DSW__ unspendable?</source>
-        <translation>Waarom is mijn __DSW__ niet besteedbaar?</translation>
+        <source>Why are my OWO unspendable?</source>
+        <translation>Waarom is mijn OWO niet besteedbaar?</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           Newly received __DSW__ requires 6 confirmations on the network
+                           Newly received OWO requires 6 confirmations on the network
                            to become eligible for spending which can take ~6 minutes.
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           Your __DSW__ wallet also needs to be completely synchronized
+                           Your OWO wallet also needs to be completely synchronized
                            to see and spend balances on the network.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           Nieuw ontvangen __DSW__ vereist 6 bevestigingen op het netwerk
+                           Nieuw ontvangen OWO vereist 6 bevestigingen op het netwerk
                            om in aanmerking te komen voor uitgaven die ongeveer 6 minuten in beslag kunnen nemen.
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           Uw __DSW__ portemonnee moet ook volledig gesynchroniseerd zijn
+                           Uw OWO portemonnee moet ook volledig gesynchroniseerd zijn
                            om de balans te zien en uit te geven op het netwerk.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </translation>
@@ -3589,12 +3589,12 @@ Er was een fout opgetreden tijdens het opslaan van deze adreslijst naar %1. Prob
         <translation>3</translation>
     </message>
     <message>
-        <source>How do I stake __DSW__?</source>
-        <translation>Hoe stake ik __DSW__?</translation>
+        <source>How do I stake OWO?</source>
+        <translation>Hoe stake ik OWO?</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Make sure your wallet is completely synchronized and you are using the latest release. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You must have a balance of __DSW__ with a minimum of 600 confirmations. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Your wallet must stay online and be unlocked for staking purposes. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Once all those steps are followed staking should be enabled. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state &amp;quot;Staking Enabled&amp;quot; to indicate it is staking. Using the command line interface (__decenomy__-cli); the command &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; will confirm that staking is active. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Zorg ervoor dat uw portemonnee volledig gesynchroniseerd is en je op de juiste versie zit. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Je moet een balans van __DSW__ hebben met een minimum van 600 bevestigingen. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Uw portemonnee moet steeds online en ontgrendeld blijven voor stakingsdoeleinden. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Van zodra al deze stappen gevolgd zijn, zou staking ingeschakeld moeten zijn. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Je kan de stakingsstatus controleren door over het pakketicoontje te gaan gaan met je muis. Deze staat op de linker van de portemonnee interface. Dit pakketje zal oplichten en zal &amp;quot;Staking Inschakeld&amp;quot; vermelden om aan te geven dat staking actief is. Als je gebruik maakt van de command line interface (__decenomy__-cli); het commando &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; zal bevestigen dat staking actief is. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Make sure your wallet is completely synchronized and you are using the latest release. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You must have a balance of OWO with a minimum of 600 confirmations. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Your wallet must stay online and be unlocked for staking purposes. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Once all those steps are followed staking should be enabled. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state &amp;quot;Staking Enabled&amp;quot; to indicate it is staking. Using the command line interface (__decenomy__-cli); the command &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; will confirm that staking is active. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Zorg ervoor dat uw portemonnee volledig gesynchroniseerd is en je op de juiste versie zit. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Je moet een balans van OWO hebben met een minimum van 600 bevestigingen. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Uw portemonnee moet steeds online en ontgrendeld blijven voor stakingsdoeleinden. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Van zodra al deze stappen gevolgd zijn, zou staking ingeschakeld moeten zijn. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Je kan de stakingsstatus controleren door over het pakketicoontje te gaan gaan met je muis. Deze staat op de linker van de portemonnee interface. Dit pakketje zal oplichten en zal &amp;quot;Staking Inschakeld&amp;quot; vermelden om aan te geven dat staking actief is. Als je gebruik maakt van de command line interface (__decenomy__-cli); het commando &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; zal bevestigen dat staking actief is. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>4</source>
@@ -3638,12 +3638,12 @@ Er was een fout opgetreden tijdens het opslaan van deze adreslijst naar %1. Prob
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;A Masternode Controller wallet is where the collateral amount can reside during a Controller-Remote masternode setup. It is a wallet that can activate the remote masternode wallet(s) and allows you to keep your collateral coins offline while the remote masternode remains online. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;Een Masternode Controller portemonnee is waar de 10.000 __DSW__ onderpand zich kan bevinden tijdens een Controller-Remote masternode setup. Het is een portemonnee die de remote masternode portemonnee(s) kan activeren en waarmee u uw ondergepande munten offline kunt houden terwijl de remote masternode online blijft. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;Een Masternode Controller portemonnee is waar de 10.000 OWO onderpand zich kan bevinden tijdens een Controller-Remote masternode setup. Het is een portemonnee die de remote masternode portemonnee(s) kan activeren en waarmee u uw ondergepande munten offline kunt houden terwijl de remote masternode online blijft. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           A masternode is a computer running a full node __DSW__ wallet with a
+                           A masternode is a computer running a full node OWO wallet with a
                            required amount of secured collateral to provide extra services
                            to the network and in return, receive a portion of the block reward
                            regularly.  These services include:
@@ -3665,10 +3665,10 @@ Er was een fout opgetreden tijdens het opslaan van deze adreslijst naar %1. Prob
                            Masternode Perks:
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;Participate in __DSW__ Governance&lt;/li&gt;
+                           &lt;li&gt;Participate in OWO Governance&lt;/li&gt;
                            &lt;li&gt;Earn Masternode Rewards&lt;/li&gt;
                            &lt;li&gt;Commodity option for future sale&lt;/li&gt;
-                           &lt;li&gt;Help secure the __DSW__ network&lt;/li&gt;
+                           &lt;li&gt;Help secure the OWO network&lt;/li&gt;
                            &lt;/ul&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
@@ -3684,8 +3684,8 @@ Er was een fout opgetreden tijdens het opslaan van deze adreslijst naar %1. Prob
                          </source>
         <translation>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           Een masternode is een computer met een volledige node __DSW__ core portemonnee met een
-                           vereiste van 10.000 __DSW__ onderpand om extra diensten te kunnen verlenen
+                           Een masternode is een computer met een volledige node OWO core portemonnee met een
+                           vereiste van 10.000 OWO onderpand om extra diensten te kunnen verlenen
                            aan het netwerk en in ruil daarvoor ontvangt u regelmatig een deel van de blokbeloning.
                            Deze diensten omvatten::
                            &lt;/p&gt;&lt;p align="justify"&gt;
@@ -3706,17 +3706,17 @@ Er was een fout opgetreden tijdens het opslaan van deze adreslijst naar %1. Prob
                            Masternode Voordelen:
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;Deelnemen in het __DSW__ Bestuur&lt;/li&gt;
+                           &lt;li&gt;Deelnemen in het OWO Bestuur&lt;/li&gt;
                            &lt;li&gt;Verdien Masternode Beloningen&lt;/li&gt;
                            &lt;li&gt;Commodity-optie voor toekomstige verkoop&lt;/li&gt;
-                           &lt;li&gt;Helpt bij het beveiligen van het __DSW__ netwerk&lt;/li&gt;
+                           &lt;li&gt;Helpt bij het beveiligen van het OWO netwerk&lt;/li&gt;
                            &lt;/ul&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            Vereisten:
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;10,000 __DSW__ per Masternode instance&lt;/li&gt;
+                           &lt;li&gt;10,000 OWO per Masternode instance&lt;/li&gt;
                            &lt;li&gt;Moet in een kernportemonnee worden opgeborgen&lt;/li&gt;
                            &lt;li&gt;Vereist een vast IP-adres
                            &lt;li&gt;Masternode portemonnee moet online blijven&lt;/li&gt;
@@ -3729,8 +3729,8 @@ Er was een fout opgetreden tijdens het opslaan van deze adreslijst naar %1. Prob
         <translation>Frequently Asked Questions</translation>
     </message>
     <message>
-        <source>3) How do I stake __DSW__?</source>
-        <translation>3) Hoe stake ik __DSW__?</translation>
+        <source>3) How do I stake OWO?</source>
+        <translation>3) Hoe stake ik OWO?</translation>
     </message>
     <message>
         <source>4) Where I should go if I need support?</source>
@@ -3907,8 +3907,8 @@ Er was een fout opgetreden tijdens het opslaan van deze adreslijst naar %1. Prob
         <translation>Aantal van script verificatiethreads</translation>
     </message>
     <message>
-        <source>Start __DSW__ on system login</source>
-        <translation>Start __DSW__ bij systeemlogin</translation>
+        <source>Start OWO on system login</source>
+        <translation>Start OWO bij systeemlogin</translation>
     </message>
     <message>
         <source>Minimize to the tray instead of the taskbar</source>
@@ -3995,8 +3995,8 @@ Weet u het zeker?
         <translation>Selectievakje</translation>
     </message>
     <message>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other __DSW__ addresses after it matures.</source>
-        <translation>Met MultiSend kunt u automatisch tot 100% van uw inzet of masternode beloning naar een lijst met andere __DSW__-adressen sturen nadat deze volwaardig zijn geworden.</translation>
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other OWO addresses after it matures.</source>
+        <translation>Met MultiSend kunt u automatisch tot 100% van uw inzet of masternode beloning naar een lijst met andere OWO-adressen sturen nadat deze volwaardig zijn geworden.</translation>
     </message>
     <message>
         <source>Active</source>
@@ -4122,8 +4122,8 @@ Vink één of beide selectievakjes aan om beloningen op de inzet en/of masternod
         <translation>Bericht</translation>
     </message>
     <message>
-        <source>__DSW__ address or contact label</source>
-        <translation>__DSW__ adres of contactlabel</translation>
+        <source>OWO address or contact label</source>
+        <translation>OWO adres of contactlabel</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -4443,8 +4443,8 @@ Vink één of beide selectievakjes aan om beloningen op de inzet en/of masternod
         <translation>Veelgestelde vragen</translation>
     </message>
     <message>
-        <source>About __DSW__</source>
-        <translation>Over __DSW__</translation>
+        <source>About OWO</source>
+        <translation>Over OWO</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -5069,20 +5069,20 @@ __Decenomy__ Wallet</source>
 __Decenomy__ Portemonnee</translation>
     </message>
     <message>
-        <source>__DSW__ is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
-        <translation>__DSW__ is 's werelds meest innovatieve Proof of Stake blockchain gebaseerde technologie. Ontwikkeld door een team van zeer ervaren ontwikkelaars en cryptografen.</translation>
+        <source>OWO is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
+        <translation>OWO is 's werelds meest innovatieve Proof of Stake blockchain gebaseerde technologie. Ontwikkeld door een team van zeer ervaren ontwikkelaars en cryptografen.</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - __DSW__ believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Zoals ons manifest zegt: Privacy is een niet-onderhandelbaar fundamenteel mensenrecht; het geeft gebruikers de vrijheid om hun gegevens te delen wanneer en met wie ze maar willen - __DSW__ gelooft in soevereiniteit.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - OWO believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Zoals ons manifest zegt: Privacy is een niet-onderhandelbaar fundamenteel mensenrecht; het geeft gebruikers de vrijheid om hun gegevens te delen wanneer en met wie ze maar willen - OWO gelooft in soevereiniteit.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <source>The masternode network is __DSW__'s second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
-        <translation>Het masternode netwerk is __DSW__'s tweedelaagse netwerk bovenop de blockchain die onze DAO in staat stelt om gedecentraliseerd bestuur, treasury te leveren</translation>
+        <source>The masternode network is OWO's second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
+        <translation>Het masternode netwerk is OWO's tweedelaagse netwerk bovenop de blockchain die onze DAO in staat stelt om gedecentraliseerd bestuur, treasury te leveren</translation>
     </message>
     <message>
-        <source>How __DSW__ respects your privacy?</source>
-        <translation>Hoe respecteert __DSW__ uw privacy?</translation>
+        <source>How OWO respects your privacy?</source>
+        <translation>Hoe respecteert OWO uw privacy?</translation>
     </message>
     <message>
         <source>What is a Masternode?</source>
@@ -5532,8 +5532,8 @@ __Decenomy__ Portemonnee</translation>
         <translation>Ongeldige netmask opgegeven in -whitelist: '%s'</translation>
     </message>
     <message>
-        <source>Recalculating __DSW__ supply...</source>
-        <translation>Hercalculatie van __DSW__ aanbod...</translation>
+        <source>Recalculating OWO supply...</source>
+        <translation>Hercalculatie van OWO aanbod...</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>
@@ -5552,8 +5552,8 @@ __Decenomy__ Portemonnee</translation>
         <translation>Dit is een pre-release test build - gebruik op eigen risico - niet gebruiken voor staking of handel applicaties!</translation>
     </message>
     <message>
-        <source>Disable all __DSW__ specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
-        <translation>Schakel alle specifieke __DSW__ functionaliteit uit (Masternodes, Zerocoin, Budgeting) (0-1, standaard: %u)</translation>
+        <source>Disable all OWO specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
+        <translation>Schakel alle specifieke OWO functionaliteit uit (Masternodes, Zerocoin, Budgeting) (0-1, standaard: %u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -5820,8 +5820,8 @@ __Decenomy__ Portemonnee</translation>
         <translation>Kosten (in %s/Kb) kleiner dan dit worden beschouwd als zero fee voor transactie verrichting (standaard: %s)</translation>
     </message>
     <message>
-        <source>Minimum positive amount (in __DSW__) allowed by GUI and RPC for the stake split threshold (default: %s)</source>
-        <translation>Minimum geldige waarde (in __DSW__) toegestaan bij GUI en RPC voor de staking splitsdrempel (standaard: %s)</translation>
+        <source>Minimum positive amount (in OWO) allowed by GUI and RPC for the stake split threshold (default: %s)</source>
+        <translation>Minimum geldige waarde (in OWO) toegestaan bij GUI en RPC voor de staking splitsdrempel (standaard: %s)</translation>
     </message>
     <message>
         <source>Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</source>
@@ -6098,8 +6098,8 @@ __Decenomy__ Portemonnee</translation>
         <translation>Synchroniseren sporks...</translation>
     </message>
     <message>
-        <source>Syncing z__DSW__ wallet...</source>
-        <translation>Synchroniseren z__DSW__ portemonnee...</translation>
+        <source>Syncing zOWO wallet...</source>
+        <translation>Synchroniseren zOWO portemonnee...</translation>
     </message>
     <message>
         <source>The threshold value cannot be less than %s</source>
@@ -6218,8 +6218,8 @@ __Decenomy__ Portemonnee</translation>
         <translation>Gebruikersnaam voor JSON-RPC verbindingen</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of z__DSW__</source>
-        <translation>Waarde is minder dan de kleinst beschikbare denominatie (=1) van z__DSW__</translation>
+        <source>Value is below the smallest available denomination (= 1) of zOWO</source>
+        <translation>Waarde is minder dan de kleinst beschikbare denominatie (=1) van zOWO</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
@@ -6301,12 +6301,12 @@ __Decenomy__ Portemonnee</translation>
         <translation>Zenden</translation>
     </message>
     <message>
-        <source>Send public coins (__DSW__)</source>
-        <translation>Verstuur publieke munten (__DSW__)</translation>
+        <source>Send public coins (OWO)</source>
+        <translation>Verstuur publieke munten (OWO)</translation>
     </message>
     <message>
-        <source>__DSW__ address or contact label</source>
-        <translation>__DSW__ adres of contactlabel</translation>
+        <source>OWO address or contact label</source>
+        <translation>OWO adres of contactlabel</translation>
     </message>
     <message>
         <source>Amount</source>
