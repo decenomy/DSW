@@ -323,32 +323,32 @@ CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
     // Assumed old blockchain snapshot taken at 16.03.2021 00:00 at Block 1343545 - Collateral is 100000 * COIN
     // At former block 1400001, collateral increases to 200000 * COIN
     // So we will put 1400000 − 1343545 = 56455 blocks for the collateral change block interval from coll = 100000 to coll = 200000
-    if (nHeight > 56455)    return 200000 * COIN; // Old blockchain block 1400000
-    if (nHeight > 0)        return 100000 * COIN;
+    if (nHeight > 56455) return 200000 * COIN; // Old blockchain block 1400000
+    if (nHeight > 0)     return 100000 * COIN;
  
-    return 0 * COIN;
+    return 0;
 }
 
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
-    if (nHeight > 656455)   return 600  *  COIN;          // Old blockchain after block 2000000 - Approximately 50% increase in the rewards
-    if (nHeight > 556455)   return 680  *  COIN;          // Old blockchain after block 1900000 - Approximately 50% increase in the rewards
-    if (nHeight > 456455)   return 760  *  COIN;          // Old blockchain after block 1800000 - Approximately 50% increase in the rewards
-    if (nHeight > 356455)   return 860  *  COIN;          // Old blockchain after block 1700000 - Approximately 50% increase in the rewards
-    if (nHeight > 256455)   return 900  *  COIN;          // Old blockchain after block 1600000 - Approximately 50% increase in the rewards
-    if (nHeight > 185000)   return 1000 *  COIN;          // Fork block - Approximately 50% increase in the rewards
-    if (nHeight > 156455)   return 650  *  COIN;          // Old blockchain after block 1500000
-    if (nHeight > 56455)    return 700  *  COIN;          // Old blockchain after block 1400000
-    if (nHeight > 1)        return 300  *  COIN;          // Old blockchain after block 2000000
-    if (nHeight > 0)        return 610000000 * COIN;    //! Premine for sending coins to the coin holders. Final circulating supply is 607,146,002.03072373 CFL so we will emit 610M.
+    if (nHeight > 700000) return       600 * COIN; // Approximately Old blockchain after block 2000000 - Approximately 50% increase in the rewards
+    if (nHeight > 600000) return       680 * COIN; // Approximately Old blockchain after block 1900000 - Approximately 50% increase in the rewards
+    if (nHeight > 500000) return       760 * COIN; // Approximately Old blockchain after block 1800000 - Approximately 50% increase in the rewards
+    if (nHeight > 400000) return       860 * COIN; // Approximately Old blockchain after block 1700000 - Approximately 50% increase in the rewards
+    if (nHeight > 300000) return       900 * COIN; // Approximately Old blockchain after block 1600000 - Approximately 50% increase in the rewards
+    if (nHeight > 190000) return      1000 * COIN; // Fork block - Approximately 50% increase in the rewards
+    if (nHeight > 156455) return       650 * COIN; // Old blockchain after block 1500000
+    if (nHeight >  56455) return       700 * COIN; // Old blockchain after block 1400000
+    if (nHeight >      1) return       300 * COIN; // Old blockchain after block 2000000
+    if (nHeight >      0) return 610000000 * COIN; //! Premine for sending coins to the coin holders. Final circulating supply is 607,146,002.03072373 CFL so we will emit 610M.
 
-    return 0 * COIN;
+    return 0;
 }
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    if (nHeight > 185000)   return CMasternode::GetBlockValue(nHeight) * 65 / 100 *  COIN;          // Fork block - Approximately 50% increase in the rewards
-    if (nHeight > 2880)     return CMasternode::GetBlockValue(nHeight) * 90 / 100;
+    if (nHeight > 190000) return GetBlockValue(nHeight) * 65 / 100; // Fork block - Approximately 50% increase in the rewards
+    if (nHeight >   2880) return GetBlockValue(nHeight) * 90 / 100;
 
     return 0;
 }
