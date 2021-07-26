@@ -1,4 +1,4 @@
-# Valgrind suppressions file for  __DSW__.
+# Valgrind suppressions file for  OWO.
 #
 # Includes known Valgrind warnings in our dependencies that cannot be fixed
 # in-tree.
