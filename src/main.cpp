@@ -102,7 +102,7 @@ size_t nCoinCacheUsage = 5000 * 300;
 /* If the tip is older than this (in seconds), the node is considered to be in initial block download. */
 int64_t nMaxTipAge = DEFAULT_MAX_TIP_AGE;
 
-/** Fees smaller than this (in u__DSW__) are considered zero fee (for relaying, mining and transaction creation)
+/** Fees smaller than this (in uOWO) are considered zero fee (for relaying, mining and transaction creation)
  * We are ~100 times smaller then bitcoin now (2015-06-23), set minRelayTxFee only 10 times higher
  * so it's still 10 times lower comparing to bitcoin.
  */
@@ -935,9 +935,9 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState &state, const C
                     return state.Invalid(false, REJECT_INVALID, "bad-txns-invalid-inputs");
             }
 
-            // Reject legacy z__DSW__ mints
+            // Reject legacy zOWO mints
             if (!Params().IsRegTestNet() && tx.HasZerocoinMintOutputs())
-                return state.Invalid(error("%s : tried to include z__DSW__ mint output in tx %s",
+                return state.Invalid(error("%s : tried to include zOWO mint output in tx %s",
                         __func__, tx.GetHash().GetHex()), REJECT_INVALID, "bad-zc-spend-mint");
 
             // Bring the best block into scope
@@ -1998,9 +1998,9 @@ DisconnectResult DisconnectBlock(CBlock& block, CBlockIndex* pindex, CCoinsViewC
         return DISCONNECT_FAILED;
     }
 
-    //Track z__DSW__ money supply
+    //Track zOWO money supply
     if (!UpdateZPIVSupplyDisconnect(block, pindex)) {
-        error("%s: Failed to calculate new z__DSW__ supply", __func__);
+        error("%s: Failed to calculate new zOWO supply", __func__);
         return DISCONNECT_FAILED;
     }
 
@@ -2345,7 +2345,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         setDirtyBlockIndex.insert(pindex);
     }
 
-    //Record z__DSW__ serials
+    //Record zOWO serials
     if (pwalletMain) {
         std::set<uint256> setAddedTx;
         for (const std::pair<libzerocoin::CoinSpend, uint256>& pSpend : vSpends) {
@@ -2390,13 +2390,13 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     // add this block to the view's block chain
     view.SetBestBlock(pindex->GetBlockHash());
 
-    // Update z__DSW__ money supply map
+    // Update zOWO money supply map
     if (!UpdateZPIVSupplyConnect(block, pindex, fJustCheck)) {
-        return state.DoS(100, error("%s: Failed to calculate new z__DSW__ supply for block=%s height=%d", __func__,
+        return state.DoS(100, error("%s: Failed to calculate new zOWO supply for block=%s height=%d", __func__,
                                     block.GetHash().GetHex(), pindex->nHeight), REJECT_INVALID);
     }
 
-    // A one-time event where the z__DSW__ supply was off (due to serial duplication off-chain on main net)
+    // A one-time event where the zOWO supply was off (due to serial duplication off-chain on main net)
     if (Params().NetworkID() == CBaseChainParams::MAIN && pindex->nHeight == consensus.height_last_ZC_WrappedSerials + 1
             && GetZerocoinSupply() != consensus.ZC_WrappedSerialsSupply + GetWrapppedSerialInflationAmount()) {
         RecalculatePIVSupply(consensus.vUpgrades[Consensus::UPGRADE_ZC].nActivationHeight, false);
@@ -2411,7 +2411,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         nMoneySupply -= nLocked;
     }
 
-    // Update __DSW__ money supply
+    // Update OWO money supply
     nMoneySupply += (nValueOut - nValueIn);
 
     int64_t nTime3 = GetTimeMicros();
@@ -3393,7 +3393,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
             return state.Invalid(false, state.GetRejectCode(), state.GetRejectReason(),
                                              strprintf("Transaction check failed (tx hash %s) %s", tx.GetHash().ToString(), state.GetDebugMessage()));
 
-        // double check that there are no double spent z__DSW__ spends in this block
+        // double check that there are no double spent zOWO spends in this block
         if (tx.HasZerocoinSpendInputs()) {
             for (const CTxIn& txIn : tx.vin) {
                 bool isPublicSpend = txIn.IsZerocoinPublicSpend();
@@ -3415,7 +3415,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                         spend = TxInToZerocoinSpend(txIn);
                     }
                     if (std::count(vBlockSerials.begin(), vBlockSerials.end(), spend.getCoinSerialNumber()))
-                        return state.DoS(100, error("%s : Double spending of z__DSW__ serial %s in block\n Block: %s",
+                        return state.DoS(100, error("%s : Double spending of zOWO serial %s in block\n Block: %s",
                                                     __func__, spend.getCoinSerialNumber().GetHex(), block.ToString()));
                     vBlockSerials.emplace_back(spend.getCoinSerialNumber());
                 }
@@ -3839,7 +3839,7 @@ bool AcceptBlock(const CBlock& block, CValidationState& state, CBlockIndex** ppi
             // Split height
             splitHeight = prev->nHeight;
 
-            // Now that this loop if completed. Check if we have z__DSW__ inputs.
+            // Now that this loop if completed. Check if we have zOWO inputs.
             if(hasZPIVInputs) {
                 for (const CTxIn& zPivInput : zPIVInputs) {
                     libzerocoin::CoinSpend spend = TxInToZerocoinSpend(zPivInput);
@@ -3862,7 +3862,7 @@ bool AcceptBlock(const CBlock& block, CValidationState& state, CBlockIndex** ppi
 
                     if (!ContextualCheckZerocoinSpendNoSerialCheck(stakeTxIn, &spend, pindex->nHeight, UINT256_ZERO))
                         return state.DoS(100,error("%s: forked chain ContextualCheckZerocoinSpend failed for tx %s", __func__,
-                                                   stakeTxIn.GetHash().GetHex()), REJECT_INVALID, "bad-txns-invalid-z__DSW__");
+                                                   stakeTxIn.GetHash().GetHex()), REJECT_INVALID, "bad-txns-invalid-zOWO");
 
                 }
             }
@@ -3886,7 +3886,7 @@ bool AcceptBlock(const CBlock& block, CValidationState& state, CBlockIndex** ppi
                         libzerocoin::CoinSpend spend = TxInToZerocoinSpend(zPivInput);
                         if (!ContextualCheckZerocoinSpend(stakeTxIn, &spend, pindex->nHeight, UINT256_ZERO))
                             return state.DoS(100,error("%s: main chain ContextualCheckZerocoinSpend failed for tx %s", __func__,
-                                    stakeTxIn.GetHash().GetHex()), REJECT_INVALID, "bad-txns-invalid-z__DSW__");
+                                    stakeTxIn.GetHash().GetHex()), REJECT_INVALID, "bad-txns-invalid-zOWO");
                 }
 
         }
