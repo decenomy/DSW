@@ -52,7 +52,7 @@ QString dateTimeStr(const QDateTime& datetime);
 QString dateTimeStrWithSeconds(const QDateTime& date);
 QString dateTimeStr(qint64 nTime);
 
-// Render __DSW__ addresses in monospace font
+// Render OWO addresses in monospace font
 QFont bitcoinAddressFont();
 
 // Parse string into a CAmount value

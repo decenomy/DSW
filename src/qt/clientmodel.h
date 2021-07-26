@@ -40,7 +40,7 @@ enum NumConnections {
     CONNECTIONS_ALL = (CONNECTIONS_IN | CONNECTIONS_OUT),
 };
 
-/** Model for __DSW__ network client. */
+/** Model for OWO network client. */
 class ClientModel : public QObject
 {
     Q_OBJECT
