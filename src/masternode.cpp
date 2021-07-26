@@ -348,7 +348,7 @@ CAmount CMasternode::GetBlockValue(int nHeight)
     // Exceptions made to force a fork
     if (nHeight == 574010 || nHeight == 585330 || nHeight == 586594) return 801 * COIN;
 
-    if(nHeight > 1180000) return    800 * COIN;
+    if(nHeight > 1200000) return    800 * COIN;
     if(nHeight > 1000000) return    400 * COIN;
     if(nHeight >  950000) return    450 * COIN;
     if(nHeight >  900000) return    500 * COIN;
@@ -383,7 +383,7 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    if(nHeight > 1180000) return GetBlockValue(nHeight) * 65 / 100;
+    if(nHeight > 1200000) return GetBlockValue(nHeight) * 65 / 100;
 
     return GetBlockValue(nHeight) * 95 / 100;
 }
