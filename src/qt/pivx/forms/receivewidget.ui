@@ -78,7 +78,7 @@
             <item alignment="Qt::AlignTop">
              <widget class="QLabel" name="labelSubtitle1">
               <property name="text">
-               <string>Scan the QR code or copy the address to receive __DSW__</string>
+               <string>Scan the QR code or copy the address to receive OWO</string>
               </property>
              </widget>
             </item>
