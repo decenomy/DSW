@@ -238,10 +238,10 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0xc8;
-        pchMessageStart[1] = 0x7b;
-        pchMessageStart[2] = 0x86;
-        pchMessageStart[3] = 0x77;
+        pchMessageStart[0] = 0x08;
+        pchMessageStart[1] = 0x33;
+        pchMessageStart[2] = 0x20;
+        pchMessageStart[3] = 0x19;
         nDefaultPort = __PORT_MAINNET__;
 
         vSeeds.push_back(CDNSSeedData("seeder", "seeder.__decenomy.net__"));
@@ -254,13 +254,13 @@ public:
 	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.__decenomy.net__"));
 	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.__decenomy.net__"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 15); // 7
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 16); // 7
-        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 43);  // J
-        base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x02)(0x2D)(0x25)(0x73).convert_to_container<std::vector<unsigned char> >();
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 115); // o
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 112); // n
+        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 92);  // e
+        base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x02)(0x2D)(0x25)(0x33).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x02)(0x21)(0x31)(0x2B).convert_to_container<std::vector<unsigned char> >();
         // BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md
-        base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x1d)(0xfc).convert_to_container<std::vector<unsigned char> >();
+        base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x00)(0x77).convert_to_container<std::vector<unsigned char> >();
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
         //convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main)); // added
