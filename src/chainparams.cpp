@@ -244,9 +244,9 @@ public:
         pchMessageStart[3] = 0x19;
         nDefaultPort = __PORT_MAINNET__;
 
-        vSeeds.push_back(CDNSSeedData("seeder", "seeder.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed2", "seed2.__decenomy.net__"));
+        vSeeds.push_back(CDNSSeedData("seeder", "seed1.oneworldcoin.io"));
+	    vSeeds.push_back(CDNSSeedData("seed1", "149.28.146.108"));
+        vSeeds.push_back(CDNSSeedData("seed2", "89.46.67.187"));
         vSeeds.push_back(CDNSSeedData("seed3", "seed3.__decenomy.net__"));
         vSeeds.push_back(CDNSSeedData("seed4", "seed4.__decenomy.net__"));
 	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.__decenomy.net__"));
