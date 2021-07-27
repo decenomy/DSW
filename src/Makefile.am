@@ -67,15 +67,15 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += __decenomy__d
+  bin_PROGRAMS += oneworldd
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += __decenomy__-cli __decenomy__-tx
+  bin_PROGRAMS += oneworld-cli oneworld-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
-# __decenomy__ core #
+# oneworld core #
 BITCOIN_CORE_H = \
   activemasternode.h \
   addrdb.h \
@@ -227,7 +227,7 @@ obj/build.h: FORCE
 	  "$(abs_top_srcdir)"
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between __decenomy__d and __decenomy__-qt
+# server: shared between oneworldd and oneworld-qt
 libbitcoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libbitcoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_server_a_SOURCES = \
@@ -282,7 +282,7 @@ libbitcoin_zmq_a_SOURCES = \
   zmq/zmqpublishnotifier.cpp
 endif
 
-# wallet: shared between __decenomy__d and __decenomy__-qt, but only linked
+# wallet: shared between oneworldd and oneworld-qt, but only linked
 # when wallet enabled
 libbitcoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
@@ -408,7 +408,7 @@ if USE_NUM_OPENSSL
   libzerocoin_libbitcoin_zerocoin_a_SOURCES += libzerocoin/bignum_openssl.cpp
 endif
 
-# common: shared between __decenomy__d, and __decenomy__-qt and non-server tools
+# common: shared between oneworldd, and oneworld-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_common_a_SOURCES = \
@@ -483,7 +483,7 @@ if GLIBC_BACK_COMPAT
 AM_LDFLAGS += $(COMPAT_LDFLAGS)
 endif
 
-# cli: shared between __decenomy__-cli and __decenomy__-qt
+# cli: shared between oneworld-cli and oneworld-qt
 libbitcoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_cli_a_SOURCES = \
@@ -493,16 +493,16 @@ libbitcoin_cli_a_SOURCES = \
 nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# __decenomy__d binary #
-__decenomy__d_SOURCES = pivxd.cpp
-__decenomy__d_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-__decenomy__d_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-__decenomy__d_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# oneworldd binary #
+oneworldd_SOURCES = pivxd.cpp
+oneworldd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+oneworldd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+oneworldd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-__decenomy__d_SOURCES += pivxd-res.rc
+oneworldd_SOURCES += pivxd-res.rc
 endif
-__decenomy__d_LDADD = \
+oneworldd_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
   $(LIBBITCOIN_COMMON) \
@@ -516,38 +516,38 @@ __decenomy__d_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-__decenomy__d_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+oneworldd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
-# __decenomy__-cli binary #
-__decenomy___cli_SOURCES = pivx-cli.cpp
-__decenomy___cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-__decenomy___cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-__decenomy___cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# oneworld-cli binary #
+oneworld_cli_SOURCES = pivx-cli.cpp
+oneworld_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+oneworld_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+oneworld_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-__decenomy___cli_SOURCES += pivx-cli-res.rc
+oneworld_cli_SOURCES += pivx-cli-res.rc
 endif
 
-__decenomy___cli_LDADD = \
+oneworld_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO)
 
-__decenomy___cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+oneworld_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
-# __decenomy__-tx binary #
-__decenomy___tx_SOURCES = pivx-tx.cpp
-__decenomy___tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-__decenomy___tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-__decenomy___tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# oneworld-tx binary #
+oneworld_tx_SOURCES = pivx-tx.cpp
+oneworld_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+oneworld_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+oneworld_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-__decenomy___tx_SOURCES += pivx-tx-res.rc
+oneworld_tx_SOURCES += pivx-tx-res.rc
 endif
 
-__decenomy___tx_LDADD = \
+oneworld_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_ZEROCOIN) \
@@ -555,7 +555,7 @@ __decenomy___tx_LDADD = \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-__decenomy___tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+oneworld_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
 # bitcoinconsensus library #

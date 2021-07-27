@@ -59,7 +59,7 @@ the pull request affects. Valid areas as:
 
   - *Consensus* for changes to consensus critical code
   - *Docs* for changes to the documentation
-  - *Qt* for changes to __decenomy__-qt
+  - *Qt* for changes to oneworld-qt
   - *Minting* for changes to the minting code
   - *Net* or *P2P* for changes to the peer-to-peer network code
   - *RPC/REST* for changes to the RPC or REST APIs
