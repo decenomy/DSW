@@ -1246,7 +1246,7 @@ Please wait few more minutes (masternode collaterals require %1 confirmations).<
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the __decenomy__.conf file
+You will only have to paste the data in the oneworld.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1254,7 +1254,7 @@ this controller wallet (select the Masternode in the list and press "start").
 到剪贴板的远程服务器上。
 
 
-您只需将数据粘贴到__decenomy__.conf文件中
+您只需将数据粘贴到oneworld.conf文件中
 ，然后使用主节点启动它
 这个控制器钱包(在列表中选择主节点并按“开始”)。
 </translation>
@@ -1394,8 +1394,8 @@ Are you sure?</source>
         <translation>解析的数据太大</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "__decenomy__" prefix</source>
-        <translation>无效的URI，不是以“ __decenomy__”前缀开头</translation>
+        <source>Invalid URI, not starting with "oneworld" prefix</source>
+        <translation>无效的URI，不是以“ oneworld”前缀开头</translation>
     </message>
 </context>
 <context>
@@ -1784,8 +1784,8 @@ Address: %4
         <translation>无效支付地址%1</translation>
     </message>
     <message>
-        <source>Cannot start __decenomy__: click-to-pay handler</source>
-        <translation>无法启动__decenomy__:点击支付处理程序</translation>
+        <source>Cannot start oneworld: click-to-pay handler</source>
+        <translation>无法启动oneworld:点击支付处理程序</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid OWO address or malformed URI parameters.</source>
@@ -3533,8 +3533,8 @@ OWO使用了一个股权证明(PoS)一致系统算法，
         <translation>无法打开备份文件夹</translation>
     </message>
     <message>
-        <source>Unable to open __decenomy__.conf with default application</source>
-        <translation>无法使用默认应用程序打开__decenomy__.conf</translation>
+        <source>Unable to open oneworld.conf with default application</source>
+        <translation>无法使用默认应用程序打开oneworld.conf</translation>
     </message>
     <message>
         <source>In:</source>
