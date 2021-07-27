@@ -5,10 +5,10 @@
 """Test bitcoind with different proxy configuration.
 
 Test plan:
-- Start __decenomy__d's with different proxy configurations
+- Start oneworldd's with different proxy configurations
 - Use addnode to initiate connections
 - Verify that proxies are connected to, and the right connection command is given
-- Proxy configurations to test on __decenomy__d side:
+- Proxy configurations to test on oneworldd side:
     - `-proxy` (proxy everything)
     - `-onion` (proxy just onions)
     - `-proxyrandomize` Circuit randomization
@@ -18,8 +18,8 @@ Test plan:
     - proxy on IPv6
 
 - Create various proxies (as threads)
-- Create __decenomy__ds that connect to them
-- Manipulate the __decenomy__ds using addnode (onetry) an observe effects
+- Create oneworldds that connect to them
+- Manipulate the oneworldds using addnode (onetry) an observe effects
 
 addnode connect to IPv4
 addnode connect to IPv6
