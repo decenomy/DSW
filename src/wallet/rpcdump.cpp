@@ -79,12 +79,12 @@ UniValue importprivkey(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 4)
         throw std::runtime_error(
-            "importprivkey \"__decenomy__privkey\" ( \"label\" rescan fStakingAddress )\n"
+            "importprivkey \"oneworldprivkey\" ( \"label\" rescan fStakingAddress )\n"
             "\nAdds a private key (as returned by dumpprivkey) to your wallet.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"__decenomy__privkey\"      (string, required) The private key (see dumpprivkey)\n"
+            "1. \"oneworldprivkey\"      (string, required) The private key (see dumpprivkey)\n"
             "2. \"label\"            (string, optional, default=\"\") An optional label\n"
             "3. rescan               (boolean, optional, default=true) Rescan the wallet for transactions\n"
 
@@ -376,13 +376,13 @@ UniValue dumpprivkey(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 1)
         throw std::runtime_error(
-            "dumpprivkey \"__decenomy__address\"\n"
-            "\nReveals the private key corresponding to '__decenomy__address'.\n"
+            "dumpprivkey \"oneworldaddress\"\n"
+            "\nReveals the private key corresponding to 'oneworldaddress'.\n"
             "Then the importprivkey can be used with this output\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"__decenomy__address\"   (string, required) The __decenomy__ address for the private key\n"
+            "1. \"oneworldaddress\"   (string, required) The oneworld address for the private key\n"
 
             "\nResult:\n"
             "\"key\"                (string) The private key\n"
@@ -536,12 +536,12 @@ UniValue bip38encrypt(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 2)
         throw std::runtime_error(
-            "bip38encrypt \"__decenomy__address\" \"passphrase\"\n"
-            "\nEncrypts a private key corresponding to '__decenomy__address'.\n" +
+            "bip38encrypt \"oneworldaddress\" \"passphrase\"\n"
+            "\nEncrypts a private key corresponding to 'oneworldaddress'.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"__decenomy__address\"   (string, required) The __decenomy__ address for the private key (you must hold the key already)\n"
+            "1. \"oneworldaddress\"   (string, required) The oneworld address for the private key (you must hold the key already)\n"
             "2. \"passphrase\"   (string, required) The passphrase you want the private key to be encrypted with - Valid special chars: !#$%&'()*+,-./:;<=>?`{|}~ \n"
 
             "\nResult:\n"
@@ -582,7 +582,7 @@ UniValue bip38decrypt(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 2)
         throw std::runtime_error(
-            "bip38decrypt \"__decenomy__address\" \"passphrase\"\n"
+            "bip38decrypt \"oneworldaddress\" \"passphrase\"\n"
             "\nDecrypts and then imports password protected private key.\n" +
             HelpRequiringPassphrase() + "\n"
 
