@@ -75,9 +75,9 @@ static bool AppInitRPC(int argc, char* argv[])
         std::string strUsage = _("OneWorld RPC client version") + " " + FormatFullVersion() + "\n";
         if (!mapArgs.count("-version")) {
             strUsage += "\n" + _("Usage:") + "\n" +
-                        "  __decenomy__-cli [options] <command> [params]  " + _("Send command to OneWorld") + "\n" +
-                        "  __decenomy__-cli [options] help                " + _("List commands") + "\n" +
-                        "  __decenomy__-cli [options] help <command>      " + _("Get help for a command") + "\n";
+                        "  oneworld-cli [options] <command> [params]  " + _("Send command to OneWorld") + "\n" +
+                        "  oneworld-cli [options] help                " + _("List commands") + "\n" +
+                        "  oneworld-cli [options] help <command>      " + _("Get help for a command") + "\n";
 
             strUsage += "\n" + HelpMessageCli();
         }
