@@ -15,7 +15,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"io.__decenomy__.OneWorld-Qt";
+        return @"io.oneworld.OneWorld-Qt";
     } else {
         return [self __bundleIdentifier];
     }

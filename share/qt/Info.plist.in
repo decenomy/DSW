@@ -38,7 +38,7 @@
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>io.__decenomy__.OneWorld-Qt</string>
+  <string>io.oneworld.OneWorld-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>

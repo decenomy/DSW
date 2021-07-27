@@ -19,10 +19,10 @@ BEGIN
             VALUE "CompanyName",        "OneWorld"
             VALUE "FileDescription",    "OneWorld-cli (OSS RPC client for OneWorld)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "__decenomy__-cli"
+            VALUE "InternalName",       "oneworld-cli"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "__decenomy__-cli.exe"
+            VALUE "OriginalFilename",   "oneworld-cli.exe"
             VALUE "ProductName",        "OneWorld-cli"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
