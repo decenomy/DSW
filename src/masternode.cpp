@@ -320,14 +320,7 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
-    if (nHeight <= 100000) {
-        return 15000 * COIN;
-    } else if (nHeight <= 200000 && nHeight > 100000) {
-        return 17500 * COIN;
-    } else if (nHeight > 200000) {
-        return 20000 * COIN;
-    }
-    return 0;
+    return 500000;
 }
 
 CAmount CMasternode::GetBlockValue(int nHeight)
@@ -340,19 +333,11 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
     CAmount nSubsidy;
 
-    if (nHeight == 1) {
-        nSubsidy = 225000000 * COIN; // OWO coin supply (225M)
-    } else if (nHeight <= 100000) {
-        nSubsidy = 100 * COIN;
-    } else if (nHeight > 100000 && nHeight <= 200000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 200000 && nHeight <= 300000) {
-        nSubsidy = 150 * COIN;
-    } else if (nHeight > 300000 && nHeight <= 400000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 400000) {
-        nSubsidy = 100 * COIN;
-    }
+    if(nHeight > 524000) return     68.75 * COIN;
+    if(nHeight > 264000) return        80 * COIN;
+    if(nHeight >   4500) return       100 * COIN;
+    if(nHeight >      1) return         1 * COIN;
+    if(nHeight >      0) return 225000000 * COIN;
 
     if(nMoneySupply + nSubsidy > maxMoneyOut) {
         return nMoneySupply + nSubsidy - maxMoneyOut;
@@ -365,7 +350,7 @@ CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
     if(nHeight <= 5000) return 0;
 
-    return CMasternode::GetBlockValue(nHeight) * 95 / 100;
+    return CMasternode::GetBlockValue(nHeight) * 80 / 100;
 }
 
 void CMasternode::InitMasternodeCollateralList() {
