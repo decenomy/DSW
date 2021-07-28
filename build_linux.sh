@@ -11,11 +11,11 @@ fi
 	sudo apt install git zip unzip build-essential libtool bsdmainutils autotools-dev autoconf pkg-config automake python3 libqt5svg5-dev -y
 
 # Clone code from official Github repository
-	rm -rf DSW
-	git clone https://github.com/decenomy/DSW.git
+	rm -rf Aezora
+	git clone https://github.com/Aezora/Aezora.git
 
 # Entering directory
-	cd DSW
+	cd Aezora
 
 # Compile dependencies
 	cd depends
@@ -29,6 +29,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/aezorad DSW/src/aezora-cli DSW/src/aezora-tx DSW/src/qt/aezora-qt .
+	cp Aezora/src/aezorad Aezora/src/aezora-cli Aezora/src/aezora-tx Aezora/src/qt/aezora-qt .
 	zip AZR-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip aezorad aezora-cli aezora-tx aezora-qt
 	rm -f aezorad aezora-cli aezora-tx aezora-qt

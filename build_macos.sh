@@ -7,11 +7,11 @@ then
 fi
 
 # Clone code from official Github repository
-    rm -rf DSW
-    git clone https://github.com/decenomy/DSW.git
+    rm -rf Aezora
+    git clone https://github.com/Aezora/Aezora.git
 
 # Entering directory
-    cd DSW
+    cd Aezora
 
 # Compile dependencies
     cd depends
@@ -31,6 +31,6 @@ fi
     cd ..
 
 # Create zip file of binaries
-    cp DSW/src/aezorad DSW/src/aezora-cli DSW/src/aezora-tx DSW/src/qt/aezora-qt DSW/Aezora-Core.dmg .
+    cp Aezora/src/aezorad Aezora/src/aezora-cli Aezora/src/aezora-tx Aezora/src/qt/aezora-qt Aezora/Aezora-Core.dmg .
     zip AZR-MacOS.zip aezorad aezora-cli aezora-tx aezora-qt Aezora-Core.dmg
     rm -f aezorad aezora-cli aezora-tx aezora-qt Aezora-Core.dmg

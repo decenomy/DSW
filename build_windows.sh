@@ -12,11 +12,11 @@ fi
 	echo "1" | sudo update-alternatives --config x86_64-w64-mingw32-g++
 
 # Clone code from official Github repository
-	rm -rf DSW
-	git clone https://github.com/decenomy/DSW.git
+	rm -rf Aezora
+	git clone https://github.com/Aezora/Aezora.git
 
 # Entering directory
-	cd DSW
+	cd Aezora
 
 # Compile dependencies
 	cd depends
@@ -30,6 +30,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/aezorad.exe DSW/src/aezora-cli.exe DSW/src/aezora-tx.exe DSW/src/qt/aezora-qt.exe .
+	cp Aezora/src/aezorad.exe Aezora/src/aezora-cli.exe Aezora/src/aezora-tx.exe Aezora/src/qt/aezora-qt.exe .
 	zip AZR-Windows.zip aezorad.exe aezora-cli.exe aezora-tx.exe aezora-qt.exe
 	rm -f aezorad.exe aezora-cli.exe aezora-tx.exe aezora-qt.exe
