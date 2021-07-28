@@ -222,7 +222,7 @@ public:
         consensus.nFutureTimeDriftPoW = 7200;
         consensus.nFutureTimeDriftPoS = 180;
         consensus.nMasternodeCountDrift = 20;       // num of MN we allow the see-saw payments to be off by
-        consensus.nMaxMoneyOut = 1000000000 * COIN; // Around 84604500 coins will be produced until block 750k. Another ~915.4M coin for around 17.4 more years until year ~2040. Limit can be increased afterwards if needed. 
+        consensus.nMaxMoneyOut = 500000000 * COIN;
         consensus.nPoolMaxTransactions = 3;
         consensus.nProposalEstablishmentTime = 60 * 60 * 24;    // must be at least a day old to make it into a budget
         consensus.nStakeMinAge = 60 * 60; // 1h
@@ -232,6 +232,9 @@ public:
         consensus.nTargetTimespanV2 = 30 * 60;
         consensus.nTargetSpacing = 1 * 60;
         consensus.nTimeSlotLength = 15;
+        consensus.nAZZRCoinSupplyMintHeight = 800000;
+        consensus.nAZZRCoinSupply = 38000000 * COIN;
+        consensus.sAZZRCoinSupplyMintAddress = "AJ9U4dLkwuxw4bLayZN6BMrVyHRsKfXJ55";
 
         // spork keys
         consensus.strSporkPubKey = "023a979aefef58890e1cae7934c5bed09a8dc8f70da29d884d84bf083eaac6d566";
@@ -298,14 +301,14 @@ public:
         nDefaultPort = 14725;
 
         vSeeds.push_back(CDNSSeedData("seeder", "seeder.aezora.com"));
-	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.aezora.com"));
-        vSeeds.push_back(CDNSSeedData("seed2", "seed2.aezora.com"));
-        vSeeds.push_back(CDNSSeedData("seed3", "seed3.aezora.com"));
-        vSeeds.push_back(CDNSSeedData("seed4", "seed4.aezora.com"));
-	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.aezora.com"));
-	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.aezora.com"));
-	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.aezora.com"));
-	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.aezora.com"));
+	    vSeeds.push_back(CDNSSeedData("seed1",  "seed1.aezora.com"));
+        vSeeds.push_back(CDNSSeedData("seed2",  "seed2.aezora.com"));
+        vSeeds.push_back(CDNSSeedData("seed3",  "seed3.aezora.com"));
+        vSeeds.push_back(CDNSSeedData("seed4",  "seed4.aezora.com"));
+	    vSeeds.push_back(CDNSSeedData("seed5",  "seed5.aezora.com"));
+	    vSeeds.push_back(CDNSSeedData("seed6",  "seed6.aezora.com"));
+	    vSeeds.push_back(CDNSSeedData("seed7",  "seed7.aezora.com"));
+	    vSeeds.push_back(CDNSSeedData("seed8",  "seed8.aezora.com"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 23);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 24);

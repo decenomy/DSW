@@ -320,71 +320,78 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
-    if (nHeight > 800000)   return  200000 * COIN;
-    if (nHeight > 500000)   return  300000 * COIN;
-    if (nHeight > 400000)   return  250000 * COIN;
-    if (nHeight > 350000)   return  200000 * COIN;
-    if (nHeight > 300000)   return  150000 * COIN;
-    if (nHeight > 250000)   return  100000 * COIN;
-    if (nHeight > 200000)   return   40000 * COIN;
-    if (nHeight > 180000)   return   30000 * COIN;
-    if (nHeight > 160000)   return   25000 * COIN;
-    if (nHeight > 140000)   return   20000 * COIN;
-    if (nHeight > 130000)   return   17500 * COIN;
-    if (nHeight > 120000)   return   15000 * COIN;
-    if (nHeight > 110000)   return   12500 * COIN;
-    if (nHeight > 100000)   return   10000 * COIN;
-    if (nHeight > 55000)    return    1000 * COIN;
-    if (nHeight > 35000)    return     700 * COIN;
-    if (nHeight > 25000)    return     500 * COIN;
-    if (nHeight > 15000)    return     350 * COIN;
-    if (nHeight > 5000)     return     250 * COIN;
-    if (nHeight > 250)      return     100 * COIN;
-    if (nHeight > 0)        return      10 * COIN;
+    if (nHeight > 800000) return 200000 * COIN;
+    if (nHeight > 500000) return 300000 * COIN;
+    if (nHeight > 400000) return 250000 * COIN;
+    if (nHeight > 350000) return 200000 * COIN;
+    if (nHeight > 300000) return 150000 * COIN;
+    if (nHeight > 250000) return 100000 * COIN;
+    if (nHeight > 200000) return  40000 * COIN;
+    if (nHeight > 180000) return  30000 * COIN;
+    if (nHeight > 160000) return  25000 * COIN;
+    if (nHeight > 140000) return  20000 * COIN;
+    if (nHeight > 130000) return  17500 * COIN;
+    if (nHeight > 120000) return  15000 * COIN;
+    if (nHeight > 110000) return  12500 * COIN;
+    if (nHeight > 100000) return  10000 * COIN;
+    if (nHeight >  55000) return   1000 * COIN;
+    if (nHeight >  35000) return    700 * COIN;
+    if (nHeight >  25000) return    500 * COIN;
+    if (nHeight >  15000) return    350 * COIN;
+    if (nHeight >   5000) return    250 * COIN;
+    if (nHeight >    250) return    100 * COIN;
+    if (nHeight >      0) return     10 * COIN;
     
     return 0;
 }
 
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
-    // AZZR coin supply for distribution
-    if (nHeight == 800001) return  38000000 * COIN + GetBlockValue(nHeight + 1);
+    const Consensus::Params& consensus = Params().GetConsensus();
 
-    if (nHeight > 800000)  return    800.00 * COIN;
-    if (nHeight > 750000)  return    100.00 * COIN;
-    if (nHeight > 700000)  return    110.00 * COIN;
-    if (nHeight > 650000)  return    120.00 * COIN;
-    if (nHeight > 600000)  return    130.00 * COIN;
-    if (nHeight > 550000)  return    140.00 * COIN;
-    if (nHeight > 500000)  return    150.00 * COIN;
-    if (nHeight > 450000)  return    140.00 * COIN;
-    if (nHeight > 400000)  return    120.00 * COIN;
-    if (nHeight > 350000)  return    130.00 * COIN;
-    if (nHeight > 300000)  return    140.00 * COIN;
-    if (nHeight > 200000)  return    150.00 * COIN;
-    if (nHeight > 180000)  return    135.00 * COIN;
-    if (nHeight > 160000)  return    120.00 * COIN;
-    if (nHeight > 140000)  return    105.00 * COIN;
-    if (nHeight > 130000)  return     90.00 * COIN;
-    if (nHeight > 120000)  return     75.00 * COIN;
-    if (nHeight > 110000)  return     60.00 * COIN;
-    if (nHeight > 100000)  return     45.00 * COIN;
-    if (nHeight > 55000)   return     10.00 * COIN;
-    if (nHeight > 35000)   return      7.00 * COIN;
-    if (nHeight > 25000)   return      5.00 * COIN;
-    if (nHeight > 15000)   return      3.00 * COIN;
-    if (nHeight > 5000)    return      2.50 * COIN;
-    if (nHeight > 250)     return      2.00 * COIN;
-    if (nHeight > 1)       return      1.00 * COIN;
-    if (nHeight > 0)       return 250000.00 * COIN;
+    // AZZR coin supply for distribution
+    if (nHeight == consensus.nAZZRCoinSupplyMintHeight) return consensus.nAZZRCoinSupply + GetBlockValue(nHeight + 1);
+
+    if (nHeight > 1100000) return    800.00 * COIN;
+    if (nHeight > 1000000) return    600.00 * COIN;
+    if (nHeight >  900000) return    400.00 * COIN;
+    if (nHeight >  800000) return    200.00 * COIN;
+    if (nHeight >  750000) return    100.00 * COIN;
+    if (nHeight >  700000) return    110.00 * COIN;
+    if (nHeight >  650000) return    120.00 * COIN;
+    if (nHeight >  600000) return    130.00 * COIN;
+    if (nHeight >  550000) return    140.00 * COIN;
+    if (nHeight >  500000) return    150.00 * COIN;
+    if (nHeight >  450000) return    140.00 * COIN;
+    if (nHeight >  400000) return    120.00 * COIN;
+    if (nHeight >  350000) return    130.00 * COIN;
+    if (nHeight >  300000) return    140.00 * COIN;
+    if (nHeight >  200000) return    150.00 * COIN;
+    if (nHeight >  180000) return    135.00 * COIN;
+    if (nHeight >  160000) return    120.00 * COIN;
+    if (nHeight >  140000) return    105.00 * COIN;
+    if (nHeight >  130000) return     90.00 * COIN;
+    if (nHeight >  120000) return     75.00 * COIN;
+    if (nHeight >  110000) return     60.00 * COIN;
+    if (nHeight >  100000) return     45.00 * COIN;
+    if (nHeight >   55000) return     10.00 * COIN;
+    if (nHeight >   35000) return      7.00 * COIN;
+    if (nHeight >   25000) return      5.00 * COIN;
+    if (nHeight >   15000) return      3.00 * COIN;
+    if (nHeight >    5000) return      2.50 * COIN;
+    if (nHeight >     250) return      2.00 * COIN;
+    if (nHeight >       1) return      1.00 * COIN;
+    if (nHeight >       0) return 250000.00 * COIN;
 
     return 50 * COIN; // Genesis
 }
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
+    const Consensus::Params& consensus = Params().GetConsensus();
+
     // AZZR coin supply for distribution
-    if (nHeight == 800001) return GetMasternodePayment(nHeight + 1);
+    if (nHeight == consensus.nAZZRCoinSupplyMintHeight) return GetMasternodePayment(nHeight + 1);
 
     if (nHeight > 800000) return GetBlockValue(nHeight) * 65 / 100;
     if (nHeight > 450000) return GetBlockValue(nHeight) - (10 * COIN);

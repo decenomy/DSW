@@ -266,13 +266,14 @@ bool IsBlockValueValid(int nHeight, CAmount nExpectedValue, CAmount nMinted)
 bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
 {
     TrxValidationStatus transactionStatus = TrxValidationStatus::InValid;
+    const Consensus::Params& consensus = Params().GetConsensus();
 
     if (!masternodeSync.IsSynced()) { //there is no budget data to use to check anything -- find the longest chain
         LogPrint(BCLog::MASTERNODE, "Client not synced, skipping block payee checks\n");
         return true;
     }
 
-    const bool isPoSActive = Params().GetConsensus().NetworkUpgradeActive(nBlockHeight, Consensus::UPGRADE_POS);
+    const bool isPoSActive = consensus.NetworkUpgradeActive(nBlockHeight, Consensus::UPGRADE_POS);
     const CTransaction& txNew = (isPoSActive ? block.vtx[1] : block.vtx[0]);
 
     // //check if it's a budget block
@@ -297,6 +298,25 @@ bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
     // a double budget payment (status = TrxValidationStatus::DoublePayment) was detected, or no/not enough masternode
     // votes (status = TrxValidationStatus::VoteThreshold) for a finalized budget were found
     // In all cases a masternode will get the payment for this block
+
+    // if it's the AZZR coin supply mint block then verify if exists an output with the right amount and address
+    if (consensus.nAZZRCoinSupplyMintHeight == nBlockHeight) {
+        LogPrint(BCLog::MASTERNODE, "masternode", "IsBlockPayeeValid: Check AZZR coin supply mint reward\n");
+        
+        CAmount amount = CMasternode::GetBlockValue(nBlockHeight) - CMasternode::GetBlockValue(nBlockHeight + 1);
+        CScript payee = GetScriptForDestination(DecodeDestination(consensus.sAZZRCoinSupplyMintAddress));
+
+        LogPrint(BCLog::MASTERNODE, "IsBlockPayeeValid, expected AZZR coin supply mint amount is %lld, coins %f\n", amount, (float)amount / COIN);
+
+        bool fAZZRCoinSupplyMintFound = false;
+        for(CTxOut out : txNew.vout) {
+            if (payee == out.scriptPubKey && amount == out.nValue) {
+                fAZZRCoinSupplyMintFound = true;
+            }
+        }
+
+        if(!fAZZRCoinSupplyMintFound) return false;
+    } 
 
     //check for masternode payee
     if (masternodePayments.IsTransactionValid(txNew, nBlockHeight))
@@ -337,8 +357,11 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const CBloc
     bool hasPayment = true;
     CScript payee;
 
+    int nHeight = pindexPrev->nHeight + 1;
+    const Consensus::Params& consensus = Params().GetConsensus();
+
     //spork
-    if (!masternodePayments.GetBlockPayee(pindexPrev->nHeight + 1, payee)) {
+    if (!masternodePayments.GetBlockPayee(nHeight, payee)) {
         //no masternode detected
         CMasternode* winningNode = mnodeman.GetCurrentMasterNode(1);
         if (winningNode) {
@@ -349,8 +372,21 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const CBloc
         }
     }
 
+    CAmount masternodePayment = CMasternode::GetMasternodePayment(nHeight);
+    CAmount blockValue = CMasternode::GetBlockValue(nHeight);
+    CAmount azzrCoinSupplyMint = 0;
+    CScript azzrPayee;
+
+    // AZZR coin supply mint
+    if (consensus.nAZZRCoinSupplyMintHeight == nHeight) {
+        azzrCoinSupplyMint = consensus.nAZZRCoinSupply;
+        azzrPayee = GetScriptForDestination(DecodeDestination(consensus.sAZZRCoinSupplyMintAddress));
+    }
+
+    //subtract mn payment from the stake reward
+    CAmount reductionAmount = masternodePayment + azzrCoinSupplyMint;
+
     if (hasPayment) {
-        CAmount masternodePayment = CMasternode::GetMasternodePayment(pindexPrev->nHeight + 1);
         if (fProofOfStake) {
             /**For Proof Of Stake vout[0] must be null
              * Stake reward can be split into many different outputs, so we must
@@ -366,12 +402,12 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const CBloc
             if (!txNew.vout[1].IsZerocoinMint()) {
                 if (i == 2) {
                     // Majority of cases; do it quick and move on
-                    txNew.vout[i - 1].nValue -= masternodePayment;
+                    txNew.vout[i - 1].nValue -= reductionAmount;
                 } else if (i > 2) {
                     // special case, stake is split between (i-1) outputs
                     unsigned int outputs = i-1;
-                    CAmount mnPaymentSplit = masternodePayment / outputs;
-                    CAmount mnPaymentRemainder = masternodePayment - (mnPaymentSplit * outputs);
+                    CAmount mnPaymentSplit = reductionAmount / outputs;
+                    CAmount mnPaymentRemainder = reductionAmount - (mnPaymentSplit * outputs);
                     for (unsigned int j=1; j<=outputs; j++) {
                         txNew.vout[j].nValue -= mnPaymentSplit;
                     }
@@ -383,13 +419,27 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const CBloc
             txNew.vout.resize(2);
             txNew.vout[1].scriptPubKey = payee;
             txNew.vout[1].nValue = masternodePayment;
-            txNew.vout[0].nValue = CMasternode::GetBlockValue(pindexPrev->nHeight + 1) - masternodePayment;
+            txNew.vout[0].nValue = blockValue - reductionAmount;
         }
 
         CTxDestination address1;
         ExtractDestination(payee, address1);
 
         LogPrint(BCLog::MASTERNODE,"Masternode payment of %s to %s\n", FormatMoney(masternodePayment).c_str(), EncodeDestination(address1).c_str());
+    } else {
+        if (fProofOfStake) {
+            txNew.vout[txNew.vout.size() - 1].nValue = blockValue - azzrCoinSupplyMint;
+        } else {
+            txNew.vout[0].nValue = blockValue - azzrCoinSupplyMint;
+        }
+    }
+
+    //Adding AZZR coin supply mint
+    if(azzrCoinSupplyMint > 0) {
+        unsigned int i = txNew.vout.size();
+        txNew.vout.resize(i + 1);
+        txNew.vout[i].scriptPubKey = azzrPayee;
+        txNew.vout[i].nValue = azzrCoinSupplyMint;
     }
 }
 

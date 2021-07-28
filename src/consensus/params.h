@@ -109,6 +109,9 @@ struct Params {
     int64_t nTargetTimespanV2;
     int64_t nTargetSpacing;
     int nTimeSlotLength;
+    int nAZZRCoinSupplyMintHeight = -1;
+    CAmount nAZZRCoinSupply = 0;
+    std::string sAZZRCoinSupplyMintAddress;
 
     // spork keys
     std::string strSporkPubKey;
