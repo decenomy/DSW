@@ -383,6 +383,9 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
+    // AZZR coin supply for distribution
+    if (nHeight == 800001) return GetMasternodePayment(nHeight + 1);
+
     if (nHeight > 800000) return GetBlockValue(nHeight) * 65 / 100;
     if (nHeight > 450000) return GetBlockValue(nHeight) - (10 * COIN);
     if (nHeight >    250) return GetBlockValue(nHeight) * 90 / 100;
