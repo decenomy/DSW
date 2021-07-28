@@ -341,7 +341,7 @@ CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
     if (nHeight > 250)      return     100 * COIN;
     if (nHeight > 0)        return      10 * COIN;
     
-    return 1 * COIN;
+    return 0;
 }
 
 CAmount CMasternode::GetBlockValue(int nHeight)
@@ -369,17 +369,17 @@ CAmount CMasternode::GetBlockValue(int nHeight)
     if (nHeight > 25000)   return      5.00 * COIN;
     if (nHeight > 15000)   return      3.00 * COIN;
     if (nHeight > 5000)    return      2.50 * COIN;
-    if (nHeight > 250)     return      2.00 * COIN; // 250 = Params().GetConsensus().vUpgrades[Consensus::UPGRADE_POS].nActivationHeight - 1;
+    if (nHeight > 250)     return      2.00 * COIN;
     if (nHeight > 1)       return      1.00 * COIN;
     if (nHeight > 0)       return 250000.00 * COIN;
 
-    return 1 * COIN;
+    return 50 * COIN; // Genesis
 }
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
     if (nHeight > 450000) return GetBlockValue(nHeight) - (10 * COIN);
-    if (nHeight >    250) return GetBlockValue(nHeight) * 90 / 100; // 250 = Params().GetConsensus().vUpgrades[Consensus::UPGRADE_POS].nActivationHeight - 1;
+    if (nHeight >    250) return GetBlockValue(nHeight) * 90 / 100;
 
     return 0;
 }
