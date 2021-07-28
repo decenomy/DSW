@@ -427,6 +427,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const CBloc
 
         LogPrint(BCLog::MASTERNODE,"Masternode payment of %s to %s\n", FormatMoney(masternodePayment).c_str(), EncodeDestination(address1).c_str());
     } else {
+        // removes the AZZR coin supply mint if there is no masternode to pay
         if (fProofOfStake) {
             txNew.vout[txNew.vout.size() - 1].nValue = blockValue - azzrCoinSupplyMint;
         } else {
@@ -434,7 +435,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const CBloc
         }
     }
 
-    //Adding AZZR coin supply mint
+    // Adds AZZR coin supply mint
     if(azzrCoinSupplyMint > 0) {
         unsigned int i = txNew.vout.size();
         txNew.vout.resize(i + 1);
