@@ -383,7 +383,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const CBloc
         azzrPayee = GetScriptForDestination(DecodeDestination(consensus.sAZZRCoinSupplyMintAddress));
     }
 
-    //subtract mn payment from the stake reward
+    //subtract mn payment from the stake reward plus the AZZR coin supply mint 
     CAmount reductionAmount = masternodePayment + azzrCoinSupplyMint;
 
     if (hasPayment) {
