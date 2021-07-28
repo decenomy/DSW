@@ -30,5 +30,5 @@ fi
 
 # Create zip file of binaries
 	cp UCR/src/ucrd UCR/src/ucr-cli UCR/src/ucr-tx UCR/src/qt/ucr-qt .
-	zip __DSW__-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip ucrd ucr-cli ucr-tx ucr-qt
+	zip UCR-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip ucrd ucr-cli ucr-tx ucr-qt
 	rm -f ucrd ucr-cli ucr-tx ucr-qt

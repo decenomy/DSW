@@ -313,7 +313,7 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
                 return InvalidAmount;
             }
             total += subtotal;
-        } else { // User-entered __DSW__ address / amount:
+        } else { // User-entered UCR address / amount:
             if (!validateAddress(rcp.address)) {
                 return InvalidAddress;
             }

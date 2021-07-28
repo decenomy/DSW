@@ -1,10 +1,10 @@
 ![Example-Logo](https://avatars.githubusercontent.com/u/74193190?v=4)
 
-# __Decenomy__ Masternode Setup Guide
+# Ultraclear Masternode Setup Guide
 ***
 ## Required
-1) **__DSW__ collateral value at current block** ([consult the collateral table](../../README.md#rewards-breakdown))
-2) **Local Wallet https://github.com/decenomy/DSW/releases**
+1) **UCR collateral value at current block** ([consult the collateral table](../../README.md#rewards-breakdown))
+2) **Local Wallet https://github.com/ucrcoin/UCR/releases**
 3) **VPS with UBUNTU 18.04** (it is possible to work on other versions but it is not tested)
 4) **Putty https://www.putty.org/**
 5) **Text editor on your local pc to save data for copy/paste**
@@ -30,7 +30,7 @@ You will then receive your private key, save it in a txt to use it later.
 * Once logged in your vps, *copy/paste* each line one by one with *Enter*
 
 ```
-wget -q https://raw.githubusercontent.com/__GITHUB_ACCOUNT__/__GITHUB_REPOSITORY__/master/contrib/masternodesetup/masternodesetup.sh
+wget -q https://raw.githubusercontent.com/ucrcoin/UCR/master/contrib/masternodesetup/masternodesetup.sh
 ```
 
 ```
@@ -43,14 +43,14 @@ bash masternodesetup.sh
 
 * Last thing script will ask you is to provide Masternode Genkey. Copy the one you got previously (createmasternodekey) and press enter.
 
-Remember to do `__decenomy__-cli getblockcount` to check if VPS catching blocks till it synced with chain, if not follow this procedure:
+Remember to do `ucr-cli getblockcount` to check if VPS catching blocks till it synced with chain, if not follow this procedure:
 
-* Go to your wallet-qt and check peers list (tools - peers list) and select one ip from the list. With that ip do the follow command at VPS `__decenomy__-cli addnode "ip" onetry`
+* Go to your wallet-qt and check peers list (tools - peers list) and select one ip from the list. With that ip do the follow command at VPS `ucr-cli addnode "ip" onetry`
 
       Example:
-		  __decenomy__-cli addnode 45.32.144.158 onetry
+		  ucr-cli addnode 45.32.144.158 onetry
     
-* Check now if VPS already downloading blocks with the command `__decenomy__-cli getblockcount`, and if yes give it time now to catch last block number 
+* Check now if VPS already downloading blocks with the command `ucr-cli getblockcount`, and if yes give it time now to catch last block number 
 
 Do not close your terminal/ command prompt window at this point.
 
@@ -58,10 +58,10 @@ Do not close your terminal/ command prompt window at this point.
 
 * Open the Masternode Configuration file (tools – open masternode configuration file) and add a new line (without #) using this template (bold needs to be changed) in the final save it and close the editor
 
-**ALIAS VPS_IP**:__PORT_MAINNET__ **masternodeprivkey TXhash Output**
+**ALIAS VPS_IP**:32627 **masternodeprivkey TXhash Output**
 
 		Example:
-		MN1 125.67.32.10:__PORT_MAINNET__ w8723KqiiqtiLH6y2ktjfwzuSrNucGAbagpmTmCn1KnNEeQTJKf 12fce79c1a5623aa5b5830abff1a9feb6a682b75ee9fe22c647725a3gef42saa 0
+		MN1 125.67.32.10:32627 w8723KqiiqtiLH6y2ktjfwzuSrNucGAbagpmTmCn1KnNEeQTJKf 12fce79c1a5623aa5b5830abff1a9feb6a682b75ee9fe22c647725a3gef42saa 0
 
 * Close and Re-open Local Wallet, and at Masternode Tab you will find your MN with status MISSING
 
@@ -76,9 +76,9 @@ Do not close your terminal/ command prompt window at this point.
 ***Go back to Putty***
 
 ```
-__decenomy__-cli getmasternodestatus
+ucr-cli getmasternodestatus
 ```
 
 You need to get **"status" : 4** 
 
-## Congratulations your __Decenomy__ node it's running
+## Congratulations your Ultraclear node it's running
