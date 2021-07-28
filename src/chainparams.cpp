@@ -232,7 +232,7 @@ public:
         consensus.nTargetTimespanV2 = 30 * 60;
         consensus.nTargetSpacing = 1 * 60;
         consensus.nTimeSlotLength = 15;
-        consensus.nAZZRCoinSupplyMintHeight = 800000;
+        consensus.nAZZRCoinSupplyMintHeight = 800001;
         consensus.nAZZRCoinSupply = 38000000 * COIN;
         consensus.sAZZRCoinSupplyMintAddress = "AJ9U4dLkwuxw4bLayZN6BMrVyHRsKfXJ55";
 
