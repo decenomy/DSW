@@ -14,7 +14,7 @@
  * for both aezorad and aezora-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("AEZORA");
+const std::string CLIENT_NAME("Aezora Core");
 
 /**
  * Client version number
