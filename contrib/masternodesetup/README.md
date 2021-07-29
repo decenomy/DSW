@@ -1,10 +1,10 @@
-![Example-Logo](https://avatars.githubusercontent.com/u/74193190?v=4)
+![Example-Logo](https://avatars.githubusercontent.com/u/74295691?v=4)
 
 # Trittium Masternode Setup Guide
 ***
 ## Required
 1) **TRTT collateral value at current block** ([consult the collateral table](../../README.md#rewards-breakdown))
-2) **Local Wallet https://github.com/decenomy/DSW/releases**
+2) **Local Wallet https://github.com/Trittium/trittium/releases**
 3) **VPS with UBUNTU 18.04** (it is possible to work on other versions but it is not tested)
 4) **Putty https://www.putty.org/**
 5) **Text editor on your local pc to save data for copy/paste**
@@ -30,7 +30,8 @@ You will then receive your private key, save it in a txt to use it later.
 * Once logged in your vps, *copy/paste* each line one by one with *Enter*
 
 ```
-wget -q https://raw.githubusercontent.com/decenomy/DSW/master/contrib/masternodesetup/masternodesetup.sh
+wget -q wget -q https://raw.githubusercontent.com/Trittium/trittium/master/contrib/masternodesetup/masternodesetup.sh
+
 ```
 
 ```
