@@ -5106,7 +5106,21 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
             pfrom->cleanSubVer = cleanSubVer;
         }
 
-        if (pfrom->cleanSubVer.find(CLIENT_NAME) == std::string::npos) {
+        auto shortFromName = pfrom->cleanSubVer.substr(0, pfrom->cleanSubVer.find(' '));
+        auto shortName = CLIENT_NAME.substr(0, CLIENT_NAME.find(' '));
+
+        for (auto & c: shortFromName) c = toupper(c);
+        for (auto & c: shortName) c = toupper(c);
+
+        shortFromName.erase(
+            std::remove_if(
+                shortFromName.begin(), 
+                shortFromName.end(), 
+                []( char const& c ) -> bool { return !std::isalnum(c); }), 
+            shortFromName.end()
+        );
+
+        if (shortName.find(shortFromName) == std::string::npos) {
             LOCK(cs_main);
             Misbehaving(pfrom->GetId(), 100);
             pfrom->fDisconnect = true;
