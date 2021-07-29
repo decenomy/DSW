@@ -5877,14 +5877,8 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
 //       Those old clients won't react to the changes of the other (new) SPORK because at the time of their implementation
 //       it was the one which was commented out
 int ActiveProtocol()
-{   
-    int chainHeight = chainActive.Height();
-
-    bool allowOldVersion = !Params().GetConsensus().NetworkUpgradeActive(chainHeight, Consensus::UPGRADE_SUVERENO);
-    
-    return std::min( 
-        allowOldVersion ? OLD_PROTOCOL_VERSION : PROTOCOL_VERSION, 
-        (int)sporkManager.GetSporkValue(SPORK_14_MIN_PROTOCOL_ACCEPTED));
+{    
+    return std::min(PROTOCOL_VERSION,(int)sporkManager.GetSporkValue(SPORK_14_MIN_PROTOCOL_ACCEPTED));
 }
 
 bool ProcessMessages(CNode* pfrom, CConnman& connman, std::atomic<bool>& interruptMsgProc)
