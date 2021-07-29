@@ -1,4 +1,4 @@
-![Example-Logo](https://avatars.githubusercontent.com/u/74193190?v=4)
+![Example-Logo](https://avatars.githubusercontent.com/u/42434040?v=4)
 
 # CryptoFlow Masternode Setup Guide
 ***
