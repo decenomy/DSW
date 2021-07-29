@@ -1,4 +1,4 @@
-![Example-Logo](https://avatars.githubusercontent.com/u/74193190?v=4)
+![Example-Logo](https://avatars.githubusercontent.com/u/84713865?v=4)
 
 # Cryptosaga Masternode Setup Guide
 ***
