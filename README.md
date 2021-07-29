@@ -1,4 +1,4 @@
-AEZORA wallet repository
+Aezora wallet repository
 =====================================
 
 ### Coin Specs
