@@ -1,4 +1,4 @@
-![Example-Logo](https://avatars.githubusercontent.com/u/74193190?v=4)
+![Example-Logo](https://sappcoin.com/wp-content/uploads/2021/05/Peony-logo-with-text-transparent-600x600-1.png)
 
 # Peony Masternode Setup Guide
 ***
