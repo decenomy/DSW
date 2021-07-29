@@ -1,10 +1,10 @@
-![Example-Logo](https://avatars.githubusercontent.com/u/74193190?v=4)
+![Example-Logo](https://avatars.githubusercontent.com/u/69367210?v=4)
 
 # Jackpot Masternode Setup Guide
 ***
 ## Required
 1) **777 collateral value at current block** ([consult the collateral table](../../README.md#rewards-breakdown))
-2) **Local Wallet https://github.com/decenomy/DSW/releases**
+2) **Local Wallet https://github.com/777-project/777/releases**
 3) **VPS with UBUNTU 18.04** (it is possible to work on other versions but it is not tested)
 4) **Putty https://www.putty.org/**
 5) **Text editor on your local pc to save data for copy/paste**
@@ -30,7 +30,7 @@ You will then receive your private key, save it in a txt to use it later.
 * Once logged in your vps, *copy/paste* each line one by one with *Enter*
 
 ```
-wget -q https://raw.githubusercontent.com/decenomy/DSW/master/contrib/masternodesetup/masternodesetup.sh
+wget -q https://raw.githubusercontent.com/777-project/777/master/contrib/masternodesetup/masternodesetup.sh
 ```
 
 ```
