@@ -1,4 +1,4 @@
-![Example-Logo](https://avatars.githubusercontent.com/u/74193190?v=4)
+![Example-Logo](https://avatars.githubusercontent.com/u/60038376?v=4)
 
 # Sapphire Masternode Setup Guide
 ***
