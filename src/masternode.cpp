@@ -352,8 +352,8 @@ CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
 
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
-    if (nHeight > 1200000)  return    100 * COIN;
-    if (nHeight > 1100000)  return    120 * COIN;
+    if (nHeight > 1200000)  return    300 * COIN;
+    if (nHeight > 1100000)  return    240 * COIN;
     if (nHeight > 1000000)  return    130 * COIN;
     if (nHeight > 900000)   return    120 * COIN;
     if (nHeight > 800000)   return    105 * COIN;
@@ -385,6 +385,7 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
+    if (nHeight > 1100000)  return GetBlockValue(nHeight) * 65 / 100;
     if (nHeight > 600000)   return GetBlockValue(nHeight) - (5 * COIN); // 600000, Ultra Clear forks here from Clear Coin
     if (nHeight > 12000)    return GetBlockValue(nHeight) * 9998/10000;
     if (nHeight > 500)      return GetBlockValue(nHeight) * 98/100; // 500 = Params().GetConsensus().vUpgrades[Consensus::UPGRADE_POS].nActivationHeight -1

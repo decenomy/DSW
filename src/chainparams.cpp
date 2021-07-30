@@ -201,14 +201,14 @@ public:
         nDefaultPort = 32628;
 
         vSeeds.push_back(CDNSSeedData("seeder", "seeder.ucrcoin.net"));
-	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.ucrcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed1", "seed1.ucrcoin.net"));
         vSeeds.push_back(CDNSSeedData("seed2", "seed2.ucrcoin.net"));
         vSeeds.push_back(CDNSSeedData("seed3", "seed3.ucrcoin.net"));
         vSeeds.push_back(CDNSSeedData("seed4", "seed4.ucrcoin.net"));
-	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.ucrcoin.net"));
-	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.ucrcoin.net"));
-	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.ucrcoin.net"));
-	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.ucrcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed5", "seed5.ucrcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed6", "seed6.ucrcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed7", "seed7.ucrcoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed8", "seed8.ucrcoin.net"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 28); // 7
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 31); // 7
