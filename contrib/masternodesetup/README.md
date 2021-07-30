@@ -4,7 +4,7 @@
 ***
 ## Required
 1) **PNY collateral value at current block** ([consult the collateral table](../../README.md#rewards-breakdown))
-2) **Local Wallet https://github.com/PeonyTeam/peony/releases**
+2) **Local Wallet https://github.com/decenomy/PNY/releases**
 3) **VPS with UBUNTU 18.04** (it is possible to work on other versions but it is not tested)
 4) **Putty https://www.putty.org/**
 5) **Text editor on your local pc to save data for copy/paste**
@@ -30,7 +30,7 @@ You will then receive your private key, save it in a txt to use it later.
 * Once logged in your vps, *copy/paste* each line one by one with *Enter*
 
 ```
-wget -q https://raw.githubusercontent.com/PeonyTeam/peony/master/contrib/masternodesetup/masternodesetup.sh
+wget -q https://raw.githubusercontent.com/decenomy/PNY/master/contrib/masternodesetup/masternodesetup.sh
 ```
 
 ```
