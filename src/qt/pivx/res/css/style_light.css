@@ -659,7 +659,7 @@ QPushButton[cssClass="btn-check-lock-sub-menu-unlocked"] {
   background-image: url("://ic-submenu-unlock");
   background-position: left center;
   background-repeat: no-repeat;
-  background-color: #ffffff;
+  background-color: #eeeeee;
   text-align: left;
   padding-left: 30px;
   color: #262626;
@@ -668,17 +668,17 @@ QPushButton[cssClass="btn-check-lock-sub-menu-unlocked"] {
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-unlocked"]:checked {
-  background-color: #eeeeee;
+  background-color: #dddddd;
   color: #262626;
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-unlocked"]:hover {
-  background-color: #eeeeee;
+  background-color: #dddddd;
   color: #262626;
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-unlocked"]:checked:hover {
-  background-color: #eeeeee;
+  background-color: #dddddd;
   color: #262626;
 }
 
@@ -686,7 +686,7 @@ QPushButton[cssClass="btn-check-lock-sub-menu-locked"] {
   background-image: url("://ic-submenu-lock");
   background-position: left center;
   background-repeat: no-repeat;
-  background-color: #ffffff;
+  background-color: #eeeeee;
   text-align: left;
   padding-left: 30px;
   color: #262626;
@@ -695,17 +695,17 @@ QPushButton[cssClass="btn-check-lock-sub-menu-locked"] {
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-locked"]:checked {
-  background-color: #eeeeee;
+  background-color: #dddddd;
   color: #262626;
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-locked"]:hover {
-  background-color: #eeeeee;
+  background-color: #dddddd;
   color: #262626;
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-locked"]:checked:hover {
-  background-color: #eeeeee;
+  background-color: #dddddd;
   color: #262626;
 }
 
@@ -713,7 +713,7 @@ QPushButton[cssClass="btn-check-lock-sub-menu-staking"] {
   background-image: url("://ic-submenu-staking");
   background-position: left center;
   background-repeat: no-repeat;
-  background-color: #ffffff;
+  background-color: #eeeeee;
   text-align: left;
   padding-left: 30px;
   color: #262626;
@@ -722,17 +722,17 @@ QPushButton[cssClass="btn-check-lock-sub-menu-staking"] {
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-staking"]:checked {
-  background-color: #eeeeee;
+  background-color: #dddddd;
   color: #262626;
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-staking"]:hover {
-  background-color: #eeeeee;
+  background-color: #dddddd;
   color: #262626;
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-staking"]:checked:hover {
-  background-color: #eeeeee;
+  background-color: #dddddd;
   color: #262626;
 }
 
