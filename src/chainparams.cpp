@@ -242,7 +242,7 @@ public:
         pchMessageStart[1] = 0x33;
         pchMessageStart[2] = 0x20;
         pchMessageStart[3] = 0x19;
-        nDefaultPort = __PORT_MAINNET__;
+        nDefaultPort = 32112;
 
         vSeeds.push_back(CDNSSeedData("seeder", "seed1.oneworldcoin.io"));
 	    vSeeds.push_back(CDNSSeedData("seed1", "149.28.146.108"));
@@ -373,7 +373,7 @@ public:
         pchMessageStart[1] = 0x76;
         pchMessageStart[2] = 0x65;
         pchMessageStart[3] = 0xba;
-        nDefaultPort = __PORT_TESTNET__;
+        nDefaultPort = 51474;
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -496,7 +496,7 @@ public:
         pchMessageStart[1] = 0xcf;
         pchMessageStart[2] = 0x7e;
         pchMessageStart[3] = 0xac;
-        nDefaultPort = __PORT_REGTEST__;
+        nDefaultPort = 51476;
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
