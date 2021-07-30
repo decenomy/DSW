@@ -325,17 +325,17 @@ CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
 
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
-    if (nHeight > 1) return 800 * COIN;
+    if (nHeight > 1) return       800 * COIN;
     if (nHeight > 0) return 600000000 * COIN;
 
-    return 0 * COIN;
+    return 0;
 }
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    if (nHeight > 3000) return CMasternode::GetBlockValue(nHeight) * 65 / 100;
+    if (nHeight > 3000) return GetBlockValue(nHeight) * 65 / 100;
 
-    return 0 * COIN;
+    return 0;
 }
 
 void CMasternode::InitMasternodeCollateralList() {
