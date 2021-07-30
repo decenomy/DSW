@@ -3441,8 +3441,8 @@ Došlo je do greške prilikom spremanja popisa adresa u %1. Molimo pokušajte po
         <translation>2) Zašto se moji OWO ne mogu potrošiti?</translation>
     </message>
     <message>
-        <source>__decenomy_website_link__/</source>
-        <translation>__decenomy_website_link__/</translation>
+        <source>https://oneworldcoin.io/</source>
+        <translation>https://oneworldcoin.io/</translation>
     </message>
     <message>
         <source>1</source>
