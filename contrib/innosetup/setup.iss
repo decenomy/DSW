@@ -3,7 +3,7 @@
 
 #define MyAppName "Kyanite Core"
 #define MyAppPublisher "2021 DECENOMY Core Developers"
-#define MyAppURL "https://kyanite.com"
+#define MyAppURL "https://kyancoin.net/"
 #define MyAppExeName "kyanite-qt.exe"
 #define MyAppExtraData "https://explorer.decenomy.net/bootstraps/KYAN/bootstrap.zip"
 #define MyAppVersion GetVersionNumbersString(".\package\" + MyAppExeName)
@@ -13,7 +13,7 @@
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{67A6CA9B-71C3-4FE2-AA2E-D0DF3D53C4EB}
+AppId={{5A75D811-74D4-44E1-ADBD-038C2C3D2D19}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 VersionInfoVersion={#MyAppVersion}
