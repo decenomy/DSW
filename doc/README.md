@@ -28,7 +28,7 @@ Drag OneWorld-Qt to your applications folder, and then run OneWorld-Qt.
 
 * See the documentation at the [OneWorld Wiki](https://__decenomy_github_link__/)
 for help and more information.
-* Join our Discord server [Discord Server](__decenomy_discord_link__)
+* Join our Discord server [Discord Server](https://discord.gg/bbTCjNTS)
 
 Building
 ---------------------
@@ -56,7 +56,7 @@ The OneWorld repo's [root README](/README.md) contains relevant information on t
 
 ### Resources
 * Discuss on the [OneWorld Homepage](__decenomy_website_link__/).
-* Join the [OneWorld Discord](__decenomy_discord_link__).
+* Join the [OneWorld Discord](https://discord.gg/bbTCjNTS).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

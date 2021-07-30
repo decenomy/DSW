@@ -1493,9 +1493,9 @@ Jesteś pewny?</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        __decenomy_discord_link__</source>
+        https://discord.gg/bbTCjNTS</source>
         <translation>Brakuje języka bądź nieukończona pełnego tłumaczenia? Pomóż w tłumaczeniu tutaj:
-        __decenomy_discord_link__</translation>
+        https://discord.gg/bbTCjNTS</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>

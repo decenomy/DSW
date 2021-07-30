@@ -44,7 +44,7 @@ related to the DNS seed operation.
 If these expectations cannot be satisfied the operator should
 discontinue providing services and contact the active OneWorld
 Core development team as well as posting on the
-[OneWorld Discord](__decenomy_discord_link__).
+[OneWorld Discord](https://discord.gg/bbTCjNTS).
 
 Behavior outside of these expectations may be reasonable in some
 situations but should be discussed in public in advance.
