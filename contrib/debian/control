@@ -29,8 +29,8 @@ Build-Depends: debhelper,
  dh-systemd
 Standards-Version: 3.9.2
 Homepage: http://oneworldcoin.io/
-Vcs-Git: git://__decenomy_github_link__.git
-Vcs-Browser: https://__decenomy_github_link__
+Vcs-Git: git://https://github.com/decenomy/OWO.git
+Vcs-Browser: https://https://github.com/decenomy/OWO
 
 Package: oneworldd
 Architecture: any
