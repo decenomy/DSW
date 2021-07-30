@@ -138,12 +138,15 @@ int TransactionFilterProxy::rowCount(const QModelIndex& parent) const
 {
     static int entryCount = 0;
 
-    if(entryCount++ < SKIP_ROWCOUNT_N_TIMES) return SINGLE_THREAD_MAX_TXES_SIZE;
+    int rowCount = 
+        entryCount++ < SKIP_ROWCOUNT_N_TIMES ?
+        sourceModel()->rowCount() :
+        QSortFilterProxyModel::rowCount(parent);
 
     if (limitRows != -1) {
-        return std::min(QSortFilterProxyModel::rowCount(parent), limitRows);
+        return std::min(rowCount, limitRows);
     } else {
-        return QSortFilterProxyModel::rowCount(parent);
+        return rowCount;
     }
 }
 
