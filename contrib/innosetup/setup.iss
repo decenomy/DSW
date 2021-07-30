@@ -3,7 +3,7 @@
 
 #define MyAppName "OneWorld Core"
 #define MyAppPublisher "2021 DECENOMY Core Developers"
-#define MyAppURL "https://__decenomy__.com"
+#define MyAppURL "https://oneworldcoin.io/"
 #define MyAppExeName "oneworld-qt.exe"
 #define MyAppExtraData "https://explorer.decenomy.net/bootstraps/OWO/bootstrap.zip"
 #define MyAppVersion GetVersionNumbersString(".\package\" + MyAppExeName)
@@ -13,7 +13,7 @@
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{67A6CA9B-71C3-4FE2-AA2E-D0DF3D53C4EB}
+AppId={{512E533A-8028-410C-B5E5-D879F345889B}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 VersionInfoVersion={#MyAppVersion}
