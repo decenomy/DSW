@@ -74,7 +74,7 @@ bool AppInit(int argc, char* argv[])
             strUsage += LicenseInfo();
         } else {
             strUsage += "\n" + _("Usage:") + "\n" +
-                        "  ucrd [options]                     " + _("Start Ultra Clear Core Daemon") + "\n";
+                        "  ultracleard [options]                     " + _("Start Ultra Clear Core Daemon") + "\n";
 
             strUsage += "\n" + HelpMessage(HMM_BITCOIND);
         }
@@ -114,7 +114,7 @@ bool AppInit(int argc, char* argv[])
                 fCommandLine = true;
 
         if (fCommandLine) {
-            fprintf(stderr, "Error: There is no RPC client functionality in ultracleard anymore. Use the ucr-cli utility instead.\n");
+            fprintf(stderr, "Error: There is no RPC client functionality in ultracleard anymore. Use the uultraclear-cli utility instead.\n");
             exit(1);
         }
 #ifndef WIN32
@@ -165,7 +165,7 @@ int main(int argc, char* argv[])
 {
     SetupEnvironment();
 
-    // Connect ucrd signal handlers
+    // Connect ultracleard signal handlers
     noui_connect();
 
     return (AppInit(argc, argv) ? 0 : 1);

@@ -29,6 +29,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp UCR/src/ucrd UCR/src/ucr-cli UCR/src/ucr-tx UCR/src/qt/ucr-qt .
-	zip UCR-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip ucrd ucr-cli ucr-tx ucr-qt
-	rm -f ucrd ucr-cli ucr-tx ucr-qt
+	cp UCR/src/ultracleard UCR/src/ultraclear-cli UCR/src/ultraclear-tx UCR/src/qt/ultraclear-qt .
+	zip UCR-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip ultracleard ultraclear-cli ultraclear-tx ultraclear-qt
+	rm -f ultracleard ultraclear-cli ultraclear-tx ultraclear-qt

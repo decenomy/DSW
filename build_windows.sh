@@ -30,6 +30,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp UCR/src/ucrd.exe UCR/src/ucr-cli.exe UCR/src/ucr-tx.exe UCR/src/qt/ucr-qt.exe .
-	zip UCR-Windows.zip ucrd.exe ucr-cli.exe ucr-tx.exe ucr-qt.exe
-	rm -f ucrd.exe ucr-cli.exe ucr-tx.exe ucr-qt.exe
+	cp UCR/src/ultracleard.exe UCR/src/ultraclear-cli.exe UCR/src/ultraclear-tx.exe UCR/src/qt/ultraclear-qt.exe .
+	zip UCR-Windows.zip ultracleard.exe ultraclear-cli.exe ultraclear-tx.exe ultraclear-qt.exe
+	rm -f ultracleard.exe ultraclear-cli.exe ultraclear-tx.exe ultraclear-qt.exe
