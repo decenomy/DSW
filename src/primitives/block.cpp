@@ -20,7 +20,7 @@ uint256 CBlockHeader::GetHash() const
     if (nVersion == 1)
         return HashX11K(BEGIN(nVersion), END(nNonce));
 
-     if (nVersion < 4)  { // nVersion = 1, 2, 3
+    if (nVersion < 4)  { // nVersion = 1, 2, 3
 #if defined(WORDS_BIGENDIAN)
         uint8_t data[80];
         WriteLE32(&data[0], nVersion);
