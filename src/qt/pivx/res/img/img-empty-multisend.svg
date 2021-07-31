@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
    version="1.1"
-   id="ic_empty_multisend"
+   id="ic_empty_dark_multisend"
    inkscape:version="1.1 (c68e22c387, 2021-05-23)"
-   sodipodi:docname="img-empty-multisend.svg"
+   sodipodi:docname="img-empty-dark-multisend.svg"
    x="0px"
    y="0px"
    viewBox="0 0 100 100"
@@ -30,7 +30,7 @@
    type="text/css"
    id="style2">
 	.st0{fill:#2EA1FF;}
-	.st1{fill:#666666;}
+	.st1{fill:#A09EA5;}
 	.st2{fill:#EFEFEF;}
 </style>
 <sodipodi:namedview
@@ -39,14 +39,14 @@
    gridtolerance="10"
    guidetolerance="10"
    id="namedview25"
-   inkscape:current-layer="Group_9031"
-   inkscape:cx="38.493691"
-   inkscape:cy="49.637527"
+   inkscape:current-layer="Group_9062"
+   inkscape:cx="26.274123"
+   inkscape:cy="55.722301"
    inkscape:pageopacity="0"
    inkscape:pageshadow="2"
    inkscape:window-height="2066"
    inkscape:window-width="3840"
-   inkscape:zoom="14.22311"
+   inkscape:zoom="8.5064685"
    objecttolerance="10"
    pagecolor="#ffffff"
    showgrid="false"
@@ -57,72 +57,71 @@
    inkscape:pagecheckerboard="0">
 	</sodipodi:namedview>
 <g
-   id="Group_9031">
+   id="Group_9062">
 	<g
-   id="Group_9029"
-   style="fill:#06ffff;fill-opacity:1">
+   id="Group_9060"
+   style="fill:#08dee1;fill-opacity:0.99215686">
 		<path
-   id="Rectangle_4683"
+   id="Rectangle_4717"
    class="st0"
    d="M45,18h10v9H45V18z"
-   style="fill:#06ffff;fill-opacity:1" />
+   style="fill:#08dee1;fill-opacity:0.99215686" />
 		<g
-   id="Group_9028"
-   style="fill:#06ffff;fill-opacity:1">
+   id="Group_9059"
+   style="fill:#08dee1;fill-opacity:0.99215686">
 			<path
-   id="Rectangle_4684"
+   id="Rectangle_4718"
    class="st0"
    d="M14,66h6v10h-6V66z"
-   style="fill:#06ffff;fill-opacity:1" />
+   style="fill:#08dee1;fill-opacity:0.99215686" />
 			<path
-   id="Rectangle_4685"
+   id="Rectangle_4719"
    class="st0"
    d="M80,66h6v10h-6V66z"
-   style="fill:#06ffff;fill-opacity:1" />
+   style="fill:#08dee1;fill-opacity:0.99215686" />
 			<path
-   id="Rectangle_4686"
+   id="Rectangle_4720"
    class="st0"
    d="M47,66h6v10h-6V66z"
-   style="fill:#06ffff;fill-opacity:1" />
+   style="fill:#08dee1;fill-opacity:0.99215686" />
 		</g>
 	</g>
 	<g
-   id="Group_9030">
+   id="Group_9061">
 		<path
-   id="Rectangle_4688"
+   id="Rectangle_4722"
    class="st1"
    d="M67,40h2v4h-2V40z" />
 		<circle
-   id="Ellipse_626"
+   id="Ellipse_643"
    class="st1"
    cx="50"
    cy="73"
    r="1" />
 		<circle
-   id="Ellipse_627"
+   id="Ellipse_644"
    class="st1"
    cx="83"
    cy="73"
    r="1" />
 		<path
-   id="Rectangle_4689"
+   id="Rectangle_4723"
    class="st1"
    d="M32,58h4v2h-4V58z" />
 		<path
-   id="Path_18986"
+   id="Path_19007"
    class="st1"
    d="M16,65h-3v3H7v4h2v-2h4v7h8v-7h4v21H9V76H7v17h20V68h-6v-3h-3v-5h10v-2H16V65z M19,67v8h-4    v-8H19z" />
-		<path
-   id="Ellipse_628"
-   style="fill:#666666"
-   d="M 17 72 A 1 1 0 0 0 16 73 A 1 1 0 0 0 17 74 A 1 1 0 0 0 18 73 A 1 1 0 0 0 17 72 z " />
-		
-			<path
-   id="Path_18987"
-   inkscape:connector-curvature="0"
-   sodipodi:nodetypes="cccccccccccccccccccscscccccccccccccccccccccccccccccccccccccccccccccccccccccccccccssscsccccccsscsscccccccccccccccc"
+		<circle
+   id="Ellipse_645"
    class="st1"
-   d="    M87,68v-3h-3v-7H51v-5h18v-5h-2v3H33V28h34v8h2v-8h4V17H59.5c2.3-2.6,2-6.6-0.8-8.7S52,6.8,50,9.7c-1.9-2.9-5.9-3.6-8.7-1.4    c-2.8,2.1-3.1,6.2-0.8,8.8H27v11h4v25h18v5h-9v2h9v5h-3v3h-6v16h2V70h4v7h8v-7h4v21H42v-3h-2v5h20V68h-6v-3h-3v-5h31v5h-3v3h-6v12    h2V70h4v7h8v-7h4v21H75v-7h-2v9h20V68H87z M71,19v7H56v-7H71z M51,13c0-3.6,4.3-5.3,6.8-2.8S58.5,17,55,17h-4V13z M51,19h3v7h-8    v-7H51z M45,9c2.2,0,4,1.8,4,4v4h-4C39.7,17,39.7,9,45,9z M29,26v-7h15v7H29z M52,67v3.2V75h-4v-8H52z M85,75h-4v-8h4V75z" />
+   cx="17"
+   cy="73"
+   r="1" />
+		<path
+   id="Path_19008"
+   class="st1"
+   d="M87,68v-3h-3v-7H51v-5h18v-5h-2v3H33V28h34v8h2v-8h4V17H59.5c2.2-2.5,2-6.3-0.5-8.5    s-6.3-2-8.5,0.5c-0.2,0.2-0.4,0.5-0.5,0.7c-1.8-2.8-5.5-3.5-8.3-1.7s-3.5,5.5-1.7,8.3c0.2,0.3,0.4,0.5,0.6,0.7H27v11h4v25h18v5h-9    v2h9v5h-3v3h-6v16h2V70h4v7h8v-7h4v21H42v-3h-2v5h20V68h-6v-3h-3v-5h31v5h-3v3h-6v12h2V70h4v7h8v-7h4v21H75v-7h-2v9h20V68H87z     M71,19v7H56v-7H71z M51,13c0-2.2,1.8-4,4-4s4,1.8,4,4s-1.8,4-4,4h-4V13z M51,19h3v7h-8v-7H51z M45,9c2.2,0,4,1.8,4,4v4h-4    c-2.2,0-4-1.8-4-4S42.8,9,45,9z M29,26v-7h15v7H29z M52,67v8h-4v-8H52z M85,75h-4v-8h4V75z" />
 	</g>
 </g>
 <rect
@@ -132,11 +131,9 @@
    width="34"
    height="23"
    id="rect20"
-   style="fill:#121228;fill-opacity:1" />
-
-<g
+   style="fill:#121228;fill-opacity:0.93333334" /><g
    id="g24-3"
-   transform="matrix(0.06474039,0,0,0.06514636,39.172248,32.461562)"
+   transform="matrix(0.07007101,0,0,0.0705104,37.582572,31.839457)"
    style="fill:#06ffff;fill-opacity:1"><path
      id="path8-7"
      inkscape:connector-curvature="0"
@@ -163,4 +160,6 @@
      style="fill:#06ffff;fill-opacity:1;stroke-width:1.13961"
      d="m 156.89368,66.455854 c -19.49242,1.935588 -32.92289,17.995957 -29.95147,36.037226 2.97139,18.04128 21.03743,31.12462 40.52986,29.18902 19.4924,-1.93557 32.92287,-17.99598 29.95147,-36.037231 -0.47543,-3.625253 -1.66314,-7.169772 -3.44598,-10.411354 l -4.51758,7.682374 c 0.71315,2.323748 1.07161,4.852431 1.07161,7.256341 0,14.31406 -12.71902,25.48592 -28.28918,24.85002 -15.57016,-0.63592 -28.28687,-12.84785 -28.28687,-27.161921 0,-10.817505 7.2502,-20.136147 18.30381,-23.509071 z"
      id="path30-4"
-     inkscape:connector-curvature="0" /></g></svg>
+     inkscape:connector-curvature="0" /></g>
+
+</svg>
