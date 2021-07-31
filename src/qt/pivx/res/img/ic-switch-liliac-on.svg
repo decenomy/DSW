@@ -56,16 +56,16 @@
    id="switch_path"
    class="st0"
    d="M34,10.2c0,3.8-3.1,7-6.9,7H27H7c-3.8,0-7-3.1-7-6.9v-0.1c0-3.8,3.1-7,6.9-7H7h20   C30.8,3.2,34,6.3,34,10.2L34,10.2z"
-   style="fill:#04cccc;fill-opacity:1" />
+   style="fill:#008BD1;fill-opacity:1" />
 	<g
    id="g19"
    transform="translate(0 -1)"
-   style="fill:#04cccc;fill-opacity:1">
+   style="fill:#008BD1;fill-opacity:1">
 		<path
    id="switch_button-2"
    class="st1"
    d="M27,1c5.5,0,10,4.5,10,10s-4.5,10-10,10s-10-4.5-10-10S21.5,1,27,1z"
-   style="fill:#04cccc;fill-opacity:1" />
+   style="fill:#008BD1;fill-opacity:1" />
 	</g>
 </g>
 </svg>

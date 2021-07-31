@@ -59,12 +59,12 @@
 		<g
    id="Group_8993"
    transform="translate(3.000000, 2.000000)"
-   style="fill:#04cccc;fill-opacity:1">
+   style="fill:#008BD1;fill-opacity:1">
 			<polygon
    id="Path_18959"
    class="st0"
    points="2.5,13 0.5,13 0.5,0 10.5,0 10.5,2 2.5,2    "
-   style="fill:#04cccc;fill-opacity:1" />
+   style="fill:#008BD1;fill-opacity:1" />
 		</g>
 		<polygon
    id="Rectangle_4640"
@@ -73,12 +73,12 @@
 		<g
    id="Group_8994"
    transform="translate(6.000000, 5.000000)"
-   style="fill:#04cccc;fill-opacity:1">
+   style="fill:#008BD1;fill-opacity:1">
 			<path
    id="Path_18960"
    class="st0"
    d="M10.5,13h-10V0h10V13z M2.5,11h6V2h-6V11z"
-   style="fill:#04cccc;fill-opacity:1" />
+   style="fill:#008BD1;fill-opacity:1" />
 		</g>
 	</g>
 </g>

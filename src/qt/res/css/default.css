@@ -5,10 +5,10 @@
 /* (all files need to be replaced....including the .ui, .cpp, .svg, any file type)      */
 /* Ensure to persist the spacing used in the rgba() and QColor() constructs as shown    */
 /*                                                                                      */
-/* standard lighter brand color:                   #04CCCC                              */
-/* standard darker brand color:                    #06C1BC                              */
+/* standard lighter brand color:                   #008BD1                              */
+/* standard darker brand color:                    #007EC4                              */
 /* standard darker brand color as RGB                                                   */
-/*    with a 70% transparency indicator:           rgba(6, 193, 188, 0.7)               */
+/*    with a 70% transparency indicator:           rgba(0, 139, 209, 0.7)               */
 /* dark tinted background brand color:             #150016                              */
 /*                                                                                      */
 /* staking chart POS color:                        #FFD599                              */
@@ -227,10 +227,10 @@ background-color:#f2f2f2;
 /***************************** Global Qt Objects ***********************************************************/
 
 QPushButton { /* Global Button Style */
-background-color: #04CCCC;
+background-color: #008BD1;
 border-width: 1px;
 border-style: outset;
-border-color: #04CCCC;
+border-color: #008BD1;
 border-radius: 2px;
 color:#262626;
 font-size:12px;
@@ -244,7 +244,7 @@ margin: 2px;
 }
 
 QPushButton:hover {
-background-color: qlineargradient(y1:0, y2: 1, stop: 0 #04CCCC, stop: 0.1 #04CCCC, stop: 0.101 #04CCCC, stop: 0.9 #04CCCC, stop: 0.901 #04CCCC, stop: 1 #04CCCC);
+background-color: qlineargradient(y1:0, y2: 1, stop: 0 #008BD1, stop: 0.1 #008BD1, stop: 0.101 #008BD1, stop: 0.9 #008BD1, stop: 0.901 #008BD1, stop: 1 #008BD1);
 }
 
 QPushButton:focus {
@@ -253,9 +253,9 @@ QPushButton:focus {
 }
 
 QPushButton:pressed {
-background-color: #06C1BC;
-border:1px solid #06C1BC;
-background-color: qlineargradient(y1:0, y2: 1, stop: 0 #04CCCC, stop: 0.1 #04CCCC, stop: 0.101 #04CCCC, stop: 0.9 #04CCCC, stop: 0.901 #04CCCC, stop: 1 #04CCCC);
+background-color: #007EC4;
+border:1px solid #007EC4;
+background-color: qlineargradient(y1:0, y2: 1, stop: 0 #008BD1, stop: 0.1 #008BD1, stop: 0.101 #008BD1, stop: 0.9 #008BD1, stop: 0.901 #008BD1, stop: 1 #008BD1);
 }
 
 /* Special handling for statusbar-icons (which are partly QPushButtons) */
@@ -280,7 +280,7 @@ background-color: #f2f2f2;
 }
 
 QComboBox { /* Dropdown Menus */
-border:1px solid #06C1BC;
+border:1px solid #007EC4;
 padding: 3px 5px 3px 5px;
 background:#fcfcfc;
 min-height:25px;
@@ -573,22 +573,22 @@ border-radius: 4px;
 }
 
 QSlider::sub-page:horizontal {
-background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #06C1BC, stop: 1 #06C1BC);
-border: 1px solid #06C1BC;
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #007EC4, stop: 1 #007EC4);
+border: 1px solid #007EC4;
 height: 10px;
 border-radius: 4px;
 }
 
 QSlider::add-page:horizontal {
-background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #06C1BC, stop: 1 #06C1BC);
-border: 1px solid #06C1BC;
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #007EC4, stop: 1 #007EC4);
+border: 1px solid #007EC4;
 height: 10px;
 border-radius: 4px;
 }
 
 QSlider::handle:horizontal {
 background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #fff, stop:1 #f8f6f6);
-border: 1px solid #06C1BC;
+border: 1px solid #007EC4;
 width: 18px;
 height: 18px;
 margin-top: -6px;
@@ -597,8 +597,8 @@ border-radius: 9px;
 }
 
 QSlider::handle:horizontal:hover {
-background-color: qradialgradient(cx: 0.5, cy: 0.5, fx: 0.5, fy: 0.5, radius: 0.7, stop: 0 #04CCCC, stop: 0.7 #ffffff);
-border: 2px solid #06C1BC;
+background-color: qradialgradient(cx: 0.5, cy: 0.5, fx: 0.5, fy: 0.5, radius: 0.7, stop: 0 #008BD1, stop: 0.7 #ffffff);
+border: 2px solid #007EC4;
 width: 16px;
 height: 16px;
 margin-top: -6px;
