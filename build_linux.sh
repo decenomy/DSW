@@ -11,11 +11,11 @@ fi
 	sudo apt install git zip unzip build-essential libtool bsdmainutils autotools-dev autoconf pkg-config automake python3 libqt5svg5-dev -y
 
 # Clone code from official Github repository
-	rm -rf DSW
-	git clone https://github.com/decenomy/DSW.git
+	rm -rf KYAN
+	git clone https://github.com/kyancoin/KYAN.git
 
 # Entering directory
-	cd DSW
+	cd KYAN
 
 # Compile dependencies
 	cd depends
@@ -29,6 +29,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/__decenomy__d DSW/src/__decenomy__-cli DSW/src/__decenomy__-tx DSW/src/qt/__decenomy__-qt .
-	zip __DSW__-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt
-	rm -f __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt
+	cp KYAN/src/kyanited KYAN/src/kyanite-cli KYAN/src/kyanite-tx KYAN/src/qt/kyanite-qt .
+	zip KYAN-Linux.zip kyanited kyanite-cli kyanite-tx kyanite-qt
+	rm -f kyanited kyanite-cli kyanite-tx kyanite-qt
