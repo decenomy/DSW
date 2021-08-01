@@ -7,13 +7,13 @@ DECENOMY Standard wallet repository
 ### Coin Specs
 
 • PoW Algorithm: X11KVS  
-• Premine: 1,000,000,000 KYAN
-• PoW Blocks: 1 - 1000
-• PoS Blocks: Starting from 1001
-• Block Time: 60 Seconds
-• Maturity: 100 Confirmations
-• Prefix: Kyanite adresses start with the capital letter "K"
-• Ports: 7757 (p2p) / 7758 (rpc)
+• Premine: 600,000,000 KYAN (to be distributed to the balance owners)     
+• PoW Blocks: 1 - 1000   
+• PoS Blocks: Starting from 1001   
+• Block Time: 60 Seconds   
+• Maturity: 100 Confirmations   
+• Prefix: Kyanite adresses start with the capital letter "K"   
+• Ports: 7757 (p2p) / 7758 (rpc)   
 
 • Explorer https://explorer.decenomy.net/KYAN/blocks
 
