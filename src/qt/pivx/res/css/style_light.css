@@ -1816,7 +1816,7 @@ QPushButton[cssClass="btn-check-time"] {
 }
 
 QPushButton[cssClass="btn-check-time"]:checked {
-  background-color: #091621;
+  background-color: #248FA8;
   border-radius: 2px;
   font-size: 14px;
   padding: 4px;
@@ -1824,7 +1824,7 @@ QPushButton[cssClass="btn-check-time"]:checked {
 }
 
 QPushButton[cssClass="btn-check-time"]:hover {
-  background-color: #262626;
+  background-color: #248FA8;
   border-radius: 2px;
   font-size: 14px;
   padding: 4px;
@@ -1832,7 +1832,7 @@ QPushButton[cssClass="btn-check-time"]:hover {
 }
 
 QPushButton[cssClass="btn-check-time"]:pressed {
-  background-color: #262626;
+  background-color: #248FA8;
   border-radius: 2px;
   font-size: 14px;
   padding: 4px;
