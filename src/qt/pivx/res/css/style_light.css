@@ -1766,11 +1766,11 @@ QComboBox[cssClass="btn-combo-chart"]::down-arrow {
 }
 
 QComboBox[cssClass="btn-combo-chart-selected"] {
-  background-color: #091621;
+  background-color: #248FA8;
   padding: 6px 12px 6px 6px;
   font-size: 16px;
-  border: 1px solid #262626;
-  color: #248FA8;
+  border: 1px solid #248FA8;
+  color: #ffffff;
   text-align: right;
   border-radius: 2px;
 }
@@ -1785,7 +1785,7 @@ QComboBox[cssClass="btn-combo-chart-selected"]::down-arrow {
 QComboBox[cssClass="btn-combo-chart-selected"]:on {
   padding-top: 10px;
   padding-left: 10px;
-  background-color: #262626;
+  background-color: #248FA8;
 }
 
 QComboBox[cssClass="btn-combo-chart-selected"]:disabled {
