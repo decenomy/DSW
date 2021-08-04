@@ -42,8 +42,8 @@ class BudgetProposalTest(PivxTestFramework):
         assert_raises_rpc_error(-8, "Invalid block start", self.nodes[0].preparebudget,
                                 name, scheme + url, numcycles, nextsuperblock - budgetcycleblocks, address, cycleamount)
 
-        self.log.info("Test with invalid Ultra Clear address")
-        assert_raises_rpc_error(-5, "Invalid Ultra Clear address", self.nodes[0].preparebudget,
+        self.log.info("Test with invalid UltraClear address")
+        assert_raises_rpc_error(-5, "Invalid UltraClear address", self.nodes[0].preparebudget,
                                 name, scheme + url, numcycles, nextsuperblock, "DBREvBPNQguwuC4YMoCG5FoH1sA2YntvZm", cycleamount)
 
         self.log.info("Test with too low amount")

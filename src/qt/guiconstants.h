@@ -14,7 +14,7 @@ static const int MODEL_UPDATE_DELAY = 1000;
 /* AskPassphraseDialog -- Maximum passphrase length */
 static const int MAX_PASSPHRASE_SIZE = 1024;
 
-/* Ultra Clear GUI -- Size of icons in status bar */
+/* UltraClear GUI -- Size of icons in status bar */
 static const int STATUSBAR_ICONSIZE = 16;
 
 static const bool DEFAULT_SPLASHSCREEN = true;
@@ -50,7 +50,7 @@ static const int MAX_URI_LENGTH = 255;
 #define EXPORT_IMAGE_SIZE 256
 
 
-#define QAPP_ORG_NAME "Ultra Clear"
+#define QAPP_ORG_NAME "UltraClear"
 #define QAPP_ORG_DOMAIN "ultraclear.org"
 #define QAPP_APP_NAME_DEFAULT "ultraclear-Qt"
 #define QAPP_APP_NAME_TESTNET "ultraclear-Qt-testnet"

@@ -895,16 +895,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>versión</translation>
     </message>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Ultra Clear</source>
-        <translation>Acerca de Ultra Clear</translation>
+        <source>About UltraClear</source>
+        <translation>Acerca de UltraClear</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -958,16 +958,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>Bienvenido/a</translation>
     </message>
     <message>
-        <source>Welcome to Ultra Clear.</source>
-        <translation>Bienvenido/a a Ultra Clear.</translation>
+        <source>Welcome to UltraClear.</source>
+        <translation>Bienvenido/a a UltraClear.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Ultra Clear will store its data.</source>
-        <translation>Al ser la primera vez que se inicia el programa, usted puede elegir dónde guardará Ultra Clear sus datos.</translation>
+        <source>As this is the first time the program is launched, you can choose where UltraClear will store its data.</source>
+        <translation>Al ser la primera vez que se inicia el programa, usted puede elegir dónde guardará UltraClear sus datos.</translation>
     </message>
     <message>
-        <source>Ultra Clear will download and store a copy of the UCR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Ultra Clear descargará y guardará una copia de la cadena de bloques UCR. Por lo menos %1GB de datos serán guardados en esta carpeta, y crecerá con el tiempo. La wallet también se guardará en esta carpeta.</translation>
+        <source>UltraClear will download and store a copy of the UCR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>UltraClear descargará y guardará una copia de la cadena de bloques UCR. Por lo menos %1GB de datos serán guardados en esta carpeta, y crecerá con el tiempo. La wallet también se guardará en esta carpeta.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -986,8 +986,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>OK</translation>
     </message>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1803,8 +1803,8 @@ MAESTROS</translation>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -1831,8 +1831,8 @@ MAESTROS</translation>
         <translation>Cerrar aplicación</translation>
     </message>
     <message>
-        <source>Ultra Clear client</source>
-        <translation>Cliente Ultra Clear</translation>
+        <source>UltraClear client</source>
+        <translation>Cliente UltraClear</translation>
     </message>
     <message>
         <source>Error</source>
@@ -2040,8 +2040,8 @@ Dirección: %4
         <translation>Se produjo un error fatal. UCR ya no puede continuar de forma segura y dejará de funcionar.   </translation>
     </message>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -2060,8 +2060,8 @@ Dirección: %4
         <translation>Error al leer el archivo de configuración de masternode: %1</translation>
     </message>
     <message>
-        <source>Ultra Clear didn't yet exit safely...</source>
-        <translation>El núcleo Ultra Clear aún no ha salido de forma segura...</translation>
+        <source>UltraClear didn't yet exit safely...</source>
+        <translation>El núcleo UltraClear aún no ha salido de forma segura...</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -4482,8 +4482,8 @@ Are you sure?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Ultra Clear is shutting down...</source>
-        <translation>El programa Ultra Clear se está cerrando...</translation>
+        <source>UltraClear is shutting down...</source>
+        <translation>El programa UltraClear se está cerrando...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4512,8 +4512,8 @@ Are you sure?
         <translation>Cargando....</translation>
     </message>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
 </context>
 <context>
@@ -5036,9 +5036,9 @@ Seleccione menos entradas con control de monedas.</translation>
     </message>
     <message>
         <source>Welcome to
-Ultra Clear Wallet</source>
+UltraClear Wallet</source>
         <translation>Bienvenido a
-Ultra Clear Wallet</translation>
+UltraClear Wallet</translation>
     </message>
     <message>
         <source>UCR is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
@@ -5092,8 +5092,8 @@ Ultra Clear Wallet</translation>
         <translation>Escuchar únicamente a la tarjeta de red indicada para conexiones JSON-RPC. Use la notación [host]:puerto para IPv6. Esta opción puede ser especificada varias veces (por defecto: escuchar en todas las tarjetas de red)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Ultra Clear is probably already running.</source>
-        <translation>No se puede obtener un bloqueo sobre el directorio de datos %s. Ultra Clear esta probablemente en ejecución.</translation>
+        <source>Cannot obtain a lock on data directory %s. UltraClear is probably already running.</source>
+        <translation>No se puede obtener un bloqueo sobre el directorio de datos %s. UltraClear esta probablemente en ejecución.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -5252,8 +5252,8 @@ Ultra Clear Wallet</translation>
         <translation>La longitud total de la cadena de la versión de red (%i) excede la longitud máxima (%i). Reducir el número o tamaño de los uacomments.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Ultra Clear is probably already running.</source>
-        <translation>Imposible conectar a %s en esta computadora. Es probable que Ultra Clear ya este corriendo.</translation>
+        <source>Unable to bind to %s on this computer. UltraClear is probably already running.</source>
+        <translation>Imposible conectar a %s en esta computadora. Es probable que UltraClear ya este corriendo.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -5268,8 +5268,8 @@ Ultra Clear Wallet</translation>
         <translation>Advertencia: -paytxfee esta muy alta! Esta es la comisión de transacción que pagarás si envías una transacción.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Ultra Clear will not work properly.</source>
-        <translation>Advertencia: Por favor verifique que la fecha y hora de su computadora sean correctas! Si su reloj esta fuera de hora Ultra Clear no funcionará adecuadamente.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong UltraClear will not work properly.</source>
+        <translation>Advertencia: Por favor verifique que la fecha y hora de su computadora sean correctas! Si su reloj esta fuera de hora UltraClear no funcionará adecuadamente.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5476,8 +5476,8 @@ Ultra Clear Wallet</translation>
         <translation>Información</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Ultra Clear is shutting down.</source>
-        <translation>La prueba de salud de inicialización ha fallado. Ultra Clear se cerrará.</translation>
+        <source>Initialization sanity check failed. UltraClear is shutting down.</source>
+        <translation>La prueba de salud de inicialización ha fallado. UltraClear se cerrará.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5804,8 +5804,8 @@ Ultra Clear Wallet</translation>
         <translation>Cantidad mínima positiva (en UCR) permitida por GUI y RPC para el umbral de división de participación (predeterminado: %s)</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong Ultra Clear will not work properly.</source>
-        <translation>Por favor verifique que la fecha y hora de su computadora sean correctas! Si su reloj esta fuera de hora Ultra Clear no funcionará adecuadamente.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong UltraClear will not work properly.</source>
+        <translation>Por favor verifique que la fecha y hora de su computadora sean correctas! Si su reloj esta fuera de hora UltraClear no funcionará adecuadamente.</translation>
     </message>
     <message>
         <source>Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect/-noconnect)</source>
@@ -5848,8 +5848,8 @@ Ultra Clear Wallet</translation>
         <translation>Error al cargar %s: billetera dañada</translation>
     </message>
     <message>
-        <source>Error loading %s: Wallet requires newer version of Ultra Clear</source>
-        <translation>Error al cargar %s: Wallet requiere una versión más reciente de Ultra Clear</translation>
+        <source>Error loading %s: Wallet requires newer version of UltraClear</source>
+        <translation>Error al cargar %s: Wallet requiere una versión más reciente de UltraClear</translation>
     </message>
     <message>
         <source>Error loading %s
@@ -6240,8 +6240,8 @@ Ultra Clear Wallet</translation>
         <translation>Opciones de prueba / depuración de billetera:</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Ultra Clear to complete</source>
-        <translation>La wallet necesita reescribirse: reinicie la Ultra Clear para completarlo</translation>
+        <source>Wallet needed to be rewritten: restart UltraClear to complete</source>
+        <translation>La wallet necesita reescribirse: reinicie la UltraClear para completarlo</translation>
     </message>
     <message>
         <source>Wallet options:</source>

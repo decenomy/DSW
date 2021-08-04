@@ -16,8 +16,8 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Ultra Clear"
-            VALUE "FileDescription",    "ultraclear-cli (OSS RPC client for Ultra Clear)"
+            VALUE "CompanyName",        "UltraClear"
+            VALUE "FileDescription",    "ultraclear-cli (OSS RPC client for UltraClear)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "ultraclear-cli"
             VALUE "LegalCopyright",     COPYRIGHT_STR

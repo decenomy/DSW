@@ -43,7 +43,7 @@ public:
     GUIException(const std::string &message) : message(message) {}
 };
 
-/** Utility functions used by the Ultra Clear Qt UI.
+/** Utility functions used by the UltraClear Qt UI.
  */
 namespace GUIUtil
 {

@@ -72,7 +72,7 @@ static bool AppInitRPC(int argc, char* argv[])
     //
     ParseParameters(argc, argv);
     if (argc < 2 || mapArgs.count("-?") || mapArgs.count("-help") || mapArgs.count("-version")) {
-        std::string strUsage = _("Ultra Clear RPC client version") + " " + FormatFullVersion() + "\n";
+        std::string strUsage = _("UltraClear RPC client version") + " " + FormatFullVersion() + "\n";
         if (!mapArgs.count("-version")) {
             strUsage += "\n" + _("Usage:") + "\n" +
                         "  ultraclear-cli [options] <command> [params]  " + _("Send command to ultraclear") + "\n" +

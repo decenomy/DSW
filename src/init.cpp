@@ -693,7 +693,7 @@ void ThreadImport(std::vector<fs::path> vImportFiles)
 }
 
 /** Sanity checks
- *  Ensure that Ultra Clear is running in a usable environment with all
+ *  Ensure that UltraClear is running in a usable environment with all
  *  necessary library support.
  */
 bool InitSanityCheck(void)
@@ -924,10 +924,10 @@ void InitLogging()
 #else
     version_string += " (release build)";
 #endif
-    LogPrintf("Ultra Clear version %s (%s)\n", version_string, CLIENT_DATE);
+    LogPrintf("UltraClear version %s (%s)\n", version_string, CLIENT_DATE);
 }
 
-/** Initialize Ultra Clear.
+/** Initialize UltraClear.
  *  @pre Parameters should be parsed and config file should be read.
  */
 bool AppInit2()
@@ -1086,11 +1086,11 @@ bool AppInit2()
 
     // Sanity check
     if (!InitSanityCheck())
-        return UIError(_("Initialization sanity check failed. Ultra Clear is shutting down."));
+        return UIError(_("Initialization sanity check failed. UltraClear is shutting down."));
 
     std::string strDataDir = GetDataDir().string();
 
-    // Make sure only a single Ultra Clear process is using the data directory.
+    // Make sure only a single UltraClear process is using the data directory.
     fs::path pathLockFile = GetDataDir() / ".lock";
     FILE* file = fsbridge::fopen(pathLockFile, "a"); // empty lock file; created if it doesn't exist.
     if (file) fclose(file);
@@ -1098,7 +1098,7 @@ bool AppInit2()
 
     // Wait maximum 10 seconds if an old wallet is still running. Avoids lockup during restart
     if (!lock.timed_lock(boost::get_system_time() + boost::posix_time::seconds(10)))
-        return UIError(strprintf(_("Cannot obtain a lock on data directory %s. Ultra Clear is probably already running."), strDataDir));
+        return UIError(strprintf(_("Cannot obtain a lock on data directory %s. UltraClear is probably already running."), strDataDir));
 
 #ifndef WIN32
     CreatePidFile(GetPidFile(), getpid());
@@ -1446,7 +1446,7 @@ bool AppInit2()
                 delete zerocoinDB;
                 delete pSporkDB;
 
-                //Ultra Clear specific: zerocoin and spork DB's
+                //UltraClear specific: zerocoin and spork DB's
                 zerocoinDB = new CZerocoinDB(0, false, fReindex);
                 pSporkDB = new CSporkDB(0, false, false);
 
@@ -1469,7 +1469,7 @@ bool AppInit2()
                 // End loop if shutdown was requested
                 if (ShutdownRequested()) break;
 
-                // Ultra Clear: load previous sessions sporks if we have them.
+                // UltraClear: load previous sessions sporks if we have them.
                 uiInterface.InitMessage(_("Loading sporks..."));
                 sporkManager.LoadSporksFromDB();
 

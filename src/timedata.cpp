@@ -78,7 +78,7 @@ void AddTimeData(const CNetAddr& ip, int64_t nOffsetSample, int nOffsetLimit)
             strMiscWarning = "";
         } else {
             nTimeOffset = (nMedian > 0 ? 1 : -1) * nOffsetLimit;
-            std::string strMessage = _("Warning: Please check that your computer's date and time are correct! If your clock is wrong Ultra Clear will not work properly.");
+            std::string strMessage = _("Warning: Please check that your computer's date and time are correct! If your clock is wrong UltraClear will not work properly.");
             strMiscWarning = strMessage;
             LogPrintf("*** %s\n", strMessage);
             uiInterface.ThreadSafeMessageBox(strMessage, "", CClientUIInterface::MSG_ERROR);

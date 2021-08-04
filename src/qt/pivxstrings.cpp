@@ -30,7 +30,7 @@ QT_TRANSLATE_NOOP("pivx-core", ""
 "notation for IPv6. This option can be specified multiple times (default: "
 "bind to all interfaces)"),
 QT_TRANSLATE_NOOP("pivx-core", ""
-"Cannot obtain a lock on data directory %s. Ultra Clear is probably already "
+"Cannot obtain a lock on data directory %s. UltraClear is probably already "
 "running."),
 QT_TRANSLATE_NOOP("pivx-core", ""
 "Change automatic finalized budget voting behavior. mode=auto: Vote for only "
@@ -151,7 +151,7 @@ QT_TRANSLATE_NOOP("pivx-core", ""
 "Output debugging information (default: %u, supplying <category> is optional)"),
 QT_TRANSLATE_NOOP("pivx-core", ""
 "Please check that your computer's date and time are correct! If your clock "
-"is wrong Ultra Clear will not work properly."),
+"is wrong UltraClear will not work properly."),
 QT_TRANSLATE_NOOP("pivx-core", ""
 "Query for peer addresses via DNS lookup, if low on addresses (default: 1 "
 "unless -connect/-noconnect)"),
@@ -198,7 +198,7 @@ QT_TRANSLATE_NOOP("pivx-core", ""
 "Total length of network version string (%i) exceeds maximum length (%i). "
 "Reduce the number or size of uacomments."),
 QT_TRANSLATE_NOOP("pivx-core", ""
-"Unable to bind to %s on this computer. Ultra Clear is probably already running."),
+"Unable to bind to %s on this computer. UltraClear is probably already running."),
 QT_TRANSLATE_NOOP("pivx-core", ""
 "Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: "
 "%s)"),
@@ -213,7 +213,7 @@ QT_TRANSLATE_NOOP("pivx-core", ""
 "pay if you send a transaction."),
 QT_TRANSLATE_NOOP("pivx-core", ""
 "Warning: Please check that your computer's date and time are correct! If "
-"your clock is wrong Ultra Clear will not work properly."),
+"your clock is wrong UltraClear will not work properly."),
 QT_TRANSLATE_NOOP("pivx-core", ""
 "Warning: The network does not appear to fully agree! Some miners appear to "
 "be experiencing issues."),
@@ -282,7 +282,7 @@ QT_TRANSLATE_NOOP("pivx-core", "Enable the client to act as a masternode (0-1, d
 QT_TRANSLATE_NOOP("pivx-core", "Error initializing block database"),
 QT_TRANSLATE_NOOP("pivx-core", "Error initializing wallet database environment %s!"),
 QT_TRANSLATE_NOOP("pivx-core", "Error loading %s: Wallet corrupted"),
-QT_TRANSLATE_NOOP("pivx-core", "Error loading %s: Wallet requires newer version of Ultra Clear"),
+QT_TRANSLATE_NOOP("pivx-core", "Error loading %s: Wallet requires newer version of UltraClear"),
 QT_TRANSLATE_NOOP("pivx-core", "Error loading %s\n"),
 QT_TRANSLATE_NOOP("pivx-core", "Error loading block database"),
 QT_TRANSLATE_NOOP("pivx-core", "Error opening block database"),
@@ -317,7 +317,7 @@ QT_TRANSLATE_NOOP("pivx-core", "Imports blocks from external blk000??.dat file")
 QT_TRANSLATE_NOOP("pivx-core", "Include IP addresses in debug output (default: %u)"),
 QT_TRANSLATE_NOOP("pivx-core", "Incorrect or no genesis block found. Wrong datadir for network?"),
 QT_TRANSLATE_NOOP("pivx-core", "Information"),
-QT_TRANSLATE_NOOP("pivx-core", "Initialization sanity check failed. Ultra Clear is shutting down."),
+QT_TRANSLATE_NOOP("pivx-core", "Initialization sanity check failed. UltraClear is shutting down."),
 QT_TRANSLATE_NOOP("pivx-core", "Insufficient funds"),
 QT_TRANSLATE_NOOP("pivx-core", "Insufficient funds."),
 QT_TRANSLATE_NOOP("pivx-core", "Invalid -masternodeaddr address: %s"),
@@ -458,7 +458,7 @@ QT_TRANSLATE_NOOP("pivx-core", "Verifying blocks..."),
 QT_TRANSLATE_NOOP("pivx-core", "Verifying wallet..."),
 QT_TRANSLATE_NOOP("pivx-core", "Wallet %s resides outside data directory %s"),
 QT_TRANSLATE_NOOP("pivx-core", "Wallet debugging/testing options:"),
-QT_TRANSLATE_NOOP("pivx-core", "Wallet needed to be rewritten: restart Ultra Clear to complete"),
+QT_TRANSLATE_NOOP("pivx-core", "Wallet needed to be rewritten: restart UltraClear to complete"),
 QT_TRANSLATE_NOOP("pivx-core", "Wallet options:"),
 QT_TRANSLATE_NOOP("pivx-core", "Wallet window title"),
 QT_TRANSLATE_NOOP("pivx-core", "Warning"),

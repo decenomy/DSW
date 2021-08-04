@@ -1,9 +1,9 @@
 [Desktop Entry]
 Version=1.0
-Name=Ultra Clear 
-Comment=Ultra Clear P2P Cryptocurrency
-Comment[fr]=Ultra Clear, monnaie virtuelle cryptographique pair à pair
-Comment[tr]=Ultra Clear, eşten eşe kriptografik sanal para birimi
+Name=UltraClear 
+Comment=UltraClear P2P Cryptocurrency
+Comment[fr]=UltraClear, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=UltraClear, eşten eşe kriptografik sanal para birimi
 Exec=ultraclear-qt %u
 Terminal=false
 Type=Application

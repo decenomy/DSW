@@ -14,7 +14,7 @@
  * for both ultracleard and ultraclear-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("Ultra Clear");
+const std::string CLIENT_NAME("Ultra Clear Core");
 
 /**
  * Client version number

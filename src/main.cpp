@@ -60,7 +60,7 @@
 
 
 #if defined(NDEBUG)
-#error "Ultra Clear cannot be compiled without assertions."
+#error "UltraClear cannot be compiled without assertions."
 #endif
 
 /**
@@ -3361,7 +3361,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                 nHeight = (*mi).second->nHeight + 1;
         }
 
-        // Ultra Clear
+        // UltraClear
         // It is entierly possible that we don't have enough data and this could fail
         // (i.e. the block could indeed be valid). Store the block for later consideration
         // but issue an initial reject message.
@@ -5194,7 +5194,7 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
             pfrom->fDisconnect = true;
         }
 
-        // Ultra Clear: We use certain sporks during IBD, so check to see if they are
+        // UltraClear: We use certain sporks during IBD, so check to see if they are
         // available. If not, ask the first peer connected for them.
         // TODO: Move this to an instant broadcast of the sporks.
         bool fMissingSporks = !pSporkDB->SporkExists(SPORK_14_MIN_PROTOCOL_ACCEPTED);

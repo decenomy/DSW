@@ -15,7 +15,7 @@
 
 /**
  * CBaseChainParams defines the base parameters (shared between ultraclear-cli and ultracleard)
- * of a given instance of the Ultra Clear system.
+ * of a given instance of the UltraClear system.
  */
 class CBaseChainParams
 {

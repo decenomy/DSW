@@ -89,7 +89,7 @@ const char * const PIVX_PID_FILENAME = "ultraclear.pid";
 const char * const PIVX_MASTERNODE_CONF_FILENAME = "masternode.conf";
 
 
-// Ultra Clear only features
+// UltraClear only features
 // Masternode
 bool fMasterNode = false;
 std::string strMasterNodePrivKey = "";

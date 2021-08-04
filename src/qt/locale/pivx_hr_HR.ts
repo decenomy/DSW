@@ -880,16 +880,16 @@ Automatski će se pokrenuti čim novčanik dobije dovoljno potvrda o neiskorišt
         <translation>verzija</translation>
     </message>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Ultra Clear</source>
-        <translation>O Ultra Clear-u</translation>
+        <source>About UltraClear</source>
+        <translation>O UltraClear-u</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -943,16 +943,16 @@ Automatski će se pokrenuti čim novčanik dobije dovoljno potvrda o neiskorišt
         <translation>Dobrodošli</translation>
     </message>
     <message>
-        <source>Welcome to Ultra Clear.</source>
-        <translation>Dobrodošli u Ultra Clear.</translation>
+        <source>Welcome to UltraClear.</source>
+        <translation>Dobrodošli u UltraClear.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Ultra Clear will store its data.</source>
-        <translation>Budući da je prvi put pokrenut program, možete odabrati gdje će Ultra Clear pohraniti svoje podatke.</translation>
+        <source>As this is the first time the program is launched, you can choose where UltraClear will store its data.</source>
+        <translation>Budući da je prvi put pokrenut program, možete odabrati gdje će UltraClear pohraniti svoje podatke.</translation>
     </message>
     <message>
-        <source>Ultra Clear will download and store a copy of the UCR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Ultra Clear preuzima i pohranjuje kopiju UCR blok-lanca. Barem će %1GB podataka biti pohranjeno u ovom direktoriju i to će s vremenom rasti. Novčanik će također biti pohranjena u ovom direktoriju.</translation>
+        <source>UltraClear will download and store a copy of the UCR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>UltraClear preuzima i pohranjuje kopiju UCR blok-lanca. Barem će %1GB podataka biti pohranjeno u ovom direktoriju i to će s vremenom rasti. Novčanik će također biti pohranjena u ovom direktoriju.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -971,8 +971,8 @@ Automatski će se pokrenuti čim novčanik dobije dovoljno potvrda o neiskorišt
         <translation>OK</translation>
     </message>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1769,8 +1769,8 @@ NODEOVI</translation>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -1797,8 +1797,8 @@ NODEOVI</translation>
         <translation>Napusti aplikaciju</translation>
     </message>
     <message>
-        <source>Ultra Clear client</source>
-        <translation>Ultra Clear Klijent</translation>
+        <source>UltraClear client</source>
+        <translation>UltraClear Klijent</translation>
     </message>
     <message>
         <source>Error</source>
@@ -2006,8 +2006,8 @@ Adresa: %4
         <translation>Dogodila se fatalna pogreška. UCR ne može sigurno nastaviti i izaći će.</translation>
     </message>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -2026,8 +2026,8 @@ Adresa: %4
         <translation>Greška pri čitanju masternode konfiguracijske datoteke: %1</translation>
     </message>
     <message>
-        <source>Ultra Clear didn't yet exit safely...</source>
-        <translation>Ultra Clear nije ugašen sigurno...</translation>
+        <source>UltraClear didn't yet exit safely...</source>
+        <translation>UltraClear nije ugašen sigurno...</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -3590,7 +3590,7 @@ da biste vidjeli i mogli potrošiti sredstva na mreži.
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-Masternode je računalo koje pokreće full node Ultra Clear novčanik sa
+Masternode je računalo koje pokreće full node UltraClear novčanik sa
 zahtjevanih 10,000 UCR-a osiguranog zaloga da pruži dodatne usluge
 mreži, i zauzvrat redovito primi dio nagrade blokova.
 Te usluge uključuju:
@@ -4360,8 +4360,8 @@ Jeste li sigurni?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Ultra Clear is shutting down...</source>
-        <translation>Ultra Clear se zatvara...</translation>
+        <source>UltraClear is shutting down...</source>
+        <translation>UltraClear se zatvara...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4390,8 +4390,8 @@ Jeste li sigurni?
         <translation>Učitavanje...</translation>
     </message>
     <message>
-        <source>Ultra Clear</source>
-        <translation>Ultra Clear</translation>
+        <source>UltraClear</source>
+        <translation>UltraClear</translation>
     </message>
 </context>
 <context>
@@ -4900,9 +4900,9 @@ se nova sigurnosna kopija.
     </message>
     <message>
         <source>Welcome to
-Ultra Clear Wallet</source>
+UltraClear Wallet</source>
         <translation>Dobrodošli u
-        Ultra Clear temeljni novčanik</translation>
+        UltraClear temeljni novčanik</translation>
     </message>
     <message>
         <source>UCR is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
@@ -4952,8 +4952,8 @@ Ultra Clear Wallet</source>
         <translation>Pridržavajte se na navedenu adresu da biste slušali veze JSON-RPC. Koristite [host]: port notation za IPv6. Ova se opcija može odrediti više puta (zadano: vezati se na sva sučelja)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Ultra Clear is probably already running.</source>
-        <translation>Nije moguće dobiti zaključavanje na direktoriju podataka %s. Ultra Clear vjerojatno već radi.</translation>
+        <source>Cannot obtain a lock on data directory %s. UltraClear is probably already running.</source>
+        <translation>Nije moguće dobiti zaključavanje na direktoriju podataka %s. UltraClear vjerojatno već radi.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -5112,8 +5112,8 @@ Ultra Clear Wallet</source>
         <translation>Ukupna duljina teksta mrežne verzije (%i) prelazi maksimalnu duljinu (%i). Smanjite broj ili veličinu uacommentsa.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Ultra Clear is probably already running.</source>
-        <translation>Nije moguće vezati se na %s na ovom računalu. Ultra Clear vjerojatno već radi.</translation>
+        <source>Unable to bind to %s on this computer. UltraClear is probably already running.</source>
+        <translation>Nije moguće vezati se na %s na ovom računalu. UltraClear vjerojatno već radi.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -5128,8 +5128,8 @@ Ultra Clear Wallet</source>
         <translation>Upozorenje: -paytxfee je vrlo visoka! To je transakcijska naknada koju ćete platiti ako šaljete transakciju.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Ultra Clear will not work properly.</source>
-        <translation>Upozorenje: Provjerite jesu li datum i vrijeme vašeg računala točni! Ako je vaš sat pogrešan, Ultra Clear neće raditi ispravno.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong UltraClear will not work properly.</source>
+        <translation>Upozorenje: Provjerite jesu li datum i vrijeme vašeg računala točni! Ako je vaš sat pogrešan, UltraClear neće raditi ispravno.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5337,8 +5337,8 @@ Ultra Clear Wallet</source>
         <translation>Informacije</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Ultra Clear is shutting down.</source>
-        <translation>Provjera ispravnosti inicijalizacije nije uspjela. Ultra Clear se zatvara.</translation>
+        <source>Initialization sanity check failed. UltraClear is shutting down.</source>
+        <translation>Provjera ispravnosti inicijalizacije nije uspjela. UltraClear se zatvara.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5625,8 +5625,8 @@ Ultra Clear Wallet</source>
         <translation>Priprema za resinkronizaciju...</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong Ultra Clear will not work properly.</source>
-        <translation>Provjerite jesu li datum i vrijeme vašeg računala točni! Ako je vaš sat pogrešan, Ultra Clear neće raditi ispravno.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong UltraClear will not work properly.</source>
+        <translation>Provjerite jesu li datum i vrijeme vašeg računala točni! Ako je vaš sat pogrešan, UltraClear neće raditi ispravno.</translation>
     </message>
     <message>
         <source>Specify location of debug log file: this can be an absolute path or a path relative to the data directory (default: %s)</source>
@@ -5959,8 +5959,8 @@ Ultra Clear Wallet</source>
         <translation>Novčanik %s nalazi se izvan direktorija podataka %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Ultra Clear to complete</source>
-        <translation>Potrebno je prepisati novčanik: ponovo pokrenite Ultra Clear</translation>
+        <source>Wallet needed to be rewritten: restart UltraClear to complete</source>
+        <translation>Potrebno je prepisati novčanik: ponovo pokrenite UltraClear</translation>
     </message>
     <message>
         <source>Wallet options:</source>
