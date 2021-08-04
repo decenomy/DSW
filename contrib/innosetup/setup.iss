@@ -4,7 +4,7 @@
 #define MyAppName "Ultraclear Core"
 #define MyAppPublisher "2021 DECENOMY Core Developers"
 #define MyAppURL "https://ucrcoin.net"
-#define MyAppExeName "ucr-qt.exe"
+#define MyAppExeName "ultraclear-qt.exe"
 #define MyAppExtraData "https://explorer.decenomy.net/bootstraps/UCR/bootstrap.zip"
 #define MyAppVersion GetVersionNumbersString(".\package\" + MyAppExeName)
 
@@ -60,7 +60,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 6.1; Check: not IsAdminInstallMode
 
 [Files]
-Source: ".\package\ucr-qt.exe"; DestDir: "{app}"; Flags: ignoreversion; Components: app
+Source: ".\package\ultraclear-qt.exe"; DestDir: "{app}"; Flags: ignoreversion; Components: app
 Source: ".\package\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs; Components: app
 Source: ".\7za.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall; Components: bootstrap
 
