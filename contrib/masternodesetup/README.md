@@ -1,6 +1,6 @@
 ![Example-Logo](https://avatars.githubusercontent.com/u/74193190?v=4)
 
-# Ultraclear Masternode Setup Guide
+# UltraClear Masternode Setup Guide
 ***
 ## Required
 1) **UCR collateral value at current block** ([consult the collateral table](../../README.md#rewards-breakdown))
@@ -81,4 +81,4 @@ ultraclear-cli getmasternodestatus
 
 You need to get **"status" : 4** 
 
-## Congratulations your Ultraclear node it's running
+## Congratulations your UltraClear node it's running
