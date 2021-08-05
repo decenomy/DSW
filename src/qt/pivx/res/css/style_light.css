@@ -1817,27 +1817,27 @@ QPushButton[cssClass="btn-check-time"] {
 }
 
 QPushButton[cssClass="btn-check-time"]:checked {
-  background-color: #262626;
+  background-color: 009dff;
   border-radius: 2px;
   font-size: 14px;
   padding: 4px;
-  color: #009dff;
+  color: #ffffff;
 }
 
 QPushButton[cssClass="btn-check-time"]:hover {
-  background-color: #262626;
+  background-color: 009dff;
   border-radius: 2px;
   font-size: 14px;
   padding: 4px;
-  color: #009dff;
+  color: #ffffff;
 }
 
 QPushButton[cssClass="btn-check-time"]:pressed {
-  background-color: #262626;
+  background-color: 009dff;
   border-radius: 2px;
   font-size: 14px;
   padding: 4px;
-  color: #009dff;
+  color: #ffffff;
 }
 
 QPushButton[cssClass="btn-check-time"]:disabled {
