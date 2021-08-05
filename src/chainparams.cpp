@@ -244,15 +244,15 @@ public:
         pchMessageStart[3] = 0x19;
         nDefaultPort = 32112;
 
-        vSeeds.push_back(CDNSSeedData("seeder", "seed1.oneworldcoin.io"));
-	    vSeeds.push_back(CDNSSeedData("seed1", "149.28.146.108"));
-        vSeeds.push_back(CDNSSeedData("seed2", "89.46.67.187"));
-        vSeeds.push_back(CDNSSeedData("seed3", "seed3.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed4", "seed4.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.__decenomy.net__"));
+        vSeeds.push_back(CDNSSeedData("seeder", "seeder.oneworldcoin.io"));
+	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.oneworldcoin.io"));
+        vSeeds.push_back(CDNSSeedData("seed2", "seed2.oneworldcoin.io"));
+        vSeeds.push_back(CDNSSeedData("seed3", "seed3.oneworldcoin.io"));
+        vSeeds.push_back(CDNSSeedData("seed4", "seed4.oneworldcoin.io"));
+	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.oneworldcoin.io"));
+	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.oneworldcoin.io"));
+	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.oneworldcoin.io"));
+	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.oneworldcoin.io"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 115); // o
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 112); // n
@@ -378,7 +378,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.push_back(CDNSSeedData("tseeder", "tseeder.__decenomy.net__", true));
+        vSeeds.push_back(CDNSSeedData("tseeder", "tseeder.oneworldcoin.io", true));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet oneworld addresses start with 'x' or 'y'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet oneworld script addresses start with '8' or '9'
