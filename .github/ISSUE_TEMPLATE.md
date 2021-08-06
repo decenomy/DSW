@@ -1,7 +1,7 @@
 <!--- Remove this description and sections that do not apply -->
 
 This issue tracker is only for technical issues related to OneWorld Core.
-General OneWorld questions and/or support requests and are best directed to the [OneWorld Discord](https://discord.gg/bbTCjNTS).
+General OneWorld questions and/or support requests and are best directed to the [OneWorld Discord](https://discord.gg/Wa4Z7YWyMz).
 
 ### Describe the issue
 

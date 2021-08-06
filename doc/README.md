@@ -28,7 +28,7 @@ Drag OneWorld-Qt to your applications folder, and then run OneWorld-Qt.
 
 * See the documentation at the [OneWorld Wiki](https://https://github.com/decenomy/OWO/)
 for help and more information.
-* Join our Discord server [Discord Server](https://discord.gg/bbTCjNTS)
+* Join our Discord server [Discord Server](https://discord.gg/Wa4Z7YWyMz)
 
 Building
 ---------------------
@@ -56,7 +56,7 @@ The OneWorld repo's [root README](/README.md) contains relevant information on t
 
 ### Resources
 * Discuss on the [OneWorld Homepage](https://oneworldcoin.io/).
-* Join the [OneWorld Discord](https://discord.gg/bbTCjNTS).
+* Join the [OneWorld Discord](https://discord.gg/Wa4Z7YWyMz).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

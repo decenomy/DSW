@@ -1614,9 +1614,9 @@ NODES</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        https://discord.gg/bbTCjNTS</source>
+        https://discord.gg/Wa4Z7YWyMz</source>
         <translation>Langue manquante ou traduction incomplète? Aidez-nous à traduire ce projet ici:
-        https://discord.gg/bbTCjNTS</translation>
+        https://discord.gg/Wa4Z7YWyMz</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -3611,14 +3611,14 @@ pour voir votre solde de monnaie dépensable sur le réseau.
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            We have support channels in most of our official chat groups, for example
-                           &lt;a style='color: #b088ff' href='https://discord.gg/bbTCjNTS'&gt;
+                           &lt;a style='color: #b088ff' href='https://discord.gg/Wa4Z7YWyMz'&gt;
                            #support in our Discord&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            We have support channels in most of our official chat groups, for example
-                           &lt;a style='color: #b088ff' href='https://discord.gg/bbTCjNTS'&gt;
+                           &lt;a style='color: #b088ff' href='https://discord.gg/Wa4Z7YWyMz'&gt;
                            #support in our Discord&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </translation>

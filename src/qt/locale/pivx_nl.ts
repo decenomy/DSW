@@ -1617,9 +1617,9 @@ NODES</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        https://discord.gg/bbTCjNTS</source>
+        https://discord.gg/Wa4Z7YWyMz</source>
         <translation>Taal ontbreekt of vertaling onvolledig? Help om bij te dragen aan vertalingen:
-        https://discord.gg/bbTCjNTS</translation>
+        https://discord.gg/Wa4Z7YWyMz</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -3616,14 +3616,14 @@ Er was een fout opgetreden tijdens het opslaan van deze adreslijst naar %1. Prob
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            We have support channels in most of our official chat groups, for example
-                           &lt;a style='color: #b088ff' href='https://discord.gg/bbTCjNTS'&gt;
+                           &lt;a style='color: #b088ff' href='https://discord.gg/Wa4Z7YWyMz'&gt;
                            #support in our Discord&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            We hebben ondersteuningskanalen in de meeste van onze officiële chatgroepen, bijvoorbeeld
-                           &lt;a style='color: #b088ff' href='https://discord.gg/bbTCjNTS'&gt;
+                           &lt;a style='color: #b088ff' href='https://discord.gg/Wa4Z7YWyMz'&gt;
                            #support in onze Discord&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </translation>
