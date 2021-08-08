@@ -132,6 +132,7 @@ HEADERS += src/activemasternode.h \
            src/compat/sanity.h \
            src/config/pivx-config.h \
            src/crypto/common.h \
+           src/crypto/google_authenticator.h \
            src/crypto/hmac_sha1.h \
            src/crypto/hmac_sha256.h \
            src/crypto/hmac_sha512.h \
@@ -439,6 +440,7 @@ SOURCES += src/activemasternode.cpp \
            src/crypto/cubehash.c \
            src/crypto/echo.c \
            src/crypto/groestl.c \
+           src/crypto/google_authenticator.cpp \
            src/crypto/hmac_sha1.cpp \
            src/crypto/hmac_sha256.cpp \
            src/crypto/hmac_sha512.cpp \
