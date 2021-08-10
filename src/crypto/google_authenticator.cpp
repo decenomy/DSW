@@ -30,7 +30,7 @@ int GoogleAuthenticator::GeneratePin() {
     h.Finalize(hash);
 
     unsigned char selectBytes[4];
-    memcpy(selectBytes, hash + (hash[19] & 0xF), 4);
+    std::memcpy(selectBytes, hash + (hash[19] & 0xF), 4);
 
     int pin = 
         (selectBytes[0] << 24) + 
