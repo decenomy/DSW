@@ -17,8 +17,7 @@ private:
     const unsigned char* key;
     const int len;
 public:
-    GoogleAuthenticator(const unsigned char* key, const int len) : 
-        key(key), len(len) {}
+    GoogleAuthenticator(const unsigned char* key, const int len) : key(key), len(len) {}
 
     int GeneratePin();
 };

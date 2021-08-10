@@ -5,13 +5,13 @@
 #include "crypto/google_authenticator.h"
 #include "crypto/hmac_sha1.h"
 
-#include <math.h>
-#include <time.h>
+#include <cmath>
+#include <ctime>
 #include <cstring>
 
 int GoogleAuthenticator::GeneratePin() {
 
-    int64_t currentInterval = time(NULL) / INTERVAL_LENGHT;
+    int64_t currentInterval = std::time(NULL) / INTERVAL_LENGHT;
     
     unsigned char counterBytes[8];
                 
@@ -39,7 +39,7 @@ int GoogleAuthenticator::GeneratePin() {
          selectBytes[3];
 
     pin &= 0x7FFFFFFF;
-    pin %= (int)pow(10, PIN_LENGHT);
+    pin %= (int) std::pow(10, PIN_LENGHT);
 
     return pin;
 }
