@@ -52,7 +52,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "Sometimes you hit the jackpot and sometimes the jackpot hits you";
+    const char* pszTimestamp = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam felis.";
     const CScript genesisOutputScript = CScript() << ParseHex("04eddc90a654f0335fce2081f682ec2475b935afad5a217ffc9a324b04665054e8a42e14cfdce6a5d11fe0f8e1de9b0ff375905dc58025db46b49f7925d3ff290e") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -188,14 +188,14 @@ public:
         consensus.strSporkPubKeyOld = "0499A7AF4806FC6DE640D23BC5936C29B77ADF2174B4F45492727F897AE63CF8D27B2F05040606E0D14B547916379FA10716E344E745F880EDC037307186AA25B7";
         consensus.nTime_EnforceNewSporkKey = 1;    //!> August 26, 2019 11:00:00 PM GMT
         consensus.nTime_RejectOldSporkKey = 1;     //!> September 26, 2019 11:00:00 PM GMT
-
+        
         // height-based activations
-        consensus.height_last_ZC_AccumCheckpoint    = DISABLED;
-        consensus.height_last_ZC_WrappedSerials     = DISABLED;
-        consensus.height_start_InvalidUTXOsCheck    = DISABLED;
-        consensus.height_start_ZC_InvalidSerials    = DISABLED;
-        consensus.height_start_ZC_SerialRangeCheck  = DISABLED;
-        consensus.height_ZC_RecalcAccumulators      = DISABLED;
+        consensus.height_last_ZC_AccumCheckpoint    = 168624000;
+        consensus.height_last_ZC_WrappedSerials     = 168622900;
+        consensus.height_start_InvalidUTXOsCheck    = 90285;
+        consensus.height_start_ZC_InvalidSerials    = 89173700;
+        consensus.height_start_ZC_SerialRangeCheck  = 89540000;
+        consensus.height_ZC_RecalcAccumulators      = 90800000;
 
         // Zerocoin-related params
         consensus.ZC_Modulus = "25195908475657893494027183240048398571429282126204032027777137836043662020707595556264018525880784"
@@ -209,8 +209,8 @@ public:
         consensus.ZC_MinMintConfirmations = 20;
         consensus.ZC_MinMintFee = 1 * CENT;
         consensus.ZC_MinStakeDepth = 200;
-        consensus.ZC_TimeStart = 1893456000;        // 01/01/2030 @ 12:00am (UTC)
-        consensus.ZC_WrappedSerialsSupply = 0; //4131563 * COIN;   // zerocoin supply at height_last_ZC_WrappedSerials
+        consensus.ZC_TimeStart = 2147407649;        // 01/01/2030 @ 12:00am (UTC)
+        consensus.ZC_WrappedSerialsSupply = 4131563 * COIN; //4131563 * COIN;   // zerocoin supply at height_last_ZC_WrappedSerials
 
         // Network upgrades
         consensus.vUpgrades[Consensus::BASE_NETWORK].nActivationHeight                   = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
