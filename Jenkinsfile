@@ -5,7 +5,7 @@ pipeline {
     environment {
         NAME = '__Decenomy__'
         BASE_NAME = '__decenomy__'
-        ZIP_NAME = '__DSW__'
+        ZIP_NAME = 'BIR'
     }
 
     stages {

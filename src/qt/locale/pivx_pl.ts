@@ -114,12 +114,12 @@
         <translation>Adres odbiorczy</translation>
     </message>
     <message>
-        <source>These are your __DSW__ addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>To są twoje adresy __DSW__ do wysyłania płatności. Zawsze sprawdzaj kwotę i adres odbiorcy przed wysłaniem monet.</translation>
+        <source>These are your BIR addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>To są twoje adresy BIR do wysyłania płatności. Zawsze sprawdzaj kwotę i adres odbiorcy przed wysłaniem monet.</translation>
     </message>
     <message>
-        <source>These are your __DSW__ addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>To są twoje adresy __DSW__ do otrzymywania płatności. Zaleca się użycie nowego adresu odbiorczego dla każdej transakcji.</translation>
+        <source>These are your BIR addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>To są twoje adresy BIR do otrzymywania płatności. Zaleca się użycie nowego adresu odbiorczego dla każdej transakcji.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -349,8 +349,8 @@ do stakingu</translation>
         <translation>ANULUJ</translation>
     </message>
     <message>
-        <source>__DSW__ will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your __DSW__s from being stolen by malware infecting your computer.</source>
-        <translation>__DSW__ zamknie się teraz, aby zakończyć proces szyfrowania. Pamiętaj, że zaszyfrowanie portfela nie chroni w pełni Twoich __DSW__ przed kradzieżą przez złośliwe oprogramowanie infekujące Twój komputer.</translation>
+        <source>BIR will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your BIRs from being stolen by malware infecting your computer.</source>
+        <translation>BIR zamknie się teraz, aby zakończyć proces szyfrowania. Pamiętaj, że zaszyfrowanie portfela nie chroni w pełni Twoich BIR przed kradzieżą przez złośliwe oprogramowanie infekujące Twój komputer.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -434,8 +434,8 @@ do stakingu</translation>
         <translation>Wybór monet</translation>
     </message>
     <message>
-        <source>Select __DSW__ Outputs to Spend</source>
-        <translation>Wybierz adres wyjściowy __DSW__ do wydania</translation>
+        <source>Select BIR Outputs to Spend</source>
+        <translation>Wybierz adres wyjściowy BIR do wydania</translation>
     </message>
     <message>
         <source>Dust:</source>
@@ -462,8 +462,8 @@ do stakingu</translation>
         <translation>Ilość</translation>
     </message>
     <message>
-        <source>0.00 __DSW__</source>
-        <translation>0.00 __DSW__</translation>
+        <source>0.00 BIR</source>
+        <translation>0.00 BIR</translation>
     </message>
     <message>
         <source>0</source>
@@ -704,8 +704,8 @@ do stakingu</translation>
         <translation>Filtruj według</translation>
     </message>
     <message>
-        <source>Amount of __DSW__ and z__DSW__ staked.</source>
-        <translation>Ilość __DSW__ i z__DSW__ staked.</translation>
+        <source>Amount of BIR and zBIR staked.</source>
+        <translation>Ilość BIR i zBIR staked.</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -801,8 +801,8 @@ Rozpocznie się automatycznie, gdy portfel będzie miał wystarczającą liczbę
         <translation>Edytuj adres wysyłania</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid __DSW__ address.</source>
-        <translation>Wprowadzony adres "%1" nie jest prawidłowym adresem __DSW__.</translation>
+        <source>The entered address "%1" is not a valid BIR address.</source>
+        <translation>Wprowadzony adres "%1" nie jest prawidłowym adresem BIR.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -925,8 +925,8 @@ Rozpocznie się automatycznie, gdy portfel będzie miał wystarczającą liczbę
         <translation>Ponieważ program jest uruchamiany po raz pierwszy, możesz wybrać miejsce, w którym __Decenomy__ będzie przechowywać swoje dane.</translation>
     </message>
     <message>
-        <source>__Decenomy__ will download and store a copy of the __DSW__ block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>__Decenomy__ pobierze i zapisze kopię łańcucha bloków __DSW__. Przynajmniej %1 GB danych zostanie zapisanych w tym katalogu, a jego liczba będzie rosnąć z czasem. Portfel zostanie również zapisany w tym katalogu.</translation>
+        <source>__Decenomy__ will download and store a copy of the BIR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>__Decenomy__ pobierze i zapisze kopię łańcucha bloków BIR. Przynajmniej %1 GB danych zostanie zapisanych w tym katalogu, a jego liczba będzie rosnąć z czasem. Portfel zostanie również zapisany w tym katalogu.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1045,8 +1045,8 @@ Rozpocznie się automatycznie, gdy portfel będzie miał wystarczającą liczbę
         <translation>Utwórz nowy kontroler Masternode</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a __DSW__ Masternode you must dedicate a collateral amount of __DSW__ (the unit of __DSW__) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Aby utworzyć Masternode __DSW__, musisz przeznaczyć 10.000 __DSW__ (jednostkę __DSW__) na sieć (jednak monety te są nadal twoje i nigdy nie zmienią swojego właściciela).&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Możesz dezaktywować węzeł i odblokować monety w dowolnym momencie.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a BIR Masternode you must dedicate a collateral amount of BIR (the unit of BIR) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Aby utworzyć Masternode BIR, musisz przeznaczyć 10.000 BIR (jednostkę BIR) na sieć (jednak monety te są nadal twoje i nigdy nie zmienią swojego właściciela).&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Możesz dezaktywować węzeł i odblokować monety w dowolnym momencie.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Set Masternode Name</source>
@@ -1066,7 +1066,7 @@ Rozpocznie się automatycznie, gdy portfel będzie miał wystarczającą liczbę
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of collateral amount will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Dokonana zostanie transakcja 10 000 __DSW__&lt;/p&gt;&lt;p&gt;na nowy pusty adres w portfelu.&lt;/p&gt;&lt;p&gt;Adres jest oznaczony pod nazwą węzła głównego.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Dokonana zostanie transakcja 10 000 BIR&lt;/p&gt;&lt;p&gt;na nowy pusty adres w portfelu.&lt;/p&gt;&lt;p&gt;Adres jest oznaczony pod nazwą węzła głównego.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Address of the node that must always be online running the actual master node.</source>
@@ -1436,8 +1436,8 @@ Jesteś pewny?</translation>
         <translation>Jeśli wyłączysz wydawanie niepotwierdzonych reszt, reszta z transakcji nie może być użyta, dopóki transakcja nie uzyska co najmniej jednego potwierdzenia. Ma to również wpływ na sposób obliczania salda.</translation>
     </message>
     <message>
-        <source>Automatically open the __DSW__ client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Automatycznie otwórz port klienta __DSW__ na routerze. Działa to tylko wtedy, gdy twój router obsługuje UPnP i jest włączony.</translation>
+        <source>Automatically open the BIR client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automatycznie otwórz port klienta BIR na routerze. Działa to tylko wtedy, gdy twój router obsługuje UPnP i jest włączony.</translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -1456,12 +1456,12 @@ Jesteś pewny?</translation>
         <translation>Ekspert</translation>
     </message>
     <message>
-        <source>Automatically start __DSW__ after logging in to the system.</source>
-        <translation>Automatycznie uruchom __DSW__ po zalogowaniu do systemu</translation>
+        <source>Automatically start BIR after logging in to the system.</source>
+        <translation>Automatycznie uruchom BIR po zalogowaniu do systemu</translation>
     </message>
     <message>
-        <source>&amp;Start __DSW__ on system login</source>
-        <translation>&amp;Uruchom __DSW__ podczas logowania do systemu</translation>
+        <source>&amp;Start BIR on system login</source>
+        <translation>&amp;Uruchom BIR podczas logowania do systemu</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1488,8 +1488,8 @@ Jesteś pewny?</translation>
         <translation>&amp;Sieć</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting __DSW__.</source>
-        <translation>Język interfejsu użytkownika może być wybrany tutaj. Ustawienia ulegną zmianie po restarcie __DSW__</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting BIR.</source>
+        <translation>Język interfejsu użytkownika może być wybrany tutaj. Ustawienia ulegną zmianie po restarcie BIR</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
@@ -1502,44 +1502,44 @@ Jesteś pewny?</translation>
         <translation>Mapuj port za pomocą &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of __DSW__ units to z__DSW__</source>
-        <translation>Włącz automatyczny minting __DSW__ do z__DSW__</translation>
+        <source>Enable automatic minting of BIR units to zBIR</source>
+        <translation>Włącz automatyczny minting BIR do zBIR</translation>
     </message>
     <message>
-        <source>Enable z__DSW__ Automint</source>
-        <translation>Włącz z__DSW__ Automint</translation>
+        <source>Enable zBIR Automint</source>
+        <translation>Włącz zBIR Automint</translation>
     </message>
     <message>
-        <source>Enable automatic z__DSW__ minting from specific addresses</source>
-        <translation>Włącz automatyczne wybijanie z__DSW__-ów z określonych adresów</translation>
+        <source>Enable automatic zBIR minting from specific addresses</source>
+        <translation>Włącz automatyczne wybijanie zBIR-ów z określonych adresów</translation>
     </message>
     <message>
         <source>Enable Automint Addresses</source>
         <translation>Włącz adresy Automint</translation>
     </message>
     <message>
-        <source>Percentage of incoming __DSW__ which get automatically converted to z__DSW__ via Zerocoin Protocol (min: 10%)</source>
-        <translation>Procent __DSW__, które są automatycznie konwertowane na z__DSW__ za pomocą protokołu Zerocoin (min: 10%)</translation>
+        <source>Percentage of incoming BIR which get automatically converted to zBIR via Zerocoin Protocol (min: 10%)</source>
+        <translation>Procent BIR, które są automatycznie konwertowane na zBIR za pomocą protokołu Zerocoin (min: 10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted z__DSW__</source>
-        <translation>Procent automint z__DSW__</translation>
+        <source>Percentage of autominted zBIR</source>
+        <translation>Procent automint zBIR</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough __DSW__ for this denomination is available</source>
-        <translation>Zaczekaj z automatyczną konwersją na Zerocoin, aż będzie dostępna wystarczająca wartość __DSW__ dla tego nominału</translation>
+        <source>Wait with automatic conversion to Zerocoin until enough BIR for this denomination is available</source>
+        <translation>Zaczekaj z automatyczną konwersją na Zerocoin, aż będzie dostępna wystarczająca wartość BIR dla tego nominału</translation>
     </message>
     <message>
-        <source>Preferred Automint z__DSW__ Denomination</source>
-        <translation>Preferowane nominały Automint z__DSW__</translation>
+        <source>Preferred Automint zBIR Denomination</source>
+        <translation>Preferowane nominały Automint zBIR</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
         <translation>Próg podziału stawki 'stake' :</translation>
     </message>
     <message>
-        <source>Connect to the __DSW__ network through a SOCKS5 proxy.</source>
-        <translation>Połącz z siecią __DSW__ poprzez SOCKS5 proxy.</translation>
+        <source>Connect to the BIR network through a SOCKS5 proxy.</source>
+        <translation>Połącz z siecią BIR poprzez SOCKS5 proxy.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1784,8 +1784,8 @@ Adres: %4
         <translation>Nie można uruchomić __decenomy__: click-to-pay handler</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid __DSW__ address or malformed URI parameters.</source>
-        <translation>Nie można przeanalizować identyfikatora URI! Może to być spowodowane nieprawidłowym adresem __DSW__ lub nieprawidłowymi parametrami URI.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid BIR address or malformed URI parameters.</source>
+        <translation>Nie można przeanalizować identyfikatora URI! Może to być spowodowane nieprawidłowym adresem BIR lub nieprawidłowymi parametrami URI.</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -1870,8 +1870,8 @@ Adres: %4
         <translation>Ilość</translation>
     </message>
     <message>
-        <source>Enter __DSW__ address (e.g. %1)</source>
-        <translation>Wpisz adres __DSW__ (np. %1)</translation>
+        <source>Enter BIR address (e.g. %1)</source>
+        <translation>Wpisz adres BIR (np. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1914,8 +1914,8 @@ Adres: %4
         <translation>%1 ms</translation>
     </message>
     <message>
-        <source>A fatal error occurred. __DSW__ can no longer continue safely and will quit.</source>
-        <translation>Wystąpił błąd krytyczny. __DSW__ nie może już działać bezpiecznie i zakończy działanie.</translation>
+        <source>A fatal error occurred. BIR can no longer continue safely and will quit.</source>
+        <translation>Wystąpił błąd krytyczny. BIR nie może już działać bezpiecznie i zakończy działanie.</translation>
     </message>
     <message>
         <source>__Decenomy__</source>
@@ -2097,8 +2097,8 @@ Adres: %4
         <translation>Łańcuch bloków</translation>
     </message>
     <message>
-        <source>Open the __DSW__ debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Otwórz plik dziennika debugowania __DSW__ z bieżącego katalogu danych. Może to potrwać kilka sekund w przypadku dużych plików dziennika.</translation>
+        <source>Open the BIR debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Otwórz plik dziennika debugowania BIR z bieżącego katalogu danych. Może to potrwać kilka sekund w przypadku dużych plików dziennika.</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -2241,8 +2241,8 @@ Adres: %4
         <translation>Standardowa ścieżka kopii zapasowej:</translation>
     </message>
     <message>
-        <source>Custom z__DSW__ Backup Path:</source>
-        <translation>standardowa ścieżka kopii zapasowej z__DSW__:</translation>
+        <source>Custom zBIR Backup Path:</source>
+        <translation>standardowa ścieżka kopii zapasowej zBIR:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -2321,8 +2321,8 @@ Adres: %4
         <translation>Z</translation>
     </message>
     <message>
-        <source>Welcome to the __DSW__ RPC console.</source>
-        <translation>Witamy w konsoli __DSW__ RPC.</translation>
+        <source>Welcome to the BIR RPC console.</source>
+        <translation>Witamy w konsoli BIR RPC.</translation>
     </message>
     <message>
         <source>&amp;Disconnect Node</source>
@@ -2569,8 +2569,8 @@ Adres: %4
         <translation>Ilość</translation>
     </message>
     <message>
-        <source>__DSW__</source>
-        <translation>__DSW__</translation>
+        <source>BIR</source>
+        <translation>BIR</translation>
     </message>
     <message>
         <source>D7VFR83SQbiezrW72hjcWJtcfip5krte2Z </source>
@@ -2640,7 +2640,7 @@ Adres: %4
         <translation>Niestandardowa adresu reszty</translation>
     </message>
     <message>
-        <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" __DSW__ address</source>
+        <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" BIR address</source>
         <translation>Pozostała wartość wynikająca z wpłat i wypłat trafia na adresu „reszty”</translation>
     </message>
     <message>
@@ -2667,8 +2667,8 @@ Adres: %4
         <translation>Zalecane</translation>
     </message>
     <message>
-        <source>__DSW__/kilobyte</source>
-        <translation>__DSW__/kilobyte</translation>
+        <source>BIR/kilobyte</source>
+        <translation>BIR/kilobyte</translation>
     </message>
     <message>
         <source>0.00 KB</source>
@@ -2927,8 +2927,8 @@ Czy chcesz kontynuować?</translation>
         <translation>KLUCZ DESZYFRUJĄCY</translation>
     </message>
     <message>
-        <source>__DSW__ address</source>
-        <translation>Adres __DSW__</translation>
+        <source>BIR address</source>
+        <translation>Adres BIR</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -3052,8 +3052,8 @@ Verify that you have installed a predetermined text editor.</source>
 Sprawdź, czy zainstalowałeś określony edytor tekstu.</translation>
     </message>
     <message>
-        <source>Welcome to the __DSW__ RPC console.</source>
-        <translation>Witamy w konsoli __DSW__ RPC.</translation>
+        <source>Welcome to the BIR RPC console.</source>
+        <translation>Witamy w konsoli BIR RPC.</translation>
     </message>
     <message>
         <source>Use up and down arrows to navigate history, and %1 to clear screen.</source>
@@ -3237,28 +3237,28 @@ Wystąpił błąd podczas próby zapisania listy adresów w %1. Proszę spróbuj
         <translation>Formularz</translation>
     </message>
     <message>
-        <source>1) What is __DSW__?</source>
-        <translation>1) Co to jest __DSW__?</translation>
+        <source>1) What is BIR?</source>
+        <translation>1) Co to jest BIR?</translation>
     </message>
     <message>
-        <source>2) Why are my __DSW__ unspendable?</source>
-        <translation>2) Dlaczego mojego __DSW__ nie można wydać?</translation>
+        <source>2) Why are my BIR unspendable?</source>
+        <translation>2) Dlaczego mojego BIR nie można wydać?</translation>
     </message>
     <message>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <source>What is __DSW__?</source>
-        <translation>Co to jest __DSW__?</translation>
+        <source>What is BIR?</source>
+        <translation>Co to jest BIR?</translation>
     </message>
     <message>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <source>Why are my __DSW__ unspendable?</source>
-        <translation>Dlaczego mojego __DSW__ nie można wydać?</translation>
+        <source>Why are my BIR unspendable?</source>
+        <translation>Dlaczego mojego BIR nie można wydać?</translation>
     </message>
     <message>
         <source>3</source>
@@ -3451,8 +3451,8 @@ Wystąpił błąd podczas próby zapisania listy adresów w %1. Proszę spróbuj
         <translation>Liczba wątków weryfikujących skrypt</translation>
     </message>
     <message>
-        <source>Start __DSW__ on system login</source>
-        <translation>Uruchom __DSW__ przy logowaniu do systemu</translation>
+        <source>Start BIR on system login</source>
+        <translation>Uruchom BIR przy logowaniu do systemu</translation>
     </message>
     <message>
         <source>Minimize to the tray instead of the taskbar</source>
@@ -3539,8 +3539,8 @@ Jesteś pewny?
         <translation>CheckBox</translation>
     </message>
     <message>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other __DSW__ addresses after it matures.</source>
-        <translation>MultiSend pozwala automatycznie wysyłać do 100% stake lub nagrody masternode na listę innych adresów __DSW__ po ich dojrzaniu.</translation>
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other BIR addresses after it matures.</source>
+        <translation>MultiSend pozwala automatycznie wysyłać do 100% stake lub nagrody masternode na listę innych adresów BIR po ich dojrzaniu.</translation>
     </message>
     <message>
         <source>Active</source>
@@ -3662,8 +3662,8 @@ Zaznacz jedno lub oba pola wyboru, aby wysłać stake i / lub nagrode masternode
         <translation>Wiadomość</translation>
     </message>
     <message>
-        <source>__DSW__ address or contact label</source>
-        <translation>Adres __DSW__ lub etykieta kontaktowa</translation>
+        <source>BIR address or contact label</source>
+        <translation>Adres BIR lub etykieta kontaktowa</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -3939,8 +3939,8 @@ Zaznacz jedno lub oba pola wyboru, aby wysłać stake i / lub nagrode masternode
         <translation>FAQ</translation>
     </message>
     <message>
-        <source>About __DSW__</source>
-        <translation>o __DSW__</translation>
+        <source>About BIR</source>
+        <translation>o BIR</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -4477,16 +4477,16 @@ __Decenomy__ Wallet</source>
 Portfel __Decenomy__</translation>
     </message>
     <message>
-        <source>__DSW__ is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
-        <translation>__DSW__ to najbardziej innowacyjna na świecie technologia oparta na blockchain Proof of Stake. Opracowany przez zespół wysoce doświadczonych programistów i kryptografów.</translation>
+        <source>BIR is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
+        <translation>BIR to najbardziej innowacyjna na świecie technologia oparta na blockchain Proof of Stake. Opracowany przez zespół wysoce doświadczonych programistów i kryptografów.</translation>
     </message>
     <message>
-        <source>The masternode network is __DSW__'s second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
-        <translation>Sieć masternode jest siecią drugiej warstwy __DSW__ na szczycie blockchain, która umożliwia naszemu DAO zapewnienie zdecentralizowanego zarządzania i skarbca.</translation>
+        <source>The masternode network is BIR's second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
+        <translation>Sieć masternode jest siecią drugiej warstwy BIR na szczycie blockchain, która umożliwia naszemu DAO zapewnienie zdecentralizowanego zarządzania i skarbca.</translation>
     </message>
     <message>
-        <source>How __DSW__ respects your privacy?</source>
-        <translation>Jak __DSW__ szanuje twoją prywatność?</translation>
+        <source>How BIR respects your privacy?</source>
+        <translation>Jak BIR szanuje twoją prywatność?</translation>
     </message>
     <message>
         <source>What is a Masternode?</source>
@@ -4936,8 +4936,8 @@ Portfel __Decenomy__</translation>
         <translation>Nieprawidłowa netmask podana w -whitelist: '%s'</translation>
     </message>
     <message>
-        <source>Recalculating __DSW__ supply...</source>
-        <translation>Przeliczanie podaży __DSW__ ...</translation>
+        <source>Recalculating BIR supply...</source>
+        <translation>Przeliczanie podaży BIR ...</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>
@@ -4956,8 +4956,8 @@ Portfel __Decenomy__</translation>
         <translation>Jest to wersja testowa pre-release - korzystaj z niej na własne ryzyko - nie używaj do staking lub prawdziwych transakcji!</translation>
     </message>
     <message>
-        <source>Disable all __DSW__ specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
-        <translation>Wyłącz wszystkie funkcje specyficzne dla __DSW__ (Masternodes, Zerocoin, Budgeting) (0-1, domyślnie: %u)</translation>
+        <source>Disable all BIR specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
+        <translation>Wyłącz wszystkie funkcje specyficzne dla BIR (Masternodes, Zerocoin, Budgeting) (0-1, domyślnie: %u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -5376,8 +5376,8 @@ Portfel __Decenomy__</translation>
         <translation>Synchronizowanie sporks...</translation>
     </message>
     <message>
-        <source>Syncing z__DSW__ wallet...</source>
-        <translation>Synchronizuję portfel z__DSW__ ...</translation>
+        <source>Syncing zBIR wallet...</source>
+        <translation>Synchronizuję portfel zBIR ...</translation>
     </message>
     <message>
         <source>This help message</source>
@@ -5480,8 +5480,8 @@ Portfel __Decenomy__</translation>
         <translation>Nazwa użytkownika dla połączeń JSON-RPC</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of z__DSW__</source>
-        <translation>Wartość jest mniejsza od najmniejszej dostępnej (= 1) z__DSW__</translation>
+        <source>Value is below the smallest available denomination (= 1) of zBIR</source>
+        <translation>Wartość jest mniejsza od najmniejszej dostępnej (= 1) zBIR</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
@@ -5563,8 +5563,8 @@ Portfel __Decenomy__</translation>
         <translation>Wyślij</translation>
     </message>
     <message>
-        <source>__DSW__ address or contact label</source>
-        <translation>Adres __DSW__ lub etykieta kontaktowa</translation>
+        <source>BIR address or contact label</source>
+        <translation>Adres BIR lub etykieta kontaktowa</translation>
     </message>
     <message>
         <source>Amount</source>
