@@ -246,7 +246,7 @@ public:
         pchMessageStart[1] = 0x95;
         pchMessageStart[2] = 0x56;
         pchMessageStart[3] = 0x52;
-        nDefaultPort = 39697;
+        nDefaultPort = __PORT_MAINNET__;
 
         vSeeds.push_back(CDNSSeedData("s1.birake.com", "seeder1.birake.com"));
         vSeeds.push_back(CDNSSeedData("s2.birake.com", "seeder2.birake.com"));
