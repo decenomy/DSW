@@ -745,7 +745,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         // Write a __decenomy__.desktop file to the autostart directory:
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
-        optionFile << "Name=__Decenomy__\n";
+        optionFile << "Name=Birake\n";
         optionFile << "Exec=" << pszExePath << " -min\n";
         optionFile << "Terminal=false\n";
         optionFile << "Hidden=false\n";

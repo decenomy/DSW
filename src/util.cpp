@@ -89,7 +89,7 @@ const char * const PIVX_PID_FILENAME = "__decenomy__.pid";
 const char * const PIVX_MASTERNODE_CONF_FILENAME = "masternode.conf";
 
 
-// __Decenomy__ only features
+// Birake only features
 // Masternode
 bool fMasterNode = false;
 std::string strMasterNodePrivKey = "";
@@ -292,7 +292,7 @@ fs::path GetDefaultDataDir()
 // Unix: ~/.__decenomy__
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "__Decenomy__";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "Birake";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -304,7 +304,7 @@ fs::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "__Decenomy__";
+    return pathRet / "Birake";
 #else
     // Unix
     return pathRet / ".__decenomy__";
