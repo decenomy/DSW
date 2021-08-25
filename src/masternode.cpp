@@ -396,8 +396,8 @@ CAmount CMasternode::GetBlockValue(int nHeight)
     if (nHeight >= 40000)  return 80 * COIN;
     if (nHeight >= 30000)  return 60 * COIN;
     if (nHeight >= 20000)  return 40 * COIN;
-    if (nHeight > 0)       return 30 * COIN;
-    if (nHeight == 0)       return 6000000 * COIN;
+    if (nHeight >= 2)       return 30 * COIN;
+    if (nHeight == 1)       return 6000000 * COIN;
     
     
 /*     CAmount maxMoneyOut= Params().GetConsensus().nMaxMoneyOut;
