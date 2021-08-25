@@ -517,6 +517,11 @@ CAmount CMasternode::GetBlockValue(int nHeight)
            }
         }
     }
+
+     if(nMoneySupply + nSubsidy > maxMoneyOut) {
+        return nMoneySupply + nSubsidy - maxMoneyOut;
+    }
+    
     return nSubsidy;
 }
 
