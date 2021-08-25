@@ -347,7 +347,60 @@ CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
 
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
-    CAmount maxMoneyOut= Params().GetConsensus().nMaxMoneyOut;
+    if (nHeight >= 500000) return 60 * COIN;
+    if (nHeight >= 490000) return 68 * COIN;
+    if (nHeight >= 480000) return 70 * COIN;
+    if (nHeight >= 470000) return 72 * COIN;
+    if (nHeight >= 460000) return 74 * COIN;
+    if (nHeight >= 450000) return 76 * COIN;
+    if (nHeight >= 440000) return 78 * COIN;
+    if (nHeight >= 430000) return 80 * COIN;
+    if (nHeight >= 420000) return 82 * COIN;
+    if (nHeight >= 410000) return 84 * COIN;
+    if (nHeight >= 400000) return 86 * COIN;
+    if (nHeight >= 390000) return 88 * COIN;
+    if (nHeight >= 380000) return 90 * COIN;
+    if (nHeight >= 370000) return 92 * COIN;
+    if (nHeight >= 360000) return 94 * COIN;
+    if (nHeight >= 350000) return 96 * COIN;
+    if (nHeight >= 340000) return 98 * COIN;
+    if (nHeight >= 330000) return 100 * COIN;
+    if (nHeight >= 320000) return 102 * COIN;
+    if (nHeight >= 310000) return 104 * COIN;
+    if (nHeight >= 300000) return 106 * COIN;
+    if (nHeight >= 290000) return 108 * COIN;
+    if (nHeight >= 280000) return 110 * COIN;
+    if (nHeight >= 270000) return 120 * COIN;
+    if (nHeight >= 260000) return 130 * COIN;
+    if (nHeight >= 250000) return 140 * COIN;
+    if (nHeight >= 240000) return 150 * COIN;
+    if (nHeight >= 230000) return 160 * COIN;
+    if (nHeight >= 220000) return 170 * COIN;
+    if (nHeight >= 210000) return 180 * COIN;
+    if (nHeight >= 200000) return 190 * COIN;
+    if (nHeight >= 190000) return 200 * COIN;
+    if (nHeight >= 180000) return 210 * COIN;
+    if (nHeight >= 170000) return 220 * COIN;
+    if (nHeight >= 160000) return 230 * COIN;
+    if (nHeight >= 150000) return 240 * COIN;
+    if (nHeight >= 140000) return 250 * COIN;
+    if (nHeight >= 130000) return 260 * COIN;
+    if (nHeight >= 120000) return 240 * COIN;
+    if (nHeight >= 110000) return 220 * COIN;
+    if (nHeight >= 100000) return 200 * COIN;
+    if (nHeight >= 90000)  return 180 * COIN;
+    if (nHeight >= 80000)  return 160 * COIN;
+    if (nHeight >= 70000)  return 140 * COIN;
+    if (nHeight >= 60000)  return 120 * COIN;
+    if (nHeight >= 50000)  return 100 * COIN;
+    if (nHeight >= 40000)  return 80 * COIN;
+    if (nHeight >= 30000)  return 60 * COIN;
+    if (nHeight >= 20000)  return 40 * COIN;
+    if (nHeight > 0)       return 30 * COIN;
+    if (nHeight == 0)       return 6000000 * COIN;
+    
+    
+/*     CAmount maxMoneyOut= Params().GetConsensus().nMaxMoneyOut;
 
     if(nMoneySupply >= maxMoneyOut) {
         return 0;
@@ -524,7 +577,7 @@ CAmount CMasternode::GetBlockValue(int nHeight)
         return nMoneySupply + nSubsidy - maxMoneyOut;
     }
 
-    return nSubsidy;
+    return nSubsidy; */
 }
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
