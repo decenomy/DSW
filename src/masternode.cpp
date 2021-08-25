@@ -319,6 +319,7 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 }
 
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
+{
     if (nHeight < 50000 && nHeight >= 0) {
         return 10000 * COIN;
     }
@@ -342,6 +343,7 @@ CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
     }
 
     return 0;
+}
 
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
@@ -521,7 +523,7 @@ CAmount CMasternode::GetBlockValue(int nHeight)
      if(nMoneySupply + nSubsidy > maxMoneyOut) {
         return nMoneySupply + nSubsidy - maxMoneyOut;
     }
-    
+
     return nSubsidy;
 }
 
