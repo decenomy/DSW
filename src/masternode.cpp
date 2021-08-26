@@ -582,9 +582,19 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    if(nHeight <= 5000) return 0;
+    if(Params().NetworkID() == CBaseChainParams::TESTNET) {
+        if (nHeight < 200) return 0;
+    }
+    if(nHeight >= 1200000) return GetBlockValue(nHeight) * 0.2;
+    if(nHeight >= 1000000) return GetBlockValue(nHeight) * 0.4;
+    if(nHeight >= 800888) return GetBlockValue(nHeight) * 0.7;
+    if(nHeight >= 100) return GetBlockValue(nHeight) * 0.9;    
+    if(nHeight < 100) return 0;
 
-    return CMasternode::GetBlockValue(nHeight) * 90 / 100;
+
+/*     if(nHeight <= 5000) return 0;
+
+    return CMasternode::GetBlockValue(nHeight) * 90 / 100; */
 }
 
 void CMasternode::InitMasternodeCollateralList() {
