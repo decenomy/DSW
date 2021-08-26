@@ -3444,11 +3444,11 @@ bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
         return error("%s : null pindexPrev for block %s", __func__, block.GetHash().GetHex());
 
     unsigned int nBitsRequired = GetNextWorkRequired(pindexPrev, &block);
-
+/*
     if (block.nBits != nBitsRequired) {
         return error("%s : incorrect proof of work at %d", __func__, pindexPrev->nHeight + 1);
     }
-
+*/
     return true;
 }
 
