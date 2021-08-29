@@ -1,5 +1,5 @@
 
-Trittium Standard Wallet
+Trittium standard wallet
 =====================================
 
 ### Coin Specs
