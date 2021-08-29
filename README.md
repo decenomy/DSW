@@ -10,7 +10,7 @@ Trittium standard wallet
 • PoS Blocks: Starting from 1001    
 • Block Time: 60 Seconds    
 • Maturity: 100 Confirmations   
-• Prefix: TRTT adresses start with the capital letter "T"   
+• Prefix: TRTT addresses start with the capital letter "T"   
 • Ports: 31001 (P2P) / 31002 (RPC)    
 • Explorer https://explorer.decenomy.net/TRTT/blocks   
 • Website [https://trittium.net/](https://trittium.net/)   
