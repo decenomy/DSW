@@ -9,7 +9,7 @@ Sapphire wallet repository
 • PoS Blocks: Starting from 501   
 • Block Time: 60 Seconds    
 • Maturity: 100 Confirmations   
-• Prefix: SAPP adresses start with the capital letter "S"   
+• Prefix: SAPP addresses start with the capital letter "S"   
 • Ports: 45328 (p2p) / 45329 (rpc)   
 • Explorer https://explorer.decenomy.net/SAPP/blocks   
 • Website https://sappcoin.com/
