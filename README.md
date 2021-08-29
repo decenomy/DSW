@@ -1,16 +1,16 @@
 
-Jackpot Standard wallet repository
+Jackpot wallet repository
 =====================================
 
 ### Coin Specs
 
 • PoW Algorithm: Xevan   
-• Premine: 30,000,000,000 777 (Previous coinsupply of 777+FUNC)   
+• Premine: 30,000,000,000 777 (Previous coin supply of 777+FUNC)   
 • PoW Blocks: 1 - 1000   
 • PoS Blocks: Starting from 1001 - 5000  
 • Block Time: 60 Seconds   
 • Maturity: 100 Confirmations   
-• Prefix: 777 adresses start with "7"   
+• Prefix: 777 addresses start with "7"   
 • Ports: 17771 (p2p) / 27772 (rpc)  
 • Explorer https://explorer.decenomy.net/777/blocks   
 • Website [https://777coin.win/](https://777coin.win/)
