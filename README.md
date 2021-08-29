@@ -9,9 +9,8 @@ Aezora wallet repository
 • PoS Blocks: Starting from 251  
 • Block Time: 60 Seconds    
 • Maturity: 100 Confirmations  
-• Prefix: AZR adresses start with the capital letter "A"  
-• Ports: 14725 (p2p) / 14724 (rpc)
-
+• Prefix: AZR addresses start with the capital letter "A"   
+• Ports: 14725 (p2p) / 14724 (rpc)    
 • Explorer https://explorer.decenomy.net/AZR/blocks  
 • Website [aezora.com](http://aezora.com/)
 
