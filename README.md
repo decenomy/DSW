@@ -5,14 +5,13 @@ Trittium Standard Wallet
 ### Coin Specs
 
 • PoW Algorithm: X11KVS   
-• Premine: 250.000.000 TRTT   
+• Premine: 250.000.000 TRTT (for the previous blockchain coin supply redistribution)
 • PoW Blocks: 0 - 1000
 • PoS Blocks: Starting from 1001    
 • Block Time: 60 Seconds    
 • Maturity: 100 Confirmations   
 • Prefix: TRTT adresses start with the capital letter "T"   
 • Ports: 31001 (P2P) / 31002 (RPC)    
-
 • Explorer https://explorer.decenomy.net/TRTT/blocks  
 • Website [https://trittium.net/](https://trittium.net/)   
 
