@@ -12,7 +12,7 @@ Trittium standard wallet
 • Maturity: 100 Confirmations   
 • Prefix: TRTT adresses start with the capital letter "T"   
 • Ports: 31001 (P2P) / 31002 (RPC)    
-• Explorer https://explorer.decenomy.net/TRTT/blocks  
+• Explorer https://explorer.decenomy.net/TRTT/blocks   
 • Website [https://trittium.net/](https://trittium.net/)   
 
 ### Rewards Breakdown
