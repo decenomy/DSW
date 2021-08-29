@@ -1,10 +1,10 @@
-Sapphire Standard wallet repository
+Sapphire wallet repository
 =====================================
 
 ### Coin Specs
 
 • PoW Algorithm: Quark   
-• Premine: 300,000,000 SAPP   
+• Premine: 300,000 SAPP   
 • PoW Blocks: 1 - 500   
 • PoS Blocks: Starting from 501   
 • Block Time: 60 Seconds    
