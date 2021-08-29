@@ -9,13 +9,10 @@ Kyanite (KYAN) staging repository
 • PoS Blocks: Starting from 1001   
 • Block Time: 60 Seconds   
 • Maturity: 100 Confirmations   
-• Prefix: Kyanite adresses start with the capital letter "K"   
+• Prefix: Kyanite addresses start with the capital letter "K"   
 • Ports: 7757 (p2p) / 7758 (rpc)   
-
-• Explorer https://explorer.decenomy.net/KYAN/blocks
-
-• Website [kyancoin.net](https://kyancoin.net/)
-
+• Explorer https://explorer.decenomy.net/KYAN/blocks   
+• Website [kyancoin.net](https://kyancoin.net/)   
 
 ### Rewards Breakdown
 ---
