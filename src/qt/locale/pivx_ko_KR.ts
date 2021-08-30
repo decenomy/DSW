@@ -912,7 +912,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <source>Welcome to Birake.</source>
-        <translation>__Decenomy__에 오신 것을 환영합니다.</translation>
+        <translation>Birake에 오신 것을 환영합니다.</translation>
     </message>
     <message>
         <source>As this is the first time the program is launched, you can choose where Birake will store its data.</source>
@@ -920,7 +920,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <source>Birake will download and store a copy of the BIR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>__Decenomy__는 BIR 블록체인을 다운로드하여 저장합니다. 최소 %1GB의 데이터가 디렉토리에 저장되며 시간이 지날수록 증가합니다. 또한 지갑도 해당 디렉토리에 저장됩니다.</translation>
+        <translation>Birake는 BIR 블록체인을 다운로드하여 저장합니다. 최소 %1GB의 데이터가 디렉토리에 저장되며 시간이 지날수록 증가합니다. 또한 지갑도 해당 디렉토리에 저장됩니다.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1491,9 +1491,9 @@ Are you sure?</source>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        __decenomy_discord_link__</source>
+        https://discord.gg/WrxZUtu</source>
         <translation>지원 언어가 없거나 번역이 불완전한가요? 번역을 도와주세요 :
-        __decenomy_discord_link__</translation>
+        https://discord.gg/WrxZUtu</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
