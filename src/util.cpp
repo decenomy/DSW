@@ -326,7 +326,7 @@ static fs::path ZC_GetBaseParamsDir()
     // Unix: ~/.birake-params
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "__Decenomy__Params";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "BirakeParams";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -338,7 +338,7 @@ static fs::path ZC_GetBaseParamsDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "__Decenomy__Params";
+    return pathRet / "BirakeParams";
 #else
     // Unix
     return pathRet / ".birake-params";

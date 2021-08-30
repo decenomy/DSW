@@ -861,7 +861,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <source>About Birake</source>
-        <translation>关于__Decenomy__</translation>
+        <translation>关于Birake</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -920,11 +920,11 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <source>As this is the first time the program is launched, you can choose where Birake will store its data.</source>
-        <translation>由于这是该程序第一次启动，您可以选择存储__Decenomy__ 数据的位置。</translation>
+        <translation>由于这是该程序第一次启动，您可以选择存储Birake 数据的位置。</translation>
     </message>
     <message>
         <source>Birake will download and store a copy of the BIR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>__Decenomy__将下载并存储BIR区块链副本。 至少 %1 GB的数据将存储在此目录中，并且会随着时间的推移而增长。 钱包也将存储在此目录中。</translation>
+        <translation>Birake将下载并存储BIR区块链副本。 至少 %1 GB的数据将存储在此目录中，并且会随着时间的推移而增长。 钱包也将存储在此目录中。</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1943,7 +1943,7 @@ Address: %4
     </message>
     <message>
         <source>Birake didn't yet exit safely...</source>
-        <translation>__Decenomy__心尚未安全退出……</translation>
+        <translation>Birake心尚未安全退出……</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -4603,7 +4603,7 @@ backup will be created.
         <source>Welcome to
 Birake Wallet</source>
         <translation>欢迎
-__Decenomy__心钱包</translation>
+Birake心钱包</translation>
     </message>
     <message>
         <source>BIR is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
@@ -4654,7 +4654,7 @@ __Decenomy__心钱包</translation>
     </message>
     <message>
         <source>Cannot obtain a lock on data directory %s. Birake is probably already running.</source>
-        <translation>无法获取数据目录%s锁。__Decenomy__心可能已经在运行了。</translation>
+        <translation>无法获取数据目录%s锁。Birake心可能已经在运行了。</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -4814,7 +4814,7 @@ __Decenomy__心钱包</translation>
     </message>
     <message>
         <source>Unable to bind to %s on this computer. Birake is probably already running.</source>
-        <translation>无法绑定到此计算机上的%s。__Decenomy__心可能已经在运行了。</translation>
+        <translation>无法绑定到此计算机上的%s。Birake心可能已经在运行了。</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -4830,7 +4830,7 @@ __Decenomy__心钱包</translation>
     </message>
     <message>
         <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Birake will not work properly.</source>
-        <translation>注意：请检查您的电脑的日期和时间是否正确！ 如果您的时间设置不正确，__Decenomy__将无法正常工作。</translation>
+        <translation>注意：请检查您的电脑的日期和时间是否正确！ 如果您的时间设置不正确，Birake将无法正常工作。</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5038,7 +5038,7 @@ __Decenomy__心钱包</translation>
     </message>
     <message>
         <source>Initialization sanity check failed. Birake is shutting down.</source>
-        <translation>初始化完整性检查失败。__Decenomy__心快要关闭了。</translation>
+        <translation>初始化完整性检查失败。Birake心快要关闭了。</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5326,7 +5326,7 @@ __Decenomy__心钱包</translation>
     </message>
     <message>
         <source>Please check that your computer's date and time are correct! If your clock is wrong Birake will not work properly.</source>
-        <translation>请检查您的电脑的日期和时间是否正确!如果你的时间错误，__Decenomy__将无法正常工作。</translation>
+        <translation>请检查您的电脑的日期和时间是否正确!如果你的时间错误，Birake将无法正常工作。</translation>
     </message>
     <message>
         <source>Specify location of debug log file: this can be an absolute path or a path relative to the data directory (default: %s)</source>
@@ -5630,7 +5630,7 @@ __Decenomy__心钱包</translation>
     </message>
     <message>
         <source>Wallet needed to be rewritten: restart Birake to complete</source>
-        <translation>钱包需要重写:重新启动__Decenomy__心完成</translation>
+        <translation>钱包需要重写:重新启动Birake心完成</translation>
     </message>
     <message>
         <source>Wallet options:</source>

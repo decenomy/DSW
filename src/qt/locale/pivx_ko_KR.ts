@@ -916,7 +916,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <source>As this is the first time the program is launched, you can choose where Birake will store its data.</source>
-        <translation>이 프로그램이 처음 실행되었으므로 __Decenomy__가 데이터를 저장할 위치를 선택할 수 있습니다.</translation>
+        <translation>이 프로그램이 처음 실행되었으므로 Birake가 데이터를 저장할 위치를 선택할 수 있습니다.</translation>
     </message>
     <message>
         <source>Birake will download and store a copy of the BIR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
@@ -1925,7 +1925,7 @@ Address: %4
     </message>
     <message>
         <source>Birake didn't yet exit safely...</source>
-        <translation>__Decenomy__가 아직 안전하게 종료되지 않았습니다....</translation>
+        <translation>Birake가 아직 안전하게 종료되지 않았습니다....</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -3812,7 +3812,7 @@ Are you sure?
     <name>ShutdownWindow</name>
     <message>
         <source>Birake is shutting down...</source>
-        <translation>__Decenomy__가 종료됩니다...</translation>
+        <translation>Birake가 종료됩니다...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4312,7 +4312,7 @@ Birake Wallet</translation>
     </message>
     <message>
         <source>Cannot obtain a lock on data directory %s. Birake is probably already running.</source>
-        <translation>        &lt;translation&gt;잠겨진 데이터 디렉토리 %s 를 가져올 수 없습니다. __Decenomy__는 이미 실행 중입니다.</translation>
+        <translation>        &lt;translation&gt;잠겨진 데이터 디렉토리 %s 를 가져올 수 없습니다. Birake는 이미 실행 중입니다.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -4452,7 +4452,7 @@ Birake Wallet</translation>
     </message>
     <message>
         <source>Unable to bind to %s on this computer. Birake is probably already running.</source>
-        <translation>이 컴퓨터를 %s 로 지정하는것은 불가능합니다. __Decenomy__는 이미 실행 중입니다.</translation>
+        <translation>이 컴퓨터를 %s 로 지정하는것은 불가능합니다. Birake는 이미 실행 중입니다.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -4672,7 +4672,7 @@ Birake Wallet</translation>
     </message>
     <message>
         <source>Initialization sanity check failed. Birake is shutting down.</source>
-        <translation>초기화 정확성 검사에 실패 했습니다. __Decenomy__가 종료됩니다.</translation>
+        <translation>초기화 정확성 검사에 실패 했습니다. Birake가 종료됩니다.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
