@@ -622,7 +622,7 @@ int main(int argc, char* argv[])
     if (!Intro::pickDataDirectory())
         return 0;
 
-    /// 6. Determine availability of data directory and parse __decenomy__.conf
+    /// 6. Determine availability of data directory and parse birake.conf
     /// - Do not call GetDataDir(true) before this step finishes
     if (!fs::is_directory(GetDataDir(false))) {
         QMessageBox::critical(0, QObject::tr("Birake"),
@@ -679,7 +679,7 @@ int main(int argc, char* argv[])
         exit(0);
 
     // Start up the payment server early, too, so impatient users that click on
-    // __decenomy__: links repeatedly have their payment requests routed to this process:
+    // birake: links repeatedly have their payment requests routed to this process:
     app.createPaymentServer();
 #endif
 

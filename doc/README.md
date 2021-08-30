@@ -13,8 +13,8 @@ The following are some helpful notes on how to run Birake Core on your native pl
 
 Unpack the files into a directory and run:
 
-- `bin/__decenomy__-qt` (GUI) or
-- `bin/__decenomy__d` (headless)
+- `bin/birake-qt` (GUI) or
+- `bin/biraked` (headless)
 
 ### Windows
 

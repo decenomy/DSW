@@ -51,7 +51,7 @@ static const int MAX_URI_LENGTH = 255;
 
 
 #define QAPP_ORG_NAME "Birake"
-#define QAPP_ORG_DOMAIN "__decenomy__.org"
+#define QAPP_ORG_DOMAIN "birake.org"
 #define QAPP_APP_NAME_DEFAULT "Birake-Qt"
 #define QAPP_APP_NAME_TESTNET "Birake-Qt-testnet"
 

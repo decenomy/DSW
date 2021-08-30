@@ -1,6 +1,6 @@
-usr/local/bin/__decenomy__-qt usr/bin
+usr/local/bin/birake-qt usr/bin
 share/pixmaps/pivx32.xpm usr/share/pixmaps
 share/pixmaps/pivx16.xpm usr/share/pixmaps
 share/pixmaps/pivx128.png usr/share/pixmaps
-debian/__decenomy__-qt.desktop usr/share/applications
-debian/__decenomy__-qt.protocol usr/share/kde4/services/
+debian/birake-qt.desktop usr/share/applications
+debian/birake-qt.protocol usr/share/kde4/services/

@@ -38,7 +38,7 @@
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>io.__decenomy__.Birake-Qt</string>
+  <string>io.birake.Birake-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>

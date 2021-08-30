@@ -1280,14 +1280,14 @@ Espere unos minutos más (las garantías de masternode requieren %1 confirmacion
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the __decenomy__.conf file
+You will only have to paste the data in the birake.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
         <translation>Estás a punto de exportar los datos necesarios para ejecutar un Masternode de un servidor remoto a tu portapapeles.
 
 
-Sólo tendrás que pegar los datos en el archivo __decenomy__.conf de tu servidor remoto e iniciarlo, luego inicia el Masternode usando esta wallet de controladores (selecciona el Masternode en la lista y presione "start").
+Sólo tendrás que pegar los datos en el archivo birake.conf de tu servidor remoto e iniciarlo, luego inicia el Masternode usando esta wallet de controladores (selecciona el Masternode en la lista y presione "start").
 </translation>
     </message>
     <message>
@@ -1461,8 +1461,8 @@ MAESTROS</translation>
         <translation>Los datos analizados son demasiado grandes</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "__decenomy__" prefix</source>
-        <translation>URI inválido, no empezar con el prefijo "__decenomy__"</translation>
+        <source>Invalid URI, not starting with "birake" prefix</source>
+        <translation>URI inválido, no empezar con el prefijo "birake"</translation>
     </message>
 </context>
 <context>
@@ -1851,8 +1851,8 @@ Dirección: %4
         <translation>Dirección de pago inválida %1</translation>
     </message>
     <message>
-        <source>Cannot start __decenomy__: click-to-pay handler</source>
-        <translation>No se puede iniciar __decenomy__: módulo click-to-pay</translation>
+        <source>Cannot start birake: click-to-pay handler</source>
+        <translation>No se puede iniciar birake: módulo click-to-pay</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid BIR address or malformed URI parameters.</source>
@@ -3644,8 +3644,8 @@ Requisitos:
         <translation>No se puede abrir la carpeta de copias de seguridad</translation>
     </message>
     <message>
-        <source>Unable to open __decenomy__.conf with default application</source>
-        <translation>No se puede abrir __decenomy__.conf con la aplicación predeterminada</translation>
+        <source>Unable to open birake.conf with default application</source>
+        <translation>No se puede abrir birake.conf con la aplicación predeterminada</translation>
     </message>
     <message>
         <source>In:</source>

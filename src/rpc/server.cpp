@@ -361,31 +361,31 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true },
 
         /* BIR features */
-        {"__decenomy__", "listmasternodes", &listmasternodes, true },
-        {"__decenomy__", "getmasternodecount", &getmasternodecount, true },
-        {"__decenomy__", "createmasternodebroadcast", &createmasternodebroadcast, true },
-        {"__decenomy__", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
-        {"__decenomy__", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
-        {"__decenomy__", "masternodecurrent", &masternodecurrent, true },
-        {"__decenomy__", "startmasternode", &startmasternode, true },
-        {"__decenomy__", "createmasternodekey", &createmasternodekey, true },
-        {"__decenomy__", "getmasternodeoutputs", &getmasternodeoutputs, true },
-        {"__decenomy__", "listmasternodeconf", &listmasternodeconf, true },
-        {"__decenomy__", "getmasternodestatus", &getmasternodestatus, true },
-        {"__decenomy__", "getmasternodewinners", &getmasternodewinners, true },
-        {"__decenomy__", "getmasternodescores", &getmasternodescores, true },
-        {"__decenomy__", "preparebudget", &preparebudget, true },
-        {"__decenomy__", "submitbudget", &submitbudget, true },
-        {"__decenomy__", "mnbudgetvote", &mnbudgetvote, true },
-        {"__decenomy__", "getbudgetvotes", &getbudgetvotes, true },
-        {"__decenomy__", "getnextsuperblock", &getnextsuperblock, true },
-        {"__decenomy__", "getbudgetprojection", &getbudgetprojection, true },
-        {"__decenomy__", "getbudgetinfo", &getbudgetinfo, true },
-        {"__decenomy__", "mnbudgetrawvote", &mnbudgetrawvote, true },
-        {"__decenomy__", "mnfinalbudget", &mnfinalbudget, true },
-        {"__decenomy__", "checkbudgets", &checkbudgets, true },
-        {"__decenomy__", "mnsync", &mnsync, true },
-        {"__decenomy__", "spork", &spork, true },
+        {"birake", "listmasternodes", &listmasternodes, true },
+        {"birake", "getmasternodecount", &getmasternodecount, true },
+        {"birake", "createmasternodebroadcast", &createmasternodebroadcast, true },
+        {"birake", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
+        {"birake", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
+        {"birake", "masternodecurrent", &masternodecurrent, true },
+        {"birake", "startmasternode", &startmasternode, true },
+        {"birake", "createmasternodekey", &createmasternodekey, true },
+        {"birake", "getmasternodeoutputs", &getmasternodeoutputs, true },
+        {"birake", "listmasternodeconf", &listmasternodeconf, true },
+        {"birake", "getmasternodestatus", &getmasternodestatus, true },
+        {"birake", "getmasternodewinners", &getmasternodewinners, true },
+        {"birake", "getmasternodescores", &getmasternodescores, true },
+        {"birake", "preparebudget", &preparebudget, true },
+        {"birake", "submitbudget", &submitbudget, true },
+        {"birake", "mnbudgetvote", &mnbudgetvote, true },
+        {"birake", "getbudgetvotes", &getbudgetvotes, true },
+        {"birake", "getnextsuperblock", &getnextsuperblock, true },
+        {"birake", "getbudgetprojection", &getbudgetprojection, true },
+        {"birake", "getbudgetinfo", &getbudgetinfo, true },
+        {"birake", "mnbudgetrawvote", &mnbudgetrawvote, true },
+        {"birake", "mnfinalbudget", &mnfinalbudget, true },
+        {"birake", "checkbudgets", &checkbudgets, true },
+        {"birake", "mnsync", &mnsync, true },
+        {"birake", "spork", &spork, true },
 
 #ifdef ENABLE_WALLET
         /* Wallet */
@@ -604,7 +604,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(std::string methodname, std::string args)
 {
-    return "> __decenomy__-cli " + methodname + " " + args + "\n";
+    return "> birake-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(std::string methodname, std::string args)

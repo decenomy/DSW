@@ -4,7 +4,7 @@ pipeline {
 
     environment {
         NAME = 'Birake'
-        BASE_NAME = '__decenomy__'
+        BASE_NAME = 'birake'
         ZIP_NAME = 'BIR'
     }
 
