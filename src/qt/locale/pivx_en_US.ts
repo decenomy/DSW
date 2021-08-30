@@ -3519,8 +3519,8 @@ There was an error trying to save the address list to %1. Please try again.</tra
         <translation>2) Why are my BIR unspendable?</translation>
     </message>
     <message>
-        <source>__decenomy_website_link__/</source>
-        <translation>__decenomy_website_link__/</translation>
+        <source>https://birake.com/</source>
+        <translation>https://birake.com/</translation>
     </message>
     <message>
         <source>1</source>

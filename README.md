@@ -17,7 +17,7 @@ DECENOMY Standard wallet repository
 
 • Explorer https://explorer.decenomy.net/
 
-• Website [__decenomy_website_link__](__decenomy_website_link__)
+• Website [https://birake.com/](https://birake.com/)
 
 ### Rewards Breakdown
 <table border=0 cellpadding=0 cellspacing=0 width=701 class=xl6553517252

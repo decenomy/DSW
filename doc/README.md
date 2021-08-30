@@ -3,7 +3,7 @@ Birake Core
 
 Setup
 ---------------------
-[Birake Core](__decenomy_website_link__/) is the original Birake client and it builds the backbone of the network. However, it downloads and stores the entire history of Birake transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
+[Birake Core](https://birake.com/) is the original Birake client and it builds the backbone of the network. However, it downloads and stores the entire history of Birake transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
 
 Running
 ---------------------
@@ -26,7 +26,7 @@ Drag Birake-Qt to your applications folder, and then run Birake-Qt.
 
 ### Need Help?
 
-* See the documentation at the [Birake Wiki](https://__decenomy_github_link__/)
+* See the documentation at the [Birake Wiki](https://birake.com/)
 for help and more information.
 * Join our Discord server [Discord Server](https://discord.gg/WrxZUtu)
 
@@ -55,7 +55,7 @@ The Birake repo's [root README](/README.md) contains relevant information on the
 - [Dnsseed Policy](dnsseed-policy.md)
 
 ### Resources
-* Discuss on the [Birake Homepage](__decenomy_website_link__/).
+* Discuss on the [Birake Homepage](https://birake.com/).
 * Join the [Birake Discord](https://discord.gg/WrxZUtu).
 
 ### Miscellaneous
