@@ -122,12 +122,12 @@
         <translation>Receiving addresses</translation>
     </message>
     <message>
-        <source>These are your __DSW__ addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>These are your __DSW__ addresses for sending payments. Always check the amount and the receiving address before sending coins.</translation>
+        <source>These are your BIR addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>These are your BIR addresses for sending payments. Always check the amount and the receiving address before sending coins.</translation>
     </message>
     <message>
-        <source>These are your __DSW__ addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>These are your __DSW__ addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</translation>
+        <source>These are your BIR addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>These are your BIR addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -364,8 +364,8 @@ for staking</translation>
         <translation>CANCEL</translation>
     </message>
     <message>
-        <source>__DSW__ will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your __DSW__s from being stolen by malware infecting your computer.</source>
-        <translation>__DSW__ will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your __DSW__s from being stolen by malware infecting your computer.</translation>
+        <source>BIR will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your BIRs from being stolen by malware infecting your computer.</source>
+        <translation>BIR will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your BIRs from being stolen by malware infecting your computer.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -465,8 +465,8 @@ for staking</translation>
         <translation>Coin Selection</translation>
     </message>
     <message>
-        <source>Select __DSW__ Outputs to Spend</source>
-        <translation>Select __DSW__ Outputs to Spend</translation>
+        <source>Select BIR Outputs to Spend</source>
+        <translation>Select BIR Outputs to Spend</translation>
     </message>
     <message>
         <source>Dust:</source>
@@ -493,8 +493,8 @@ for staking</translation>
         <translation>Amount</translation>
     </message>
     <message>
-        <source>0.00 __DSW__</source>
-        <translation>0.00 __DSW__</translation>
+        <source>0.00 BIR</source>
+        <translation>0.00 BIR</translation>
     </message>
     <message>
         <source>0</source>
@@ -723,8 +723,8 @@ for staking</translation>
         <translation>View your account's history</translation>
     </message>
     <message>
-        <source>How to get __DSW__</source>
-        <translation>How to get __DSW__</translation>
+        <source>How to get BIR</source>
+        <translation>How to get BIR</translation>
     </message>
     <message>
         <source>Sort by</source>
@@ -747,8 +747,8 @@ for staking</translation>
         <translation>Filter by</translation>
     </message>
     <message>
-        <source>Amount of __DSW__ and z__DSW__ staked.</source>
-        <translation>Amount of __DSW__ and z__DSW__ staked.</translation>
+        <source>Amount of BIR and zBIR staked.</source>
+        <translation>Amount of BIR and zBIR staked.</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -843,8 +843,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>Edit sending address</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid __DSW__ address.</source>
-        <translation>The entered address "%1" is not a valid __DSW__ address.</translation>
+        <source>The entered address "%1" is not a valid BIR address.</source>
+        <translation>The entered address "%1" is not a valid BIR address.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -896,16 +896,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>version</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Birake</source>
+        <translation>Birake</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About __Decenomy__</source>
-        <translation>About __Decenomy__</translation>
+        <source>About Birake</source>
+        <translation>About Birake</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -959,16 +959,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>Welcome</translation>
     </message>
     <message>
-        <source>Welcome to __Decenomy__.</source>
-        <translation>Welcome to __Decenomy__.</translation>
+        <source>Welcome to Birake.</source>
+        <translation>Welcome to Birake.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where __Decenomy__ will store its data.</source>
-        <translation>As this is the first time the program is launched, you can choose where __Decenomy__ will store its data.</translation>
+        <source>As this is the first time the program is launched, you can choose where Birake will store its data.</source>
+        <translation>As this is the first time the program is launched, you can choose where Birake will store its data.</translation>
     </message>
     <message>
-        <source>__Decenomy__ will download and store a copy of the __DSW__ block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>__Decenomy__ will download and store a copy of the __DSW__ block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</translation>
+        <source>Birake will download and store a copy of the BIR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Birake will download and store a copy of the BIR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -987,8 +987,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>OK</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Birake</source>
+        <translation>Birake</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1095,8 +1095,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>Create New Masternode Controller</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a __DSW__ Masternode you must dedicate a collateral amount of __DSW__ (the unit of __DSW__) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a __DSW__ Masternode you must dedicate a collateral amount of __DSW__ (the unit of __DSW__) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a BIR Masternode you must dedicate a collateral amount of BIR (the unit of BIR) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a BIR Masternode you must dedicate a collateral amount of BIR (the unit of BIR) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Set Masternode Name</source>
@@ -1322,7 +1322,7 @@ Please wait few more minutes (masternode collaterals require %1 confirmations).<
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the __decenomy__.conf file
+You will only have to paste the data in the birake.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1330,7 +1330,7 @@ this controller wallet (select the Masternode in the list and press "start").
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the __decenomy__.conf file
+You will only have to paste the data in the birake.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </translation>
@@ -1514,8 +1514,8 @@ NODES</translation>
         <translation>Parsed data too large</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "__decenomy__" prefix</source>
-        <translation>Invalid URI, not starting with "__decenomy__" prefix</translation>
+        <source>Invalid URI, not starting with "birake" prefix</source>
+        <translation>Invalid URI, not starting with "birake" prefix</translation>
     </message>
 </context>
 <context>
@@ -1560,8 +1560,8 @@ NODES</translation>
         <translation>If you disable the spending of unconfirmed change, the change from a transaction&lt;br/&gt;cannot be used until that transaction has at least one confirmation.&lt;br/&gt;This also affects how your balance is computed.</translation>
     </message>
     <message>
-        <source>Automatically open the __DSW__ client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Automatically open the __DSW__ client port on the router. This only works when your router supports UPnP and it is enabled.</translation>
+        <source>Automatically open the BIR client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automatically open the BIR client port on the router. This only works when your router supports UPnP and it is enabled.</translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -1580,12 +1580,12 @@ NODES</translation>
         <translation>Expert</translation>
     </message>
     <message>
-        <source>Automatically start __DSW__ after logging in to the system.</source>
-        <translation>Automatically start __DSW__ after logging in to the system.</translation>
+        <source>Automatically start BIR after logging in to the system.</source>
+        <translation>Automatically start BIR after logging in to the system.</translation>
     </message>
     <message>
-        <source>&amp;Start __DSW__ on system login</source>
-        <translation>&amp;Start __DSW__ on system login</translation>
+        <source>&amp;Start BIR on system login</source>
+        <translation>&amp;Start BIR on system login</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1612,58 +1612,58 @@ NODES</translation>
         <translation>&amp;Network</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting __DSW__.</source>
-        <translation>The user interface language can be set here. This setting will take effect after restarting __DSW__.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting BIR.</source>
+        <translation>The user interface language can be set here. This setting will take effect after restarting BIR.</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        __decenomy_discord_link__</source>
+        https://discord.gg/WrxZUtu</source>
         <translation>Language missing or translation incomplete? Help contributing translations here:
-        __decenomy_discord_link__</translation>
+        https://discord.gg/WrxZUtu</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>Map port using &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of __DSW__ units to z__DSW__</source>
-        <translation>Enable automatic minting of __DSW__ units to z__DSW__</translation>
+        <source>Enable automatic minting of BIR units to zBIR</source>
+        <translation>Enable automatic minting of BIR units to zBIR</translation>
     </message>
     <message>
-        <source>Enable z__DSW__ Automint</source>
-        <translation>Enable z__DSW__ Automint</translation>
+        <source>Enable zBIR Automint</source>
+        <translation>Enable zBIR Automint</translation>
     </message>
     <message>
-        <source>Enable automatic z__DSW__ minting from specific addresses</source>
-        <translation>Enable automatic z__DSW__ minting from specific addresses</translation>
+        <source>Enable automatic zBIR minting from specific addresses</source>
+        <translation>Enable automatic zBIR minting from specific addresses</translation>
     </message>
     <message>
         <source>Enable Automint Addresses</source>
         <translation>Enable Automint Addresses</translation>
     </message>
     <message>
-        <source>Percentage of incoming __DSW__ which get automatically converted to z__DSW__ via Zerocoin Protocol (min: 10%)</source>
-        <translation>Percentage of incoming __DSW__ which get automatically converted to z__DSW__ via Zerocoin Protocol (min: 10%)</translation>
+        <source>Percentage of incoming BIR which get automatically converted to zBIR via Zerocoin Protocol (min: 10%)</source>
+        <translation>Percentage of incoming BIR which get automatically converted to zBIR via Zerocoin Protocol (min: 10%)</translation>
     </message>
     <message>
-        <source>Percentage of autominted z__DSW__</source>
-        <translation>Percentage of autominted z__DSW__</translation>
+        <source>Percentage of autominted zBIR</source>
+        <translation>Percentage of autominted zBIR</translation>
     </message>
     <message>
-        <source>Wait with automatic conversion to Zerocoin until enough __DSW__ for this denomination is available</source>
-        <translation>Wait with automatic conversion to Zerocoin until enough __DSW__ for this denomination is available</translation>
+        <source>Wait with automatic conversion to Zerocoin until enough BIR for this denomination is available</source>
+        <translation>Wait with automatic conversion to Zerocoin until enough BIR for this denomination is available</translation>
     </message>
     <message>
-        <source>Preferred Automint z__DSW__ Denomination</source>
-        <translation>Preferred Automint z__DSW__ Denomination</translation>
+        <source>Preferred Automint zBIR Denomination</source>
+        <translation>Preferred Automint zBIR Denomination</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
         <translation>Stake split threshold:</translation>
     </message>
     <message>
-        <source>Connect to the __DSW__ network through a SOCKS5 proxy.</source>
-        <translation>Connect to the __DSW__ network through a SOCKS5 proxy.</translation>
+        <source>Connect to the BIR network through a SOCKS5 proxy.</source>
+        <translation>Connect to the BIR network through a SOCKS5 proxy.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1809,8 +1809,8 @@ NODES</translation>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Birake</source>
+        <translation>Birake</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -1837,8 +1837,8 @@ NODES</translation>
         <translation>Quit application</translation>
     </message>
     <message>
-        <source>__Decenomy__ client</source>
-        <translation>__Decenomy__ client</translation>
+        <source>Birake client</source>
+        <translation>Birake client</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1904,12 +1904,12 @@ Address: %4
         <translation>Invalid payment address %1</translation>
     </message>
     <message>
-        <source>Cannot start __decenomy__: click-to-pay handler</source>
-        <translation>Cannot start __decenomy__: click-to-pay handler</translation>
+        <source>Cannot start birake: click-to-pay handler</source>
+        <translation>Cannot start birake: click-to-pay handler</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid __DSW__ address or malformed URI parameters.</source>
-        <translation>URI cannot be parsed! This can be caused by an invalid __DSW__ address or malformed URI parameters.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid BIR address or malformed URI parameters.</source>
+        <translation>URI cannot be parsed! This can be caused by an invalid BIR address or malformed URI parameters.</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -1998,8 +1998,8 @@ Address: %4
         <translation>Amount</translation>
     </message>
     <message>
-        <source>Enter __DSW__ address (e.g. %1)</source>
-        <translation>Enter __DSW__ address (e.g. %1)</translation>
+        <source>Enter BIR address (e.g. %1)</source>
+        <translation>Enter BIR address (e.g. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2042,12 +2042,12 @@ Address: %4
         <translation>%1 ms</translation>
     </message>
     <message>
-        <source>A fatal error occurred. __DSW__ can no longer continue safely and will quit.</source>
-        <translation>A fatal error occurred. __DSW__ can no longer continue safely and will quit.</translation>
+        <source>A fatal error occurred. BIR can no longer continue safely and will quit.</source>
+        <translation>A fatal error occurred. BIR can no longer continue safely and will quit.</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Birake</source>
+        <translation>Birake</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -2066,8 +2066,8 @@ Address: %4
         <translation>Error reading masternode configuration file: %1</translation>
     </message>
     <message>
-        <source>__Decenomy__ didn't yet exit safely...</source>
-        <translation>__Decenomy__ didn't yet exit safely...</translation>
+        <source>Birake didn't yet exit safely...</source>
+        <translation>Birake didn't yet exit safely...</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -2277,8 +2277,8 @@ Address: %4
         <translation>Block chain</translation>
     </message>
     <message>
-        <source>Open the __DSW__ debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Open the __DSW__ debug log file from the current data directory. This can take a few seconds for large log files.</translation>
+        <source>Open the BIR debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Open the BIR debug log file from the current data directory. This can take a few seconds for large log files.</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -2421,8 +2421,8 @@ Address: %4
         <translation>Custom Backup Path:</translation>
     </message>
     <message>
-        <source>Custom z__DSW__ Backup Path:</source>
-        <translation>Custom z__DSW__ Backup Path:</translation>
+        <source>Custom zBIR Backup Path:</source>
+        <translation>Custom zBIR Backup Path:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -2501,8 +2501,8 @@ Address: %4
         <translation>Out:</translation>
     </message>
     <message>
-        <source>Welcome to the __DSW__ RPC console.</source>
-        <translation>Welcome to the __DSW__ RPC console.</translation>
+        <source>Welcome to the BIR RPC console.</source>
+        <translation>Welcome to the BIR RPC console.</translation>
     </message>
     <message>
         <source>&amp;Disconnect Node</source>
@@ -2643,8 +2643,8 @@ Address: %4
         <translation>No address</translation>
     </message>
     <message>
-        <source>Scan the QR code or copy the address to receive __DSW__</source>
-        <translation>Scan the QR code or copy the address to receive __DSW__</translation>
+        <source>Scan the QR code or copy the address to receive BIR</source>
+        <translation>Scan the QR code or copy the address to receive BIR</translation>
     </message>
     <message>
         <source>Add Label</source>
@@ -2773,12 +2773,12 @@ Address: %4
         <translation>Amount</translation>
     </message>
     <message>
-        <source>__DSW__</source>
-        <translation>__DSW__</translation>
+        <source>BIR</source>
+        <translation>BIR</translation>
     </message>
     <message>
-        <source>Instead of sharing only a __DSW__ address, you can create a payment request, bundling up more information</source>
-        <translation>Instead of sharing only a __DSW__ address, you can create a payment request, bundling up more information</translation>
+        <source>Instead of sharing only a BIR address, you can create a payment request, bundling up more information</source>
+        <translation>Instead of sharing only a BIR address, you can create a payment request, bundling up more information</translation>
     </message>
     <message>
         <source>D7VFR83SQbiezrW72hjcWJtcfip5krte2Z </source>
@@ -2856,8 +2856,8 @@ Address: %4
         <translation>Custom Change Address</translation>
     </message>
     <message>
-        <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" __DSW__ address</source>
-        <translation>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" __DSW__ address</translation>
+        <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" BIR address</source>
+        <translation>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" BIR address</translation>
     </message>
     <message>
         <source>SAVE</source>
@@ -2883,8 +2883,8 @@ Address: %4
         <translation>Recommended</translation>
     </message>
     <message>
-        <source>__DSW__/kilobyte</source>
-        <translation>__DSW__/kilobyte</translation>
+        <source>BIR/kilobyte</source>
+        <translation>BIR/kilobyte</translation>
     </message>
     <message>
         <source>0.00 KB</source>
@@ -3155,9 +3155,9 @@ Remember to write it down and store it safely, otherwise you might lose access t
         <translation>BIP38 Tool</translation>
     </message>
     <message>
-        <source>Encrypt your __DSW__ addresses (key pair actually) using BIP38 encryption.
+        <source>Encrypt your BIR addresses (key pair actually) using BIP38 encryption.
 Using this mechanism you can share your keys without middle-man risk, only need to store your passphrase safely</source>
-        <translation>Encrypt your __DSW__ addresses (key pair actually) using BIP38 encryption.
+        <translation>Encrypt your BIR addresses (key pair actually) using BIP38 encryption.
 Using this mechanism you can share your keys without middle-man risk, only need to store your passphrase safely</translation>
     </message>
     <message>
@@ -3193,8 +3193,8 @@ Using this mechanism you can share your keys without middle-man risk, only need 
         <translation>DECRYPT KEY</translation>
     </message>
     <message>
-        <source>__DSW__ address</source>
-        <translation>__DSW__ address</translation>
+        <source>BIR address</source>
+        <translation>BIR address</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -3326,8 +3326,8 @@ Verify that you have installed a predetermined text editor.</source>
 Verify that you have installed a predetermined text editor.</translation>
     </message>
     <message>
-        <source>Welcome to the __DSW__ RPC console.</source>
-        <translation>Welcome to the __DSW__ RPC console.</translation>
+        <source>Welcome to the BIR RPC console.</source>
+        <translation>Welcome to the BIR RPC console.</translation>
     </message>
     <message>
         <source>Use up and down arrows to navigate history, and %1 to clear screen.</source>
@@ -3511,50 +3511,50 @@ There was an error trying to save the address list to %1. Please try again.</tra
         <translation>Form</translation>
     </message>
     <message>
-        <source>1) What is __DSW__?</source>
-        <translation>1) What is __DSW__?</translation>
+        <source>1) What is BIR?</source>
+        <translation>1) What is BIR?</translation>
     </message>
     <message>
-        <source>2) Why are my __DSW__ unspendable?</source>
-        <translation>2) Why are my __DSW__ unspendable?</translation>
+        <source>2) Why are my BIR unspendable?</source>
+        <translation>2) Why are my BIR unspendable?</translation>
     </message>
     <message>
-        <source>__decenomy_website_link__/</source>
-        <translation>__decenomy_website_link__/</translation>
+        <source>https://birake.com/</source>
+        <translation>https://birake.com/</translation>
     </message>
     <message>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <source>What is __DSW__?</source>
-        <translation>What is __DSW__?</translation>
+        <source>What is BIR?</source>
+        <translation>What is BIR?</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           __DSW__ is a form of digital online money using blockchain technology
+                           BIR is a form of digital online money using blockchain technology
                            that can be easily transferred globally, instantly, and with near
-                           zero fees.  __DSW__ incorporates market leading security &amp;
+                           zero fees.  BIR incorporates market leading security &amp;
                            privacy and is also the first PoS (Proof of Stake) Cryptocurrency
-                           to implement ZeroCoin(z__DSW__) and Zerocoin staking.
+                           to implement ZeroCoin(zBIR) and Zerocoin staking.
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           __DSW__ utilizes a Proof of Stake (PoS) consensus system algorithm,
-                           allowing all owners of __DSW__ to participate in earning block rewards
+                           BIR utilizes a Proof of Stake (PoS) consensus system algorithm,
+                           allowing all owners of BIR to participate in earning block rewards
                            while securing the network with full node wallets, as well as to
                            run Masternodes to create and vote on proposals.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           __DSW__ is a form of digital online money using blockchain technology
+                           BIR is a form of digital online money using blockchain technology
                            that can be easily transferred globally, instantly, and with near
-                           zero fees.  __DSW__ incorporates market leading security &amp;
+                           zero fees.  BIR incorporates market leading security &amp;
                            privacy and is also the first PoS (Proof of Stake) Cryptocurrency
-                           to implement ZeroCoin(z__DSW__) and Zerocoin staking.
+                           to implement ZeroCoin(zBIR) and Zerocoin staking.
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           __DSW__ utilizes a Proof of Stake (PoS) consensus system algorithm,
-                           allowing all owners of __DSW__ to participate in earning block rewards
+                           BIR utilizes a Proof of Stake (PoS) consensus system algorithm,
+                           allowing all owners of BIR to participate in earning block rewards
                            while securing the network with full node wallets, as well as to
                            run Masternodes to create and vote on proposals.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
@@ -3565,25 +3565,25 @@ There was an error trying to save the address list to %1. Please try again.</tra
         <translation>2</translation>
     </message>
     <message>
-        <source>Why are my __DSW__ unspendable?</source>
-        <translation>Why are my __DSW__ unspendable?</translation>
+        <source>Why are my BIR unspendable?</source>
+        <translation>Why are my BIR unspendable?</translation>
     </message>
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           Newly received __DSW__ requires 6 confirmations on the network
+                           Newly received BIR requires 6 confirmations on the network
                            to become eligible for spending which can take ~6 minutes.
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           Your __DSW__ wallet also needs to be completely synchronized
+                           Your BIR wallet also needs to be completely synchronized
                            to see and spend balances on the network.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           Newly received __DSW__ requires 6 confirmations on the network
+                           Newly received BIR requires 6 confirmations on the network
                            to become eligible for spending which can take ~6 minutes.
                            &lt;/p&gt;&lt;p align="justify"&gt;
-                           Your __DSW__ wallet also needs to be completely synchronized
+                           Your BIR wallet also needs to be completely synchronized
                            to see and spend balances on the network.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </translation>
@@ -3593,12 +3593,12 @@ There was an error trying to save the address list to %1. Please try again.</tra
         <translation>3</translation>
     </message>
     <message>
-        <source>How do I stake __DSW__?</source>
-        <translation>How do I stake __DSW__?</translation>
+        <source>How do I stake BIR?</source>
+        <translation>How do I stake BIR?</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Make sure your wallet is completely synchronized and you are using the latest release. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You must have a balance of __DSW__ with a minimum of 600 confirmations. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Your wallet must stay online and be unlocked for staking purposes. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Once all those steps are followed staking should be enabled. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state &amp;quot;Staking Enabled&amp;quot; to indicate it is staking. Using the command line interface (__decenomy__-cli); the command &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; will confirm that staking is active. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Make sure your wallet is completely synchronized and you are using the latest release. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You must have a balance of __DSW__ with a minimum of 600 confirmations. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Your wallet must stay online and be unlocked for staking purposes. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Once all those steps are followed staking should be enabled. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state &amp;quot;Staking Enabled&amp;quot; to indicate it is staking. Using the command line interface (__decenomy__-cli); the command &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; will confirm that staking is active. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Make sure your wallet is completely synchronized and you are using the latest release. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You must have a balance of BIR with a minimum of 600 confirmations. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Your wallet must stay online and be unlocked for staking purposes. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Once all those steps are followed staking should be enabled. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state &amp;quot;Staking Enabled&amp;quot; to indicate it is staking. Using the command line interface (birake-cli); the command &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; will confirm that staking is active. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Make sure your wallet is completely synchronized and you are using the latest release. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You must have a balance of BIR with a minimum of 600 confirmations. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Your wallet must stay online and be unlocked for staking purposes. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Once all those steps are followed staking should be enabled. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state &amp;quot;Staking Enabled&amp;quot; to indicate it is staking. Using the command line interface (birake-cli); the command &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; will confirm that staking is active. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>4</source>
@@ -3620,14 +3620,14 @@ There was an error trying to save the address list to %1. Please try again.</tra
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            We have support channels in most of our official chat groups, for example
-                           &lt;a style='color: #b088ff' href='__decenomy_discord_link__'&gt;
+                           &lt;a style='color: #b088ff' href='https://discord.gg/WrxZUtu'&gt;
                            #support in our Discord&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            We have support channels in most of our official chat groups, for example
-                           &lt;a style='color: #b088ff' href='__decenomy_discord_link__'&gt;
+                           &lt;a style='color: #b088ff' href='https://discord.gg/WrxZUtu'&gt;
                            #support in our Discord&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </translation>
@@ -3647,7 +3647,7 @@ There was an error trying to save the address list to %1. Please try again.</tra
     <message>
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           A masternode is a computer running a full node __DSW__ wallet with a
+                           A masternode is a computer running a full node BIR wallet with a
                            required amount of secured collateral to provide extra services
                            to the network and in return, receive a portion of the block reward
                            regularly.  These services include:
@@ -3669,10 +3669,10 @@ There was an error trying to save the address list to %1. Please try again.</tra
                            Masternode Perks:
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;Participate in __DSW__ Governance&lt;/li&gt;
+                           &lt;li&gt;Participate in BIR Governance&lt;/li&gt;
                            &lt;li&gt;Earn Masternode Rewards&lt;/li&gt;
                            &lt;li&gt;Commodity option for future sale&lt;/li&gt;
-                           &lt;li&gt;Help secure the __DSW__ network&lt;/li&gt;
+                           &lt;li&gt;Help secure the BIR network&lt;/li&gt;
                            &lt;/ul&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
@@ -3688,7 +3688,7 @@ There was an error trying to save the address list to %1. Please try again.</tra
                          </source>
         <translation>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-                           A masternode is a computer running a full node __DSW__ wallet with a
+                           A masternode is a computer running a full node BIR wallet with a
                            required amount of secured collateral to provide extra services
                            to the network and in return, receive a portion of the block reward
                            regularly.  These services include:
@@ -3710,10 +3710,10 @@ There was an error trying to save the address list to %1. Please try again.</tra
                            Masternode Perks:
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            &lt;ul&gt;
-                           &lt;li&gt;Participate in __DSW__ Governance&lt;/li&gt;
+                           &lt;li&gt;Participate in BIR Governance&lt;/li&gt;
                            &lt;li&gt;Earn Masternode Rewards&lt;/li&gt;
                            &lt;li&gt;Commodity option for future sale&lt;/li&gt;
-                           &lt;li&gt;Help secure the __DSW__ network&lt;/li&gt;
+                           &lt;li&gt;Help secure the BIR network&lt;/li&gt;
                            &lt;/ul&gt;
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
@@ -3733,8 +3733,8 @@ There was an error trying to save the address list to %1. Please try again.</tra
         <translation>Frequently Asked Questions</translation>
     </message>
     <message>
-        <source>3) How do I stake __DSW__?</source>
-        <translation>3) How do I stake __DSW__?</translation>
+        <source>3) How do I stake BIR?</source>
+        <translation>3) How do I stake BIR?</translation>
     </message>
     <message>
         <source>4) Where I should go if I need support?</source>
@@ -3856,8 +3856,8 @@ There was an error trying to save the address list to %1. Please try again.</tra
         <translation>Unable to open backups folder</translation>
     </message>
     <message>
-        <source>Unable to open __decenomy__.conf with default application</source>
-        <translation>Unable to open __decenomy__.conf with default application</translation>
+        <source>Unable to open birake.conf with default application</source>
+        <translation>Unable to open birake.conf with default application</translation>
     </message>
     <message>
         <source>In:</source>
@@ -3911,8 +3911,8 @@ There was an error trying to save the address list to %1. Please try again.</tra
         <translation>Number of script verification threads</translation>
     </message>
     <message>
-        <source>Start __DSW__ on system login</source>
-        <translation>Start __DSW__ on system login</translation>
+        <source>Start BIR on system login</source>
+        <translation>Start BIR on system login</translation>
     </message>
     <message>
         <source>Minimize to the tray instead of the taskbar</source>
@@ -3999,8 +3999,8 @@ Are you sure?
         <translation>CheckBox</translation>
     </message>
     <message>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other __DSW__ addresses after it matures.</source>
-        <translation>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other __DSW__ addresses after it matures.</translation>
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other BIR addresses after it matures.</source>
+        <translation>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other BIR addresses after it matures.</translation>
     </message>
     <message>
         <source>Active</source>
@@ -4126,8 +4126,8 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation>Message</translation>
     </message>
     <message>
-        <source>__DSW__ address or contact label</source>
-        <translation>__DSW__ address or contact label</translation>
+        <source>BIR address or contact label</source>
+        <translation>BIR address or contact label</translation>
     </message>
     <message>
         <source>Enter address</source>
@@ -4447,8 +4447,8 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
         <translation>FAQ</translation>
     </message>
     <message>
-        <source>About __DSW__</source>
-        <translation>About __DSW__</translation>
+        <source>About BIR</source>
+        <translation>About BIR</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -4518,8 +4518,8 @@ Are you sure?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>__Decenomy__ is shutting down...</source>
-        <translation>__Decenomy__ is shutting down...</translation>
+        <source>Birake is shutting down...</source>
+        <translation>Birake is shutting down...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4548,8 +4548,8 @@ Are you sure?
         <translation>Loading…</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Birake</source>
+        <translation>Birake</translation>
     </message>
 </context>
 <context>
@@ -5096,25 +5096,25 @@ Select fewer inputs with coin control.</translation>
     </message>
     <message>
         <source>Welcome to
-__Decenomy__ Wallet</source>
+Birake Wallet</source>
         <translation>Welcome to
-__Decenomy__ Wallet</translation>
+Birake Wallet</translation>
     </message>
     <message>
-        <source>__DSW__ is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
-        <translation>__DSW__ is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</translation>
+        <source>BIR is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
+        <translation>BIR is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - __DSW__ believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - __DSW__ believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - BIR believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - BIR believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <source>The masternode network is __DSW__'s second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
-        <translation>The masternode network is __DSW__'s second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</translation>
+        <source>The masternode network is BIR's second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
+        <translation>The masternode network is BIR's second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</translation>
     </message>
     <message>
-        <source>How __DSW__ respects your privacy?</source>
-        <translation>How __DSW__ respects your privacy?</translation>
+        <source>How BIR respects your privacy?</source>
+        <translation>How BIR respects your privacy?</translation>
     </message>
     <message>
         <source>What is a Masternode?</source>
@@ -5152,8 +5152,8 @@ __Decenomy__ Wallet</translation>
         <translation>Bind to given address to listen for JSON-RPC connections. Use [host]:port notation for IPv6. This option can be specified multiple times (default: bind to all interfaces)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. __Decenomy__ is probably already running.</source>
-        <translation>Cannot obtain a lock on data directory %s. __Decenomy__ is probably already running.</translation>
+        <source>Cannot obtain a lock on data directory %s. Birake is probably already running.</source>
+        <translation>Cannot obtain a lock on data directory %s. Birake is probably already running.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -5312,8 +5312,8 @@ __Decenomy__ Wallet</translation>
         <translation>Total length of network version string (%i) exceeds maximum length (%i). Reduce the number or size of uacomments.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. __Decenomy__ is probably already running.</source>
-        <translation>Unable to bind to %s on this computer. __Decenomy__ is probably already running.</translation>
+        <source>Unable to bind to %s on this computer. Birake is probably already running.</source>
+        <translation>Unable to bind to %s on this computer. Birake is probably already running.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -5328,8 +5328,8 @@ __Decenomy__ Wallet</translation>
         <translation>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</source>
-        <translation>Warning: Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Birake will not work properly.</source>
+        <translation>Warning: Please check that your computer's date and time are correct! If your clock is wrong Birake will not work properly.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5536,8 +5536,8 @@ __Decenomy__ Wallet</translation>
         <translation>Information</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. __Decenomy__ is shutting down.</source>
-        <translation>Initialization sanity check failed. __Decenomy__ is shutting down.</translation>
+        <source>Initialization sanity check failed. Birake is shutting down.</source>
+        <translation>Initialization sanity check failed. Birake is shutting down.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5568,8 +5568,8 @@ __Decenomy__ Wallet</translation>
         <translation>Invalid netmask specified in -whitelist: '%s'</translation>
     </message>
     <message>
-        <source>Recalculating __DSW__ supply...</source>
-        <translation>Recalculating __DSW__ supply...</translation>
+        <source>Recalculating BIR supply...</source>
+        <translation>Recalculating BIR supply...</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>
@@ -5596,8 +5596,8 @@ __Decenomy__ Wallet</translation>
         <translation>This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!</translation>
     </message>
     <message>
-        <source>Disable all __DSW__ specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
-        <translation>Disable all __DSW__ specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</translation>
+        <source>Disable all BIR specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
+        <translation>Disable all BIR specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -5884,12 +5884,12 @@ __Decenomy__ Wallet</translation>
         <translation>Fees (in %s/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</translation>
     </message>
     <message>
-        <source>Minimum positive amount (in __DSW__) allowed by GUI and RPC for the stake split threshold (default: %s)</source>
-        <translation>Minimum positive amount (in __DSW__) allowed by GUI and RPC for the stake split threshold (default: %s)</translation>
+        <source>Minimum positive amount (in BIR) allowed by GUI and RPC for the stake split threshold (default: %s)</source>
+        <translation>Minimum positive amount (in BIR) allowed by GUI and RPC for the stake split threshold (default: %s)</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</source>
-        <translation>Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong Birake will not work properly.</source>
+        <translation>Please check that your computer's date and time are correct! If your clock is wrong Birake will not work properly.</translation>
     </message>
     <message>
         <source>Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect/-noconnect)</source>
@@ -5932,8 +5932,8 @@ __Decenomy__ Wallet</translation>
         <translation>Error loading %s: Wallet corrupted</translation>
     </message>
     <message>
-        <source>Error loading %s: Wallet requires newer version of __Decenomy__</source>
-        <translation>Error loading %s: Wallet requires newer version of __Decenomy__</translation>
+        <source>Error loading %s: Wallet requires newer version of Birake</source>
+        <translation>Error loading %s: Wallet requires newer version of Birake</translation>
     </message>
     <message>
         <source>Error loading %s
@@ -6192,8 +6192,8 @@ __Decenomy__ Wallet</translation>
         <translation>Synchronizing sporks...</translation>
     </message>
     <message>
-        <source>Syncing z__DSW__ wallet...</source>
-        <translation>Syncing z__DSW__ wallet...</translation>
+        <source>Syncing zBIR wallet...</source>
+        <translation>Syncing zBIR wallet...</translation>
     </message>
     <message>
         <source>The threshold value cannot be less than %s</source>
@@ -6316,8 +6316,8 @@ __Decenomy__ Wallet</translation>
         <translation>Username for JSON-RPC connections</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of z__DSW__</source>
-        <translation>Value is below the smallest available denomination (= 1) of z__DSW__</translation>
+        <source>Value is below the smallest available denomination (= 1) of zBIR</source>
+        <translation>Value is below the smallest available denomination (= 1) of zBIR</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
@@ -6336,8 +6336,8 @@ __Decenomy__ Wallet</translation>
         <translation>Wallet debugging/testing options:</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart __Decenomy__ to complete</source>
-        <translation>Wallet needed to be rewritten: restart __Decenomy__ to complete</translation>
+        <source>Wallet needed to be rewritten: restart Birake to complete</source>
+        <translation>Wallet needed to be rewritten: restart Birake to complete</translation>
     </message>
     <message>
         <source>Wallet options:</source>
@@ -6403,12 +6403,12 @@ __Decenomy__ Wallet</translation>
         <translation>Send</translation>
     </message>
     <message>
-        <source>Send public coins (__DSW__)</source>
-        <translation>Send public coins (__DSW__)</translation>
+        <source>Send public coins (BIR)</source>
+        <translation>Send public coins (BIR)</translation>
     </message>
     <message>
-        <source>__DSW__ address or contact label</source>
-        <translation>__DSW__ address or contact label</translation>
+        <source>BIR address or contact label</source>
+        <translation>BIR address or contact label</translation>
     </message>
     <message>
         <source>Amount</source>

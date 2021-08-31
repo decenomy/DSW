@@ -14,8 +14,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between __decenomy__-cli and __decenomy__d)
- * of a given instance of the __decenomy__ system.
+ * CBaseChainParams defines the base parameters (shared between birake-cli and biraked)
+ * of a given instance of the birake system.
  */
 class CBaseChainParams
 {

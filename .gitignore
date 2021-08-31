@@ -152,6 +152,15 @@ src/oneworld-cli
 src/oneworld-tx
 src/oneworldd
 
+# Birake
+src/bench/bench_birake
+src/qt/test/test_birake-qt
+src/qt/birake-qt
+src/test/test_birake
+src/birake-cli
+src/birake-tx
+src/biraked
+
 ##########################################
 # clear this section when it's fixed
 ###

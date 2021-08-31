@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "__Decenomy__"
-            VALUE "FileDescription",    "__decenomy__-tx (CLI __Decenomy__ transaction editor utility)"
+            VALUE "CompanyName",        "Birake"
+            VALUE "FileDescription",    "birake-tx (CLI Birake transaction editor utility)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "__decenomy__-tx"
+            VALUE "InternalName",       "birake-tx"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "__decenomy__-tx.exe"
-            VALUE "ProductName",        "__decenomy__-tx"
+            VALUE "OriginalFilename",   "birake-tx.exe"
+            VALUE "ProductName",        "birake-tx"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

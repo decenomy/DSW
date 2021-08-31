@@ -29,8 +29,8 @@
  *
  * \section intro_sec Introduction
  *
- * This is the developer documentation of the reference client for an experimental new digital currency called __Decenomy__ (__decenomy_website_link__/),
- * which enables instant payments to anyone, anywhere in the world. __Decenomy__ uses peer-to-peer technology to operate
+ * This is the developer documentation of the reference client for an experimental new digital currency called Birake (https://birake.com/),
+ * which enables instant payments to anyone, anywhere in the world. Birake uses peer-to-peer technology to operate
  * with no central authority: managing transactions and issuing money are carried out collectively by the network.
  *
  * The software is a community-driven open source project, released under the MIT license.
@@ -74,7 +74,7 @@ bool AppInit(int argc, char* argv[])
             strUsage += LicenseInfo();
         } else {
             strUsage += "\n" + _("Usage:") + "\n" +
-                        "  __decenomy__d [options]                     " + _("Start __Decenomy__ Daemon") + "\n";
+                        "  biraked [options]                     " + _("Start __Decenomy__ Daemon") + "\n";
 
             strUsage += "\n" + HelpMessage(HMM_BITCOIND);
         }
@@ -110,11 +110,11 @@ bool AppInit(int argc, char* argv[])
         // Command-line RPC
         bool fCommandLine = false;
         for (int i = 1; i < argc; i++)
-            if (!IsSwitchChar(argv[i][0]) && !boost::algorithm::istarts_with(argv[i], "__decenomy__:"))
+            if (!IsSwitchChar(argv[i][0]) && !boost::algorithm::istarts_with(argv[i], "birake:"))
                 fCommandLine = true;
 
         if (fCommandLine) {
-            fprintf(stderr, "Error: There is no RPC client functionality in __decenomy__d anymore. Use the __decenomy__-cli utility instead.\n");
+            fprintf(stderr, "Error: There is no RPC client functionality in biraked anymore. Use the birake-cli utility instead.\n");
             exit(1);
         }
 #ifndef WIN32
@@ -165,7 +165,7 @@ int main(int argc, char* argv[])
 {
     SetupEnvironment();
 
-    // Connect __decenomy__d signal handlers
+    // Connect biraked signal handlers
     noui_connect();
 
     return (AppInit(argc, argv) ? 0 : 1);

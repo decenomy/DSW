@@ -1,6 +1,6 @@
 [Protocol]
-exec=__decenomy__-qt '%u'
-protocol=__decenomy__
+exec=birake-qt '%u'
+protocol=birake
 input=none
 output=none
 helper=true

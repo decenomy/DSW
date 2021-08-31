@@ -1,13 +1,13 @@
 [Desktop Entry]
 Version=1.0
-Name=__Decenomy__ 
-Comment=__Decenomy__ P2P Cryptocurrency
-Comment[fr]=__Decenomy__, monnaie virtuelle cryptographique pair à pair
-Comment[tr]=__Decenomy__, eşten eşe kriptografik sanal para birimi
-Exec=__decenomy__-qt %u
+Name=Birake 
+Comment=Birake P2P Cryptocurrency
+Comment[fr]=Birake, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Birake, eşten eşe kriptografik sanal para birimi
+Exec=birake-qt %u
 Terminal=false
 Type=Application
 Icon=pivx128
-MimeType=x-scheme-handler/__decenomy__;
+MimeType=x-scheme-handler/birake;
 Categories=Office;Finance;
-StartupWMClass=__decenomy__-qt
+StartupWMClass=birake-qt
