@@ -48,7 +48,7 @@ The Birake repo's [root README](/README.md) contains relevant information on the
 - [Multiwallet Qt Development](multiwallet-qt.md)
 - [Release Notes](release-notes.md)
 - [Release Process](release-process.md)
-- [Source Code Documentation (External Link)](https://__decenomy_github_link__/)
+- [Source Code Documentation (External Link)](https://github.com/birake/birakecoin/)
 - [Translation Process](translation_process.md)
 - [Unit Tests](unit-tests.md)
 - [Unauthenticated REST Interface](REST-interface.md)

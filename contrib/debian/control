@@ -29,8 +29,8 @@ Build-Depends: debhelper,
  dh-systemd
 Standards-Version: 3.9.2
 Homepage: https://birake.com/
-Vcs-Git: git://__decenomy_github_link__.git
-Vcs-Browser: https://__decenomy_github_link__
+Vcs-Git: git://github.com/birake/birakecoin.git
+Vcs-Browser: https://github.com/birake/birakecoin
 
 Package: biraked
 Architecture: any
