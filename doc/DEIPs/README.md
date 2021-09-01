@@ -8,7 +8,7 @@ Because DSW is forked from the PIVX codebase, that is also forked from Dash code
 
 ## Contributions
 
-We use the same general guidelines for introducing a new DIP as specified in [BIP 2](https://github.com/bitcoin/bips/blob/master/bip-0002.mediawiki), with a few differences. Specifically:
+We use the same general guidelines for introducing a new DEIP as specified in [BIP 2](https://github.com/bitcoin/bips/blob/master/bip-0002.mediawiki), with a few differences. Specifically:
 
 * Instead of the BIP editor, initiate contact with the DECENOMY development team and your request should be routed to a DEIP editor(s). The DEIP workflow mimics the DIP/BIP workflow.
 * Recommended licenses include the MIT license
