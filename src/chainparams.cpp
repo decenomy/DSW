@@ -180,10 +180,10 @@ public:
         consensus.nTimeSlotLength = 15;
 
         // spork keys
-        consensus.strSporkPubKey = "046DDBE578C1DFDFEE9EBC4C89F2709B92D1D5DD0E0D99D87B84AF8E8DEB3AF370DF7EC30569FB1FD72624B4F3EDC5409EEC0D0A1F7D5B845304FCDCA9FCE157C4";
-        consensus.strSporkPubKeyOld = "";
-        consensus.nTime_EnforceNewSporkKey = 0;
-        consensus.nTime_RejectOldSporkKey = 0;
+        consensus.strSporkPubKey = "04e7bcc7ed84daec2bbe454aa20900a5b694b814fd00c51ab60528443bc9196d7325dac41e581344b1148099e277d7c6430d342072ba19707b3cc228d0c61c8040";
+        consensus.strSporkPubKeyOld = "046DDBE578C1DFDFEE9EBC4C89F2709B92D1D5DD0E0D99D87B84AF8E8DEB3AF370DF7EC30569FB1FD72624B4F3EDC5409EEC0D0A1F7D5B845304FCDCA9FCE157C4";
+        consensus.nTime_EnforceNewSporkKey = 1633129200; // 02/10/2021 @ 12:00am (UTC)
+        consensus.nTime_RejectOldSporkKey = 1633734000; // 09/10/2021 @ 12:00am (UTC)
 
         // height-based activations
         consensus.height_last_ZC_AccumCheckpoint    = DISABLED;
