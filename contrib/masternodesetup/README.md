@@ -1,4 +1,4 @@
-![Example-Logo](https://avatars.githubusercontent.com/u/74193190?v=4)
+![Example-Logo](https://avatars.githubusercontent.com/u/70912817?v=4)
 
 # Kyanite Masternode Setup Guide
 ***
