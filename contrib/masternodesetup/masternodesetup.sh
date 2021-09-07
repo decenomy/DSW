@@ -3,7 +3,7 @@
 TMP_FOLDER=$(mktemp -d)
 CONFIG_FILE='ultraclear.conf'
 CONFIGFOLDER='/root/.ultraclear'
-COIN_DAEMON='ultraclear'
+COIN_DAEMON='ultracleard'
 COIN_CLI='ultraclear-cli'
 COIN_PATH='/usr/local/bin/'
 COIN_TGZ=`curl -s https://api.github.com/repos/ucrcoin/UCR/releases/latest | grep "browser_download_url.*Linux\\.zip" | cut -d : -f 2,3 | tr -d \" | xargs`
