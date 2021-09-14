@@ -1,9 +1,9 @@
 [Desktop Entry]
 Version=1.0
 Name=__Decenomy__
-Comment= __DSW__ P2P Cryptocurrency
-Comment[fr]= __DSW__, monnaie virtuelle cryptographique pair à pair
-Comment[tr]= __DSW__, eşten eşe kriptografik sanal para birimi
+Comment= PEPS P2P Cryptocurrency
+Comment[fr]= PEPS, monnaie virtuelle cryptographique pair à pair
+Comment[tr]= PEPS, eşten eşe kriptografik sanal para birimi
 Exec=__decenomy__-qt %u
 Terminal=false
 Type=Application
