@@ -82,7 +82,7 @@ void checkBudgetInputs(const UniValue& params, std::string &strProposalName, std
 
     address = DecodeDestination(params[4].get_str());
     if (!IsValidDestination(address))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid __DSW__ address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PEPS address");
 
     nAmount = AmountFromValue(params[5]);
     if (nAmount < 10 * COIN)
@@ -96,7 +96,7 @@ UniValue preparebudget(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 6)
         throw std::runtime_error(
-            "preparebudget \"proposal-name\" \"url\" payment-count block-start \"__DSW__-address\" monthy-payment\n"
+            "preparebudget \"proposal-name\" \"url\" payment-count block-start \"PEPS-address\" monthy-payment\n"
             "\nPrepare proposal for network by signing and creating tx\n"
 
             "\nArguments:\n"
@@ -104,7 +104,7 @@ UniValue preparebudget(const JSONRPCRequest& request)
             "2. \"url\":            (string, required) URL of proposal details (64 character limit)\n"
             "3. payment-count:    (numeric, required) Total number of monthly payments\n"
             "4. block-start:      (numeric, required) Starting super block height\n"
-            "5. \"__DSW__-address\":   (string, required) __DSW__ address to send payments to\n"
+            "5. \"PEPS-address\":   (string, required) PEPS address to send payments to\n"
             "6. monthly-payment:  (numeric, required) Monthly payment amount\n"
 
             "\nResult:\n"
@@ -131,7 +131,7 @@ UniValue preparebudget(const JSONRPCRequest& request)
 
     checkBudgetInputs(request.params, strProposalName, strURL, nPaymentCount, nBlockStart, address, nAmount);
 
-    // Parse __DSW__ address
+    // Parse PEPS address
     CScript scriptPubKey = GetScriptForDestination(address);
 
     // create transaction 15 minutes into the future, to allow for confirmation time
@@ -145,7 +145,7 @@ UniValue preparebudget(const JSONRPCRequest& request)
     CWalletTx wtx;
     // make our change address
     CReserveKey keyChange(pwalletMain);
-    if (!pwalletMain->CreateBudgetFeeTX(wtx, proposalHash, keyChange, false)) { // 50 __DSW__ collateral for proposal
+    if (!pwalletMain->CreateBudgetFeeTX(wtx, proposalHash, keyChange, false)) { // 50 PEPS collateral for proposal
         throw std::runtime_error("Error making collateral transaction for proposal. Please check your wallet balance.");
     }
 
@@ -161,7 +161,7 @@ UniValue submitbudget(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 7)
         throw std::runtime_error(
-            "submitbudget \"proposal-name\" \"url\" payment-count block-start \"__DSW__-address\" monthly-payment \"fee-tx\"\n"
+            "submitbudget \"proposal-name\" \"url\" payment-count block-start \"PEPS-address\" monthly-payment \"fee-tx\"\n"
             "\nSubmit proposal to the network\n"
 
             "\nArguments:\n"
@@ -169,7 +169,7 @@ UniValue submitbudget(const JSONRPCRequest& request)
             "2. \"url\":            (string, required) URL of proposal details (64 character limit)\n"
             "3. payment-count:    (numeric, required) Total number of monthly payments\n"
             "4. block-start:      (numeric, required) Starting super block height\n"
-            "5. \"__DSW__-address\":   (string, required) __DSW__ address to send payments to\n"
+            "5. \"PEPS-address\":   (string, required) PEPS address to send payments to\n"
             "6. monthly-payment:  (numeric, required) Monthly payment amount\n"
             "7. \"fee-tx\":         (string, required) Transaction hash from preparebudget command\n"
 
@@ -189,7 +189,7 @@ UniValue submitbudget(const JSONRPCRequest& request)
 
     checkBudgetInputs(request.params, strProposalName, strURL, nPaymentCount, nBlockStart, address, nAmount);
 
-    // Parse __DSW__ address
+    // Parse PEPS address
     CScript scriptPubKey = GetScriptForDestination(address);
 
     uint256 hash = ParseHashV(request.params[6], "parameter 1");
@@ -544,7 +544,7 @@ UniValue getbudgetprojection(const JSONRPCRequest& request)
             "    \"BlockEnd\": n,                (numeric) Proposal ending block\n"
             "    \"TotalPaymentCount\": n,       (numeric) Number of payments\n"
             "    \"RemainingPaymentCount\": n,   (numeric) Number of remaining payments\n"
-            "    \"PaymentAddress\": \"xxxx\",     (string) __DSW__ address of payment\n"
+            "    \"PaymentAddress\": \"xxxx\",     (string) PEPS address of payment\n"
             "    \"Ratio\": x.xxx,               (numeric) Ratio of yeas vs nays\n"
             "    \"Yeas\": n,                    (numeric) Number of yea votes\n"
             "    \"Nays\": n,                    (numeric) Number of nay votes\n"
@@ -606,7 +606,7 @@ UniValue getbudgetinfo(const JSONRPCRequest& request)
             "    \"BlockEnd\": n,                (numeric) Proposal ending block\n"
             "    \"TotalPaymentCount\": n,       (numeric) Number of payments\n"
             "    \"RemainingPaymentCount\": n,   (numeric) Number of remaining payments\n"
-            "    \"PaymentAddress\": \"xxxx\",     (string) __DSW__ address of payment\n"
+            "    \"PaymentAddress\": \"xxxx\",     (string) PEPS address of payment\n"
             "    \"Ratio\": x.xxx,               (numeric) Ratio of yeas vs nays\n"
             "    \"Yeas\": n,                    (numeric) Number of yea votes\n"
             "    \"Nays\": n,                    (numeric) Number of nay votes\n"
