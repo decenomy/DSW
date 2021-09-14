@@ -81,7 +81,7 @@
             <item>
              <widget class="QLabel" name="labelSubtitle1">
               <property name="text">
-               <string>Send public coins (__DSW__)</string>
+               <string>Send public coins (PEPS)</string>
               </property>
              </widget>
             </item>
@@ -141,7 +141,7 @@
              <string notr="true">margin-left:8px;</string>
             </property>
             <property name="text">
-             <string>__DSW__ address or contact label</string>
+             <string>PEPS address or contact label</string>
             </property>
            </widget>
           </item>
