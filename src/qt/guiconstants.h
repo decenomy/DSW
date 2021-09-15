@@ -51,7 +51,7 @@ static const int MAX_URI_LENGTH = 255;
 
 
 #define QAPP_ORG_NAME "Peps"
-#define QAPP_ORG_DOMAIN "__decenomy__.org"
+#define QAPP_ORG_DOMAIN "peps.org"
 #define QAPP_APP_NAME_DEFAULT "Peps-Qt"
 #define QAPP_APP_NAME_TESTNET "Peps-Qt-testnet"
 
