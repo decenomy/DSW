@@ -1,6 +1,6 @@
 ![Example-Logo](https://avatars.githubusercontent.com/u/74193190?v=4)
 
-# __Decenomy__ Masternode Setup Guide
+# Peps Masternode Setup Guide
 ***
 ## Required
 1) **PEPS collateral value at current block** ([consult the collateral table](../../README.md#rewards-breakdown))
@@ -81,4 +81,4 @@ __decenomy__-cli getmasternodestatus
 
 You need to get **"status" : 4** 
 
-## Congratulations your __Decenomy__ node it's running
+## Congratulations your Peps node it's running
