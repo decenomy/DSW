@@ -38,7 +38,7 @@
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>io.__decenomy__.Peps-Qt</string>
+  <string>io.peps.Peps-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
