@@ -1322,7 +1322,7 @@ Gelieve nog enkele minuten te wachten (het onderpand van een masternode vereist 
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the __decenomy__.conf file
+You will only have to paste the data in the peps.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1330,7 +1330,7 @@ this controller wallet (select the Masternode in the list and press "start").
 op een externe server aan uw klembord.
 
 
-U hoeft alleen de gegevens in het __decenomy__.conf bestand te plakken
+U hoeft alleen de gegevens in het peps.conf bestand te plakken
 van uw externe server en start deze vervolgens de Masternode met
 deze controller portemonnee (selecteer de Masternode in de lijst en druk op "start").
 </translation>
@@ -1514,8 +1514,8 @@ NODES</translation>
         <translation>Ingelezen data te groot</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "__decenomy__" prefix</source>
-        <translation>Ongeldige URI, begint niet met de "__decenomy__" prefix</translation>
+        <source>Invalid URI, not starting with "peps" prefix</source>
+        <translation>Ongeldige URI, begint niet met de "peps" prefix</translation>
     </message>
 </context>
 <context>
@@ -1904,8 +1904,8 @@ Adres: %4
         <translation>Ongeldig betalingsadres %1</translation>
     </message>
     <message>
-        <source>Cannot start __decenomy__: click-to-pay handler</source>
-        <translation>Kan __decenomy__ niet starten: click-to-pay handler</translation>
+        <source>Cannot start peps: click-to-pay handler</source>
+        <translation>Kan peps niet starten: click-to-pay handler</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid PEPS address or malformed URI parameters.</source>
@@ -3593,8 +3593,8 @@ Er was een fout opgetreden tijdens het opslaan van deze adreslijst naar %1. Prob
         <translation>Hoe stake ik PEPS?</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Make sure your wallet is completely synchronized and you are using the latest release. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You must have a balance of PEPS with a minimum of 600 confirmations. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Your wallet must stay online and be unlocked for staking purposes. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Once all those steps are followed staking should be enabled. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state &amp;quot;Staking Enabled&amp;quot; to indicate it is staking. Using the command line interface (__decenomy__-cli); the command &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; will confirm that staking is active. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Zorg ervoor dat uw portemonnee volledig gesynchroniseerd is en je op de juiste versie zit. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Je moet een balans van PEPS hebben met een minimum van 600 bevestigingen. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Uw portemonnee moet steeds online en ontgrendeld blijven voor stakingsdoeleinden. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Van zodra al deze stappen gevolgd zijn, zou staking ingeschakeld moeten zijn. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Je kan de stakingsstatus controleren door over het pakketicoontje te gaan gaan met je muis. Deze staat op de linker van de portemonnee interface. Dit pakketje zal oplichten en zal &amp;quot;Staking Inschakeld&amp;quot; vermelden om aan te geven dat staking actief is. Als je gebruik maakt van de command line interface (__decenomy__-cli); het commando &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; zal bevestigen dat staking actief is. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Make sure your wallet is completely synchronized and you are using the latest release. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You must have a balance of PEPS with a minimum of 600 confirmations. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Your wallet must stay online and be unlocked for staking purposes. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Once all those steps are followed staking should be enabled. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You can see the status of staking in the wallet by mousing over the package icon in the row on the top left of the wallet interface. There package will be lit up and will state &amp;quot;Staking Enabled&amp;quot; to indicate it is staking. Using the command line interface (peps-cli); the command &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; will confirm that staking is active. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;ol style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;"&gt;&lt;li align="justify" style=" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Zorg ervoor dat uw portemonnee volledig gesynchroniseerd is en je op de juiste versie zit. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Je moet een balans van PEPS hebben met een minimum van 600 bevestigingen. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Uw portemonnee moet steeds online en ontgrendeld blijven voor stakingsdoeleinden. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Van zodra al deze stappen gevolgd zijn, zou staking ingeschakeld moeten zijn. &lt;/li&gt;&lt;li align="justify" style=" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;Je kan de stakingsstatus controleren door over het pakketicoontje te gaan gaan met je muis. Deze staat op de linker van de portemonnee interface. Dit pakketje zal oplichten en zal &amp;quot;Staking Inschakeld&amp;quot; vermelden om aan te geven dat staking actief is. Als je gebruik maakt van de command line interface (peps-cli); het commando &lt;span style=" font-style:italic;"&gt;getstakingstatus&lt;/span&gt; zal bevestigen dat staking actief is. &lt;/li&gt;&lt;/ol&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>4</source>
@@ -3852,8 +3852,8 @@ Er was een fout opgetreden tijdens het opslaan van deze adreslijst naar %1. Prob
         <translation>Kan de back-upmap niet openen</translation>
     </message>
     <message>
-        <source>Unable to open __decenomy__.conf with default application</source>
-        <translation>Kan __decenomy__.conf niet openen met de standaard applicatie</translation>
+        <source>Unable to open peps.conf with default application</source>
+        <translation>Kan peps.conf niet openen met de standaard applicatie</translation>
     </message>
     <message>
         <source>In:</source>
