@@ -13,8 +13,8 @@ The following are some helpful notes on how to run Peps Core on your native plat
 
 Unpack the files into a directory and run:
 
-- `bin/__decenomy__-qt` (GUI) or
-- `bin/__decenomy__d` (headless)
+- `bin/peps-qt` (GUI) or
+- `bin/pepsd` (headless)
 
 ### Windows
 
