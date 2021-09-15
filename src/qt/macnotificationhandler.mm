@@ -15,7 +15,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"io.__decenomy__.Peps-Qt";
+        return @"io.peps.Peps-Qt";
     } else {
         return [self __bundleIdentifier];
     }
