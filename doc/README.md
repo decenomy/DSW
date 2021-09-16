@@ -28,7 +28,7 @@ Drag Peps-Qt to your applications folder, and then run Peps-Qt.
 
 * See the documentation at the [Peps Wiki](https://__decenomy_github_link__/)
 for help and more information.
-* Join our Discord server [Discord Server](__decenomy_discord_link__)
+* Join our Discord server [Discord Server](http://discord.peps.today/)
 
 Building
 ---------------------
@@ -56,7 +56,7 @@ The Peps repo's [root README](/README.md) contains relevant information on the d
 
 ### Resources
 * Discuss on the [Peps Homepage](__decenomy_website_link__/).
-* Join the [Peps Discord](__decenomy_discord_link__).
+* Join the [Peps Discord](http://discord.peps.today/).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)
