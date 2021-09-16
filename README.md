@@ -15,7 +15,7 @@ DECENOMY Standard wallet repository
 • Prefix: PEPS adresses start with the capital letter "D"
 • Ports: __PORT_MAINNET__ (p2p) / __RPCPORT_MAINNET__ (rpc)
 
-• Explorer https://explorer.decenomy.net/
+• Explorer https://explorer.decenomy.net/PEPS/blocks
 
 • Website [project.peps.today](https://project.peps.today)
 
