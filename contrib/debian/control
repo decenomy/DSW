@@ -29,8 +29,8 @@ Build-Depends: debhelper,
  dh-systemd
 Standards-Version: 3.9.2
 Homepage: https://project.peps.today
-Vcs-Git: git://__decenomy_github_link__.git
-Vcs-Browser: https://__decenomy_github_link__
+Vcs-Git: git://github.com/PEPS-Project/peps.git
+Vcs-Browser: https://github.com/PEPS-Project/peps
 
 Package: pepsd
 Architecture: any
