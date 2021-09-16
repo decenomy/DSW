@@ -3,7 +3,7 @@ Peps Core
 
 Setup
 ---------------------
-[Peps Core](__decenomy_website_link__/) is the original Peps client and it builds the backbone of the network. However, it downloads and stores the entire history of Peps transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
+[Peps Core](https://project.peps.today/) is the original Peps client and it builds the backbone of the network. However, it downloads and stores the entire history of Peps transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
 
 Running
 ---------------------
@@ -55,7 +55,7 @@ The Peps repo's [root README](/README.md) contains relevant information on the d
 - [Dnsseed Policy](dnsseed-policy.md)
 
 ### Resources
-* Discuss on the [Peps Homepage](__decenomy_website_link__/).
+* Discuss on the [Peps Homepage](https://project.peps.today/).
 * Join the [Peps Discord](http://discord.peps.today/).
 
 ### Miscellaneous

@@ -3511,8 +3511,8 @@ Es gab ein Problem bei dem Versuch die Adressen unter %1 zu speichern. Bitte ver
         <translation>2) Wieso kann ich meine PEPS nicht ausgeben?</translation>
     </message>
     <message>
-        <source>__decenomy_website_link__/</source>
-        <translation>__decenomy_website_link__/</translation>
+        <source>https://project.peps.today/</source>
+        <translation>https://project.peps.today/</translation>
     </message>
     <message>
         <source>1</source>

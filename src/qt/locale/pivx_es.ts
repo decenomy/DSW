@@ -3512,8 +3512,8 @@ Ha habido un error al tratar de guardar la libreta de direcciones en %1. Por fav
         <translation>2) ¿Por qué mis PEPS no se pueden gastar?</translation>
     </message>
     <message>
-        <source>__decenomy_website_link__/</source>
-        <translation>__decenomy_website_link__/</translation>
+        <source>https://project.peps.today/</source>
+        <translation>https://project.peps.today/</translation>
     </message>
     <message>
         <source>1</source>
