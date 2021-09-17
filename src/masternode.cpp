@@ -332,33 +332,24 @@ CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
 
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
-    CAmount maxMoneyOut= Params().GetConsensus().nMaxMoneyOut;
 
-    if(nMoneySupply >= maxMoneyOut) {
-        return 0;
-    }
+    if (nHeight > 1500000)      return 1.00 * COIN;
+    if (nHeight > 1100000)      return 7.50 * COIN;
+    if (nHeight >  800000)      return 15.00 * COIN;
+    if (nHeight >  500000)      return 40.00 * COIN;
+    if (nHeight >  350000)      return 45.00 * COIN;
+    if (nHeight >  310000)      return 50.00 * COIN;
+    if (nHeight >  270000)      return 45.00 * COIN;
+    if (nHeight >  230000)      return 40.00 * COIN;
+    if (nHeight >  180000)      return 36.00 * COIN;
+    if (nHeight >  150000)      return 30.00 * COIN;
+    if (nHeight >  110000)      return 40.00 * COIN;
+    if (nHeight >   70000)      return 25.00 * COIN;
+    if (nHeight >   45000)      return 3.00 * COIN;
+    if (nHeight >   20000)      return 2.00 * COIN;
+    if (nHeight >       1)      return 1.00 * COIN;
+    if (nHeight ==      1)      return 25000000.00 * COIN;
 
-    CAmount nSubsidy;
-
-    if (nHeight == 1) {
-        nSubsidy = 30000000 * COIN; // __DSW__ coin supply (30M)
-    } else if (nHeight <= 100000) {
-        nSubsidy = 100 * COIN;
-    } else if (nHeight > 100000 && nHeight <= 200000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 200000 && nHeight <= 300000) {
-        nSubsidy = 150 * COIN;
-    } else if (nHeight > 300000 && nHeight <= 400000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 400000) {
-        nSubsidy = 100 * COIN;
-    }
-
-    if(nMoneySupply + nSubsidy > maxMoneyOut) {
-        return nMoneySupply + nSubsidy - maxMoneyOut;
-    }
-
-    return nSubsidy;
 }
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
