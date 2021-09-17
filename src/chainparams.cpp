@@ -69,7 +69,7 @@ static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits
  */
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("0x000002be4a05e7ce86e568cd6d106daca9d80bdeaa6564701efc2cd25a5bd86e")) // Genesis
+    (0, uint256("0x000002be4a05e7ce86e568cd6d106daca9d80bdeaa6564701efc2cd25a5bd86e")) // Genesis 
 ; 
 
 static const Checkpoints::CCheckpointData data = {
@@ -205,7 +205,7 @@ public:
         consensus.ZC_MinMintConfirmations = 20;
         consensus.ZC_MinMintFee = 1 * CENT;
         consensus.ZC_MinStakeDepth = 200;
-        consensus.ZC_TimeStart = 1893456000;        // 01/01/2030 @ 12:00am (UTC)
+        consensus.ZC_TimeStart = 1538310996;        // 01/01/2030 @ 12:00am (UTC)
         consensus.ZC_WrappedSerialsSupply = 0; //4131563 * COIN;   // zerocoin supply at height_last_ZC_WrappedSerials
 
         // Network upgrades
