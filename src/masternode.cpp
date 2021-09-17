@@ -320,14 +320,8 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
-    if (nHeight <= 100000) {
-        return 15000 * COIN;
-    } else if (nHeight <= 200000 && nHeight > 100000) {
-        return 17500 * COIN;
-    } else if (nHeight > 200000) {
-        return 20000 * COIN;
-    }
-    return 0;
+    if (nHeight > 0) return 20000 * COIN;
+    return 0 * COIN;
 }
 
 CAmount CMasternode::GetBlockValue(int nHeight)
@@ -354,9 +348,23 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    if(nHeight <= 5000) return 0;
+    if (nHeight > 1500000)      return CMasternode::GetBlockValue(nHeight) * 0.60;
+    if (nHeight > 1100000)      return CMasternode::GetBlockValue(nHeight) * 0.65;
+    if (nHeight >  800000)      return CMasternode::GetBlockValue(nHeight) * 0.70;
+    if (nHeight >  500000)      return CMasternode::GetBlockValue(nHeight) * 0.85;
+    if (nHeight >  350000)      return CMasternode::GetBlockValue(nHeight) * 0.85;
+    if (nHeight >  310000)      return CMasternode::GetBlockValue(nHeight) * 0.90;
+    if (nHeight >  270000)      return CMasternode::GetBlockValue(nHeight) * 0.90;
+    if (nHeight >  230000)      return CMasternode::GetBlockValue(nHeight) * 0.95;
+    if (nHeight >  180000)      return CMasternode::GetBlockValue(nHeight) * 0.99;
+    if (nHeight >  150000)      return CMasternode::GetBlockValue(nHeight) * 0.77;
+    if (nHeight >  110000)      return CMasternode::GetBlockValue(nHeight) * 0.85;
+    if (nHeight >   70000)      return CMasternode::GetBlockValue(nHeight) * 0.85;
+    if (nHeight >   45000)      return CMasternode::GetBlockValue(nHeight) * 0.70;
+    if (nHeight >   20000)      return CMasternode::GetBlockValue(nHeight) * 0.70;
+    if (nHeight >       1)      return CMasternode::GetBlockValue(nHeight) * 0.70;
+    if (nHeight ==      1)      return CMasternode::GetBlockValue(nHeight) * 0.00;
 
-    return CMasternode::GetBlockValue(nHeight) * 95 / 100;
 }
 
 void CMasternode::InitMasternodeCollateralList() {
