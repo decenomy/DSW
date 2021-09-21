@@ -1,1 +1,46 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1201 801"><defs><style>.cls-1{fill:#0a0a0a;stroke:#231f20;stroke-miterlimit:10;}</style></defs><rect class="cls-1" x="0.5" y="0.5" width="1200" height="800"/></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="Layer_1"
+   data-name="Layer 1"
+   viewBox="0 0 1000 693"
+   version="1.1"
+   sodipodi:docname="bg-welcome-container.svg"
+   inkscape:version="1.1 (ce6663b3b7, 2021-05-25)"
+   width="1000"
+   height="693"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview9"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="0.52549019"
+     inkscape:cx="687.92911"
+     inkscape:cy="433.8806"
+     inkscape:window-width="1299"
+     inkscape:window-height="713"
+     inkscape:window-x="67"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Layer_1"
+     width="1000px" />
+  <defs
+     id="defs4">
+    <style
+       id="style2">.cls-1{fill:#3a4460;}</style>
+  </defs>
+  <path
+     style="fill:#1a1a1a;fill-opacity:1;stroke-width:1.30211"
+     d="M 0.41707709,345.3103 V -1.1897042 H 500.41705 1000.4171 V 345.3103 v 346.5 H 500.41705 0.41707709 Z"
+     id="path920"
+     inkscape:export-filename="/home/pedro/Peps_design/bg-welcome@3x.png"
+     inkscape:export-xdpi="96"
+     inkscape:export-ydpi="96" />
+</svg>
