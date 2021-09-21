@@ -23,7 +23,7 @@ class TxnMallTest(PivxTestFramework):
         disconnect_nodes(self.nodes[2], 1)
 
     def run_test(self):
-        # All nodes should start with 6,250 __DSW__:
+        # All nodes should start with 6,250 PEPS:
         starting_balance = 6250
         for i in range(4):
             assert_equal(self.nodes[i].getbalance(), starting_balance)
@@ -44,7 +44,7 @@ class TxnMallTest(PivxTestFramework):
         # Coins are sent to node1_address
         node1_address = self.nodes[1].getnewaddress()
 
-        # First: use raw transaction API to send 1240 * 5 __DSW__ to node1_address,
+        # First: use raw transaction API to send 1240 * 5 PEPS to node1_address,
         # but don't broadcast:
         doublespend_fee = Decimal('-.02')
         rawtx_input_0 = {}

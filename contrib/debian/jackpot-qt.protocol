@@ -1,6 +1,6 @@
 [Protocol]
-exec=__decenomy__-qt '%u'
-protocol=__decenomy__
+exec=peps-qt '%u'
+protocol=peps
 input=none
 output=none
 helper=true
