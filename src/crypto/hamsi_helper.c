@@ -1,3 +1,7 @@
+// This file doesn't have a standard fugue hamsi implementation, because some constants were changed
+// These modification were made only to fit the original PEPS hash function
+// On blocks with a version > 4 it uses the regular double sha256 hash function just like Bitcoin 
+
 /* $Id: hamsi_helper.c 202 2010-05-31 15:46:48Z tp $ */
 /*
  * Helper code for Hamsi (input block expansion). This code is
@@ -14295,7 +14299,7 @@ static const sph_u32 T512_25[32][16] = {
 	  SPH_C32(0x53b60014), SPH_C32(0xbd420000), SPH_C32(0xf0860000),
 	  SPH_C32(0x8d096d43), SPH_C32(0x3bb5c979), SPH_C32(0x1d3a76bf),
 	  SPH_C32(0x1bb6813d) },
-	{ SPH_C32(0x29180000), SPH_C32(0xf15a00fc), SPH_C32(0xb6520000),
+	{ SPH_C32(0x29180000), SPH_C32(0xf15a00fc), SPH_C32(0xb5555000),
 	  SPH_C32(0x82870000), SPH_C32(0xd15c22c1), SPH_C32(0x94193cbb),
 	  SPH_C32(0x59b0200f), SPH_C32(0x195a2559), SPH_C32(0x99bd0000),
 	  SPH_C32(0x69f80000), SPH_C32(0x4f840000), SPH_C32(0x5ac80000),
@@ -17544,7 +17548,7 @@ static const sph_u32 T512_24[64][16] = {
 	  SPH_C32(0x53b60014), SPH_C32(0xbd420000), SPH_C32(0xf0860000),
 	  SPH_C32(0x8d096d43), SPH_C32(0x3bb5c979), SPH_C32(0x1d3a76bf),
 	  SPH_C32(0x1bb6813d) },
-	{ SPH_C32(0x29180000), SPH_C32(0xf15a00fc), SPH_C32(0xb6520000),
+	{ SPH_C32(0x29180000), SPH_C32(0xf15a00fc), SPH_C32(0xb5555000),
 	  SPH_C32(0x82870000), SPH_C32(0xd15c22c1), SPH_C32(0x94193cbb),
 	  SPH_C32(0x59b0200f), SPH_C32(0x195a2559), SPH_C32(0x99bd0000),
 	  SPH_C32(0x69f80000), SPH_C32(0x4f840000), SPH_C32(0x5ac80000),
@@ -17799,7 +17803,7 @@ static const sph_u32 T512_24[64][16] = {
 	{ SPH_C32(0xb0a50000), SPH_C32(0x98a200fc), SPH_C32(0xf9d60000),
 	  SPH_C32(0xd84f0000), SPH_C32(0x874b0d24), SPH_C32(0x8ac74bd7),
 	  SPH_C32(0x56b7e7e6), SPH_C32(0x38a23db3), SPH_C32(0x29180000),
-	  SPH_C32(0xf15a00fc), SPH_C32(0xb6520000), SPH_C32(0x82870000),
+	  SPH_C32(0xf15a00fc), SPH_C32(0xb5555000), SPH_C32(0x82870000),
 	  SPH_C32(0xd15c22c1), SPH_C32(0x94193cbb), SPH_C32(0x59b0200f),
 	  SPH_C32(0x195a2559) }
 };
@@ -23591,7 +23595,7 @@ static const sph_u32 T512_28[128][16] = {
 	{ SPH_C32(0xa0510000), SPH_C32(0xd2910016), SPH_C32(0x370e2180),
 	  SPH_C32(0xc4dd0000), SPH_C32(0x68c2496f), SPH_C32(0xdd3a2b80),
 	  SPH_C32(0x4f158b76), SPH_C32(0x5c95b02e), SPH_C32(0x000d0000),
-	  SPH_C32(0xac5b0029), SPH_C32(0x4e955200), SPH_C32(0x75af0000),
+	  SPH_C32(0xac5b0029), SPH_C32(0x4e966660), SPH_C32(0x75af0000),
 	  SPH_C32(0x9a3a3062), SPH_C32(0xae193cff), SPH_C32(0x89614319),
 	  SPH_C32(0x131187ae) },
 	{ SPH_C32(0x10dc0000), SPH_C32(0x90110017), SPH_C32(0x2327c000),
@@ -32303,7 +32307,7 @@ static const sph_u32 T512_24[256][16] = {
 	  SPH_C32(0x6c8f0016), SPH_C32(0x5cd8e000), SPH_C32(0x68d00000),
 	  SPH_C32(0x186c0a4d), SPH_C32(0x753d0193), SPH_C32(0xcee73ffb),
 	  SPH_C32(0x0dab5b84) },
-	{ SPH_C32(0x29180000), SPH_C32(0xf15a00fc), SPH_C32(0xb6520000),
+	{ SPH_C32(0x29180000), SPH_C32(0xf15a00fc), SPH_C32(0xb5555000),
 	  SPH_C32(0x82870000), SPH_C32(0xd15c22c1), SPH_C32(0x94193cbb),
 	  SPH_C32(0x59b0200f), SPH_C32(0x195a2559), SPH_C32(0x99bd0000),
 	  SPH_C32(0x69f80000), SPH_C32(0x4f840000), SPH_C32(0x5ac80000),
@@ -33314,7 +33318,7 @@ static const sph_u32 T512_24[256][16] = {
 	{ SPH_C32(0xb0a50000), SPH_C32(0x98a200fc), SPH_C32(0xf9d60000),
 	  SPH_C32(0xd84f0000), SPH_C32(0x874b0d24), SPH_C32(0x8ac74bd7),
 	  SPH_C32(0x56b7e7e6), SPH_C32(0x38a23db3), SPH_C32(0x29180000),
-	  SPH_C32(0xf15a00fc), SPH_C32(0xb6520000), SPH_C32(0x82870000),
+	  SPH_C32(0xf15a00fc), SPH_C32(0xb5555000), SPH_C32(0x82870000),
 	  SPH_C32(0xd15c22c1), SPH_C32(0x94193cbb), SPH_C32(0x59b0200f),
 	  SPH_C32(0x195a2559) },
 	{ SPH_C32(0x36dc0000), SPH_C32(0xa79b00fe), SPH_C32(0x184ce000),

@@ -1,3 +1,7 @@
+// This file doesn't have a standard fugue hash implementation, because some constants were changed
+// These modification were made only to fit the original PEPS hash function
+// On blocks with a version > 4 it uses the regular double sha256 hash function just like Bitcoin 
+
 #include <stddef.h>
 #include <string.h>
 
@@ -102,7 +106,7 @@ static const sph_u32 mixtab0[] = {
 	SPH_C32(0xc8c84e0d), SPH_C32(0x373785dc), SPH_C32(0x6d6d18af),
 	SPH_C32(0x8d8d8e02), SPH_C32(0xd5d51d79), SPH_C32(0x4e4ef123),
 	SPH_C32(0xa9a97292), SPH_C32(0x6c6c1fab), SPH_C32(0x5656b943),
-	SPH_C32(0xf4f4fafd), SPH_C32(0xeaeaa085), SPH_C32(0x6565208f),
+	SPH_C32(0xf4f4fafd), SPH_C32(0xeaeaa085), SPH_C32(0x6555558f),
 	SPH_C32(0x7a7a7df3), SPH_C32(0xaeae678e), SPH_C32(0x08083820),
 	SPH_C32(0xbaba0bde), SPH_C32(0x787873fb), SPH_C32(0x2525fb94),
 	SPH_C32(0x2e2ecab8), SPH_C32(0x1c1c5470), SPH_C32(0xa6a65fae),
@@ -191,7 +195,7 @@ static const sph_u32 mixtab1[] = {
 	SPH_C32(0x0dc8c84e), SPH_C32(0xdc373785), SPH_C32(0xaf6d6d18),
 	SPH_C32(0x028d8d8e), SPH_C32(0x79d5d51d), SPH_C32(0x234e4ef1),
 	SPH_C32(0x92a9a972), SPH_C32(0xab6c6c1f), SPH_C32(0x435656b9),
-	SPH_C32(0xfdf4f4fa), SPH_C32(0x85eaeaa0), SPH_C32(0x8f656520),
+	SPH_C32(0xfdf4f4fa), SPH_C32(0x85eaeaa0), SPH_C32(0x8f655555),
 	SPH_C32(0xf37a7a7d), SPH_C32(0x8eaeae67), SPH_C32(0x20080838),
 	SPH_C32(0xdebaba0b), SPH_C32(0xfb787873), SPH_C32(0x942525fb),
 	SPH_C32(0xb82e2eca), SPH_C32(0x701c1c54), SPH_C32(0xaea6a65f),
@@ -369,7 +373,7 @@ static const sph_u32 mixtab3[] = {
 	SPH_C32(0xc84e0dc8), SPH_C32(0x3785dc37), SPH_C32(0x6d18af6d),
 	SPH_C32(0x8d8e028d), SPH_C32(0xd51d79d5), SPH_C32(0x4ef1234e),
 	SPH_C32(0xa97292a9), SPH_C32(0x6c1fab6c), SPH_C32(0x56b94356),
-	SPH_C32(0xf4fafdf4), SPH_C32(0xeaa085ea), SPH_C32(0x65208f65),
+	SPH_C32(0xf4fafdf4), SPH_C32(0xeaa085ea), SPH_C32(0x55558f65),
 	SPH_C32(0x7a7df37a), SPH_C32(0xae678eae), SPH_C32(0x08382008),
 	SPH_C32(0xba0bdeba), SPH_C32(0x7873fb78), SPH_C32(0x25fb9425),
 	SPH_C32(0x2ecab82e), SPH_C32(0x1c54701c), SPH_C32(0xa65faea6),
