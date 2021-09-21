@@ -664,17 +664,17 @@ QPushButton[cssClass="btn-check-lock-sub-menu-unlocked"] {
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-unlocked"]:checked {
-  background-color: rgba(129, 8, 144, 0.7);
+  background-color: rgba(0, 0, 34, 0.7);
   color: #ffffff;
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-unlocked"]:hover {
-  background-color: rgba(129, 8, 144, 0.7);
+  background-color: rgba(0, 0, 34, 0.7);
   color: #ffffff;
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-unlocked"]:checked:hover {
-  background-color: rgba(129, 8, 144, 0.7);
+  background-color: rgba(0, 0, 34, 0.7);
   color: #ffffff;
 }
 
@@ -691,17 +691,17 @@ QPushButton[cssClass="btn-check-lock-sub-menu-locked"] {
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-locked"]:checked {
-  background-color: rgba(129, 8, 144, 0.7);
+  background-color: rgba(0, 0, 34, 0.7);
   color: #ffffff;
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-locked"]:hover {
-  background-color: rgba(129, 8, 144, 0.7);
+  background-color: rgba(0, 0, 34, 0.7);
   color: #ffffff;
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-locked"]:checked:hover {
-  background-color: rgba(129, 8, 144, 0.7);
+  background-color: rgba(0, 0, 34, 0.7);
   color: #ffffff;
 }
 
@@ -718,17 +718,17 @@ QPushButton[cssClass="btn-check-lock-sub-menu-staking"] {
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-staking"]:checked {
-  background-color: rgba(129, 8, 144, 0.7);
+  background-color: rgba(0, 0, 34, 0.7);
   color: #ffffff;
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-staking"]:hover {
-  background-color: rgba(129, 8, 144, 0.7);
+  background-color: rgba(0, 0, 34, 0.7);
   color: #ffffff;
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-staking"]:checked:hover {
-  background-color: rgba(129, 8, 144, 0.7);
+  background-color: rgba(0, 0, 34, 0.7);
   color: #ffffff;
 }
 
@@ -2121,7 +2121,7 @@ QComboBox QAbstractItemView::item {
 }
 
 QComboBox QAbstractItemView::item:selected {
-  background-color: rgba(129, 8, 144, 0.7);
+  background-color: rgba(0, 0, 34, 0.7);
   padding: 10px 20px;
   font-size: 16px;
   margin: 0px;
@@ -2840,7 +2840,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="btn-list-menu"]:hover {
-  background-color: rgba(129, 8, 144, 0.7);
+  background-color: rgba(0, 0, 34, 0.7);
   color: #ffffff;
 }
 
