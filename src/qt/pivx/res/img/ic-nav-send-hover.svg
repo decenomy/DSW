@@ -1,15 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
    width="24px"
    height="40px"
    viewBox="0 0 24 40"
    version="1.1"
-   id="svg13">
+   id="svg13"
+   sodipodi:docname="ic-nav-send-hover.svg"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="2560"
+     inkscape:window-height="1377"
+     id="namedview11"
+     showgrid="false"
+     inkscape:zoom="18.375"
+     inkscape:cx="3.1292517"
+     inkscape:cy="20"
+     inkscape:window-x="2552"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1006"
+     inkscape:document-rotation="0"
+     inkscape:pagecheckerboard="0" />
   <metadata
      id="metadata19">
     <rdf:RDF>
@@ -43,7 +69,7 @@
        d="M 0,0 H 24 V 24 H 0 Z"
        style="fill:none" />
     <path
-       style="fill:#810890;fill-opacity:1"
+       style="fill:#f0ba00;fill-opacity:1"
        id="path4"
        d="M 2.01,21 23,12 2.01,3 2,10 17,12 2,14 Z" />
   </g>
