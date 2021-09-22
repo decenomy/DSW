@@ -152,6 +152,15 @@ src/oneworld-cli
 src/oneworld-tx
 src/oneworldd
 
+# Peps Coin
+src/bench/bench_peps
+src/qt/test/test_peps-qt
+src/qt/peps-qt
+src/test/test_peps
+src/peps-cli
+src/peps-tx
+src/pepsd
+
 ##########################################
 # clear this section when it's fixed
 ###
