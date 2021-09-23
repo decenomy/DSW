@@ -7,13 +7,13 @@ DECENOMY Standard wallet repository
 ### Coin Specs
 
 • PoW Algorithm: X11KVS
-• Premine: 1,000,000,000 BIR
-• PoW Blocks: 1 - 1000
-• PoS Blocks: Starting from 1001
+• Premine: 6,000,000 BIR
+• PoW Blocks: 1 - 750
+• PoS Blocks: Starting from 751
 • Block Time: 60 Seconds
-• Maturity: 100 Confirmations
-• Prefix: BIR adresses start with the capital letter "D"
-• Ports: __PORT_MAINNET__ (p2p) / __RPCPORT_MAINNET__ (rpc)
+• Maturity: 50 Confirmations
+• Prefix: BIR adresses start with the capital letter "K"
+• Ports: 39697 (p2p) / 39698 (rpc)
 
 • Explorer https://explorer.decenomy.net/
 
