@@ -35,15 +35,17 @@ Birake wallet repository
   <td class=xl6317252 width=134 style='width:100pt'>Staking Reward %</td>
   <td class=xl6317252 width=107 style='width:81pt'>MN Reward</td>
   <td class=xl6317252 width=107 style='width:81pt'>Staker Reward</td>
+  <td class=xl6317252 width=107 style='width:81pt'>Notes</td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>1</td>
-  <td class=xl6517252>10,000.0</td>
-  <td class=xl6517252>30.0</td>
-  <td class=xl6617252>0.0</td>
-  <td class=xl6617252>100.0</td>
-  <td class=xl6717252 align=left>0.0</td>
+  <td class=xl6517252> - </td>
+  <td class=xl6517252> - </td>
+  <td class=xl6617252> - </td>
+  <td class=xl6617252> - </td>
+  <td class=xl6717252 align=left> - </td>
   <td class=xl6717252 align=left>6,000,000</td>
+  <td class=xl6717252 align=left>Premined</td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>100</td>
@@ -53,6 +55,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>27.0</td>
   <td class=xl6817252 align=left>3.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>20,001</td>
@@ -62,6 +65,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>36.0</td>
   <td class=xl6817252 align=left>4.0</td>
+  <td class=xl6717252 align=left> </td>  
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>30,001</td>
@@ -71,6 +75,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>54.0</td>
   <td class=xl6817252 align=left>6.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>40,001</td>
@@ -80,6 +85,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>72.0</td>
   <td class=xl6817252 align=left>8.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>50,001</td>
@@ -89,6 +95,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>90.0</td>
   <td class=xl6817252 align=left>10.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>60,001</td>
@@ -98,6 +105,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>108.0</td>
   <td class=xl6817252 align=left>12.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>70,001</td>
@@ -107,6 +115,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>126.0</td>
   <td class=xl6817252 align=left>14.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
    <td height=21 class=xl6417252 style='height:15.75pt'>80,001</td>
@@ -116,6 +125,7 @@ Birake wallet repository
    <td class=xl6617252>10.0</td>
    <td class=xl6717252 align=left>144.0</td>
    <td class=xl6817252 align=left>16.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>90,001</td>
@@ -125,6 +135,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>162.0</td>
   <td class=xl6817252 align=left>18.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>100,001</td>
@@ -134,6 +145,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>180.0</td>
   <td class=xl6817252 align=left>20.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>110,001</td>
@@ -143,6 +155,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>198.0</td>
   <td class=xl6817252 align=left>22.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>120,001</td>
@@ -152,6 +165,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>216.0</td>
   <td class=xl6817252 align=left>24.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>130,001</td>
@@ -160,7 +174,8 @@ Birake wallet repository
   <td class=xl6617252>90.0</td>
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>234.0</td>
-  <td class=xl6817252 align=left>26.0</td>
+  <td class=xl6817252 align=left>26.0</td>  
+  <td class=xl6717252 align=left> </td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>140,001</td>
@@ -170,6 +185,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>225.0</td>
   <td class=xl6817252 align=left>25.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>150,001</td>
@@ -179,6 +195,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>216.0</td>
   <td class=xl6817252 align=left>24.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>160,001</td>
@@ -188,6 +205,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>207.0</td>
   <td class=xl6817252 align=left>23.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>170,001</td>
@@ -197,6 +215,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>198.0</td>
   <td class=xl6817252 align=left>22.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>180,001</td>
@@ -206,6 +225,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>189.0</td>
   <td class=xl6817252 align=left>21.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
   <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>190,001</td>
@@ -215,6 +235,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>180.0</td>
   <td class=xl6817252 align=left>20.0</td>
+  <td class=xl6717252 align=left> </td> 
  </tr>
   <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>200,001</td>
@@ -224,6 +245,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>171.0</td>
   <td class=xl6817252 align=left>19.0</td>
+  <td class=xl6717252 align=left> </td> 
  </tr>
    <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>210,001</td>
@@ -233,6 +255,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>162.0</td>
   <td class=xl6817252 align=left>18.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
     <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>220,001</td>
@@ -242,6 +265,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>153.0</td>
   <td class=xl6817252 align=left>17.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>230,001</td>
@@ -251,6 +275,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>144.0</td>
   <td class=xl6817252 align=left>16.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>240,001</td>
@@ -260,6 +285,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>135.0</td>
   <td class=xl6817252 align=left>15.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>250,001</td>
@@ -269,6 +295,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>126.0</td>
   <td class=xl6817252 align=left>14.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>260,001</td>
@@ -278,6 +305,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>117.0</td>
   <td class=xl6817252 align=left>13.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>270,001</td>
@@ -287,6 +315,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>108.0</td>
   <td class=xl6817252 align=left>12.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>280,001</td>
@@ -296,6 +325,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>99.0</td>
   <td class=xl6817252 align=left>11.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>290,001</td>
@@ -305,6 +335,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>97.2</td>
   <td class=xl6817252 align=left>10.8</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>300,001</td>
@@ -314,6 +345,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>95.4</td>
   <td class=xl6817252 align=left>10.6</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>310,001</td>
@@ -323,6 +355,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>93.6</td>
   <td class=xl6817252 align=left>10.4</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>320,001</td>
@@ -332,6 +365,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>91.8</td>
   <td class=xl6817252 align=left>10.2</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>330,001</td>
@@ -341,6 +375,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>90.0</td>
   <td class=xl6817252 align=left>10.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>340,001</td>
@@ -350,6 +385,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>88.2</td>
   <td class=xl6817252 align=left>9.8</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>350,001</td>
@@ -359,6 +395,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>86.4</td>
   <td class=xl6817252 align=left>9.6</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>360,001</td>
@@ -368,6 +405,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>84.6</td>
   <td class=xl6817252 align=left>9.4</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>370,001</td>
@@ -377,6 +415,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>82.8</td>
   <td class=xl6817252 align=left>9.2</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>380,001</td>
@@ -386,6 +425,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>81.0</td>
   <td class=xl6817252 align=left>9.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>390,001</td>
@@ -395,6 +435,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>79.2</td>
   <td class=xl6817252 align=left>8.8</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>400,001</td>
@@ -404,6 +445,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>77.4</td>
   <td class=xl6817252 align=left>8.6</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>410,001</td>
@@ -413,6 +455,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>75.6</td>
   <td class=xl6817252 align=left>8.4</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>420,001</td>
@@ -422,6 +465,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>73.8</td>
   <td class=xl6817252 align=left>8.2</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>430,001</td>
@@ -431,6 +475,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>72.0</td>
   <td class=xl6817252 align=left>8.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>440,001</td>
@@ -440,6 +485,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>70.2</td>
   <td class=xl6817252 align=left>7.8</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>450,001</td>
@@ -449,6 +495,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>68.4</td>
   <td class=xl6817252 align=left>7.6</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>460,001</td>
@@ -458,6 +505,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>66.6</td>
   <td class=xl6817252 align=left>7.4</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>470,001</td>
@@ -467,6 +515,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>64.8</td>
   <td class=xl6817252 align=left>7.2</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>480,001</td>
@@ -476,6 +525,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>63.0</td>
   <td class=xl6817252 align=left>7.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>490,001</td>
@@ -485,6 +535,7 @@ Birake wallet repository
   <td class=xl6617252>10.0</td>
   <td class=xl6717252 align=left>61.2</td>
   <td class=xl6817252 align=left>6.8</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>500,001</td>
@@ -494,6 +545,7 @@ Birake wallet repository
   <td class=xl6617252>30.0</td>
   <td class=xl6717252 align=left>42.0</td>
   <td class=xl6817252 align=left>18.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>800,889</td>
@@ -503,6 +555,7 @@ Birake wallet repository
   <td class=xl6617252>30.0</td>
   <td class=xl6717252 align=left>21.0</td>
   <td class=xl6817252 align=left>9.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
      <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>870,501</td>
@@ -512,6 +565,7 @@ Birake wallet repository
   <td class=xl6617252>30.0</td>
   <td class=xl6717252 align=left>21.0</td>
   <td class=xl6817252 align=left>9.0</td>
+  <td class=xl6717252 align=left> </td>
  </tr>
  <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>1,000,001</td>
@@ -521,6 +575,7 @@ Birake wallet repository
   <td class=xl6617252>60.0</td>
   <td class=xl6717252 align=left>3.2</td>
   <td class=xl6817252 align=left>4.8</td>
+  <td class=xl6717252 align=left> </td>
  </tr> 
       <tr height=21 style='mso-height-source:userset;height:15.75pt'>
   <td height=21 class=xl6417252 style='height:15.75pt'>1,200,001</td>
@@ -530,5 +585,6 @@ Birake wallet repository
   <td class=xl6617252>80.0</td>
   <td class=xl6717252 align=left>0.8</td>
   <td class=xl6817252 align=left>3.2</td>
+  <td class=xl6717252 align=left> </td>
  </tr> 
  </table>
