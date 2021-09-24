@@ -1,4 +1,4 @@
-Birake Standard wallet repository
+Birake wallet repository
 =====================================
 
 ### Coin Specs
