@@ -3,14 +3,14 @@ Birake Standard wallet repository
 
 ### Coin Specs
 
-• PoW Algorithm: X11KVS
-• Premine: 6,000,000 BIR
-• PoW Blocks: 1 - 750
-• PoS Blocks: Starting from 751
-• Block Time: 60 Seconds
-• Maturity: 50 Confirmations
-• Prefix: BIR adresses start with the capital letter "K"
-• Ports: 39697 (p2p) / 39698 (rpc)
+• PoW Algorithm: X11KVS  
+• Premine: 6,000,000 BIR  
+• PoW Blocks: 1 - 750  
+• PoS Blocks: Starting from 751  
+• Block Time: 60 Seconds  
+• Maturity: 50 Confirmations  
+• Prefix: BIR adresses start with the capital letter "K"  
+• Ports: 39697 (p2p) / 39698 (rpc)  
 
 • Explorer https://explorer.decenomy.net/
 
