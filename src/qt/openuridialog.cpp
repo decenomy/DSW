@@ -18,7 +18,7 @@ OpenURIDialog::OpenURIDialog(QWidget* parent) : QDialog(parent, Qt::WindowSystem
 {
     ui->setupUi(this);
     this->setStyleSheet(parent->styleSheet());
-    ui->uriEdit->setPlaceholderText("aezora:");
+    ui->uriEdit->setPlaceholderText("azzure:");
 
     ui->labelSubtitle->setText("URI");
     setCssProperty(ui->labelSubtitle, "text-title2-dialog");
@@ -80,8 +80,8 @@ void OpenURIDialog::on_selectFileButton_clicked()
         }
 
         QString str = QString::fromStdString(std::string(r.constData(), r.length()));
-        if (!str.startsWith("aezora")) {
-            inform(tr("Invalid URI, not starting with \"aezora\" prefix"));
+        if (!str.startsWith("azzure")) {
+            inform(tr("Invalid URI, not starting with \"azzure\" prefix"));
         }
         ui->uriEdit->setText(str);
     }

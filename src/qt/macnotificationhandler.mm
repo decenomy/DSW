@@ -15,7 +15,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"io.aezora.Aezora-Qt";
+        return @"io.azzure.Azzure-Qt";
     } else {
         return [self __bundleIdentifier];
     }

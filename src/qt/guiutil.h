@@ -43,7 +43,7 @@ public:
     GUIException(const std::string &message) : message(message) {}
 };
 
-/** Utility functions used by the Aezora Qt UI.
+/** Utility functions used by the Azzure Qt UI.
  */
 namespace GUIUtil
 {
@@ -68,7 +68,7 @@ void setupAmountWidget(QLineEdit* widget, QWidget* parent);
 // Update the cursor of the widget after a text change
 void updateWidgetTextAndCursorPosition(QLineEdit* widget, const QString& str);
 
-// Parse "aezora:" URI into recipient object, return true on successful parsing
+// Parse "azzure:" URI into recipient object, return true on successful parsing
 bool parseBitcoinURI(const QUrl& uri, SendCoinsRecipient* out);
 bool parseBitcoinURI(QString uri, SendCoinsRecipient* out);
 QString formatBitcoinURI(const SendCoinsRecipient& info);
@@ -137,7 +137,7 @@ bool isObscured(QWidget* w);
 // Open debug.log
 bool openDebugLogfile();
 
-// Open aezora.conf
+// Open azzure.conf
 bool openConfigfile();
 
 // Open masternode.conf

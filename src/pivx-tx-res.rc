@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Aezora"
-            VALUE "FileDescription",    "aezora-tx (CLI Aezora transaction editor utility)"
+            VALUE "CompanyName",        "Azzure"
+            VALUE "FileDescription",    "azzure-tx (CLI Azzure transaction editor utility)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "aezora-tx"
+            VALUE "InternalName",       "azzure-tx"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "aezora-tx.exe"
-            VALUE "ProductName",        "aezora-tx"
+            VALUE "OriginalFilename",   "azzure-tx.exe"
+            VALUE "ProductName",        "azzure-tx"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

@@ -84,12 +84,12 @@
 #include <openssl/crypto.h>
 #include <openssl/rand.h>
 
-const char * const PIVX_CONF_FILENAME = "aezora.conf";
-const char * const PIVX_PID_FILENAME = "aezora.pid";
+const char * const PIVX_CONF_FILENAME = "azzure.conf";
+const char * const PIVX_PID_FILENAME = "azzure.pid";
 const char * const PIVX_MASTERNODE_CONF_FILENAME = "masternode.conf";
 
 
-// Aezora only features
+// Azzure only features
 // Masternode
 bool fMasterNode = false;
 std::string strMasterNodePrivKey = "";
@@ -266,7 +266,7 @@ static std::string FormatException(const std::exception* pex, const char* pszThr
     char pszModule[MAX_PATH] = "";
     GetModuleFileNameA(NULL, pszModule, sizeof(pszModule));
 #else
-    const char* pszModule = "aezora";
+    const char* pszModule = "azzure";
 #endif
     if (pex)
         return strprintf(
@@ -286,13 +286,13 @@ void PrintExceptionContinue(const std::exception* pex, const char* pszThread)
 
 fs::path GetDefaultDataDir()
 {
-// Windows < Vista: C:\Documents and Settings\Username\Application Data\aezora
-// Windows >= Vista: C:\Users\Username\AppData\Roaming\aezora
-// Mac: ~/Library/Application Support/aezora
-// Unix: ~/.aezora
+// Windows < Vista: C:\Documents and Settings\Username\Application Data\azzure
+// Windows >= Vista: C:\Users\Username\AppData\Roaming\azzure
+// Mac: ~/Library/Application Support/azzure
+// Unix: ~/.azzure
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Aezora";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "Azzure";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -304,10 +304,10 @@ fs::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "Aezora";
+    return pathRet / "Azzure";
 #else
     // Unix
-    return pathRet / ".aezora";
+    return pathRet / ".azzure";
 #endif
 #endif
 }
@@ -320,13 +320,13 @@ static RecursiveMutex csPathCached;
 static fs::path ZC_GetBaseParamsDir()
 {
     // Copied from GetDefaultDataDir and adapter for zcash params.
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\aezoraParams
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\aezoraParams
-    // Mac: ~/Library/Application Support/aezoraParams
-    // Unix: ~/.aezora-params
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\azzureParams
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\azzureParams
+    // Mac: ~/Library/Application Support/azzureParams
+    // Unix: ~/.azzure-params
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "AezoraParams";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "AzzureParams";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -338,10 +338,10 @@ static fs::path ZC_GetBaseParamsDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "AezoraParams";
+    return pathRet / "AzzureParams";
 #else
     // Unix
-    return pathRet / ".aezora-params";
+    return pathRet / ".azzure-params";
 #endif
 #endif
 }
@@ -425,7 +425,7 @@ void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet,
 {
     fs::ifstream streamConfig(GetConfigFile());
     if (!streamConfig.good()) {
-        // Create empty aezora.conf if it does not exist
+        // Create empty azzure.conf if it does not exist
         FILE* configFile = fsbridge::fopen(GetConfigFile(), "a");
         if (configFile != NULL)
             fclose(configFile);
@@ -436,7 +436,7 @@ void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet,
     setOptions.insert("*");
 
     for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it) {
-        // Don't overwrite existing settings so command line settings override aezora.conf
+        // Don't overwrite existing settings so command line settings override azzure.conf
         std::string strKey = std::string("-") + it->string_key;
         std::string strValue = it->value[0];
         InterpretNegativeSetting(strKey, strValue);

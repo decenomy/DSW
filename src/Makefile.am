@@ -67,15 +67,15 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += aezorad
+  bin_PROGRAMS += azzured
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += aezora-cli aezora-tx
+  bin_PROGRAMS += azzure-cli azzure-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
-# aezora core #
+# azzure core #
 BITCOIN_CORE_H = \
   activemasternode.h \
   addrdb.h \
@@ -227,7 +227,7 @@ obj/build.h: FORCE
 	  "$(abs_top_srcdir)"
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between aezorad and aezora-qt
+# server: shared between azzured and azzure-qt
 libbitcoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libbitcoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_server_a_SOURCES = \
@@ -282,7 +282,7 @@ libbitcoin_zmq_a_SOURCES = \
   zmq/zmqpublishnotifier.cpp
 endif
 
-# wallet: shared between aezorad and aezora-qt, but only linked
+# wallet: shared between azzured and azzure-qt, but only linked
 # when wallet enabled
 libbitcoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
@@ -408,7 +408,7 @@ if USE_NUM_OPENSSL
   libzerocoin_libbitcoin_zerocoin_a_SOURCES += libzerocoin/bignum_openssl.cpp
 endif
 
-# common: shared between aezorad, and aezora-qt and non-server tools
+# common: shared between azzured, and azzure-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_common_a_SOURCES = \
@@ -483,7 +483,7 @@ if GLIBC_BACK_COMPAT
 AM_LDFLAGS += $(COMPAT_LDFLAGS)
 endif
 
-# cli: shared between aezora-cli and aezora-qt
+# cli: shared between azzure-cli and azzure-qt
 libbitcoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_cli_a_SOURCES = \
@@ -493,16 +493,16 @@ libbitcoin_cli_a_SOURCES = \
 nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# aezorad binary #
-aezorad_SOURCES = pivxd.cpp
-aezorad_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-aezorad_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-aezorad_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# azzured binary #
+azzured_SOURCES = pivxd.cpp
+azzured_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+azzured_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+azzured_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-aezorad_SOURCES += pivxd-res.rc
+azzured_SOURCES += pivxd-res.rc
 endif
-aezorad_LDADD = \
+azzured_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
   $(LIBBITCOIN_COMMON) \
@@ -516,38 +516,38 @@ aezorad_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-aezorad_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+azzured_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
-# aezora-cli binary #
-aezora_cli_SOURCES = pivx-cli.cpp
-aezora_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-aezora_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-aezora_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# azzure-cli binary #
+azzure_cli_SOURCES = pivx-cli.cpp
+azzure_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+azzure_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+azzure_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-aezora_cli_SOURCES += pivx-cli-res.rc
+azzure_cli_SOURCES += pivx-cli-res.rc
 endif
 
-aezora_cli_LDADD = \
+azzure_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO)
 
-aezora_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+azzure_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
-# aezora-tx binary #
-aezora_tx_SOURCES = pivx-tx.cpp
-aezora_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-aezora_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-aezora_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# azzure-tx binary #
+azzure_tx_SOURCES = pivx-tx.cpp
+azzure_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+azzure_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+azzure_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-aezora_tx_SOURCES += pivx-tx-res.rc
+azzure_tx_SOURCES += pivx-tx-res.rc
 endif
 
-aezora_tx_LDADD = \
+azzure_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_ZEROCOIN) \
@@ -555,7 +555,7 @@ aezora_tx_LDADD = \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-aezora_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+azzure_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
 # bitcoinconsensus library #

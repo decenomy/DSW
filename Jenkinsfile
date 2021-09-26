@@ -3,8 +3,8 @@ pipeline {
     agent any
 
     environment {
-        NAME = 'Aezora'
-        BASE_NAME = 'aezora'
+        NAME = 'Azzure'
+        BASE_NAME = 'azzure'
         ZIP_NAME = 'AZR'
     }
 

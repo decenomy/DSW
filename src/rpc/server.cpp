@@ -266,11 +266,11 @@ UniValue stop(const JSONRPCRequest& jsonRequest)
     if (jsonRequest.fHelp || jsonRequest.params.size() > 1)
         throw std::runtime_error(
             "stop\n"
-            "\nStop Aezora server.");
+            "\nStop Azzure server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "Aezora server stopping";
+    return "Azzure server stopping";
 }
 
 
@@ -361,31 +361,31 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true },
 
         /* AZR features */
-        {"aezora", "listmasternodes", &listmasternodes, true },
-        {"aezora", "getmasternodecount", &getmasternodecount, true },
-        {"aezora", "createmasternodebroadcast", &createmasternodebroadcast, true },
-        {"aezora", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
-        {"aezora", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
-        {"aezora", "masternodecurrent", &masternodecurrent, true },
-        {"aezora", "startmasternode", &startmasternode, true },
-        {"aezora", "createmasternodekey", &createmasternodekey, true },
-        {"aezora", "getmasternodeoutputs", &getmasternodeoutputs, true },
-        {"aezora", "listmasternodeconf", &listmasternodeconf, true },
-        {"aezora", "getmasternodestatus", &getmasternodestatus, true },
-        {"aezora", "getmasternodewinners", &getmasternodewinners, true },
-        {"aezora", "getmasternodescores", &getmasternodescores, true },
-        {"aezora", "preparebudget", &preparebudget, true },
-        {"aezora", "submitbudget", &submitbudget, true },
-        {"aezora", "mnbudgetvote", &mnbudgetvote, true },
-        {"aezora", "getbudgetvotes", &getbudgetvotes, true },
-        {"aezora", "getnextsuperblock", &getnextsuperblock, true },
-        {"aezora", "getbudgetprojection", &getbudgetprojection, true },
-        {"aezora", "getbudgetinfo", &getbudgetinfo, true },
-        {"aezora", "mnbudgetrawvote", &mnbudgetrawvote, true },
-        {"aezora", "mnfinalbudget", &mnfinalbudget, true },
-        {"aezora", "checkbudgets", &checkbudgets, true },
-        {"aezora", "mnsync", &mnsync, true },
-        {"aezora", "spork", &spork, true },
+        {"azzure", "listmasternodes", &listmasternodes, true },
+        {"azzure", "getmasternodecount", &getmasternodecount, true },
+        {"azzure", "createmasternodebroadcast", &createmasternodebroadcast, true },
+        {"azzure", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
+        {"azzure", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
+        {"azzure", "masternodecurrent", &masternodecurrent, true },
+        {"azzure", "startmasternode", &startmasternode, true },
+        {"azzure", "createmasternodekey", &createmasternodekey, true },
+        {"azzure", "getmasternodeoutputs", &getmasternodeoutputs, true },
+        {"azzure", "listmasternodeconf", &listmasternodeconf, true },
+        {"azzure", "getmasternodestatus", &getmasternodestatus, true },
+        {"azzure", "getmasternodewinners", &getmasternodewinners, true },
+        {"azzure", "getmasternodescores", &getmasternodescores, true },
+        {"azzure", "preparebudget", &preparebudget, true },
+        {"azzure", "submitbudget", &submitbudget, true },
+        {"azzure", "mnbudgetvote", &mnbudgetvote, true },
+        {"azzure", "getbudgetvotes", &getbudgetvotes, true },
+        {"azzure", "getnextsuperblock", &getnextsuperblock, true },
+        {"azzure", "getbudgetprojection", &getbudgetprojection, true },
+        {"azzure", "getbudgetinfo", &getbudgetinfo, true },
+        {"azzure", "mnbudgetrawvote", &mnbudgetrawvote, true },
+        {"azzure", "mnfinalbudget", &mnfinalbudget, true },
+        {"azzure", "checkbudgets", &checkbudgets, true },
+        {"azzure", "mnsync", &mnsync, true },
+        {"azzure", "spork", &spork, true },
 
 #ifdef ENABLE_WALLET
         /* Wallet */
@@ -604,7 +604,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(std::string methodname, std::string args)
 {
-    return "> aezora-cli " + methodname + " " + args + "\n";
+    return "> azzure-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(std::string methodname, std::string args)

@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Aezora"
-            VALUE "FileDescription",    "Aezora-cli (OSS RPC client for Aezora)"
+            VALUE "CompanyName",        "Azzure"
+            VALUE "FileDescription",    "Azzure-cli (OSS RPC client for Azzure)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "aezora-cli"
+            VALUE "InternalName",       "azzure-cli"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "aezora-cli.exe"
-            VALUE "ProductName",        "Aezora-cli"
+            VALUE "OriginalFilename",   "azzure-cli.exe"
+            VALUE "ProductName",        "Azzure-cli"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

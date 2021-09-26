@@ -12,11 +12,11 @@ fi
 	echo "1" | sudo update-alternatives --config x86_64-w64-mingw32-g++
 
 # Clone code from official Github repository
-	rm -rf Aezora
-	git clone https://github.com/Aezora/Aezora.git
+	rm -rf Azzure
+	git clone https://github.com/Azzure/Azzure.git
 
 # Entering directory
-	cd Aezora
+	cd Azzure
 
 # Compile dependencies
 	cd depends
@@ -30,6 +30,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp Aezora/src/aezorad.exe Aezora/src/aezora-cli.exe Aezora/src/aezora-tx.exe Aezora/src/qt/aezora-qt.exe .
-	zip AZR-Windows.zip aezorad.exe aezora-cli.exe aezora-tx.exe aezora-qt.exe
-	rm -f aezorad.exe aezora-cli.exe aezora-tx.exe aezora-qt.exe
+	cp Azzure/src/azzured.exe Azzure/src/azzure-cli.exe Azzure/src/azzure-tx.exe Azzure/src/qt/azzure-qt.exe .
+	zip AZR-Windows.zip azzured.exe azzure-cli.exe azzure-tx.exe azzure-qt.exe
+	rm -f azzured.exe azzure-cli.exe azzure-tx.exe azzure-qt.exe

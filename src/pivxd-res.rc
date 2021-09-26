@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Aezora"
-            VALUE "FileDescription",    "aezorad (OSS daemon/client for Aezora)"
+            VALUE "CompanyName",        "Azzure"
+            VALUE "FileDescription",    "azzured (OSS daemon/client for Azzure)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "aezorad"
+            VALUE "InternalName",       "azzured"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "aezorad.exe"
-            VALUE "ProductName",        "aezorad"
+            VALUE "OriginalFilename",   "azzured.exe"
+            VALUE "ProductName",        "azzured"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

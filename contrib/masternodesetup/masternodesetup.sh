@@ -1,14 +1,14 @@
 #!/bin/bash
 
 TMP_FOLDER=$(mktemp -d)
-CONFIG_FILE='aezora.conf'
-CONFIGFOLDER='/root/.aezora'
-COIN_DAEMON='aezorad'
-COIN_CLI='aezora-cli'
+CONFIG_FILE='azzure.conf'
+CONFIGFOLDER='/root/.azzure'
+COIN_DAEMON='azzured'
+COIN_CLI='azzure-cli'
 COIN_PATH='/usr/local/bin/'
-COIN_TGZ=`curl -s https://api.github.com/repos/Aezora/Aezora/releases/latest | grep "browser_download_url.*Linux\\.zip" | cut -d : -f 2,3 | tr -d \" | xargs`
+COIN_TGZ=`curl -s https://api.github.com/repos/decenomy/AZR/releases/latest | grep "browser_download_url.*Linux\\.zip" | cut -d : -f 2,3 | tr -d \" | xargs`
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
-COIN_NAME='aezora'
+COIN_NAME='azzure'
 COIN_PORT=14725
 RPC_PORT=14724
 

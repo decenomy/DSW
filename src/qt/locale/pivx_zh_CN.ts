@@ -852,16 +852,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>版本</translation>
     </message>
     <message>
-        <source>Aezora</source>
-        <translation>Aezora</translation>
+        <source>Azzure</source>
+        <translation>Azzure</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-位)</translation>
     </message>
     <message>
-        <source>About Aezora</source>
-        <translation>关于Aezora</translation>
+        <source>About Azzure</source>
+        <translation>关于Azzure</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -915,16 +915,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>欢迎</translation>
     </message>
     <message>
-        <source>Welcome to Aezora.</source>
-        <translation>欢迎使用 Aezora</translation>
+        <source>Welcome to Azzure.</source>
+        <translation>欢迎使用 Azzure</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Aezora will store its data.</source>
-        <translation>由于这是该程序第一次启动，您可以选择存储Aezora 数据的位置。</translation>
+        <source>As this is the first time the program is launched, you can choose where Azzure will store its data.</source>
+        <translation>由于这是该程序第一次启动，您可以选择存储Azzure 数据的位置。</translation>
     </message>
     <message>
-        <source>Aezora will download and store a copy of the AZR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Aezora将下载并存储AZR区块链副本。 至少 %1 GB的数据将存储在此目录中，并且会随着时间的推移而增长。 钱包也将存储在此目录中。</translation>
+        <source>Azzure will download and store a copy of the AZR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Azzure将下载并存储AZR区块链副本。 至少 %1 GB的数据将存储在此目录中，并且会随着时间的推移而增长。 钱包也将存储在此目录中。</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -943,8 +943,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>好的</translation>
     </message>
     <message>
-        <source>Aezora</source>
-        <translation>Aezora</translation>
+        <source>Azzure</source>
+        <translation>Azzure</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1246,7 +1246,7 @@ Please wait few more minutes (masternode collaterals require %1 confirmations).<
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the aezora.conf file
+You will only have to paste the data in the azzure.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1254,7 +1254,7 @@ this controller wallet (select the Masternode in the list and press "start").
 到剪贴板的远程服务器上。
 
 
-您只需将数据粘贴到aezora.conf文件中
+您只需将数据粘贴到azzure.conf文件中
 ，然后使用主节点启动它
 这个控制器钱包(在列表中选择主节点并按“开始”)。
 </translation>
@@ -1394,8 +1394,8 @@ Are you sure?</source>
         <translation>解析的数据太大</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "aezora" prefix</source>
-        <translation>无效的URI，不是以“ aezora”前缀开头</translation>
+        <source>Invalid URI, not starting with "azzure" prefix</source>
+        <translation>无效的URI，不是以“ azzure”前缀开头</translation>
     </message>
 </context>
 <context>
@@ -1689,8 +1689,8 @@ Are you sure?</source>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>Aezora</source>
-        <translation>Aezora</translation>
+        <source>Azzure</source>
+        <translation>Azzure</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -1717,8 +1717,8 @@ Are you sure?</source>
         <translation>关闭应用</translation>
     </message>
     <message>
-        <source>Aezora client</source>
-        <translation>Aezora 客户端</translation>
+        <source>Azzure client</source>
+        <translation>Azzure 客户端</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1784,8 +1784,8 @@ Address: %4
         <translation>无效支付地址%1</translation>
     </message>
     <message>
-        <source>Cannot start aezora: click-to-pay handler</source>
-        <translation>无法启动aezora:点击支付处理程序</translation>
+        <source>Cannot start azzure: click-to-pay handler</source>
+        <translation>无法启动azzure:点击支付处理程序</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid AZR address or malformed URI parameters.</source>
@@ -1922,8 +1922,8 @@ Address: %4
         <translation>发生了一个致命的错误。AZR不能继续安全，将退出。</translation>
     </message>
     <message>
-        <source>Aezora</source>
-        <translation>Aezora</translation>
+        <source>Azzure</source>
+        <translation>Azzure</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -1942,8 +1942,8 @@ Address: %4
         <translation>读取主节点配置文件出错:%1</translation>
     </message>
     <message>
-        <source>Aezora didn't yet exit safely...</source>
-        <translation>Aezora心尚未安全退出……</translation>
+        <source>Azzure didn't yet exit safely...</source>
+        <translation>Azzure心尚未安全退出……</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -3533,8 +3533,8 @@ AZR使用了一个股权证明(PoS)一致系统算法，
         <translation>无法打开备份文件夹</translation>
     </message>
     <message>
-        <source>Unable to open aezora.conf with default application</source>
-        <translation>无法使用默认应用程序打开aezora.conf</translation>
+        <source>Unable to open azzure.conf with default application</source>
+        <translation>无法使用默认应用程序打开azzure.conf</translation>
     </message>
     <message>
         <source>In:</source>
@@ -4135,8 +4135,8 @@ Are you sure?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Aezora is shutting down...</source>
-        <translation>Aezora 核心正在关闭...</translation>
+        <source>Azzure is shutting down...</source>
+        <translation>Azzure 核心正在关闭...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4165,8 +4165,8 @@ Are you sure?
         <translation>正在下载…</translation>
     </message>
     <message>
-        <source>Aezora</source>
-        <translation>Aezora</translation>
+        <source>Azzure</source>
+        <translation>Azzure</translation>
     </message>
 </context>
 <context>
@@ -4601,9 +4601,9 @@ backup will be created.
     </message>
     <message>
         <source>Welcome to
-Aezora Wallet</source>
+Azzure Wallet</source>
         <translation>欢迎
-Aezora心钱包</translation>
+Azzure心钱包</translation>
     </message>
     <message>
         <source>AZR is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
@@ -4653,8 +4653,8 @@ Aezora心钱包</translation>
         <translation>绑定到给定地址监听JSON-RPC连接。使用[主机]: IPv6的端口符号。可以多次指定此选项(默认:绑定到所有接口)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Aezora is probably already running.</source>
-        <translation>无法获取数据目录%s锁。Aezora心可能已经在运行了。</translation>
+        <source>Cannot obtain a lock on data directory %s. Azzure is probably already running.</source>
+        <translation>无法获取数据目录%s锁。Azzure心可能已经在运行了。</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -4813,8 +4813,8 @@ Aezora心钱包</translation>
         <translation>网络版本字符串的总长度(%i)超过最大长度(%i)。减少任务的数量或大小。</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Aezora is probably already running.</source>
-        <translation>无法绑定到此计算机上的%s。Aezora心可能已经在运行了。</translation>
+        <source>Unable to bind to %s on this computer. Azzure is probably already running.</source>
+        <translation>无法绑定到此计算机上的%s。Azzure心可能已经在运行了。</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -4829,8 +4829,8 @@ Aezora心钱包</translation>
         <translation>警告:-支付tx费用设置的非常高!这是您发送交易时要支付的交易费。</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Aezora will not work properly.</source>
-        <translation>注意：请检查您的电脑的日期和时间是否正确！ 如果您的时间设置不正确，Aezora将无法正常工作。</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Azzure will not work properly.</source>
+        <translation>注意：请检查您的电脑的日期和时间是否正确！ 如果您的时间设置不正确，Azzure将无法正常工作。</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5037,8 +5037,8 @@ Aezora心钱包</translation>
         <translation>信息</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Aezora is shutting down.</source>
-        <translation>初始化完整性检查失败。Aezora心快要关闭了。</translation>
+        <source>Initialization sanity check failed. Azzure is shutting down.</source>
+        <translation>初始化完整性检查失败。Azzure心快要关闭了。</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5325,8 +5325,8 @@ Aezora心钱包</translation>
         <translation>准备重新同步……</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong Aezora will not work properly.</source>
-        <translation>请检查您的电脑的日期和时间是否正确!如果你的时间错误，Aezora将无法正常工作。</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong Azzure will not work properly.</source>
+        <translation>请检查您的电脑的日期和时间是否正确!如果你的时间错误，Azzure将无法正常工作。</translation>
     </message>
     <message>
         <source>Specify location of debug log file: this can be an absolute path or a path relative to the data directory (default: %s)</source>
@@ -5629,8 +5629,8 @@ Aezora心钱包</translation>
         <translation>钱包%s驻留在数据目录%s之外</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Aezora to complete</source>
-        <translation>钱包需要重写:重新启动Aezora心完成</translation>
+        <source>Wallet needed to be rewritten: restart Azzure to complete</source>
+        <translation>钱包需要重写:重新启动Azzure心完成</translation>
     </message>
     <message>
         <source>Wallet options:</source>

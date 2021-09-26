@@ -348,7 +348,7 @@ void AskPassphraseDialog::warningMessage()
     openStandardDialog(
             tr("Wallet encrypted"),
             "<qt>" +
-            tr("Aezora will close now to finish the encryption process. "
+            tr("Azzure will close now to finish the encryption process. "
                "Remember that encrypting your wallet cannot fully protect "
                "your AZRs from being stolen by malware infecting your computer.") +
             "<br><br><b>" +

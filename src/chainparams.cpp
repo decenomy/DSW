@@ -300,15 +300,15 @@ public:
         pchMessageStart[3] = 0x19;
         nDefaultPort = 14725;
 
-        vSeeds.push_back(CDNSSeedData("seeder", "seeder.aezora.com"));
-	    vSeeds.push_back(CDNSSeedData("seed1",  "seed1.aezora.com"));
-        vSeeds.push_back(CDNSSeedData("seed2",  "seed2.aezora.com"));
-        vSeeds.push_back(CDNSSeedData("seed3",  "seed3.aezora.com"));
-        vSeeds.push_back(CDNSSeedData("seed4",  "seed4.aezora.com"));
-	    vSeeds.push_back(CDNSSeedData("seed5",  "seed5.aezora.com"));
-	    vSeeds.push_back(CDNSSeedData("seed6",  "seed6.aezora.com"));
-	    vSeeds.push_back(CDNSSeedData("seed7",  "seed7.aezora.com"));
-	    vSeeds.push_back(CDNSSeedData("seed8",  "seed8.aezora.com"));
+        vSeeds.push_back(CDNSSeedData("seeder", "seeder.azzure.com"));
+	    vSeeds.push_back(CDNSSeedData("seed1",  "seed1.azzure.com"));
+        vSeeds.push_back(CDNSSeedData("seed2",  "seed2.azzure.com"));
+        vSeeds.push_back(CDNSSeedData("seed3",  "seed3.azzure.com"));
+        vSeeds.push_back(CDNSSeedData("seed4",  "seed4.azzure.com"));
+	    vSeeds.push_back(CDNSSeedData("seed5",  "seed5.azzure.com"));
+	    vSeeds.push_back(CDNSSeedData("seed6",  "seed6.azzure.com"));
+	    vSeeds.push_back(CDNSSeedData("seed7",  "seed7.azzure.com"));
+	    vSeeds.push_back(CDNSSeedData("seed8",  "seed8.azzure.com"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 23);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 24);
@@ -393,7 +393,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x6df2c144da90964516839ed9d56ab2742cfaa8956824c16cfd0c4ad482f0e1dd"));
 
         consensus.fPowAllowMinDifficultyBlocks = true;
-        consensus.powLimit   = ~UINT256_ZERO >> 12;   // aezora starting difficulty is 1 / 2^12
+        consensus.powLimit   = ~UINT256_ZERO >> 12;   // azzure starting difficulty is 1 / 2^12
         consensus.posLimitV1 = ~UINT256_ZERO >> 24;
         consensus.posLimitV2 = ~UINT256_ZERO >> 20;
         consensus.nBudgetCycleBlocks = 144;         // approx 10 cycles per day
@@ -483,14 +483,14 @@ public:
         vSeeds.push_back(CDNSSeedData("testnet1", "testnet1.4444.tools"));
         vSeeds.push_back(CDNSSeedData("testnet2", "testnet2.4444.tools"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet aezora addresses start with 'x' or 'y'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet aezora script addresses start with '8' or '9'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet azzure addresses start with 'x' or 'y'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet azzure script addresses start with '8' or '9'
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);     // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
-        // Testnet aezora BIP32 pubkeys start with 'DRKV'
+        // Testnet azzure BIP32 pubkeys start with 'DRKV'
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x3a)(0x80)(0x61)(0xa0).convert_to_container<std::vector<unsigned char> >();
-        // Testnet aezora BIP32 prvkeys start with 'DRKP'
+        // Testnet azzure BIP32 prvkeys start with 'DRKP'
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x3a)(0x80)(0x58)(0x37).convert_to_container<std::vector<unsigned char> >();
-        // Testnet aezora BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet azzure BIP44 coin type is '1' (All coin's testnet default)
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x00)(0x01).convert_to_container<std::vector<unsigned char> >();
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
@@ -566,7 +566,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x6df2c144da90964516839ed9d56ab2742cfaa8956824c16cfd0c4ad482f0e1dd"));
 
         consensus.fPowAllowMinDifficultyBlocks = true;
-        consensus.powLimit   = ~UINT256_ZERO >> 2;   // aezora starting difficulty is 1 / 2^12
+        consensus.powLimit   = ~UINT256_ZERO >> 2;   // azzure starting difficulty is 1 / 2^12
         consensus.posLimitV1 = ~UINT256_ZERO >> 24;
         consensus.posLimitV2 = ~UINT256_ZERO >> 20;
         consensus.nBudgetCycleBlocks = 144;         // approx 10 cycles per day

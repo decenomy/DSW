@@ -11,10 +11,10 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both aezorad and aezora-qt, to make it harder for attackers to
+ * for both azzured and azzure-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("Aezora Core");
+const std::string CLIENT_NAME("Azzure Core");
 
 /**
  * Client version number

@@ -47,10 +47,10 @@ static bool AppInitRawTx(int argc, char* argv[])
 
     if (argc < 2 || mapArgs.count("-?") || mapArgs.count("-help")) {
         // First part of help message is specific to this utility
-        std::string strUsage = _("Aezora aezora-tx utility version") + " " + FormatFullVersion() + "\n\n" +
+        std::string strUsage = _("Azzure azzure-tx utility version") + " " + FormatFullVersion() + "\n\n" +
                                _("Usage:") + "\n" +
-                               "  aezora-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded aezora transaction") + "\n" +
-                               "  aezora-tx [options] -create [commands]   " + _("Create hex-encoded aezora transaction") + "\n" +
+                               "  azzure-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded azzure transaction") + "\n" +
+                               "  azzure-tx [options] -create [commands]   " + _("Create hex-encoded azzure transaction") + "\n" +
                                "\n";
 
         fprintf(stdout, "%s", strUsage.c_str());
@@ -595,7 +595,7 @@ static int CommandLineRawTx(int argc, char* argv[])
             if (argc < 2)
                 throw std::runtime_error("too few parameters");
 
-            // param: hex-encoded aezora transaction
+            // param: hex-encoded azzure transaction
             std::string strHexTx(argv[1]);
             if (strHexTx == "-") // "-" implies standard input
                 strHexTx = readStdin();

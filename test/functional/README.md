@@ -87,10 +87,10 @@ over the network (`CBlock`, `CTransaction`, etc, along with the network-level
 wrappers for them, `msg_block`, `msg_tx`, etc).
 
 - P2P tests have two threads. One thread handles all network communication
-with the aezorad(s) being tested in a callback-based event loop; the other
+with the azzured(s) being tested in a callback-based event loop; the other
 implements the test logic.
 
-- `P2PConnection` is the class used to connect to a aezorad.  `P2PInterface`
+- `P2PConnection` is the class used to connect to a azzured.  `P2PInterface`
 contains the higher level logic for processing P2P payloads and connecting to
 the Bitcoin Core node application logic. For custom behaviour, subclass the
 P2PInterface object and override the callback methods.
@@ -110,7 +110,7 @@ Base class for functional tests.
 Generally useful functions.
 
 #### [test_framework/mininode.py](test_framework/mininode.py)
-Basic code to support P2P connectivity to a aezorad.
+Basic code to support P2P connectivity to a azzured.
 
 #### [test_framework/comptool.py](test_framework/comptool.py)
 Framework for comparison-tool style, p2p tests.
@@ -133,13 +133,13 @@ Helper functions for creating blocks and transactions.
 ### Comptool
 
 * Testing framework for writing tests that compare the block/tx acceptance
-behavior of a aezorad against 1 or more other aezorad instances, or against
+behavior of a azzured against 1 or more other azzured instances, or against
 known outcomes, or both.
 
 * Set the ```num_nodes``` variable (defined in ```ComparisonTestFramework```) to start up
 1 or more nodes.  If using 1 node, then ```--testbinary``` can be used as a command line
-option to change the aezorad binary used by the test.  If using 2 or more nodes,
-then ```--refbinary``` can be optionally used to change the aezorad that will be used
+option to change the azzured binary used by the test.  If using 2 or more nodes,
+then ```--refbinary``` can be optionally used to change the azzured that will be used
 on nodes 2 and up.
 
 * Implement a (generator) function called ```get_tests()``` which yields ```TestInstance```s.
@@ -148,13 +148,13 @@ Each ```TestInstance``` consists of:
     * ```object``` is a ```CBlock```, ```CTransaction```, or
     ```CBlockHeader```.  ```CBlock```'s and ```CTransaction```'s are tested for
     acceptance.  ```CBlockHeader```s can be used so that the test runner can deliver
-    complete headers-chains when requested from the aezorad, to allow writing
+    complete headers-chains when requested from the azzured, to allow writing
     tests where blocks can be delivered out of order but still processed by
-    headers-first aezorad's.
+    headers-first azzured's.
     * ```outcome``` is ```True```, ```False```, or ```None```.  If ```True```
     or ```False```, the tip is compared with the expected tip -- either the
     block passed in, or the hash specified as the optional 3rd entry.  If
-    ```None``` is specified, then the test will compare all the aezorad's
+    ```None``` is specified, then the test will compare all the azzured's
     being tested to see if they all agree on what the best tip is.
     * ```hash``` is the block hash of the tip to compare against. Optional to
     specify; if left out then the hash of the block passed in will be used as
@@ -168,7 +168,7 @@ Each ```TestInstance``` consists of:
     sequence and synced (this is slower when processing many blocks).
   - ```sync_every_transaction```: ```True/False```.  Analogous to
     ```sync_every_block```, except if the outcome on the last tx is "None",
-    then the contents of the entire mempool are compared across all aezorad
+    then the contents of the entire mempool are compared across all azzured
     connections.  If ```True``` or ```False```, then only the last tx's
     acceptance is tested against the given outcome.
 

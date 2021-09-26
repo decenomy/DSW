@@ -7,11 +7,11 @@ then
 fi
 
 # Clone code from official Github repository
-    rm -rf Aezora
-    git clone https://github.com/Aezora/Aezora.git
+    rm -rf Azzure
+    git clone https://github.com/Azzure/Azzure.git
 
 # Entering directory
-    cd Aezora
+    cd Azzure
 
 # Compile dependencies
     cd depends
@@ -31,6 +31,6 @@ fi
     cd ..
 
 # Create zip file of binaries
-    cp Aezora/src/aezorad Aezora/src/aezora-cli Aezora/src/aezora-tx Aezora/src/qt/aezora-qt Aezora/Aezora-Core.dmg .
-    zip AZR-MacOS.zip aezorad aezora-cli aezora-tx aezora-qt Aezora-Core.dmg
-    rm -f aezorad aezora-cli aezora-tx aezora-qt Aezora-Core.dmg
+    cp Azzure/src/azzured Azzure/src/azzure-cli Azzure/src/azzure-tx Azzure/src/qt/azzure-qt Azzure/Azzure-Core.dmg .
+    zip AZR-MacOS.zip azzured azzure-cli azzure-tx azzure-qt Azzure-Core.dmg
+    rm -f azzured azzure-cli azzure-tx azzure-qt Azzure-Core.dmg

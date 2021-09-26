@@ -848,16 +848,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>버전</translation>
     </message>
     <message>
-        <source>Aezora</source>
-        <translation>Aezora</translation>
+        <source>Azzure</source>
+        <translation>Azzure</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Aezora</source>
-        <translation>Aezora 정보</translation>
+        <source>About Azzure</source>
+        <translation>Azzure 정보</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -911,16 +911,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>환영합니다</translation>
     </message>
     <message>
-        <source>Welcome to Aezora.</source>
-        <translation>Aezora에 오신 것을 환영합니다.</translation>
+        <source>Welcome to Azzure.</source>
+        <translation>Azzure에 오신 것을 환영합니다.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Aezora will store its data.</source>
-        <translation>이 프로그램이 처음 실행되었으므로 Aezora가 데이터를 저장할 위치를 선택할 수 있습니다.</translation>
+        <source>As this is the first time the program is launched, you can choose where Azzure will store its data.</source>
+        <translation>이 프로그램이 처음 실행되었으므로 Azzure가 데이터를 저장할 위치를 선택할 수 있습니다.</translation>
     </message>
     <message>
-        <source>Aezora will download and store a copy of the AZR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Aezora는 AZR 블록체인을 다운로드하여 저장합니다. 최소 %1GB의 데이터가 디렉토리에 저장되며 시간이 지날수록 증가합니다. 또한 지갑도 해당 디렉토리에 저장됩니다.</translation>
+        <source>Azzure will download and store a copy of the AZR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Azzure는 AZR 블록체인을 다운로드하여 저장합니다. 최소 %1GB의 데이터가 디렉토리에 저장되며 시간이 지날수록 증가합니다. 또한 지갑도 해당 디렉토리에 저장됩니다.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -939,8 +939,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>선택</translation>
     </message>
     <message>
-        <source>Aezora</source>
-        <translation>Aezora</translation>
+        <source>Azzure</source>
+        <translation>Azzure</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1241,7 +1241,7 @@ Please wait few more minutes (masternode collaterals require %1 confirmations).<
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the aezora.conf file
+You will only have to paste the data in the azzure.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1249,7 +1249,7 @@ this controller wallet (select the Masternode in the list and press "start").
 클립보드로 내보내려고 합니다.
 
 
-그 데이터를 리모트 서버의 aezora.conf 파일에
+그 데이터를 리모트 서버의 azzure.conf 파일에
 붙여넣고 시작합니다. 그리고 컨트롤러 지갑에서 마스터노드를
 시작합니다. (리스트에서 마스터노드를 선택하고 "시작"을 누르십시오.)
 </translation>
@@ -1388,8 +1388,8 @@ Are you sure?</source>
         <translation>구문 분석된 데이터가 너무 큽니다.</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "aezora" prefix</source>
-        <translation>"aezora"로 시작하지 않아 유효하지 않은 URI</translation>
+        <source>Invalid URI, not starting with "azzure" prefix</source>
+        <translation>"azzure"로 시작하지 않아 유효하지 않은 URI</translation>
     </message>
 </context>
 <context>
@@ -1683,8 +1683,8 @@ Are you sure?</source>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>Aezora</source>
-        <translation>Aezora</translation>
+        <source>Azzure</source>
+        <translation>Azzure</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -1711,8 +1711,8 @@ Are you sure?</source>
         <translation>어플리케이션 종료</translation>
     </message>
     <message>
-        <source>Aezora client</source>
-        <translation>Aezora 클라이언트</translation>
+        <source>Azzure client</source>
+        <translation>Azzure 클라이언트</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1778,8 +1778,8 @@ Address: %4
         <translation>잘못된 결제 주소 %1</translation>
     </message>
     <message>
-        <source>Cannot start aezora: click-to-pay handler</source>
-        <translation>aezora을 시작할 수 없습니다: 결제하기 위한 클릭 처리</translation>
+        <source>Cannot start azzure: click-to-pay handler</source>
+        <translation>azzure을 시작할 수 없습니다: 결제하기 위한 클릭 처리</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid AZR address or malformed URI parameters.</source>
@@ -1916,16 +1916,16 @@ Address: %4
         <translation>치명적인 오류가 발생하였습니다. AZR는 더 이상 안전하게 계속될 수 없으며, 곧 종료됩니다.</translation>
     </message>
     <message>
-        <source>Aezora</source>
-        <translation>Aezora</translation>
+        <source>Azzure</source>
+        <translation>Azzure</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
         <translation>Error: Specified data directory "%1" does not exist.</translation>
     </message>
     <message>
-        <source>Aezora didn't yet exit safely...</source>
-        <translation>Aezora가 아직 안전하게 종료되지 않았습니다....</translation>
+        <source>Azzure didn't yet exit safely...</source>
+        <translation>Azzure가 아직 안전하게 종료되지 않았습니다....</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -3243,8 +3243,8 @@ Verify that you have installed a predetermined text editor.</source>
         <translation>백업 폴더를 열 수 없습니다.</translation>
     </message>
     <message>
-        <source>Unable to open aezora.conf with default application</source>
-        <translation>aezora.conf 파일을 기본 앱으로 열 수 없습니다.</translation>
+        <source>Unable to open azzure.conf with default application</source>
+        <translation>azzure.conf 파일을 기본 앱으로 열 수 없습니다.</translation>
     </message>
     <message>
         <source>In:</source>
@@ -3811,8 +3811,8 @@ Are you sure?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Aezora is shutting down...</source>
-        <translation>Aezora가 종료됩니다...</translation>
+        <source>Azzure is shutting down...</source>
+        <translation>Azzure가 종료됩니다...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -3841,8 +3841,8 @@ Are you sure?
         <translation>로딩중...</translation>
     </message>
     <message>
-        <source>Aezora</source>
-        <translation>Aezora</translation>
+        <source>Azzure</source>
+        <translation>Azzure</translation>
     </message>
 </context>
 <context>
@@ -4263,9 +4263,9 @@ NOTE: 업그레이드 이후에는
     </message>
     <message>
         <source>Welcome to
-Aezora Wallet</source>
+Azzure Wallet</source>
         <translation>환영합니다.
-Aezora Wallet</translation>
+Azzure Wallet</translation>
     </message>
     <message>
         <source>AZR is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
@@ -4311,8 +4311,8 @@ Aezora Wallet</translation>
         <translation>JSON-RPC연결 수신을 위해 주어진 주소를 지정합니다. [host]: IPv6 포트 표기법 사용. 이 옵션은 여러번 지정할 수 있습니다. (기본값 : 모든 인터페이스에 지정)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Aezora is probably already running.</source>
-        <translation>        &lt;translation&gt;잠겨진 데이터 디렉토리 %s 를 가져올 수 없습니다. Aezora는 이미 실행 중입니다.</translation>
+        <source>Cannot obtain a lock on data directory %s. Azzure is probably already running.</source>
+        <translation>        &lt;translation&gt;잠겨진 데이터 디렉토리 %s 를 가져올 수 없습니다. Azzure는 이미 실행 중입니다.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -4451,8 +4451,8 @@ Aezora Wallet</translation>
         <translation>이 제품은 OpenSSL이 개발한 Open SSL 툴킷 &lt;https://www.openssl.org/&gt; 에서 사용하기 위한 프로젝트 소프트웨어, Eric Young이 개발한 암호화 소프트웨어, Thomas Bernard가 개발한 UPnP 소프트웨어가 포함되어 있습니다.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Aezora is probably already running.</source>
-        <translation>이 컴퓨터를 %s 로 지정하는것은 불가능합니다. Aezora는 이미 실행 중입니다.</translation>
+        <source>Unable to bind to %s on this computer. Azzure is probably already running.</source>
+        <translation>이 컴퓨터를 %s 로 지정하는것은 불가능합니다. Azzure는 이미 실행 중입니다.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -4467,8 +4467,8 @@ Aezora Wallet</translation>
         <translation>경고 : -paytxfee가 매우 높게 설정되었습니다! 이것은 전송할 경우 지불 할 트랜잭션 수수료입니다.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Aezora will not work properly.</source>
-        <translation>경고: 컴퓨터의 날짜와 시간이 올바르게 설정되어 있는지 확인해 주세요! 만일 시계가 잘못되어 있다면 Aezora 코어는 정상적으로 작동하지 않을 수 있습니다.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Azzure will not work properly.</source>
+        <translation>경고: 컴퓨터의 날짜와 시간이 올바르게 설정되어 있는지 확인해 주세요! 만일 시계가 잘못되어 있다면 Azzure 코어는 정상적으로 작동하지 않을 수 있습니다.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -4671,8 +4671,8 @@ Aezora Wallet</translation>
         <translation>정보</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Aezora is shutting down.</source>
-        <translation>초기화 정확성 검사에 실패 했습니다. Aezora가 종료됩니다.</translation>
+        <source>Initialization sanity check failed. Azzure is shutting down.</source>
+        <translation>초기화 정확성 검사에 실패 했습니다. Azzure가 종료됩니다.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -4939,8 +4939,8 @@ Aezora Wallet</translation>
         <translation>재동기화 준비중...</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong Aezora will not work properly.</source>
-        <translation>컴퓨터의 날짜와 시간이 올바르게 설정되어 있는지 확인해 주세요! 만일 시계가 잘못되어 있다면 Aezora 코어는 정상적으로 작동하지 않을 수 있습니다.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong Azzure will not work properly.</source>
+        <translation>컴퓨터의 날짜와 시간이 올바르게 설정되어 있는지 확인해 주세요! 만일 시계가 잘못되어 있다면 Azzure 코어는 정상적으로 작동하지 않을 수 있습니다.</translation>
     </message>
     <message>
         <source>Cannot resolve -%s address: '%s'</source>
@@ -5227,8 +5227,8 @@ Aezora Wallet</translation>
         <translation>지갑 %s 가 데이터 디렉토리 외부에 존재합니다 %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Aezora to complete</source>
-        <translation>지갑을 다시 작성해야 합니다: 완료하려면 Aezora 코어를 재시작해야 합니다</translation>
+        <source>Wallet needed to be rewritten: restart Azzure to complete</source>
+        <translation>지갑을 다시 작성해야 합니다: 완료하려면 Azzure 코어를 재시작해야 합니다</translation>
     </message>
     <message>
         <source>Wallet options:</source>

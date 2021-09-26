@@ -1,4 +1,4 @@
-Source: aezora
+Source: azzure
 Section: utils
 Priority: optional
 Maintainer: Fuzzbawls <fuzzbawls@gmail.com>
@@ -28,15 +28,15 @@ Build-Depends: debhelper,
  libzmq3-dev,
  dh-systemd
 Standards-Version: 3.9.2
-Homepage: https://aezora.com
-Vcs-Git: git://github.com/Aezora/Aezora.git
-Vcs-Browser: https://github.com/Aezora/Aezora
+Homepage: https://azzure.com
+Vcs-Git: git://github.com/Azzure/Azzure.git
+Vcs-Browser: https://github.com/decenomy/AZR
 
-Package: aezorad
+Package: azzured
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - daemon
- Aezora is a free, open source peer-to-peer electronic cash system that
+ Azzure is a free, open source peer-to-peer electronic cash system that
  is completely decentralized, without the need for a central server or
  trusted parties.  Users hold the crypto keys to their own money and
  transact directly with each other, with the help of a P2P network to
@@ -45,14 +45,14 @@ Description: peer-to-peer network based digital currency - daemon
  Full transaction history is stored locally at each client.  This
  requires 18.5+ GB of space, slowly growing.
  .
- This package provides the daemon, aezorad, and the CLI tool
- aezora-cli to interact with the daemon.
+ This package provides the daemon, azzured, and the CLI tool
+ azzure-cli to interact with the daemon.
 
-Package: aezora-qt
+Package: azzure-qt
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - Qt GUI
- Aezora is a free, open source peer-to-peer electronic cash system that
+ Azzure is a free, open source peer-to-peer electronic cash system that
  is completely decentralized, without the need for a central server or
  trusted parties.  Users hold the crypto keys to their own money and
  transact directly with each other, with the help of a P2P network to
@@ -61,4 +61,4 @@ Description: peer-to-peer network based digital currency - Qt GUI
  Full transaction history is stored locally at each client.  This
  requires 18.5+ GB of space, slowly growing.
  .
- This package provides Aezora-Qt, a GUI for Aezora based on Qt.
+ This package provides Azzure-Qt, a GUI for Azzure based on Qt.

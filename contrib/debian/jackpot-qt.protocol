@@ -1,6 +1,6 @@
 [Protocol]
-exec=aezora-qt '%u'
-protocol=aezora
+exec=azzure-qt '%u'
+protocol=azzure
 input=none
 output=none
 helper=true

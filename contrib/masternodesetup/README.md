@@ -1,10 +1,10 @@
 ![Example-Logo](https://avatars.githubusercontent.com/u/59030118?v=4)
 
-# Aezora Masternode Setup Guide
+# Azzure Masternode Setup Guide
 ***
 ## Required
 1) **AZR collateral value at current block** ([consult the collateral table](../../README.md#rewards-breakdown))
-2) **Local Wallet https://github.com/Aezora/Aezora/releases**
+2) **Local Wallet https://github.com/decenomy/AZR/releases**
 3) **VPS with UBUNTU 18.04** (it is possible to work on other versions but it is not tested)
 4) **Putty https://www.putty.org/**
 5) **Text editor on your local pc to save data for copy/paste**
@@ -30,7 +30,7 @@ You will then receive your private key, save it in a txt to use it later.
 * Once logged in your vps, *copy/paste* each line one by one with *Enter*
 
 ```
-wget -q https://raw.githubusercontent.com/Aezora/Aezora/master/contrib/masternodesetup/masternodesetup.sh
+wget -q https://raw.githubusercontent.com/Azzure/Azzure/master/contrib/masternodesetup/masternodesetup.sh
 ```
 
 ```
@@ -43,14 +43,14 @@ bash masternodesetup.sh
 
 * Last thing script will ask you is to provide Masternode Genkey. Copy the one you got previously (createmasternodekey) and press enter.
 
-Remember to do `aezora-cli getblockcount` to check if VPS catching blocks till it synced with chain, if not follow this procedure:
+Remember to do `azzure-cli getblockcount` to check if VPS catching blocks till it synced with chain, if not follow this procedure:
 
-* Go to your wallet-qt and check peers list (tools - peers list) and select one ip from the list. With that ip do the follow command at VPS `aezora-cli addnode "ip" onetry`
+* Go to your wallet-qt and check peers list (tools - peers list) and select one ip from the list. With that ip do the follow command at VPS `azzure-cli addnode "ip" onetry`
 
       Example:
-		  aezora-cli addnode 45.32.144.158 onetry
+		  azzure-cli addnode 45.32.144.158 onetry
     
-* Check now if VPS already downloading blocks with the command `aezora-cli getblockcount`, and if yes give it time now to catch last block number 
+* Check now if VPS already downloading blocks with the command `azzure-cli getblockcount`, and if yes give it time now to catch last block number 
 
 Do not close your terminal/ command prompt window at this point.
 
@@ -76,9 +76,9 @@ Do not close your terminal/ command prompt window at this point.
 ***Go back to Putty***
 
 ```
-aezora-cli getmasternodestatus
+azzure-cli getmasternodestatus
 ```
 
 You need to get **"status" : 4** 
 
-## Congratulations your Aezora node it's running
+## Congratulations your Azzure node it's running

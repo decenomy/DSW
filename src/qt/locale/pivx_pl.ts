@@ -854,16 +854,16 @@ Rozpocznie się automatycznie, gdy portfel będzie miał wystarczającą liczbę
         <translation>Wersja</translation>
     </message>
     <message>
-        <source>Aezora</source>
-        <translation>Aezora</translation>
+        <source>Azzure</source>
+        <translation>Azzure</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Aezora</source>
-        <translation>O Aezora</translation>
+        <source>About Azzure</source>
+        <translation>O Azzure</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -917,16 +917,16 @@ Rozpocznie się automatycznie, gdy portfel będzie miał wystarczającą liczbę
         <translation>Zapraszamy</translation>
     </message>
     <message>
-        <source>Welcome to Aezora.</source>
-        <translation>Zapraszamy do Aezora</translation>
+        <source>Welcome to Azzure.</source>
+        <translation>Zapraszamy do Azzure</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Aezora will store its data.</source>
-        <translation>Ponieważ program jest uruchamiany po raz pierwszy, możesz wybrać miejsce, w którym Aezora będzie przechowywać swoje dane.</translation>
+        <source>As this is the first time the program is launched, you can choose where Azzure will store its data.</source>
+        <translation>Ponieważ program jest uruchamiany po raz pierwszy, możesz wybrać miejsce, w którym Azzure będzie przechowywać swoje dane.</translation>
     </message>
     <message>
-        <source>Aezora will download and store a copy of the AZR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Aezora pobierze i zapisze kopię łańcucha bloków AZR. Przynajmniej %1 GB danych zostanie zapisanych w tym katalogu, a jego liczba będzie rosnąć z czasem. Portfel zostanie również zapisany w tym katalogu.</translation>
+        <source>Azzure will download and store a copy of the AZR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Azzure pobierze i zapisze kopię łańcucha bloków AZR. Przynajmniej %1 GB danych zostanie zapisanych w tym katalogu, a jego liczba będzie rosnąć z czasem. Portfel zostanie również zapisany w tym katalogu.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -945,8 +945,8 @@ Rozpocznie się automatycznie, gdy portfel będzie miał wystarczającą liczbę
         <translation>OK</translation>
     </message>
     <message>
-        <source>Aezora</source>
-        <translation>Aezora</translation>
+        <source>Azzure</source>
+        <translation>Azzure</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1242,7 +1242,7 @@ i głosuj na system skarbu otrzymujący okresową nagrodę.</translation>
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the aezora.conf file
+You will only have to paste the data in the azzure.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1250,7 +1250,7 @@ this controller wallet (select the Masternode in the list and press "start").
 na zdalnym serwerze do twojego schowka.
 
 
-Wystarczy wkleić dane do pliku aezora.conf
+Wystarczy wkleić dane do pliku azzure.conf
 zdalnego serwera i uruchom go, a następnie uruchom Masternode przy użyciu
 portfela kontrolujacego (wybierz Masternode z listy i naciśnij „start”).
 </translation>
@@ -1390,8 +1390,8 @@ Jesteś pewny?</translation>
         <translation>Przetwarzane dane są za duże</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "aezora" prefix</source>
-        <translation>Nieprawidłowy identyfikator URI, nie zaczynający się od prefiksu „aezora”</translation>
+        <source>Invalid URI, not starting with "azzure" prefix</source>
+        <translation>Nieprawidłowy identyfikator URI, nie zaczynający się od prefiksu „azzure”</translation>
     </message>
 </context>
 <context>
@@ -1685,8 +1685,8 @@ Jesteś pewny?</translation>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>Aezora</source>
-        <translation>Aezora</translation>
+        <source>Azzure</source>
+        <translation>Azzure</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -1713,8 +1713,8 @@ Jesteś pewny?</translation>
         <translation>Wyjdź z aplikacji</translation>
     </message>
     <message>
-        <source>Aezora client</source>
-        <translation>Aezora klient</translation>
+        <source>Azzure client</source>
+        <translation>Azzure klient</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1780,8 +1780,8 @@ Adres: %4
         <translation>Nieprawidłowy adres płatności %1</translation>
     </message>
     <message>
-        <source>Cannot start aezora: click-to-pay handler</source>
-        <translation>Nie można uruchomić aezora: click-to-pay handler</translation>
+        <source>Cannot start azzure: click-to-pay handler</source>
+        <translation>Nie można uruchomić azzure: click-to-pay handler</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid AZR address or malformed URI parameters.</source>
@@ -1918,8 +1918,8 @@ Adres: %4
         <translation>Wystąpił błąd krytyczny. AZR nie może już działać bezpiecznie i zakończy działanie.</translation>
     </message>
     <message>
-        <source>Aezora</source>
-        <translation>Aezora</translation>
+        <source>Azzure</source>
+        <translation>Azzure</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -1938,8 +1938,8 @@ Adres: %4
         <translation>Błąd odczytu pliku konfiguracyjnego masternode: %1</translation>
     </message>
     <message>
-        <source>Aezora didn't yet exit safely...</source>
-        <translation>Aezora nie zamkną się jeszcze bezpiecznie ...</translation>
+        <source>Azzure didn't yet exit safely...</source>
+        <translation>Azzure nie zamkną się jeszcze bezpiecznie ...</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -3400,8 +3400,8 @@ Wystąpił błąd podczas próby zapisania listy adresów w %1. Proszę spróbuj
         <translation>Nie można otworzyć folderu kopii zapasowych</translation>
     </message>
     <message>
-        <source>Unable to open aezora.conf with default application</source>
-        <translation>Nie można otworzyć pliku aezora.conf w domyślnej aplikacji</translation>
+        <source>Unable to open azzure.conf with default application</source>
+        <translation>Nie można otworzyć pliku azzure.conf w domyślnej aplikacji</translation>
     </message>
     <message>
         <source>In:</source>
@@ -4006,8 +4006,8 @@ Jesteś pewny?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Aezora is shutting down...</source>
-        <translation>Aezora się wyłącza ...</translation>
+        <source>Azzure is shutting down...</source>
+        <translation>Azzure się wyłącza ...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4036,8 +4036,8 @@ Jesteś pewny?
         <translation>Ładowanie…</translation>
     </message>
     <message>
-        <source>Aezora</source>
-        <translation>Aezora</translation>
+        <source>Azzure</source>
+        <translation>Azzure</translation>
     </message>
 </context>
 <context>
@@ -4472,9 +4472,9 @@ kopia zapasowa zostanie utworzona.
     </message>
     <message>
         <source>Welcome to
-Aezora Wallet</source>
+Azzure Wallet</source>
         <translation>Witamy
-Portfel Aezora</translation>
+Portfel Azzure</translation>
     </message>
     <message>
         <source>AZR is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
@@ -4520,8 +4520,8 @@ Portfel Aezora</translation>
         <translation>Powiąż z podanym adresem, aby odsłuchać połączenia JSON-RPC. Użyj [host]:port dla IPv6. Ta opcja może być określona wiele razy (domyślnie: powiązanie ze wszystkimi interfejsami)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Aezora is probably already running.</source>
-        <translation>Nie można uzyskać dostępu do katalogu danych %s. Aezora prawdopodobnie już działa.</translation>
+        <source>Cannot obtain a lock on data directory %s. Azzure is probably already running.</source>
+        <translation>Nie można uzyskać dostępu do katalogu danych %s. Azzure prawdopodobnie już działa.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -4680,8 +4680,8 @@ Portfel Aezora</translation>
         <translation>Całkowita długość string wersji sieciowej (%i) przekracza maksymalną długość (%i). Zmniejsz liczbę lub rozmiar uacomments.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Aezora is probably already running.</source>
-        <translation>Nie można podłączyć %s na tym komputerze. Aezora prawdopodobnie już działa.</translation>
+        <source>Unable to bind to %s on this computer. Azzure is probably already running.</source>
+        <translation>Nie można podłączyć %s na tym komputerze. Azzure prawdopodobnie już działa.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -4696,8 +4696,8 @@ Portfel Aezora</translation>
         <translation>Ostrzeżenie: -paytxfee jest ustawione bardzo wysoko! Jest to opłata transakcyjna, którą zapłacisz, jeśli wyślesz transakcję.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Aezora will not work properly.</source>
-        <translation>Ostrzeżenie: sprawdź, czy data i godzina komputera są poprawne! Jeśli zegar jest nieprawidłowy, Aezora nie będzie działać poprawnie.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Azzure will not work properly.</source>
+        <translation>Ostrzeżenie: sprawdź, czy data i godzina komputera są poprawne! Jeśli zegar jest nieprawidłowy, Azzure nie będzie działać poprawnie.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -4904,8 +4904,8 @@ Portfel Aezora</translation>
         <translation>Informacje</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Aezora is shutting down.</source>
-        <translation>Sprawdzenie poprawności inicjalizacji nie powiodło się. Aezora zamyka się.</translation>
+        <source>Initialization sanity check failed. Azzure is shutting down.</source>
+        <translation>Sprawdzenie poprawności inicjalizacji nie powiodło się. Azzure zamyka się.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5192,8 +5192,8 @@ Portfel Aezora</translation>
         <translation>Przygotowanie do ponownej synchronizacji ...</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong Aezora will not work properly.</source>
-        <translation>Sprawdź, czy data i godzina komputera są poprawne! Jeśli zegar jest nieprawidłowy, Aezora nie będzie działać poprawnie.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong Azzure will not work properly.</source>
+        <translation>Sprawdź, czy data i godzina komputera są poprawne! Jeśli zegar jest nieprawidłowy, Azzure nie będzie działać poprawnie.</translation>
     </message>
     <message>
         <source>Specify location of debug log file: this can be an absolute path or a path relative to the data directory (default: %s)</source>
@@ -5496,8 +5496,8 @@ Portfel Aezora</translation>
         <translation>Portfel %s znajduje się poza katalogiem danych %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Aezora to complete</source>
-        <translation>Portfel musiał zostać przepisany: zrestartuj Aezora, aby zakończyć</translation>
+        <source>Wallet needed to be rewritten: restart Azzure to complete</source>
+        <translation>Portfel musiał zostać przepisany: zrestartuj Azzure, aby zakończyć</translation>
     </message>
     <message>
         <source>Wallet options:</source>

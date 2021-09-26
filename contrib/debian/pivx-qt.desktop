@@ -1,13 +1,13 @@
 [Desktop Entry]
 Version=1.0
-Name=Aezora
+Name=Azzure
 Comment= AZR P2P Cryptocurrency
 Comment[fr]= AZR, monnaie virtuelle cryptographique pair à pair
 Comment[tr]= AZR, eşten eşe kriptografik sanal para birimi
-Exec=aezora-qt %u
+Exec=azzure-qt %u
 Terminal=false
 Type=Application
 Icon=pivx128
 MimeType=x-scheme-handler/pivx;
 Categories=Office;Finance;
-StartupWMClass=Aezora-qt
+StartupWMClass=Azzure-qt

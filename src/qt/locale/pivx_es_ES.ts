@@ -887,16 +887,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>versión</translation>
     </message>
     <message>
-        <source>Aezora</source>
-        <translation>Aezora</translation>
+        <source>Azzure</source>
+        <translation>Azzure</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Aezora</source>
-        <translation>Acerca de Aezora</translation>
+        <source>About Azzure</source>
+        <translation>Acerca de Azzure</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -950,16 +950,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>Bienvenido/a</translation>
     </message>
     <message>
-        <source>Welcome to Aezora.</source>
-        <translation>Bienvenido/a a Aezora.</translation>
+        <source>Welcome to Azzure.</source>
+        <translation>Bienvenido/a a Azzure.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Aezora will store its data.</source>
-        <translation>Al ser la primera vez que se inicia el programa, usted puede elegir dónde guardará Aezora sus datos.</translation>
+        <source>As this is the first time the program is launched, you can choose where Azzure will store its data.</source>
+        <translation>Al ser la primera vez que se inicia el programa, usted puede elegir dónde guardará Azzure sus datos.</translation>
     </message>
     <message>
-        <source>Aezora will download and store a copy of the AZR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Aezora descargará y guardará una copia de la cadena de bloques AZR. Por lo menos %1GB de datos serán guardados en esta carpeta, y crecerá con el tiempo. La wallet también se guardará en esta carpeta.</translation>
+        <source>Azzure will download and store a copy of the AZR block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Azzure descargará y guardará una copia de la cadena de bloques AZR. Por lo menos %1GB de datos serán guardados en esta carpeta, y crecerá con el tiempo. La wallet también se guardará en esta carpeta.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -978,8 +978,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>OK</translation>
     </message>
     <message>
-        <source>Aezora</source>
-        <translation>Aezora</translation>
+        <source>Azzure</source>
+        <translation>Azzure</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1280,14 +1280,14 @@ Espere unos minutos más (las garantías de masternode requieren %1 confirmacion
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the aezora.conf file
+You will only have to paste the data in the azzure.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
         <translation>Estás a punto de exportar los datos necesarios para ejecutar un Masternode de un servidor remoto a tu portapapeles.
 
 
-Sólo tendrás que pegar los datos en el archivo aezora.conf de tu servidor remoto e iniciarlo, luego inicia el Masternode usando esta wallet de controladores (selecciona el Masternode en la lista y presione "start").
+Sólo tendrás que pegar los datos en el archivo azzure.conf de tu servidor remoto e iniciarlo, luego inicia el Masternode usando esta wallet de controladores (selecciona el Masternode en la lista y presione "start").
 </translation>
     </message>
     <message>
@@ -1461,8 +1461,8 @@ MAESTROS</translation>
         <translation>Los datos analizados son demasiado grandes</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "aezora" prefix</source>
-        <translation>URI inválido, no empezar con el prefijo "aezora"</translation>
+        <source>Invalid URI, not starting with "azzure" prefix</source>
+        <translation>URI inválido, no empezar con el prefijo "azzure"</translation>
     </message>
 </context>
 <context>
@@ -1756,8 +1756,8 @@ MAESTROS</translation>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>Aezora</source>
-        <translation>Aezora</translation>
+        <source>Azzure</source>
+        <translation>Azzure</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -1784,8 +1784,8 @@ MAESTROS</translation>
         <translation>Cerrar aplicación</translation>
     </message>
     <message>
-        <source>Aezora client</source>
-        <translation>Cliente Aezora</translation>
+        <source>Azzure client</source>
+        <translation>Cliente Azzure</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1851,8 +1851,8 @@ Dirección: %4
         <translation>Dirección de pago inválida %1</translation>
     </message>
     <message>
-        <source>Cannot start aezora: click-to-pay handler</source>
-        <translation>No se puede iniciar aezora: módulo click-to-pay</translation>
+        <source>Cannot start azzure: click-to-pay handler</source>
+        <translation>No se puede iniciar azzure: módulo click-to-pay</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid AZR address or malformed URI parameters.</source>
@@ -1989,8 +1989,8 @@ Dirección: %4
         <translation>Se produjo un error fatal. AZR ya no puede continuar de forma segura y dejará de funcionar.   </translation>
     </message>
     <message>
-        <source>Aezora</source>
-        <translation>Aezora</translation>
+        <source>Azzure</source>
+        <translation>Azzure</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -2009,8 +2009,8 @@ Dirección: %4
         <translation>Error al leer el archivo de configuración de masternode: %1</translation>
     </message>
     <message>
-        <source>Aezora didn't yet exit safely...</source>
-        <translation>El núcleo Aezora aún no ha salido de forma segura...</translation>
+        <source>Azzure didn't yet exit safely...</source>
+        <translation>El núcleo Azzure aún no ha salido de forma segura...</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -3644,8 +3644,8 @@ Requisitos:
         <translation>No se puede abrir la carpeta de copias de seguridad</translation>
     </message>
     <message>
-        <source>Unable to open aezora.conf with default application</source>
-        <translation>No se puede abrir aezora.conf con la aplicación predeterminada</translation>
+        <source>Unable to open azzure.conf with default application</source>
+        <translation>No se puede abrir azzure.conf con la aplicación predeterminada</translation>
     </message>
     <message>
         <source>In:</source>
@@ -4250,8 +4250,8 @@ Are you sure?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Aezora is shutting down...</source>
-        <translation>El programa Aezora se está cerrando...</translation>
+        <source>Azzure is shutting down...</source>
+        <translation>El programa Azzure se está cerrando...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4280,8 +4280,8 @@ Are you sure?
         <translation>Cargando....</translation>
     </message>
     <message>
-        <source>Aezora</source>
-        <translation>Aezora</translation>
+        <source>Azzure</source>
+        <translation>Azzure</translation>
     </message>
 </context>
 <context>
@@ -4712,9 +4712,9 @@ una nueva copia de seguridad.
     </message>
     <message>
         <source>Welcome to
-Aezora Wallet</source>
+Azzure Wallet</source>
         <translation>Bienvenido a
-Aezora Wallet</translation>
+Azzure Wallet</translation>
     </message>
     <message>
         <source>AZR is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
@@ -4764,8 +4764,8 @@ Aezora Wallet</translation>
         <translation>Escuchar únicamente a la tarjeta de red indicada para conexiones JSON-RPC. Use la notación [host]:puerto para IPv6. Esta opción puede ser especificada varias veces (por defecto: escuchar en todas las tarjetas de red)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Aezora is probably already running.</source>
-        <translation>No se puede obtener un bloqueo sobre el directorio de datos %s. Aezora esta probablemente en ejecución.</translation>
+        <source>Cannot obtain a lock on data directory %s. Azzure is probably already running.</source>
+        <translation>No se puede obtener un bloqueo sobre el directorio de datos %s. Azzure esta probablemente en ejecución.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -4924,8 +4924,8 @@ Aezora Wallet</translation>
         <translation>La longitud total de la cadena de la versión de red (%i) excede la longitud máxima (%i). Reducir el número o tamaño de los uacomments.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Aezora is probably already running.</source>
-        <translation>Imposible conectar a %s en esta computadora. Es probable que Aezora ya este corriendo.</translation>
+        <source>Unable to bind to %s on this computer. Azzure is probably already running.</source>
+        <translation>Imposible conectar a %s en esta computadora. Es probable que Azzure ya este corriendo.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -4940,8 +4940,8 @@ Aezora Wallet</translation>
         <translation>Advertencia: -paytxfee esta muy alta! Esta es la comisión de transacción que pagarás si envías una transacción.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Aezora will not work properly.</source>
-        <translation>Advertencia: Por favor verifique que la fecha y hora de su computadora sean correctas! Si su reloj esta fuera de hora Aezora no funcionará adecuadamente.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Azzure will not work properly.</source>
+        <translation>Advertencia: Por favor verifique que la fecha y hora de su computadora sean correctas! Si su reloj esta fuera de hora Azzure no funcionará adecuadamente.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5148,8 +5148,8 @@ Aezora Wallet</translation>
         <translation>Información</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Aezora is shutting down.</source>
-        <translation>La prueba de salud de inicialización ha fallado. Aezora se cerrará.</translation>
+        <source>Initialization sanity check failed. Azzure is shutting down.</source>
+        <translation>La prueba de salud de inicialización ha fallado. Azzure se cerrará.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5436,8 +5436,8 @@ Aezora Wallet</translation>
         <translation>Preparando para resincronizar...</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong Aezora will not work properly.</source>
-        <translation>Por favor verifique que la fecha y hora de su computadora sean correctas! Si su reloj esta fuera de hora Aezora no funcionará adecuadamente.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong Azzure will not work properly.</source>
+        <translation>Por favor verifique que la fecha y hora de su computadora sean correctas! Si su reloj esta fuera de hora Azzure no funcionará adecuadamente.</translation>
     </message>
     <message>
         <source>Specify location of debug log file: this can be an absolute path or a path relative to the data directory (default: %s)</source>
@@ -5740,8 +5740,8 @@ Aezora Wallet</translation>
         <translation>La wallet %s esta ubicada fuera del directorio de datos %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Aezora to complete</source>
-        <translation>La wallet necesita reescribirse: reinicie la Aezora para completarlo</translation>
+        <source>Wallet needed to be rewritten: restart Azzure to complete</source>
+        <translation>La wallet necesita reescribirse: reinicie la Azzure para completarlo</translation>
     </message>
     <message>
         <source>Wallet options:</source>

@@ -11,11 +11,11 @@ fi
 	sudo apt install git zip unzip build-essential libtool bsdmainutils autotools-dev autoconf pkg-config automake python3 libqt5svg5-dev -y
 
 # Clone code from official Github repository
-	rm -rf Aezora
-	git clone https://github.com/Aezora/Aezora.git
+	rm -rf Azzure
+	git clone https://github.com/Azzure/Azzure.git
 
 # Entering directory
-	cd Aezora
+	cd Azzure
 
 # Compile dependencies
 	cd depends
@@ -29,6 +29,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp Aezora/src/aezorad Aezora/src/aezora-cli Aezora/src/aezora-tx Aezora/src/qt/aezora-qt .
-	zip AZR-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip aezorad aezora-cli aezora-tx aezora-qt
-	rm -f aezorad aezora-cli aezora-tx aezora-qt
+	cp Azzure/src/azzured Azzure/src/azzure-cli Azzure/src/azzure-tx Azzure/src/qt/azzure-qt .
+	zip AZR-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip azzured azzure-cli azzure-tx azzure-qt
+	rm -f azzured azzure-cli azzure-tx azzure-qt

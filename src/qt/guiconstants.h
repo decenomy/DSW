@@ -14,7 +14,7 @@ static const int MODEL_UPDATE_DELAY = 1000;
 /* AskPassphraseDialog -- Maximum passphrase length */
 static const int MAX_PASSPHRASE_SIZE = 1024;
 
-/* Aezora GUI -- Size of icons in status bar */
+/* Azzure GUI -- Size of icons in status bar */
 static const int STATUSBAR_ICONSIZE = 16;
 
 static const bool DEFAULT_SPLASHSCREEN = true;
@@ -50,9 +50,9 @@ static const int MAX_URI_LENGTH = 255;
 #define EXPORT_IMAGE_SIZE 256
 
 
-#define QAPP_ORG_NAME "Aezora"
-#define QAPP_ORG_DOMAIN "aezora.org"
-#define QAPP_APP_NAME_DEFAULT "Aezora-Qt"
-#define QAPP_APP_NAME_TESTNET "Aezora-Qt-testnet"
+#define QAPP_ORG_NAME "Azzure"
+#define QAPP_ORG_DOMAIN "azzure.org"
+#define QAPP_APP_NAME_DEFAULT "Azzure-Qt"
+#define QAPP_APP_NAME_TESTNET "Azzure-Qt-testnet"
 
 #endif // BITCOIN_QT_GUICONSTANTS_H

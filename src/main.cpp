@@ -60,7 +60,7 @@
 
 
 #if defined(NDEBUG)
-#error "Aezora cannot be compiled without assertions."
+#error "Azzure cannot be compiled without assertions."
 #endif
 
 /**
@@ -3361,7 +3361,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                 nHeight = (*mi).second->nHeight + 1;
         }
 
-        // Aezora
+        // Azzure
         // It is entierly possible that we don't have enough data and this could fail
         // (i.e. the block could indeed be valid). Store the block for later consideration
         // but issue an initial reject message.
@@ -5202,7 +5202,7 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
             pfrom->fDisconnect = true;
         }
 
-        // Aezora: We use certain sporks during IBD, so check to see if they are
+        // Azzure: We use certain sporks during IBD, so check to see if they are
         // available. If not, ask the first peer connected for them.
         // TODO: Move this to an instant broadcast of the sporks.
         bool fMissingSporks = !pSporkDB->SporkExists(SPORK_14_MIN_PROTOCOL_ACCEPTED);

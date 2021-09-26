@@ -11,8 +11,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between aezora-cli and aezorad)
- * of a given instance of the aezora system.
+ * CBaseChainParams defines the base parameters (shared between azzure-cli and azzured)
+ * of a given instance of the azzure system.
  */
 class CBaseChainParams
 {

@@ -1,4 +1,4 @@
-Aezora wallet repository
+Azzure wallet repository
 =====================================
 
 ### Coin Specs
@@ -12,7 +12,7 @@ Aezora wallet repository
 • Prefix: AZR addresses start with the capital letter "A"   
 • Ports: 14725 (p2p) / 14724 (rpc)    
 • Explorer https://explorer.decenomy.net/AZR/blocks  
-• Website [aezora.com](http://aezora.com/)
+• Website [azzure.com](http://azzure.com/)
 
 ### Rewards Breakdown
 ---

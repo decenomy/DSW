@@ -34,7 +34,7 @@ class WalletModel;
 
 
 /**
-  Aezora GUI main class. This class represents the main window of the Aezora UI. It communicates with both the client and
+  Azzure GUI main class. This class represents the main window of the Azzure UI. It communicates with both the client and
   wallet models to give the user an up-to-date view of the current core state.
 */
 class PIVXGUI : public QMainWindow
