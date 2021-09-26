@@ -29,7 +29,7 @@ Build-Depends: debhelper,
  dh-systemd
 Standards-Version: 3.9.2
 Homepage: https://azzure.com
-Vcs-Git: git://github.com/Azzure/Azzure.git
+Vcs-Git: git://github.com/decenomy/AZR.git
 Vcs-Browser: https://github.com/decenomy/AZR
 
 Package: azzured

@@ -12,7 +12,7 @@ fi
 
 # Clone code from official Github repository
 	rm -rf Azzure
-	git clone https://github.com/Azzure/Azzure.git
+	git clone https://github.com/decenomy/AZR.git
 
 # Entering directory
 	cd Azzure
