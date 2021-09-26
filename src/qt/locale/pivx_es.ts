@@ -3512,8 +3512,8 @@ Ha habido un error al tratar de guardar la libreta de direcciones en %1. Por fav
         <translation>2) ¿Por qué mis AZR no se pueden gastar?</translation>
     </message>
     <message>
-        <source>https://azzure.com/</source>
-        <translation>https://azzure.com/</translation>
+        <source>https://azzurecoin.net/</source>
+        <translation>https://azzurecoin.net/</translation>
     </message>
     <message>
         <source>1</source>

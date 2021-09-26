@@ -3441,8 +3441,8 @@ Došlo je do greške prilikom spremanja popisa adresa u %1. Molimo pokušajte po
         <translation>2) Zašto se moji AZR ne mogu potrošiti?</translation>
     </message>
     <message>
-        <source>https://azzure.com/</source>
-        <translation>https://azzure.com/</translation>
+        <source>https://azzurecoin.net/</source>
+        <translation>https://azzurecoin.net/</translation>
     </message>
     <message>
         <source>1</source>

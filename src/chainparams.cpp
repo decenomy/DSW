@@ -300,15 +300,15 @@ public:
         pchMessageStart[3] = 0x19;
         nDefaultPort = 14725;
 
-        vSeeds.push_back(CDNSSeedData("seeder", "seeder.azzure.com"));
-	    vSeeds.push_back(CDNSSeedData("seed1",  "seed1.azzure.com"));
-        vSeeds.push_back(CDNSSeedData("seed2",  "seed2.azzure.com"));
-        vSeeds.push_back(CDNSSeedData("seed3",  "seed3.azzure.com"));
-        vSeeds.push_back(CDNSSeedData("seed4",  "seed4.azzure.com"));
-	    vSeeds.push_back(CDNSSeedData("seed5",  "seed5.azzure.com"));
-	    vSeeds.push_back(CDNSSeedData("seed6",  "seed6.azzure.com"));
-	    vSeeds.push_back(CDNSSeedData("seed7",  "seed7.azzure.com"));
-	    vSeeds.push_back(CDNSSeedData("seed8",  "seed8.azzure.com"));
+        vSeeds.push_back(CDNSSeedData("seeder", "seeder.azzurecoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed1",  "seed1.azzurecoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed2",  "seed2.azzurecoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed3",  "seed3.azzurecoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed4",  "seed4.azzurecoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed5",  "seed5.azzurecoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed6",  "seed6.azzurecoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed7",  "seed7.azzurecoin.net"));
+	    vSeeds.push_back(CDNSSeedData("seed8",  "seed8.azzurecoin.net"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 23);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 24);

@@ -3,7 +3,7 @@
 
 #define MyAppName "Azzure Core"
 #define MyAppPublisher "2021 DECENOMY Core Developers"
-#define MyAppURL "https://azzure.com"
+#define MyAppURL "https://azzurecoin.net"
 #define MyAppExeName "azzure-qt.exe"
 #define MyAppExtraData "https://explorer.decenomy.net/bootstraps/AZR/bootstrap.zip"
 #define MyAppVersion GetVersionNumbersString(".\package\" + MyAppExeName)

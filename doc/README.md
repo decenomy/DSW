@@ -3,7 +3,7 @@ Azzure Core
 
 Setup
 ---------------------
-[Azzure Core](https://azzure.com/) is the original Azzure client and it builds the backbone of the network. However, it downloads and stores the entire history of Azzure transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
+[Azzure Core](https://azzurecoin.net/) is the original Azzure client and it builds the backbone of the network. However, it downloads and stores the entire history of Azzure transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
 
 Running
 ---------------------
@@ -55,7 +55,7 @@ The Azzure repo's [root README](/README.md) contains relevant information on the
 - [Dnsseed Policy](dnsseed-policy.md)
 
 ### Resources
-* Discuss on the [Azzure Homepage](https://azzure.com/).
+* Discuss on the [Azzure Homepage](https://azzurecoin.net/).
 * Join the [Azzure Discord](https://discord.gg/HhzHDcn).
 
 ### Miscellaneous

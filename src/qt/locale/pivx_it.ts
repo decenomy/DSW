@@ -3515,8 +3515,8 @@ Si è verificato un errore nel tentativo di salvare l'elenco degli indirizzi in 
         <translation>2) Perché i miei AZR non sono spendibili?</translation>
     </message>
     <message>
-        <source>https://azzure.com/</source>
-        <translation>https://azzure.com/</translation>
+        <source>https://azzurecoin.net/</source>
+        <translation>https://azzurecoin.net/</translation>
     </message>
     <message>
         <source>1</source>

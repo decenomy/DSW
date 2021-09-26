@@ -342,7 +342,7 @@
                   <enum>Qt::NoFocus</enum>
                  </property>
                  <property name="text">
-                  <string>https://azzure.com/</string>
+                  <string>https://azzurecoin.net/</string>
                  </property>
                 </widget>
                </item>

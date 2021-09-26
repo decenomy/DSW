@@ -3509,8 +3509,8 @@ There was an error trying to save the address list to %1. Please try again.</sou
         <translation>2) Почему мои AZR невозможно потратить?</translation>
     </message>
     <message>
-        <source>https://azzure.com/</source>
-        <translation>https://azzure.com/</translation>
+        <source>https://azzurecoin.net/</source>
+        <translation>https://azzurecoin.net/</translation>
     </message>
     <message>
         <source>1</source>

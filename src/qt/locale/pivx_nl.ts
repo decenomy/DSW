@@ -3515,8 +3515,8 @@ Er was een fout opgetreden tijdens het opslaan van deze adreslijst naar %1. Prob
         <translation>2) Waarom is mijn AZR niet besteedbaar?</translation>
     </message>
     <message>
-        <source>https://azzure.com/</source>
-        <translation>https://azzure.com/</translation>
+        <source>https://azzurecoin.net/</source>
+        <translation>https://azzurecoin.net/</translation>
     </message>
     <message>
         <source>1</source>

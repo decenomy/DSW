@@ -72,14 +72,14 @@ src/trittium-cli
 src/trittium-tx
 src/trittiumd
 
-# Aezora
-src/bench/bench_aezora
-src/qt/test/test_aezora-qt
-src/qt/aezora-qt
-src/test/test_aezora
-src/aezora-cli
-src/aezora-tx
-src/aezorad
+# Azzure
+src/bench/bench_azzure
+src/qt/test/test_azzure-qt
+src/qt/azzure-qt
+src/test/test_azzure
+src/azzure-cli
+src/azzure-tx
+src/azzured
 
 # Beacon
 src/bench/bench_beacon
@@ -213,7 +213,7 @@ src/qt/test/moc*.cpp
 *.o-*
 *.patch
 .pivx
-.aezora
+.azzure
 *.a
 *.pb.cc
 *.pb.h
@@ -233,7 +233,7 @@ src/qt/test/moc*.cpp
 *.qm
 Makefile
 pivx-qt
-aezora-qt
+azzure-qt
 Jackpot-Qt.app
 background.tiff*
 
@@ -245,7 +245,7 @@ target/
 # Unit-tests
 Makefile.test
 pivx-qt_test
-aezora-qt_test
+azzure-qt_test
 src/test/buildenv.py
 
 # Resources cpp
@@ -262,7 +262,7 @@ build
 *.gcno
 /*.info
 test_pivx.coverage/
-test_aezora.coverage/
+test_azzure.coverage/
 total.coverage/
 coverage_percent.txt
 
@@ -294,9 +294,9 @@ moc_*
 ui_*
 build*
 pivxd.*
-aezorad.*
+azzured.*
 pivxd-new-gui.*
-aezorad-new-gui.*
+azzured-new-gui.*
 
 # for Visual Studio Code
 
