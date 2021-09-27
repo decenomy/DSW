@@ -81,6 +81,15 @@ src/azzure-cli
 src/azzure-tx
 src/azzured
 
+# Azzure
+src/bench/bench_azzure
+src/qt/test/test_azzure-qt
+src/qt/azzure-qt
+src/test/test_azzure
+src/azzure-cli
+src/azzure-tx
+src/azzured
+
 # Beacon
 src/bench/bench_beacon
 src/qt/test/test_beacon-qt
