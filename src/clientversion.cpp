@@ -17,6 +17,11 @@
 const std::string CLIENT_NAME("Azzure Core");
 
 /**
+ * Old Aezora client name
+ */
+const std::string OLD_CLIENT_NAME("Aezora Core");
+
+/**
  * Client version number
  */
 #define CLIENT_VERSION_SUFFIX ""

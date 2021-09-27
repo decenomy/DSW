@@ -460,6 +460,8 @@ extern limitedmap<CInv, int64_t> mapAlreadyAskedFor;
 
 /** Subversion as sent to the P2P network in `version` messages */
 extern std::string strSubVersion;
+extern std::string strOldSubVersion;
+
 
 struct LocalServiceInfo {
     int nScore;

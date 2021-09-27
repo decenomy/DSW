@@ -1284,6 +1284,8 @@ bool AppInit2()
             strSubVersion.size(), MAX_SUBVERSION_LENGTH));
     }
 
+    strOldSubVersion = FormatSubVersion(OLD_CLIENT_NAME, CLIENT_VERSION, uacomments);
+
     if (mapArgs.count("-onlynet")) {
         std::set<enum Network> nets;
         for (std::string snet : mapMultiArgs["-onlynet"]) {

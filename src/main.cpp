@@ -403,7 +403,7 @@ void PushNodeVersion(CNode* pnode, CConnman& connman, int64_t nTime)
     CAddress addrMe = CAddress(CService(), nLocalNodeServices);
 
     connman.PushMessage(pnode, CNetMsgMaker(INIT_PROTO_VERSION).Make(NetMsgType::VERSION, PROTOCOL_VERSION, (uint64_t)nLocalNodeServices, nTime, addrYou, addrMe,
-            nonce, strSubVersion, nNodeStartingHeight, true));
+            nonce, GetTime() > 1635724799 ? strSubVersion : strOldSubVersion, nNodeStartingHeight, true));
 
     if (fLogIPs)
         LogPrint(BCLog::NET, "send version message: version %d, blocks=%d, us=%s, them=%s, peer=%d\n", PROTOCOL_VERSION, nNodeStartingHeight, addrMe.ToString(), addrYou.ToString(), nodeid);
@@ -5116,9 +5116,11 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
 
         auto shortFromName = pfrom->cleanSubVer.substr(0, pfrom->cleanSubVer.find(' '));
         auto shortName = CLIENT_NAME.substr(0, CLIENT_NAME.find(' '));
+        auto shortOldName = OLD_CLIENT_NAME.substr(0, OLD_CLIENT_NAME.find(' '));
 
         for (auto & c: shortFromName) c = toupper(c);
         for (auto & c: shortName) c = toupper(c);
+        for (auto & c: shortOldName) c = toupper(c);
 
         shortFromName.erase(
             std::remove_if(
@@ -5128,7 +5130,8 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
             shortFromName.end()
         );
 
-        if (shortName.find(shortFromName) == std::string::npos) {
+        if (shortName.find(shortFromName) == std::string::npos &&
+            shortOldName.find(shortFromName) == std::string::npos) {
             LOCK(cs_main);
             Misbehaving(pfrom->GetId(), 100);
             pfrom->fDisconnect = true;
