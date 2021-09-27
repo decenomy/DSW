@@ -72,14 +72,14 @@ src/trittium-cli
 src/trittium-tx
 src/trittiumd
 
-# Azzure
-src/bench/bench_azzure
-src/qt/test/test_azzure-qt
-src/qt/azzure-qt
-src/test/test_azzure
-src/azzure-cli
-src/azzure-tx
-src/azzured
+# Aezora
+src/bench/bench_aezora
+src/qt/test/test_aezora-qt
+src/qt/aezora-qt
+src/test/test_aezora
+src/aezora-cli
+src/aezora-tx
+src/aezorad
 
 # Azzure
 src/bench/bench_azzure
