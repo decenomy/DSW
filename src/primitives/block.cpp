@@ -14,7 +14,6 @@
 #include "utilstrencodings.h"
 #include "util.h"
 
-// TODO: Change X11KVS algorithm call to whatever the coin being adapted is used.
 uint256 CBlockHeader::GetHash() const
 {
      if (nVersion < 4)  { // nVersion = 1, 2, 3
@@ -27,9 +26,9 @@ uint256 CBlockHeader::GetHash() const
         WriteLE32(&data[72], nBits);
         WriteLE32(&data[76], nNonce);
 
-        return HashX11KVS(data, data + 80);
+        return HashQuark(data, data + 80);
 #else // Can take shortcut for little endian
-        return HashX11KVS(BEGIN(nVersion), END(nNonce));
+        return HashQuark(BEGIN(nVersion), END(nNonce));
 #endif
     }
 	
