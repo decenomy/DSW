@@ -3120,8 +3120,8 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
  */
 
 *[cssClass="text-intro-white"] {
-    color: #eeeeee;
-    font-size:16px;
+  color: #eeeeee;
+  font-size: 14px;
 }
 
 QPushButton[cssClass="btn-dots-welcome"] {
@@ -3157,7 +3157,7 @@ QPushButton[cssClass="btn-dots-welcome"]:pressed {
     background-color: #262626;
     font-size:18px;
     border-radius: 2px;
-    padding:8px;
+    padding:4px;
     color: #eeeeee;
 }
 
@@ -3182,24 +3182,24 @@ QPushButton[cssClass="btn-dots-welcome"]:pressed {
     background-color:#252525;
     font-size:18px;
     border-radius: 2px;
-    padding:8px;
+    padding:4px;
     color: rgb(109, 109, 109);
 }
 
 QRadioButton[cssClass="radio-welcome"]:checked {
     color: #00659a;
-    font-size:20px;
+    font-size:18px;
 }
 
 QRadioButton[cssClass="radio-welcome"]:unchecked {
     color: #bababa;
-    font-size:20px;
+    font-size:18px;
 }
 
 QRadioButton[cssClass="radio-welcome"] {
     color: #bababa;
-    font-size:20px;
-    spacing:20px;
+    font-size:18px;
+    spacing:18px;
 }
 
 QRadioButton[cssClass="radio-welcome"]::indicator {
