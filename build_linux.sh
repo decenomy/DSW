@@ -11,11 +11,11 @@ fi
 	sudo apt install git zip unzip build-essential libtool bsdmainutils autotools-dev autoconf pkg-config automake python3 libqt5svg5-dev -y
 
 # Clone code from official Github repository
-	rm -rf Azzure
+	rm -rf AZR
 	git clone https://github.com/decenomy/AZR.git
 
 # Entering directory
-	cd Azzure
+	cd AZR
 
 # Compile dependencies
 	cd depends
@@ -29,6 +29,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp Azzure/src/azzured Azzure/src/azzure-cli Azzure/src/azzure-tx Azzure/src/qt/azzure-qt .
+	cp AZR/src/azzured AZR/src/azzure-cli AZR/src/azzure-tx AZR/src/qt/azzure-qt .
 	zip AZR-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip azzured azzure-cli azzure-tx azzure-qt
 	rm -f azzured azzure-cli azzure-tx azzure-qt

@@ -12,11 +12,11 @@ fi
 	echo "1" | sudo update-alternatives --config x86_64-w64-mingw32-g++
 
 # Clone code from official Github repository
-	rm -rf Azzure
+	rm -rf AZR
 	git clone https://github.com/decenomy/AZR.git
 
 # Entering directory
-	cd Azzure
+	cd AZR
 
 # Compile dependencies
 	cd depends
@@ -30,6 +30,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp Azzure/src/azzured.exe Azzure/src/azzure-cli.exe Azzure/src/azzure-tx.exe Azzure/src/qt/azzure-qt.exe .
+	cp AZR/src/azzured.exe AZR/src/azzure-cli.exe AZR/src/azzure-tx.exe AZR/src/qt/azzure-qt.exe .
 	zip AZR-Windows.zip azzured.exe azzure-cli.exe azzure-tx.exe azzure-qt.exe
 	rm -f azzured.exe azzure-cli.exe azzure-tx.exe azzure-qt.exe

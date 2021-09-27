@@ -7,11 +7,11 @@ then
 fi
 
 # Clone code from official Github repository
-    rm -rf Azzure
+    rm -rf AZR
     git clone https://github.com/decenomy/AZR.git
 
 # Entering directory
-    cd Azzure
+    cd AZR
 
 # Compile dependencies
     cd depends
@@ -31,6 +31,6 @@ fi
     cd ..
 
 # Create zip file of binaries
-    cp Azzure/src/azzured Azzure/src/azzure-cli Azzure/src/azzure-tx Azzure/src/qt/azzure-qt Azzure/Azzure-Core.dmg .
+    cp AZR/src/azzured AZR/src/azzure-cli AZR/src/azzure-tx AZR/src/qt/azzure-qt AZR/Azzure-Core.dmg .
     zip AZR-MacOS.zip azzured azzure-cli azzure-tx azzure-qt Azzure-Core.dmg
     rm -f azzured azzure-cli azzure-tx azzure-qt Azzure-Core.dmg
