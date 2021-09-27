@@ -13,7 +13,6 @@
 • Website [https://oneworldcoin.io/](https://oneworldcoin.io/)    
 
 ## Rewards Breakdown
----
 |Block  |Collateral|Block Reward|MN Reward %|Staking Reward %|Dev Fee %|MN Reward|Staker Reward|Dev Fee|roi 500|roi 1000|roi 1500|roi 2000|roi 2500|coin supply |
 |-------|----------|------------|-----------|----------------|---------|---------|-------------|-------|-------|--------|--------|--------|--------|------------|
 |1      |500000    |225000000.00|0          |0               |0        |0.00     |0.00         |0.00   |0.00   |0.00    |0.00    |0.00    |0.00    |225M        |
