@@ -13,7 +13,7 @@
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{67A6CA9B-71C3-4FE2-AA2E-D0DF3D53C4EB}
+AppId={{30E96A69-3257-4BEA-B6B8-1208B34844C2}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 VersionInfoVersion={#MyAppVersion}
@@ -50,7 +50,7 @@ Name: "custom"; Description: "Custom installation"; Flags: iscustom
 
 [Components]
 Name: app;  Description: "{#MyAppName} {#MyAppVersion}";  Types: full compact custom; Flags: fixed
-Name: bootstrap; Description: "Bootstrap blockchain files";  Types: full; ExtraDiskSpaceRequired: 7368332846;
+Name: bootstrap; Description: "Bootstrap blockchain files";  Types: full; ExtraDiskSpaceRequired: 1503238554;
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
