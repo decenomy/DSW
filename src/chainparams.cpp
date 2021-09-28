@@ -248,9 +248,15 @@ public:
         pchMessageStart[3] = 0x52;
         nDefaultPort = __PORT_MAINNET__;
 
-        vSeeds.push_back(CDNSSeedData("s1.birake.com", "seeder1.birake.com"));
-        vSeeds.push_back(CDNSSeedData("s2.birake.com", "seeder2.birake.com"));
-        vSeeds.push_back(CDNSSeedData("s3.birake.com", "seeder3.birake.com"));
+        vSeeds.push_back(CDNSSeedData("seeder", "seeder.birake.com"));
+        vSeeds.push_back(CDNSSeedData("seed1", "seed1.birake.com"));
+        vSeeds.push_back(CDNSSeedData("seed2", "seed2.birake.com"));
+        vSeeds.push_back(CDNSSeedData("seed3", "seed3.birake.com"));
+        vSeeds.push_back(CDNSSeedData("seed4", "seed4.birake.com"));
+        vSeeds.push_back(CDNSSeedData("seed5", "seed5.birake.com"));
+        vSeeds.push_back(CDNSSeedData("seed6", "seed6.birake.com"));
+        vSeeds.push_back(CDNSSeedData("seed7", "seed7.birake.com"));
+        vSeeds.push_back(CDNSSeedData("seed8", "seed8.birake.com"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 45);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 13);
@@ -376,7 +382,9 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.push_back(CDNSSeedData("tseeder", "tseeder.__decenomy.net__", true));
+        vSeeds.push_back(CDNSSeedData("s1.birake.com", "seeder1.birake.com"));
+        vSeeds.push_back(CDNSSeedData("s2.birake.com", "seeder2.birake.com"));
+        vSeeds.push_back(CDNSSeedData("s3.birake.com", "seeder3.birake.com"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet birake addresses start with 'x' or 'y'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet birake script addresses start with '8' or '9'
