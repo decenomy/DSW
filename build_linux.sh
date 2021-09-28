@@ -12,7 +12,7 @@ fi
 
 # Clone code from official Github repository
 	rm -rf DSW
-	git clone https://github.com/decenomy/DSW.git
+	git clone https://github.com/PEPS-Project/peps.git
 
 # Entering directory
 	cd DSW
@@ -29,6 +29,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/__decenomy__d DSW/src/__decenomy__-cli DSW/src/__decenomy__-tx DSW/src/qt/__decenomy__-qt .
-	zip __DSW__-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt
-	rm -f __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt
+	cp DSW/src/pepsd DSW/src/peps-cli DSW/src/peps-tx DSW/src/qt/peps-qt .
+	zip PEPS-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip pepsd peps-cli peps-tx peps-qt
+	rm -f pepsd peps-cli peps-tx peps-qt
