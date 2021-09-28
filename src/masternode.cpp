@@ -318,30 +318,43 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
     return false;
 }
 
-CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
+CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
 {
+    if (nHeight > 700000) return 100000 * COIN;
+
     return 500000 * COIN;
 }
 
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
-
-
-    if(nHeight > 524000) return     68.75 * COIN;
-    if(nHeight > 264000) return        80 * COIN;
-    if(nHeight >   4500) return       100 * COIN;
-    if(nHeight >      1) return         1 * COIN;
-    if(nHeight >      0) return 225000000 * COIN;
+    if (nHeight > 1600000) return       400 * COIN;
+    if (nHeight > 1500000) return       500 * COIN;
+    if (nHeight > 1400000) return       600 * COIN;
+    if (nHeight > 1300000) return       700 * COIN;
+    if (nHeight > 1200000) return       600 * COIN;
+    if (nHeight > 1100000) return       500 * COIN;
+    if (nHeight > 1000000) return       400 * COIN;
+    if (nHeight >  900000) return       300 * COIN;
+    if (nHeight >  800000) return       200 * COIN;
+    if (nHeight >  700000) return       100 * COIN;
+    if (nHeight >  524000) return     68.75 * COIN;
+    if (nHeight >  264000) return        80 * COIN;
+    if (nHeight >    4500) return       100 * COIN;
+    if (nHeight >       1) return         1 * COIN;
+    if (nHeight >       0) return 225000000 * COIN;
 
     return 0;
-
 }
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    if(nHeight <= 5000) return 0;
+    CAmount blockValue = GetBlockValue(nHeight);
 
-    return CMasternode::GetBlockValue(nHeight) * 80 / 100;
+    if (nHeight > 900000) return blockValue * 65 / 100;
+    if (nHeight > 800000) return blockValue * 70 / 100;
+    if (nHeight > 700000) return blockValue * 75 / 100;
+
+    return blockValue * 80 / 100;
 }
 
 void CMasternode::InitMasternodeCollateralList() {
