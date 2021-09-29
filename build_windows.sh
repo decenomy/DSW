@@ -12,11 +12,11 @@ fi
 	echo "1" | sudo update-alternatives --config x86_64-w64-mingw32-g++
 
 # Clone code from official Github repository
-	rm -rf DSW
-	git clone https://github.com/decenomy/DSW.git
+	rm -rf OWO
+	git clone https://github.com/decenomy/OWO.git
 
 # Entering directory
-	cd DSW
+	cd OWO
 
 # Compile dependencies
 	cd depends
@@ -30,6 +30,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/__decenomy__d.exe DSW/src/__decenomy__-cli.exe DSW/src/__decenomy__-tx.exe DSW/src/qt/__decenomy__-qt.exe .
-	zip __DSW__-Windows.zip __decenomy__d.exe __decenomy__-cli.exe __decenomy__-tx.exe __decenomy__-qt.exe
-	rm -f __decenomy__d.exe __decenomy__-cli.exe __decenomy__-tx.exe __decenomy__-qt.exe
+	cp OWO/src/oneworldd.exe OWO/src/oneworld-cli.exe OWO/src/oneworld-tx.exe OWO/src/qt/oneworld-qt.exe .
+	zip OWO-Windows.zip oneworldd.exe oneworld-cli.exe oneworld-tx.exe oneworld-qt.exe
+	rm -f oneworldd.exe oneworld-cli.exe oneworld-tx.exe oneworld-qt.exe
