@@ -242,7 +242,7 @@ public:
         pchMessageStart[1] = 0x32;
         pchMessageStart[2] = 0x16;
         pchMessageStart[3] = 0x08;
-        nDefaultPort = __PORT_MAINNET__;
+        nDefaultPort = 15252;
 
 	    vSeeds.push_back(CDNSSeedData("seed1.peps.today", "seed1.peps.today"));
 	    vSeeds.push_back(CDNSSeedData("seed2.peps.today", "seed2.peps.today"));
@@ -377,7 +377,7 @@ public:
         pchMessageStart[1] = 0x76;
         pchMessageStart[2] = 0x65;
         pchMessageStart[3] = 0xba;
-        nDefaultPort = __PORT_TESTNET__;
+        nDefaultPort = 7777;
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -500,7 +500,7 @@ public:
         pchMessageStart[1] = 0xcf;
         pchMessageStart[2] = 0x7e;
         pchMessageStart[3] = 0xac;
-        nDefaultPort = __PORT_REGTEST__;
+        nDefaultPort = 51436;
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
