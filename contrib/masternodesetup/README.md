@@ -1,4 +1,4 @@
-![Example-Logo](https://avatars.githubusercontent.com/u/74193190?v=4)
+![Example-Logo](https://media.discordapp.net/attachments/867503697084153866/893136863769018428/owo-logo-500x500-with-bg.png)
 
 # OneWorld Masternode Setup Guide
 ***
