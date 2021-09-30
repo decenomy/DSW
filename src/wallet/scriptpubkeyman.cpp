@@ -473,10 +473,10 @@ void ScriptPubKeyMan::DeriveNewChildKey(CWalletDB &batch, CKeyMetadata& metadata
     CKey seed;                     //seed (256bit)
     CExtKey masterKey;             //hd master key
     CExtKey purposeKey;            //key at m/purpose' --> key at m/44'
-    CExtKey cointypeKey;           //key at m/purpose'/coin_type'  --> key at m/44'/__DSW_HDCHAIN__'
-    CExtKey accountKey;            //key at m/purpose'/coin_type'/account' ---> key at m/44'/__DSW_HDCHAIN__'/account_num'
-    CExtKey changeKey;             //key at m/purpose'/coin_type'/account'/change ---> key at m/44'/__DSW_HDCHAIN__'/account_num'/change', external = 0' or internal = 1'.
-    CExtKey childKey;              //key at m/purpose'/coin_type'/account'/change/address_index ---> key at m/44'/__DSW_HDCHAIN__'/account_num'/change'/<n>'
+    CExtKey cointypeKey;           //key at m/purpose'/coin_type'  --> key at m/44'/__BIR_HDCHAIN__'
+    CExtKey accountKey;            //key at m/purpose'/coin_type'/account' ---> key at m/44'/__BIR_HDCHAIN__'/account_num'
+    CExtKey changeKey;             //key at m/purpose'/coin_type'/account'/change ---> key at m/44'/__BIR_HDCHAIN__'/account_num'/change', external = 0' or internal = 1'.
+    CExtKey childKey;              //key at m/purpose'/coin_type'/account'/change/address_index ---> key at m/44'/__BIR_HDCHAIN__'/account_num'/change'/<n>'
 
     // For now only one account.
     int nAccountNumber = 0;
@@ -503,7 +503,7 @@ void ScriptPubKeyMan::DeriveNewChildKey(CWalletDB &batch, CKeyMetadata& metadata
         // childIndex | BIP32_HARDENED_KEY_LIMIT = derive childIndex in hardened child-index-range
         // example: 1 | BIP32_HARDENED_KEY_LIMIT == 0x80000001 == 2147483649
 
-        // m/44'/__DSW_HDCHAIN__'/account_num/change'/<n>'
+        // m/44'/__BIR_HDCHAIN__'/account_num/change'/<n>'
         metadata.key_origin.path.push_back(44 | BIP32_HARDENED_KEY_LIMIT);
         metadata.key_origin.path.push_back(BIP32_HDCHAIN | BIP32_HARDENED_KEY_LIMIT);
         metadata.key_origin.path.push_back(nAccountNumber | BIP32_HARDENED_KEY_LIMIT);

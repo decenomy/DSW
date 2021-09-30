@@ -7,11 +7,11 @@ then
 fi
 
 # Clone code from official Github repository
-    rm -rf DSW
-    git clone https://github.com/decenomy/DSW.git
+    rm -rf BIR
+    git clone https://github.com/decenomy/BIR.git
 
 # Entering directory
-    cd DSW
+    cd BIR
 
 # Compile dependencies
     cd depends
@@ -31,6 +31,6 @@ fi
     cd ..
 
 # Create zip file of binaries
-    cp DSW/src/biraked DSW/src/birake-cli DSW/src/birake-tx DSW/src/qt/birake-qt DSW/__Decenomy__-Core.dmg .
-    zip __DSW__-MacOS.zip biraked birake-cli birake-tx birake-qt __Decenomy__-Core.dmg
-    rm -f biraked birake-cli birake-tx birake-qt __Decenomy__-Core.dmg
+    cp BIR/src/biraked BIR/src/birake-cli BIR/src/birake-tx BIR/src/qt/birake-qt BIR/Birake-Core.dmg .
+    zip __BIR__-MacOS.zip biraked birake-cli birake-tx birake-qt Birake-Core.dmg
+    rm -f biraked birake-cli birake-tx birake-qt Birake-Core.dmg

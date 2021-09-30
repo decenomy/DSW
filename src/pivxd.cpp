@@ -68,13 +68,13 @@ bool AppInit(int argc, char* argv[])
 
     // Process help and version before taking care about datadir
     if (mapArgs.count("-?") || mapArgs.count("-help") || mapArgs.count("-version")) {
-        std::string strUsage = _("__Decenomy__ Daemon") + " " + _("version") + " " + FormatFullVersion() + "\n";
+        std::string strUsage = _("Birake Daemon") + " " + _("version") + " " + FormatFullVersion() + "\n";
 
         if (mapArgs.count("-version")) {
             strUsage += LicenseInfo();
         } else {
             strUsage += "\n" + _("Usage:") + "\n" +
-                        "  biraked [options]                     " + _("Start __Decenomy__ Daemon") + "\n";
+                        "  biraked [options]                     " + _("Start Birake Daemon") + "\n";
 
             strUsage += "\n" + HelpMessage(HMM_BITCOIND);
         }
@@ -120,7 +120,7 @@ bool AppInit(int argc, char* argv[])
 #ifndef WIN32
         fDaemon = GetBoolArg("-daemon", false);
         if (fDaemon) {
-            fprintf(stdout, "__Decenomy__ server starting\n");
+            fprintf(stdout, "Birake server starting\n");
 
             // Daemonize
             pid_t pid = fork();
