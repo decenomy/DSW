@@ -10,7 +10,7 @@
 • Prefix: OWO adresses start with the lower case letter "o"  
 • Ports: 32112 (p2p) / 32113 (rpc)  
 • Explorer https://explorer.decenomy.net/OWO/blocks  
-• Website [https://oneworldcoin.io/](https://oneworldcoin.io/)    
+• Website [https://owocoin.net/](https://owocoin.net/)    
 
 ## Rewards Breakdown
 |Block  |Collateral|Block Reward|MN Reward %|Staking Reward %|Dev Fee %|MN Reward|Staker Reward|Dev Fee|roi 500|roi 1000|roi 1500|roi 2000|roi 2500|coin supply |

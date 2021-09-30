@@ -3515,8 +3515,8 @@ Si è verificato un errore nel tentativo di salvare l'elenco degli indirizzi in 
         <translation>2) Perché i miei OWO non sono spendibili?</translation>
     </message>
     <message>
-        <source>https://oneworldcoin.io/</source>
-        <translation>https://oneworldcoin.io/</translation>
+        <source>https://owocoin.net/</source>
+        <translation>https://owocoin.net/</translation>
     </message>
     <message>
         <source>1</source>

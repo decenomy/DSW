@@ -3,7 +3,7 @@
 
 #define MyAppName "OneWorld Core"
 #define MyAppPublisher "2021 DECENOMY Core Developers"
-#define MyAppURL "https://oneworldcoin.io/"
+#define MyAppURL "https://owocoin.net/"
 #define MyAppExeName "oneworld-qt.exe"
 #define MyAppExtraData "https://explorer.decenomy.net/bootstraps/OWO/bootstrap.zip"
 #define MyAppVersion GetVersionNumbersString(".\package\" + MyAppExeName)

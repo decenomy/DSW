@@ -3,7 +3,7 @@ OneWorld Core
 
 Setup
 ---------------------
-[OneWorld Core](https://oneworldcoin.io/) is the original OneWorld client and it builds the backbone of the network. However, it downloads and stores the entire history of OneWorld transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
+[OneWorld Core](https://owocoin.net/) is the original OneWorld client and it builds the backbone of the network. However, it downloads and stores the entire history of OneWorld transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
 
 Running
 ---------------------
@@ -55,7 +55,7 @@ The OneWorld repo's [root README](/README.md) contains relevant information on t
 - [Dnsseed Policy](dnsseed-policy.md)
 
 ### Resources
-* Discuss on the [OneWorld Homepage](https://oneworldcoin.io/).
+* Discuss on the [OneWorld Homepage](https://owocoin.net/).
 * Join the [OneWorld Discord](https://discord.gg/Wa4Z7YWyMz).
 
 ### Miscellaneous

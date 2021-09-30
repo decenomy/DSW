@@ -28,7 +28,7 @@ Build-Depends: debhelper,
  libzmq3-dev,
  dh-systemd
 Standards-Version: 3.9.2
-Homepage: http://oneworldcoin.io/
+Homepage: http://owocoin.net/
 Vcs-Git: git://https://github.com/decenomy/OWO.git
 Vcs-Browser: https://https://github.com/decenomy/OWO
 

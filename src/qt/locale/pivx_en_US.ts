@@ -3519,8 +3519,8 @@ There was an error trying to save the address list to %1. Please try again.</tra
         <translation>2) Why are my OWO unspendable?</translation>
     </message>
     <message>
-        <source>https://oneworldcoin.io/</source>
-        <translation>https://oneworldcoin.io/</translation>
+        <source>https://owocoin.net/</source>
+        <translation>https://owocoin.net/</translation>
     </message>
     <message>
         <source>1</source>

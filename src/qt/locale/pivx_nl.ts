@@ -3515,8 +3515,8 @@ Er was een fout opgetreden tijdens het opslaan van deze adreslijst naar %1. Prob
         <translation>2) Waarom is mijn OWO niet besteedbaar?</translation>
     </message>
     <message>
-        <source>https://oneworldcoin.io/</source>
-        <translation>https://oneworldcoin.io/</translation>
+        <source>https://owocoin.net/</source>
+        <translation>https://owocoin.net/</translation>
     </message>
     <message>
         <source>1</source>

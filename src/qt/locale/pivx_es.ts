@@ -3512,8 +3512,8 @@ Ha habido un error al tratar de guardar la libreta de direcciones en %1. Por fav
         <translation>2) ¿Por qué mis OWO no se pueden gastar?</translation>
     </message>
     <message>
-        <source>https://oneworldcoin.io/</source>
-        <translation>https://oneworldcoin.io/</translation>
+        <source>https://owocoin.net/</source>
+        <translation>https://owocoin.net/</translation>
     </message>
     <message>
         <source>1</source>
