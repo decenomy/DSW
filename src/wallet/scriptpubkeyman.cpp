@@ -473,10 +473,10 @@ void ScriptPubKeyMan::DeriveNewChildKey(CWalletDB &batch, CKeyMetadata& metadata
     CKey seed;                     //seed (256bit)
     CExtKey masterKey;             //hd master key
     CExtKey purposeKey;            //key at m/purpose' --> key at m/44'
-    CExtKey cointypeKey;           //key at m/purpose'/coin_type'  --> key at m/44'/__BIR_HDCHAIN__'
-    CExtKey accountKey;            //key at m/purpose'/coin_type'/account' ---> key at m/44'/__BIR_HDCHAIN__'/account_num'
-    CExtKey changeKey;             //key at m/purpose'/coin_type'/account'/change ---> key at m/44'/__BIR_HDCHAIN__'/account_num'/change', external = 0' or internal = 1'.
-    CExtKey childKey;              //key at m/purpose'/coin_type'/account'/change/address_index ---> key at m/44'/__BIR_HDCHAIN__'/account_num'/change'/<n>'
+    CExtKey cointypeKey;           //key at m/purpose'/coin_type'  --> key at m/44'/848'
+    CExtKey accountKey;            //key at m/purpose'/coin_type'/account' ---> key at m/44'/848'/account_num'
+    CExtKey changeKey;             //key at m/purpose'/coin_type'/account'/change ---> key at m/44'/848'/account_num'/change', external = 0' or internal = 1'.
+    CExtKey childKey;              //key at m/purpose'/coin_type'/account'/change/address_index ---> key at m/44'/848'/account_num'/change'/<n>'
 
     // For now only one account.
     int nAccountNumber = 0;
