@@ -30,7 +30,7 @@ You will then receive your private key, save it in a txt to use it later.
 * Once logged in your vps, *copy/paste* each line one by one with *Enter*
 
 ```
-wget -q https://raw.githubusercontent.com/__GITHUB_ACCOUNT__/__GITHUB_REPOSITORY__/master/contrib/masternodesetup/masternodesetup.sh
+wget -q https://raw.githubusercontent.com/decenomy/OWO/master/contrib/masternodesetup/masternodesetup.sh
 ```
 
 ```
