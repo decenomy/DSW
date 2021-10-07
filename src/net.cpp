@@ -20,6 +20,7 @@
 #include "guiinterface.h"
 #include "hash.h"
 #include "main.h"
+#include "masternodeman.h"
 #include "miner.h"
 #include "netmessagemaker.h"
 #include "primitives/transaction.h"
@@ -44,6 +45,9 @@
 
 // Dump addresses to peers.dat and banlist.dat every 15 minutes (900s)
 #define DUMP_ADDRESSES_INTERVAL 900
+
+// Query the DNS seeds at every 10 minutes (600s)
+#define DNS_SEEDS_INTERVAL 600
 
 // We add a random period time (0 to 1 seconds) to feeler connections to prevent synchronization.
 #define FEELER_SLEEP_WINDOW 1
@@ -1533,9 +1537,19 @@ void CConnman::ThreadDNSAddressSeed()
     const std::vector<CDNSSeedData>& vSeeds = Params().DNSSeeds();
     int found = 0;
 
+    std::vector<CDNSSeedData> vPeers(vSeeds);
+
+    const std::vector<CMasternode>& vMasternodes = mnodeman.GetFullMasternodeVector();
+
+    for(const CMasternode& mn : vMasternodes) {
+        if(mn.addr.IsIPv4() || mn.addr.IsIPv6()) { // exclude Tor addresses
+            vPeers.push_back(CDNSSeedData(mn.addr.ToStringIP(), mn.addr.ToStringIP()));
+        }
+    }
+
     LogPrintf("Loading addresses from DNS seeds (could take a while)\n");
 
-    for (const CDNSSeedData& seed : vSeeds) {
+    for (const CDNSSeedData& seed : vPeers) {
         if(stopping) return;
         if (HaveNameProxy()) {
             AddOneShot(seed.host);
@@ -2167,6 +2181,9 @@ bool CConnman::Start(CScheduler& scheduler, std::string& strNodeError, Options c
 
     // Dump network addresses
     scheduler.scheduleEvery(boost::bind(&CConnman::DumpData, this), DUMP_ADDRESSES_INTERVAL);
+
+    // Query DNS seeds
+    scheduler.scheduleEvery(boost::bind(&CConnman::ThreadDNSAddressSeed, this), DNS_SEEDS_INTERVAL);
 
     return true;
 }
