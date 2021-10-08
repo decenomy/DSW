@@ -40,14 +40,17 @@
 #include <miniupnpc/upnperrors.h>
 #endif
 
-
 #include <math.h>
+#include <random>
+#include <algorithm>
 
 // Dump addresses to peers.dat and banlist.dat every 15 minutes (900s)
 #define DUMP_ADDRESSES_INTERVAL 900
 
 // Query the DNS seeds at every 10 minutes (600s)
 #define DNS_SEEDS_INTERVAL 600
+
+#define MAX_MASTERNODES_SEEDED_AT_ONCE 10
 
 // We add a random period time (0 to 1 seconds) to feeler connections to prevent synchronization.
 #define FEELER_SLEEP_WINDOW 1
@@ -1533,21 +1536,36 @@ void CConnman::ThreadDNSAddressSeed()
             return;
         }
     }
+    
+    std::vector<CDNSSeedData> vPeers(Params().DNSSeeds());
+    std::vector<CMasternode> vMasternodes = mnodeman.GetFullMasternodeVector();
 
-    const std::vector<CDNSSeedData>& vSeeds = Params().DNSSeeds();
-    int found = 0;
-
-    std::vector<CDNSSeedData> vPeers(vSeeds);
-
-    const std::vector<CMasternode>& vMasternodes = mnodeman.GetFullMasternodeVector();
+    std::random_device rd;
+    std::mt19937 g(rd());
+ 
+    std::shuffle(vMasternodes.begin(), vMasternodes.end(), g);
+    
+    int ipV4Count = 0;
+    int ipV6Count = 0;   
 
     for(const CMasternode& mn : vMasternodes) {
-        if(mn.addr.IsIPv4() || mn.addr.IsIPv6()) { // exclude Tor addresses
+
+        if(mn.addr.IsIPv4() && ipV4Count < MAX_MASTERNODES_SEEDED_AT_ONCE) {
             vPeers.push_back(CDNSSeedData(mn.addr.ToStringIP(), mn.addr.ToStringIP()));
+            ipV4Count++;
         }
+
+        if(mn.addr.IsIPv6() && ipV6Count < MAX_MASTERNODES_SEEDED_AT_ONCE) {
+            vPeers.push_back(CDNSSeedData(mn.addr.ToStringIP(), mn.addr.ToStringIP()));
+            ipV6Count++;
+        }
+
+        if(ipV4Count >= ipV6Count >= MAX_MASTERNODES_SEEDED_AT_ONCE) break;
     }
 
     LogPrintf("Loading addresses from DNS seeds (could take a while)\n");
+
+    int found = 0;
 
     for (const CDNSSeedData& seed : vPeers) {
         if(stopping) return;
