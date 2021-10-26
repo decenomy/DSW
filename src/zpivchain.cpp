@@ -424,7 +424,7 @@ bool UpdateZPIVSupplyConnect(const CBlock& block, CBlockIndex* pindex, bool fJus
     if (!consensus.NetworkUpgradeActive(pindex->nHeight, Consensus::UPGRADE_ZC))
         return true;
 
-    //Add mints to z__DSW__ supply (mints are forever disabled after last checkpoint)
+    //Add mints to zMOBIC supply (mints are forever disabled after last checkpoint)
     if (pindex->nHeight < consensus.height_last_ZC_AccumCheckpoint) {
         std::list<CZerocoinMint> listMints;
         std::set<uint256> setAddedToWallet;
@@ -455,7 +455,7 @@ bool UpdateZPIVSupplyConnect(const CBlock& block, CBlockIndex* pindex, bool fJus
         }
     }
 
-    //Remove spends from z__DSW__ supply
+    //Remove spends from zMOBIC supply
     std::list<libzerocoin::CoinDenomination> listDenomsSpent = ZerocoinSpendListFromBlock(block, true);
     for (const libzerocoin::CoinDenomination& denom : listDenomsSpent) {
         mapZerocoinSupply.at(denom)--;
@@ -465,7 +465,7 @@ bool UpdateZPIVSupplyConnect(const CBlock& block, CBlockIndex* pindex, bool fJus
     }
 
     // Update Wrapped Serials amount
-    // A one-time event where only the z__DSW__ supply was off (due to serial duplication off-chain on main net)
+    // A one-time event where only the zMOBIC supply was off (due to serial duplication off-chain on main net)
     if (Params().NetworkID() == CBaseChainParams::MAIN && pindex->nHeight == consensus.height_last_ZC_WrappedSerials + 1) {
         for (const libzerocoin::CoinDenomination& denom : libzerocoin::zerocoinDenomList)
             mapZerocoinSupply.at(denom) += GetWrapppedSerialInflation(denom);
@@ -486,19 +486,19 @@ bool UpdateZPIVSupplyDisconnect(const CBlock& block, CBlockIndex* pindex)
         return true;
 
     // Undo Update Wrapped Serials amount
-    // A one-time event where only the z__DSW__ supply was off (due to serial duplication off-chain on main net)
+    // A one-time event where only the zMOBIC supply was off (due to serial duplication off-chain on main net)
     if (Params().NetworkID() == CBaseChainParams::MAIN && pindex->nHeight == consensus.height_last_ZC_WrappedSerials + 1) {
         for (const libzerocoin::CoinDenomination& denom : libzerocoin::zerocoinDenomList)
             mapZerocoinSupply.at(denom) -= GetWrapppedSerialInflation(denom);
     }
 
-    // Re-add spends to z__DSW__ supply
+    // Re-add spends to zMOBIC supply
     std::list<libzerocoin::CoinDenomination> listDenomsSpent = ZerocoinSpendListFromBlock(block, true);
     for (const libzerocoin::CoinDenomination& denom : listDenomsSpent) {
         mapZerocoinSupply.at(denom)++;
     }
 
-    // Remove mints from z__DSW__ supply (mints are forever disabled after last checkpoint)
+    // Remove mints from zMOBIC supply (mints are forever disabled after last checkpoint)
     if (pindex->nHeight < consensus.height_last_ZC_AccumCheckpoint) {
         std::list<CZerocoinMint> listMints;
         std::set<uint256> setAddedToWallet;
