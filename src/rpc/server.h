@@ -129,7 +129,7 @@ public:
 };
 
 /**
- * __DSW__ RPC command dispatcher.
+ * MOBIC RPC command dispatcher.
  */
 class CRPCTable
 {
