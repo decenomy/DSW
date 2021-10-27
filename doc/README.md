@@ -1,13 +1,13 @@
-__Decenomy__ Core
+MobilityCoin Core
 =============
 
 Setup
 ---------------------
-[__Decenomy__ Core](__decenomy_website_link__/) is the original __Decenomy__ client and it builds the backbone of the network. However, it downloads and stores the entire history of __Decenomy__ transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
+[MobilityCoin Core](__decenomy_website_link__/) is the original MobilityCoin client and it builds the backbone of the network. However, it downloads and stores the entire history of MobilityCoin transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
 
 Running
 ---------------------
-The following are some helpful notes on how to run __Decenomy__ Core on your native platform.
+The following are some helpful notes on how to run MobilityCoin Core on your native platform.
 
 ### Unix
 
@@ -18,21 +18,21 @@ Unpack the files into a directory and run:
 
 ### Windows
 
-Unpack the files into a directory, and then run __Decenomy__-qt.exe.
+Unpack the files into a directory, and then run MobilityCoin-qt.exe.
 
 ### macOS
 
-Drag __Decenomy__-Qt to your applications folder, and then run __Decenomy__-Qt.
+Drag MobilityCoin-Qt to your applications folder, and then run MobilityCoin-Qt.
 
 ### Need Help?
 
-* See the documentation at the [__Decenomy__ Wiki](https://__decenomy_github_link__/)
+* See the documentation at the [MobilityCoin Wiki](https://__decenomy_github_link__/)
 for help and more information.
 * Join our Discord server [Discord Server](__decenomy_discord_link__)
 
 Building
 ---------------------
-The following are developer notes on how to build __Decenomy__ Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build MobilityCoin Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [Dependencies](dependencies.md)
 - [macOS Build Notes](build-osx.md)
@@ -42,7 +42,7 @@ The following are developer notes on how to build __Decenomy__ Core on your nati
 
 Development
 ---------------------
-The __Decenomy__ repo's [root README](/README.md) contains relevant information on the development process and automated testing.
+The MobilityCoin repo's [root README](/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Multiwallet Qt Development](multiwallet-qt.md)
@@ -55,8 +55,8 @@ The __Decenomy__ repo's [root README](/README.md) contains relevant information 
 - [Dnsseed Policy](dnsseed-policy.md)
 
 ### Resources
-* Discuss on the [__Decenomy__ Homepage](__decenomy_website_link__/).
-* Join the [__Decenomy__ Discord](__decenomy_discord_link__).
+* Discuss on the [MobilityCoin Homepage](__decenomy_website_link__/).
+* Join the [MobilityCoin Discord](__decenomy_discord_link__).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)
