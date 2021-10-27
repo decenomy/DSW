@@ -895,16 +895,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>версия</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>MobilityCoin</source>
+        <translation>MobilityCoin</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-бит)</translation>
     </message>
     <message>
-        <source>About __Decenomy__</source>
-        <translation>О __Decenomy__</translation>
+        <source>About MobilityCoin</source>
+        <translation>О MobilityCoin</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -958,16 +958,16 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>Добро пожаловать</translation>
     </message>
     <message>
-        <source>Welcome to __Decenomy__.</source>
-        <translation>Добро пожаловать в __Decenomy__.</translation>
+        <source>Welcome to MobilityCoin.</source>
+        <translation>Добро пожаловать в MobilityCoin.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where __Decenomy__ will store its data.</source>
-        <translation>Поскольку это первый запуск программы, вы можете выбрать, где будут храниться данные __Decenomy__.</translation>
+        <source>As this is the first time the program is launched, you can choose where MobilityCoin will store its data.</source>
+        <translation>Поскольку это первый запуск программы, вы можете выбрать, где будут храниться данные MobilityCoin.</translation>
     </message>
     <message>
-        <source>__Decenomy__ will download and store a copy of the MOBIC block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>__Decenomy__ загрузит и сохранит копию цепочки блоков MOBIC. Каталог будет занимать около %1GB и со временем размер будет увеличиваться. Кроме того, в этом каталоге будет храниться кошелек.</translation>
+        <source>MobilityCoin will download and store a copy of the MOBIC block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>MobilityCoin загрузит и сохранит копию цепочки блоков MOBIC. Каталог будет занимать около %1GB и со временем размер будет увеличиваться. Кроме того, в этом каталоге будет храниться кошелек.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -986,8 +986,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>ХОРОШО</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>MobilityCoin</source>
+        <translation>MobilityCoin</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1803,8 +1803,8 @@ NODES</source>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>MobilityCoin</source>
+        <translation>MobilityCoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -1831,8 +1831,8 @@ NODES</source>
         <translation>Завершить работу</translation>
     </message>
     <message>
-        <source>__Decenomy__ client</source>
-        <translation>Клиент __Decenomy__</translation>
+        <source>MobilityCoin client</source>
+        <translation>Клиент MobilityCoin</translation>
     </message>
     <message>
         <source>Error</source>
@@ -2036,8 +2036,8 @@ Address: %4
         <translation>Произошла фатальная ошибка. MOBIC больше не может безопасно продолжать работу и завершит работу.</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>MobilityCoin</source>
+        <translation>MobilityCoin</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -2056,8 +2056,8 @@ Address: %4
         <translation>Ошибка чтения файла конфигурации мастерноды: %1</translation>
     </message>
     <message>
-        <source>__Decenomy__ didn't yet exit safely...</source>
-        <translation>__Decenomy__ еще не вышел безопасно...</translation>
+        <source>MobilityCoin didn't yet exit safely...</source>
+        <translation>MobilityCoin еще не вышел безопасно...</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -4465,8 +4465,8 @@ Are you sure?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>__Decenomy__ is shutting down...</source>
-        <translation>__Decenomy__ выключается...</translation>
+        <source>MobilityCoin is shutting down...</source>
+        <translation>MobilityCoin выключается...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4495,8 +4495,8 @@ Are you sure?
         <translation>Загрузка...</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>MobilityCoin</source>
+        <translation>MobilityCoin</translation>
     </message>
 </context>
 <context>
@@ -5014,9 +5014,9 @@ Select fewer inputs with coin control.</source>
     </message>
     <message>
         <source>Welcome to
-__Decenomy__ Wallet</source>
+MobilityCoin Wallet</source>
         <translation>Добро пожаловать
-в основной кошелек __Decenomy__</translation>
+в основной кошелек MobilityCoin</translation>
     </message>
     <message>
         <source>MOBIC is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
@@ -5066,8 +5066,8 @@ __Decenomy__ Wallet</source>
         <translation>Привяжите к указанному адресу для прослушивания соединений JSON-RPC. Используйте [host]: обозначение порта для IPv6. Эта опция может быть указана несколько раз (по умолчанию: привязка ко всем интерфейсам)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. __Decenomy__ is probably already running.</source>
-        <translation>Не удается получить блокировку в каталоге данных %s. __Decenomy__, вероятно, уже запущен.</translation>
+        <source>Cannot obtain a lock on data directory %s. MobilityCoin is probably already running.</source>
+        <translation>Не удается получить блокировку в каталоге данных %s. MobilityCoin, вероятно, уже запущен.</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -5226,8 +5226,8 @@ __Decenomy__ Wallet</source>
         <translation>Общая длина строки версии сети (%i) превышает максимальную длину (%i). Уменьшите количество или размер uacomments.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. __Decenomy__ is probably already running.</source>
-        <translation>Не удалось привязать к %s на этом компьютере. __Decenomy__, вероятно, уже запущен.</translation>
+        <source>Unable to bind to %s on this computer. MobilityCoin is probably already running.</source>
+        <translation>Не удалось привязать к %s на этом компьютере. MobilityCoin, вероятно, уже запущен.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -5242,8 +5242,8 @@ __Decenomy__ Wallet</source>
         <translation>Предупреждение: -paytxfee установлен очень высоко! Это комиссия за транзакцию, которую вы заплатите, если вы отправляете транзакцию.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</source>
-        <translation>Внимание: проверьте правильность даты и времени вашего компьютера! Если ваши часы ошибочны, __Decenomy__ не будет работать должным образом.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong MobilityCoin will not work properly.</source>
+        <translation>Внимание: проверьте правильность даты и времени вашего компьютера! Если ваши часы ошибочны, MobilityCoin не будет работать должным образом.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -5450,8 +5450,8 @@ __Decenomy__ Wallet</source>
         <translation>Информация</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. __Decenomy__ is shutting down.</source>
-        <translation>Инициализация проверки работоспособности не удалась. __Decenomy__ отключается.</translation>
+        <source>Initialization sanity check failed. MobilityCoin is shutting down.</source>
+        <translation>Инициализация проверки работоспособности не удалась. MobilityCoin отключается.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5774,8 +5774,8 @@ __Decenomy__ Wallet</source>
         <translation>Минимальная положительная сумма (в MOBIC), разрешенная GUI и RPC для порога разделения стекинга (по умолчанию: %s)</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</source>
-        <translation>Пожалуйста, проверьте правильность даты и времени на вашем компьютере! Если ваши часы не точны, __Decenomy__ не будет работать должным образом.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong MobilityCoin will not work properly.</source>
+        <translation>Пожалуйста, проверьте правильность даты и времени на вашем компьютере! Если ваши часы не точны, MobilityCoin не будет работать должным образом.</translation>
     </message>
     <message>
         <source>Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect/-noconnect)</source>
@@ -6180,8 +6180,8 @@ __Decenomy__ Wallet</source>
         <translation>Кошелек %s находится за пределами каталога данных %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart __Decenomy__ to complete</source>
-        <translation>Кошелек необходимо переписать: перезапустите __Decenomy__, чтобы завершить</translation>
+        <source>Wallet needed to be rewritten: restart MobilityCoin to complete</source>
+        <translation>Кошелек необходимо переписать: перезапустите MobilityCoin, чтобы завершить</translation>
     </message>
     <message>
         <source>Wallet options:</source>
