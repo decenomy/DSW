@@ -43,7 +43,7 @@ public:
     GUIException(const std::string &message) : message(message) {}
 };
 
-/** Utility functions used by the __Decenomy__ Qt UI.
+/** Utility functions used by the MobilityCoin Qt UI.
  */
 namespace GUIUtil
 {
