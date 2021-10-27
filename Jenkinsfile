@@ -3,9 +3,9 @@ pipeline {
     agent any
 
     environment {
-        NAME = '__Decenomy__'
-        BASE_NAME = '__decenomy__'
-        ZIP_NAME = '__DSW__'
+        NAME = 'MobilityCoin'
+        BASE_NAME = 'mobic'
+        ZIP_NAME = 'MOBIC'
     }
 
     stages {
