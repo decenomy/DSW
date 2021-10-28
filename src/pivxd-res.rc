@@ -17,13 +17,13 @@ BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
             VALUE "CompanyName",        "MobilityCoin"
-            VALUE "FileDescription",    "__decenomy__d (OSS daemon/client for MobilityCoin)"
+            VALUE "FileDescription",    "mobicd (OSS daemon/client for MobilityCoin)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "__decenomy__d"
+            VALUE "InternalName",       "mobicd"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "__decenomy__d.exe"
-            VALUE "ProductName",        "__decenomy__d"
+            VALUE "OriginalFilename",   "mobicd.exe"
+            VALUE "ProductName",        "mobicd"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

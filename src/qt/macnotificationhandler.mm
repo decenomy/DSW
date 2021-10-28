@@ -15,7 +15,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"io.__decenomy__.MobilityCoin-Qt";
+        return @"io.mobic.MobilityCoin-Qt";
     } else {
         return [self __bundleIdentifier];
     }
