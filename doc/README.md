@@ -13,8 +13,8 @@ The following are some helpful notes on how to run MobilityCoin Core on your nat
 
 Unpack the files into a directory and run:
 
-- `bin/__decenomy__-qt` (GUI) or
-- `bin/__decenomy__d` (headless)
+- `bin/mobic-qt` (GUI) or
+- `bin/mobicd` (headless)
 
 ### Windows
 
