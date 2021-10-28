@@ -74,7 +74,7 @@ bool AppInit(int argc, char* argv[])
             strUsage += LicenseInfo();
         } else {
             strUsage += "\n" + _("Usage:") + "\n" +
-                        "  __decenomy__d [options]                     " + _("Start MobilityCoin Daemon") + "\n";
+                        "  mobicd [options]                     " + _("Start MobilityCoin Daemon") + "\n";
 
             strUsage += "\n" + HelpMessage(HMM_BITCOIND);
         }
@@ -110,11 +110,11 @@ bool AppInit(int argc, char* argv[])
         // Command-line RPC
         bool fCommandLine = false;
         for (int i = 1; i < argc; i++)
-            if (!IsSwitchChar(argv[i][0]) && !boost::algorithm::istarts_with(argv[i], "__decenomy__:"))
+            if (!IsSwitchChar(argv[i][0]) && !boost::algorithm::istarts_with(argv[i], "mobic:"))
                 fCommandLine = true;
 
         if (fCommandLine) {
-            fprintf(stderr, "Error: There is no RPC client functionality in __decenomy__d anymore. Use the __decenomy__-cli utility instead.\n");
+            fprintf(stderr, "Error: There is no RPC client functionality in mobicd anymore. Use the mobic-cli utility instead.\n");
             exit(1);
         }
 #ifndef WIN32
@@ -165,7 +165,7 @@ int main(int argc, char* argv[])
 {
     SetupEnvironment();
 
-    // Connect __decenomy__d signal handlers
+    // Connect mobicd signal handlers
     noui_connect();
 
     return (AppInit(argc, argv) ? 0 : 1);
