@@ -1241,7 +1241,7 @@ Please wait few more minutes (masternode collaterals require %1 confirmations).<
 on a remote server to your clipboard.
 
 
-You will only have to paste the data in the __decenomy__.conf file
+You will only have to paste the data in the mobic.conf file
 of your remote server and start it, then start the Masternode using
 this controller wallet (select the Masternode in the list and press "start").
 </source>
@@ -1249,7 +1249,7 @@ this controller wallet (select the Masternode in the list and press "start").
 클립보드로 내보내려고 합니다.
 
 
-그 데이터를 리모트 서버의 __decenomy__.conf 파일에
+그 데이터를 리모트 서버의 mobic.conf 파일에
 붙여넣고 시작합니다. 그리고 컨트롤러 지갑에서 마스터노드를
 시작합니다. (리스트에서 마스터노드를 선택하고 "시작"을 누르십시오.)
 </translation>
@@ -1388,8 +1388,8 @@ Are you sure?</source>
         <translation>구문 분석된 데이터가 너무 큽니다.</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "__decenomy__" prefix</source>
-        <translation>"__decenomy__"로 시작하지 않아 유효하지 않은 URI</translation>
+        <source>Invalid URI, not starting with "mobic" prefix</source>
+        <translation>"mobic"로 시작하지 않아 유효하지 않은 URI</translation>
     </message>
 </context>
 <context>
@@ -1778,8 +1778,8 @@ Address: %4
         <translation>잘못된 결제 주소 %1</translation>
     </message>
     <message>
-        <source>Cannot start __decenomy__: click-to-pay handler</source>
-        <translation>__decenomy__을 시작할 수 없습니다: 결제하기 위한 클릭 처리</translation>
+        <source>Cannot start mobic: click-to-pay handler</source>
+        <translation>mobic을 시작할 수 없습니다: 결제하기 위한 클릭 처리</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid MOBIC address or malformed URI parameters.</source>
@@ -3243,8 +3243,8 @@ Verify that you have installed a predetermined text editor.</source>
         <translation>백업 폴더를 열 수 없습니다.</translation>
     </message>
     <message>
-        <source>Unable to open __decenomy__.conf with default application</source>
-        <translation>__decenomy__.conf 파일을 기본 앱으로 열 수 없습니다.</translation>
+        <source>Unable to open mobic.conf with default application</source>
+        <translation>mobic.conf 파일을 기본 앱으로 열 수 없습니다.</translation>
     </message>
     <message>
         <source>In:</source>
