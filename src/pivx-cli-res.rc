@@ -19,10 +19,10 @@ BEGIN
             VALUE "CompanyName",        "MobilityCoin"
             VALUE "FileDescription",    "MobilityCoin-cli (OSS RPC client for MobilityCoin)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "__decenomy__-cli"
+            VALUE "InternalName",       "mobic-cli"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "__decenomy__-cli.exe"
+            VALUE "OriginalFilename",   "mobic-cli.exe"
             VALUE "ProductName",        "MobilityCoin-cli"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END

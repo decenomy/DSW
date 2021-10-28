@@ -38,7 +38,7 @@
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>io.__decenomy__.MobilityCoin-Qt</string>
+  <string>io.mobic.MobilityCoin-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
