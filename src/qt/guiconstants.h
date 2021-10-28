@@ -51,7 +51,7 @@ static const int MAX_URI_LENGTH = 255;
 
 
 #define QAPP_ORG_NAME "MobilityCoin"
-#define QAPP_ORG_DOMAIN "__decenomy__.org"
+#define QAPP_ORG_DOMAIN "mobic.org"
 #define QAPP_APP_NAME_DEFAULT "MobilityCoin-Qt"
 #define QAPP_APP_NAME_TESTNET "MobilityCoin-Qt-testnet"
 
