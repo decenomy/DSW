@@ -244,14 +244,13 @@ public:
         pchMessageStart[3] = 0x78;
         nDefaultPort = __PORT_MAINNET__;
 
-        vSeeds.push_back(CDNSSeedData("seeder", "seeder.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed2", "seed2.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed3", "seed3.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed4", "seed4.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.__decenomy.net__"));
+        vSeeds.push_back(CDNSSeedData("dns.modic.fund", "dns.modic.fund"));
+        vSeeds.push_back(CDNSSeedData("96.30.197.238", "96.30.197.238"));
+        vSeeds.push_back(CDNSSeedData("104.238.173.85", "104.238.173.85"));
+        vSeeds.push_back(CDNSSeedData("136.244.104.149", "136.244.104.149"));
+        vSeeds.push_back(CDNSSeedData("108.61.250.83", "108.61.250.83"));
+        vSeeds.push_back(CDNSSeedData("207.148.65.58", "207.148.65.58"));
+        vSeeds.push_back(CDNSSeedData("45.63.89.112", "45.63.89.112"));
 	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.__decenomy.net__"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 51); // M
