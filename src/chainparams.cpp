@@ -241,7 +241,7 @@ public:
         pchMessageStart[0] = 0x6c;
         pchMessageStart[1] = 0x79;
         pchMessageStart[2] = 0x6e;
-        pchMessageStart[3] = 0x76;
+        pchMessageStart[3] = 0x78;
         nDefaultPort = __PORT_MAINNET__;
 
         vSeeds.push_back(CDNSSeedData("seeder", "seeder.__decenomy.net__"));
