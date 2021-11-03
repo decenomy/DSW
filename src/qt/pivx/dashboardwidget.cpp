@@ -674,8 +674,8 @@ void DashboardWidget::onChartRefreshed()
     // init sets
     set0 = new QBarSet(CURRENCY_UNIT.c_str());
 	set1 = new QBarSet("MN_" + QString(CURRENCY_UNIT.c_str()));
-    set0->setColor(QColor(239,0,0));
-	set1->setColor(QColor(121,0,0));
+    set0->setColor(QColor(30,113,161));
+	set1->setColor(QColor(12,58,97));
 
     if (!series) {
         series = new QBarSeries();
