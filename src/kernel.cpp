@@ -141,7 +141,7 @@ bool Stake(const CBlockIndex* pindexPrev, CStakeInput* stakeInput, unsigned int 
 
     nTimeTx = (nTimeTx / slotStep) * slotStep;
 
-    while(nTimeTx < pindexPrev->MinPastBlockTime()) {
+    while(nTimeTx <= pindexPrev->MinPastBlockTime()) {
         nTimeTx += slotStep;
     } 
 
