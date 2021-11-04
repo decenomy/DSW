@@ -109,6 +109,9 @@ struct Params {
     int64_t nTargetTimespanV2;
     int64_t nTargetSpacing;
     int nTimeSlotLength;
+    int nTokenSwapMintHeight = -1;
+    CAmount nTokenSwapCoinMint = 0;
+    std::string sTokenSwapMintAddress;
 
     // spork keys
     std::string strSporkPubKey;

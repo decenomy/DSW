@@ -320,11 +320,38 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
 {
+    if (nHeight > 2500000) return 20000 * COIN;
+    if (nHeight > 2400000) return 10000 * COIN;
+    if (nHeight > 2300000) return 10000 * COIN;
+    if (nHeight > 2200000) return 10000 * COIN;
+    if (nHeight > 2100000) return  9000 * COIN;
+    if (nHeight > 2000000) return  8000 * COIN;
+    if (nHeight > 1900000) return  7000 * COIN;
+    if (nHeight > 1800000) return  6000 * COIN;
+    if (nHeight > 1700000) return  5000 * COIN;
+    if (nHeight > 1650000) return  4000 * COIN;
+
     return 20000 * COIN;
 }
 
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
+    const Consensus::Params& consensus = Params().GetConsensus();
+
+    // Token swap mint for distribution
+    if (nHeight == consensus.nTokenSwapMintHeight) return consensus.nTokenSwapCoinMint + GetBlockValue(nHeight + 1);
+
+    if (nHeight > 2500000)      return       80.00 * COIN;
+    if (nHeight > 2400000)      return       60.00 * COIN;
+    if (nHeight > 2300000)      return       40.00 * COIN;
+    if (nHeight > 2200000)      return       30.00 * COIN;
+    if (nHeight > 2100000)      return       20.00 * COIN;
+    if (nHeight > 2000000)      return       10.00 * COIN;
+    if (nHeight > 1900000)      return        8.00 * COIN;
+    if (nHeight > 1800000)      return        6.00 * COIN;
+    if (nHeight > 1700000)      return        4.00 * COIN;
+    if (nHeight > 1650000)      return        2.00 * COIN;
+
     if (nHeight > 1500001)      return        1.00 * COIN;
     if (nHeight > 1100001)      return        7.50 * COIN;
     if (nHeight >  800001)      return       15.00 * COIN;
@@ -341,11 +368,16 @@ CAmount CMasternode::GetBlockValue(int nHeight)
     if (nHeight >   20001)      return        2.00 * COIN;
     if (nHeight >       1)      return        1.00 * COIN;
     if (nHeight >       0)      return 25000000.00 * COIN;
-
 }
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
+    const Consensus::Params& consensus = Params().GetConsensus();
+
+    // Token swap mint for distribution
+    if (nHeight == consensus.nTokenSwapMintHeight) return GetMasternodePayment(nHeight + 1);
+
+    if (nHeight > 1650000)      return CMasternode::GetBlockValue(nHeight) * 0.65;
     if (nHeight > 1500000)      return CMasternode::GetBlockValue(nHeight) * 0.60;
     if (nHeight > 1100000)      return CMasternode::GetBlockValue(nHeight) * 0.65;
     if (nHeight >  800000)      return CMasternode::GetBlockValue(nHeight) * 0.70;
