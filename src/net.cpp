@@ -1099,15 +1099,19 @@ void CConnman::AcceptConnection(const ListenSocket& hListenSocket) {
 
     if (nInbound >= nMaxConnections - MAX_OUTBOUND_CONNECTIONS) {
         // try to evict 10% of the inbound connections
-        int n = std::max(1, (nMaxConnections - MAX_OUTBOUND_CONNECTIONS) / 10); 
+        int n = std::max(1, (nMaxConnections - MAX_OUTBOUND_CONNECTIONS) / 10);
+        int evicted = 0;
         for(int i = 0; i < n; i++) {
-            if (!AttemptToEvictConnection(whitelisted)) {
+            if (!AttemptToEvictConnection(whitelisted) && evicted == 0) {
                 // No connection to evict, disconnect the new connection
                 LogPrint(BCLog::NET, "failed to find an eviction candidate - connection dropped (full)\n");
                 CloseSocket(hSocket);
                 return;
+            } else {
+                evicted++;
             }
         }
+        LogPrint(BCLog::NET, "%d connections evicted\n", evicted);
     }
 
     NodeId id = GetNewNodeId();
