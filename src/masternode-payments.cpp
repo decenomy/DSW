@@ -387,7 +387,6 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const CBloc
     CAmount reductionAmount = masternodePayment + nTokenSwapMint;
 
     if (hasPayment) {
-        CAmount masternodePayment = CMasternode::GetMasternodePayment(pindexPrev->nHeight + 1);
         if (fProofOfStake) {
             /**For Proof Of Stake vout[0] must be null
              * Stake reward can be split into many different outputs, so we must

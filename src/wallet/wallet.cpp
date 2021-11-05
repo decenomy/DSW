@@ -3302,7 +3302,7 @@ void CWallet::AutoCombineDust(CConnman* connman)
             if (!out.fSpendable)
                 continue;
             //no coins should get this far if they dont have proper maturity, this is double checking
-            if (out.tx->IsCoinStake() && out.tx->GetDepthInMainChain() < Params().GetConsensus().nCoinbaseMaturity + 1)
+            if (out.tx->IsCoinStake() && out.tx->GetDepthInMainChain() < Params().GetConsensus().CoinbaseMaturity(chainActive.Height()) + 1)
                 continue;
 
             COutPoint outpt(out.tx->GetHash(), out.i);
@@ -3397,7 +3397,7 @@ bool CWallet::MultiSend()
     for (const COutput& out : vCoins) {
 
         //need output with precise confirm count - this is how we identify which is the output to send
-        if (out.tx->GetDepthInMainChain() != Params().GetConsensus().nCoinbaseMaturity + 1)
+        if (out.tx->GetDepthInMainChain() != Params().GetConsensus().CoinbaseMaturity(chainActive.Height()) + 1)
             continue;
 
         bool isCoinStake = out.tx->IsCoinStake();
@@ -3825,7 +3825,7 @@ int CMerkleTx::GetBlocksToMaturity() const
     LOCK(cs_main);
     if (!(IsCoinBase() || IsCoinStake()))
         return 0;
-    return std::max(0, (Params().GetConsensus().nCoinbaseMaturity + 1) - GetDepthInMainChain());
+    return std::max(0, (Params().GetConsensus().CoinbaseMaturity(chainActive.Height()) + 1) - GetDepthInMainChain());
 }
 
 bool CMerkleTx::IsInMainChain() const
@@ -3837,7 +3837,7 @@ bool CMerkleTx::IsInMainChainImmature() const
 {
     if (!IsCoinBase() && !IsCoinStake()) return false;
     const int depth = GetDepthInMainChain(false);
-    return (depth > 0 && depth <= Params().GetConsensus().nCoinbaseMaturity);
+    return (depth > 0 && depth <= Params().GetConsensus().CoinbaseMaturity(chainActive.Height()));
 }
 
 
