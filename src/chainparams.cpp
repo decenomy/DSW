@@ -248,19 +248,15 @@ public:
         pchMessageStart[3] = 0x08;
         nDefaultPort = 15252;
 
+        vSeeds.push_back(CDNSSeedData("seeder.peps.today", "seeder.peps.today"));
 	    vSeeds.push_back(CDNSSeedData("seed1.peps.today", "seed1.peps.today"));
 	    vSeeds.push_back(CDNSSeedData("seed2.peps.today", "seed2.peps.today"));
 	    vSeeds.push_back(CDNSSeedData("seed3.peps.today", "seed3.peps.today"));
-
-        vSeeds.push_back(CDNSSeedData("seeder", "seeder.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed2", "seed2.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed3", "seed3.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed4", "seed4.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.__decenomy.net__"));
+        vSeeds.push_back(CDNSSeedData("seed4.peps.today", "seed1.peps.today"));
+	    vSeeds.push_back(CDNSSeedData("seed5.peps.today", "seed2.peps.today"));
+	    vSeeds.push_back(CDNSSeedData("seed6.peps.today", "seed3.peps.today"));
+        vSeeds.push_back(CDNSSeedData("seed7.peps.today", "seed1.peps.today"));
+	    vSeeds.push_back(CDNSSeedData("seed8.peps.today", "seed2.peps.today"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 55); // P
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 92); // e
