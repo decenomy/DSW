@@ -63,6 +63,10 @@ const struct NUInfo NetworkUpgradeInfo[Consensus::MAX_NETWORK_UPGRADES] = {
                 /*.strInfo =*/ "new masternode ranking system",
         },
         {
+                /*.strName =*/ "coinbase_maturity_v2",
+                /*.strInfo =*/ "new coinbase maturity back to the regular 100 confirmations",
+        },
+        {
                 /*.strName =*/ "Test_dummy",
                 /*.strInfo =*/ "Test dummy info",
         },
