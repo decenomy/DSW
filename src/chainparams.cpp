@@ -185,10 +185,10 @@ public:
         consensus.sTokenSwapMintAddress = "PUxx7vSa88YY83QFWJiMdLMprkyncrwNJs";
 
         // spork keys
-        consensus.strSporkPubKey = "02fb5a881740abd7075de7deaedc57766242746725f1424eb2fdca840532fa1046";
+        consensus.strSporkPubKey = "03b64dac8c2acd3c69917968e5eb188fafd5b299191c261fbe41c9288ee2df3639";
         consensus.strSporkPubKeyOld = "0414F669AC091EDE9237A4B6754C34A60AB13B26FFA38CBF3E61A07B9C05A6E85BA4C8589191D45F7D45B09C0D2A17865FA2F16132DB1922C73EE3DCAB43EBBC44";
-        consensus.nTime_EnforceNewSporkKey = 1635552000;
-        consensus.nTime_RejectOldSporkKey = 1635638400;
+        consensus.nTime_EnforceNewSporkKey = 1638576000;
+        consensus.nTime_RejectOldSporkKey = 1638662400;
 
         // height-based activations
         consensus.height_last_ZC_AccumCheckpoint    = DISABLED;
