@@ -13,7 +13,7 @@ DECENOMY Standard wallet repository
 • Block Time: 60 Seconds
 • Maturity: 100 Confirmations
 • Prefix: __DSW__ adresses start with the capital letter "D"
-• Ports: 8822 (p2p) / __RPCPORT_MAINNET__ (rpc)
+• Ports: 8822 (p2p) / 8821 (rpc)
 
 • Explorer https://explorer.decenomy.net/
 
