@@ -242,7 +242,7 @@ public:
         pchMessageStart[1] = 0x79;
         pchMessageStart[2] = 0x6e;
         pchMessageStart[3] = 0x78;
-        nDefaultPort = __PORT_MAINNET__;
+        nDefaultPort = 8822;
 
         vSeeds.push_back(CDNSSeedData("dns.modic.fund", "dns.modic.fund"));
         vSeeds.push_back(CDNSSeedData("96.30.197.238", "96.30.197.238"));
