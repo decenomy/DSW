@@ -99,32 +99,6 @@ bool fCheckBlockIndex = false;
 bool fVerifyingBlocks = false;
 size_t nCoinCacheUsage = 5000 * 300;
 
-// banned addresses
-std::set<std::string> bannedAddresses = {
-    "Sd2xcwvvtRH8P8sLemSiPjadTfBd9myPbW",
-    "STFSLXfG31Xr8Symk78aG6jCu391yp8kWD",
-    "SbPoXEFrMJwes3mysfgGzP2mAtw1SmrC7H",
-    "ScM5iV4aJEwMipWGHHcS8E1qLsarwk6DuK",
-    "Sfv6SUgcSgmmpwp3UypfYgnK1x97rfC9Dj",
-    "SY6UdUKC8yxci8vXgvQYMgeUNRDvymEhM3",
-    "SdaX6DR3gdpakcFrKJfCDB6GJjC4J9XJ8M",
-    "Sh412EAoGLvn1WnTUCZbHiUGCk2dzmdQoA",
-    "ST74xpmzemL4ELiBpyDmirzgahujSUiYmM",
-    "SaWmWbLSghhn8JAE8JQfdLQy9cvf1ADKUD",
-    "Sic7sZBNkijna4zNLSVgTBkfr2ebP6c9wk",
-    "Sh8N9R2Li5Wm5B7g3xxfEotp9Vpp38baJM",
-    "SVAjKY5p9NPSNwG7PLK3VzeXUdJjm2W7CY",
-    "SQfMZVatpQR9b3KdKp992nxeEZNWkcz7d2",
-    "SNAgLi7pfHD6BDAkQQ74ixtT4o59wkqP8Y",
-    "SS6ZgTuvafGX98YqeHdu79wpGrR1KxuqMw",
-    "SMoP6U7uazpLdqZ18GQFVNNuV77UTK16wh",
-    "SjfZFjCv2PxNKQeDgW1RmsFjSpq5PngaZc",
-    "SPop7eX3kMjwojy1k1EHAqBoodhbski4tR",
-    "Sf3KBrFqmD3PBHrwTpdsFgUTctEz9mQn5Z",
-};
-
-int bannedAddressesStartHeight = 586593;
-
 /* If the tip is older than this (in seconds), the node is considered to be in initial block download. */
 int64_t nMaxTipAge = DEFAULT_MAX_TIP_AGE;
 
