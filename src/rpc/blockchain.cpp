@@ -628,6 +628,7 @@ static void ApplyStats(CCoinsStats &stats, CHashWriter& ss, const uint256& hash,
 //! Calculate statistics about the unspent transaction output set
 static bool GetUTXOStats(CCoinsView *view, CCoinsStats &stats)
 {
+    const Consensus::Params& consensus = Params().GetConsensus();
     std::unique_ptr<CCoinsViewCursor> pcursor(view->Cursor());
 
     CHashWriter ss(SER_GETHASH, PROTOCOL_VERSION);
@@ -644,6 +645,17 @@ static bool GetUTXOStats(CCoinsView *view, CCoinsStats &stats)
         COutPoint key;
         Coin coin;
         if (pcursor->GetKey(key) && pcursor->GetValue(coin)) {
+            // ----------- burn address scanning -----------
+            if (key.hash != prevkey) {
+                CTxDestination source;
+                if (ExtractDestination(coin.out.scriptPubKey, source)) {
+                    const std::string addr = EncodeDestination(source);
+                    if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
+                        consensus.mBurnAddresses.at(addr) < stats.nHeight) {
+                        continue;
+                    }
+                }
+            }
             if (!outputs.empty() && key.hash != prevkey) {
                 ApplyStats(stats, ss, prevkey, outputs);
                 outputs.clear();

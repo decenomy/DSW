@@ -81,7 +81,7 @@ void AddTimeData(const CNetAddr& ip, int64_t nOffsetSample, int nOffsetLimit)
             std::string strMessage = _("Warning: Please check that your computer's date and time are correct! If your clock is wrong Sapphire will not work properly.");
             strMiscWarning = strMessage;
             LogPrintf("*** %s\n", strMessage);
-            uiInterface.ThreadSafeMessageBox(strMessage, "", CClientUIInterface::MSG_ERROR);
+            uiInterface.ThreadSafeMessageBox(strMessage, "", CClientUIInterface::MSG_INFORMATION);
         }
         if (!GetBoolArg("-shrinkdebugfile", g_logger->DefaultShrinkDebugFile())) {
             for (int64_t n : vSorted)

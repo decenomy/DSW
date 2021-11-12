@@ -1930,8 +1930,8 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 *[cssClass="label-address-box"] {
   color:#707070;
   background-color: #f2f2f2;
-  font-size:20px;
-  padding:10px 10px;
+  font-size: 20px;
+  padding: 10px 10px;
 }
 
 
@@ -3217,6 +3217,6 @@ QRadioButton[cssClass="radio-welcome"]::indicator:checked {
 
 QRadioButton[cssClass="radio-welcome"]::indicator:unchecked {
   background: url("://btn-radio-off");
-  background-repeat:no-repeat;
-  background-position:center;
+  background-repeat: no-repeat;
+  background-position: center;
 }

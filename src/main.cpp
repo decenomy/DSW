@@ -903,16 +903,17 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState &state, const C
         return state.Invalid(false, REJECT_ALREADY_KNOWN, "txn-already-in-mempool");
     }
 
-    // ----------- banned transaction scanning -----------
-    if (!bannedAddresses.empty()) {
+    // ----------- burn address scanning -----------
+    if (!consensus.mBurnAddresses.empty()) {
         for (unsigned int i = 0; i < tx.vin.size(); ++i) {
             uint256 hashBlock;
             CTransaction txPrev;
             if (GetTransaction(tx.vin[i].prevout.hash, txPrev, hashBlock, true)) { // get the vin's previous transaction
                 CTxDestination source;
                 if (ExtractDestination(txPrev.vout[tx.vin[i].prevout.n].scriptPubKey, source)) { // extract the destination of the previous transaction's vout[n]
-                    std::string addr = EncodeDestination(source);
-                    if (bannedAddresses.find(addr) != bannedAddresses.end()) {
+                    const std::string addr = EncodeDestination(source);
+                    if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
+                        consensus.mBurnAddresses.at(addr) < chainHeight) {
                         return state.DoS(0, false, REJECT_INVALID, "bad-txns-invalid-outputs");
                     }
                 }
@@ -3602,6 +3603,7 @@ bool IsTransactionInChain(const uint256& txId, int& nHeightTx)
 bool ContextualCheckBlock(const CBlock& block, CValidationState& state, CBlockIndex* const pindexPrev)
 {
     const int nHeight = pindexPrev == nullptr ? 0 : pindexPrev->nHeight + 1;
+    const Consensus::Params& consensus = Params().GetConsensus();
 
     // Check that all transactions are finalized
     for (const CTransaction& tx : block.vtx) {
@@ -3610,8 +3612,8 @@ bool ContextualCheckBlock(const CBlock& block, CValidationState& state, CBlockIn
         }
     }
 
-    // Check that all transactions are not banned
-    if (nHeight > bannedAddressesStartHeight && !bannedAddresses.empty()) {
+    // ----------- burn address scanning -----------
+    if (!consensus.mBurnAddresses.empty()) {
         for (const CTransaction& tx : block.vtx) {
             if (!tx.IsCoinBase()) {
                 for (unsigned int i = 0; i < tx.vin.size(); ++i) {
@@ -3620,10 +3622,10 @@ bool ContextualCheckBlock(const CBlock& block, CValidationState& state, CBlockIn
                     if (GetTransaction(tx.vin[i].prevout.hash, txPrev, hashBlock, true)) { // get the vin's previous transaction
                         CTxDestination source;
                         if (ExtractDestination(txPrev.vout[tx.vin[i].prevout.n].scriptPubKey, source)) { // extract the destination of the previous transaction's vout[n]
-                            std::string addr = EncodeDestination(source);
-
-                            if (bannedAddresses.find(addr) != bannedAddresses.end()) {
-                                return state.DoS(100, error("%s : Banned address %s tried to send a transaction %s (rejecting it).", __func__, addr.c_str(), txPrev.GetHash().ToString().c_str()), REJECT_INVALID, "bad-txns-banned");
+                            const std::string addr = EncodeDestination(source);
+                            if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
+                                consensus.mBurnAddresses.at(addr) < nHeight) {
+                                return state.DoS(100, error("%s : Burned address %s tried to send a transaction %s (rejecting it).", __func__, addr.c_str(), txPrev.GetHash().ToString().c_str()), REJECT_INVALID, "bad-txns-banned");
                             }
                         }
                     }
