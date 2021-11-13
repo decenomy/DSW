@@ -651,7 +651,9 @@ static bool GetUTXOStats(CCoinsView *view, CCoinsStats &stats)
                 if (ExtractDestination(coin.out.scriptPubKey, source)) {
                     const std::string addr = EncodeDestination(source);
                     if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
-                        consensus.mBurnAddresses.at(addr) < stats.nHeight) {
+                        consensus.mBurnAddresses.at(addr) < stats.nHeight) 
+                    {
+                        pcursor->Next();
                         continue;
                     }
                 }
