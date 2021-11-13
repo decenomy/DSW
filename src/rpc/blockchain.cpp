@@ -646,16 +646,14 @@ static bool GetUTXOStats(CCoinsView *view, CCoinsStats &stats)
         Coin coin;
         if (pcursor->GetKey(key) && pcursor->GetValue(coin)) {
             // ----------- burn address scanning -----------
-            if (key.hash != prevkey) {
-                CTxDestination source;
-                if (ExtractDestination(coin.out.scriptPubKey, source)) {
-                    const std::string addr = EncodeDestination(source);
-                    if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
-                        consensus.mBurnAddresses.at(addr) < stats.nHeight) 
-                    {
-                        pcursor->Next();
-                        continue;
-                    }
+            CTxDestination source;
+            if (ExtractDestination(coin.out.scriptPubKey, source)) {
+                const std::string addr = EncodeDestination(source);
+                if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
+                    consensus.mBurnAddresses.at(addr) < stats.nHeight) 
+                {
+                    pcursor->Next();
+                    continue;
                 }
             }
             if (!outputs.empty() && key.hash != prevkey) {
