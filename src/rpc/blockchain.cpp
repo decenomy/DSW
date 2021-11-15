@@ -793,6 +793,32 @@ UniValue gettxout(const JSONRPCRequest& request)
     return ret;
 }
 
+UniValue getburnaddresses(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() > 1)
+        throw std::runtime_error(
+            "getburnaddresses ( withvalues )\n"
+            "1. withvalues  (boolean, optional) Whether to included the mem pool. Default = false\n"
+
+            "\nExamples:\n" +
+            HelpExampleCli("getburnaddresses", "") + HelpExampleRpc("getburnaddresses", ""));
+
+    UniValue ret(UniValue::VOBJ);
+
+    bool fWithValues = false;
+    const Consensus::Params& consensus = Params().GetConsensus();
+
+    for ( const auto &p : consensus.mBurnAddresses ) {
+       //std::cout << p.first << '\t' << p.second << std::endl;
+       ret.push_back(Pair("address", p.first));
+    }
+
+
+
+    return ret;
+
+}
+
 UniValue verifychain(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() > 1)
