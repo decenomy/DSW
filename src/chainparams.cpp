@@ -190,6 +190,11 @@ public:
         consensus.nTime_EnforceNewSporkKey = 1638576000;
         consensus.nTime_RejectOldSporkKey = 1638662400;
 
+        // burn addresses
+        consensus.mBurnAddresses = {
+            //{ "7XXXXXXXXXXXXXXXXXXXXXXXXXXXaqpZch", 0 }
+        };
+
         // height-based activations
         consensus.height_last_ZC_AccumCheckpoint    = DISABLED;
         consensus.height_last_ZC_WrappedSerials     = DISABLED;
