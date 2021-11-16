@@ -798,22 +798,21 @@ UniValue getburnaddresses(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() > 1)
         throw std::runtime_error(
             "getburnaddresses ( withvalues )\n"
-            "1. withvalues  (boolean, optional) Whether to included the mem pool. Default = false\n"
+            "1. withvalues  (boolean, optional) Default = false\n"
 
             "\nExamples:\n" +
             HelpExampleCli("getburnaddresses", "") + HelpExampleRpc("getburnaddresses", ""));
 
-    UniValue ret(UniValue::VOBJ);
+    UniValue ret(UniValue::VARR);
 
     bool fWithValues = false;
     const Consensus::Params& consensus = Params().GetConsensus();
 
     for ( const auto &p : consensus.mBurnAddresses ) {
-       //std::cout << p.first << '\t' << p.second << std::endl;
-       ret.push_back(Pair("address", p.first));
+       UniValue obj(UniValue::VOBJ);
+       obj.push_back(Pair("address", p.first));
+       ret.push_back(obj);
     }
-
-
 
     return ret;
 
