@@ -1,18 +1,17 @@
 UltraClear integration/staging repository
 =====================================
 
-• PoW Algorithm: X13
-• Premine: 1,000,000,000 UCR
-• PoW Blocks: 1 - 1000
-• PoS Blocks: Starting from 1001
-• Block Time: 60 Seconds
-• Maturity: 100 Confirmations
-• Prefix: UCR adresses start with the capital letter "C"
-• Ports: 32628 (p2p) / 32627 (rpc)
+• PoW Algorithm: X13  
+• Premine: 1,000,000,000 UCR  
+• PoW Blocks: 1 - 1000  
+• PoS Blocks: Starting from 1001  
+• Block Time: 60 Seconds  
+• Maturity: 100 Confirmations  
+• Prefix: UCR adresses start with the capital letter "C"  
+• Ports: 32628 (p2p) / 32627 (rpc)  
 
-• Explorer https://explorer.decenomy.net/UCR/blocks
-
-• Website [ucrcoin.net/](https://ucrcoin.net/)
+• Explorer https://explorer.decenomy.net/UCR/blocks  
+• Website [ucrcoin.net/](https://ucrcoin.net/)  
 
 ### Rewards Breakdown
 ---
