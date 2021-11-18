@@ -675,6 +675,56 @@ static bool GetUTXOStats(CCoinsView *view, CCoinsStats &stats)
     return true;
 }
 
+static bool GetBurnStats(CCoinsView *view, CCoinsStats &stats)
+{
+    const Consensus::Params& consensus = Params().GetConsensus();
+    std::unique_ptr<CCoinsViewCursor> pcursor(view->Cursor());
+
+    CHashWriter ss(SER_GETHASH, PROTOCOL_VERSION);
+    stats.hashBlock = pcursor->GetBestBlock();
+    {
+        LOCK(cs_main);
+        stats.nHeight = mapBlockIndex.find(stats.hashBlock)->second->nHeight;
+    }
+    ss << stats.hashBlock;
+    uint256 prevkey;
+    std::map<uint32_t, Coin> outputs;
+    while (pcursor->Valid()) {
+        boost::this_thread::interruption_point();
+        COutPoint key;
+        Coin coin;
+        if (pcursor->GetKey(key) && pcursor->GetValue(coin)) {
+            CTxDestination source;
+            if (ExtractDestination(coin.out.scriptPubKey, source)) {
+                const std::string addr = EncodeDestination(source);
+                if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
+                    consensus.mBurnAddresses.at(addr) < stats.nHeight) 
+                {
+                    if (!outputs.empty() && key.hash != prevkey) {
+                        ApplyStats(stats, ss, prevkey, outputs);
+                        outputs.clear();
+                    }
+                    prevkey = key.hash;
+                    outputs[key.n] = std::move(coin);
+                    pcursor->Next();
+                    continue;
+                }
+            }
+
+        } else {
+            return error("%s: unable to read value", __func__);
+        }
+
+        pcursor->Next();
+    }
+    if (!outputs.empty()) {
+        ApplyStats(stats, ss, prevkey, outputs);
+    }
+    stats.hashSerialized = ss.GetHash();
+    stats.nDiskSize = view->EstimateSize();
+    return true;
+}
+
 UniValue gettxoutsetinfo(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 0)
@@ -808,9 +858,15 @@ UniValue getburnaddresses(const JSONRPCRequest& request)
     bool fWithValues = false;
     const Consensus::Params& consensus = Params().GetConsensus();
 
+    CCoinsStats stats;
+    FlushStateToDisk();
+
     for ( const auto &p : consensus.mBurnAddresses ) {
        UniValue obj(UniValue::VOBJ);
        obj.push_back(Pair("address", p.first));
+       if (GetBurnStats(pcoinsTip, stats)) {
+       obj.push_back(Pair("amount", ValueFromAmount(stats.nTotalAmount)));
+       }
        ret.push_back(obj);
     }
 
