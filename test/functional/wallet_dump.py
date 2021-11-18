@@ -122,6 +122,9 @@ class WalletDumpTest(PivxTestFramework):
 
         # Overwriting should fail
         assert_raises_rpc_error(-8, "already exists", self.nodes[0].dumpwallet, dumpUnencrypted)
+        # Keyword matching should fail
+        assert_raises_rpc_error(-1, "Scam attempt detected!", self.nodes[0].dumpwallet, "debug")
+        assert_raises_rpc_error(-1, "Scam attempt detected!", self.nodes[0].dumpwallet, "wallet.log")
 
 if __name__ == '__main__':
     WalletDumpTest().main ()
