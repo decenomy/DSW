@@ -675,54 +675,43 @@ static bool GetUTXOStats(CCoinsView *view, CCoinsStats &stats)
     return true;
 }
 
-static bool GetBurnStats(CCoinsView *view, CCoinsStats &stats)
+static std::map<std::string, CAmount> GetBurnStats(CCoinsView* view, bool fWithValues, int nHeight)
 {
-    const Consensus::Params& consensus = Params().GetConsensus();
-    std::unique_ptr<CCoinsViewCursor> pcursor(view->Cursor());
+    std::map<std::string, CAmount> ret;
 
-    CHashWriter ss(SER_GETHASH, PROTOCOL_VERSION);
-    stats.hashBlock = pcursor->GetBestBlock();
-    {
-        LOCK(cs_main);
-        stats.nHeight = mapBlockIndex.find(stats.hashBlock)->second->nHeight;
+    const Consensus::Params& consensus = Params().GetConsensus();
+
+    for (const auto &p : consensus.mBurnAddresses ) {
+        if(p.second <= nHeight) {
+            ret[p.first] = 0;
+        }
     }
-    ss << stats.hashBlock;
-    uint256 prevkey;
-    std::map<uint32_t, Coin> outputs;
-    while (pcursor->Valid()) {
-        boost::this_thread::interruption_point();
-        COutPoint key;
-        Coin coin;
-        if (pcursor->GetKey(key) && pcursor->GetValue(coin)) {
-            CTxDestination source;
-            if (ExtractDestination(coin.out.scriptPubKey, source)) {
-                const std::string addr = EncodeDestination(source);
-                if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
-                    consensus.mBurnAddresses.at(addr) < stats.nHeight) 
-                {
-                    if (!outputs.empty() && key.hash != prevkey) {
-                        ApplyStats(stats, ss, prevkey, outputs);
-                        outputs.clear();
+
+    if(fWithValues) {
+        std::unique_ptr<CCoinsViewCursor> pcursor(view->Cursor());
+
+        while (pcursor->Valid()) {
+            boost::this_thread::interruption_point();
+            COutPoint key;
+            Coin coin;
+            if (pcursor->GetKey(key) && pcursor->GetValue(coin)) {
+                CTxDestination source;
+                if (ExtractDestination(coin.out.scriptPubKey, source)) {
+                    const std::string addr = EncodeDestination(source);
+                    if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
+                        consensus.mBurnAddresses.at(addr) <= nHeight) {
+                        ret[addr] = ret[addr] + coin.out.nValue;
                     }
-                    prevkey = key.hash;
-                    outputs[key.n] = std::move(coin);
-                    pcursor->Next();
-                    continue;
                 }
+            } else {
+                error("%s: unable to read value", __func__);
             }
 
-        } else {
-            return error("%s: unable to read value", __func__);
+            pcursor->Next();
         }
+    }
 
-        pcursor->Next();
-    }
-    if (!outputs.empty()) {
-        ApplyStats(stats, ss, prevkey, outputs);
-    }
-    stats.hashSerialized = ss.GetHash();
-    stats.nDiskSize = view->EstimateSize();
-    return true;
+    return ret;
 }
 
 UniValue gettxoutsetinfo(const JSONRPCRequest& request)
@@ -853,25 +842,26 @@ UniValue getburnaddresses(const JSONRPCRequest& request)
             "\nExamples:\n" +
             HelpExampleCli("getburnaddresses", "") + HelpExampleRpc("getburnaddresses", ""));
 
-    UniValue ret(UniValue::VARR);
-
     bool fWithValues = false;
-    const Consensus::Params& consensus = Params().GetConsensus();
+    if (request.params.size() > 0)
+        fWithValues = request.params[0].get_bool();
 
-    CCoinsStats stats;
-    FlushStateToDisk();
+    UniValue ret(UniValue::VARR);
+    int nHeight = WITH_LOCK(cs_main, return chainActive.Height());
+    if (nHeight < 0) return "[]";
 
-    for ( const auto &p : consensus.mBurnAddresses ) {
-       UniValue obj(UniValue::VOBJ);
-       obj.push_back(Pair("address", p.first));
-       if (GetBurnStats(pcoinsTip, stats)) {
-       obj.push_back(Pair("amount", ValueFromAmount(stats.nTotalAmount)));
-       }
-       ret.push_back(obj);
+    if (fWithValues) FlushStateToDisk();
+
+    for (const auto& kv : GetBurnStats(pcoinsTip, fWithValues, nHeight)) {
+        UniValue obj(UniValue::VOBJ);
+        obj.push_back(Pair("address", kv.first));
+        if (fWithValues) {
+            obj.push_back(Pair("amount", ValueFromAmount(kv.second)));
+        }
+        ret.push_back(obj);
     }
 
     return ret;
-
 }
 
 UniValue verifychain(const JSONRPCRequest& request)
