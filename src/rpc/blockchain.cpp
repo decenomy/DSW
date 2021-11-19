@@ -837,10 +837,21 @@ UniValue getburnaddresses(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() > 1)
         throw std::runtime_error(
             "getburnaddresses ( withvalues )\n"
-            "1. withvalues  (boolean, optional) Default = false\n"
+            "\nReturns burn addresses. When an address is a burn address, it is also rejected from mempool and block inclusion, however a transaction to them is possible.\n"
+
+            "\nArguments:\n"
+            "1. withvalues  (boolean, optional) Whether to include address balance. Default = false\n"
+
+            "\nResult:\n"
+            "[\n"
+            "{\n"
+            "  \"address\": xxxxxx,        (string) The burn address\n"
+            "  \"amount\": 123.45    (numeric) The balance of the burn address\n"
+            "}\n"
+            "]\n"
 
             "\nExamples:\n" +
-            HelpExampleCli("getburnaddresses", "") + HelpExampleRpc("getburnaddresses", ""));
+            HelpExampleCli("getburnaddresses", "") + HelpExampleCli("getburnaddresses", "true") + HelpExampleRpc("getburnaddresses", ""));
 
     bool fWithValues = false;
     if (request.params.size() > 0)
