@@ -166,6 +166,8 @@ SettingsWidget::SettingsWidget(PIVXGUI* parent) :
     connect(settingsWalletOptionsWidget, &SettingsWalletOptionsWidget::saveSettings, this, &SettingsWidget::onSaveOptionsClicked);
     connect(settingsWalletOptionsWidget, &SettingsWalletOptionsWidget::discardSettings, this, &SettingsWidget::onDiscardChanges);
 
+    connect(settingsConsoleWidget, &SettingsConsoleWidget::message,this, &SettingsWidget::message);
+    
     /* Widget-to-option mapper */
     mapper = new QDataWidgetMapper(this);
     mapper->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);

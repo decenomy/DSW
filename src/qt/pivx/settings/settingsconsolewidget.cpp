@@ -425,7 +425,7 @@ void SettingsConsoleWidget::clear(bool clearHistory)
     QString clsKey = "Ctrl-L";
 #endif
 
-    message(CMD_REPLY, (tr("Welcome to the PEPS RPC console.") + "<br>" +
+    messageInternal(CMD_REPLY, (tr("Welcome to the PEPS RPC console.") + "<br>" +
                         tr("Use up and down arrows to navigate history, and %1 to clear screen.").arg("<b>"+clsKey+"</b>") + "<br>" +
                         tr("Type <b>help</b> for an overview of available commands.") +
                         "<br><span class=\"secwarning\"><br>" +
@@ -434,7 +434,7 @@ void SettingsConsoleWidget::clear(bool clearHistory)
             true);
 }
 
-void SettingsConsoleWidget::message(int category, const QString& message, bool html)
+void SettingsConsoleWidget::messageInternal(int category, const QString& message, bool html)
 {
     QTime time = QTime::currentTime();
     QString timeString = time.toString();
@@ -450,13 +450,31 @@ void SettingsConsoleWidget::message(int category, const QString& message, bool h
     ui->messagesWidget->append(out);
 }
 
+static bool PotentiallyDangerousCommand(const QString& cmd)
+{
+    if (cmd.size() >= 12 && cmd.leftRef(10) == "dumpwallet") {
+        // at least one char for filename
+        return true;
+    }
+    if (cmd.size() >= 13 && cmd.leftRef(11) == "dumpprivkey") {
+        return true;
+    }
+    return false;
+}
+
 void SettingsConsoleWidget::on_lineEdit_returnPressed()
 {
     QString cmd = ui->lineEdit->text();
     ui->lineEdit->clear();
 
     if (!cmd.isEmpty()) {
-        message(CMD_REQUEST, cmd);
+        // ask confirmation before sending potentially dangerous commands
+        if (PotentiallyDangerousCommand(cmd) &&
+            !ask("DANGER!", "Your coins will be STOLEN if you give\nthe info to anyone!\n\nAre you sure?\n")) {
+            return;
+        }
+
+        messageInternal(CMD_REQUEST, cmd);
         Q_EMIT cmdCommandRequest(cmd);
         // Remove command, if already in history
         history.removeOne(cmd);
@@ -493,7 +511,7 @@ void SettingsConsoleWidget::startExecutor()
     executor->moveToThread(thread);
 
     // Replies from executor object must go to this object
-    connect(executor, &RPCExecutor::reply, this, static_cast<void (SettingsConsoleWidget::*)(int, const QString&)>(&SettingsConsoleWidget::message));
+    connect(executor, &RPCExecutor::reply, this, &SettingsConsoleWidget::response);
     // Requests from this object must go to executor
     connect(this, &SettingsConsoleWidget::cmdCommandRequest, executor, &RPCExecutor::requestCommand);
 

@@ -675,6 +675,45 @@ static bool GetUTXOStats(CCoinsView *view, CCoinsStats &stats)
     return true;
 }
 
+static std::map<std::string, CAmount> GetBurnStats(CCoinsView* view, bool fWithValues, int nHeight)
+{
+    std::map<std::string, CAmount> ret;
+
+    const Consensus::Params& consensus = Params().GetConsensus();
+
+    for (const auto &p : consensus.mBurnAddresses ) {
+        if(p.second <= nHeight) {
+            ret[p.first] = 0;
+        }
+    }
+
+    if(fWithValues) {
+        std::unique_ptr<CCoinsViewCursor> pcursor(view->Cursor());
+
+        while (pcursor->Valid()) {
+            boost::this_thread::interruption_point();
+            COutPoint key;
+            Coin coin;
+            if (pcursor->GetKey(key) && pcursor->GetValue(coin)) {
+                CTxDestination source;
+                if (ExtractDestination(coin.out.scriptPubKey, source)) {
+                    const std::string addr = EncodeDestination(source);
+                    if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
+                        consensus.mBurnAddresses.at(addr) <= nHeight) {
+                        ret[addr] = ret[addr] + coin.out.nValue;
+                    }
+                }
+            } else {
+                error("%s: unable to read value", __func__);
+            }
+
+            pcursor->Next();
+        }
+    }
+
+    return ret;
+}
+
 UniValue gettxoutsetinfo(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 0)
@@ -789,6 +828,49 @@ UniValue gettxout(const JSONRPCRequest& request)
     ScriptPubKeyToJSON(coin.out.scriptPubKey, o, true);
     ret.push_back(Pair("scriptPubKey", o));
     ret.push_back(Pair("coinbase", (bool)coin.fCoinBase));
+
+    return ret;
+}
+
+UniValue getburnaddresses(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() > 1)
+        throw std::runtime_error(
+            "getburnaddresses ( withvalues )\n"
+            "\nReturns burn addresses. When an address is a burn address, it is also rejected from mempool and block inclusion, however a transaction to them is possible.\n"
+
+            "\nArguments:\n"
+            "1. withvalues  (boolean, optional) Whether to include address balance. Default = false\n"
+
+            "\nResult:\n"
+            "[\n"
+            "{\n"
+            "  \"address\": xxxxxx,        (string) The burn address\n"
+            "  \"amount\": 123.45    (numeric) The balance of the burn address\n"
+            "}\n"
+            "]\n"
+
+            "\nExamples:\n" +
+            HelpExampleCli("getburnaddresses", "") + HelpExampleCli("getburnaddresses", "true") + HelpExampleRpc("getburnaddresses", ""));
+
+    bool fWithValues = false;
+    if (request.params.size() > 0)
+        fWithValues = request.params[0].get_bool();
+
+    UniValue ret(UniValue::VARR);
+    int nHeight = WITH_LOCK(cs_main, return chainActive.Height());
+    if (nHeight < 0) return "[]";
+
+    if (fWithValues) FlushStateToDisk();
+
+    for (const auto& kv : GetBurnStats(pcoinsTip, fWithValues, nHeight)) {
+        UniValue obj(UniValue::VOBJ);
+        obj.push_back(Pair("address", kv.first));
+        if (fWithValues) {
+            obj.push_back(Pair("amount", ValueFromAmount(kv.second)));
+        }
+        ret.push_back(obj);
+    }
 
     return ret;
 }
