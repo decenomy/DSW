@@ -6,7 +6,7 @@ CONFIGFOLDER='/root/.__decenomy__'
 COIN_DAEMON='__decenomy__d'
 COIN_CLI='__decenomy__-cli'
 COIN_PATH='/usr/local/bin/'
-COIN_TGZ='https://github.com/decenomy/DSW/releases/download/vX.X.X.X/_Decenomy_-X.X.X.X-Linux.zip'
+COIN_TGZ=`curl -s https://api.github.com/repos/__GITHUB_ACCOUNT__/__GITHUB_REPOSITORY__/releases/latest | grep "browser_download_url.*Linux\\.zip" | cut -d : -f 2,3 | tr -d \" | xargs`
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
 COIN_NAME='__decenomy__'
 COIN_PORT=__PORT_MAINNET__
@@ -230,7 +230,7 @@ echo -e "${PURPLE}Adding bitcoin PPA repository"
 apt-add-repository -y ppa:bitcoin/bitcoin >/dev/null 2>&1
 echo -e "Installing required packages, it may take some time to finish.${NC}"
 apt-get update >/dev/null 2>&1
-apt-get install libzmq3-dev -y >/dev/null 2>&1
+apt-get install libzmq3-dev net-tools -y >/dev/null 2>&1
 apt-get install -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" make software-properties-common \
 build-essential libtool autoconf libssl-dev libboost-dev libboost-chrono-dev libboost-filesystem-dev libboost-program-options-dev \
 libboost-system-dev libboost-test-dev libboost-thread-dev sudo automake git wget curl libdb4.8-dev bsdmainutils libdb4.8++-dev \

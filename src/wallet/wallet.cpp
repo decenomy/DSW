@@ -2522,7 +2522,7 @@ bool CWallet::CreateCoinStake(
     pStakerStatus->SetLastCoins((int) availableCoins->size());
 
     // P2PKH block signatures were not accepted before v5 update.
-    bool onlyP2PK = !consensus.NetworkUpgradeActive(pindexPrev->nHeight + 1, Consensus::UPGRADE_V5_DUMMY);
+    bool onlyP2PK = !consensus.NetworkUpgradeActive(pindexPrev->nHeight + 1, Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES);
 
     // Kernel Search
     CAmount nCredit;
@@ -3654,8 +3654,12 @@ CWallet* CWallet::CreateWalletFromFile(const std::string walletFile)
         walletInstance->SetBestChain(chainActive.GetLocator());
     }
 
-    if(walletInstance->GetECommerceKeyPoolSize() == 0) {
-        walletInstance->TopUpKeyPool();
+    {
+        LOCK(walletInstance->cs_wallet);
+
+        if(walletInstance->GetECommerceKeyPoolSize() == 0) {
+            walletInstance->TopUpKeyPool();
+        }
     }
 
     LogPrintf("Wallet completed loading in %15dms\n", GetTimeMillis() - nStart);

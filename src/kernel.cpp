@@ -35,7 +35,7 @@ CStakeKernel::CStakeKernel(const CBlockIndex* const pindexPrev, CStakeInput* sta
     stakeValue(stakeInput->GetValue())
 {
     // Set kernel stake modifier
-    if (!Params().GetConsensus().NetworkUpgradeActive(pindexPrev->nHeight + 1, Consensus::UPGRADE_V3_4)) {
+    if (!Params().GetConsensus().NetworkUpgradeActive(pindexPrev->nHeight + 1, Consensus::UPGRADE_STAKE_MODIFIER_V2)) {
         uint64_t nStakeModifier = 0;
         if (!GetOldStakeModifier(stakeInput, nStakeModifier))
             LogPrintf("%s : ERROR: Failed to get kernel stake modifier\n", __func__);
@@ -132,23 +132,27 @@ bool Stake(const CBlockIndex* pindexPrev, CStakeInput* stakeInput, unsigned int 
     // Get the new time slot (and verify it's not the same as previous block)
     const bool fRegTest = Params().IsRegTestNet();
     const bool fTimeProtocolV2 = Params().GetConsensus().IsTimeProtocolV2(nHeightTx) && !fRegTest;
-    nTimeTx = (fTimeProtocolV2 ? GetCurrentTimeSlot() : GetAdjustedTime());
-
-    if (nTimeTx <= pindexPrev->nTime && !fRegTest) return false;
+    const int nTimeSlotLength = Params().GetConsensus().nTimeSlotLength;
+    nTimeTx = pindexPrev->MinPastBlockTime();
 
     if (!stakeInput || !stakeInput->ContextCheck(nHeightTx, nTimeTx)) return false;
 
-    int slotRange = fTimeProtocolV2 ? 1 : Params().GetConsensus().nFutureTimeDriftPoS;
+    int slotStep = fTimeProtocolV2 ? nTimeSlotLength : 1;
 
-    for(int i = 0; i < slotRange; i++) 
-    {
+    nTimeTx = (nTimeTx / slotStep) * slotStep;
+
+    while(nTimeTx <= pindexPrev->MinPastBlockTime()) {
+        nTimeTx += slotStep;
+    } 
+
+    while(nTimeTx <= pindexPrev->MaxFutureBlockTime()) {
         // Verify Proof Of Stake
         CStakeKernel stakeKernel(pindexPrev, stakeInput, nBits, nTimeTx);
         if(stakeKernel.CheckKernelHash(true)) 
         {
             return true;
         }
-        nTimeTx++;
+        nTimeTx += slotStep;
     }
 
     return false;
@@ -166,6 +170,11 @@ bool Stake(const CBlockIndex* pindexPrev, CStakeInput* stakeInput, unsigned int 
  */
 bool CheckProofOfStake(const CBlock& block, std::string& strError, const CBlockIndex* pindexPrev)
 {
+    // if we have already a checkpoint newer than this block 
+    // then it is OK
+    if (block.nTime <= Params().Checkpoints().nTimeLastCheckpoint)
+        return true;
+
     const int nHeight = pindexPrev->nHeight + 1;
     // Initialize stake input
     std::unique_ptr<CStakeInput> stakeInput;

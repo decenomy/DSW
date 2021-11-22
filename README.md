@@ -6,18 +6,18 @@ DECENOMY Standard wallet repository
 
 ### Coin Specs
 
-• PoW Algorithm: Quark  
-• Premine: 300,000 SAPP
-• PoW Blocks: 1 - 500  
-• PoS Blocks: Starting from 501  
-• Block Time: 60 Seconds    
-• Maturity: 100 Confirmations  
-• Prefix: SAPP adresses start with the capital letter "S"  
-• Ports: 45328 (p2p) / 45329 (rpc)
+• PoW Algorithm: X11KVS
+• Premine: 1,000,000,000 __DSW__
+• PoW Blocks: 1 - 1000
+• PoS Blocks: Starting from 1001
+• Block Time: 60 Seconds
+• Maturity: 100 Confirmations
+• Prefix: __DSW__ adresses start with the capital letter "D"
+• Ports: __PORT_MAINNET__ (p2p) / __RPCPORT_MAINNET__ (rpc)
 
-• Explorer http://sappexplorer.com
+• Explorer https://explorer.decenomy.net/
 
-• Website [sappcoin.com](http://www.sappcoin.com)
+• Website [__decenomy_website_link__](__decenomy_website_link__)
 
 ### Rewards Breakdown
 <table border=0 cellpadding=0 cellspacing=0 width=701 class=xl6553517252
