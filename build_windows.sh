@@ -12,11 +12,11 @@ fi
 	echo "1" | sudo update-alternatives --config x86_64-w64-mingw32-g++
 
 # Clone code from official Github repository
-	rm -rf DSW
-	git clone https://github.com/PEPS-Project/peps.git
+	rm -rf PEPS
+	git clone https://github.com/PEPS-Project/PEPS.git
 
 # Entering directory
-	cd DSW
+	cd PEPS
 
 # Compile dependencies
 	cd depends
@@ -30,6 +30,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/pepsd.exe DSW/src/peps-cli.exe DSW/src/peps-tx.exe DSW/src/qt/peps-qt.exe .
+	cp PEPS/src/pepsd.exe PEPS/src/peps-cli.exe PEPS/src/peps-tx.exe PEPS/src/qt/peps-qt.exe .
 	zip PEPS-Windows.zip pepsd.exe peps-cli.exe peps-tx.exe peps-qt.exe
 	rm -f pepsd.exe peps-cli.exe peps-tx.exe peps-qt.exe

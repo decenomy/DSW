@@ -7,11 +7,11 @@ then
 fi
 
 # Clone code from official Github repository
-    rm -rf DSW
-    git clone https://github.com/PEPS-Project/peps.git
+    rm -rf PEPS
+    git clone https://github.com/PEPS-Project/PEPS.git
 
 # Entering directory
-    cd DSW
+    cd PEPS
 
 # Compile dependencies
     cd depends
@@ -31,6 +31,6 @@ fi
     cd ..
 
 # Create zip file of binaries
-    cp DSW/src/pepsd DSW/src/peps-cli DSW/src/peps-tx DSW/src/qt/peps-qt DSW/peps-Core.dmg .
-    zip PEPS-MacOS.zip pepsd peps-cli peps-tx peps-qt peps-Core.dmg
-    rm -f pepsd peps-cli peps-tx peps-qt peps-Core.dmg
+    cp PEPS/src/pepsd PEPS/src/peps-cli PEPS/src/peps-tx PEPS/src/qt/peps-qt PEPS/Peps-Core.dmg .
+    zip PEPS-MacOS.zip pepsd peps-cli peps-tx peps-qt Peps-Core.dmg
+    rm -f pepsd peps-cli peps-tx peps-qt Peps-Core.dmg

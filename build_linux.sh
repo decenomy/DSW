@@ -11,11 +11,11 @@ fi
 	sudo apt install git zip unzip build-essential libtool bsdmainutils autotools-dev autoconf pkg-config automake python3 libqt5svg5-dev -y
 
 # Clone code from official Github repository
-	rm -rf DSW
-	git clone https://github.com/PEPS-Project/peps.git
+	rm -rf PEPS
+	git clone https://github.com/PEPS-Project/PEPS.git
 
 # Entering directory
-	cd DSW
+	cd PEPS
 
 # Compile dependencies
 	cd depends
@@ -29,6 +29,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/pepsd DSW/src/peps-cli DSW/src/peps-tx DSW/src/qt/peps-qt .
+	cp PEPS/src/pepsd PEPS/src/peps-cli PEPS/src/peps-tx PEPS/src/qt/peps-qt .
 	zip PEPS-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip pepsd peps-cli peps-tx peps-qt
 	rm -f pepsd peps-cli peps-tx peps-qt
