@@ -1,177 +1,50 @@
-**ALERT: This document should be updated for EACH coin individually**
-**The dummy values below belongs to Sapphire Coin**
-
-DECENOMY Standard wallet repository
+Peps wallet repository
 =====================================
 
 ### Coin Specs
 
-• PoW Algorithm: XEVAN
-• Premine: 25,000,000 PEPS
-• PoW Blocks: 1 - 200
-• PoS Blocks: Starting from 201
-• Block Time: 60 Seconds
-• Maturity: 76 Confirmations
-• Prefix: PEPS adresses start with the capital letter "P"
-• Ports: 15252 (p2p) / 16262 (rpc)
+• PoW Algorithm: XEVAN  
+• Premine: 25,000,000 PEPS  
+• PoW Blocks: 1 - 200  
+• PoS Blocks: Starting from 201  
+• Block Time: 60 Seconds  
+• Maturity: 76/100 Confirmations  
+• Prefix: PEPS adresses start with the capital letter "P"  
+• Ports: 15252 (p2p) / 16262 (rpc)  
 
-• Explorer https://explorer.decenomy.net/PEPS/blocks
-
-• Website [project.peps.today](https://project.peps.today)
+• Explorer https://explorer.decenomy.net/PEPS/blocks  
+• Website [https://github.com/PEPS-Project/PEPS](https://github.com/PEPS-Project/  PEPS)
 
 ### Rewards Breakdown
-<table border=0 cellpadding=0 cellspacing=0 width=701 class=xl6553517252
- style='border-collapse:collapse;table-layout:fixed;width:528pt'>
- <col class=xl6553517252 width=139 style='mso-width-source:userset;mso-width-alt:
- 4785;width:104pt'>
- <col class=xl6553517252 width=107 span=2 style='mso-width-source:userset;
- mso-width-alt:3702;width:81pt'>
- <col class=xl6553517252 width=134 style='mso-width-source:userset;mso-width-alt:
- 4608;width:100pt'>
- <col class=xl6553517252 width=107 span=2 style='mso-width-source:userset;
- mso-width-alt:3702;width:81pt'>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6317252 width=150 style='height:15.75pt;width:104pt'>Block</td>
-  <td class=xl6317252 width=107 style='width:81pt'>Collateral</td>
-  <td class=xl6317252 width=107 style='width:81pt'>Block Reward</td>
-  <td class=xl6317252 width=107 style='width:81pt'>MN Reward %</td>
-  <td class=xl6317252 width=134 style='width:100pt'>Staking Reward %</td>
-  <td class=xl6317252 width=107 style='width:81pt'>MN Reward</td>
-  <td class=xl6317252 width=107 style='width:81pt'>Staker Reward</td>
- </tr>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>2-20000</td>
-  <td class=xl6517252>20 000</td>
-  <td class=xl6517252>1</td>
-  <td class=xl6617252>70</td>
-  <td class=xl6617252>30</td>
-  <td class=xl6717252>0.7</td>
-  <td class=xl6553517252>0.3</td>
- </tr>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>20001-45000</td>
-  <td class=xl6517252>20 000</td>
-  <td class=xl6617252>2</td>
-  <td class=xl6617252>70</td>
-  <td class=xl6617252>30</td>
-  <td class=xl6717252 align=right>1.4</td>
-  <td class=xl6817252 align=right>0.6</td>
- </tr>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>45001-70000</td>
-  <td class=xl6517252>20 000</td>
-  <td class=xl6617252>3</td>
-  <td class=xl6617252>70</td>
-  <td class=xl6617252>30</td>
-  <td class=xl6717252 align=right>2.1</td>
-  <td class=xl6817252 align=right>0.9</td>
- </tr>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>70001-110000</td>
-  <td class=xl6517252>20 000</td>
-  <td class=xl6617252>25</td>
-  <td class=xl6617252>85</td>
-  <td class=xl6617252>15</td>
-  <td class=xl6717252 align=right>21.25</td>
-  <td class=xl6817252 align=right>3.75</td>
- </tr>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>110001-150000</td>
-  <td class=xl6517252>20 000</td>
-  <td class=xl6617252>40</td>
-  <td class=xl6617252>85</td>
-  <td class=xl6617252>15</td>
-  <td class=xl6717252 align=right>34</td>
-  <td class=xl6817252 align=right>6</td>
- </tr>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>150001-180000</td>
-  <td class=xl6517252>20 000</td>
-  <td class=xl6617252>30</td>
-  <td class=xl6617252>77</td>
-  <td class=xl6617252>23</td>
-  <td class=xl6717252 align=right>23.1</td>
-  <td class=xl6817252 align=right>6.9</td>
- </tr>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>180001-230000</td>
-  <td class=xl6517252>20 000</td>
-  <td class=xl6617252>36</td>
-  <td class=xl6617252>99</td>
-  <td class=xl6617252>1</td>
-  <td class=xl6717252 align=right>35.64</td>
-  <td class=xl6817252 align=right>0.36</td>
- </tr>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>230001-270000</td>
-  <td class=xl6517252>20 000</td>
-  <td class=xl6617252>40</td>
-  <td class=xl6617252>95</td>
-  <td class=xl6617252>5</td>
-  <td class=xl6717252 align=right>38</td>
-  <td class=xl6817252 align=right>2</td>
- </tr>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-   <td height=21 class=xl6417252 style='height:15.75pt'>270001-310000</td>
-   <td class=xl6517252>20 000</td>
-   <td class=xl6617252>45</td>
-   <td class=xl6617252>90</td>
-   <td class=xl6617252>10</td>
-   <td class=xl6717252 align=right>40.5</td>
-   <td class=xl6817252 align=right>4.5</td>
- </tr>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>310001-350000</td>
-  <td class=xl6517252>20 000</td>
-  <td class=xl6617252>50</td>
-  <td class=xl6617252>90</td>
-  <td class=xl6617252>10</td>
-  <td class=xl6717252 align=right>45</td>
-  <td class=xl6817252 align=right>5</td>
- </tr>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>350001-500000</td>
-  <td class=xl6517252>20 000</td>
-  <td class=xl6617252>45</td>
-  <td class=xl6617252>85</td>
-  <td class=xl6617252>15</td>
-  <td class=xl6717252 align=right>38.25</td>
-  <td class=xl6817252 align=right>6.75</td>
- </tr>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>500001-800000</td>
-  <td class=xl6517252>20 000</td>
-  <td class=xl6617252>40</td>
-  <td class=xl6617252>85</td>
-  <td class=xl6617252>15</td>
-  <td class=xl6717252 align=right>34</td>
-  <td class=xl6817252 align=right>6</td>
- </tr>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>800001-1100000</td>
-  <td class=xl6517252>20 000</td>
-  <td class=xl6617252>15</td>
-  <td class=xl6617252>70</td>
-  <td class=xl6617252>30</td>
-  <td class=xl6717252 align=right>10.5</td>
-  <td class=xl6817252 align=right>4.5</td>
- </tr>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>1100001-1500000</td>
-  <td class=xl6517252>20 000</td>
-  <td class=xl6617252>7.5</td>
-  <td class=xl6617252>65</td>
-  <td class=xl6617252>35</td>
-  <td class=xl6717252 align=right>4.875</td>
-  <td class=xl6817252 align=right>2.625</td>
- </tr>
- <tr height=21 style='mso-height-source:userset;height:15.75pt'>
-  <td height=21 class=xl6417252 style='height:15.75pt'>1500001-</td>
-  <td class=xl6517252>20 000</td>
-  <td class=xl6617252>1</td>
-  <td class=xl6617252>60</td>
-  <td class=xl6617252>40</td>
-  <td class=xl6717252 align=right>0.6</td>
-  <td class=xl6817252 align=right>0.4</td>
- </tr>
- </table>
+
+|Block  |Collateral|Block Reward|MN Reward %|Staking Reward %|MN Reward|Staker Reward|roi 500|roi 1000|roi 1500|roi 2000|roi 2500|coin supply|
+|-------|----------|------------|-----------|----------------|---------|-------------|-------|--------|--------|--------|--------|-----------|
+|1      |20000     |25000000.00 |0          |0               |0.00     |0.00         |0.00   |0.00    |0.00    |0.00    |0.00    |25M        |
+|2      |20000     |1.00        |70         |30              |0.70     |0.30         |3.68   |1.84    |1.23    |0.92    |0.74    |25M        |
+|20001  |20000     |2.00        |70         |30              |1.40     |0.60         |7.36   |3.68    |2.45    |1.84    |1.47    |25M        |
+|45001  |20000     |3.00        |70         |30              |2.10     |0.90         |11.04  |5.52    |3.68    |2.76    |2.21    |25M        |
+|70001  |20000     |25.00       |85         |15              |21.25    |3.75         |111.69 |55.84   |37.23   |27.92   |22.34   |25M        |
+|110001 |20000     |40.00       |85         |15              |34.00    |6.00         |178.70 |89.35   |59.57   |44.68   |35.74   |26M        |
+|150001 |20000     |30.00       |77         |23              |23.10    |6.90         |121.41 |60.71   |40.47   |30.35   |24.28   |28M        |
+|180001 |20000     |36.00       |99         |1               |35.64    |0.36         |187.32 |93.66   |62.44   |46.83   |37.46   |29M        |
+|230001 |20000     |40.00       |95         |5               |38.00    |2.00         |199.73 |99.86   |66.58   |49.93   |39.95   |30M        |
+|270001 |20000     |45.00       |90         |10              |40.50    |4.50         |212.87 |106.43  |70.96   |53.22   |42.57   |32M        |
+|310001 |20000     |50.00       |90         |10              |45.00    |5.00         |236.52 |118.26  |78.84   |59.13   |47.30   |34M        |
+|350001 |20000     |45.00       |85         |15              |38.25    |6.75         |201.04 |100.52  |67.01   |50.26   |40.21   |36M        |
+|500001 |20000     |40.00       |85         |15              |34.00    |6.00         |178.70 |89.35   |59.57   |44.68   |35.74   |43M        |
+|800001 |20000     |15.00       |70         |30              |10.50    |4.50         |55.19  |27.59   |18.40   |13.80   |11.04   |55M        |
+|1100001|20000     |7.50        |65         |35              |4.88     |2.63         |25.62  |12.81   |8.54    |6.41    |5.12    |59M        |
+|1500001|20000     |1.00        |60         |40              |0.60     |0.40         |3.15   |1.58    |1.05    |0.79    |0.63    |62M        |
+|1650001|4000      |10000002.00*|65         |35              |1.30     |0.70         |34.16  |17.08   |11.39   |8.54    |6.83    |72M        |
+|1650002|4000      |2.00        |65         |35              |1.30     |0.70         |34.16  |17.08   |11.39   |8.54    |6.83    |72M        |
+|1700001|5000      |4.00        |65         |35              |2.60     |1.40         |54.66  |27.33   |18.22   |13.67   |10.93   |72M        |
+|1800001|6000      |6.00        |65         |35              |3.90     |2.10         |68.33  |34.16   |22.78   |17.08   |13.67   |73M        |
+|1900001|7000      |8.00        |65         |35              |5.20     |2.80         |78.09  |39.04   |26.03   |19.52   |15.62   |73M        |
+|2000001|8000      |10.00       |65         |35              |6.50     |3.50         |85.41  |42.70   |28.47   |21.35   |17.08   |74M        |
+|2100001|9000      |20.00       |65         |35              |13.00    |7.00         |151.84 |75.92   |50.61   |37.96   |30.37   |75M        |
+|2200001|10000     |30.00       |65         |35              |19.50    |10.50        |204.98 |102.49  |68.33   |51.25   |41.00   |77M        |
+|2300001|10000     |40.00       |65         |35              |26.00    |14.00        |273.31 |136.66  |91.10   |68.33   |54.66   |80M        |
+|2400001|10000     |60.00       |65         |35              |39.00    |21.00        |409.97 |204.98  |136.66  |102.49  |81.99   |84M        |
+|2500001|20000     |80.00       |65         |35              |52.00    |28.00        |273.31 |136.66  |91.10   |68.33   |54.66   |90M        |
+
+* coins minted to support the token swap procedure
