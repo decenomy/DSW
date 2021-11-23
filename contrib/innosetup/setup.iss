@@ -3,7 +3,7 @@
 
 #define MyAppName "Peps Core"
 #define MyAppPublisher "2021 DECENOMY Core Developers"
-#define MyAppURL "https://peps.com"
+#define MyAppURL "https://github.com/PEPS-Project/PEPS"
 #define MyAppExeName "peps-qt.exe"
 #define MyAppExtraData "https://explorer.decenomy.net/bootstraps/PEPS/bootstrap.zip"
 #define MyAppVersion GetVersionNumbersString(".\package\" + MyAppExeName)
