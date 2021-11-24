@@ -4789,7 +4789,7 @@ sauvegarde sera créée.
     </message>
     <message>
         <source>Masternode Reward</source>
-        <translation>Récompense Matsernode</translation>
+        <translation>Récompense Masternode</translation>
     </message>
     <message>
         <source>Received from</source>
