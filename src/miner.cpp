@@ -215,7 +215,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
     else if (consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_ZC))
         pblock->nVersion = 4;
     else
-        pblock->nVersion = 3;
+        pblock->nVersion = 4; // to be compatible with the old wallet
 
     // -regtest only: allow overriding block.nVersion with
     // -blockversion=N to test forking scenarios
