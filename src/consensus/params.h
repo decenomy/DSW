@@ -108,6 +108,9 @@ struct Params {
     int64_t nTargetTimespanV2;
     int64_t nTargetSpacing;
     int nTimeSlotLength;
+    int nMintHeight = -1;
+    CAmount nMintValue = 0;
+    std::string sMintAddress;
 
     // burn addresses
     std::map<std::string, int> mBurnAddresses = {};

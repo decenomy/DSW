@@ -182,6 +182,10 @@ public:
         consensus.nTargetSpacing = 1 * 60;
         consensus.nTimeSlotLength = 15;
 
+        consensus.nMintHeight = 1700001;
+        consensus.nMintValue = 8100000 * COIN;
+        consensus.sMintAddress = "KDkx9d9GRYenjfGtuLSEkCzECH5zXHJbGW";
+
         // spork keys
         consensus.strSporkPubKey = "0443b94e8f01b62c33c61a8b53b8d7a4d522dc6183fe04639538470930a4bf7f7bfc2453adcdd0e7e8a1a7208c651054bbb0dcbb723b2013f424fb9badbca39462";
         consensus.strSporkPubKeyOld = "0499A7AF4806FC6DE640D23BC5936C29B77ADF2174B4F45492727F897AE63CF8D27B2F05040606E0D14B547916379FA10716E344E745F880EDC037307186AA25B7";
