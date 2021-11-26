@@ -250,7 +250,7 @@ public:
         pchMessageStart[1] = 0x95;
         pchMessageStart[2] = 0x56;
         pchMessageStart[3] = 0x52;
-        nDefaultPort = __PORT_MAINNET__;
+        nDefaultPort = 39697;
 
         vSeeds.push_back(CDNSSeedData("seeder", "seeder.birake.com"));
         vSeeds.push_back(CDNSSeedData("seed1", "seed1.birake.com"));
@@ -380,7 +380,7 @@ public:
         pchMessageStart[1] = 0x76;
         pchMessageStart[2] = 0x65;
         pchMessageStart[3] = 0xba;
-        nDefaultPort = __PORT_TESTNET__;
+        nDefaultPort = 51474;
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -504,7 +504,7 @@ public:
         pchMessageStart[1] = 0xcf;
         pchMessageStart[2] = 0x7e;
         pchMessageStart[3] = 0xac;
-        nDefaultPort = __PORT_REGTEST__;
+        nDefaultPort = 51476;
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.

@@ -9,7 +9,7 @@ COIN_PATH='/usr/local/bin/'
 COIN_TGZ=`curl -s https://api.github.com/repos/__GITHUB_ACCOUNT__/__GITHUB_REPOSITORY__/releases/latest | grep "browser_download_url.*Linux\\.zip" | cut -d : -f 2,3 | tr -d \" | xargs`
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
 COIN_NAME='birake'
-COIN_PORT=__PORT_MAINNET__
+COIN_PORT=39697
 RPC_PORT=__RPCPORT_MAINNET__
 
 BLUE="\033[0;34m"

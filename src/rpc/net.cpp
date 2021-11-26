@@ -193,7 +193,7 @@ UniValue addnode(const JSONRPCRequest& request)
             "2. \"command\"  (string, required) 'add' to add a node to the list, 'remove' to remove a node from the list, 'onetry' to try a connection to the node once\n"
 
             "\nExamples:\n" +
-            HelpExampleCli("addnode", "\"192.168.0.6:__PORT_MAINNET__\" \"onetry\"") + HelpExampleRpc("addnode", "\"192.168.0.6:__PORT_MAINNET__\", \"onetry\""));
+            HelpExampleCli("addnode", "\"192.168.0.6:39697\" \"onetry\"") + HelpExampleRpc("addnode", "\"192.168.0.6:39697\", \"onetry\""));
 
     if(!g_connman)
         throw JSONRPCError(RPC_CLIENT_P2P_DISABLED, "Error: Peer-to-peer functionality missing or disabled");
@@ -261,7 +261,7 @@ UniValue getaddednodeinfo(const JSONRPCRequest& request)
             "    \"connected\" : true|false,          (boolean) If connected\n"
             "    \"addresses\" : [                    (list of objects) Only when connected = true\n"
             "       {\n"
-            "         \"address\" : \"192.168.0.201:__PORT_MAINNET__\",  (string) The birake server IP and port we're connected to\n"
+            "         \"address\" : \"192.168.0.201:39697\",  (string) The birake server IP and port we're connected to\n"
             "         \"connected\" : \"outbound\"           (string) connection, inbound or outbound\n"
             "       }\n"
             "     ]\n"
