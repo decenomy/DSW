@@ -3,7 +3,7 @@ HH       CONTAINER
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 * {
-  font-family: Nunito;
+  font-family: Montserrat;
 }
 
 *[cssClass="container"] {
@@ -1592,7 +1592,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 *[cssClass="container-splash"] {
   background-color: transparent;
   background-image: url("://bg-splash-png");
-  font-family: Nunito;
+  font-family: Montserrat;
 }
 
 *[cssClass="img-splash-logo"] {
