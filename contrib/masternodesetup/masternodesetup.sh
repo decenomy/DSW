@@ -10,7 +10,7 @@ COIN_TGZ=`curl -s https://api.github.com/repos/__GITHUB_ACCOUNT__/__GITHUB_REPOS
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
 COIN_NAME='birake'
 COIN_PORT=39697
-RPC_PORT=__RPCPORT_MAINNET__
+RPC_PORT=39698
 
 BLUE="\033[0;34m"
 YELLOW="\033[0;33m"
