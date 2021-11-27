@@ -7,11 +7,11 @@ then
 fi
 
 # Clone code from official Github repository
-    rm -rf BIR
-    git clone https://github.com/decenomy/BIR.git
+    rm -rf birakecoin
+    git clone https://github.com/birake/birakecoin.git
 
 # Entering directory
-    cd BIR
+    cd birakecoin
 
 # Compile dependencies
     cd depends
@@ -31,6 +31,6 @@ fi
     cd ..
 
 # Create zip file of binaries
-    cp BIR/src/biraked BIR/src/birake-cli BIR/src/birake-tx BIR/src/qt/birake-qt BIR/Birake-Core.dmg .
-    zip __BIR__-MacOS.zip biraked birake-cli birake-tx birake-qt Birake-Core.dmg
+    cp birakecoin/src/biraked birakecoin/src/birake-cli birakecoin/src/birake-tx birakecoin/src/qt/birake-qt birakecoin/Birake-Core.dmg .
+    zip BIR-MacOS.zip biraked birake-cli birake-tx birake-qt Birake-Core.dmg
     rm -f biraked birake-cli birake-tx birake-qt Birake-Core.dmg

@@ -11,11 +11,11 @@ fi
 	sudo apt install git zip unzip build-essential libtool bsdmainutils autotools-dev autoconf pkg-config automake python3 libqt5svg5-dev -y
 
 # Clone code from official Github repository
-	rm -rf DSW
-	git clone https://github.com/decenomy/DSW.git
+	rm -rf birakecoin
+	git clone https://github.com/birake/birakecoin.git
 
 # Entering directory
-	cd DSW
+	cd birakecoin
 
 # Compile dependencies
 	cd depends
@@ -29,6 +29,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/biraked DSW/src/birake-cli DSW/src/birake-tx DSW/src/qt/birake-qt .
-	zip __DSW__-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip biraked birake-cli birake-tx birake-qt
+	cp birakecoin/src/biraked birakecoin/src/birake-cli birakecoin/src/birake-tx birakecoin/src/qt/birake-qt .
+	zip BIR-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip biraked birake-cli birake-tx birake-qt
 	rm -f biraked birake-cli birake-tx birake-qt

@@ -12,11 +12,11 @@ fi
 	echo "1" | sudo update-alternatives --config x86_64-w64-mingw32-g++
 
 # Clone code from official Github repository
-	rm -rf DSW
-	git clone https://github.com/decenomy/DSW.git
+	rm -rf birakecoin
+	git clone https://github.com/birake/birakecoin.git
 
 # Entering directory
-	cd DSW
+	cd birakecoin
 
 # Compile dependencies
 	cd depends
@@ -30,6 +30,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/biraked.exe DSW/src/birake-cli.exe DSW/src/birake-tx.exe DSW/src/qt/birake-qt.exe .
-	zip __DSW__-Windows.zip biraked.exe birake-cli.exe birake-tx.exe birake-qt.exe
+	cp birakecoin/src/biraked.exe birakecoin/src/birake-cli.exe birakecoin/src/birake-tx.exe birakecoin/src/qt/birake-qt.exe .
+	zip BIR-Windows.zip biraked.exe birake-cli.exe birake-tx.exe birake-qt.exe
 	rm -f biraked.exe birake-cli.exe birake-tx.exe birake-qt.exe
