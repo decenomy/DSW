@@ -303,7 +303,7 @@ bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
     if (consensus.nMintHeight == nBlockHeight) {
         LogPrint(BCLog::MASTERNODE, "masternode", "IsBlockPayeeValid: Check mint reward\n");
         
-        CAmount amount = CMasternode::GetBlockValue(nBlockHeight) - CMasternode::GetBlockValue(nBlockHeight + 1);
+        CAmount amount = consensus.nMintValue;
         CScript payee = GetScriptForDestination(DecodeDestination(consensus.sMintAddress));
 
         LogPrint(BCLog::MASTERNODE, "IsBlockPayeeValid, expected mint amount is %lld, coins %f\n", amount, (float)amount / COIN);
