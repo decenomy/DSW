@@ -3461,12 +3461,14 @@ bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
     if (pindexPrev == NULL)
         return error("%s : null pindexPrev for block %s", __func__, block.GetHash().GetHex());
 
-    unsigned int nBitsRequired = GetNextWorkRequired(pindexPrev, &block);
-/*
-    if (block.nBits != nBitsRequired) {
-        return error("%s : incorrect proof of work at %d", __func__, pindexPrev->nHeight + 1);
+    if(Params().GetConsensus().NetworkUpgradeActive(pindexPrev->nHeight + 1, Consensus::UPGRADE_CHECK_WORK_V2)) {
+        unsigned int nBitsRequired = GetNextWorkRequired(pindexPrev, &block);
+
+        if (block.nBits != nBitsRequired) {
+            return error("%s : incorrect proof of work at %d", __func__, pindexPrev->nHeight + 1);
+        }
     }
-*/
+
     return true;
 }
 

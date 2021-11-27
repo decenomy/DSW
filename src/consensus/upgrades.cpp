@@ -59,6 +59,10 @@ const struct NUInfo NetworkUpgradeInfo[Consensus::MAX_NETWORK_UPGRADES] = {
                 /*.strInfo =*/ "Increases the stake min depth",
         },
         {
+                /*.strName =*/ "check_work_v2",
+                /*.strInfo =*/ "check work V2",
+        },
+        {
                 /*.strName =*/ "masternode_rank_v2",
                 /*.strInfo =*/ "new masternode ranking system",
         },

@@ -36,6 +36,7 @@ enum UpgradeIndex : uint32_t {
     UPGRADE_TIME_PROTOCOL_V2,
     UPGRADE_P2PKH_BLOCK_SIGNATURES,
     UPGRADE_STAKE_MIN_DEPTH_V2,
+    UPGRADE_CHECK_WORK_V2,
     UPGRADE_MASTERNODE_RANK_V2,
     UPGRADE_COINBASE_MATURITY_V2,
     // NOTE: Also add new upgrades to NetworkUpgradeInfo in upgrades.cpp
