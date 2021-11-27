@@ -487,9 +487,9 @@ UniValue dumpwallet(const JSONRPCRequest& request)
             file << "# extended private masterkey: " << KeyIO::EncodeExtKey(masterKey) << "\n";
 
             CExtKey purposeKey;            //key at m/purpose' --> key at m/44'
-            CExtKey cointypeKey;           //key at m/purpose'/coin_type'  --> key at m/44'/BIP32_HDCHAIN'
-            CExtKey accountKey;            //key at m/purpose'/coin_type'/account' ---> key at m/44'/BIP32_HDCHAIN'/0'
-            CExtKey changeKey;             //key at m/purpose'/coin_type'/account'/change ---> key at m/44'/BIP32_HDCHAIN'/0'/HDChain::ChangeType::ECOMMERCE.
+            CExtKey cointypeKey;           //key at m/purpose'/coin_type'  --> key at m/44'/848'
+            CExtKey accountKey;            //key at m/purpose'/coin_type'/account' ---> key at m/44'/848'/0'
+            CExtKey changeKey;             //key at m/purpose'/coin_type'/account'/change ---> key at m/44'/848'/0'/HDChain::ChangeType::ECOMMERCE.
 
             // derive m/0'
             // use hardened derivation (child keys >= 0x80000000 are hardened after bip32)
