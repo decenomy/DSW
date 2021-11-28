@@ -99,7 +99,6 @@ struct Params {
     int nCoinbaseMaturity;
     int nFutureTimeDriftPoW;
     int nFutureTimeDriftPoS;
-    int nMasternodeCountDrift;
     CAmount nMaxMoneyOut;
     int nPoolMaxTransactions;
     int64_t nProposalEstablishmentTime;
