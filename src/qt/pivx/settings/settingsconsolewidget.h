@@ -45,8 +45,8 @@ public:
 
 public Q_SLOTS:
     void clear(bool clearHistory = true);
-    void message(int category, const QString &msg) { message(category, msg, false); }
-    void message(int category, const QString &message, bool html);
+    void response(int category, const QString &message) { messageInternal(category, message); };
+    void messageInternal(int category, const QString &message, bool html = false);
     /** Go forward or back in history */
     void browseHistory(int offset);
     /** Scroll console view to end */

@@ -46,7 +46,7 @@ bool TransactionRecord::decomposeCoinStake(const CWallet* wallet, const CWalletT
         }
         sub.debit -= wtx.vin[0].nSequence * COIN;
     } else if (isminetype mine = wallet->IsMine(wtx.vout[1])) {
-        // __DSW__ stake reward
+        // TRTT stake reward
         CTxDestination address;
         if (!ExtractDestination(wtx.vout[1].scriptPubKey, address))
             return true;

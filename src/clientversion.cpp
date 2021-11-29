@@ -14,7 +14,7 @@
  * for both trittiumd and trittium-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("Trittium");
+const std::string CLIENT_NAME("Trittium Core");
 
 /**
  * Client version number
