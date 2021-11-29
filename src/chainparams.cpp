@@ -383,7 +383,7 @@ public:
         //convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main)); // added
 
         base58Prefixes[PUBKEY_ADDRESS_BIR]  = std::vector<unsigned char>(1, 45);
-        base58Prefixes[SECRET_KEY_BIR]      = std::vector<unsigned char>(1, 139);
+        base58Prefixes[SECRET_KEY_BIR]      = std::vector<unsigned char>(1, 179);
     }
 
     const Checkpoints::CCheckpointData& Checkpoints() const
