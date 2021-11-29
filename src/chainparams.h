@@ -48,6 +48,9 @@ public:
         EXT_SECRET_KEY, // BIP32
         EXT_COIN_TYPE,  // BIP44
 
+        PUBKEY_ADDRESS_BIR,
+        SECRET_KEY_BIR,
+
         MAX_BASE58_TYPES
     };
 
