@@ -313,12 +313,15 @@ public:
         vSeeds.push_back(CDNSSeedData("seed7",  "seed7.trittium.net"));
         vSeeds.push_back(CDNSSeedData("seed8",  "seed8.trittium.net"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 65); // T
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19); // 8 or 9
-        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);  // 
-        base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x02)(0x21)(0x31)(0x2B).convert_to_container<std::vector<unsigned char> >();
+        base58Prefixes[PUBKEY_ADDRESS]  = std::vector<unsigned char>(1, 65); // T
+        base58Prefixes[SCRIPT_ADDRESS]  = std::vector<unsigned char>(1, 19); // 8 or 9
+        base58Prefixes[SECRET_KEY]      = std::vector<unsigned char>(1, 239);  // 
+        base58Prefixes[EXT_SECRET_KEY]  = boost::assign::list_of(0x02)(0x21)(0x31)(0x2B).convert_to_container<std::vector<unsigned char> >();
         // BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md
-        base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x03)(0x46).convert_to_container<std::vector<unsigned char> >();
+        base58Prefixes[EXT_COIN_TYPE]   = boost::assign::list_of(0x80)(0x00)(0x03)(0x46).convert_to_container<std::vector<unsigned char> >();
+
+        base58Prefixes[PUBKEY_ADDRESS_BIR]  = std::vector<unsigned char>(1, 45);
+        base58Prefixes[SECRET_KEY_BIR]      = std::vector<unsigned char>(1, 139);        
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
         //convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main)); // added
