@@ -242,7 +242,8 @@ public:
 
         // burn addresses
         consensus.mBurnAddresses = {
-           //{ "7XXXXXXXXXXXXXXXXXXXXXXXXXXXaqpZch", 0 }
+            { "TRCryptoLifeDotNetBurnAddrXXX6gvik", 0 },
+            { "TXXXXXXXXXXXXXXXXXXXXXXXXXXXaoxzKN", 0 }
         };
 
         // height-based activations
