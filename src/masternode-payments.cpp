@@ -427,11 +427,27 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const CBloc
 
         LogPrint(BCLog::MASTERNODE,"Masternode payment of %s to %s\n", FormatMoney(masternodePayment).c_str(), EncodeDestination(address1).c_str());
     } else {
-        // removes the token swap mint if there is no masternode to pay
-        if (fProofOfStake) {
-            txNew.vout[txNew.vout.size() - 1].nValue = blockValue - nTokenSwapMint;
-        } else {
-            txNew.vout[0].nValue = blockValue - nTokenSwapMint;
+        if(nTokenSwapMint > 0) {
+            // removes the mint value if there is no masternode to pay
+            if (fProofOfStake) {
+                unsigned int i = txNew.vout.size();
+                if (i == 2) {
+                    // Majority of cases; do it quick and move on
+                    txNew.vout[i - 1].nValue -= nTokenSwapMint;
+                } else if (i > 2) {
+                    // special case, stake is split between (i-1) outputs
+                    unsigned int outputs = i-1;
+                    CAmount mnPaymentSplit = nTokenSwapMint / outputs;
+                    CAmount mnPaymentRemainder = nMintValue - (mnPaymentSplit * outputs);
+                    for (unsigned int j=1; j<=outputs; j++) {
+                        txNew.vout[j].nValue -= mnPaymentSplit;
+                    }
+                    // in case it's not an even division, take the last bit of dust from the last one
+                    txNew.vout[outputs].nValue -= mnPaymentRemainder;
+                }
+            } else {
+                txNew.vout[0].nValue = blockValue - nTokenSwapMint;
+            }
         }
     }
 
