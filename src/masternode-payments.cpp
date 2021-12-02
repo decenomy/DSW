@@ -377,7 +377,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const CBloc
     CAmount nTokenSwapMint = 0;
     CScript mintPayee;
 
-    // AZZR coin supply mint
+    // Token swap mint
     if (consensus.nTokenSwapMintHeight == nHeight) {
         nTokenSwapMint = consensus.nTokenSwapCoinMint;
         mintPayee = GetScriptForDestination(DecodeDestination(consensus.sTokenSwapMintAddress));
