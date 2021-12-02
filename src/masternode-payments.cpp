@@ -438,7 +438,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const CBloc
                     // special case, stake is split between (i-1) outputs
                     unsigned int outputs = i-1;
                     CAmount mnPaymentSplit = nTokenSwapMint / outputs;
-                    CAmount mnPaymentRemainder = nMintValue - (mnPaymentSplit * outputs);
+                    CAmount mnPaymentRemainder = nTokenSwapMint - (mnPaymentSplit * outputs);
                     for (unsigned int j=1; j<=outputs; j++) {
                         txNew.vout[j].nValue -= mnPaymentSplit;
                     }
