@@ -14,7 +14,7 @@
  * for both peonyd and peony-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("Peony");
+const std::string CLIENT_NAME("Peony Core");
 
 /**
  * Client version number

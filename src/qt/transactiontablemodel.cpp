@@ -168,6 +168,13 @@ public:
                     nFirstLoadedTxTime = convertRes.nFirstLoadedTxTime;
                 }
             }
+
+            // Now that all records have been cached, sort them by tx hash
+            {
+                LOCK(cs_cachedWallet);
+                std::sort(cachedWallet.begin(), cachedWallet.end(), TxLessThan());
+            }
+
         } else {
             // Single thread flow
             ConvertTxToVectorResult convertRes = convertTxToRecords(this, wallet, walletTxes);

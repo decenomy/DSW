@@ -20,6 +20,7 @@
 #include "guiinterface.h"
 #include "hash.h"
 #include "main.h"
+#include "masternodeman.h"
 #include "miner.h"
 #include "netmessagemaker.h"
 #include "primitives/transaction.h"
@@ -39,11 +40,17 @@
 #include <miniupnpc/upnperrors.h>
 #endif
 
-
 #include <math.h>
+#include <random>
+#include <algorithm>
 
 // Dump addresses to peers.dat and banlist.dat every 15 minutes (900s)
 #define DUMP_ADDRESSES_INTERVAL 900
+
+// Query the DNS seeds at every 10 minutes (600s)
+#define DNS_SEEDS_INTERVAL 600
+
+#define MAX_MASTERNODES_SEEDED_AT_ONCE 10
 
 // We add a random period time (0 to 1 seconds) to feeler connections to prevent synchronization.
 #define FEELER_SLEEP_WINDOW 1
@@ -1091,12 +1098,20 @@ void CConnman::AcceptConnection(const ListenSocket& hListenSocket) {
     }
 
     if (nInbound >= nMaxConnections - MAX_OUTBOUND_CONNECTIONS) {
-        if (!AttemptToEvictConnection(whitelisted)) {
-            // No connection to evict, disconnect the new connection
-            LogPrint(BCLog::NET, "failed to find an eviction candidate - connection dropped (full)\n");
-            CloseSocket(hSocket);
-            return;
+        // try to evict 10% of the inbound connections
+        int n = std::max(1, (nMaxConnections - MAX_OUTBOUND_CONNECTIONS) / 10);
+        int evicted = 0;
+        for(int i = 0; i < n; i++) {
+            if (!AttemptToEvictConnection(whitelisted) && evicted == 0) {
+                // No connection to evict, disconnect the new connection
+                LogPrint(BCLog::NET, "failed to find an eviction candidate - connection dropped (full)\n");
+                CloseSocket(hSocket);
+                return;
+            } else {
+                evicted++;
+            }
         }
+        LogPrint(BCLog::NET, "%d connections evicted\n", evicted);
     }
 
     NodeId id = GetNewNodeId();
@@ -1529,13 +1544,38 @@ void CConnman::ThreadDNSAddressSeed()
             return;
         }
     }
+    
+    std::vector<CDNSSeedData> vPeers(Params().DNSSeeds());
+    std::vector<CMasternode> vMasternodes = mnodeman.GetFullMasternodeVector();
 
-    const std::vector<CDNSSeedData>& vSeeds = Params().DNSSeeds();
-    int found = 0;
+    std::random_device rd;
+    std::mt19937 g(rd());
+ 
+    std::shuffle(vMasternodes.begin(), vMasternodes.end(), g);
+    
+    int ipV4Count = 0;
+    int ipV6Count = 0;   
+
+    for(const CMasternode& mn : vMasternodes) {
+
+        if(mn.addr.IsIPv4() && ipV4Count < MAX_MASTERNODES_SEEDED_AT_ONCE) {
+            vPeers.push_back(CDNSSeedData(mn.addr.ToStringIP(), mn.addr.ToStringIP()));
+            ipV4Count++;
+        }
+
+        if(mn.addr.IsIPv6() && ipV6Count < MAX_MASTERNODES_SEEDED_AT_ONCE) {
+            vPeers.push_back(CDNSSeedData(mn.addr.ToStringIP(), mn.addr.ToStringIP()));
+            ipV6Count++;
+        }
+
+        if(ipV4Count >= ipV6Count >= MAX_MASTERNODES_SEEDED_AT_ONCE) break;
+    }
 
     LogPrintf("Loading addresses from DNS seeds (could take a while)\n");
 
-    for (const CDNSSeedData& seed : vSeeds) {
+    int found = 0;
+
+    for (const CDNSSeedData& seed : vPeers) {
         if(stopping) return;
         if (HaveNameProxy()) {
             AddOneShot(seed.host);
@@ -2167,6 +2207,9 @@ bool CConnman::Start(CScheduler& scheduler, std::string& strNodeError, Options c
 
     // Dump network addresses
     scheduler.scheduleEvery(boost::bind(&CConnman::DumpData, this), DUMP_ADDRESSES_INTERVAL);
+
+    // Query DNS seeds
+    scheduler.scheduleEvery(boost::bind(&CConnman::ThreadDNSAddressSeed, this), DNS_SEEDS_INTERVAL);
 
     return true;
 }
