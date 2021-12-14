@@ -5148,7 +5148,7 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
             pfrom->cleanSubVer = cleanSubVer;
         }
 
-        auto shortFromName = pfrom->cleanSubVer.substr(0, pfrom->cleanSubVer.find(' '));
+        auto shortFromName = pfrom->cleanSubVer.substr(0, pfrom->cleanSubVer.find(':')).substr(0, pfrom->cleanSubVer.find(' '));
         auto shortName = CLIENT_NAME.substr(0, CLIENT_NAME.find(' '));
 
         for (auto & c: shortFromName) c = toupper(c);
