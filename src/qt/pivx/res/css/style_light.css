@@ -365,17 +365,17 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="text-title-topbar"] {
-  color: #262626;
+  color: #a3a3a4;
   font-size: 16px;
 }
 
 *[cssClass="amount-topbar"] {
-  color: #262626;
+  color: #e7e7e7;
   font-size: 28px;
 }
 
 *[cssClass="amount-small-topbar"] {
-  color: #262626;
+  color: #e7e7e7;
   font-size: 22px;
 }
 
