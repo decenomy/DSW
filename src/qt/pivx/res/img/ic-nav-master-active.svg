@@ -47,7 +47,7 @@
        d="M 0,0 H 24 V 24 H 0 Z"
        style="fill:none" />
     <path
-       style="fill:#810890;fill-opacity:1"
+       style="fill:#fbff57;fill-opacity:1"
        id="path6"
        d="M 17,16 13,12 V 8.82 C 14.16,8.4 15,7.3 15,6 15,4.34 13.66,3 12,3 10.34,3 9,4.34 9,6 9,7.3 9.84,8.4 11,8.82 V 12 L 7,16 H 3 v 5 h 5 v -3.05 l 4,-4.2 4,4.2 V 21 h 5 v -5 z" />
   </g>
