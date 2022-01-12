@@ -223,11 +223,12 @@ public:
         consensus.nMaxMoneyOut = 9999999999 * COIN;
         consensus.nPoolMaxTransactions = 3;
         consensus.nProposalEstablishmentTime = 60 * 60 * 24;    // must be at least a day old to make it into a budget
-        consensus.nStakeMinAge = 15 * 150;
+        consensus.nStakeMinAge = 150 * 60;
         consensus.nStakeMinDepth = 15;
         consensus.nStakeMinDepthV2 = 600;
         consensus.nTargetTimespan = 40;
         consensus.nTargetTimespanV2 = 30;
+        consensus.nTargetTimespanV3 = 30 * 60;
         consensus.nTargetSpacing = 1 * 150;
         consensus.nTargetSpacingV2 = 1 * 60;
         consensus.nTimeSlotLength = 15;
@@ -240,7 +241,7 @@ public:
 
         // burn addresses
         consensus.mBurnAddresses = {
-           //{ "7XXXXXXXXXXXXXXXXXXXXXXXXXXXaqpZch", 0 }
+           { "DBURNXXXXXXXXXXXXXXXXXXXXXXXYnc6B1", 0 }
         };
 
         // height-based activations
@@ -280,7 +281,8 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_NEW_TARGET_SPACING].nActivationHeight        = 292001;
         consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].nActivationHeight        = 525001;
         consensus.vUpgrades[Consensus::UPGRADE_MASTERNODE_RANK_V2].nActivationHeight        = 523001;
-        consensus.vUpgrades[Consensus::UPGRADE_COINBASE_MATURITY_V2].nActivationHeight      = 525001;   
+        consensus.vUpgrades[Consensus::UPGRADE_COINBASE_MATURITY_V2].nActivationHeight      = 525001;
+        consensus.vUpgrades[Consensus::UPGRADE_TIMESPAN_V3].nActivationHeight               = 800001;  
 
         consensus.vUpgrades[Consensus::UPGRADE_POS].hashActivationBlock                    = uint256S("d5d5436381a5aceff75bae332b4a35f3c24b52194a56518fecf0ad25b03c2a80");
         consensus.vUpgrades[Consensus::UPGRADE_POS_V2].hashActivationBlock                 = uint256S("11374e214fdc781a3ea206ead6cf23291ec3abfda245d58b0e555bc8d9711854");
@@ -289,6 +291,10 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_TIME_PROTOCOL_V2].hashActivationBlock       = uint256S("641f2baba0202043bb559452d494eff8a1c5f3de1d8b8adc4f572b0a3b24f03b");
         consensus.vUpgrades[Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES].hashActivationBlock = uint256S("c06e7c7d19a30a298ea59f69533d66f68b4f535a9d6ba957f6d738f6ec965281");
 		consensus.vUpgrades[Consensus::UPGRADE_NEW_TARGET_SPACING].hashActivationBlock     = uint256S("f39105a85aec716241fc717add26b08cc2785748aa4c7cf3c0daec5d578565f6");
+        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].hashActivationBlock     = uint256S("8686d0f1739d6dfc6eafcefb4c9ad1b56fc256a852d5087593631ccb0866b8f4");
+        consensus.vUpgrades[Consensus::UPGRADE_MASTERNODE_RANK_V2].hashActivationBlock     = uint256S("982267b09fbedbfad523c97f2c73a483dd070b11c00042a1fdb5586e3ab8848d");
+        consensus.vUpgrades[Consensus::UPGRADE_COINBASE_MATURITY_V2].hashActivationBlock   = uint256S("8686d0f1739d6dfc6eafcefb4c9ad1b56fc256a852d5087593631ccb0866b8f4");
+        consensus.vUpgrades[Consensus::UPGRADE_TIMESPAN_V3].hashActivationBlock            = uint256S("0x0");
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
