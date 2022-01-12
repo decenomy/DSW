@@ -9,12 +9,12 @@
 bool CScriptDB::WriteContract(const uint256 contractHash, const CScriptContract contract)
 {
     // TODO: Maybe we should check script validity here before we write it to the database
-    return true; // Write(consensusScriptHash, contract);
+    return true; // Write(contractHash, contract);
 }
 
 bool CScriptDB::ReadContract(const uint256 contractHash, CScriptContract& contract)
 {
-    return true; // Read(consensusScriptHash, contract);
+    return true; // Read(contractHash, contract);
 }
 
 // TODO: Erasing Scripts from database can be dangerous so maybe it should just be marked as 'DISABLED' if this it's needed
