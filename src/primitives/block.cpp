@@ -27,9 +27,9 @@ uint256 CBlockHeader::GetHash() const
         WriteLE32(&data[72], nBits);
         WriteLE32(&data[76], nNonce);
 
-        return HashX11KVS(data, data + 80);
+        return HashQuark(data, data + 80);
 #else // Can take shortcut for little endian
-        return HashX11KVS(BEGIN(nVersion), END(nNonce));
+        return HashQuark(BEGIN(nVersion), END(nNonce));
 #endif
     }
 	
