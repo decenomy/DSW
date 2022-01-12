@@ -1,4 +1,4 @@
-Source: __decenomy__
+Source: mobic
 Section: utils
 Priority: optional
 Maintainer: Fuzzbawls <fuzzbawls@gmail.com>
@@ -32,11 +32,11 @@ Homepage: __decenomy_website_link__
 Vcs-Git: git://__decenomy_github_link__.git
 Vcs-Browser: https://__decenomy_github_link__
 
-Package: __decenomy__d
+Package: mobicd
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - daemon
- __Decenomy__ is a free, open source peer-to-peer electronic cash system that
+ MobilityCoin is a free, open source peer-to-peer electronic cash system that
  is completely decentralized, without the need for a central server or
  trusted parties.  Users hold the crypto keys to their own money and
  transact directly with each other, with the help of a P2P network to
@@ -45,14 +45,14 @@ Description: peer-to-peer network based digital currency - daemon
  Full transaction history is stored locally at each client.  This
  requires 18.5+ GB of space, slowly growing.
  .
- This package provides the daemon, __decenomy__d, and the CLI tool
- __decenomy__-cli to interact with the daemon.
+ This package provides the daemon, mobicd, and the CLI tool
+ mobic-cli to interact with the daemon.
 
-Package: __decenomy__-qt
+Package: mobic-qt
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - Qt GUI
- __Decenomy__ is a free, open source peer-to-peer electronic cash system that
+ MobilityCoin is a free, open source peer-to-peer electronic cash system that
  is completely decentralized, without the need for a central server or
  trusted parties.  Users hold the crypto keys to their own money and
  transact directly with each other, with the help of a P2P network to
@@ -61,4 +61,4 @@ Description: peer-to-peer network based digital currency - Qt GUI
  Full transaction history is stored locally at each client.  This
  requires 18.5+ GB of space, slowly growing.
  .
- This package provides __Decenomy__-Qt, a GUI for __Decenomy__ based on Qt.
+ This package provides MobilityCoin-Qt, a GUI for MobilityCoin based on Qt.

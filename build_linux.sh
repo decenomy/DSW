@@ -29,6 +29,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/__decenomy__d DSW/src/__decenomy__-cli DSW/src/__decenomy__-tx DSW/src/qt/__decenomy__-qt .
-	zip __DSW__-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt
-	rm -f __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt
+	cp DSW/src/mobicd DSW/src/mobic-cli DSW/src/mobic-tx DSW/src/qt/mobic-qt .
+	zip __DSW__-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip mobicd mobic-cli mobic-tx mobic-qt
+	rm -f mobicd mobic-cli mobic-tx mobic-qt

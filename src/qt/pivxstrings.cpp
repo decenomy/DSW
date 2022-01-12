@@ -30,7 +30,7 @@ QT_TRANSLATE_NOOP("pivx-core", ""
 "notation for IPv6. This option can be specified multiple times (default: "
 "bind to all interfaces)"),
 QT_TRANSLATE_NOOP("pivx-core", ""
-"Cannot obtain a lock on data directory %s. __Decenomy__ is probably already "
+"Cannot obtain a lock on data directory %s. MobilityCoin is probably already "
 "running."),
 QT_TRANSLATE_NOOP("pivx-core", ""
 "Change automatic finalized budget voting behavior. mode=auto: Vote for only "
@@ -51,7 +51,7 @@ QT_TRANSLATE_NOOP("pivx-core", ""
 "Delete all zerocoin spends and mints that have been recorded to the "
 "blockchain database and reindex them (0-1, default: %u)"),
 QT_TRANSLATE_NOOP("pivx-core", ""
-"Disable all __DSW__ specific functionality (Masternodes, Zerocoin, "
+"Disable all MOBIC specific functionality (Masternodes, Zerocoin, "
 "Budgeting) (0-1, default: %u)"),
 QT_TRANSLATE_NOOP("pivx-core", ""
 "Distributed under the MIT software license, see the accompanying file "
@@ -143,7 +143,7 @@ QT_TRANSLATE_NOOP("pivx-core", ""
 "Maximum total fees to use in a single wallet transaction, setting too low "
 "may abort large transactions (default: %s)"),
 QT_TRANSLATE_NOOP("pivx-core", ""
-"Minimum positive amount (in __DSW__) allowed by GUI and RPC for the stake split "
+"Minimum positive amount (in MOBIC) allowed by GUI and RPC for the stake split "
 "threshold (default: %s)"),
 QT_TRANSLATE_NOOP("pivx-core", ""
 "Number of seconds to keep misbehaving peers from reconnecting (default: %u)"),
@@ -151,7 +151,7 @@ QT_TRANSLATE_NOOP("pivx-core", ""
 "Output debugging information (default: %u, supplying <category> is optional)"),
 QT_TRANSLATE_NOOP("pivx-core", ""
 "Please check that your computer's date and time are correct! If your clock "
-"is wrong __Decenomy__ will not work properly."),
+"is wrong MobilityCoin will not work properly."),
 QT_TRANSLATE_NOOP("pivx-core", ""
 "Query for peer addresses via DNS lookup, if low on addresses (default: 1 "
 "unless -connect/-noconnect)"),
@@ -198,7 +198,7 @@ QT_TRANSLATE_NOOP("pivx-core", ""
 "Total length of network version string (%i) exceeds maximum length (%i). "
 "Reduce the number or size of uacomments."),
 QT_TRANSLATE_NOOP("pivx-core", ""
-"Unable to bind to %s on this computer. __Decenomy__ is probably already running."),
+"Unable to bind to %s on this computer. MobilityCoin is probably already running."),
 QT_TRANSLATE_NOOP("pivx-core", ""
 "Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: "
 "%s)"),
@@ -213,7 +213,7 @@ QT_TRANSLATE_NOOP("pivx-core", ""
 "pay if you send a transaction."),
 QT_TRANSLATE_NOOP("pivx-core", ""
 "Warning: Please check that your computer's date and time are correct! If "
-"your clock is wrong __Decenomy__ will not work properly."),
+"your clock is wrong MobilityCoin will not work properly."),
 QT_TRANSLATE_NOOP("pivx-core", ""
 "Warning: The network does not appear to fully agree! Some miners appear to "
 "be experiencing issues."),
@@ -282,7 +282,7 @@ QT_TRANSLATE_NOOP("pivx-core", "Enable the client to act as a masternode (0-1, d
 QT_TRANSLATE_NOOP("pivx-core", "Error initializing block database"),
 QT_TRANSLATE_NOOP("pivx-core", "Error initializing wallet database environment %s!"),
 QT_TRANSLATE_NOOP("pivx-core", "Error loading %s: Wallet corrupted"),
-QT_TRANSLATE_NOOP("pivx-core", "Error loading %s: Wallet requires newer version of __Decenomy__"),
+QT_TRANSLATE_NOOP("pivx-core", "Error loading %s: Wallet requires newer version of MobilityCoin"),
 QT_TRANSLATE_NOOP("pivx-core", "Error loading %s\n"),
 QT_TRANSLATE_NOOP("pivx-core", "Error loading block database"),
 QT_TRANSLATE_NOOP("pivx-core", "Error opening block database"),
@@ -317,7 +317,7 @@ QT_TRANSLATE_NOOP("pivx-core", "Imports blocks from external blk000??.dat file")
 QT_TRANSLATE_NOOP("pivx-core", "Include IP addresses in debug output (default: %u)"),
 QT_TRANSLATE_NOOP("pivx-core", "Incorrect or no genesis block found. Wrong datadir for network?"),
 QT_TRANSLATE_NOOP("pivx-core", "Information"),
-QT_TRANSLATE_NOOP("pivx-core", "Initialization sanity check failed. __Decenomy__ is shutting down."),
+QT_TRANSLATE_NOOP("pivx-core", "Initialization sanity check failed. MobilityCoin is shutting down."),
 QT_TRANSLATE_NOOP("pivx-core", "Insufficient funds"),
 QT_TRANSLATE_NOOP("pivx-core", "Insufficient funds."),
 QT_TRANSLATE_NOOP("pivx-core", "Invalid -masternodeaddr address: %s"),
@@ -377,7 +377,7 @@ QT_TRANSLATE_NOOP("pivx-core", "RPC server options:"),
 QT_TRANSLATE_NOOP("pivx-core", "Randomly drop 1 of every <n> network messages"),
 QT_TRANSLATE_NOOP("pivx-core", "Randomly fuzz 1 of every <n> network messages"),
 QT_TRANSLATE_NOOP("pivx-core", "Rebuild block chain index from current blk000??.dat files"),
-QT_TRANSLATE_NOOP("pivx-core", "Recalculating __DSW__ supply..."),
+QT_TRANSLATE_NOOP("pivx-core", "Recalculating MOBIC supply..."),
 QT_TRANSLATE_NOOP("pivx-core", "Reindex the %s and z%s money supply statistics"),
 QT_TRANSLATE_NOOP("pivx-core", "Reindexing zerocoin database..."),
 QT_TRANSLATE_NOOP("pivx-core", "Reindexing zerocoin failed"),
@@ -419,7 +419,7 @@ QT_TRANSLATE_NOOP("pivx-core", "Synchronizing budgets..."),
 QT_TRANSLATE_NOOP("pivx-core", "Synchronizing masternode winners..."),
 QT_TRANSLATE_NOOP("pivx-core", "Synchronizing masternodes..."),
 QT_TRANSLATE_NOOP("pivx-core", "Synchronizing sporks..."),
-QT_TRANSLATE_NOOP("pivx-core", "Syncing z__DSW__ wallet..."),
+QT_TRANSLATE_NOOP("pivx-core", "Syncing zMOBIC wallet..."),
 QT_TRANSLATE_NOOP("pivx-core", "The threshold value cannot be less than %s"),
 QT_TRANSLATE_NOOP("pivx-core", "This help message"),
 QT_TRANSLATE_NOOP("pivx-core", "This is experimental software."),
@@ -453,12 +453,12 @@ QT_TRANSLATE_NOOP("pivx-core", "Use block spam filter (default: %u)"),
 QT_TRANSLATE_NOOP("pivx-core", "Use the test network"),
 QT_TRANSLATE_NOOP("pivx-core", "User Agent comment (%s) contains unsafe characters."),
 QT_TRANSLATE_NOOP("pivx-core", "Username for JSON-RPC connections"),
-QT_TRANSLATE_NOOP("pivx-core", "Value is below the smallest available denomination (= 1) of z__DSW__"),
+QT_TRANSLATE_NOOP("pivx-core", "Value is below the smallest available denomination (= 1) of zMOBIC"),
 QT_TRANSLATE_NOOP("pivx-core", "Verifying blocks..."),
 QT_TRANSLATE_NOOP("pivx-core", "Verifying wallet..."),
 QT_TRANSLATE_NOOP("pivx-core", "Wallet %s resides outside data directory %s"),
 QT_TRANSLATE_NOOP("pivx-core", "Wallet debugging/testing options:"),
-QT_TRANSLATE_NOOP("pivx-core", "Wallet needed to be rewritten: restart __Decenomy__ to complete"),
+QT_TRANSLATE_NOOP("pivx-core", "Wallet needed to be rewritten: restart MobilityCoin to complete"),
 QT_TRANSLATE_NOOP("pivx-core", "Wallet options:"),
 QT_TRANSLATE_NOOP("pivx-core", "Wallet window title"),
 QT_TRANSLATE_NOOP("pivx-core", "Warning"),

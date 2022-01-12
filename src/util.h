@@ -39,7 +39,7 @@ extern const char * const PIVX_PID_FILENAME;
 extern const char * const PIVX_MASTERNODE_CONF_FILENAME;
 extern const char * const DEFAULT_DEBUGLOGFILE;
 
-//__DSW__ only features
+//MOBIC only features
 
 extern bool fMasterNode;
 extern bool fLiteMode;
@@ -178,7 +178,7 @@ void SetThreadPriority(int nPriority);
 template <typename Callable>
 void TraceThread(const char* name, Callable func)
 {
-    std::string s = strprintf("__decenomy__-%s", name);
+    std::string s = strprintf("mobic-%s", name);
     util::ThreadRename(s.c_str());
     try {
         LogPrintf("%s thread start\n", name);
