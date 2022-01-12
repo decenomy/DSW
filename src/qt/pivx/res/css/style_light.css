@@ -1906,18 +1906,18 @@ HH        REQUEST DIALOG
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 QComboBox[cssClass="btn-combo-coins"] {
-  background-color: #262626;
+  background-color: #810890;
   padding: 10px 20px 10px 10px;
   font-size: 16px;
-  border: 1px solid #262626;
+  border: 1px solid #810890;
   color: #ffffff;
 }
 
 QLabel[cssClass="btn-combo-coins"] {
-  background-color: #262626;
+  background-color: #810890;
   padding: 10px 10px 10px 10px;
   font-size: 16px;
-  border: 1px solid #262626;
+  border: 1px solid #810890;
   color: #ffffff;
 }
 
@@ -1935,7 +1935,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 *[cssClass="label-address-box"] {
   color: #262626;
   background-color: #f2f2f2;
-  font-size: 22px;
+  font-size: 20px;
   padding: 10px 10px;
 }
 
@@ -3100,7 +3100,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 
 *[cssClass="text-intro-white"] {
   color: #ffffff;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 QPushButton[cssClass="btn-dots-welcome"] {
@@ -3136,7 +3136,7 @@ QPushButton[cssClass="btn-dots-welcome"]:pressed {
   background-color: #eeeeee;
   font-size: 18px;
   border-radius: 2px;
-  padding: 8px;
+  padding: 4px;
   color: #262626;
 }
 
@@ -3161,29 +3161,29 @@ QPushButton[cssClass="btn-dots-welcome"]:pressed {
   background-color: #333333;
   font-size: 18px;
   border-radius: 2px;
-  padding: 8px;
+  padding: 4px;
   color: rgb(131, 131, 131);
 }
 
 QRadioButton[cssClass="radio-welcome"]:checked {
   color: #ffffff;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 QRadioButton[cssClass="radio-welcome"]:unchecked {
   color: #ececec;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 QRadioButton[cssClass="radio-welcome"] {
   color: #ececec;
-  font-size: 20px;
-  spacing: 20px;
+  font-size: 18px;
+  spacing: 18px;
 }
 
 QRadioButton[cssClass="radio-welcome"]::indicator {
-  width: 26px;
-  height: 26px;
+  width: 25px;
+  height: 25px;
 }
 
 QRadioButton[cssClass="radio-welcome"]::indicator:checked {

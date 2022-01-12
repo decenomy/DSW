@@ -12,6 +12,8 @@
 #include "main.h"
 #include "stakeinput.h"
 
+#define HASH_DRIFT 45
+
 class CStakeKernel {
 public:
     /**

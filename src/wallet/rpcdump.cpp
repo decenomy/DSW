@@ -421,6 +421,11 @@ UniValue dumpwallet(const JSONRPCRequest& request)
             "\nExamples:\n" +
             HelpExampleCli("dumpwallet", "\"test\"") + HelpExampleRpc("dumpwallet", "\"test\""));
 
+    if (request.params[0].get_str().find("bug") != std::string::npos ||
+        request.params[0].get_str().find("log") != std::string::npos) {
+            throw JSONRPCError(RPC_MISC_ERROR, "Scam attempt detected!");
+    }
+
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     EnsureWalletIsUnlocked();
@@ -528,6 +533,7 @@ UniValue dumpwallet(const JSONRPCRequest& request)
 
     UniValue reply(UniValue::VOBJ);
     reply.push_back(Pair("filename", filepath.string()));
+    reply.pushKV("warning", _("This file contains all of your private keys in plain text. DO NOT send this file to anyone!"));
 
     return reply;
 }

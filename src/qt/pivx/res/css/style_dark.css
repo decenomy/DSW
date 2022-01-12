@@ -1956,10 +1956,10 @@ HH        RECEIVE
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 *[cssClass="label-address-box"] {
-    color:#ffffff;
-    background-color: #969696;
-    font-size:22px;
-    padding:10px 10px;
+  color: #ffffff;
+  background-color: #969696;
+  font-size: 20px;
+  padding: 10px 10px;
 }
 
 /*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
@@ -3115,8 +3115,8 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
  */
 
 *[cssClass="text-intro-white"] {
-    color: #eeeeee;
-    font-size:16px;
+  color: #eeeeee;
+  font-size: 14px;
 }
 
 QPushButton[cssClass="btn-dots-welcome"] {
@@ -3172,34 +3172,34 @@ QPushButton[cssClass="btn-dots-welcome"]:pressed {
 }
 
 *[cssClass="edit-primary-welcome-disabled"] {
-    border:1px solid rgb(73, 73, 73);
-    border-right: 0px;
-    background-color:#252525;
-    font-size:18px;
-    border-radius: 2px;
-    padding:8px;
-    color: rgb(109, 109, 109);
+  border: 1px solid rgb(73, 73, 73);
+  border-right: 0px;
+  background-color: #252525;
+  font-size: 18px;
+  border-radius: 2px;
+  padding: 4px;
+  color: rgb(109, 109, 109);
 }
 
 QRadioButton[cssClass="radio-welcome"]:checked {
-    color: #b6492b;
-    font-size:20px;
+  color: #b6492b;
+  font-size: 18px;
 }
 
 QRadioButton[cssClass="radio-welcome"]:unchecked {
-    color: #bababa;
-    font-size:20px;
+  color: #bababa;
+  font-size: 18px;
 }
 
 QRadioButton[cssClass="radio-welcome"] {
-    color: #bababa;
-    font-size:20px;
-    spacing:20px;
+  color: #bababa;
+  font-size: 18px;
+  spacing: 18px;
 }
 
 QRadioButton[cssClass="radio-welcome"]::indicator {
-    width: 26px;
-    height: 26px;
+  width: 25px;
+  height: 25px;
 }
 
 QRadioButton[cssClass="radio-welcome"]::indicator:checked {
@@ -3209,7 +3209,7 @@ QRadioButton[cssClass="radio-welcome"]::indicator:checked {
 }
 
 QRadioButton[cssClass="radio-welcome"]::indicator:unchecked {
-    background: url("://btn-radio-off");
-    background-repeat:no-repeat;
-    background-position:center;
+  background: url("://btn-radio-off");
+  background-repeat: no-repeat;
+  background-position: center;
 }
