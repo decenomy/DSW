@@ -21,7 +21,7 @@ You will then receive your private key, save it in a txt to use it later.
           w8723KqiiqtiLH6y2ktjfwzuSrNucGAbagpmTmCn1KnNEeQTJKf
 * Still at Debug Console type ***getmasternodeoutputs*** and save txhash and outputidx on a txt
   ```
-  Exemple:
+  Example:
           "txhash" : "12fce79c1a5623aa5b5830abff1a9feb6a682b75ee9fe22c647725a3gef42saa",
 		         "outputidx" : 0
 
