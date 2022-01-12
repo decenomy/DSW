@@ -14,7 +14,7 @@
  * for both beacond and beacon-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("Beacon");
+const std::string CLIENT_NAME("Beacon Core");
 
 /**
  * Client version number
