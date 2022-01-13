@@ -1097,9 +1097,9 @@ void CConnman::AcceptConnection(const ListenSocket& hListenSocket) {
         return;
     }
 
-    if (nInbound >= nMaxConnections - MAX_OUTBOUND_CONNECTIONS) {
+    if (nInbound >= nMaxConnections - nMaxOutbound) {
         // try to evict 10% of the inbound connections
-        int n = std::max(1, (nMaxConnections - MAX_OUTBOUND_CONNECTIONS) / 10);
+        int n = std::max(1, (nMaxConnections - nMaxOutbound) / 10);
         int evicted = 0;
         for(int i = 0; i < n; i++) {
             if (!AttemptToEvictConnection(whitelisted) && evicted == 0) {
