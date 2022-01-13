@@ -193,7 +193,7 @@ UniValue addnode(const JSONRPCRequest& request)
             "2. \"command\"  (string, required) 'add' to add a node to the list, 'remove' to remove a node from the list, 'onetry' to try a connection to the node once\n"
 
             "\nExamples:\n" +
-            HelpExampleCli("addnode", "\"192.168.0.6:8822\" \"onetry\"") + HelpExampleRpc("addnode", "\"192.168.0.6:8822\", \"onetry\""));
+            HelpExampleCli("addnode", "\"192.168.0.6:22487\" \"onetry\"") + HelpExampleRpc("addnode", "\"192.168.0.6:22487\", \"onetry\""));
 
     if(!g_connman)
         throw JSONRPCError(RPC_CLIENT_P2P_DISABLED, "Error: Peer-to-peer functionality missing or disabled");
