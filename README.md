@@ -13,7 +13,7 @@ DECENOMY Standard wallet repository
 • Block Time: 120 Seconds
 • Maturity: 180 Confirmations
 • Prefix: MOBIC adresses start with the capital letter "M"
-• Ports: 22487 (p2p) / 8821 (rpc)
+• Ports: 22487 (p2p) / 22488 (rpc)
 
 • Explorer https://explorer.decenomy.net/
 
