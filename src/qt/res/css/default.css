@@ -5,15 +5,15 @@
 /* (all files need to be replaced....including the .ui, .cpp, .svg, any file type)      */
 /* Ensure to persist the spacing used in the rgba() and QColor() constructs as shown    */
 /*                                                                                      */
-/* standard lighter brand color:                   #c226d6                              */
-/* standard darker brand color:                    #810890                              */
+/* standard lighter brand color:                   #3C83B3                              */
+/* standard darker brand color:                    #43b3ff                              */
 /* standard darker brand color as RGB                                                   */
-/*    with a 70% transparency indicator:           rgba(129, 8, 144, 0.7)               */
-/* dark tinted background brand color:             #4b1452                              */
+/*    with a 70% transparency indicator:           rgba(66, 180, 255, 0.7)               */
+/* dark tinted background brand color:             #0094f9                              */
 /*                                                                                      */
-/* staking chart POS color:                        #dd8b14                              */
+/* staking chart POS color:                        #8cb244                              */
 /* staking chart POS color as RGB:                 QColor(221,139,20)                   */
-/* staking chart MN color:                         #c06416                              */
+/* staking chart MN color:                         #5dbcfc                              */
 /* staking chart MN color as RGB:                  QColor(192,100,22)                   */
 /*                                                                                      */
 /* dark theme background color:                    #000000                              */
@@ -227,10 +227,10 @@ background-color:#f2f2f2;
 /***************************** Global Qt Objects ***********************************************************/
 
 QPushButton { /* Global Button Style */
-background-color: #88cfff;
+background-color: #3C83B3;
 border-width: 1px;
 border-style: outset;
-border-color: #88cfff;
+border-color: #3C83B3;
 border-radius: 2px;
 color:#262626;
 font-size:12px;
@@ -244,7 +244,7 @@ margin: 2px;
 }
 
 QPushButton:hover {
-background-color: qlineargradient(y1:0, y2: 1, stop: 0 #88cfff, stop: 0.1 #43b3ff, stop: 0.101 #43b3ff, stop: 0.9 #43b3ff, stop: 0.901 #43b3ff, stop: 1 #88cfff);
+background-color: qlineargradient(y1:0, y2: 1, stop: 0 #3C83B3, stop: 0.1 #43b3ff, stop: 0.101 #43b3ff, stop: 0.9 #43b3ff, stop: 0.901 #43b3ff, stop: 1 #3C83B3);
 }
 
 QPushButton:focus {
@@ -255,7 +255,7 @@ QPushButton:focus {
 QPushButton:pressed {
 background-color: #0094f9;
 border:1px solid #0094f9;
-background-color: qlineargradient(y1:0, y2: 1, stop: 0 #88cfff, stop: 0.1 #43b3ff, stop: 0.101 #43b3ff, stop: 0.9 #43b3ff, stop: 0.901 #43b3ff, stop: 1 #88cfff);
+background-color: qlineargradient(y1:0, y2: 1, stop: 0 #3C83B3, stop: 0.1 #43b3ff, stop: 0.101 #43b3ff, stop: 0.9 #43b3ff, stop: 0.901 #43b3ff, stop: 1 #3C83B3);
 }
 
 /* Special handling for statusbar-icons (which are partly QPushButtons) */
