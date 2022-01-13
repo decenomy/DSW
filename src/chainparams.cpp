@@ -376,7 +376,7 @@ public:
         pchMessageStart[1] = 0x76;
         pchMessageStart[2] = 0x65;
         pchMessageStart[3] = 0xba;
-        nDefaultPort = 59999;
+        nDefaultPort = 32487;
 
         vFixedSeeds.clear();
         vSeeds.clear();
