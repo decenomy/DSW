@@ -7,11 +7,11 @@ then
 fi
 
 # Clone code from official Github repository
-    rm -rf beacon
-    git clone https://github.com/beaconcrypto/beacon.git
+    rm -rf BECN
+    git clone https://github.com/decenomy/BECN.git
 
 # Entering directory
-    cd beacon
+    cd BECN
 
 # Compile dependencies
     cd depends

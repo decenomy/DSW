@@ -11,11 +11,11 @@ fi
 	sudo apt install git zip unzip build-essential libtool bsdmainutils autotools-dev autoconf pkg-config automake python3 libqt5svg5-dev -y
 
 # Clone code from official Github repository
-	rm -rf beacon
-	git clone https://github.com/beaconcrypto/beacon.git
+	rm -rf BECN
+	git clone https://github.com/decenomy/BECN.git
 
 # Entering directory
-	cd beacon
+	cd BECN
 
 # Compile dependencies
 	cd depends

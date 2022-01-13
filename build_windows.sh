@@ -12,8 +12,8 @@ fi
 	echo "1" | sudo update-alternatives --config x86_64-w64-mingw32-g++
 
 # Clone code from official Github repository
-	rm -rf beacon
-	git clone https://github.com/beaconcrypto/beacon.git
+	rm -rf BECN
+	git clone https://github.com/decenomy/BECN.git
 
 # Entering directory
 	cd beacon
