@@ -936,12 +936,12 @@ void CheckOffsetDisconnectedPeers(const CNetAddr& ip)
 
         LogPrintf("*** Warning: %s %s\n", strWarn1, strWarn2);
 
-        static int64_t nLastGUINotif = 0;
-        int64_t now = GetTime();
-        if (nLastGUINotif + 40 < now) { // Notify the GUI if needed.
-            nLastGUINotif = now;
-            uiInterface.ThreadSafeMessageBox(strprintf("%s\n\n%s", strWarn1, strWarn2), _("Warning"), CClientUIInterface::MSG_ERROR);
-        }
+        // static int64_t nLastGUINotif = 0;
+        // int64_t now = GetTime();
+        // if (nLastGUINotif + 40 < now) { // Notify the GUI if needed.
+        //     nLastGUINotif = now;
+        //     uiInterface.ThreadSafeMessageBox(strprintf("%s\n\n%s", strWarn1, strWarn2), _("Warning"), CClientUIInterface::MSG_ERROR);
+        // }
     }
 }
 
