@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "DashDiamond Core"
-#define MyAppPublisher "2021 DECENOMY Core Developers"
+#define MyAppPublisher "2022 DECENOMY Core Developers"
 #define MyAppURL "https://dashdiamond.com"
 #define MyAppExeName "dashdiamond-qt.exe"
 #define MyAppExtraData "https://explorer.decenomy.net/bootstraps/DASHD/bootstrap.zip"
