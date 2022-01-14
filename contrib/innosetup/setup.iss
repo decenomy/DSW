@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "CryptoFlow Core"
-#define MyAppPublisher "2021 DECENOMY Core Developers"
+#define MyAppPublisher "2022 DECENOMY Core Developers"
 #define MyAppURL "https://cryptoflow.com"
 #define MyAppExeName "cryptoflow-qt.exe"
 #define MyAppExtraData "https://explorer.decenomy.net/bootstraps/CFL/bootstrap.zip"
