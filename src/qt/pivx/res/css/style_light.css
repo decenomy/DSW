@@ -736,7 +736,7 @@ QPushButton[cssClass="btn-check-lock-sub-menu-unlocked"]:checked {
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-unlocked"]:hover {
-  color: #fff;
+  color: #262626;
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-locked"] {
@@ -776,7 +776,7 @@ QPushButton[cssClass="btn-check-lock-sub-menu-staking"]:checked {
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-staking"]:hover {
-  color: #fff;
+  color: #262626;
 }
 
 *[cssClass="top-sub-menu"] {
