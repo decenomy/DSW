@@ -238,7 +238,7 @@ public:
 
         // burn addresses
         consensus.mBurnAddresses = {
-           { "cXXXXXXXXXXXXXXXXXXXXXXXXXXXaRXrCp", 0 }
+           { "cBURNXXXXXXXXXXXXXXXXXXXXXXXT5p8pX", 0 }
         };
 
         // height-based activations
