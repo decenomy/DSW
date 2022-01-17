@@ -969,7 +969,7 @@ QPushButton[cssClass="btn-switch"] {
   background-color:#FFFFFF;
   font-size:18px;
   text-align:left;
-  color: #bababa;
+  color: #707070;
 }
 
 QPushButton[cssClass="btn-switch"]:checked {

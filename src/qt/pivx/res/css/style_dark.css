@@ -954,7 +954,7 @@ QPushButton[cssClass="btn-switch"] {
   background-image: url("://ic-switch-off");
   background-position:right center;
   background-repeat:no-repeat;
-  background-color:#0f0b16;
+  background-color:#211f1f;
   font-size:18px;
   text-align:left;
   color: #bababa;
@@ -964,7 +964,7 @@ QPushButton[cssClass="btn-switch"]:checked {
   background-image: url("://ic-switch-liliac-on");
   background-position:right center;
   background-repeat:no-repeat;
-  background-color:#0f0b16;
+  background-color:#211f1f;
   text-align:left;
   font-size:18px;
   color: #6666ff;
