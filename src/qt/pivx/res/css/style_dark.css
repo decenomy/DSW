@@ -850,7 +850,7 @@ QPushButton[cssClass="btn-check-lock-sub-menu-staking"]:hover {
 }
 
 QPushButton[cssClass="btn-check-lock-sub-menu-staking"]:checked:hover {
-  background-color: #262626
+  background-color: #262626;
   color: #ffffff;
 }
 
