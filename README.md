@@ -12,7 +12,7 @@ CryptoFlow wallet repository
 • Prefix: CFL adresses start with the letter "c"  
 • Ports: 13333 (p2p) / 13334 (rpc)
 
-• Explorer https://chains.trittium.cc/CFL/blocks   
+• Explorer https://explorer.decenomy.net/CFL/blocks   
 • Website [cryptoflow.eu](https://cryptoflow.eu/)
 
 ### Rewards Breakdown
