@@ -12,11 +12,11 @@ fi
 	echo "1" | sudo update-alternatives --config x86_64-w64-mingw32-g++
 
 # Clone code from official Github repository
-	rm -rf DSW
-	git clone https://github.com/decenomy/DSW.git
+	rm -rf SAPP
+	git clone https://github.com/sappcoin-com/SAPP.git
 
 # Entering directory
-	cd DSW
+	cd SAPP
 
 # Compile dependencies
 	cd depends
@@ -30,6 +30,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/__decenomy__d.exe DSW/src/__decenomy__-cli.exe DSW/src/__decenomy__-tx.exe DSW/src/qt/__decenomy__-qt.exe .
-	zip __DSW__-Windows.zip __decenomy__d.exe __decenomy__-cli.exe __decenomy__-tx.exe __decenomy__-qt.exe
-	rm -f __decenomy__d.exe __decenomy__-cli.exe __decenomy__-tx.exe __decenomy__-qt.exe
+	cp SAPP/src/sapphired.exe SAPP/src/sapphire-cli.exe SAPP/src/sapphire-tx.exe SAPP/src/qt/sapphire-qt.exe .
+	zip SAPP-Windows.zip sapphired.exe sapphire-cli.exe sapphire-tx.exe sapphire-qt.exe
+	rm -f sapphired.exe sapphire-cli.exe sapphire-tx.exe sapphire-qt.exe
