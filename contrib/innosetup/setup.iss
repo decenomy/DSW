@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "__Decenomy__ Core"
-#define MyAppPublisher "2021 DECENOMY Core Developers"
+#define MyAppPublisher "2022 DECENOMY Core Developers"
 #define MyAppURL "https://__decenomy__.com"
 #define MyAppExeName "__decenomy__-qt.exe"
 #define MyAppExtraData "https://explorer.decenomy.net/bootstraps/__DSW__/bootstrap.zip"
