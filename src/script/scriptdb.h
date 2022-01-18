@@ -7,21 +7,10 @@
 
 #include "dbwrapper.h"
 #include "script/script.h"
-#include "serialize.h"
 
 class CScriptContract;
-class CScript;
 class CDBWrapper;
-
-/** Error statuses for the wallet database */
-enum DBErrors {
-    DB_LOAD_OK,
-    DB_CORRUPT,
-    DB_NONCRITICAL_ERROR,
-    DB_TOO_NEW,
-    DB_LOAD_FAIL,
-    DB_NEED_REWRITE
-};
+class uint256;
 
 /** Access to the script database */
 class CScriptDB : public CDBWrapper
@@ -47,7 +36,8 @@ public:
     {
         return contract.IsNull();
     }
-    bool WriteContract(const uint256 contractHash, const CScriptContract contract);
+
+    bool WriteContract(const uint256 contractHash, const CScriptContract& contract);
     bool ReadContract(const uint256 contractHash, CScriptContract& contract);
     // bool EraseContract(CScriptContract& contract); // TODO: Erasing Scripts from database can be dangerous so maybe it should just be marked as 'DISABLED' if it's strictly needed
     bool ContractExists(const uint256 contractHash, const CScriptContract& contract);

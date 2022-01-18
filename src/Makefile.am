@@ -265,6 +265,7 @@ libbitcoin_server_a_SOURCES = \
   rpc/server.cpp \
   script/sigcache.cpp \
   script/ismine.cpp \
+  script/scriptdb.cpp \
   sporkdb.cpp \
   timedata.cpp \
   torcontrol.cpp \

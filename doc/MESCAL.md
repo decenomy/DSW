@@ -37,12 +37,44 @@ language MESCAL {
 }
 
 
+// Example: HASH160
+// CScript: HASH160 <Hash160(<any string or number>)>
+basic My-Hash160 {
+    "type": "basic", // Optional
+    "role": "hash160",
+    "name": "My-Hash160", // Optional
+    "inputs": [
+        {
+            "type": "string-or-number",
+            "name": "String-or-Number-to-Hash",
+            "value": "<any string or number>", // string or number to be hashed
+        },
+    ],
+}
+
+
 // Example: CHECKSIGVERIFY
 // CScript: <pubkey> CHECKSIGVERIFY
 basic My-Check-Signature-Verification {
     "type": "basic", // Optional
     "name": "My-Check-Signature-Verification", // Optional
     "role": "check-signature-verification",
+    "inputs": [
+        {
+            "type": "pubkey",
+            "name": "Pubkey",
+            "value": "<pubkey>", // signature
+        },
+    ],
+}
+
+
+// Example: EQUALVERIFY CHECKSIG
+// CScript: DUP HASH160 <pubkey> EQUALVERIFY CHECKSIG
+basic My-Equalverify-Checksig {
+    "type": "basic", // Optional
+    "name": "My-Equalverify-Checksig", // Optional
+    "role": "equalverify-checksig",
     "inputs": [
         {
             "type": "pubkey",
@@ -96,22 +128,6 @@ basic My-Number-2 {
             "type": "number",
             "name": "Number",
             "value": 2, // number
-        },
-    ],
-}
-
-
-// Example: HASH160
-// CScript: HASH160 <Hash160(<any string or number>)>
-basic My-Hash160 {
-    "type": "basic", // Optional
-    "role": "hash160",
-    "name": "My-Hash160", // Optional
-    "inputs": [
-        {
-            "type": "string-or-number",
-            "name": "String-or-Number-to-Hash",
-            "value": "<any string or number>", // string or number to be hashed
         },
     ],
 }

@@ -855,12 +855,12 @@ public:
     }
 
     inline std::string GetType() { return type; }
-    size_t GetSize() { return size; }
-    uint256 GetHash() { return hash; }
-    std::string GetPath() { return path; }
-    time_t GetAccessTime() { return accessed; }
-    time_t GetModifyTime() { return modified; }
-    std::map<std::string, std::string> GetMetaData() { return metaData; }
+    inline size_t GetSize() { return size; }
+    inline uint256 GetHash() { return hash; }
+    inline std::string GetPath() { return path; }
+    inline time_t GetAccessTime() { return accessed; }
+    inline time_t GetModifyTime() { return modified; }
+    inline std::map<std::string, std::string> GetMetaData() { return metaData; }
 };
 
 

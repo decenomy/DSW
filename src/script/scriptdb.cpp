@@ -3,10 +3,8 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "script/scriptdb.h"
-#include "script/script.h"
-#include "dbwrapper.h"
 
-bool CScriptDB::WriteContract(const uint256 contractHash, const CScriptContract contract)
+bool CScriptDB::WriteContract(const uint256 contractHash, const CScriptContract& contract)
 {
     // TODO: Maybe we should check script validity here before we write it to the database
     return true; // Write(contractHash, contract);
