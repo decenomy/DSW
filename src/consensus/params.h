@@ -32,6 +32,7 @@ enum UpgradeIndex : uint32_t {
     UPGRADE_ZC_V2,
     UPGRADE_BIP65,
     UPGRADE_ZC_PUBLIC,
+    UPGRADE_STAKE_MIN_DEPTH_V1,
     UPGRADE_STAKE_MODIFIER_V2,
     UPGRADE_TIME_PROTOCOL_V2,
     UPGRADE_P2PKH_BLOCK_SIGNATURES,
@@ -155,7 +156,7 @@ struct Params {
             const int utxoFromBlockHeight, const uint32_t utxoFromBlockTime) const
     {
         // before stake modifier V2, we require the utxo to be nStakeMinAge old
-        if (!NetworkUpgradeActive(contextHeight, Consensus::UPGRADE_STAKE_MODIFIER_V2))
+        if (!NetworkUpgradeActive(contextHeight, Consensus::UPGRADE_STAKE_MIN_DEPTH_V1))
             return (utxoFromBlockTime + nStakeMinAge <= contextTime);
         // with stake modifier V2+, we require the utxo to be nStakeMinDepth deep in the chain
         return (
