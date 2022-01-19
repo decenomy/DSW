@@ -4,14 +4,14 @@
 /* These color codes should be blanket replaced in every file of the build (including   */
 /* the .ui and .cpp files as they are occasionally hard coded in them.                  */
 /*                                                                                      */
-/* standard lighter brand color:                   #00dd80                              */
+/* standard lighter brand color:                   #00c773                              */
 /* standard darker brand color:                    #038e4f                              */
 /* stardard darker brand color 70% transparency:   rgba(153, 96, 28, 0.7)               */
 /* dark tinted background brand color:             #0b0f16                              */
 /*                                                                                      */
 /* staking chart POS color:                        #fcbc56                              */
 /* staking chart POS color as RGB:                 QColor(252,188,86)                   */
-/* staking chart MN color:                         #00dd80                              */
+/* staking chart MN color:                         #00c773                              */
 /* staking chart MN color as RGB:                  QColor(0,221,128)                   */
 /*                                                                                      */
 /* dark theme background color:                    #000000                              */
@@ -225,10 +225,10 @@ background-color:#f2f2f2;
 /***************************** Global Qt Objects ***********************************************************/
 
 QPushButton { /* Global Button Style */
-background-color: #00dd80;
+background-color: #00c773;
 border-width: 1px;
 border-style: outset;
-border-color: #00dd80;
+border-color: #00c773;
 border-radius: 2px;
 color:#262626;
 font-size:12px;
@@ -242,7 +242,7 @@ margin: 2px;
 }
 
 QPushButton:hover {
-background-color: qlineargradient(y1:0, y2: 1, stop: 0 #00dd80, stop: 0.1 #00dd80, stop: 0.101 #00dd80, stop: 0.9 #00dd80, stop: 0.901 #00dd80, stop: 1 #00dd80);
+background-color: qlineargradient(y1:0, y2: 1, stop: 0 #00c773, stop: 0.1 #00c773, stop: 0.101 #00c773, stop: 0.9 #00c773, stop: 0.901 #00c773, stop: 1 #00c773);
 }
 
 QPushButton:focus {
@@ -253,7 +253,7 @@ QPushButton:focus {
 QPushButton:pressed {
 background-color: #038e4f;
 border:1px solid #038e4f;
-background-color: qlineargradient(y1:0, y2: 1, stop: 0 #00dd80, stop: 0.1 #00dd80, stop: 0.101 #00dd80, stop: 0.9 #00dd80, stop: 0.901 #00dd80, stop: 1 #00dd80);
+background-color: qlineargradient(y1:0, y2: 1, stop: 0 #00c773, stop: 0.1 #00c773, stop: 0.101 #00c773, stop: 0.9 #00c773, stop: 0.901 #00c773, stop: 1 #00c773);
 }
 
 /* Special handling for statusbar-icons (which are partly QPushButtons) */
@@ -595,7 +595,7 @@ border-radius: 9px;
 }
 
 QSlider::handle:horizontal:hover {
-background-color: qradialgradient(cx: 0.5, cy: 0.5, fx: 0.5, fy: 0.5, radius: 0.7, stop: 0 #00dd80, stop: 0.7 #ffffff);
+background-color: qradialgradient(cx: 0.5, cy: 0.5, fx: 0.5, fy: 0.5, radius: 0.7, stop: 0 #00c773, stop: 0.7 #ffffff);
 border: 2px solid #038e4f;
 width: 16px;
 height: 16px;
