@@ -5,7 +5,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "script.h"
+#include "script/script.h"
+#include "script/scriptdb.h"
 #include "tinyformat.h"
 #include "utilstrencodings.h"
 #include "uint256.h"
@@ -318,6 +319,34 @@ bool CScriptContract::RunContractScript()
     return result;
 }
 
+bool CScriptContract::SaveContract()
+{
+    uint256 hash = this->GetContractHash(); // Default 'HashType hashType' is TYPE_X11KVS
+
+    pScriptDB->WriteContract(hash, *this);
+    return true;
+}
+
+bool CScriptContract::LoadContract(uint256& contractHash)
+{
+    pScriptDB->ReadContract(contractHash, *this);
+    return true;
+}
+
+void CScriptContract::ChangeContractStatus(const bool status)
+{
+    this->status = status;
+}
+
+bool CScriptContract::UpdateContractStatus(const bool status)
+{
+    uint256 hash = this->GetContractHash(); // Default 'HashType hashType' is TYPE_X11KVS
+    this->ChangeContractStatus(status);
+
+    pScriptDB->WriteContract(hash, *this);
+    return true;
+}
+
 uint256 CScriptContract::GetConsensusScriptHash(HashType hashType) const
 {
     std::string IpfsHash; // TODO: Generate IPFS hash
@@ -384,10 +413,5 @@ uint256 CScriptContract::GetContractHash(HashType hashType) const
             return HashX11KVS(BEGIN(*this), END(*this));
             break;
     }
-}
-
-void CScriptContract::ChangeStatus(const bool status)
-{
-    this->status = status;
 }
 

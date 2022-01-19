@@ -24,6 +24,7 @@
 #include "prevector.h"
 #include "uint256.h"
 #include "utilstrencodings.h"
+#include "script/scriptdb.h"
 
 
 typedef std::vector<unsigned char> valtype;
@@ -709,8 +710,14 @@ public:
 * This class manages all the smart contract related scripts.
 * Writing the smart contracts into a levelDB database is done in CScriptDB class.
 */
+
+class CScriptDB;
+
 class CScriptContract : public CScript
 {
+private:
+    CScriptDB* pScriptDB;
+
 public:
     HashType hashType;
 
@@ -797,7 +804,10 @@ public:
     uint256 GetConsensusScriptHash(HashType hashType = TYPE_X11KVS) const;
     uint256 GetContractHash(HashType hashType = TYPE_X11KVS) const;
     bool RunContractScript();
-    void ChangeStatus(const bool status);
+    bool SaveContract();
+    bool LoadContract(uint256& hash);
+    void ChangeContractStatus(const bool status);
+    bool UpdateContractStatus(const bool status);
 };
 
 class CScriptDataFile : public CScript

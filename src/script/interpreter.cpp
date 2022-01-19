@@ -13,7 +13,6 @@
 #include "crypto/sha256.h"
 #include "pubkey.h"
 #include "script/script.h"
-#include "script/scriptdb.h"
 #include "uint256.h"
 
 
@@ -1057,13 +1056,10 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
                     contract.runDeadLine = uint256(stacktop(-6)).Get64();
                     contract.duration = uint256(stacktop(-7)).Get64();
                     contract.consensusScript = CScript(stacktop(-8));
-                    uint256 hash = contract.GetContractHash(); // Default 'HashType hashType' is TYPE_X11KVS
 
-                    CScript contractScript = contract.ConstructContractScript(contract);
+                    // CScript contractScript = contract.ConstructContractScript(contract);
 
-                    CScriptDB* scriptDb;
-
-                    return scriptDb->WriteContract(hash, contract);
+                    return contract.SaveContract();
                 }
                 break;
 
@@ -1074,11 +1070,10 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
                     if ((int)stack.size() < i)
                         return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
 
-                    CScriptDB* scriptDb;
                     CScriptContract contract;
 
                     uint256 hash = uint256(stacktop(-1));
-                    scriptDb->ReadContract(hash, contract);
+                    contract.LoadContract(hash);
 
                     return contract.RunContractScript();
                 }
@@ -1090,13 +1085,12 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
                     if ((int)stack.size() < i)
                         return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
 
-                    CScriptDB* scriptDb;
                     CScriptContract contract;
 
                     uint256 hash = uint256(stacktop(-1));
                     CScriptNum status(stacktop(-2), fRequireMinimal);
 
-                    scriptDb->UpdateContractStatus(hash, (bool) status.getint(), contract);
+                    contract.UpdateContractStatus((bool) status.getint());
                 }
 
                 default:
