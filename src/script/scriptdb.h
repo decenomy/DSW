@@ -2,8 +2,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_SCRIPTDB_H
-#define BITCOIN_SCRIPTDB_H
+#ifndef BITCOIN_SCRIPT_SCRIPTDB_H
+#define BITCOIN_SCRIPT_SCRIPTDB_H
 
 #include "dbwrapper.h"
 #include "script/script.h"
