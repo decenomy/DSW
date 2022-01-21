@@ -291,7 +291,7 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_TIME_PROTOCOL_V2].hashActivationBlock       = uint256S("bfae8546b921841766191b5774e18405aa32986806767a5ac159ceefdd0cb3ec");
         consensus.vUpgrades[Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES].hashActivationBlock = uint256S("05fb6d596455cb9b24af308171a3a5b3902aac2dc4cb0c582289b5df4dbbf774");
         consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].hashActivationBlock     = uint256S("ce797d5715d07dcabe6e6c3557ed10e9e34ea92e9ec1a54c6eb02905f665c0b6");
-        consensus.vUpgrades[Consensus::UPGRADE_MASTERNODE_RANK_V2].hashActivationBlock     = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_MASTERNODE_RANK_V2].hashActivationBlock     = uint256S("6cfd21dcfbcaccb88c8d96ae8801b1c1a925c63f0b3cb263e8b450858262c505");
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
