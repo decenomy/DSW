@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2013 The Bitcoin developers
 // Copyright (c) 2017-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,6 +12,8 @@
 #include <cstdlib>
 
 #include <QDateTime>
+
+#define SKIP_ROWCOUNT_N_TIMES 10
 
 // Earliest date that can be represented (far in the past)
 const QDateTime TransactionFilterProxy::MIN_DATE = QDateTime::fromTime_t(0);
@@ -134,10 +136,17 @@ void TransactionFilterProxy::setOnlyStakesandMN(bool fOnlyStakesandMN)
 
 int TransactionFilterProxy::rowCount(const QModelIndex& parent) const
 {
+    static int entryCount = 0;
+
+    int rowCount = 
+        entryCount++ < SKIP_ROWCOUNT_N_TIMES ?
+        sourceModel()->rowCount() :
+        QSortFilterProxyModel::rowCount(parent);
+
     if (limitRows != -1) {
-        return std::min(QSortFilterProxyModel::rowCount(parent), limitRows);
+        return std::min(rowCount, limitRows);
     } else {
-        return QSortFilterProxyModel::rowCount(parent);
+        return rowCount;
     }
 }
 

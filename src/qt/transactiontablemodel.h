@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2013 The Bitcoin developers
 // Copyright (c) 2019 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,6 +11,13 @@
 
 #include <QAbstractTableModel>
 #include <QStringList>
+
+#define SINGLE_THREAD_MAX_TXES_SIZE 4000
+
+// Maximum amount of loaded records in ram in the first load.
+// If the user has more and want to load them:
+// TODO, add load on demand in pages (not every tx loaded all the time into the records list).
+#define MAX_AMOUNT_LOADED_RECORDS 100000
 
 class TransactionRecord;
 class TransactionTablePriv;

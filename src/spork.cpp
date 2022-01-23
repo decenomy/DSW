@@ -1,6 +1,6 @@
 // Copyright (c) 2014-2016 The Dash developers
 // Copyright (c) 2016-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -15,7 +15,6 @@
 #define MAKE_SPORK_DEF(name, defaultValue) CSporkDef(name, defaultValue, #name)
 
 std::vector<CSporkDef> sporkDefs = {
-
     MAKE_SPORK_DEF(SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT,  4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_14_MIN_PROTOCOL_ACCEPTED,          4070908800ULL), // OFF
 

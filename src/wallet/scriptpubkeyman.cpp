@@ -1,6 +1,6 @@
 // Copyright (c) 2019 The Bitcoin Core developers
 // Copyright (c) 2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -259,7 +259,7 @@ void ScriptPubKeyMan::MarkReserveKeysAsUsed(int64_t keypool_id)
     AssertLockHeld(wallet->cs_wallet);
     bool internal = setInternalKeyPool.count(keypool_id);
     bool ecommerce = setECommerceKeyPool.count(keypool_id);
-    if (!internal) assert(setExternalKeyPool.count(keypool_id) || set_pre_split_keypool.count(keypool_id) || ecommerce);
+    //if (!internal) assert(setExternalKeyPool.count(keypool_id) || set_pre_split_keypool.count(keypool_id) || ecommerce);
     std::set<int64_t> *setKeyPool = internal ? &setInternalKeyPool : (set_pre_split_keypool.empty() ?
             (ecommerce ? &setECommerceKeyPool : &setExternalKeyPool) : &set_pre_split_keypool);
     auto it = setKeyPool->begin();

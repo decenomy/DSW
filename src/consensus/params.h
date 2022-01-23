@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -98,7 +98,6 @@ struct Params {
     int nCoinbaseMaturity;
     int nFutureTimeDriftPoW;
     int nFutureTimeDriftPoS;
-    int nMasternodeCountDrift;
     CAmount nMaxMoneyOut;
     int nPoolMaxTransactions;
     int64_t nProposalEstablishmentTime;
@@ -109,6 +108,9 @@ struct Params {
     int64_t nTargetTimespanV2;
     int64_t nTargetSpacing;
     int nTimeSlotLength;
+
+    // burn addresses
+    std::map<std::string, int> mBurnAddresses = {};
 
     // spork keys
     std::string strSporkPubKey;
@@ -161,6 +163,13 @@ struct Params {
             NetworkUpgradeActive(contextHeight, Consensus::UPGRADE_STAKE_MIN_DEPTH_V2) ? 
                 nStakeMinDepthV2 : nStakeMinDepth
         );
+    }
+
+    bool IsBurnAddress(const std::string strAddress, const int nHeight) 
+    {
+        return 
+            mBurnAddresses.find(strAddress) != mBurnAddresses.end() &&
+            mBurnAddresses[strAddress] < nHeight;
     }
 
     /*
