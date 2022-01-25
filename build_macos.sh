@@ -7,11 +7,11 @@ then
 fi
 
 # Clone code from official Github repository
-    rm -rf DSW
-    git clone https://github.com/decenomy/DSW.git
+    rm -rf 777
+    git clone https://github.com/777-project/777.git
 
 # Entering directory
-    cd DSW
+    cd 777
 
 # Compile dependencies
     cd depends
@@ -31,6 +31,6 @@ fi
     cd ..
 
 # Create zip file of binaries
-    cp DSW/src/__decenomy__d DSW/src/__decenomy__-cli DSW/src/__decenomy__-tx DSW/src/qt/__decenomy__-qt DSW/__Decenomy__-Core.dmg .
-    zip __DSW__-MacOS.zip __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt __Decenomy__-Core.dmg
-    rm -f __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt __Decenomy__-Core.dmg
+    cp 777/src/jackpotd 777/src/jackpot-cli 777/src/jackpot-tx 777/src/qt/jackpot-qt 777/Jackpot-Core.dmg .
+    zip 777-MacOS.zip jackpotd jackpot-cli jackpot-tx jackpot-qt Jackpot-Core.dmg
+    rm -f jackpotd jackpot-cli jackpot-tx jackpot-qt Jackpot-Core.dmg

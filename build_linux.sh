@@ -11,11 +11,11 @@ fi
 	sudo apt install git zip unzip build-essential libtool bsdmainutils autotools-dev autoconf pkg-config automake python3 libqt5svg5-dev -y
 
 # Clone code from official Github repository
-	rm -rf DSW
-	git clone https://github.com/decenomy/DSW.git
+	rm -rf 777
+	git clone https://github.com/777-project/777.git
 
 # Entering directory
-	cd DSW
+	cd 777
 
 # Compile dependencies
 	cd depends
@@ -29,6 +29,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/__decenomy__d DSW/src/__decenomy__-cli DSW/src/__decenomy__-tx DSW/src/qt/__decenomy__-qt .
-	zip __DSW__-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt
-	rm -f __decenomy__d __decenomy__-cli __decenomy__-tx __decenomy__-qt
+	cp 777/src/jackpotd 777/src/jackpot-cli 777/src/jackpot-tx 777/src/qt/jackpot-qt .
+	zip 777-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip jackpotd jackpot-cli jackpot-tx jackpot-qt
+	rm -f jackpotd jackpot-cli jackpot-tx jackpot-qt
