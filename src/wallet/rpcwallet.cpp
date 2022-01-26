@@ -1021,7 +1021,7 @@ UniValue getbalance(const JSONRPCRequest& request)
             "2. minconf          (numeric, optional, default=1) DEPRECATED. This argument will be removed in v5.0.\n"
             "                    To use this deprecated argument, start jackpotd with -deprecatedrpc=accounts. Only include transactions confirmed at least this many times.\n"
             "3. includeWatchonly (bool, optional, default=false) DEPRECATED. This argument will be removed in v5.0.\n"
-            "                    To use this deprecated argument, start __decenomy__d with -deprecatedrpc=accounts. Also include balance in watchonly addresses (see 'importaddress')\n"
+            "                    To use this deprecated argument, start jackpotd with -deprecatedrpc=accounts. Also include balance in watchonly addresses (see 'importaddress')\n"
             
             "\nResult:\n"
             "amount              (numeric) The total amount in 777 received for this account.\n"
