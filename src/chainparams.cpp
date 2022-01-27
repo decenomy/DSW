@@ -256,7 +256,7 @@ public:
 
         // burn addresses
         consensus.mBurnAddresses = {
-           //{ "7XXXXXXXXXXXXXXXXXXXXXXXXXXXaqpZch", 0 }
+           { "KXBURNXXXXXXXXXXXXXXXXXXXXXXWJmF2X", 0 }
         };
 
         // height-based activations
@@ -436,6 +436,11 @@ public:
         consensus.strSporkPubKeyOld = "037c650e8f2e175727a69c50d5fb459f09891e8f6d113105033dfa7af472a229e2";
         consensus.nTime_EnforceNewSporkKey = 0;
         consensus.nTime_RejectOldSporkKey = 0;
+
+        // burn addresses
+        consensus.mBurnAddresses = {
+           { "kBURNXXXXXXXXXXXXXXXXXXXXXXXUwNvtS", 0 }
+        };
 
         // height-based activations
         consensus.height_last_ZC_AccumCheckpoint    = DISABLED;
