@@ -214,9 +214,9 @@ bool CMasternodeMan::Add(CMasternode& mn)
         return false;
 
     CMasternode* pmn = Find(mn.vin);
-    CMasternode* pmnByAddr = Find(mn.addr);
-    bool masternodeRankV2 = Params().GetConsensus().NetworkUpgradeActive(chainActive.Height(), Consensus::UPGRADE_MASTERNODE_RANK_V2);
-    if (pmn == NULL && (!masternodeRankV2 || pmnByAddr == NULL)) {
+    // CMasternode* pmnByAddr = Find(mn.addr);
+    // bool masternodeRankV2 = Params().GetConsensus().NetworkUpgradeActive(chainActive.Height(), Consensus::UPGRADE_MASTERNODE_RANK_V2);
+    if (pmn == NULL) { // && (!masternodeRankV2 || pmnByAddr == NULL)) {
         LogPrint(BCLog::MASTERNODE, "CMasternodeMan: Adding new Masternode %s - count %i now\n", mn.vin.prevout.ToStringShort(), size() + 1);
         vMasternodes.push_back(mn);
         return true;
