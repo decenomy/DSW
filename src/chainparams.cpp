@@ -345,7 +345,7 @@ public:
         pchMessageStart[1] = 0x9c;
         pchMessageStart[2] = 0x87;
         pchMessageStart[3] = 0x7d;
-        nDefaultPort = PORT_MAINNET;
+        nDefaultPort = 36779;
 
         vSeeds.push_back(CDNSSeedData("seeder", "seeder.peony.net"));
 	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.peony.net"));
@@ -475,7 +475,7 @@ public:
         pchMessageStart[1] = 0x76;
         pchMessageStart[2] = 0x65;
         pchMessageStart[3] = 0xba;
-        nDefaultPort = PORT_TESTNET;
+        nDefaultPort = 46779;
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -605,7 +605,7 @@ public:
         pchMessageStart[1] = 0xcf;
         pchMessageStart[2] = 0x7e;
         pchMessageStart[3] = 0xac;
-        nDefaultPort = PORT_REGTEST;
+        nDefaultPort = 56779;
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
