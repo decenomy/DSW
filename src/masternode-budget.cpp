@@ -2154,7 +2154,7 @@ void CFinalizedBudget::SubmitVote()
     CPubKey pubKeyMasternode;
     CKey keyMasternode;
 
-    if (!CMessageSigner::GetKeysFromSecret(strMasterNodePrivKey, keyMasternode, pubKeyMasternode)) {
+    if (!CMessageSigner::GetKeysFromSecret(activeMasternode.strMasterNodePrivKey, keyMasternode, pubKeyMasternode)) {
         LogPrint(BCLog::MNBUDGET,"%s: Error upon calling GetKeysFromSecret\n", __func__);
         return;
     }

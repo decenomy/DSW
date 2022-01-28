@@ -92,8 +92,6 @@ const char * const PIVX_MASTERNODE_CONF_FILENAME = "masternode.conf";
 // Kyanite only features
 // Masternode
 bool fMasterNode = false;
-std::string strMasterNodePrivKey = "";
-std::string strMasterNodeAddr = "";
 bool fLiteMode = false;
 
 /** Spork enforcement enabled time */

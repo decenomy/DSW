@@ -25,7 +25,6 @@ class CActiveMasternode;
 
 extern CMasternodeMan mnodeman;
 extern CActiveMasternode activeMasternode;
-extern std::string strMasterNodePrivKey;
 
 void DumpMasternodes();
 

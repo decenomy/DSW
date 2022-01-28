@@ -44,7 +44,6 @@ extern const char * const DEFAULT_DEBUGLOGFILE;
 extern bool fMasterNode;
 extern bool fLiteMode;
 extern int64_t enforceMasternodePaymentsTime;
-extern std::string strMasterNodeAddr;
 extern int keysLoaded;
 extern bool fSucessfullyLoaded;
 extern std::string strBudgetMode;

@@ -1757,15 +1757,15 @@ bool AppInit2()
 
     if (fMasterNode) {
         LogPrintf("IS MASTER NODE\n");
-        strMasterNodeAddr = GetArg("-masternodeaddr", "");
+        activeMasternode.strMasterNodeAddr = GetArg("-masternodeaddr", "");
 
-        LogPrintf(" addr %s\n", strMasterNodeAddr.c_str());
+        LogPrintf(" addr %s\n", activeMasternode.strMasterNodeAddr.c_str());
 
-        if (!strMasterNodeAddr.empty()) {
+        if (!activeMasternode.strMasterNodeAddr.empty()) {
             int nPort;
             int nDefaultPort = Params().GetDefaultPort();
             std::string strHost;
-            SplitHostPort(strMasterNodeAddr, nPort, strHost);
+            SplitHostPort(activeMasternode.strMasterNodeAddr, nPort, strHost);
 
             // Allow for the port number to be omitted here and just double check
             // that if a port is supplied, it matches the required default port.
@@ -1776,18 +1776,18 @@ bool AppInit2()
             }
             CService addrTest(LookupNumeric(strHost.c_str(), nPort));
             if (!addrTest.IsValid()) {
-                return UIError(strprintf(_("Invalid -masternodeaddr address: %s"), strMasterNodeAddr));
+                return UIError(strprintf(_("Invalid -masternodeaddr address: %s"), activeMasternode.strMasterNodeAddr));
             }
         }
 
-        strMasterNodePrivKey = GetArg("-masternodeprivkey", "");
-        if (!strMasterNodePrivKey.empty()) {
+        activeMasternode.strMasterNodePrivKey = GetArg("-masternodeprivkey", "");
+        if (!activeMasternode.strMasterNodePrivKey.empty()) {
             std::string errorMessage;
 
             CKey key;
             CPubKey pubkey;
 
-            if (!CMessageSigner::GetKeysFromSecret(strMasterNodePrivKey, key, pubkey)) {
+            if (!CMessageSigner::GetKeysFromSecret(activeMasternode.strMasterNodePrivKey, key, pubkey)) {
                 return UIError(_("Invalid masternodeprivkey. Please see documenation."));
             }
 
