@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Peony Core"
-#define MyAppPublisher "2021 DECENOMY Core Developers"
+#define MyAppPublisher "2022 DECENOMY Core Developers"
 #define MyAppURL "https://peony.net"
 #define MyAppExeName "peony-qt.exe"
 #define MyAppExtraData "https://explorer.decenomy.net/bootstraps/PNY/bootstrap.zip"
