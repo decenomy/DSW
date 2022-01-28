@@ -80,6 +80,7 @@ const fs::path &ZC_GetParamsDir();
 void ClearDatadirCache();
 fs::path GetConfigFile();
 fs::path GetMasternodeConfigFile();
+fs::path GetActiveMasternodeConfigFile();
 #ifndef WIN32
 fs::path GetPidFile();
 void CreatePidFile(const fs::path& path, pid_t pid);

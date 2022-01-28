@@ -87,7 +87,7 @@
 const char * const PIVX_CONF_FILENAME = "kyanite.conf";
 const char * const PIVX_PID_FILENAME = "kyanite.pid";
 const char * const PIVX_MASTERNODE_CONF_FILENAME = "masternode.conf";
-
+const char * const PIVX_ACTIVE_MASTERNODE_CONF_FILENAME = "activemasternode.conf";
 
 // Kyanite only features
 // Masternode
@@ -415,6 +415,12 @@ fs::path GetConfigFile()
 fs::path GetMasternodeConfigFile()
 {
     fs::path pathConfigFile(GetArg("-mnconf", PIVX_MASTERNODE_CONF_FILENAME));
+    return AbsPathForConfigVal(pathConfigFile);
+}
+
+fs::path GetActiveMasternodeConfigFile()
+{
+    fs::path pathConfigFile(GetArg("-activemnconf", PIVX_ACTIVE_MASTERNODE_CONF_FILENAME));
     return AbsPathForConfigVal(pathConfigFile);
 }
 

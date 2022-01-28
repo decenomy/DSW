@@ -16,6 +16,7 @@
 #include "init.h"
 
 #include "activemasternode.h"
+#include "activemasternodeconfig.h"
 #include "addrman.h"
 #include "amount.h"
 #include "checkpoints.h"
