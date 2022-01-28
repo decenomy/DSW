@@ -29,8 +29,8 @@ Build-Depends: debhelper,
  dh-systemd
 Standards-Version: 3.9.2
 Homepage: https://peonycoin.io/
-Vcs-Git: git://github.com/peonycoin-io/pny.git
-Vcs-Browser: https://github.com/peonycoin-io/pny
+Vcs-Git: git://github.com/decenomy/PNY.git
+Vcs-Browser: https://github.com/decenomy/PNY
 
 Package: peonyd
 Architecture: any
