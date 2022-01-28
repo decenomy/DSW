@@ -13,7 +13,7 @@
 #include <vector>
 
 class CActiveMasternodeConfig;
-extern CActiveMasternodeConfig multinodeConfig;
+extern CActiveMasternodeConfig activeMasternodeConfig;
 
 class CActiveMasternodeConfig
 {
