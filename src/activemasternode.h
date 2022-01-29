@@ -14,6 +14,8 @@
 #include "sync.h"
 #include "wallet/wallet.h"
 
+#include <string>
+
 #define ACTIVE_MASTERNODE_INITIAL 0 // initial state
 #define ACTIVE_MASTERNODE_SYNC_IN_PROCESS 1
 #define ACTIVE_MASTERNODE_NOT_CAPABLE 3
@@ -37,6 +39,8 @@ public:
         status = ACTIVE_MASTERNODE_INITIAL;
     }
 
+    std::string alias {"legacy"};
+
     // Initialized by init.cpp
     // Keys for the main Masternode
     CPubKey pubKeyMasternode;
@@ -58,4 +62,4 @@ public:
     bool EnableHotColdMasterNode(CTxIn& vin, CService& addr);
 };
 
-#endif
+#endif //ACTIVEMASTERNODE_H

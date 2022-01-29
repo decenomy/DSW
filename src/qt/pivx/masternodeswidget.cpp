@@ -12,6 +12,7 @@
 #include "qt/pivx/masternodewizarddialog.h"
 
 #include "activemasternode.h"
+#include "activemasternodeman.h"
 #include "clientmodel.h"
 #include "fs.h"
 #include "guiutil.h"

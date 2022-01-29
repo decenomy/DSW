@@ -7,6 +7,7 @@
 #include "qt/pivx/forms/ui_masternodewizarddialog.h"
 
 #include "activemasternode.h"
+#include "activemasternodeman.h"
 #include "optionsmodel.h"
 #include "pairresult.h"
 #include "qt/pivx/mnmodel.h"

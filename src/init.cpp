@@ -16,6 +16,7 @@
 #include "init.h"
 
 #include "activemasternode.h"
+#include "activemasternodeman.h"
 #include "activemasternodeconfig.h"
 #include "addrman.h"
 #include "amount.h"
@@ -1758,6 +1759,9 @@ bool AppInit2()
 
     if (fMasterNode) {
         LogPrintf("IS MASTER NODE\n");
+
+        CActiveMasternode activeMasternode;
+
         activeMasternode.strMasterNodeAddr = GetArg("-masternodeaddr", "");
 
         LogPrintf(" addr %s\n", activeMasternode.strMasterNodeAddr.c_str());
@@ -1797,6 +1801,8 @@ bool AppInit2()
         } else {
             return UIError(_("You must specify a masternodeprivkey in the configuration. Please see documentation for help."));
         }
+
+        anodeman.Add(activeMasternode);
     }
 
     //get the mode of budget voting for this masternode

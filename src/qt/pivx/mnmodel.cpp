@@ -6,6 +6,7 @@
 #include "qt/pivx/mnmodel.h"
 
 #include "activemasternode.h"
+#include "activemasternodeman.h"
 #include "masternode-sync.h"
 #include "masternodeman.h"
 #include "net.h"        // for validateMasternodeIP
