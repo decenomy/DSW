@@ -1,7 +1,7 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2015-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -271,6 +271,7 @@ extern UniValue invalidateblock(const JSONRPCRequest& request);
 extern UniValue reconsiderblock(const JSONRPCRequest& request);
 extern UniValue getblockindexstats(const JSONRPCRequest& request);
 extern UniValue getserials(const JSONRPCRequest& request);
+extern UniValue getburnaddresses(const JSONRPCRequest& request);
 extern void validaterange(const UniValue& params, int& heightStart, int& heightEnd, int minHeightStart=1);
 
 // in rpc/masternode.cpp

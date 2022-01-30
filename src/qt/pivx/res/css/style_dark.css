@@ -1961,10 +1961,10 @@ HH        RECEIVE
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 *[cssClass="label-address-box"] {
-    color:#ffffff;
-    background-color: #969696;
-    font-size:22px;
-    padding:10px 10px;
+  color: #ffffff;
+  background-color: #969696;
+  font-size: 20px;
+  padding: 10px 10px;
 }
 
 /*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
@@ -3214,7 +3214,7 @@ QRadioButton[cssClass="radio-welcome"]::indicator:checked {
 }
 
 QRadioButton[cssClass="radio-welcome"]::indicator:unchecked {
-    background: url("://btn-radio-off");
-    background-repeat:no-repeat;
-    background-position:center;
+  background: url("://btn-radio-off");
+  background-repeat: no-repeat;
+  background-position: center;
 }

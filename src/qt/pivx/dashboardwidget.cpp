@@ -1,5 +1,5 @@
 // Copyright (c) 2019-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -190,14 +190,14 @@ void DashboardWidget::loadWalletModel()
 
         // Read filter settings
         QSettings settings;
-        int filterByType = settings.value("transactionType", TransactionFilterProxy::ALL_TYPES).toInt();
+        int filterByType = TransactionFilterProxy::ALL_TYPES;
 
         filter->setTypeFilter(filterByType); // Set filter
         int filterIndex = ui->comboBoxSortType->findData(filterByType); // Find index
         ui->comboBoxSortType->setCurrentIndex(filterIndex); // Set item in ComboBox
 
         // Read sort settings
-        changeSort(settings.value("transactionSort", SortTx::DATE_DESC).toInt());
+        changeSort(SortTx::DATE_DESC);
 
         txHolder->setFilter(filter);
         ui->listTransactions->setModel(filter);
@@ -313,10 +313,6 @@ void DashboardWidget::changeSort(int nSortIndex)
     ui->comboBoxSort->setCurrentIndex(nSortIndex);
     filter->sort(nColumnIndex, order);
     ui->listTransactions->update();
-
-    // Store settings
-    QSettings settings;
-    settings.setValue("transactionSort", nSortIndex);
 }
 
 void DashboardWidget::onSortTypeChanged(const QString& value)
@@ -334,10 +330,6 @@ void DashboardWidget::onSortTypeChanged(const QString& value)
     } else {
         showList();
     }
-
-    // Store settings
-    QSettings settings;
-    settings.setValue("transactionType", filterByType);
 }
 
 void DashboardWidget::walletSynced(bool sync)
