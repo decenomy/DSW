@@ -345,30 +345,18 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
     CAmount nSubsidy;
 
-    if(nHeight > 1000000) return                    35.9 * COIN;
-    if(nHeight >  500000) return    (76.4 - 0.000081 * (nHeight - 500000)) * COIN;
-    if(nHeight >  403200) return    0.0001528  * nHeight * COIN;
-    if(nHeight >  383040) return    0.0001667  * nHeight * COIN;
-    if(nHeight >  362880) return    0.0001664  * nHeight * COIN;
-    if(nHeight >  342720) return    0.0001662  * nHeight * COIN;
-    if(nHeight >  322560) return    0.0001659  * nHeight * COIN;
-    if(nHeight >  302400) return    0.0001656  * nHeight * COIN;
-    if(nHeight >  282240) return    0.0001652  * nHeight * COIN;
-    if(nHeight >  262080) return    0.0001648  * nHeight * COIN;
-    if(nHeight >  241920) return    0.00016435 * nHeight * COIN;
-    if(nHeight >  221760) return    0.0001637  * nHeight * COIN;
-    if(nHeight >  201600) return    0.000163   * nHeight * COIN;
-    if(nHeight >  181440) return    0.000162   * nHeight * COIN;
-    if(nHeight >  161280) return    0.000161   * nHeight * COIN;
-    if(nHeight >  141120) return    0.0001597  * nHeight * COIN;
-    if(nHeight >  120960) return    0.000158   * nHeight * COIN;
-    if(nHeight >  100800) return    0.000155   * nHeight * COIN;
-    if(nHeight >   80640) return    0.000152   * nHeight * COIN;
-    if(nHeight >   60480) return    0.000147   * nHeight * COIN;
-    if(nHeight >   40320) return    0.000137   * nHeight * COIN;
-    if(nHeight >   20160) return    0.000114   * nHeight * COIN;
-    if(nHeight >      70) return    0.00004567 * nHeight * COIN;
-    if(nHeight >       0) return                   20000 * COIN;
+    if(nHeight >  1000000) return      800 * COIN;
+    if(nHeight >   900000) return     1000 * COIN;
+    if(nHeight >   800000) return     1200 * COIN;
+    if(nHeight >   700000) return     1400 * COIN;
+    if(nHeight >   600000) return     1600 * COIN;
+    if(nHeight >   500000) return     1280 * COIN;
+    if(nHeight >   400000) return      640 * COIN;
+    if(nHeight >   300000) return      320 * COIN;
+    if(nHeight >   200000) return      160 * COIN;
+    if(nHeight >   100000) return       80 * COIN;
+    if(nHeight >        1) return       40 * COIN;
+    if(nHeight >        0) return 15000000 * COIN;
 
     if(nMoneySupply + nSubsidy > maxMoneyOut) {
         return nMoneySupply + nSubsidy - maxMoneyOut;
