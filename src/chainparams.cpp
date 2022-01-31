@@ -164,7 +164,7 @@ public:
         consensus.posLimitV2 = ~UINT256_ZERO >> 20;
         consensus.nBudgetCycleBlocks = 30 * 24 * 60;       // approx. 1 every 30 days
         consensus.nBudgetFeeConfirmations = 6;      // Number of confirmations for the finalization fee
-        consensus.nCoinbaseMaturity = 180;
+        consensus.nCoinbaseMaturity = 100;
         consensus.nFutureTimeDriftPoW = 7200;
         consensus.nFutureTimeDriftPoS = 180;
         consensus.nMaxMoneyOut = 9999999999 * COIN;
@@ -173,9 +173,9 @@ public:
         consensus.nStakeMinAge = 60 * 60; // 1h
         consensus.nStakeMinDepth = 100;
         consensus.nStakeMinDepthV2 = 600;
-        consensus.nTargetTimespan = 1 * 60;
+        consensus.nTargetTimespan = 40 * 60;
         consensus.nTargetTimespanV2 = 30 * 60;
-        consensus.nTargetSpacing = 1 * 30;
+        consensus.nTargetSpacing = 1 * 60;
         consensus.nTimeSlotLength = 15;
 
         // spork keys
