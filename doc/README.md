@@ -26,9 +26,9 @@ Drag MobilityCoin-Qt to your applications folder, and then run MobilityCoin-Qt.
 
 ### Need Help?
 
-* See the documentation at the [MobilityCoin Wiki](https://__decenomy_github_link__/)
+* See the documentation at the [MobilityCoin Wiki](https://github.com/decenomy/MOBIC/)
 for help and more information.
-* Join our Discord server [Discord Server](__decenomy_discord_link__)
+* Join our Discord server [Discord Server](https://discord.com/invite/qxhuCEKrfd)
 
 Building
 ---------------------
@@ -48,7 +48,7 @@ The MobilityCoin repo's [root README](/README.md) contains relevant information 
 - [Multiwallet Qt Development](multiwallet-qt.md)
 - [Release Notes](release-notes.md)
 - [Release Process](release-process.md)
-- [Source Code Documentation (External Link)](https://__decenomy_github_link__/)
+- [Source Code Documentation (External Link)](https://github.com/decenomy/MOBIC/)
 - [Translation Process](translation_process.md)
 - [Unit Tests](unit-tests.md)
 - [Unauthenticated REST Interface](REST-interface.md)
@@ -56,7 +56,7 @@ The MobilityCoin repo's [root README](/README.md) contains relevant information 
 
 ### Resources
 * Discuss on the [MobilityCoin Homepage](https://modic.fund/).
-* Join the [MobilityCoin Discord](__decenomy_discord_link__).
+* Join the [MobilityCoin Discord](https://discord.com/invite/qxhuCEKrfd).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

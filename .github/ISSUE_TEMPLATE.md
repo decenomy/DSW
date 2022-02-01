@@ -1,7 +1,7 @@
 <!--- Remove this description and sections that do not apply -->
 
 This issue tracker is only for technical issues related to MobilityCoin Core.
-General MobilityCoin questions and/or support requests and are best directed to the [MobilityCoin Discord](__decenomy_discord_link__).
+General MobilityCoin questions and/or support requests and are best directed to the [MobilityCoin Discord](https://discord.com/invite/qxhuCEKrfd).
 
 ### Describe the issue
 
