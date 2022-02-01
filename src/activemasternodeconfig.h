@@ -7,8 +7,6 @@
 #ifndef SRC_ACTIVEMASTERNODECONFIG_H_
 #define SRC_ACTIVEMASTERNODECONFIG_H_
 
-#include "fs.h"
-
 #include <string>
 #include <vector>
 
@@ -21,88 +19,29 @@ public:
     class CActiveMasternodeEntry
     {
     public:
-        std::string alias;
-        std::string externalIp;
-        std::string privKey;
-        std::string bindAddr;
+        std::string strAlias{""};
+        std::string strMasterNodeAddr{""};
+        std::string strMasterNodePrivKey{""};
 
-        CActiveMasternodeEntry(std::string alias, std::string externalIp, std::string privKey, std::string bindAddr)
+        CActiveMasternodeEntry(std::string strAlias, std::string strMasterNodeAddr, std::string strMasterNodePrivKey)
         {
-            this->alias = alias;
-            this->externalIp = externalIp;
-            this->privKey = privKey;
-            this->bindAddr = bindAddr;
-        }
-
-        const std::string& getAlias() const
-        {
-            return alias;
-        }
-
-        void setAlias(const std::string& alias)
-        {
-            this->alias = alias;
-        }
-        
-        const std::string& getExternalIP() const
-        {
-            return externalIp;
-        }
-
-        void setExternalIP(const std::string& externalIp)
-        {
-            this->externalIp = externalIp;
-        }
-        
-
-        const std::string& getPrivKey() const
-        {
-            return privKey;
-        }
-
-        void setPrivKey(const std::string& privKey)
-        {
-            this->privKey = privKey;
-        }
-
-        const std::string& getBindAddr() const
-        {
-            return bindAddr;
-        }
-
-        void setBindAddr(const std::string& bindAddr)
-        {
-            this->bindAddr = bindAddr;
+            this->strAlias = strAlias;
+            this->strMasterNodeAddr = strMasterNodeAddr;
+            this->strMasterNodePrivKey = strMasterNodePrivKey;
         }
     };
 
-    CActiveMasternodeConfig()
-    {
-        entries = std::vector<CActiveMasternodeEntry>();
-    }
-    
     void clear();
     bool read(std::string& strErr);
-    CActiveMasternodeConfig::CActiveMasternodeEntry* add(std::string alias, std::string externalIp, std::string privKey, std::string bindAddr);
-    void remove(std::string alias);
+    CActiveMasternodeConfig::CActiveMasternodeEntry& add(std::string strAlias, std::string strMasterNodeAddr, std::string strMasterNodePrivKey);
+    void remove(std::string strAlias);
 
     std::vector<CActiveMasternodeEntry>& getEntries()
     {
-        return entries;
+        return vEntries;
     }
-
-    int getCount()
-    {
-        int c = -1;
-        for (auto e : entries) {
-            if (e.getAlias() != "") c++;
-        }
-        return c;
-    }
-
 private:
-    std::vector<CActiveMasternodeEntry> entries;
+    std::vector<CActiveMasternodeEntry> vEntries;
 };
-
 
 #endif /* SRC_ACTIVEMASTERNODECONFIG_H_ */

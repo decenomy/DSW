@@ -25,7 +25,7 @@ class CMasternodeMan;
 class CActiveMasternode;
 
 extern CMasternodeMan mnodeman;
-extern CActiveMasternodeMan anodeman;
+extern CActiveMasternodeMan amnodeman;
 
 void DumpMasternodes();
 

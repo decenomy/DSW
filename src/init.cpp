@@ -929,6 +929,63 @@ void InitLogging()
     LogPrintf("Kyanite version %s (%s)\n", version_string, CLIENT_DATE);
 }
 
+bool AppInitActiveMasternode(std::string strAlias, std::string strMasterNodeAddr, std::string strMasterNodePrivKey)
+{
+    if (strAlias.empty()) {
+        return UIError(_("activemasternode alias cannot be empty"));
+    }
+
+    CActiveMasternode activeMasternode;
+
+    activeMasternode.strAlias = strAlias;
+    activeMasternode.strMasterNodeAddr = strMasterNodeAddr;
+
+    LogPrintf(" addr %s\n", activeMasternode.strMasterNodeAddr.c_str());
+
+    int nPort;
+    int nDefaultPort = Params().GetDefaultPort();
+    std::string strHost;
+    SplitHostPort(activeMasternode.strMasterNodeAddr, nPort, strHost);
+
+    // Allow for the port number to be omitted here and just double check
+    // that if a port is supplied, it matches the required default port.
+    if (nPort == 0) nPort = nDefaultPort;
+    if (nPort != nDefaultPort) {
+        return UIError(strprintf(_("Invalid -masternodeaddr port %d, only %d is supported on %s-net."),
+            nPort, nDefaultPort, Params().NetworkIDString()));
+    }
+    CService addrTest(LookupNumeric(strHost.c_str(), nPort));
+    if (!addrTest.IsValid()) {
+        return UIError(strprintf(_("Invalid -masternodeaddr address: %s"), activeMasternode.strMasterNodeAddr));
+    }
+
+    activeMasternode.strMasterNodePrivKey = strMasterNodePrivKey;
+
+    std::string errorMessage;
+
+    CKey key;
+    CPubKey pubkey;
+
+    if (!CMessageSigner::GetKeysFromSecret(activeMasternode.strMasterNodePrivKey, key, pubkey)) {
+        return UIError(_("Invalid masternodeprivkey. Please see documenation."));
+    }
+
+    activeMasternode.pubKeyMasternode = pubkey;
+
+    amnodeman.Add(activeMasternode);
+
+    return true;
+}
+
+bool AppInitActiveMasternode(CActiveMasternodeConfig::CActiveMasternodeEntry activeMasternodeEntry)
+{
+    return AppInitActiveMasternode(
+        activeMasternodeEntry.strAlias,
+        activeMasternodeEntry.strMasterNodeAddr,
+        activeMasternodeEntry.strMasterNodePrivKey
+    );
+}
+
 /** Initialize kyanite.
  *  @pre Parameters should be parsed and config file should be read.
  */
@@ -1760,49 +1817,26 @@ bool AppInit2()
     if (fMasterNode) {
         LogPrintf("IS MASTER NODE\n");
 
-        CActiveMasternode activeMasternode;
-
-        activeMasternode.strMasterNodeAddr = GetArg("-masternodeaddr", "");
-
-        LogPrintf(" addr %s\n", activeMasternode.strMasterNodeAddr.c_str());
-
-        if (!activeMasternode.strMasterNodeAddr.empty()) {
-            int nPort;
-            int nDefaultPort = Params().GetDefaultPort();
-            std::string strHost;
-            SplitHostPort(activeMasternode.strMasterNodeAddr, nPort, strHost);
-
-            // Allow for the port number to be omitted here and just double check
-            // that if a port is supplied, it matches the required default port.
-            if (nPort == 0) nPort = nDefaultPort;
-            if (nPort != nDefaultPort) {
-                return UIError(strprintf(_("Invalid -masternodeaddr port %d, only %d is supported on %s-net."),
-                    nPort, nDefaultPort, Params().NetworkIDString()));
-            }
-            CService addrTest(LookupNumeric(strHost.c_str(), nPort));
-            if (!addrTest.IsValid()) {
-                return UIError(strprintf(_("Invalid -masternodeaddr address: %s"), activeMasternode.strMasterNodeAddr));
-            }
-        }
-
-        activeMasternode.strMasterNodePrivKey = GetArg("-masternodeprivkey", "");
-        if (!activeMasternode.strMasterNodePrivKey.empty()) {
-            std::string errorMessage;
-
-            CKey key;
-            CPubKey pubkey;
-
-            if (!CMessageSigner::GetKeysFromSecret(activeMasternode.strMasterNodePrivKey, key, pubkey)) {
-                return UIError(_("Invalid masternodeprivkey. Please see documenation."));
-            }
-
-            activeMasternode.pubKeyMasternode = pubkey;
-
+        //legacy
+        if(!GetArg("-masternodeaddr", "").empty() && !GetArg("-masternodeprivkey", "").empty()) 
+        {
+            if(!AppInitActiveMasternode("legacy", GetArg("-masternodeaddr", ""), GetArg("-masternodeprivkey", ""))) return false;
         } else {
-            return UIError(_("You must specify a masternodeprivkey in the configuration. Please see documentation for help."));
-        }
+            // multinode
+            std::string strErr;
+            if (!activeMasternodeConfig.read(strErr)) {
+                return UIError(strprintf(_("Error reading active masternode configuration file: %s"), strErr));
+            }
 
-        anodeman.Add(activeMasternode);
+            if(activeMasternodeConfig.getEntries().size() > 0) {
+                for(auto& ame : activeMasternodeConfig.getEntries()) {
+                    if(!AppInitActiveMasternode(ame)) return false;
+                }
+            } else {
+                std::cout << "XPTO" << std::endl;
+                return UIError(_("Error initializing active masternode configuration "));
+            }
+        }
     }
 
     //get the mode of budget voting for this masternode

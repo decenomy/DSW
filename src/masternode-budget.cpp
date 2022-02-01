@@ -1794,13 +1794,6 @@ void CFinalizedBudget::CheckAndVote()
         return;
     }
 
-    for (auto& activeMasternode : anodeman.GetActiveMasternodes()) {
-        if (activeMasternode.vin == nullopt) {
-            LogPrint(BCLog::MNBUDGET, "%s: Active Masternode not initialized.\n", __func__);
-            return;
-        }
-    }
-
     // Do this 1 in 4 blocks -- spread out the voting activity
     // -- this function is only called every fourteenth block, so this is really 1 in 56 blocks
     if (rand() % 4 != 0) {
@@ -2149,9 +2142,10 @@ bool CFinalizedBudget::GetPayeeAndAmount(int64_t nBlockHeight, CScript& payee, C
 
 void CFinalizedBudget::SubmitVote()
 {
-    for (auto& activeMasternode : anodeman.GetActiveMasternodes()) {
+    for (auto& activeMasternode : amnodeman.GetActiveMasternodes()) {
         // function called only from initialized masternodes
-        assert(fMasterNode && activeMasternode.vin != nullopt);
+        assert(fMasterNode);
+        if(activeMasternode.vin != nullopt) continue;
 
         std::string strError = "";
         CPubKey pubKeyMasternode;

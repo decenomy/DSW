@@ -497,15 +497,25 @@ UniValue getmasternodestatus(const JSONRPCRequest& request)
 
     UniValue resultsObj(UniValue::VARR);
 
-    for (auto& activeMasternode : anodeman.GetActiveMasternodes()) {
-        if (activeMasternode.vin == nullopt)
-            throw JSONRPCError(RPC_MISC_ERROR, activeMasternode.alias + ": Active Masternode not initialized.");
+    for (auto& activeMasternode : amnodeman.GetActiveMasternodes()) {
+        if (activeMasternode.vin == nullopt) {
+            UniValue mnObj(UniValue::VOBJ);
+            mnObj.push_back(Pair("alias", activeMasternode.strAlias));
+            mnObj.push_back(Pair("txhash", "N/A"));
+            mnObj.push_back(Pair("outputidx", -1));
+            mnObj.push_back(Pair("netaddr", activeMasternode.service.ToString()));
+            mnObj.push_back(Pair("addr", "N/A"));
+            mnObj.push_back(Pair("status", activeMasternode.GetStatus()));
+            mnObj.push_back(Pair("message", activeMasternode.GetStatusMessage()));
+            resultsObj.push_back(mnObj);
+            continue;
+        }
 
         CMasternode* pmn = mnodeman.Find(*(activeMasternode.vin));
 
         if (pmn) {
             UniValue mnObj(UniValue::VOBJ);
-            mnObj.push_back(Pair("alias", activeMasternode.alias));
+            mnObj.push_back(Pair("alias", activeMasternode.strAlias));
             mnObj.push_back(Pair("txhash", activeMasternode.vin->prevout.hash.ToString()));
             mnObj.push_back(Pair("outputidx", (uint64_t)activeMasternode.vin->prevout.n));
             mnObj.push_back(Pair("netaddr", activeMasternode.service.ToString()));

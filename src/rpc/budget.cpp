@@ -275,22 +275,27 @@ UniValue mnbudgetvote(const JSONRPCRequest& request)
         if (!fMasterNode)
             throw JSONRPCError(RPC_MISC_ERROR, "This is not a masternode. 'local' option disabled.");
 
-        for(auto& activeMasternode : anodeman.GetActiveMasternodes()) {
-            if (activeMasternode.vin == nullopt)
-            throw JSONRPCError(RPC_MISC_ERROR, activeMasternode.alias + ": Active Masternode not initialized.");
-        }
-
         CPubKey pubKeyMasternode;
         CKey keyMasternode;
 
         UniValue statusObj(UniValue::VOBJ);
 
-        for(auto& activeMasternode : anodeman.GetActiveMasternodes()) {
+        for(auto& activeMasternode : amnodeman.GetActiveMasternodes()) {
             while (true) {
+                if (activeMasternode.vin == nullopt) {
+                    failed++;
+                    statusObj.push_back(Pair("node", "local"));
+                    statusObj.push_back(Pair("alias", activeMasternode.strAlias));
+                    statusObj.push_back(Pair("result", "failed"));
+                    statusObj.push_back(Pair("error", "Active Masternode not initialized."));
+                    resultsObj.push_back(statusObj);
+                    break;
+                }
+
                 if (!CMessageSigner::GetKeysFromSecret(activeMasternode.strMasterNodePrivKey, keyMasternode, pubKeyMasternode)) {
                     failed++;
                     statusObj.push_back(Pair("node", "local"));
-                    statusObj.push_back(Pair("alias", activeMasternode.alias));
+                    statusObj.push_back(Pair("alias", activeMasternode.strAlias));
                     statusObj.push_back(Pair("result", "failed"));
                     statusObj.push_back(Pair("error", "Masternode signing error, GetKeysFromSecret failed."));
                     resultsObj.push_back(statusObj);
@@ -301,7 +306,7 @@ UniValue mnbudgetvote(const JSONRPCRequest& request)
                 if (pmn == NULL) {
                     failed++;
                     statusObj.push_back(Pair("node", "local"));
-                    statusObj.push_back(Pair("alias", activeMasternode.alias));
+                    statusObj.push_back(Pair("alias", activeMasternode.strAlias));
                     statusObj.push_back(Pair("result", "failed"));
                     statusObj.push_back(Pair("error", "Failure to find masternode in list : " + activeMasternode.vin->ToString()));
                     resultsObj.push_back(statusObj);
@@ -312,7 +317,7 @@ UniValue mnbudgetvote(const JSONRPCRequest& request)
                 if (!vote.Sign(keyMasternode, pubKeyMasternode)) {
                     failed++;
                     statusObj.push_back(Pair("node", "local"));
-                    statusObj.push_back(Pair("alias", activeMasternode.alias));
+                    statusObj.push_back(Pair("alias", activeMasternode.strAlias));
                     statusObj.push_back(Pair("result", "failed"));
                     statusObj.push_back(Pair("error", "Failure to sign."));
                     resultsObj.push_back(statusObj);
@@ -323,13 +328,13 @@ UniValue mnbudgetvote(const JSONRPCRequest& request)
                 if (budget.AddAndRelayProposalVote(vote, strError)) {
                     success++;
                     statusObj.push_back(Pair("node", "local"));
-                    statusObj.push_back(Pair("alias", activeMasternode.alias));
+                    statusObj.push_back(Pair("alias", activeMasternode.strAlias));
                     statusObj.push_back(Pair("result", "success"));
                     statusObj.push_back(Pair("error", ""));
                 } else {
                     failed++;
                     statusObj.push_back(Pair("node", "local"));
-                    statusObj.push_back(Pair("alias", activeMasternode.alias));
+                    statusObj.push_back(Pair("alias", activeMasternode.strAlias));
                     statusObj.push_back(Pair("result", "failed"));
                     statusObj.push_back(Pair("error", "Error voting : " + strError));
                 }
@@ -820,14 +825,12 @@ UniValue mnfinalbudget(const JSONRPCRequest& request)
         if (!fMasterNode)
             throw JSONRPCError(RPC_MISC_ERROR, _("This is not a masternode. 'local' option disabled."));
 
-        for (auto& activeMasternode : anodeman.GetActiveMasternodes()) {
-            if (activeMasternode.vin == nullopt)
-                throw JSONRPCError(RPC_MISC_ERROR, _("Active Masternode not initialized."));
-        }
-
         UniValue returnObj(UniValue::VOBJ);
 
-        for (auto& activeMasternode : anodeman.GetActiveMasternodes()) {
+        for (auto& activeMasternode : amnodeman.GetActiveMasternodes()) {
+
+            if (activeMasternode.vin == nullopt) continue;
+
             std::string strHash = request.params[1].get_str();
             uint256 hash(uint256S(strHash));
 
@@ -835,19 +838,19 @@ UniValue mnfinalbudget(const JSONRPCRequest& request)
             CKey keyMasternode;
 
             if (!CMessageSigner::GetKeysFromSecret(activeMasternode.strMasterNodePrivKey, keyMasternode, pubKeyMasternode)) {
-                returnObj.push_back(Pair(activeMasternode.alias, "Error upon calling GetKeysFromSecret"));
+                returnObj.push_back(Pair(activeMasternode.strAlias, "Error upon calling GetKeysFromSecret"));
                 continue;
             }
 
             CMasternode* pmn = mnodeman.Find(*(activeMasternode.vin));
             if (pmn == NULL) {
-                returnObj.push_back(Pair(activeMasternode.alias, "Failure to find masternode in list : " + activeMasternode.vin->ToString()));
+                returnObj.push_back(Pair(activeMasternode.strAlias, "Failure to find masternode in list : " + activeMasternode.vin->ToString()));
                 continue;
             }
 
             CFinalizedBudgetVote vote(*(activeMasternode.vin), hash);
             if (!vote.Sign(keyMasternode, pubKeyMasternode)) {
-                returnObj.push_back(Pair(activeMasternode.alias, "Failure to sign."));
+                returnObj.push_back(Pair(activeMasternode.strAlias, "Failure to sign."));
                 continue;
             }
 
@@ -855,9 +858,9 @@ UniValue mnfinalbudget(const JSONRPCRequest& request)
             if (budget.UpdateFinalizedBudget(vote, NULL, strError)) {
                 budget.AddSeenFinalizedBudgetVote(vote);
                 vote.Relay();
-                returnObj.push_back(Pair(activeMasternode.alias, "success"));
+                returnObj.push_back(Pair(activeMasternode.strAlias, "success"));
             } else {
-                returnObj.push_back(Pair(activeMasternode.alias, "Error voting : " + strError));
+                returnObj.push_back(Pair(activeMasternode.strAlias, "Error voting : " + strError));
             }
         }
 

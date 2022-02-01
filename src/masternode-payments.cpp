@@ -668,9 +668,11 @@ void CMasternodePayments::ProcessBlock(int nBlockHeight)
 {
     if (!fMasterNode) return;
 
-    for (auto& activeMasternode : anodeman.GetActiveMasternodes()) {
-        if (activeMasternode.vin == nullopt)
+    for (auto& activeMasternode : amnodeman.GetActiveMasternodes()) {
+        if (activeMasternode.vin == nullopt) {
             LogPrint(BCLog::MASTERNODE, "%s: Active Masternode not initialized.", __func__);
+            continue;
+        }
 
         //reference node - hybrid mode
 
