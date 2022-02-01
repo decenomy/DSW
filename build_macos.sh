@@ -7,11 +7,11 @@ then
 fi
 
 # Clone code from official Github repository
-    rm -rf DSW
-    git clone https://github.com/decenomy/DSW.git
+    rm -rf MOBIC
+    git clone https://github.com/decenomy/MOBIC.git
 
 # Entering directory
-    cd DSW
+    cd MOBIC
 
 # Compile dependencies
     cd depends
@@ -31,6 +31,6 @@ fi
     cd ..
 
 # Create zip file of binaries
-    cp DSW/src/mobicd DSW/src/mobic-cli DSW/src/mobic-tx DSW/src/qt/mobic-qt DSW/__Decenomy__-Core.dmg .
-    zip __DSW__-MacOS.zip mobicd mobic-cli mobic-tx mobic-qt __Decenomy__-Core.dmg
-    rm -f mobicd mobic-cli mobic-tx mobic-qt __Decenomy__-Core.dmg
+    cp MOBIC/src/mobicd MOBIC/src/mobic-cli MOBIC/src/mobic-tx MOBIC/src/qt/mobic-qt MOBIC/MobilityCoin-Core.dmg .
+    zip MOBIC-MacOS.zip mobicd mobic-cli mobic-tx mobic-qt MobilityCoin-Core.dmg
+    rm -f mobicd mobic-cli mobic-tx mobic-qt MobilityCoin-Core.dmg

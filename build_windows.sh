@@ -12,11 +12,11 @@ fi
 	echo "1" | sudo update-alternatives --config x86_64-w64-mingw32-g++
 
 # Clone code from official Github repository
-	rm -rf DSW
-	git clone https://github.com/decenomy/DSW.git
+	rm -rf MOBIC
+	git clone https://github.com/decenomy/MOBIC.git
 
 # Entering directory
-	cd DSW
+	cd MOBIC
 
 # Compile dependencies
 	cd depends
@@ -30,6 +30,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/mobicd.exe DSW/src/mobic-cli.exe DSW/src/mobic-tx.exe DSW/src/qt/mobic-qt.exe .
-	zip __DSW__-Windows.zip mobicd.exe mobic-cli.exe mobic-tx.exe mobic-qt.exe
+	cp MOBIC/src/mobicd.exe MOBIC/src/mobic-cli.exe MOBIC/src/mobic-tx.exe MOBIC/src/qt/mobic-qt.exe .
+	zip MOBIC-Windows.zip mobicd.exe mobic-cli.exe mobic-tx.exe mobic-qt.exe
 	rm -f mobicd.exe mobic-cli.exe mobic-tx.exe mobic-qt.exe

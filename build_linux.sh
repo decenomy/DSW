@@ -11,11 +11,11 @@ fi
 	sudo apt install git zip unzip build-essential libtool bsdmainutils autotools-dev autoconf pkg-config automake python3 libqt5svg5-dev -y
 
 # Clone code from official Github repository
-	rm -rf DSW
-	git clone https://github.com/decenomy/DSW.git
+	rm -rf MOBIC
+	git clone https://github.com/decenomy/MOBIC.git
 
 # Entering directory
-	cd DSW
+	cd MOBIC
 
 # Compile dependencies
 	cd depends
@@ -29,6 +29,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/mobicd DSW/src/mobic-cli DSW/src/mobic-tx DSW/src/qt/mobic-qt .
-	zip __DSW__-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip mobicd mobic-cli mobic-tx mobic-qt
+	cp MOBIC/src/mobicd MOBIC/src/mobic-cli MOBIC/src/mobic-tx MOBIC/src/qt/mobic-qt .
+	zip MOBIC-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip mobicd mobic-cli mobic-tx mobic-qt
 	rm -f mobicd mobic-cli mobic-tx mobic-qt
