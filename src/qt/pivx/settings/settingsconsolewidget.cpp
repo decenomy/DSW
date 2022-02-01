@@ -425,7 +425,7 @@ void SettingsConsoleWidget::clear(bool clearHistory)
     QString clsKey = "Ctrl-L";
 #endif
 
-    messageInternal(CMD_REPLY, (tr("Welcome to the __DSW__ RPC console.") + "<br>" +
+    messageInternal(CMD_REPLY, (tr("Welcome to the MOBIC RPC console.") + "<br>" +
                         tr("Use up and down arrows to navigate history, and %1 to clear screen.").arg("<b>"+clsKey+"</b>") + "<br>" +
                         tr("Type <b>help</b> for an overview of available commands.") +
                         "<br><span class=\"secwarning\"><br>" +
