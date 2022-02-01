@@ -3512,8 +3512,8 @@ Il y a eu une erreur de sauvegarde de la liste d'adresses vers %1. SVP rééssay
         <translation>2) Pourquoi mes MOBIC ne peuvent pas être dépensés?</translation>
     </message>
     <message>
-        <source>__decenomy_website_link__/</source>
-        <translation>__decenomy_website_link__/</translation>
+        <source>https://modic.fund/</source>
+        <translation>https://modic.fund/</translation>
     </message>
     <message>
         <source>1</source>
