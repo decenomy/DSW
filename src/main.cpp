@@ -5,7 +5,7 @@
 // Copyright (c) 2013-2014 The NovaCoin Developers
 // Copyright (c) 2014-2018 The BlackCoin Developers
 // Copyright (c) 2015-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -5150,7 +5150,7 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
             pfrom->cleanSubVer = cleanSubVer;
         }
 
-        auto shortFromName = pfrom->cleanSubVer.substr(0, pfrom->cleanSubVer.find(' '));
+        auto shortFromName = pfrom->cleanSubVer.substr(0, pfrom->cleanSubVer.find(':')).substr(0, pfrom->cleanSubVer.find(' '));
         auto shortName = CLIENT_NAME.substr(0, CLIENT_NAME.find(' '));
 
         for (auto & c: shortFromName) c = toupper(c);
