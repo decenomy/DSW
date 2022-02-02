@@ -153,9 +153,9 @@ public:
 
         // /////////////////////////////////////////////////////////////////
 
-        genesis = CreateGenesisBlock(1587772800, 548987, 0x1e0ffff0, 1, 0 * COIN);
+        genesis = CreateGenesisBlock(1643820579, 553205, 0x1e0ffff0, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000004cd0b7e3f050671ae041632a1a7c9578b3ef55da7d08da9695f7ea44e0a"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00000fb43c4cff249d7099453c6af298877e7f5a8877abdb63f2175170b9df63"));
         assert(genesis.hashMerkleRoot == uint256S("0x24c4359abe6d653e1a86916a0326cfe84cf959fdc9cc60659d3c5901b3181df0"));
 
         consensus.fPowAllowMinDifficultyBlocks = false;
