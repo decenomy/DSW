@@ -14,9 +14,9 @@
 
 CActiveMasternodeConfig activeMasternodeConfig;
 
-CActiveMasternodeConfig::CActiveMasternodeEntry& CActiveMasternodeConfig::add(std::string strAlias, std::string strMasterNodeAddr, std::string strMasterNodePrivKey)
+CActiveMasternodeConfig::CActiveMasternodeEntry& CActiveMasternodeConfig::add(std::string strAlias, std::string strMasterNodePrivKey)
 {
-    CActiveMasternodeEntry cme(strAlias, strMasterNodeAddr, strMasterNodePrivKey);
+    CActiveMasternodeEntry cme(strAlias, strMasterNodePrivKey);
     vEntries.push_back(cme);
     return vEntries.back();
 }
@@ -44,9 +44,9 @@ bool CActiveMasternodeConfig::read(std::string& strErr)
         FILE* configFile = fsbridge::fopen(pathActiveMasternodeConfigFile, "a");
         if (configFile != NULL) {
             std::string strHeader = "# Activemasternode config file\n"
-                                    "# Format: strAlias strMasterNodeAddr activemasternodeprivkey bindAddr:port\n"
+                                    "# Format: strAlias activemasternodeprivkey\n"
                                     "#\n"
-                                    "# Example: mn1 40.51.62.73 93HaYBVUCYjEMeeH1Y4sBGLALQZE1Yc1K64xiqgX37tGBDQL8Xg 192.168.1.22:12345\n"
+                                    "# Example: mn1 93HaYBVUCYjEMeeH1Y4sBGLALQZE1Yc1K64xiqgX37tGBDQL8Xg\n"
                                     "#\n";
             fwrite(strHeader.c_str(), std::strlen(strHeader.c_str()), 1, configFile);
             fclose(configFile);
@@ -58,7 +58,7 @@ bool CActiveMasternodeConfig::read(std::string& strErr)
         if (line.empty()) continue;
 
         std::istringstream iss(line);
-        std::string comment, strAlias, strMasterNodeAddr, strMasterNodePrivKey;
+        std::string comment, strAlias, strMasterNodePrivKey;
 
         if (iss >> comment) {
             if (comment.at(0) == '#') continue;
@@ -66,10 +66,10 @@ bool CActiveMasternodeConfig::read(std::string& strErr)
             iss.clear();
         }
 
-        if (!(iss >> strAlias >> strMasterNodeAddr >> strMasterNodePrivKey)) {
+        if (!(iss >> strAlias >> strMasterNodePrivKey)) {
             iss.str(line);
             iss.clear();
-            if (!(iss >> strAlias >> strMasterNodeAddr >> strMasterNodePrivKey)) {
+            if (!(iss >> strAlias >> strMasterNodePrivKey)) {
                 strErr = _("Could not parse activemasternode.conf") + "\n" +
                          strprintf(_("Line: %d"), linenumber) + "\n\"" + line + "\"";
                 streamConfig.close();
@@ -83,28 +83,7 @@ bool CActiveMasternodeConfig::read(std::string& strErr)
             return false;
         }
 
-        int port = 0;
-        int nDefaultPort = Params().GetDefaultPort();
-        std::string hostname = "";
-
-        SplitHostPort(strMasterNodeAddr, port, hostname);
-
-        if (port == 0 || hostname == "") {
-            strErr = _("Failed to parse host:port string") + "\n" +
-                     strprintf(_("Line: %d"), linenumber) + "\n\"" + line + "\"";
-            streamConfig.close();
-            return false;
-        }
-
-        if (port != nDefaultPort) {
-            strErr = strprintf(_("Invalid port %d detected in activemasternode.conf"), port) + "\n" +
-                     strprintf(_("Line: %d"), linenumber) + "\n\"" + strMasterNodeAddr + "\"" + "\n" +
-                     strprintf(_("(must be %d for %s-net)"), nDefaultPort, Params().NetworkIDString());
-            streamConfig.close();
-            return false;
-        }
-
-        add(strAlias, strMasterNodeAddr, strMasterNodePrivKey);
+        add(strAlias, strMasterNodePrivKey);
     }
 
     streamConfig.close();

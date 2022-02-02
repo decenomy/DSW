@@ -519,7 +519,6 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-mnconf=<file>", strprintf(_("Specify masternode configuration file (default: %s)"), PIVX_MASTERNODE_CONF_FILENAME));
     strUsage += HelpMessageOpt("-mnconflock=<n>", strprintf(_("Lock masternodes from masternode configuration file (default: %u)"), DEFAULT_MNCONFLOCK));
     strUsage += HelpMessageOpt("-masternodeprivkey=<n>", _("Set the masternode private key"));
-    strUsage += HelpMessageOpt("-masternodeaddr=<n>", strprintf(_("Set external address:port to get to this masternode (example: %s)"), "128.127.106.235:7757"));
     strUsage += HelpMessageOpt("-budgetvotemode=<mode>", _("Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)"));
 
     strUsage += HelpMessageGroup(_("Zerocoin options:"));
@@ -929,7 +928,7 @@ void InitLogging()
     LogPrintf("Kyanite version %s (%s)\n", version_string, CLIENT_DATE);
 }
 
-bool AppInitActiveMasternode(std::string strAlias, std::string strMasterNodeAddr, std::string strMasterNodePrivKey)
+bool AppInitActiveMasternode(std::string strAlias, std::string strMasterNodePrivKey)
 {
     if (strAlias.empty()) {
         return UIError(_("activemasternode alias cannot be empty"));
@@ -938,26 +937,6 @@ bool AppInitActiveMasternode(std::string strAlias, std::string strMasterNodeAddr
     CActiveMasternode activeMasternode;
 
     activeMasternode.strAlias = strAlias;
-    activeMasternode.strMasterNodeAddr = strMasterNodeAddr;
-
-    LogPrintf(" addr %s\n", activeMasternode.strMasterNodeAddr.c_str());
-
-    int nPort;
-    int nDefaultPort = Params().GetDefaultPort();
-    std::string strHost;
-    SplitHostPort(activeMasternode.strMasterNodeAddr, nPort, strHost);
-
-    // Allow for the port number to be omitted here and just double check
-    // that if a port is supplied, it matches the required default port.
-    if (nPort == 0) nPort = nDefaultPort;
-    if (nPort != nDefaultPort) {
-        return UIError(strprintf(_("Invalid -masternodeaddr port %d, only %d is supported on %s-net."),
-            nPort, nDefaultPort, Params().NetworkIDString()));
-    }
-    CService addrTest(LookupNumeric(strHost.c_str(), nPort));
-    if (!addrTest.IsValid()) {
-        return UIError(strprintf(_("Invalid -masternodeaddr address: %s"), activeMasternode.strMasterNodeAddr));
-    }
 
     activeMasternode.strMasterNodePrivKey = strMasterNodePrivKey;
 
@@ -981,7 +960,6 @@ bool AppInitActiveMasternode(CActiveMasternodeConfig::CActiveMasternodeEntry act
 {
     return AppInitActiveMasternode(
         activeMasternodeEntry.strAlias,
-        activeMasternodeEntry.strMasterNodeAddr,
         activeMasternodeEntry.strMasterNodePrivKey
     );
 }
@@ -1818,9 +1796,9 @@ bool AppInit2()
         LogPrintf("IS MASTER NODE\n");
 
         //legacy
-        if(!GetArg("-masternodeaddr", "").empty() && !GetArg("-masternodeprivkey", "").empty()) 
+        if(!GetArg("-masternodeprivkey", "").empty()) 
         {
-            if(!AppInitActiveMasternode("legacy", GetArg("-masternodeaddr", ""), GetArg("-masternodeprivkey", ""))) return false;
+            if(!AppInitActiveMasternode("legacy", GetArg("-masternodeprivkey", ""))) return false;
         } else {
             // multinode
             std::string strErr;

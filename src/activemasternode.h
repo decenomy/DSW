@@ -47,7 +47,6 @@ public:
     CPubKey pubKeyMasternode;
 
     std::string strMasterNodePrivKey {""};
-    std::string strMasterNodeAddr    {""};
 
     // Initialized while registering Masternode
     Optional<CTxIn> vin;

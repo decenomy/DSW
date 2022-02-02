@@ -62,17 +62,10 @@ void CActiveMasternode::ManageStatus()
             return;
         }
 
-        if (strMasterNodeAddr.empty()) {
-            if (!GetLocal(service)) {
-                notCapableReason = "Can't detect external address. Please use the masternodeaddr configuration option.";
-                LogPrintf("CActiveMasternode::ManageStatus() - not capable: %s\n", notCapableReason);
-                return;
-            }
-        } else {
-            int nPort;
-            std::string strHost;
-            SplitHostPort(strMasterNodeAddr, nPort, strHost);
-            service = LookupNumeric(strHost.c_str(), nPort);
+        if (!GetLocal(service)) {
+            notCapableReason = "Can't detect external address.";
+            LogPrintf("CActiveMasternode::ManageStatus() - not capable: %s\n", notCapableReason);
+            return;
         }
 
         // The service needs the correct default port to work properly
