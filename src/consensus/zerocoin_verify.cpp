@@ -1,5 +1,5 @@
 // Copyright (c) 2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -128,7 +128,7 @@ bool CheckPublicCoinSpendEnforced(int blockHeight, bool isPublicSpend)
 }
 
 int CurrentPublicCoinSpendVersion() {
-    return sporkManager.IsSporkActive(SPORK_18_ZEROCOIN_PUBLICSPEND_V4) ? 4 : 3;
+    return 3;
 }
 
 bool CheckPublicCoinSpendVersion(int version) {

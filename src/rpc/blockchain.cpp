@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -628,6 +628,7 @@ static void ApplyStats(CCoinsStats &stats, CHashWriter& ss, const uint256& hash,
 //! Calculate statistics about the unspent transaction output set
 static bool GetUTXOStats(CCoinsView *view, CCoinsStats &stats)
 {
+    const Consensus::Params& consensus = Params().GetConsensus();
     std::unique_ptr<CCoinsViewCursor> pcursor(view->Cursor());
 
     CHashWriter ss(SER_GETHASH, PROTOCOL_VERSION);
@@ -644,6 +645,17 @@ static bool GetUTXOStats(CCoinsView *view, CCoinsStats &stats)
         COutPoint key;
         Coin coin;
         if (pcursor->GetKey(key) && pcursor->GetValue(coin)) {
+            // ----------- burn address scanning -----------
+            CTxDestination source;
+            if (ExtractDestination(coin.out.scriptPubKey, source)) {
+                const std::string addr = EncodeDestination(source);
+                if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
+                    consensus.mBurnAddresses.at(addr) < stats.nHeight) 
+                {
+                    pcursor->Next();
+                    continue;
+                }
+            }
             if (!outputs.empty() && key.hash != prevkey) {
                 ApplyStats(stats, ss, prevkey, outputs);
                 outputs.clear();
@@ -661,6 +673,45 @@ static bool GetUTXOStats(CCoinsView *view, CCoinsStats &stats)
     stats.hashSerialized = ss.GetHash();
     stats.nDiskSize = view->EstimateSize();
     return true;
+}
+
+static std::map<std::string, CAmount> GetBurnStats(CCoinsView* view, bool fWithValues, int nHeight)
+{
+    std::map<std::string, CAmount> ret;
+
+    const Consensus::Params& consensus = Params().GetConsensus();
+
+    for (const auto &p : consensus.mBurnAddresses ) {
+        if(p.second <= nHeight) {
+            ret[p.first] = 0;
+        }
+    }
+
+    if(fWithValues) {
+        std::unique_ptr<CCoinsViewCursor> pcursor(view->Cursor());
+
+        while (pcursor->Valid()) {
+            boost::this_thread::interruption_point();
+            COutPoint key;
+            Coin coin;
+            if (pcursor->GetKey(key) && pcursor->GetValue(coin)) {
+                CTxDestination source;
+                if (ExtractDestination(coin.out.scriptPubKey, source)) {
+                    const std::string addr = EncodeDestination(source);
+                    if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
+                        consensus.mBurnAddresses.at(addr) <= nHeight) {
+                        ret[addr] = ret[addr] + coin.out.nValue;
+                    }
+                }
+            } else {
+                error("%s: unable to read value", __func__);
+            }
+
+            pcursor->Next();
+        }
+    }
+
+    return ret;
 }
 
 UniValue gettxoutsetinfo(const JSONRPCRequest& request)
@@ -777,6 +828,49 @@ UniValue gettxout(const JSONRPCRequest& request)
     ScriptPubKeyToJSON(coin.out.scriptPubKey, o, true);
     ret.push_back(Pair("scriptPubKey", o));
     ret.push_back(Pair("coinbase", (bool)coin.fCoinBase));
+
+    return ret;
+}
+
+UniValue getburnaddresses(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() > 1)
+        throw std::runtime_error(
+            "getburnaddresses ( withvalues )\n"
+            "\nReturns burn addresses. When an address is a burn address, it is also rejected from mempool and block inclusion, however a transaction to them is possible.\n"
+
+            "\nArguments:\n"
+            "1. withvalues  (boolean, optional) Whether to include address balance. Default = false\n"
+
+            "\nResult:\n"
+            "[\n"
+            "{\n"
+            "  \"address\": xxxxxx,        (string) The burn address\n"
+            "  \"amount\": 123.45    (numeric) The balance of the burn address\n"
+            "}\n"
+            "]\n"
+
+            "\nExamples:\n" +
+            HelpExampleCli("getburnaddresses", "") + HelpExampleCli("getburnaddresses", "true") + HelpExampleRpc("getburnaddresses", ""));
+
+    bool fWithValues = false;
+    if (request.params.size() > 0)
+        fWithValues = request.params[0].get_bool();
+
+    UniValue ret(UniValue::VARR);
+    int nHeight = WITH_LOCK(cs_main, return chainActive.Height());
+    if (nHeight < 0) return "[]";
+
+    if (fWithValues) FlushStateToDisk();
+
+    for (const auto& kv : GetBurnStats(pcoinsTip, fWithValues, nHeight)) {
+        UniValue obj(UniValue::VOBJ);
+        obj.push_back(Pair("address", kv.first));
+        if (fWithValues) {
+            obj.push_back(Pair("amount", ValueFromAmount(kv.second)));
+        }
+        ret.push_back(obj);
+    }
 
     return ret;
 }

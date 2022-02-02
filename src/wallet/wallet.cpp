@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -3654,8 +3654,12 @@ CWallet* CWallet::CreateWalletFromFile(const std::string walletFile)
         walletInstance->SetBestChain(chainActive.GetLocator());
     }
 
-    if(walletInstance->GetECommerceKeyPoolSize() == 0) {
-        walletInstance->TopUpKeyPool();
+    {
+        LOCK(walletInstance->cs_wallet);
+
+        if(walletInstance->GetECommerceKeyPoolSize() == 0) {
+            walletInstance->TopUpKeyPool();
+        }
     }
 
     LogPrintf("Wallet completed loading in %15dms\n", GetTimeMillis() - nStart);

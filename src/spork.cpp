@@ -1,6 +1,6 @@
 // Copyright (c) 2014-2016 The Dash developers
 // Copyright (c) 2016-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -15,17 +15,8 @@
 #define MAKE_SPORK_DEF(name, defaultValue) CSporkDef(name, defaultValue, #name)
 
 std::vector<CSporkDef> sporkDefs = {
-    MAKE_SPORK_DEF(SPORK_2_NOOP,                            4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_3_NOOP,                            4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_5_NOOP,                            4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT,  4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_9_MASTERNODE_BUDGET_ENFORCEMENT,   4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_13_ENABLE_SUPERBLOCKS,             4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_14_MIN_PROTOCOL_ACCEPTED,          4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_15_NOOP,                           4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_16_ZEROCOIN_MAINTENANCE_MODE,      4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_17_NOOP,                           4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_18_ZEROCOIN_PUBLICSPEND_V4,        4070908800ULL), // OFF
 
     MAKE_SPORK_DEF(SPORK_101_SERVICES_ENFORCEMENT,          4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_102_FORCE_ENABLED_MASTERNODE ,     4070908800ULL), // OFF
@@ -33,6 +24,21 @@ std::vector<CSporkDef> sporkDefs = {
     MAKE_SPORK_DEF(SPORK_104_MAX_BLOCK_TIME,                4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_105_MAX_BLOCK_SIZE,                4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_106_STAKING_SKIP_MN_SYNC,          4070908800ULL), // OFF
+
+    MAKE_SPORK_DEF(SPORK_2_NOOP,                            4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_3_NOOP,                            4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_5_NOOP,                            4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_7_NOOP,                            4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_9_NOOP,                            4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_10_NOOP,                           4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_11_NOOP,                           4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_12_NOOP,                           4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_13_NOOP,                           4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_15_NOOP,                           4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_16_NOOP,                           4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_17_NOOP,                           4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_18_NOOP,                           4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_19_NOOP,                           4070908800ULL), // OFF
 };
 
 CSporkManager sporkManager;

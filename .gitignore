@@ -80,6 +80,15 @@ src/aezora-cli
 src/aezora-tx
 src/aezorad
 
+# Azzure
+src/bench/bench_azzure
+src/qt/test/test_azzure-qt
+src/qt/azzure-qt
+src/test/test_azzure
+src/azzure-cli
+src/azzure-tx
+src/azzured
+
 # Beacon
 src/bench/bench_beacon
 src/qt/test/test_beacon-qt
@@ -142,6 +151,42 @@ src/test/test_ultraclear
 src/ultraclear-cli
 src/ultraclear-tx
 src/ultracleard
+
+# One World Coin
+src/bench/bench_oneworld
+src/qt/test/test_oneworld-qt
+src/qt/oneworld-qt
+src/test/test_oneworld
+src/oneworld-cli
+src/oneworld-tx
+src/oneworldd
+
+# Birake
+src/bench/bench_birake
+src/qt/test/test_birake-qt
+src/qt/birake-qt
+src/test/test_birake
+src/birake-cli
+src/birake-tx
+src/biraked
+
+# Peps Coin
+src/bench/bench_peps
+src/qt/test/test_peps-qt
+src/qt/peps-qt
+src/test/test_peps
+src/peps-cli
+src/peps-tx
+src/pepsd
+
+# Mobility Coin
+src/bench/bench_mobic
+src/qt/test/test_mobic-qt
+src/qt/mobic-qt
+src/test/test_mobic
+src/mobic-cli
+src/mobic-tx
+src/mobicd
 
 ##########################################
 # clear this section when it's fixed

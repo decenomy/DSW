@@ -332,6 +332,8 @@ crypto_libbitcoin_crypto_a_SOURCES = \
   crypto/sha512.cpp \
   crypto/chacha20.h \
   crypto/chacha20.cpp \
+  crypto/google_authenticator.cpp \
+  crypto/hmac_sha1.cpp \
   crypto/hmac_sha256.cpp \
   crypto/rfc6979_hmac_sha256.cpp \
   crypto/hmac_sha512.cpp \
@@ -347,6 +349,8 @@ crypto_libbitcoin_crypto_a_SOURCES = \
   crypto/common.h \
   crypto/sha256.h \
   crypto/sha512.h \
+  crypto/google_authenticator.h \
+  crypto/hmac_sha1.h \
   crypto/hmac_sha256.h \
   crypto/rfc6979_hmac_sha256.h \
   crypto/hmac_sha512.h \
