@@ -181,6 +181,9 @@ enum opcodetype
     OP_ZEROCOINSPEND = 0xc2,
     OP_ZEROCOINPUBLICSPEND = 0xc3,
 
+    // cold staking
+    OP_CHECKCOLDSTAKEVERIFY_LEGACY = 0xd1,
+
     OP_INVALIDOPCODE = 0xff,
 };
 
@@ -619,6 +622,7 @@ public:
 
     bool IsNormalPaymentScript() const;
     bool IsPayToScriptHash() const;
+    bool IsPayToColdStakingLegacy() const;
     bool StartsWithOpcode(const opcodetype opcode) const;
     bool IsZerocoinMint() const;
     bool IsZerocoinSpend() const;

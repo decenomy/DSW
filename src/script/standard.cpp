@@ -29,6 +29,7 @@ const char* GetTxnOutputType(txnouttype t)
     case TX_MULTISIG: return "multisig";
     case TX_NULL_DATA: return "nulldata";
     case TX_ZEROCOINMINT: return "zerocoinmint";
+    case TX_COLDSTAKE_LEGACY: return "coldstake_legacy";
     }
     return NULL;
 }
@@ -50,6 +51,16 @@ static bool MatchPayToPubkeyHash(const CScript& script, valtype& pubkeyhash)
 {
     if (script.size() == 25 && script[0] == OP_DUP && script[1] == OP_HASH160 && script[2] == 20 && script[23] == OP_EQUALVERIFY && script[24] == OP_CHECKSIG) {
         pubkeyhash = valtype(script.begin () + 3, script.begin() + 23);
+        return true;
+    }
+    return false;
+}
+
+static bool MatchPayToColdStaking(const CScript& script, valtype& stakerPubKeyHash, valtype& ownerPubKeyHash)
+{
+    if (script.IsPayToColdStakingLegacy()) {
+        stakerPubKeyHash = valtype(script.begin () + 6, script.begin() + 26);
+        ownerPubKeyHash = valtype(script.begin () + 28, script.begin() + 48);
         return true;
     }
     return false;
@@ -125,6 +136,14 @@ bool Solver(const CScript& scriptPubKey, txnouttype& typeRet, std::vector<std::v
     if (MatchPayToPubkeyHash(scriptPubKey, data)) {
         typeRet = TX_PUBKEYHASH;
         vSolutionsRet.push_back(std::move(data));
+        return true;
+    }
+
+    std::vector<unsigned char> data1;
+    if (MatchPayToColdStaking(scriptPubKey, data, data1)) {
+        typeRet = TX_COLDSTAKE_LEGACY;
+        vSolutionsRet.push_back(std::move(data));
+        vSolutionsRet.push_back(std::move(data1));
         return true;
     }
 

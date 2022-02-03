@@ -115,6 +115,11 @@ public:
          return false;
     }
 
+    virtual bool CheckColdStakeLegacy(const CScript& script) const
+    {
+         return false;
+    }
+
     virtual ~BaseSignatureChecker() {}
 };
 
@@ -135,6 +140,9 @@ public:
 
     bool CheckSig(const std::vector<unsigned char>& scriptSig, const std::vector<unsigned char>& vchPubKey, const CScript& scriptCode, SigVersion sigversion) const override ;
     bool CheckLockTime(const CScriptNum& nLockTime) const override;
+    bool CheckColdStakeLegacy(const CScript& script) const override {
+        return txTo->CheckColdStakeLegacy(script);
+    }
 };
 
 class MutableTransactionSignatureChecker : public TransactionSignatureChecker

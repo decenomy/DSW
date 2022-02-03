@@ -960,6 +960,15 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
                 }
                 break;
 
+                case OP_CHECKCOLDSTAKEVERIFY_LEGACY:
+                {
+                    // check it is used in a valid cold stake transaction.
+                    if(!checker.CheckColdStakeLegacy(script)) {
+                        return set_error(serror, SCRIPT_ERR_CHECKCOLDSTAKEVERIFY_LEGACY);
+                    }
+                }
+                break;
+
                 default:
                     return set_error(serror, SCRIPT_ERR_BAD_OPCODE);
             }

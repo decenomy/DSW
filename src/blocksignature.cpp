@@ -91,6 +91,12 @@ bool CheckBlockSignature(const CBlock& block, const bool enableP2PKH)
                 int start = 1 + (int) *txin.scriptSig.begin(); // skip sig
                 pubkey = CPubKey(txin.scriptSig.begin()+start+1, txin.scriptSig.end());
             }
+        } else if (whichType == TX_COLDSTAKE_LEGACY) {
+            // pick the public key from the P2CS input
+            const CTxIn& txin = block.vtx[1].vin[0];
+            int start = 1 + (int) *txin.scriptSig.begin(); // skip sig
+            start += 1 + (int) *(txin.scriptSig.begin()+start); // skip flag
+            pubkey = CPubKey(txin.scriptSig.begin()+start+1, txin.scriptSig.end());
         }
     }
 
