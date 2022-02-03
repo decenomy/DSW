@@ -15,7 +15,7 @@ DECENOMY Standard wallet repository
 • Prefix: MOBIC adresses start with the capital letter "M"
 • Ports: 22487 (p2p) / 22488 (rpc)
 
-• Explorer https://explorer.decenomy.net/
+• Explorer https://explorer.decenomy.net/MOBIC/blocks
 
 • Website [https://modic.fund/](https://modic.fund/)
 
