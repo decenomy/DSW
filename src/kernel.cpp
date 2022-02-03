@@ -2,7 +2,7 @@
 // Copyright (c) 2013-2014 The NovaCoin Developers
 // Copyright (c) 2014-2018 The BlackCoin Developers
 // Copyright (c) 2015-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -133,7 +133,7 @@ bool Stake(const CBlockIndex* pindexPrev, CStakeInput* stakeInput, unsigned int 
     const bool fRegTest = Params().IsRegTestNet();
     const bool fTimeProtocolV2 = Params().GetConsensus().IsTimeProtocolV2(nHeightTx) && !fRegTest;
     const int nTimeSlotLength = Params().GetConsensus().nTimeSlotLength;
-    nTimeTx = pindexPrev->MinPastBlockTime();
+    nTimeTx = fTimeProtocolV2 ? pindexPrev->MinPastBlockTime() : GetAdjustedTime();
 
     if (!stakeInput || !stakeInput->ContextCheck(nHeightTx, nTimeTx)) return false;
 
@@ -141,17 +141,14 @@ bool Stake(const CBlockIndex* pindexPrev, CStakeInput* stakeInput, unsigned int 
 
     nTimeTx = (nTimeTx / slotStep) * slotStep;
 
-    while(nTimeTx < pindexPrev->MinPastBlockTime()) {
+    while(nTimeTx <= pindexPrev->MinPastBlockTime()) {
         nTimeTx += slotStep;
-    } 
+    }
 
-    while(nTimeTx <= pindexPrev->MaxFutureBlockTime()) {
+    while(nTimeTx <= (fTimeProtocolV2 ? pindexPrev->MaxFutureBlockTime() : pindexPrev->GetBlockTime() + HASH_DRIFT)) {
         // Verify Proof Of Stake
         CStakeKernel stakeKernel(pindexPrev, stakeInput, nBits, nTimeTx);
-        if(stakeKernel.CheckKernelHash(true)) 
-        {
-            return true;
-        }
+        if(stakeKernel.CheckKernelHash(true)) return true;
         nTimeTx += slotStep;
     }
 
