@@ -1,23 +1,20 @@
-**ALERT: This document should be updated for EACH coin individually**
-**The dummy values below belongs to Sapphire Coin**
-
-DECENOMY Standard wallet repository
+MobilityCoin Standard wallet repository
 =====================================
 
 ### Coin Specs
 
-• PoW Algorithm: X11KVS
-• Premine:  15,000,000 MOBIC
-• PoW Blocks: 1 - 1000
-• PoS Blocks: Starting from 1001
-• Block Time: 60 Seconds
-• Maturity: 100 Confirmations
-• Prefix: MOBIC adresses start with the capital letter "M"
-• Ports: 22487 (p2p) / 22488 (rpc)
+- PoW Algorithm: X11KVS
+- Premine:  15,000,000 MOBIC 
+- PoW Blocks: 1 - 1000
+- PoS Blocks: Starting from 1001
+- Block Time: 60 Seconds
+- Maturity: 100 Confirmations
+- Prefix: MOBIC adresses start with the capital letter "M"
+- Ports: 22487 (p2p) / 22488 (rpc)
 
-• Explorer https://explorer.decenomy.net/MOBIC/blocks
+- Explorer https://explorer.decenomy.net/MOBIC/blocks
 
-• Website [https://modic.fund/](https://modic.fund/)
+- Website [https://modic.fund/](https://modic.fund/)
 
 ### Rewards Breakdown
 |Block  |Collateral|Block Reward|MN Reward %|Staking Reward %|MN Reward|Staker Reward|
