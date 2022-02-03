@@ -12,11 +12,11 @@ fi
 	echo "1" | sudo update-alternatives --config x86_64-w64-mingw32-g++
 
 # Clone code from official Github repository
-	rm -rf DSW
-	git clone https://github.com/decenomy/DSW.git
+	rm -rf MONK
+	git clone https://github.com/decenomy/MONK.git
 
 # Entering directory
-	cd DSW
+	cd MONK
 
 # Selecting wallet
 	git checkout MONK-develop
@@ -33,6 +33,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/monkd.exe DSW/src/monk-cli.exe DSW/src/monk-tx.exe DSW/src/qt/monk-qt.exe .
+	cp MONK/src/monkd.exe MONK/src/monk-cli.exe MONK/src/monk-tx.exe MONK/src/qt/monk-qt.exe .
 	zip MONK-Windows.zip monkd.exe monk-cli.exe monk-tx.exe monk-qt.exe
 	rm -f monkd.exe monk-cli.exe monk-tx.exe monk-qt.exe

@@ -11,14 +11,11 @@ fi
 	sudo apt install git zip unzip build-essential libtool bsdmainutils autotools-dev autoconf pkg-config automake python3 libqt5svg5-dev -y
 
 # Clone code from official Github repository
-	rm -rf DSW
-	git clone https://github.com/decenomy/DSW.git
+	rm -rf MONK
+	git clone https://github.com/decenomy/MONK.git
 
 # Entering directory
-	cd DSW
-
-# Selecting wallet
-	git checkout MONK-develop
+	cd MONK
 
 # Compile dependencies
 	cd depends
@@ -32,6 +29,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/monkd DSW/src/monk-cli DSW/src/monk-tx DSW/src/qt/monk-qt .
+	cp MONK/src/monkd MONK/src/monk-cli MONK/src/monk-tx MONK/src/qt/monk-qt .
 	zip MONK-$(git describe --abbrev=0 --tags | sed s/v//)-Linux.zip monkd monk-cli monk-tx monk-qt
 	rm -f monkd monk-cli monk-tx monk-qt

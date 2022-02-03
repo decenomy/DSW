@@ -7,11 +7,11 @@ then
 fi
 
 # Clone code from official Github repository
-    rm -rf DSW
-    git clone https://github.com/decenomy/DSW.git
+    rm -rf MONK
+    git clone https://github.com/decenomy/MONK.git
 
 # Entering directory
-    cd DSW
+    cd MONK
     
 # Selecting wallet
 	git checkout MONK-develop
@@ -34,6 +34,6 @@ fi
     cd ..
 
 # Create zip file of binaries
-    cp DSW/src/monkd DSW/src/monk-cli DSW/src/monk-tx DSW/src/qt/monk-qt DSW/Monk-Core.dmg .
+    cp MONK/src/monkd MONK/src/monk-cli MONK/src/monk-tx MONK/src/qt/monk-qt MONK/Monk-Core.dmg .
     zip MONK-MacOS.zip monkd monk-cli monk-tx monk-qt monk-Core.dmg
     rm -f monkd monk-cli monk-tx monk-qt Monk-Core.dmg
