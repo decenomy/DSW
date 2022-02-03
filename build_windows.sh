@@ -18,9 +18,6 @@ fi
 # Entering directory
 	cd MONK
 
-# Selecting wallet
-	git checkout MONK-develop
-
 # Compile dependencies
 	cd depends
 	make -j$(echo $CPU_CORES) HOST=x86_64-w64-mingw32 

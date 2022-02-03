@@ -12,9 +12,6 @@ fi
 
 # Entering directory
     cd MONK
-    
-# Selecting wallet
-	git checkout MONK-develop
 
 # Compile dependencies
     cd depends
