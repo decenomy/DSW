@@ -3,7 +3,7 @@
 
 #define MyAppName "MobilityCoin Core"
 #define MyAppPublisher "2021 DECENOMY Core Developers"
-#define MyAppURL "https://mobic.com"
+#define MyAppURL "https://github.com/decenomy/MOBIC"
 #define MyAppExeName "mobic-qt.exe"
 #define MyAppExtraData "https://explorer.decenomy.net/bootstraps/MOBIC/bootstrap.zip"
 #define MyAppVersion GetVersionNumbersString(".\package\" + MyAppExeName)
