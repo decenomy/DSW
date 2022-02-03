@@ -4,7 +4,7 @@ MobilityCoin Standard wallet repository
 ### Coin Specs
 
 - PoW Algorithm: X11KVS
-- Premine:  15,000,000 MOBIC 
+- Premine:  15,000,000 (Current supply of all coins for swapping to MobilityCoin)
 - PoW Blocks: 1 - 1000
 - PoS Blocks: Starting from 1001
 - Block Time: 60 Seconds
