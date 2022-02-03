@@ -18,6 +18,9 @@ fi
 # Entering directory
 	cd DSW
 
+# Selecting wallet
+	git checkout MONK-develop
+
 # Compile dependencies
 	cd depends
 	make -j$(echo $CPU_CORES) HOST=x86_64-w64-mingw32 
@@ -30,6 +33,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/__decenomy__d.exe DSW/src/__decenomy__-cli.exe DSW/src/__decenomy__-tx.exe DSW/src/qt/__decenomy__-qt.exe .
-	zip __DSW__-Windows.zip __decenomy__d.exe __decenomy__-cli.exe __decenomy__-tx.exe __decenomy__-qt.exe
-	rm -f __decenomy__d.exe __decenomy__-cli.exe __decenomy__-tx.exe __decenomy__-qt.exe
+	cp DSW/src/monkd.exe DSW/src/monk-cli.exe DSW/src/monk-tx.exe DSW/src/qt/monk-qt.exe .
+	zip MONK-Windows.zip monkd.exe monk-cli.exe monk-tx.exe monk-qt.exe
+	rm -f monkd.exe monk-cli.exe monk-tx.exe monk-qt.exe
