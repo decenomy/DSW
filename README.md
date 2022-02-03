@@ -6,7 +6,7 @@ DECENOMY Standard wallet repository
 
 ### Coin Specs
 
-• PoW Algorithm: Quark
+• PoW Algorithm: X11KVS
 • Premine:  15,000,000 MOBIC
 • PoW Blocks: 1 - 1000
 • PoS Blocks: Starting from 1001
