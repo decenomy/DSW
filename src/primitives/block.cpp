@@ -17,6 +17,9 @@
 // TODO: Change X11KVS algorithm call to whatever the coin being adapted is used.
 uint256 CBlockHeader::GetHash() const
 {
+    if (nVersion == 1)
+        return HashQuark(BEGIN(nVersion), END(nNonce));
+
      if (nVersion < 4)  { // nVersion = 1, 2, 3
 #if defined(WORDS_BIGENDIAN)
         uint8_t data[80];

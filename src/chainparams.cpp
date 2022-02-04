@@ -69,7 +69,7 @@ static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits
  */
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("0x0")) // Genesis
+    (0, uint256("0x000004cd0b7e3f050671ae041632a1a7c9578b3ef55da7d08da9695f7ea44e0a")) // Genesis
 ; 
 
 static const Checkpoints::CCheckpointData data = {
@@ -86,9 +86,9 @@ static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
 
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
-    1740710,
+    1587772800,
     0,
-    250};
+    2880};
 
 static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
     boost::assign::map_list_of(0, uint256S("0x0"));
@@ -153,9 +153,9 @@ public:
 
         // /////////////////////////////////////////////////////////////////
 
-        genesis = CreateGenesisBlock(1643820579, 553205, 0x1e0ffff0, 1, 0 * COIN);
+        genesis = CreateGenesisBlock(1587772800, 548987, 0x1e0ffff0, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00000fb43c4cff249d7099453c6af298877e7f5a8877abdb63f2175170b9df63"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000004cd0b7e3f050671ae041632a1a7c9578b3ef55da7d08da9695f7ea44e0a"));
         assert(genesis.hashMerkleRoot == uint256S("0x24c4359abe6d653e1a86916a0326cfe84cf959fdc9cc60659d3c5901b3181df0"));
 
         consensus.fPowAllowMinDifficultyBlocks = false;
