@@ -179,14 +179,14 @@ public:
         consensus.nTimeSlotLength = 15;
 
         // spork keys
-        consensus.strSporkPubKey = "03a56794fee5239979916bfd4f8bd66d68fd26461ba4a0c2b3fbb735b13bb07019";
+        consensus.strSporkPubKey = "038da032fea63c7f54c820e600ce4f568a63a013570a76770ff71401871ce7c748";
         consensus.strSporkPubKeyOld = "";
         consensus.nTime_EnforceNewSporkKey = 0;
         consensus.nTime_RejectOldSporkKey = 0;
 
         // burn addresses
         consensus.mBurnAddresses = {
-           //{ "7XXXXXXXXXXXXXXXXXXXXXXXXXXXaqpZch", 0 }
+           { "MbURNXXXXXXXXXXXXXXXXXXXXXXXTCG195", 0 }
         };
 
         // height-based activations
@@ -258,10 +258,11 @@ public:
         vSeeds.push_back(CDNSSeedData("seed7", "209.182.219.195"));
 	    vSeeds.push_back(CDNSSeedData("seed8", "146.71.77.124"));
 
-        base58Prefixes[PUBKEY_ADDRESS]  = std::vector<unsigned char>(1, 51); // M
-        base58Prefixes[SCRIPT_ADDRESS]  = std::vector<unsigned char>(1, 16); // 6
-        base58Prefixes[SECRET_KEY]      = std::vector<unsigned char>(1, 212);  // 2
+        base58Prefixes[PUBKEY_ADDRESS]  = std::vector<unsigned char>(1, 51);
+        base58Prefixes[SCRIPT_ADDRESS]  = std::vector<unsigned char>(1, 13);
+        base58Prefixes[SECRET_KEY]      = std::vector<unsigned char>(1, 212);
         base58Prefixes[EXT_PUBLIC_KEY]  = boost::assign::list_of(0x02)(0x2D)(0x25)(0x33).convert_to_container<std::vector<unsigned char> >();
+        base58Prefixes[EXT_SECRET_KEY]  = boost::assign::list_of(0x02)(0x21)(0x31)(0x2B).convert_to_container<std::vector<unsigned char> >();
         // BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x03)(0x51).convert_to_container<std::vector<unsigned char> >();
 
