@@ -4,7 +4,7 @@
 ***
 ## Required
 1) **MOBIC collateral value at current block** ([consult the collateral table](../../README.md#rewards-breakdown))
-2) **Local Wallet https://github.com/decenomy/DSW/releases**
+2) **Local Wallet https://github.com/decenomy/MOBIC/releases**
 3) **VPS with UBUNTU 18.04** (it is possible to work on other versions but it is not tested)
 4) **Putty https://www.putty.org/**
 5) **Text editor on your local pc to save data for copy/paste**
