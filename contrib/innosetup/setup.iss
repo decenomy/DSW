@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "UltraClear Core"
-#define MyAppPublisher "2021 DECENOMY Core Developers"
+#define MyAppPublisher "2022 DECENOMY Core Developers"
 #define MyAppURL "https://ucrcoin.net"
 #define MyAppExeName "ultraclear-qt.exe"
 #define MyAppExtraData "https://explorer.decenomy.net/bootstraps/UCR/bootstrap.zip"
