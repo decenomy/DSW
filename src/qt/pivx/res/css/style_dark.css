@@ -658,7 +658,7 @@ QPushButton[cssClass="btn-check-lock-sub-menu-unlocked"] {
   background-image: url("://ic-submenu-unlock");
   background-position: left center;
   background-repeat: no-repeat;
-  background-color: #262626;
+  background-color: #3c3c3c;
   text-align: left;
   padding-left: 30px;
   color: #ffffff;
@@ -685,7 +685,7 @@ QPushButton[cssClass="btn-check-lock-sub-menu-locked"] {
   background-image: url("://ic-submenu-lock");
   background-position: left center;
   background-repeat: no-repeat;
-  background-color: #262626;
+  background-color: #3c3c3c;
   text-align: left;
   padding-left: 30px;
   color: #ffffff;
@@ -712,7 +712,7 @@ QPushButton[cssClass="btn-check-lock-sub-menu-staking"] {
   background-image: url("://ic-submenu-staking");
   background-position: left center;
   background-repeat: no-repeat;
-  background-color: #262626;
+  background-color: #3c3c3c;
   text-align: left;
   padding-left: 30px;
   color: #ffffff;
