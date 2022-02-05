@@ -121,6 +121,7 @@ BITCOIN_CORE_H = \
   wallet/db.h \
   fs.h \
   hash.h \
+  hostip.h \
   httprpc.h \
   httpserver.h \
   init.h \
@@ -436,6 +437,7 @@ libbitcoin_common_a_SOURCES = \
   core_read.cpp \
   core_write.cpp \
   hash.cpp \
+  hostip.cpp \
   invalid.cpp \
   key.cpp \
   keystore.cpp \
