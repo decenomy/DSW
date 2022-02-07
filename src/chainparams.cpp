@@ -250,7 +250,7 @@ public:
         nDefaultPort = 22487;
 
         // TODO setup domain name for the seeds
-        //vSeeds.push_back(CDNSSeedData("seeder", "seeder.__decenomy.net__"));
+        vSeeds.push_back(CDNSSeedData("seeder", "seeder.mobic.net"));
         vSeeds.push_back(CDNSSeedData("seed1", "185.227.108.249"));
         vSeeds.push_back(CDNSSeedData("seed2", "45.61.53.12"));
         vSeeds.push_back(CDNSSeedData("seed3", "185.227.110.200"));
