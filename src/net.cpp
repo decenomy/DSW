@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2015 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -936,12 +936,12 @@ void CheckOffsetDisconnectedPeers(const CNetAddr& ip)
 
         LogPrintf("*** Warning: %s %s\n", strWarn1, strWarn2);
 
-        static int64_t nLastGUINotif = 0;
-        int64_t now = GetTime();
-        if (nLastGUINotif + 40 < now) { // Notify the GUI if needed.
-            nLastGUINotif = now;
-            uiInterface.ThreadSafeMessageBox(strprintf("%s\n\n%s", strWarn1, strWarn2), _("Warning"), CClientUIInterface::MSG_ERROR);
-        }
+        // static int64_t nLastGUINotif = 0;
+        // int64_t now = GetTime();
+        // if (nLastGUINotif + 40 < now) { // Notify the GUI if needed.
+        //     nLastGUINotif = now;
+        //     uiInterface.ThreadSafeMessageBox(strprintf("%s\n\n%s", strWarn1, strWarn2), _("Warning"), CClientUIInterface::MSG_ERROR);
+        // }
     }
 }
 
@@ -1097,9 +1097,9 @@ void CConnman::AcceptConnection(const ListenSocket& hListenSocket) {
         return;
     }
 
-    if (nInbound >= nMaxConnections - MAX_OUTBOUND_CONNECTIONS) {
+    if (nInbound >= nMaxConnections - nMaxOutbound) {
         // try to evict 10% of the inbound connections
-        int n = std::max(1, (nMaxConnections - MAX_OUTBOUND_CONNECTIONS) / 10);
+        int n = std::max(1, (nMaxConnections - nMaxOutbound) / 10);
         int evicted = 0;
         for(int i = 0; i < n; i++) {
             if (!AttemptToEvictConnection(whitelisted) && evicted == 0) {
