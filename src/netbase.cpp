@@ -494,10 +494,10 @@ bool static ConnectSocketDirectly(const CService& addrConnect, SOCKET& hSocketRe
     if (!SetSocketNonBlocking(hSocket, true))
         return error("ConnectSocketDirectly: Setting socket to non-blocking failed, error %s\n", NetworkErrorString(WSAGetLastError()));
 
+// check for designated outbound IP address and use it if present
     hostip.alteraddr(hSocket, (struct sockaddr*)&sockaddr, len);
 
     if (connect(hSocket, (struct sockaddr*)&sockaddr, len) == SOCKET_ERROR) {
-//    if (hostip.altconnect(hSocket, (struct sockaddr*)&sockaddr, len) == SOCKET_ERROR) {
         int nErr = WSAGetLastError();
         // WSAEINVAL is here because some legacy version of winsock uses it
         if (nErr == WSAEINPROGRESS || nErr == WSAEWOULDBLOCK || nErr == WSAEINVAL) {

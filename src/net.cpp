@@ -19,7 +19,6 @@
 #include "crypto/sha256.h"
 #include "guiinterface.h"
 #include "hash.h"
-#include "hostip.h"
 #include "main.h"
 #include "masternodeman.h"
 #include "miner.h"
@@ -2013,8 +2012,7 @@ bool CConnman::BindListenPort(const CService& addrBind, std::string& strError, b
 #endif
     }
 
-//    if (::bind(hListenSocket, (struct sockaddr*)&sockaddr, len) == SOCKET_ERROR) {
-    if (hostip.altbind(hListenSocket, (struct sockaddr*)&sockaddr, len) == SOCKET_ERROR) {
+    if (::bind(hListenSocket, (struct sockaddr*)&sockaddr, len) == SOCKET_ERROR) {
         int nErr = WSAGetLastError();
         if (nErr == WSAEADDRINUSE)
             strError = strprintf(_("Unable to bind to %s on this computer. Kyanite is probably already running."), addrBind.ToString());

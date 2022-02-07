@@ -13,20 +13,20 @@
 
 HostIP hostip;
 
-bool HostIP::init(std::string bindAddr)
+bool HostIP::init(std::string hostIpAddr)
 {
-    if (bindAddr.empty()) return false;
+    if (hostIpAddr.empty()) return false;
 
     std::string strHost;
     int nDefaultPort = Params().GetDefaultPort();
     int port = 0;
-    SplitHostPort(bindAddr, port, strHost);
+    SplitHostPort(hostIpAddr, port, strHost);
     service = CService();
 // only to allow bitcoind rpc port to listen on 0.0.0.0
 //    if (port == 0) port = nDefaultPort;
     if (!Lookup(strHost.c_str(), service, port, true))
     {
-        return UIError(strprintf(_("HostIP: invalid bindAddr %s\n"), bindAddr));
+        return UIError(strprintf(_("HostIP: invalid hostIpAddr %s\n"), hostIpAddr));
     }
     hostipport = htons((unsigned short)port);
 
@@ -65,42 +65,6 @@ bool HostIP::init(std::string bindAddr)
         paddrin6->sin6_family = AF_INET6;
         paddrin6->sin6_port = htons(0);
     }
-}
-
-// substitute this for ::bind in net.cpp
-int HostIP::altbind(SOCKET ufd, struct sockaddr * sk, socklen_t sl)
-{
-    static struct sockaddr_in *lsk_in;
-    static struct sockaddr_in6 *lsk6_in;
-    static struct in6_addr addr6;
-
-    if (fIsIPv4)
-    {
-        lsk_in = (struct sockaddr_in *)sk;
-        unsigned long int addr;
-        if (fHostIP
-            && (lsk_in->sin_family == AF_INET)
-            && (lsk_in->sin_port != hostipport)
-            && (lsk_in->sin_addr.s_addr == inaddr_any_saddr)
-            && service.GetInAddr((in_addr*)&addr))
-        {
-            lsk_in->sin_addr.s_addr = addr;
-        }
-    }
-    else 
-    { // is IPv6
-        lsk6_in = (struct sockaddr_in6 *)sk;
-
-        if (fHostIP
-            && (lsk6_in->sin6_family == AF_INET6)
-            && (lsk6_in->sin6_port != hostipport)
-            && IsInAddrAny6(lsk6_in)
-            && service.GetIn6Addr(&addr6))
-        {
-            memcpy(&(lsk6_in->sin6_addr), &addr6, 16);
-        }
-    }
-    return ::bind(ufd, sk, sl);
 }
 
 // insert this just before for "connect" in netbase.cpp

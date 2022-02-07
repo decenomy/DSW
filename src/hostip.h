@@ -31,9 +31,8 @@ private:
 
 public:
     CService service;
-    int altbind(SOCKET sock, struct sockaddr * sk, socklen_t sl);
     int alteraddr(SOCKET sock, struct sockaddr * sk, socklen_t sl);
-    bool init(std::string bindAddr);
+    bool init(std::string hostIpAddr);
     bool IsInAddrAny6(struct sockaddr_in6 * sin6);
 };
 
