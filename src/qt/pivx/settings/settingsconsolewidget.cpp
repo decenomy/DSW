@@ -1,5 +1,5 @@
 // Copyright (c) 2019-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -365,9 +365,12 @@ void SettingsConsoleWidget::loadClientModel()
         for (size_t i = 0; i < commandList.size(); ++i)
         {
             wordList << commandList[i].c_str();
+            wordList << ("help " + commandList[i]).c_str();
         }
 
+        wordList.sort();
         autoCompleter = new QCompleter(wordList, this);
+        autoCompleter->setModelSorting(QCompleter::CaseSensitivelySortedModel);
         ui->lineEdit->setCompleter(autoCompleter);
 
         // clear the lineEdit after activating from QCompleter
@@ -422,7 +425,7 @@ void SettingsConsoleWidget::clear(bool clearHistory)
     QString clsKey = "Ctrl-L";
 #endif
 
-    message(CMD_REPLY, (tr("Welcome to the SUV RPC console.") + "<br>" +
+    messageInternal(CMD_REPLY, (tr("Welcome to the SUV RPC console.") + "<br>" +
                         tr("Use up and down arrows to navigate history, and %1 to clear screen.").arg("<b>"+clsKey+"</b>") + "<br>" +
                         tr("Type <b>help</b> for an overview of available commands.") +
                         "<br><span class=\"secwarning\"><br>" +
@@ -431,7 +434,7 @@ void SettingsConsoleWidget::clear(bool clearHistory)
             true);
 }
 
-void SettingsConsoleWidget::message(int category, const QString& message, bool html)
+void SettingsConsoleWidget::messageInternal(int category, const QString& message, bool html)
 {
     QTime time = QTime::currentTime();
     QString timeString = time.toString();
@@ -447,13 +450,31 @@ void SettingsConsoleWidget::message(int category, const QString& message, bool h
     ui->messagesWidget->append(out);
 }
 
+static bool PotentiallyDangerousCommand(const QString& cmd)
+{
+    if (cmd.size() >= 12 && cmd.leftRef(10) == "dumpwallet") {
+        // at least one char for filename
+        return true;
+    }
+    if (cmd.size() >= 13 && cmd.leftRef(11) == "dumpprivkey") {
+        return true;
+    }
+    return false;
+}
+
 void SettingsConsoleWidget::on_lineEdit_returnPressed()
 {
     QString cmd = ui->lineEdit->text();
     ui->lineEdit->clear();
 
     if (!cmd.isEmpty()) {
-        message(CMD_REQUEST, cmd);
+        // ask confirmation before sending potentially dangerous commands
+        if (PotentiallyDangerousCommand(cmd) &&
+            !ask("DANGER!", "Your coins will be STOLEN if you give\nthe info to anyone!\n\nAre you sure?\n")) {
+            return;
+        }
+
+        messageInternal(CMD_REQUEST, cmd);
         Q_EMIT cmdCommandRequest(cmd);
         // Remove command, if already in history
         history.removeOne(cmd);
@@ -490,7 +511,7 @@ void SettingsConsoleWidget::startExecutor()
     executor->moveToThread(thread);
 
     // Replies from executor object must go to this object
-    connect(executor, &RPCExecutor::reply, this, static_cast<void (SettingsConsoleWidget::*)(int, const QString&)>(&SettingsConsoleWidget::message));
+    connect(executor, &RPCExecutor::reply, this, &SettingsConsoleWidget::response);
     // Requests from this object must go to executor
     connect(this, &SettingsConsoleWidget::cmdCommandRequest, executor, &RPCExecutor::requestCommand);
 
@@ -519,22 +540,22 @@ void SettingsConsoleWidget::changeTheme(bool isLightTheme, QString &theme)
     // Set default style sheet
     if (isLightTheme) {
         ui->messagesWidget->document()->setDefaultStyleSheet(
-                "table { color: #707070;  }"
+                "table { color: #A3A3A3;  }"
                 "td.time { color: #808080; padding-top: 3px; } "
-                "td.message { color: #707070;font-family: Courier, Courier New, Lucida Console, monospace; font-size: 12px; } " // Todo: Remove fixed font-size
+                "td.message { color: #A3A3A3;font-family: Courier, Courier New, Lucida Console, monospace; font-size: 12px; } " // Todo: Remove fixed font-size
                 "td.cmd-request { color: #006060; } "
                 "td.cmd-error { color: red; } "
                 ".secwarning { color: red; }"
-                "b { color: #707070; } ");
+                "b { color: #A3A3A3; } ");
     } else {
         ui->messagesWidget->document()->setDefaultStyleSheet(
-                "table { color: #FFFFFF; }"
+                "table { color: #A3A3A3; }"
                 "td.time { color: #808080; padding-top: 3px; } "
-                "td.message { color: #FFFFFF;font-family: Courier, Courier New, Lucida Console, monospace; font-size: 12px; } " // Todo: Remove fixed font-size
+                "td.message { color: #A3A3A3;font-family: Courier, Courier New, Lucida Console, monospace; font-size: 12px; } " // Todo: Remove fixed font-size
                 "td.cmd-request { color: #006060; } "
                 "td.cmd-error { color: red; } "
                 ".secwarning { color: red; }"
-                "b { color: #FFFFFF; } ");
+                "b { color: #A3A3A3; } ");
     }
     updateStyle(ui->messagesWidget);
 }

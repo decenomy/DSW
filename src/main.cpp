@@ -5,7 +5,7 @@
 // Copyright (c) 2013-2014 The NovaCoin Developers
 // Copyright (c) 2014-2018 The BlackCoin Developers
 // Copyright (c) 2015-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -840,7 +840,7 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState &state, const C
     if (pfMissingInputs)
         *pfMissingInputs = false;
 
-    //Temporarily disable zerocoin for maintenance
+    // Disable zerocoin
     if (tx.ContainsZerocoins())
         return state.DoS(10, error("%s : Zerocoin transactions are disabled",
                 __func__), REJECT_INVALID, "bad-tx");
@@ -875,6 +875,24 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState &state, const C
     uint256 hash = tx.GetHash();
     if (pool.exists(hash)) {
         return state.Invalid(false, REJECT_ALREADY_KNOWN, "txn-already-in-mempool");
+    }
+
+    // ----------- burn address scanning -----------
+    if (!consensus.mBurnAddresses.empty()) {
+        for (unsigned int i = 0; i < tx.vin.size(); ++i) {
+            uint256 hashBlock;
+            CTransaction txPrev;
+            if (GetTransaction(tx.vin[i].prevout.hash, txPrev, hashBlock, true)) { // get the vin's previous transaction
+                CTxDestination source;
+                if (ExtractDestination(txPrev.vout[tx.vin[i].prevout.n].scriptPubKey, source)) { // extract the destination of the previous transaction's vout[n]
+                    const std::string addr = EncodeDestination(source);
+                    if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
+                        consensus.mBurnAddresses.at(addr) < chainHeight) {
+                        return state.DoS(0, false, REJECT_INVALID, "bad-txns-invalid-outputs");
+                    }
+                }
+            }
+        }
     }
 
     bool hasZcSpendInputs = tx.HasZerocoinSpendInputs();
@@ -2182,9 +2200,9 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         if (nSigOps > nMaxBlockSigOps)
             return state.DoS(100, error("ConnectBlock() : too many sigops"), REJECT_INVALID, "bad-blk-sigops");
 
-        //Temporarily disable zerocoin transactions for maintenance
+        // Disable zerocoin transactions
         if (!IsInitialBlockDownload() && tx.ContainsZerocoins()) {
-            return state.DoS(100, error("ConnectBlock() : zerocoin transactions are disabled"));
+            return state.DoS(100, error("ConnectBlock() : zerocoin transactions are currently in maintenance mode"));
         }
 
         if (tx.HasZerocoinMintOutputs()) {
@@ -3557,12 +3575,36 @@ bool IsTransactionInChain(const uint256& txId, int& nHeightTx)
 bool ContextualCheckBlock(const CBlock& block, CValidationState& state, CBlockIndex* const pindexPrev)
 {
     const int nHeight = pindexPrev == nullptr ? 0 : pindexPrev->nHeight + 1;
+    const Consensus::Params& consensus = Params().GetConsensus();
 
     // Check that all transactions are finalized
-    for (const CTransaction& tx : block.vtx)
+    for (const CTransaction& tx : block.vtx) {
         if (!IsFinalTx(tx, nHeight, block.GetBlockTime())) {
             return state.DoS(10, false, REJECT_INVALID, "bad-txns-nonfinal", false, "non-final transaction");
         }
+    }
+
+    // ----------- burn address scanning -----------
+    if (!consensus.mBurnAddresses.empty()) {
+        for (const CTransaction& tx : block.vtx) {
+            if (!tx.IsCoinBase()) {
+                for (unsigned int i = 0; i < tx.vin.size(); ++i) {
+                    uint256 hashBlock;
+                    CTransaction txPrev;
+                    if (GetTransaction(tx.vin[i].prevout.hash, txPrev, hashBlock, true)) { // get the vin's previous transaction
+                        CTxDestination source;
+                        if (ExtractDestination(txPrev.vout[tx.vin[i].prevout.n].scriptPubKey, source)) { // extract the destination of the previous transaction's vout[n]
+                            const std::string addr = EncodeDestination(source);
+                            if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
+                                consensus.mBurnAddresses.at(addr) < nHeight) {
+                                return state.DoS(100, error("%s : Burned address %s tried to send a transaction %s (rejecting it).", __func__, addr.c_str(), txPrev.GetHash().ToString().c_str()), REJECT_INVALID, "bad-txns-banned");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     // Enforce block.nVersion=2 rule that the coinbase starts with serialized block height
     if (pindexPrev) { // pindexPrev is only null on the first block which is a version 1 block.
@@ -5106,8 +5148,21 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
             pfrom->cleanSubVer = cleanSubVer;
         }
 
-        // Check user agent name
-        if (pfrom->cleanSubVer.find(CLIENT_NAME) == std::string::npos) {
+        auto shortFromName = pfrom->cleanSubVer.substr(0, pfrom->cleanSubVer.find(':')).substr(0, pfrom->cleanSubVer.find(' '));
+        auto shortName = CLIENT_NAME.substr(0, CLIENT_NAME.find(' '));
+
+        for (auto & c: shortFromName) c = toupper(c);
+        for (auto & c: shortName) c = toupper(c);
+
+        shortFromName.erase(
+            std::remove_if(
+                shortFromName.begin(), 
+                shortFromName.end(), 
+                []( char const& c ) -> bool { return !std::isalnum(c); }), 
+            shortFromName.end()
+        );
+
+        if (shortName.find(shortFromName) == std::string::npos) {
             LOCK(cs_main);
             Misbehaving(pfrom->GetId(), 100);
             pfrom->fDisconnect = true;

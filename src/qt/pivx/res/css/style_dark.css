@@ -1430,7 +1430,7 @@ QPushButton[cssClass="btn-secundary-clear"]:pressed {
 QPushButton[cssClass="btn-secundary-new-address"] {
   qproperty-icon: url("://ic-update-liliac") off, url("://ic-update-liliac") on;
   qproperty-iconSize: 30px 30px;
-  border: 1px solid #BC0000;
+  border: 1px solid #DB0000;
   background-color: #0F0608;
   font-size: 18px;
   padding-top: 4px;
@@ -1456,7 +1456,7 @@ QPushButton[cssClass="btn-secundary-new-address"]:pressed {
 QPushButton[cssClass="btn-secundary-label"] {
   qproperty-icon: url("://ic-label-liliac") off, url("://ic-label-liliac") on;
   qproperty-iconSize: 30px 30px;
-  border: 1px solid #BC0000;
+  border: 1px solid #DB0000;
   background-color: #0F0608;
   font-size: 18px;
   padding-top: 4px;
@@ -1942,7 +1942,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 *[cssClass="label-address-box"] {
   color: #ffffff;
   background-color: #969696;
-  font-size: 22px;
+  font-size: 20px;
   padding: 10px 10px;
 }
 
@@ -3103,7 +3103,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 
 *[cssClass="text-intro-white"] {
   color: #eeeeee;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 QPushButton[cssClass="btn-dots-welcome"] {
@@ -3139,7 +3139,7 @@ QPushButton[cssClass="btn-dots-welcome"]:pressed {
   background-color: #262626;
   font-size: 18px;
   border-radius: 2px;
-  padding: 8px;
+  padding: 4px;
   color: #eeeeee;
 }
 
@@ -3164,29 +3164,29 @@ QPushButton[cssClass="btn-dots-welcome"]:pressed {
   background-color: #252525;
   font-size: 18px;
   border-radius: 2px;
-  padding: 8px;
+  padding: 4px;
   color: rgb(109, 109, 109);
 }
 
 QRadioButton[cssClass="radio-welcome"]:checked {
-  color: #BC0000;
-  font-size: 20px;
+  color: #DB0000;
+  font-size: 18px;
 }
 
 QRadioButton[cssClass="radio-welcome"]:unchecked {
   color: #bababa;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 QRadioButton[cssClass="radio-welcome"] {
   color: #bababa;
-  font-size: 20px;
-  spacing: 20px;
+  font-size: 18px;
+  spacing: 18px;
 }
 
 QRadioButton[cssClass="radio-welcome"]::indicator {
-  width: 26px;
-  height: 26px;
+  width: 25px;
+  height: 25px;
 }
 
 QRadioButton[cssClass="radio-welcome"]::indicator:checked {

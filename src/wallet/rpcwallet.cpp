@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -3508,7 +3508,7 @@ UniValue spendzerocoin(const JSONRPCRequest& request)
             HelpExampleRpc("spendzerocoin", "5000 \"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\""));
 
     if (!Params().IsRegTestNet())
-        throw JSONRPCError(RPC_WALLET_ERROR, "zSUV is currently DISABLED");
+        throw JSONRPCError(RPC_WALLET_ERROR, "zSUV minting is DISABLED");
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
@@ -3560,7 +3560,7 @@ UniValue spendzerocoinmints(const JSONRPCRequest& request)
             HelpExampleRpc("spendzerocoinmints", "[\"0d8c16eee7737e3cc1e4e70dc006634182b175e039700931283b202715a0818f\", \"dfe585659e265e6a509d93effb906d3d2a0ac2fe3464b2c3b6d71a3ef34c8ad7\"], \"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\""));
 
     if (!Params().IsRegTestNet())
-        throw JSONRPCError(RPC_WALLET_ERROR, "zSUV is currently DISABLED");
+        throw JSONRPCError(RPC_WALLET_ERROR, "zSUV minting is DISABLED");
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
@@ -4290,7 +4290,7 @@ UniValue spendrawzerocoin(const JSONRPCRequest& request)
             HelpExampleRpc("spendrawzerocoin", "\"f80892e78c30a393ef4ab4d5a9d5a2989de6ebc7b976b241948c7f489ad716a2\", \"a4fd4d7248e6a51f1d877ddd2a4965996154acc6b8de5aa6c83d4775b283b600\", 100, \"xxx\""));
 
     if (!Params().IsRegTestNet())
-        throw JSONRPCError(RPC_WALLET_ERROR, "zSUV is currently DISABLED");
+        throw JSONRPCError(RPC_WALLET_ERROR, "zSUV minting is DISABLED");
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 

@@ -1,6 +1,6 @@
 // Copyright (c) 2014-2017 The Bitcoin developers
 // Copyright (c) 2017-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -81,7 +81,7 @@ void AddTimeData(const CNetAddr& ip, int64_t nOffsetSample, int nOffsetLimit)
             std::string strMessage = _("Warning: Please check that your computer's date and time are correct! If your clock is wrong Suvereno will not work properly.");
             strMiscWarning = strMessage;
             LogPrintf("*** %s\n", strMessage);
-            uiInterface.ThreadSafeMessageBox(strMessage, "", CClientUIInterface::MSG_ERROR);
+            //uiInterface.ThreadSafeMessageBox(strMessage, "", CClientUIInterface::MSG_INFORMATION);
         }
         if (!GetBoolArg("-shrinkdebugfile", g_logger->DefaultShrinkDebugFile())) {
             for (int64_t n : vSorted)

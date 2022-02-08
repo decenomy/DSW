@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2016-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -267,7 +267,7 @@ bool CBlockTreeDB::LoadBlockIndexGuts(boost::function<CBlockIndex*(const uint256
             CDiskBlockIndex diskindex;
             if (pcursor->GetValue(diskindex)) {
                 // Construct block index object
-                CBlockIndex* pindexNew = insertBlockIndex(diskindex.GetBlockHash());
+                CBlockIndex* pindexNew = insertBlockIndex(key.second); // use the hash already registered on the key index
                 pindexNew->pprev = insertBlockIndex(diskindex.hashPrev);
                 pindexNew->nHeight = diskindex.nHeight;
                 pindexNew->nFile = diskindex.nFile;
@@ -288,10 +288,10 @@ bool CBlockTreeDB::LoadBlockIndexGuts(boost::function<CBlockIndex*(const uint256
                 pindexNew->nFlags = diskindex.nFlags;
                 pindexNew->vStakeModifier = diskindex.vStakeModifier;
 
-                if (!Params().GetConsensus().NetworkUpgradeActive(pindexNew->nHeight, Consensus::UPGRADE_POS)) {
-                    if (!CheckProofOfWork(pindexNew->GetBlockHash(), pindexNew->nBits))
-                        return error("LoadBlockIndex() : CheckProofOfWork failed: %s", pindexNew->ToString());
-                }
+                // if (!Params().GetConsensus().NetworkUpgradeActive(pindexNew->nHeight, Consensus::UPGRADE_POS)) {
+                //     if (!CheckProofOfWork(pindexNew->GetBlockHash(), pindexNew->nBits))
+                //         return error("LoadBlockIndex() : CheckProofOfWork failed: %s", pindexNew->ToString());
+                // }
 
                 pcursor->Next();
             } else {
