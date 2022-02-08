@@ -1444,7 +1444,7 @@ QPushButton[cssClass="btn-secundary-new-address"]:pressed {
 }
 
 QPushButton[cssClass="btn-secundary-label"] {
-  qproperty-icon: url("://ic-label") off, url("://ic-label") on;
+  qproperty-icon: url("://ic-label-liliac") off, url("://ic-label-liliac") on;
   qproperty-iconSize: 30px 30px;
   border: 1px solid #eeeeee;
   background-color: #ffffff;
