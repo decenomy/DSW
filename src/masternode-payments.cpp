@@ -361,7 +361,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const CBloc
     const Consensus::Params& consensus = Params().GetConsensus();
 
     //spork
-    if (!masternodePayments.GetBlockPayee(pindexPrev->nHeight + 1, payee)) {
+    if (!masternodePayments.GetBlockPayee(nHeight, payee)) {
         //no masternode detected
         CMasternode* winningNode = mnodeman.GetCurrentMasterNode(1);
         if (winningNode) {
