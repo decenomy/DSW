@@ -35,13 +35,13 @@ Create a project folder with the following elements
 * Open the Inno Setup Compiler
 * Create a new project using the `wizard`
 * Fill in the following data:
-    * Application Name: `Cryptoflow Core`
+    * Application Name: `CryptoFlow Core`
     * Application Version: `4.0.1.1`
-    * Application Publisher: `2022 Cryptoflow Core Developers`
+    * Application Publisher: `2022 DECENOMY Core Developers`
     * Application Website: `https://cryptoflow.eu/`
 * Setup the destination folder:
     * Program Files Folder
-    * Folder name: `Cryptoflow`
+    * Folder name: `CryptoFlow`
 * Add application files:
     * Select the file `cfl-pt.exe` as main executable from the `package` folder
     * Add the folder package in the other application files
