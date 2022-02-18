@@ -333,6 +333,10 @@ CAmount CMasternode::GetBlockValue(int nHeight)
     // Mint for distribution
     if (nHeight == consensus.nMintHeight) return consensus.nMintValue + GetBlockValue(nHeight + 1);
 
+    if(nHeight > 900000) return      200 * COIN;
+    if(nHeight > 700000) return      300 * COIN;
+    if(nHeight > 550000) return      400 * COIN;
+
     if(nHeight > 400000) return      200 * COIN;
     if(nHeight > 300000) return      260 * COIN;
     if(nHeight > 240000) return      300 * COIN;
