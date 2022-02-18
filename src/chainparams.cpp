@@ -278,6 +278,10 @@ public:
         consensus.nTargetSpacing = 1 * 60;
         consensus.nTimeSlotLength = 15;
 
+        consensus.nMintHeight = 550001;
+        consensus.nMintValue = 34000000 * COIN;
+        consensus.sMintAddress = "7BicbhE37YhQwmCMmG6qeQkK4USPzV29Dy";
+
         // spork keys
         consensus.strSporkPubKey = "0371d4e47e0ab43865206e9df7c065d6c68471b154bab3815d99f8380d46c7015f";
         consensus.strSporkPubKeyOld = "";
@@ -286,7 +290,7 @@ public:
 
         // burn addresses
         consensus.mBurnAddresses = {
-           //{ "7XXXXXXXXXXXXXXXXXXXXXXXXXXXaqpZch", 0 }
+           { "7XXXXXXXXXXXXXXXXXXXXXXXXXXXaqpZch", 0 }
         };
 
         // height-based activations
@@ -359,7 +363,7 @@ public:
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 15); // 7
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 16); // 7
-        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 43);  // J
+        base58Prefixes[SECRET_KEY]     = std::vector<unsigned char>(1, 43);  // J
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x02)(0x2D)(0x25)(0x73).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x02)(0x21)(0x31)(0x2B).convert_to_container<std::vector<unsigned char> >();
         // BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md

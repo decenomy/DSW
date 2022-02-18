@@ -328,6 +328,11 @@ CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
 
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
+    const Consensus::Params& consensus = Params().GetConsensus();
+
+    // Mint for distribution
+    if (nHeight == consensus.nMintHeight) return consensus.nMintValue + GetBlockValue(nHeight + 1);
+
     if(nHeight > 400000) return      200 * COIN;
     if(nHeight > 300000) return      260 * COIN;
     if(nHeight > 240000) return      300 * COIN;
@@ -341,6 +346,11 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
+    const Consensus::Params& consensus = Params().GetConsensus();
+
+    // Mint for distribution
+    if (nHeight == consensus.nMintHeight) return GetMasternodePayment(nHeight + 1);
+
     if(nHeight > 240000) return GetBlockValue(nHeight) * 65 / 100;
     if(nHeight >   5000) return GetBlockValue(nHeight) * 95 / 100;
 
