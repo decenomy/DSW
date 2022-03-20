@@ -216,7 +216,7 @@ bool CMasternodeMan::Add(CMasternode& mn)
     CMasternode* pmn = Find(mn.vin);
     CMasternode* pmnByAddr = Find(mn.addr);
     bool masternodeRankV2 = Params().GetConsensus().NetworkUpgradeActive(chainActive.Height(), Consensus::UPGRADE_MASTERNODE_RANK_V2);
-    if (pmn == NULL && (!masternodeRankV2 || pmnByAddr == NULL)) {
+    if (pmn == NULL && (sporkManager.IsSporkActive(SPORK_107_ALLOW_DUPLICATE_MN_IPS) || !masternodeRankV2 || pmnByAddr == NULL)) {
         LogPrint(BCLog::MASTERNODE, "CMasternodeMan: Adding new Masternode %s - count %i now\n", mn.vin.prevout.ToStringShort(), size() + 1);
         vMasternodes.push_back(mn);
         return true;
