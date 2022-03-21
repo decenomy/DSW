@@ -5,6 +5,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "activemasternode.h"
+#include "activemasternodeman.h"
 #include "db.h"
 #include "init.h"
 #include "main.h"
@@ -284,15 +285,7 @@ UniValue startmasternode (const JSONRPCRequest& request)
     EnsureWalletIsUnlocked();
 
     if (strCommand == "local") {
-        if (!fMasterNode) throw std::runtime_error("you must set masternode=1 in the configuration\n");
-
-        if (activeMasternode.GetStatus() != ACTIVE_MASTERNODE_STARTED) {
-            activeMasternode.ResetStatus();
-            if (fLock)
-                pwalletMain->Lock();
-        }
-
-        return activeMasternode.GetStatusMessage();
+        throw std::runtime_error("'local' disabled\n");
     }
 
     if (strCommand == "all" || strCommand == "many" || strCommand == "missing" || strCommand == "disabled") {
@@ -479,7 +472,7 @@ UniValue listmasternodeconf (const JSONRPCRequest& request)
     return ret;
 }
 
-UniValue getmasternodestatus (const JSONRPCRequest& request)
+UniValue getmasternodestatus(const JSONRPCRequest& request)
 {
     if (request.fHelp || (request.params.size() != 0))
         throw std::runtime_error(
@@ -491,7 +484,7 @@ UniValue getmasternodestatus (const JSONRPCRequest& request)
             "  \"txhash\": \"xxxx\",      (string) Collateral transaction hash\n"
             "  \"outputidx\": n,          (numeric) Collateral transaction output index number\n"
             "  \"netaddr\": \"xxxx\",     (string) Masternode network address\n"
-            "  \"addr\": \"xxxx\",        (string) __DSW__ address for masternode payments\n"
+            "  \"addr\": \"xxxx\",        (string) KYAN address for masternode payments\n"
             "  \"status\": \"xxxx\",      (string) Masternode status\n"
             "  \"message\": \"xxxx\"      (string) Masternode status message\n"
             "}\n"
@@ -502,23 +495,40 @@ UniValue getmasternodestatus (const JSONRPCRequest& request)
     if (!fMasterNode)
         throw JSONRPCError(RPC_MISC_ERROR, _("This is not a masternode."));
 
-    if (activeMasternode.vin == nullopt)
-        throw JSONRPCError(RPC_MISC_ERROR, _("Active Masternode not initialized."));
+    UniValue resultsObj(UniValue::VARR);
 
-    CMasternode* pmn = mnodeman.Find(*(activeMasternode.vin));
+    for (auto& activeMasternode : amnodeman.GetActiveMasternodes()) {
+        if (activeMasternode.vin == nullopt) {
+            UniValue mnObj(UniValue::VOBJ);
+            mnObj.push_back(Pair("alias", activeMasternode.strAlias));
+            mnObj.push_back(Pair("txhash", "N/A"));
+            mnObj.push_back(Pair("outputidx", -1));
+            mnObj.push_back(Pair("netaddr", activeMasternode.service.ToString()));
+            mnObj.push_back(Pair("addr", "N/A"));
+            mnObj.push_back(Pair("status", activeMasternode.GetStatus()));
+            mnObj.push_back(Pair("message", activeMasternode.GetStatusMessage()));
+            resultsObj.push_back(mnObj);
+            continue;
+        }
 
-    if (pmn) {
-        UniValue mnObj(UniValue::VOBJ);
-        mnObj.push_back(Pair("txhash", activeMasternode.vin->prevout.hash.ToString()));
-        mnObj.push_back(Pair("outputidx", (uint64_t)activeMasternode.vin->prevout.n));
-        mnObj.push_back(Pair("netaddr", activeMasternode.service.ToString()));
-        mnObj.push_back(Pair("addr", EncodeDestination(pmn->pubKeyCollateralAddress.GetID())));
-        mnObj.push_back(Pair("status", activeMasternode.GetStatus()));
-        mnObj.push_back(Pair("message", activeMasternode.GetStatusMessage()));
-        return mnObj;
+        CMasternode* pmn = mnodeman.Find(*(activeMasternode.vin));
+
+        if (pmn) {
+            UniValue mnObj(UniValue::VOBJ);
+            mnObj.push_back(Pair("alias", activeMasternode.strAlias));
+            mnObj.push_back(Pair("txhash", activeMasternode.vin->prevout.hash.ToString()));
+            mnObj.push_back(Pair("outputidx", (uint64_t)activeMasternode.vin->prevout.n));
+            mnObj.push_back(Pair("netaddr", activeMasternode.service.ToString()));
+            mnObj.push_back(Pair("addr", EncodeDestination(pmn->pubKeyCollateralAddress.GetID())));
+            mnObj.push_back(Pair("status", activeMasternode.GetStatus()));
+            mnObj.push_back(Pair("message", activeMasternode.GetStatusMessage()));
+            resultsObj.push_back(mnObj);
+        } else {
+            throw std::runtime_error("Masternode not found in the list of available masternodes. Current status: " + activeMasternode.GetStatusMessage());
+        }
     }
-    throw std::runtime_error("Masternode not found in the list of available masternodes. Current status: "
-                        + activeMasternode.GetStatusMessage());
+
+    return resultsObj;
 }
 
 UniValue getmasternodewinners (const JSONRPCRequest& request)

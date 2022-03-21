@@ -8,6 +8,7 @@
 #define MASTERNODEMAN_H
 
 #include "activemasternode.h"
+#include "activemasternodeman.h"
 #include "base58.h"
 #include "key.h"
 #include "main.h"
@@ -24,8 +25,7 @@ class CMasternodeMan;
 class CActiveMasternode;
 
 extern CMasternodeMan mnodeman;
-extern CActiveMasternode activeMasternode;
-extern std::string strMasterNodePrivKey;
+extern CActiveMasternodeMan amnodeman;
 
 void DumpMasternodes();
 

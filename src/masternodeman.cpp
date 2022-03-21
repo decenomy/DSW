@@ -24,7 +24,7 @@
 /** Masternode manager */
 CMasternodeMan mnodeman;
 /** Keep track of the active Masternode */
-CActiveMasternode activeMasternode;
+CActiveMasternodeMan amnodeman;
 
 struct CompareLastPaid {
     bool operator()(const std::pair<int64_t, CTxIn>& t1,
@@ -876,7 +876,7 @@ void ThreadCheckMasternodes()
 
                 // check if we should activate or ping every few minutes,
                 // start right after sync is considered to be done
-                if (c % MASTERNODE_PING_SECONDS == 1) activeMasternode.ManageStatus();
+                if (c % MASTERNODE_PING_SECONDS == 1) amnodeman.ManageStatus();
 
                 if (c % 60 == 0) {
                     mnodeman.CheckAndRemove();

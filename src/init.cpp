@@ -16,6 +16,8 @@
 #include "init.h"
 
 #include "activemasternode.h"
+#include "activemasternodeman.h"
+#include "activemasternodeconfig.h"
 #include "addrman.h"
 #include "amount.h"
 #include "checkpoints.h"
@@ -428,6 +430,7 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-dnsseed", _("Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect/-noconnect)"));
     strUsage += HelpMessageOpt("-externalip=<ip>", _("Specify your own public address"));
     strUsage += HelpMessageOpt("-forcednsseed", strprintf(_("Always query for peer addresses via DNS lookup (default: %u)"), DEFAULT_FORCEDNSSEED));
+    strUsage += HelpMessageOpt("-hostip=<ip>", _("Specify default host IP for outbound connections"));
     strUsage += HelpMessageOpt("-listen", strprintf(_("Accept connections from outside (default: %u if no -proxy or -connect/-noconnect)"), DEFAULT_LISTEN));
     strUsage += HelpMessageOpt("-listenonion", strprintf(_("Automatically create Tor hidden service (default: %d)"), DEFAULT_LISTEN_ONION));
     strUsage += HelpMessageOpt("-maxconnections=<n>", strprintf(_("Maintain at most <n> connections to peers (default: %u)"), DEFAULT_MAX_PEER_CONNECTIONS));
@@ -517,7 +520,6 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-mnconf=<file>", strprintf(_("Specify masternode configuration file (default: %s)"), PIVX_MASTERNODE_CONF_FILENAME));
     strUsage += HelpMessageOpt("-mnconflock=<n>", strprintf(_("Lock masternodes from masternode configuration file (default: %u)"), DEFAULT_MNCONFLOCK));
     strUsage += HelpMessageOpt("-masternodeprivkey=<n>", _("Set the masternode private key"));
-    strUsage += HelpMessageOpt("-masternodeaddr=<n>", strprintf(_("Set external address:port to get to this masternode (example: %s)"), "128.127.106.235:__PORT_MAINNET__"));
     strUsage += HelpMessageOpt("-budgetvotemode=<mode>", _("Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)"));
 
     strUsage += HelpMessageGroup(_("Zerocoin options:"));
@@ -925,6 +927,42 @@ void InitLogging()
     version_string += " (release build)";
 #endif
     LogPrintf("__Decenomy__ version %s (%s)\n", version_string, CLIENT_DATE);
+}
+
+bool AppInitActiveMasternode(std::string strAlias, std::string strMasterNodePrivKey)
+{
+    if (strAlias.empty()) {
+        return UIError(_("activemasternode alias cannot be empty"));
+    }
+
+    CActiveMasternode activeMasternode;
+
+    activeMasternode.strAlias = strAlias;
+
+    activeMasternode.strMasterNodePrivKey = strMasterNodePrivKey;
+
+    std::string errorMessage;
+
+    CKey key;
+    CPubKey pubkey;
+
+    if (!CMessageSigner::GetKeysFromSecret(activeMasternode.strMasterNodePrivKey, key, pubkey)) {
+        return UIError(_("Invalid masternodeprivkey. Please see documenation."));
+    }
+
+    activeMasternode.pubKeyMasternode = pubkey;
+
+    amnodeman.Add(activeMasternode);
+
+    return true;
+}
+
+bool AppInitActiveMasternode(CActiveMasternodeConfig::CActiveMasternodeEntry activeMasternodeEntry)
+{
+    return AppInitActiveMasternode(
+        activeMasternodeEntry.strAlias,
+        activeMasternodeEntry.strMasterNodePrivKey
+    );
 }
 
 /** Initialize __decenomy__.
@@ -1358,6 +1396,18 @@ bool AppInit2()
     fListen = GetBoolArg("-listen", DEFAULT_LISTEN);
     fDiscover = GetBoolArg("-discover", true);
 
+    if (mapArgs.count("-hostip")) {
+        std::string hostipArg = GetArg("-hostip", "");
+
+        std::string strHost;
+        int port = 0;
+        SplitHostPort(hostipArg, port, strHost);
+
+        if (!Lookup(strHost.c_str(), sHostIp, 0, false)) {
+            return UIError(strprintf(_("HostIP: invalid hostip address %s\n"), hostipArg));
+        }
+    }
+
     bool fBound = false;
     if (fListen) {
         if (mapArgs.count("-bind") || mapArgs.count("-whitebind")) {
@@ -1757,44 +1807,21 @@ bool AppInit2()
 
     if (fMasterNode) {
         LogPrintf("IS MASTER NODE\n");
-        strMasterNodeAddr = GetArg("-masternodeaddr", "");
 
-        LogPrintf(" addr %s\n", strMasterNodeAddr.c_str());
-
-        if (!strMasterNodeAddr.empty()) {
-            int nPort;
-            int nDefaultPort = Params().GetDefaultPort();
-            std::string strHost;
-            SplitHostPort(strMasterNodeAddr, nPort, strHost);
-
-            // Allow for the port number to be omitted here and just double check
-            // that if a port is supplied, it matches the required default port.
-            if (nPort == 0) nPort = nDefaultPort;
-            if (nPort != nDefaultPort) {
-                return UIError(strprintf(_("Invalid -masternodeaddr port %d, only %d is supported on %s-net."),
-                    nPort, nDefaultPort, Params().NetworkIDString()));
-            }
-            CService addrTest(LookupNumeric(strHost.c_str(), nPort));
-            if (!addrTest.IsValid()) {
-                return UIError(strprintf(_("Invalid -masternodeaddr address: %s"), strMasterNodeAddr));
-            }
-        }
-
-        strMasterNodePrivKey = GetArg("-masternodeprivkey", "");
-        if (!strMasterNodePrivKey.empty()) {
-            std::string errorMessage;
-
-            CKey key;
-            CPubKey pubkey;
-
-            if (!CMessageSigner::GetKeysFromSecret(strMasterNodePrivKey, key, pubkey)) {
-                return UIError(_("Invalid masternodeprivkey. Please see documenation."));
-            }
-
-            activeMasternode.pubKeyMasternode = pubkey;
-
+        //legacy
+        if(!GetArg("-masternodeprivkey", "").empty()) 
+        {
+            if(!AppInitActiveMasternode("legacy", GetArg("-masternodeprivkey", ""))) return false;
         } else {
-            return UIError(_("You must specify a masternodeprivkey in the configuration. Please see documentation for help."));
+            // multinode
+            std::string strErr;
+            if (!activeMasternodeConfig.read(strErr)) {
+                return UIError(strprintf(_("Error reading active masternode configuration file: %s"), strErr));
+            }
+
+            for(auto& ame : activeMasternodeConfig.getEntries()) {
+                if(!AppInitActiveMasternode(ame)) return false;
+            }
         }
     }
 
