@@ -29,8 +29,8 @@ Build-Depends: debhelper,
  dh-systemd
 Standards-Version: 3.9.2
 Homepage: https://cryptoflow.eu
-Vcs-Git: git://github.com/cryptoflowcoin/cryptoflowcoin.git
-Vcs-Browser: https://github.com/cryptoflowcoin/cryptoflowcoin
+Vcs-Git: git://github.com/decenomy/CFL.git
+Vcs-Browser: https://github.com/decenomy/CFL/
 
 Package: cryptoflowd
 Architecture: any

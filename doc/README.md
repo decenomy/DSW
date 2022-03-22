@@ -26,7 +26,7 @@ Drag CryptoFlow-Qt to your applications folder, and then run CryptoFlow-Qt.
 
 ### Need Help?
 
-* See the documentation at the [CryptoFlow Wiki](https://github.com/cryptoflowcoin/cryptoflowcoin/)
+* See the documentation at the [CryptoFlow Wiki](https://github.com/decenomy/CFL/)
 for help and more information.
 * Join our Discord server [Discord Server](https://discord.gg/cqmaxxbwfj)
 
@@ -48,7 +48,7 @@ The CryptoFlow repo's [root README](/README.md) contains relevant information on
 - [Multiwallet Qt Development](multiwallet-qt.md)
 - [Release Notes](release-notes.md)
 - [Release Process](release-process.md)
-- [Source Code Documentation (External Link)](https://github.com/cryptoflowcoin/cryptoflowcoin/)
+- [Source Code Documentation (External Link)](https://github.com/decenomy/CFL/)
 - [Translation Process](translation_process.md)
 - [Unit Tests](unit-tests.md)
 - [Unauthenticated REST Interface](REST-interface.md)
