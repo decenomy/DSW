@@ -699,8 +699,8 @@ Stake için kaldırın</translation>
         <translation>Filtrele</translation>
     </message>
     <message>
-        <source>Amount of __DSW__ and z__DSW__ staked.</source>
-        <translation>Stake edilmiş __DSW__ ve z__DSW__ miktarı</translation>
+        <source>Amount of __DSW__ staked.</source>
+        <translation>Stake edilmiş __DSW__ miktarı</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -1381,36 +1381,8 @@ Emin misiniz?</translation>
         <translation>Map port using &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of __DSW__ units to z__DSW__</source>
-        <translation>__DSW__ birimlerinin z__DSW__'e otomatik basımını ektinleştir</translation>
-    </message>
-    <message>
-        <source>Enable z__DSW__ Automint</source>
-        <translation>z__DSW__ Otomatik basımı etkinleştir</translation>
-    </message>
-    <message>
-        <source>Enable automatic z__DSW__ minting from specific addresses</source>
-        <translation>Belirli bir adresten otomatik z__DSW__ minting yapılmasını etkinleştir</translation>
-    </message>
-    <message>
         <source>Enable Automint Addresses</source>
         <translation>Automint adreslerini etkinleştir</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming __DSW__ which get automatically converted to z__DSW__ via Zerocoin Protocol (min: 10%)</source>
-        <translation>Zerocoin Protokolü üzerinden otomatik olarak z__DSW__'ye dönüştürülen gelen __DSW__ yüzdesi (dakika: 10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted z__DSW__</source>
-        <translation>Otomatikleştirilmiş z__DSW__ yüzdesi</translation>
-    </message>
-    <message>
-        <source>Wait with automatic conversion to Zerocoin until enough __DSW__ for this denomination is available</source>
-        <translation>Bu bölen için yeterli __DSW__ bulunana kadar Zerocoin'e otomatik dönüştürmede kalın</translation>
-    </message>
-    <message>
-        <source>Preferred Automint z__DSW__ Denomination</source>
-        <translation>Tercih edilen Automint z__DSW__ Nominal değeri</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
@@ -2070,10 +2042,6 @@ Adres: %4
     <message>
         <source>Custom Backup Path:</source>
         <translation>Özel Yedekleme Yolu:</translation>
-    </message>
-    <message>
-        <source>Custom z__DSW__ Backup Path:</source>
-        <translation>Özel z__DSW__ Yedekleme Yolu:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -2953,8 +2921,7 @@ Verify that you have installed a predetermined text editor.</source>
                            __DSW__ is a form of digital online money using blockchain technology
                            that can be easily transferred globally, instantly, and with near
                            zero fees.  __DSW__ incorporates market leading security &amp;
-                           privacy and is also the first PoS (Proof of Stake) Cryptocurrency
-                           to implement ZeroCoin(z__DSW__) and Zerocoin staking.
+                           privacy.
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            __DSW__ utilizes a Proof of Stake (PoS) consensus system algorithm,
                            allowing all owners of __DSW__ to participate in earning block rewards
@@ -2966,9 +2933,7 @@ Verify that you have installed a predetermined text editor.</source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            __DSW__ blockchain teknolojisini kullanan bir dijital online para birimidir
                            global olarak anında ve sıfıra yakın ücretlerle transfer edilebilir
-                           __DSW__ sektördeki en ileri güvenlik ve gizliliğe sahip olmakla birlikte
-                          Zerocoin (z__DSW__) ve Zerocoin staking özelliklerini
-                          uygulayan ilk PoS (Proof of Stake) Kriptoparadır.
+                           __DSW__ sektördeki en ileri güvenlik ve gizliliğe sahip olmakla birlikte.
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            __DSW__ bir  Proof of Stake (PoS) konsensüs algoritma sistemi kullanmaktadır,
 bu sayede __DSW__ sahipleri blok ödülü kazanımına katılabilmektedir
@@ -4209,10 +4174,6 @@ Hoşgeldiniz</translation>
         <translation>Tüm cüzdan işlemlerini sil ve sadece -rescan on startup komutuyla ilgili kısmımları sadece kurtar</translation>
     </message>
     <message>
-        <source>Delete all zerocoin spends and mints that have been recorded to the blockchain database and reindex them (0-1, default: %u)</source>
-        <translation>Blockchain'e kaydedilmiş tüm zerocoin ve mintleri sil ve tekrar endeksle (0-1, varsayılan: %u)</translation>
-    </message>
-    <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
         <translation>MIT yazılım lisansı altında dağıtılmıştır, eşlik eden KOPYALAMA dosyasına bakın veya &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</translation>
     </message>
@@ -4501,10 +4462,6 @@ Hoşgeldiniz</translation>
         <translation>Veritabanı okunurken hata oluştu, kapatılıyorç</translation>
     </message>
     <message>
-        <source>Error writing zerocoinDB to disk</source>
-        <translation>ZerocoinDB diske yazılırken hata oluştu</translation>
-    </message>
-    <message>
         <source>Error</source>
         <translation>Hata</translation>
     </message>
@@ -4605,14 +4562,6 @@ Hoşgeldiniz</translation>
         <translation>__DSW__ tedariği tekrar hesaplanıyor...</translation>
     </message>
     <message>
-        <source>Reindexing zerocoin database...</source>
-        <translation>Zerocoin veritabanı tekrar endeksleniyor...</translation>
-    </message>
-    <message>
-        <source>Reindexing zerocoin failed</source>
-        <translation>Zerocoin tekrar endekslemesi başarısız</translation>
-    </message>
-    <message>
         <source>Selected coins value is less than payment target</source>
         <translation>Seçili koinlerin değeri hedeflenen ödeme tutarından düşük</translation>
     </message>
@@ -4621,8 +4570,8 @@ Hoşgeldiniz</translation>
         <translation>Bu ön-sürümdeki bir test programıdır - riski kabullenerek kullanınız - staking ve ticaret uygulamalarında kullanmayın.</translation>
     </message>
     <message>
-        <source>Disable all __DSW__ specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
-        <translation>__DSW__ spesifik tüm fonksiyonaliteyi devre dışı bırak (Masternodes, Zerocoin, Budgeting) (0-1, varsayılan: %u)</translation>
+        <source>Disable all __DSW__ specific functionality (Masternodes) (0-1, default: %u)</source>
+        <translation>__DSW__ spesifik tüm fonksiyonaliteyi devre dışı bırak (Masternodes) (0-1, varsayılan: %u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -4695,14 +4644,6 @@ Hoşgeldiniz</translation>
     <message>
         <source>Failed to parse public spend</source>
         <translation>Açık harcama çözümlemesi başarısız</translation>
-    </message>
-    <message>
-        <source>Failed to select a zerocoin</source>
-        <translation>Zerocoin seçimi başarısız</translation>
-    </message>
-    <message>
-        <source>Failed to wipe zerocoinDB</source>
-        <translation>ZerocoinDB silinmesi başarısız</translation>
     </message>
     <message>
         <source>Failed to write coin serial number into wallet</source>
@@ -5009,10 +4950,6 @@ Hoşgeldiniz</translation>
         <translation>Sporklar eşzamanlanıyor..</translation>
     </message>
     <message>
-        <source>Syncing z__DSW__ wallet...</source>
-        <translation>z__DSW__ cüzdanı eşzamanlanıyor..</translation>
-    </message>
-    <message>
         <source>This help message</source>
         <translation>Bu yardım mesajı</translation>
     </message>
@@ -5105,10 +5042,6 @@ Hoşgeldiniz</translation>
         <translation>JSON-RPC bağlantısı için kullanıcı adı</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of z__DSW__</source>
-        <translation>Aşağıdaki değer z__DSW__'in mümkün olan en küçük bölüm değeridir (=1)</translation>
-    </message>
-    <message>
         <source>Verifying blocks...</source>
         <translation>Bloklar doğrulanıyor...</translation>
     </message>
@@ -5149,10 +5082,6 @@ Hoşgeldiniz</translation>
         <translation>Hata: Desteklenmeyen argüman -debugnet yok sayıldı, -debug=net kullanın.</translation>
     </message>
     <message>
-        <source>You don't have enough Zerocoins in your wallet</source>
-        <translation>Cüzdanınızda yeterli miktarda Zerocoin bulunmuyor</translation>
-    </message>
-    <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
         <translation>Tx endeksini değiştirmek için veritabanını -reindex kullanarak tekrar oluşturmanız gerekmektedir </translation>
     </message>
@@ -5163,10 +5092,6 @@ Hoşgeldiniz</translation>
     <message>
         <source>ZeroMQ notification options:</source>
         <translation>ZeroMQ bildirim seçenekleri:</translation>
-    </message>
-    <message>
-        <source>Zerocoin options:</source>
-        <translation>Zerocoin seçenekleri:</translation>
     </message>
     <message>
         <source>on startup</source>

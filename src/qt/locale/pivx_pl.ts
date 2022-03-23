@@ -704,8 +704,8 @@ do stakingu</translation>
         <translation>Filtruj według</translation>
     </message>
     <message>
-        <source>Amount of __DSW__ and z__DSW__ staked.</source>
-        <translation>Ilość __DSW__ i z__DSW__ staked.</translation>
+        <source>Amount of __DSW__ staked.</source>
+        <translation>Ilość __DSW__ staked.</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -1502,36 +1502,8 @@ Jesteś pewny?</translation>
         <translation>Mapuj port za pomocą &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of __DSW__ units to z__DSW__</source>
-        <translation>Włącz automatyczny minting __DSW__ do z__DSW__</translation>
-    </message>
-    <message>
-        <source>Enable z__DSW__ Automint</source>
-        <translation>Włącz z__DSW__ Automint</translation>
-    </message>
-    <message>
-        <source>Enable automatic z__DSW__ minting from specific addresses</source>
-        <translation>Włącz automatyczne wybijanie z__DSW__-ów z określonych adresów</translation>
-    </message>
-    <message>
         <source>Enable Automint Addresses</source>
         <translation>Włącz adresy Automint</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming __DSW__ which get automatically converted to z__DSW__ via Zerocoin Protocol (min: 10%)</source>
-        <translation>Procent __DSW__, które są automatycznie konwertowane na z__DSW__ za pomocą protokołu Zerocoin (min: 10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted z__DSW__</source>
-        <translation>Procent automint z__DSW__</translation>
-    </message>
-    <message>
-        <source>Wait with automatic conversion to Zerocoin until enough __DSW__ for this denomination is available</source>
-        <translation>Zaczekaj z automatyczną konwersją na Zerocoin, aż będzie dostępna wystarczająca wartość __DSW__ dla tego nominału</translation>
-    </message>
-    <message>
-        <source>Preferred Automint z__DSW__ Denomination</source>
-        <translation>Preferowane nominały Automint z__DSW__</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
@@ -2239,10 +2211,6 @@ Adres: %4
     <message>
         <source>Custom Backup Path:</source>
         <translation>Standardowa ścieżka kopii zapasowej:</translation>
-    </message>
-    <message>
-        <source>Custom z__DSW__ Backup Path:</source>
-        <translation>standardowa ścieżka kopii zapasowej z__DSW__:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -4540,10 +4508,6 @@ Portfel __Decenomy__</translation>
         <translation>Usuń wszystkie transakcje portfela i odzyskaj tylko część łańcucha blokowego -reskan przy uruchomieniu</translation>
     </message>
     <message>
-        <source>Delete all zerocoin spends and mints that have been recorded to the blockchain database and reindex them (0-1, default: %u)</source>
-        <translation>Usuń wszystkie wydane zerocoin i mint, które zostały zapisane w bazie danych blockchain i ponownie je zindeksuj (0-1, domyślnie: %u)</translation>
-    </message>
-    <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
         <translation>Dystrybuowane w ramach licencji oprogramowania MIT, patrz plik towarzyszący COPYING lub &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</translation>
     </message>
@@ -4836,10 +4800,6 @@ Portfel __Decenomy__</translation>
         <translation>Błąd odczytu z bazy danych, wyłączenie.</translation>
     </message>
     <message>
-        <source>Error writing zerocoinDB to disk</source>
-        <translation>Błąd podczas zapisywania zerocoinDB na dysku</translation>
-    </message>
-    <message>
         <source>Error</source>
         <translation>Błąd</translation>
     </message>
@@ -4940,14 +4900,6 @@ Portfel __Decenomy__</translation>
         <translation>Przeliczanie podaży __DSW__ ...</translation>
     </message>
     <message>
-        <source>Reindexing zerocoin database...</source>
-        <translation>Ponowne indeksowanie bazy danych zerocoin ...</translation>
-    </message>
-    <message>
-        <source>Reindexing zerocoin failed</source>
-        <translation>Ponowne indeksowanie zerocoin nie powiodło się</translation>
-    </message>
-    <message>
         <source>Selected coins value is less than payment target</source>
         <translation>Wybrana wartość monet jest mniejsza niż docelowa</translation>
     </message>
@@ -4956,8 +4908,8 @@ Portfel __Decenomy__</translation>
         <translation>Jest to wersja testowa pre-release - korzystaj z niej na własne ryzyko - nie używaj do staking lub prawdziwych transakcji!</translation>
     </message>
     <message>
-        <source>Disable all __DSW__ specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
-        <translation>Wyłącz wszystkie funkcje specyficzne dla __DSW__ (Masternodes, Zerocoin, Budgeting) (0-1, domyślnie: %u)</translation>
+        <source>Disable all __DSW__ specific functionality (Masternodes) (0-1, default: %u)</source>
+        <translation>Wyłącz wszystkie funkcje specyficzne dla __DSW__ (Masternodes) (0-1, domyślnie: %u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -5030,14 +4982,6 @@ Portfel __Decenomy__</translation>
     <message>
         <source>Failed to parse public spend</source>
         <translation>Nie udało się przeanalizować wydatków publicznych</translation>
-    </message>
-    <message>
-        <source>Failed to select a zerocoin</source>
-        <translation>Nie udało się wybrać zerocoin</translation>
-    </message>
-    <message>
-        <source>Failed to wipe zerocoinDB</source>
-        <translation>Nie można wyczyścić zerocoinDB</translation>
     </message>
     <message>
         <source>Failed to write coin serial number into wallet</source>
@@ -5376,10 +5320,6 @@ Portfel __Decenomy__</translation>
         <translation>Synchronizowanie sporks...</translation>
     </message>
     <message>
-        <source>Syncing z__DSW__ wallet...</source>
-        <translation>Synchronizuję portfel z__DSW__ ...</translation>
-    </message>
-    <message>
         <source>This help message</source>
         <translation>Ten komunikat pomocy</translation>
     </message>
@@ -5480,10 +5420,6 @@ Portfel __Decenomy__</translation>
         <translation>Nazwa użytkownika dla połączeń JSON-RPC</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of z__DSW__</source>
-        <translation>Wartość jest mniejsza od najmniejszej dostępnej (= 1) z__DSW__</translation>
-    </message>
-    <message>
         <source>Verifying blocks...</source>
         <translation>Weryfikuję bloki ...</translation>
     </message>
@@ -5524,10 +5460,6 @@ Portfel __Decenomy__</translation>
         <translation>Ostrzeżenie: Zignorowany nieobsługiwany argument -debugnet, użyj -debug=net.</translation>
     </message>
     <message>
-        <source>You don't have enough Zerocoins in your wallet</source>
-        <translation>Nie masz wystarczającej liczby Zerocoins w swoim portfelu</translation>
-    </message>
-    <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
         <translation>Musisz przebudować bazę danych za pomocą -reindex, aby zmienić -txindeks</translation>
     </message>
@@ -5538,14 +5470,6 @@ Portfel __Decenomy__</translation>
     <message>
         <source>ZeroMQ notification options:</source>
         <translation>Opcje powiadomień ZeroMQ:</translation>
-    </message>
-    <message>
-        <source>Zerocoin minting available only on regtest</source>
-        <translation>Zerocoin minting dostępne tylko podczas testu regtest</translation>
-    </message>
-    <message>
-        <source>Zerocoin options:</source>
-        <translation>Opcje Zerocoin:</translation>
     </message>
     <message>
         <source>on startup</source>

@@ -313,65 +313,7 @@ fs::path GetDefaultDataDir()
 
 static fs::path pathCached;
 static fs::path pathCachedNetSpecific;
-static fs::path zc_paramsPathCached;
 static RecursiveMutex csPathCached;
-
-static fs::path ZC_GetBaseParamsDir()
-{
-    // Copied from GetDefaultDataDir and adapter for zcash params.
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\__decenomy__Params
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\__decenomy__Params
-    // Mac: ~/Library/Application Support/__decenomy__Params
-    // Unix: ~/.__decenomy__-params
-#ifdef WIN32
-    // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "__Decenomy__Params";
-#else
-    fs::path pathRet;
-    char* pszHome = getenv("HOME");
-    if (pszHome == NULL || strlen(pszHome) == 0)
-        pathRet = fs::path("/");
-    else
-        pathRet = fs::path(pszHome);
-#ifdef MAC_OSX
-    // Mac
-    pathRet /= "Library/Application Support";
-    TryCreateDirectory(pathRet);
-    return pathRet / "__Decenomy__Params";
-#else
-    // Unix
-    return pathRet / ".__decenomy__-params";
-#endif
-#endif
-}
-
-const fs::path &ZC_GetParamsDir()
-{
-    LOCK(csPathCached); // Reuse the same lock as upstream.
-
-    fs::path &path = zc_paramsPathCached;
-
-    // This can be called during exceptions by LogPrintf(), so we cache the
-    // value so we don't have to do memory allocations after that.
-    if (!path.empty())
-        return path;
-
-#ifdef USE_CUSTOM_PARAMS
-    path = fs::system_complete(PARAMS_DIR);
-#else
-    if (mapArgs.count("-paramsdir")) {
-        path = fs::system_complete(mapArgs["-paramsdir"]);
-        if (!fs::is_directory(path)) {
-            path = "";
-            return path;
-        }
-    } else {
-        path = ZC_GetBaseParamsDir();
-    }
-#endif
-
-    return path;
-}
 
 const fs::path& GetDataDir(bool fNetSpecific)
 {

@@ -746,8 +746,8 @@ for staking</source>
         <translation>Сортировать по</translation>
     </message>
     <message>
-        <source>Amount of __DSW__ and z__DSW__ staked.</source>
-        <translation>Сумма добытых __DSW__ и z__DSW__</translation>
+        <source>Amount of __DSW__ staked.</source>
+        <translation>Сумма добытых __DSW__ </translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -1620,36 +1620,8 @@ NODES</source>
         <translation>Карта порта, использующего &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of __DSW__ units to z__DSW__</source>
-        <translation>Невозможно автоматически отчеканить единицы __DSW__ для z__DSW__</translation>
-    </message>
-    <message>
-        <source>Enable z__DSW__ Automint</source>
-        <translation>Невозможно авточеканка  z__DSW__</translation>
-    </message>
-    <message>
-        <source>Enable automatic z__DSW__ minting from specific addresses</source>
-        <translation>Включить автоматическое чеканку z__DSW__ с определенных адресов</translation>
-    </message>
-    <message>
         <source>Enable Automint Addresses</source>
         <translation>Включить адреса с автоматической чеканкой</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming __DSW__ which get automatically converted to z__DSW__ via Zerocoin Protocol (min: 10%)</source>
-        <translation>Процент приходящих __DSW__, которые автоматически конвертируются в z__DSW__ благодаря Zerocoin протоколу (min: 10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted z__DSW__</source>
-        <translation>Процент  авточеканненых z__DSW__</translation>
-    </message>
-    <message>
-        <source>Wait with automatic conversion to Zerocoin until enough __DSW__ for this denomination is available</source>
-        <translation>Подождите с автоматическим преобразованием в Zerocoin, пока не будет достаточно __DSW__ для этой номинации.</translation>
-    </message>
-    <message>
-        <source>Preferred Automint z__DSW__ Denomination</source>
-        <translation>Предпочитаемый номинал авточеканной  монеты  z__DSW__</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
@@ -2409,10 +2381,6 @@ Address: %4
     <message>
         <source>Custom Backup Path:</source>
         <translation>Пользовательский путь резервного копирования:</translation>
-    </message>
-    <message>
-        <source>Custom z__DSW__ Backup Path:</source>
-        <translation>Пользовательский путь резервного копирования z__DSW__:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -3526,8 +3494,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
                            __DSW__ is a form of digital online money using blockchain technology
                            that can be easily transferred globally, instantly, and with near
                            zero fees.  __DSW__ incorporates market leading security &amp;
-                           privacy and is also the first PoS (Proof of Stake) Cryptocurrency
-                           to implement ZeroCoin(z__DSW__) and Zerocoin staking.
+                           privacy.
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            __DSW__ utilizes a Proof of Stake (PoS) consensus system algorithm,
                            allowing all owners of __DSW__ to participate in earning block rewards
@@ -3540,8 +3507,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
 __DSW__ - это форма цифровых онлайн-денег, использующая технологию блокчейн,
 которая может быть легко переведена по всему миру, мгновенно и с практически
 нулевой комиссией. __DSW__ включает в себя лидирующую на рынке защиту и
-«конфиденциальность», а также является первой PoS криптовалютой (Proof of Stake),
-в которой реализована система стекинга ZeroCoin (z__DSW__) и Zerocoin.
+«конфиденциальность».
 &lt;/p&gt;&lt;p align="justify"&gt;
 __DSW__ использует консенсус PoS (Proof of Stake), позволяя всем владельцам __DSW__ участвовать в заработке вознаграждений
 при этом обеспечивая безопасность сети с помощью кошельков с полными узлами, а также позволяет
@@ -5086,10 +5052,6 @@ __Decenomy__ Wallet</source>
         <translation>Удалите все транзакции кошелька и восстановите только те части блок-цепи через -rescan при запуске</translation>
     </message>
     <message>
-        <source>Delete all zerocoin spends and mints that have been recorded to the blockchain database and reindex them (0-1, default: %u)</source>
-        <translation>Удалите все траты и монетки zerocoin, которые были записаны в базу данных blockchain, и переиндексируйте их (0-1, по умолчанию: %u)</translation>
-    </message>
-    <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
         <translation>Распространяется по лицензии программного обеспечения MIT, см. Сопроводительный файл COPYING или &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</translation>
     </message>
@@ -5382,10 +5344,6 @@ __Decenomy__ Wallet</source>
         <translation>Ошибка чтения из базы данных, завершение работы.</translation>
     </message>
     <message>
-        <source>Error writing zerocoinDB to disk</source>
-        <translation>Ошибка записи zerocoinDB на диск</translation>
-    </message>
-    <message>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
@@ -5486,14 +5444,6 @@ __Decenomy__ Wallet</source>
         <translation>Перерасчет предложения __DSW__...</translation>
     </message>
     <message>
-        <source>Reindexing zerocoin database...</source>
-        <translation>Реиндексирующая база данных нулевого цикла ...</translation>
-    </message>
-    <message>
-        <source>Reindexing zerocoin failed</source>
-        <translation>Повторный обмен зерокоинта не удался</translation>
-    </message>
-    <message>
         <source>Selected coins value is less than payment target</source>
         <translation>Выбранная стоимость монет меньше цели платежа</translation>
     </message>
@@ -5502,8 +5452,8 @@ __Decenomy__ Wallet</source>
         <translation>Это предварительная версия сборки - используйте на свой страх и риск - не используйте для ставок или коммерческих приложений!</translation>
     </message>
     <message>
-        <source>Disable all __DSW__ specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
-        <translation>Отключите все специфические функции __DSW__ (Masternodes, Zerocoin, Бюджетирование) (0-1, по умолчанию: %u)</translation>
+        <source>Disable all __DSW__ specific functionality (Masternodes) (0-1, default: %u)</source>
+        <translation>Отключите все специфические функции __DSW__ (Masternodes) (0-1, по умолчанию: %u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -5576,14 +5526,6 @@ __Decenomy__ Wallet</source>
     <message>
         <source>Failed to parse public spend</source>
         <translation>Не удалось разобрать публичные расходы</translation>
-    </message>
-    <message>
-        <source>Failed to select a zerocoin</source>
-        <translation>Не удалось выбрать зерокоин</translation>
-    </message>
-    <message>
-        <source>Failed to wipe zerocoinDB</source>
-        <translation>Не удалось вытереть zerocoinDB</translation>
     </message>
     <message>
         <source>Failed to write coin serial number into wallet</source>
@@ -6044,10 +5986,6 @@ __Decenomy__ Wallet</source>
         <translation>Синхронизация спорков ...</translation>
     </message>
     <message>
-        <source>Syncing z__DSW__ wallet...</source>
-        <translation>Синхронизация z__DSW__ кошелька ...</translation>
-    </message>
-    <message>
         <source>The threshold value cannot be less than %s</source>
         <translation>Пороговое значение не может быть меньше, чем %s</translation>
     </message>
@@ -6164,10 +6102,6 @@ __Decenomy__ Wallet</source>
         <translation>Имя пользователя для соединений JSON-RPC</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of z__DSW__</source>
-        <translation>Значение ниже наименьшего доступного номинала (= 1) z__DSW__</translation>
-    </message>
-    <message>
         <source>Verifying blocks...</source>
         <translation>Проверка блоков ...</translation>
     </message>
@@ -6208,10 +6142,6 @@ __Decenomy__ Wallet</source>
         <translation>Предупреждение. Неподдерживаемый аргумент -debugnet игнорируется, используйте -debug = net.</translation>
     </message>
     <message>
-        <source>You don't have enough Zerocoins in your wallet</source>
-        <translation>У вас недостаточно Zerocoins в вашем кошельке</translation>
-    </message>
-    <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
         <translation>Вам нужно перестроить базу данных с помощью -reindex для изменения -txindex</translation>
     </message>
@@ -6222,14 +6152,6 @@ __Decenomy__ Wallet</source>
     <message>
         <source>ZeroMQ notification options:</source>
         <translation>Опции уведомления ZeroMQ:</translation>
-    </message>
-    <message>
-        <source>Zerocoin minting available only on regtest</source>
-        <translation>Чеканка zerocoin доступна только на regtest</translation>
-    </message>
-    <message>
-        <source>Zerocoin options:</source>
-        <translation>Варианты Zerocoin:</translation>
     </message>
     <message>
         <source>on startup</source>

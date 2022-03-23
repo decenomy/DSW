@@ -115,19 +115,7 @@ bool GetOldStakeModifier(CStakeInput* stake, uint64_t& nStakeModifier)
 {
     CBlockIndex* pindexFrom = stake->GetIndexFrom();
     if (!pindexFrom) return error("%s : failed to get index from", __func__);
-    if (stake->IsZPIV()) {
-        int64_t nTimeBlockFrom = pindexFrom->GetBlockTime();
-        const int nHeightStop = std::min(chainActive.Height(), Params().GetConsensus().height_last_ZC_AccumCheckpoint-1);
-        while (pindexFrom && pindexFrom->nHeight + 1 <= nHeightStop) {
-            if (pindexFrom->GetBlockTime() - nTimeBlockFrom > 60 * 60) {
-                nStakeModifier = pindexFrom->nAccumulatorCheckpoint.GetCheapHash();
-                return true;
-            }
-            pindexFrom = chainActive.Next(pindexFrom);
-        }
-        return false;
-
-    } else if (!GetOldModifier(pindexFrom, nStakeModifier))
+    if (!GetOldModifier(pindexFrom, nStakeModifier))
         return error("%s : failed to get kernel stake modifier", __func__);
 
     return true;

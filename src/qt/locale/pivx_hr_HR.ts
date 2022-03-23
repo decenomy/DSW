@@ -731,8 +731,8 @@ za staking</translation>
         <translation>Filtriraj prema</translation>
     </message>
     <message>
-        <source>Amount of __DSW__ and z__DSW__ staked.</source>
-        <translation>Iznos __DSW__ i z__DSW__ koji se stakea.</translation>
+        <source>Amount of __DSW__ staked.</source>
+        <translation>Iznos __DSW__ koji se stakea.</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -1586,36 +1586,8 @@ NODEOVI</translation>
         <translation>Mapiranje porta koristeći &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of __DSW__ units to z__DSW__</source>
-        <translation>Omogući automatsko stvaranje __DSW__ jedinica na z__DSW__</translation>
-    </message>
-    <message>
-        <source>Enable z__DSW__ Automint</source>
-        <translation>Omogući automatsko stvaranje z__DSW__-a</translation>
-    </message>
-    <message>
-        <source>Enable automatic z__DSW__ minting from specific addresses</source>
-        <translation>Omogući automatsko stvaranje z__DSW__-a s određjenih adresa</translation>
-    </message>
-    <message>
         <source>Enable Automint Addresses</source>
         <translation>Omogući Automint adrese</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming __DSW__ which get automatically converted to z__DSW__ via Zerocoin Protocol (min: 10%)</source>
-        <translation>Postotak dolaznih __DSW__ koji se automatski pretvara u z__DSW__ putem Zerocoin Protokola (min: 10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted z__DSW__</source>
-        <translation>Postotak automatski stvorenog z__DSW__-a</translation>
-    </message>
-    <message>
-        <source>Wait with automatic conversion to Zerocoin until enough __DSW__ for this denomination is available</source>
-        <translation>Pričekajte s automatskom pretvorbom u Zerocoin dok ne bude dostupno dovoljno __DSW__-a za ovu denominaciju</translation>
-    </message>
-    <message>
-        <source>Preferred Automint z__DSW__ Denomination</source>
-        <translation>Preferirana denominacija za automatsko stvaranje z__DSW__-a</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
@@ -2379,10 +2351,6 @@ Adresa: %4
     <message>
         <source>Custom Backup Path:</source>
         <translation>Put prilagođenog sigurnosnog kopiranja:</translation>
-    </message>
-    <message>
-        <source>Custom z__DSW__ Backup Path:</source>
-        <translation>Prilagođeni put z__DSW__ sigurnosne kopije:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -3458,8 +3426,7 @@ Došlo je do greške prilikom spremanja popisa adresa u %1. Molimo pokušajte po
                            __DSW__ is a form of digital online money using blockchain technology
                            that can be easily transferred globally, instantly, and with near
                            zero fees.  __DSW__ incorporates market leading security &amp;
-                           privacy and is also the first PoS (Proof of Stake) Cryptocurrency
-                           to implement ZeroCoin(z__DSW__) and Zerocoin staking.
+                           privacy.
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            __DSW__ utilizes a Proof of Stake (PoS) consensus system algorithm,
                            allowing all owners of __DSW__ to participate in earning block rewards
@@ -3471,9 +3438,7 @@ Došlo je do greške prilikom spremanja popisa adresa u %1. Molimo pokušajte po
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
 __DSW__ je oblik digitalnog online novca koji koristi blockchain tehnologiju
 koji se lako može slati i primati globalno, trenutno, i gotovo bez naknade.
-__DSW__ uključuje vodeću sigurnost  i privatnost na tržištu
-i takođjer je prva PoS (Proof of Stake) kriptovaluta
-koja je implementirala ZeroCoin (z__DSW__) i Zerocoin staking.
+__DSW__ uključuje vodeću sigurnost i privatnost.
 &lt;/p&gt;&lt;p align="justify"&gt;
 __DSW__ koristi algoritam konsenzusa Proof of Stake (PoS),
 omogućujući svim vlasnicima __DSW__-a sudjelovanje u zarađi blokovih nagrada
@@ -4972,10 +4937,6 @@ __Decenomy__ Wallet</source>
         <translation>Izbrišite sve transakcije lisnice i obnavljajte one dijelove blok-lanca kroz -rescan pri pokretanju</translation>
     </message>
     <message>
-        <source>Delete all zerocoin spends and mints that have been recorded to the blockchain database and reindex them (0-1, default: %u)</source>
-        <translation>Izbriši sve zerocoin utroške i minteve koji su zabilježeni na blockchain database i reindexiraj ih (0-1, default: %u)</translation>
-    </message>
-    <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
         <translation>Distribuirano pod MIT softverskom licencom, pogledajte priloženu datoteku COPYING ili &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</translation>
     </message>
@@ -5269,10 +5230,6 @@ __Decenomy__ Wallet</source>
         <translation>Pogreška pri čitanju iz baze podataka, zatvaranje.</translation>
     </message>
     <message>
-        <source>Error writing zerocoinDB to disk</source>
-        <translation>Greška u zapisivanju zerocoinDB na disk</translation>
-    </message>
-    <message>
         <source>Error</source>
         <translation>Greška</translation>
     </message>
@@ -5373,14 +5330,6 @@ __Decenomy__ Wallet</source>
         <translation>Preračunavanje __DSW__-a u optjecaju...</translation>
     </message>
     <message>
-        <source>Reindexing zerocoin database...</source>
-        <translation>Reindeksiranje zerocoin databaze...</translation>
-    </message>
-    <message>
-        <source>Reindexing zerocoin failed</source>
-        <translation>Reindeksiranje zerocoin neuspjelo</translation>
-    </message>
-    <message>
         <source>Selected coins value is less than payment target</source>
         <translation>Odabrana vrijednost novčića je manja od količine za plačanje</translation>
     </message>
@@ -5389,8 +5338,8 @@ __Decenomy__ Wallet</source>
         <translation>Ovo je priprema za testiranje prije puštanja - upotrebljavajte na vlastiti rizik - nemojte ga koristiti za staking ili trgovinske aplikacije!</translation>
     </message>
     <message>
-        <source>Disable all __DSW__ specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
-        <translation>Onemogući sve specifične funkcije __DSW__ (Masternodes, Zerocoin, Budgeting) (0-1, zadano: %u)</translation>
+        <source>Disable all __DSW__ specific functionality (Masternodes) (0-1, default: %u)</source>
+        <translation>Onemogući sve specifične funkcije __DSW__ (Masternodes) (0-1, zadano: %u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -5463,14 +5412,6 @@ __Decenomy__ Wallet</source>
     <message>
         <source>Failed to parse public spend</source>
         <translation>Failed to parse public spend</translation>
-    </message>
-    <message>
-        <source>Failed to select a zerocoin</source>
-        <translation>Odabir Zerocoina nije uspjelo</translation>
-    </message>
-    <message>
-        <source>Failed to wipe zerocoinDB</source>
-        <translation>Neuspjelo brisanje zerocoinDB</translation>
     </message>
     <message>
         <source>Failed to write coin serial number into wallet</source>
@@ -5831,10 +5772,6 @@ __Decenomy__ Wallet</source>
         <translation>Sinkronizacija sporkova...</translation>
     </message>
     <message>
-        <source>Syncing z__DSW__ wallet...</source>
-        <translation>Sinkronizacija z__DSW__ novčanika...</translation>
-    </message>
-    <message>
         <source>This help message</source>
         <translation>Ova poruka za pomoć</translation>
     </message>
@@ -5943,10 +5880,6 @@ __Decenomy__ Wallet</source>
         <translation>Korisničko ime za JSON-RPC veze</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of z__DSW__</source>
-        <translation>Vrijednost je niža od najmanje dostupne denominacije (= 1) z__DSW__-a</translation>
-    </message>
-    <message>
         <source>Verifying blocks...</source>
         <translation>Provjera blokova...</translation>
     </message>
@@ -5987,10 +5920,6 @@ __Decenomy__ Wallet</source>
         <translation>Upozorenje: nepodržani argument -debugnet ignoriran, upotrijebite -debug=net.</translation>
     </message>
     <message>
-        <source>You don't have enough Zerocoins in your wallet</source>
-        <translation>Nemate dovoljno Zerocoina u novčaniku</translation>
-    </message>
-    <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
         <translation>orate obnoviti bazu podataka koristeći -index za promjenu -txindexa</translation>
     </message>
@@ -6001,14 +5930,6 @@ __Decenomy__ Wallet</source>
     <message>
         <source>ZeroMQ notification options:</source>
         <translation>Mogućnosti ZeroMQ obavijesti:</translation>
-    </message>
-    <message>
-        <source>Zerocoin minting available only on regtest</source>
-        <translation>Stvaranje Zerocoina dostupno je samo na regtestu</translation>
-    </message>
-    <message>
-        <source>Zerocoin options:</source>
-        <translation>Zerocoin mogućnosti:</translation>
     </message>
     <message>
         <source>on startup</source>

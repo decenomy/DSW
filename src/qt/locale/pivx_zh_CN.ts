@@ -703,8 +703,8 @@ for staking</source>
         <translation>过滤</translation>
     </message>
     <message>
-        <source>Amount of __DSW__ and z__DSW__ staked.</source>
-        <translation>已加注的__DSW__ 和 z__DSW__ 金额</translation>
+        <source>Amount of __DSW__ staked.</source>
+        <translation>已加注的__DSW__ 金额</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -1506,36 +1506,8 @@ Are you sure?</source>
         <translation>端口使用&amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of __DSW__ units to z__DSW__</source>
-        <translation>启动自动铸造__DSW__到z__DSW__</translation>
-    </message>
-    <message>
-        <source>Enable z__DSW__ Automint</source>
-        <translation>启动自动铸造z__DSW__</translation>
-    </message>
-    <message>
-        <source>Enable automatic z__DSW__ minting from specific addresses</source>
-        <translation>启用从特定地址自动生成z__DSW__</translation>
-    </message>
-    <message>
         <source>Enable Automint Addresses</source>
         <translation>启动自动铸造地址</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming __DSW__ which get automatically converted to z__DSW__ via Zerocoin Protocol (min: 10%)</source>
-        <translation>通过零币协议自动转换为z__DSW__的传入__DSW__的百分比(最小:10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted z__DSW__</source>
-        <translation>自动铸造的z__DSW__百分比</translation>
-    </message>
-    <message>
-        <source>Wait with automatic conversion to Zerocoin until enough __DSW__ for this denomination is available</source>
-        <translation>等待自动转换为零币，直到足够的__DSW__为这种面额可用</translation>
-    </message>
-    <message>
-        <source>Preferred Automint z__DSW__ Denomination</source>
-        <translation>首选自动铸造z__DSW__面额</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
@@ -2243,10 +2215,6 @@ Address: %4
     <message>
         <source>Custom Backup Path:</source>
         <translation>自定义备份路径:</translation>
-    </message>
-    <message>
-        <source>Custom z__DSW__ Backup Path:</source>
-        <translation>自定义z__DSW__备份路径:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -3254,8 +3222,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
                            __DSW__ is a form of digital online money using blockchain technology
                            that can be easily transferred globally, instantly, and with near
                            zero fees.  __DSW__ incorporates market leading security &amp;
-                           privacy and is also the first PoS (Proof of Stake) Cryptocurrency
-                           to implement ZeroCoin(z__DSW__) and Zerocoin staking.
+                           privacy.
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            __DSW__ utilizes a Proof of Stake (PoS) consensus system algorithm,
                            allowing all owners of __DSW__ to participate in earning block rewards
@@ -3265,16 +3232,15 @@ There was an error trying to save the address list to %1. Please try again.</sou
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-__DSW__是一种使用区块链技术的数字在线货币
-全球范围内快捷交易，即时，基本为
-零的交易费用。__DSW__是市场上领先的安全和
-隐私加密货币，也是第一个PoS(股权证明)加密货币
-实现零币(z__DSW__)和零币加注。
+__DSW__ is a form of digital online money using blockchain technology
+that can be easily transferred globally, instantly, and with near
+zero fees.  __DSW__ incorporates market leading security &amp;
+privacy.
 &lt;/p&gt;&lt;p align="justify"&gt;
-__DSW__使用了一个股权证明(PoS)一致系统算法，
-允许所有__DSW__的所有者参与赚取区块奖励
-同时保护网络与完整的节点钱包，以及
-运行主节点创建和投票来进行提案。</translation>
+__DSW__ utilizes a Proof of Stake (PoS) consensus system algorithm,
+allowing all owners of __DSW__ to participate in earning block rewards
+while securing the network with full node wallets, as well as to
+run Masternodes to create and vote on proposals</translation>
     </message>
     <message>
         <source>2</source>
@@ -4673,10 +4639,6 @@ __Decenomy__心钱包</translation>
         <translation>删除所有钱包交易，只恢复那些部分的区块链-通过启动时进行重新扫描</translation>
     </message>
     <message>
-        <source>Delete all zerocoin spends and mints that have been recorded to the blockchain database and reindex them (0-1, default: %u)</source>
-        <translation>删除所有已记录到区块链数据库的零币花费和铸造，并重新索引它们(0-1，默认值:%u)</translation>
-    </message>
-    <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
         <translation>在MIT软件许可下发布，参见附带的文件复制或&lt;http://www.opensource.org/licenses/mit-license.php&gt;。</translation>
     </message>
@@ -4969,10 +4931,6 @@ __Decenomy__心钱包</translation>
         <translation>数据库读取出错，正在关闭。</translation>
     </message>
     <message>
-        <source>Error writing zerocoinDB to disk</source>
-        <translation>零币编码写入磁盘出错</translation>
-    </message>
-    <message>
         <source>Error</source>
         <translation>出错</translation>
     </message>
@@ -5073,14 +5031,6 @@ __Decenomy__心钱包</translation>
         <translation>重新计算__DSW__供应量……</translation>
     </message>
     <message>
-        <source>Reindexing zerocoin database...</source>
-        <translation>重新索引零币数据库。</translation>
-    </message>
-    <message>
-        <source>Reindexing zerocoin failed</source>
-        <translation>重建索引零币失败</translation>
-    </message>
-    <message>
         <source>Selected coins value is less than payment target</source>
         <translation>所选择币价值低于支付目标金额</translation>
     </message>
@@ -5089,8 +5039,8 @@ __Decenomy__心钱包</translation>
         <translation>这是一个预发行测试版本 - 您自己承担风险 - 不要用于商业应用！</translation>
     </message>
     <message>
-        <source>Disable all __DSW__ specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
-        <translation>禁用所有__DSW__特定功能(主节点, 零币, budget)(0-1，默认值:%u)</translation>
+        <source>Disable all __DSW__ specific functionality (Masternodes) (0-1, default: %u)</source>
+        <translation>禁用所有__DSW__特定功能(主节点)(0-1，默认值:%u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -5163,14 +5113,6 @@ __Decenomy__心钱包</translation>
     <message>
         <source>Failed to parse public spend</source>
         <translation>解析公共花费失败</translation>
-    </message>
-    <message>
-        <source>Failed to select a zerocoin</source>
-        <translation>选择零币失败</translation>
-    </message>
-    <message>
-        <source>Failed to wipe zerocoinDB</source>
-        <translation>擦写零币DB失败</translation>
     </message>
     <message>
         <source>Failed to write coin serial number into wallet</source>
@@ -5509,10 +5451,6 @@ __Decenomy__心钱包</translation>
         <translation>正在同步分叉...</translation>
     </message>
     <message>
-        <source>Syncing z__DSW__ wallet...</source>
-        <translation>正在同步z__DSW__钱包……</translation>
-    </message>
-    <message>
         <source>This help message</source>
         <translation>这个帮助信息</translation>
     </message>
@@ -5613,10 +5551,6 @@ __Decenomy__心钱包</translation>
         <translation>JSON-RPC连接的用户名</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of z__DSW__</source>
-        <translation>值小于z__DSW__的最小可用面额(= 1)</translation>
-    </message>
-    <message>
         <source>Verifying blocks...</source>
         <translation>正在验证区块……</translation>
     </message>
@@ -5657,10 +5591,6 @@ __Decenomy__心钱包</translation>
         <translation>警告:不支持的参数-debugnet被忽略，使用-debug=net。</translation>
     </message>
     <message>
-        <source>You don't have enough Zerocoins in your wallet</source>
-        <translation>你的钱包里没有足够的零币</translation>
-    </message>
-    <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
         <translation>您需要使用-reindex来更改-txindex来重新构建数据库</translation>
     </message>
@@ -5671,14 +5601,6 @@ __Decenomy__心钱包</translation>
     <message>
         <source>ZeroMQ notification options:</source>
         <translation>ZeroMQ通知选项:</translation>
-    </message>
-    <message>
-        <source>Zerocoin minting available only on regtest</source>
-        <translation>零币铸造只能在regtest可用</translation>
-    </message>
-    <message>
-        <source>Zerocoin options:</source>
-        <translation>零币选项：</translation>
     </message>
     <message>
         <source>on startup</source>
