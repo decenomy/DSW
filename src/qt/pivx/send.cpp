@@ -128,7 +128,7 @@ void SendWidget::refreshAmounts()
 
     nDisplayUnit = walletModel->getOptionsModel()->getDisplayUnit();
 
-    ui->labelAmountSend->setText(GUIUtil::formatBalance(total, nDisplayUnit, false));
+    ui->labelAmountSend->setText(GUIUtil::formatBalance(total, nDisplayUnit));
 
     CAmount totalAmount = 0;
     if (coinControlDialog->coinControl->HasSelected()) {
@@ -143,8 +143,7 @@ void SendWidget::refreshAmounts()
     ui->labelAmountRemaining->setText(
             GUIUtil::formatBalance(
                     totalAmount,
-                    nDisplayUnit,
-                    false
+                    nDisplayUnit
                     )
     );
 }

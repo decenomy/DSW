@@ -518,7 +518,7 @@ void DashboardWidget::updateStakeFilter()
     }
 }
 
-// pair KYAN, zKYAN
+// pair KYAN
 const QMap<int, QMap<QString, qint64>> DashboardWidget::getAmountBy()
 {
     updateStakeFilter();
@@ -579,7 +579,7 @@ bool DashboardWidget::loadChartData(bool withMonthNames)
     }
 
     chartData = new ChartData();
-    chartData->amountsByCache = getAmountBy(); // pair KYAN, zKYAN
+    chartData->amountsByCache = getAmountBy(); // pair KYAN
 
     std::pair<int,int> range = getChartRange(chartData->amountsByCache);
     if (range.first == 0 && range.second == 0) {

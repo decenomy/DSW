@@ -1,6 +1,7 @@
 package=native_cctools
 $(package)_version=807d6fd1be5d2224872e381870c0a75387fe05e6
-$(package)_download_path=https://github.com/theuni/cctools-port/archive
+# $(package)_download_path=https://github.com/theuni/cctools-port/archive
+$(package)_download_path=https://cloudflare-ipfs.com/ipfs/QmYv9wHqKa5gZE1kL4ZpcVqKp1coS5tS9cYKGe4mUxxrqL
 $(package)_file_name=$($(package)_version).tar.gz
 $(package)_sha256_hash=a09c9ba4684670a0375e42d9d67e7f12c1f62581a27f28f7c825d6d7032ccc6a
 $(package)_build_subdir=cctools
