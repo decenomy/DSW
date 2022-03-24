@@ -1886,9 +1886,6 @@ bool CWallet::AvailableCoins(std::vector<COutput>* pCoins,      // --> populates
                 // Check for only 10k utxo
                 if (nCoinType == ONLY_10000 && pcoin->vout[i].nValue != CMasternode::GetMasternodeNodeCollateral(chainActive.Height())) continue;
 
-                // Check for stakeable utxo
-                if (nCoinType == STAKEABLE_COINS && pcoin->vout[i].nValue == CMasternode::GetMasternodeNodeCollateral(chainActive.Height())) continue;
-
                 // Check if the utxo was spent.
                 if (IsSpent(wtxid, i)) continue;
 
