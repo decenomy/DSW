@@ -33,9 +33,6 @@ QT_TRANSLATE_NOOP("pivx-core", ""
 "Cannot obtain a lock on data directory %s. __Decenomy__ is probably already "
 "running."),
 QT_TRANSLATE_NOOP("pivx-core", ""
-"Change automatic finalized budget voting behavior. mode=auto: Vote for only "
-"exact finalized budget match to my generated budget. (string, default: auto)"),
-QT_TRANSLATE_NOOP("pivx-core", ""
 "Connect only to the specified node(s); -noconnect or -connect=0 alone to "
 "disable automatic connections"),
 QT_TRANSLATE_NOOP("pivx-core", ""
@@ -333,7 +330,6 @@ QT_TRANSLATE_NOOP("pivx-core", "Listen for connections on <port> (default: %u or
 QT_TRANSLATE_NOOP("pivx-core", "Loading addresses..."),
 QT_TRANSLATE_NOOP("pivx-core", "Loading banlist..."),
 QT_TRANSLATE_NOOP("pivx-core", "Loading block index..."),
-QT_TRANSLATE_NOOP("pivx-core", "Loading budget cache..."),
 QT_TRANSLATE_NOOP("pivx-core", "Loading masternode cache..."),
 QT_TRANSLATE_NOOP("pivx-core", "Loading masternode payment cache..."),
 QT_TRANSLATE_NOOP("pivx-core", "Loading sporks..."),
@@ -406,7 +402,6 @@ QT_TRANSLATE_NOOP("pivx-core", "Spend unconfirmed change when sending transactio
 QT_TRANSLATE_NOOP("pivx-core", "Stop running after importing blocks from disk (default: %u)"),
 QT_TRANSLATE_NOOP("pivx-core", "Synchronization failed"),
 QT_TRANSLATE_NOOP("pivx-core", "Synchronization finished"),
-QT_TRANSLATE_NOOP("pivx-core", "Synchronizing budgets..."),
 QT_TRANSLATE_NOOP("pivx-core", "Synchronizing masternode winners..."),
 QT_TRANSLATE_NOOP("pivx-core", "Synchronizing masternodes..."),
 QT_TRANSLATE_NOOP("pivx-core", "Synchronizing sporks..."),

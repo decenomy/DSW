@@ -3350,7 +3350,7 @@ Ha habido un error al tratar de guardar la libreta de direcciones en %1. Por fav
                            __DSW__ utilizes a Proof of Stake (PoS) consensus system algorithm,
                            allowing all owners of __DSW__ to participate in earning block rewards
                            while securing the network with full node wallets, as well as to
-                           run Masternodes to create and vote on proposals.
+                           run Masternodes to earn additional income regulary.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
@@ -3427,8 +3427,6 @@ Tu wallet __DSW__ también necesita estar completamente sincronizada para que pu
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
-                           &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
                            &lt;li&gt;Act as an additional full node in the network&lt;/li&gt;
                            &lt;/ul&gt;
@@ -3468,8 +3466,6 @@ regularmente. Estos servicios incluyen:
 &lt;/p&gt;&lt;p align="justify"&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Una gobernanza descentralizada (Propuesta de Votación)&lt;/li&gt;
-&lt;li&gt;Un sistema de presupuestación descentralizado (Tesorería)&lt;/li&gt;
 &lt;li&gt;Validación de transacciones dentro de cada bloque&lt;/li&gt;
 &lt;li&gt;Actuar como un nodo completo adicional en la red&lt;/li&gt;
 &lt;/ul&gt;
@@ -4735,10 +4731,6 @@ __Decenomy__ Wallet</translation>
         <translation>No se puede obtener un bloqueo sobre el directorio de datos %s. __Decenomy__ esta probablemente en ejecución.</translation>
     </message>
     <message>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation>Cambiar el comportamiento automático de votación de presupuesto final. modo=auto: Votar sólo por coincidencia exacta de un presupuesto finalizado con el generado por mí. (cadena, por defecto: auto)</translation>
-    </message>
-    <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
         <translation>Limite continuo de transacciones gratuitas &lt;n&gt;*1000 bytes por minuto (default:%u)</translation>
     </message>
@@ -5263,10 +5255,6 @@ __Decenomy__ Wallet</translation>
         <translation>Cargando índice de bloque...</translation>
     </message>
     <message>
-        <source>Loading budget cache...</source>
-        <translation>Cargando cache de presupuestos...</translation>
-    </message>
-    <message>
         <source>Loading masternode cache...</source>
         <translation>Cargando cache de nodos maestros...</translation>
     </message>
@@ -5545,10 +5533,6 @@ __Decenomy__ Wallet</translation>
     <message>
         <source>Synchronization finished</source>
         <translation>Sincronización finalizada!</translation>
-    </message>
-    <message>
-        <source>Synchronizing budgets...</source>
-        <translation>Sincronizando presupuestos...</translation>
     </message>
     <message>
         <source>Synchronizing masternode winners...</source>

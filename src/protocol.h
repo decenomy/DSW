@@ -252,26 +252,6 @@ extern const char* GETMNWINNERS;
 */
 extern const char* GETMNLIST;
 /**
- * The budgetproposal message is used to broadcast or relay budget proposal metadata to connected peers
- */
-extern const char* BUDGETPROPOSAL;
-/**
- * The budgetvote message is used to broadcast or relay budget proposal votes to connected peers
- */
-extern const char* BUDGETVOTE;
-/**
- * The budgetvotesync message is used to request budget vote data from connected peers
- */
-extern const char* BUDGETVOTESYNC;
-/**
- * The finalbudget message is used to broadcast or relay finalized budget metadata to connected peers
- */
-extern const char* FINALBUDGET;
-/**
- * The finalbudgetvote message is used to broadcast or relay finalized budget votes to connected peers
- */
-extern const char* FINALBUDGETVOTE;
-/**
  * The syncstatuscount message is used to track the layer 2 syncing process
  */
 extern const char* SYNCSTATUSCOUNT;
@@ -384,10 +364,6 @@ enum {
     MSG_SPORK                       = 6,
     MSG_MASTERNODE_WINNER           = 7,
     MSG_MASTERNODE_SCANNING_ERROR   = 8,
-    MSG_BUDGET_VOTE                 = 9,
-    MSG_BUDGET_PROPOSAL             = 10,
-    MSG_BUDGET_FINALIZED            = 11,
-    MSG_BUDGET_FINALIZED_VOTE       = 12,
     MSG_MASTERNODE_QUORUM           = 13,
     MSG_MASTERNODE_ANNOUNCE         = 14,
     MSG_MASTERNODE_PING             = 15,

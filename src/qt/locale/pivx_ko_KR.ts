@@ -4283,10 +4283,6 @@ __Decenomy__ Wallet</translation>
         <translation>        &lt;translation&gt;잠겨진 데이터 디렉토리 %s 를 가져올 수 없습니다. __Decenomy__는 이미 실행 중입니다.</translation>
     </message>
     <message>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation>최종 budget 투표 자동 작동 값을 변경합니다. mode=auto: 오직 내가 생성한 budget과 최종 budget이 정확히 일치할때 투표합니다. (string, 기본값: 자동)</translation>
-    </message>
-    <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
         <translation>연속적인 무료 트랜잭션을 분당 &lt;n&gt;*1000 bytes로 제한합니다. (기본값:%u)</translation>
     </message>
@@ -4779,10 +4775,6 @@ __Decenomy__ Wallet</translation>
         <translation>블록 인덱스를 불러오는 중...</translation>
     </message>
     <message>
-        <source>Loading budget cache...</source>
-        <translation>budget 캐시를 불러오는 중...</translation>
-    </message>
-    <message>
         <source>Loading masternode cache...</source>
         <translation>마스터노드 캐시를 불러오는 중...</translation>
     </message>
@@ -5041,10 +5033,6 @@ __Decenomy__ Wallet</translation>
     <message>
         <source>Synchronization finished</source>
         <translation>동기화 완료</translation>
-    </message>
-    <message>
-        <source>Synchronizing budgets...</source>
-        <translation>budgets 동기화 중입니다...</translation>
     </message>
     <message>
         <source>Synchronizing masternode winners...</source>

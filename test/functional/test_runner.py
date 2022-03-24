@@ -98,7 +98,6 @@ BASE_SCRIPTS= [
     'wallet_labels.py',                         # ~ 57 sec
     'rpc_signmessage.py',                       # ~ 54 sec
     'mempool_resurrect.py',                     # ~ 51 sec
-    'rpc_budget.py',                            # ~ 50 sec
     'mempool_spend_coinbase.py',                # ~ 50 sec
     'rpc_signrawtransaction.py',                # ~ 50 sec
     'rpc_decodescript.py',                      # ~ 50 sec
@@ -167,7 +166,6 @@ LEGACY_SKIP_TESTS = [
     'p2p_time_offset.py',
     'rpc_bip38.py',
     'rpc_blockchain.py',
-    'rpc_budget.py',
     'rpc_decodescript.py',
     'rpc_fundrawtransaction.py',
     'rpc_net.py',

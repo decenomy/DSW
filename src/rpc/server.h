@@ -264,17 +264,6 @@ extern UniValue getmasternodestatus(const JSONRPCRequest& request);
 extern UniValue getmasternodewinners(const JSONRPCRequest& request);
 extern UniValue getmasternodescores(const JSONRPCRequest& request);
 
-extern UniValue preparebudget(const JSONRPCRequest& request); // in rpc/budget.cpp
-extern UniValue submitbudget(const JSONRPCRequest& request);
-extern UniValue mnbudgetvote(const JSONRPCRequest& request);
-extern UniValue getbudgetvotes(const JSONRPCRequest& request);
-extern UniValue getnextsuperblock(const JSONRPCRequest& request);
-extern UniValue getbudgetprojection(const JSONRPCRequest& request);
-extern UniValue getbudgetinfo(const JSONRPCRequest& request);
-extern UniValue mnbudgetrawvote(const JSONRPCRequest& request);
-extern UniValue mnfinalbudget(const JSONRPCRequest& request);
-extern UniValue checkbudgets(const JSONRPCRequest& request);
-
 extern UniValue getinfo(const JSONRPCRequest& request); // in rpc/misc.cpp
 extern UniValue logging(const JSONRPCRequest& request);
 extern UniValue mnsync(const JSONRPCRequest& request);

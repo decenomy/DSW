@@ -2926,7 +2926,7 @@ Verify that you have installed a predetermined text editor.</source>
                            __DSW__ utilizes a Proof of Stake (PoS) consensus system algorithm,
                            allowing all owners of __DSW__ to participate in earning block rewards
                            while securing the network with full node wallets, as well as to
-                           run Masternodes to create and vote on proposals.
+                           run Masternodes to earn additional income regulary.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
@@ -3000,8 +3000,6 @@ bu sayede __DSW__ sahipleri blok ödülü kazanımına katılabilmektedir
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
-                           &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
                            &lt;li&gt;Act as an additional full node in the network&lt;/li&gt;
                            &lt;/ul&gt;
@@ -3041,8 +3039,6 @@ bu sayede __DSW__ sahipleri blok ödülü kazanımına katılabilmektedir
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;Merkeziyetsiz yönetim (Teklif Onaylama)&lt;/li&gt;
-                           &lt;li&gt;Merkeziyetsiz bütçe sistemi (Hazine)&lt;/li&gt;
                            &lt;li&gt;Her blogun içinde işlem onayı&lt;/li&gt;
                            &lt;li&gt;Ağda ek bir düğüm olarak görev yapmak&lt;/li&gt;
                            &lt;/ul&gt;
@@ -4158,10 +4154,6 @@ Hoşgeldiniz</translation>
         <translation>Veri dizini %s üzerinde bir kilit elde edemiyor. __Decenomy__ muhtemelen zaten çalışıyor.</translation>
     </message>
     <message>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation>Otomatik sonuçlandırılmış bütçe oylama davranışını değiştirin. mode = auto: Yalnızca kesin bütçelendirilmiş bütçeyi, oluşturulan bütçemle eşleştirmek için oy verin. (dize, varsayılan: otomatik)</translation>
-    </message>
-    <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
         <translation>Ücretsiz işlemleri belirli aralıklarla sınırla &lt;n&gt;*1000 bytes dakikada (varsayılan: %u)</translation>
     </message>
@@ -4674,10 +4666,6 @@ Hoşgeldiniz</translation>
         <translation>Blok endeksi yükleniyor...</translation>
     </message>
     <message>
-        <source>Loading budget cache...</source>
-        <translation>Bütçe ön belleği yükleniyor...</translation>
-    </message>
-    <message>
         <source>Loading masternode cache...</source>
         <translation>Masternode ön belleği yükleniyor...</translation>
     </message>
@@ -4932,10 +4920,6 @@ Hoşgeldiniz</translation>
     <message>
         <source>Synchronization finished</source>
         <translation>Eşzamanlama tamamlandı</translation>
-    </message>
-    <message>
-        <source>Synchronizing budgets...</source>
-        <translation>Bütçe eşzamanlanıyor..</translation>
     </message>
     <message>
         <source>Synchronizing masternode winners...</source>

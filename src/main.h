@@ -46,7 +46,6 @@
 
 class CBlockIndex;
 class CBlockTreeDB;
-class CBudgetManager;
 class CSporkDB;
 class CBloomFilter;
 class CInv;

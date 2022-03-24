@@ -89,14 +89,11 @@ struct Params {
     uint256 powLimit;
     uint256 posLimitV1;
     uint256 posLimitV2;
-    int nBudgetCycleBlocks;
-    int nBudgetFeeConfirmations;
     int nCoinbaseMaturity;
     int nFutureTimeDriftPoW;
     int nFutureTimeDriftPoS;
     CAmount nMaxMoneyOut;
     int nPoolMaxTransactions;
-    int64_t nProposalEstablishmentTime;
     int nStakeMinAge;
     int nStakeMinDepth;
     int nStakeMinDepthV2;

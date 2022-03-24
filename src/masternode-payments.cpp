@@ -8,7 +8,6 @@
 #include "addrman.h"
 #include "chainparams.h"
 #include "fs.h"
-#include "masternode-budget.h"
 #include "masternode-sync.h"
 #include "masternodeman.h"
 #include "netmessagemaker.h"
@@ -243,30 +242,12 @@ void DumpMasternodePayments()
 
 bool IsBlockValueValid(int nHeight, CAmount nExpectedValue, CAmount nMinted)
 {
-    // if (!masternodeSync.IsSynced()) {
-    //     //there is no budget data to use to check anything
-    //     //super blocks will always be on these blocks, max 100 per budgeting
-    //     if (nHeight % Params().GetConsensus().nBudgetCycleBlocks < 100) {
-    //         return true;
-    //     }
-    // } else {
-    //     // we're synced and have data so check the budget schedule
-    //     // if the superblock spork is enabled
-    //     if (sporkManager.IsSporkActive(SPORK_13_ENABLE_SUPERBLOCKS) &&
-    //         budget.IsBudgetPaymentBlock(nHeight)) {
-    //         //the value of the block is evaluated in CheckBlock
-    //         return true;
-    //     }
-    // }
-
     // No superblock, regular check
     return nMinted <= nExpectedValue;
 }
 
 bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
 {
-    TrxValidationStatus transactionStatus = TrxValidationStatus::InValid;
-
     if (!masternodeSync.IsSynced()) { //there is no budget data to use to check anything -- find the longest chain
         LogPrint(BCLog::MASTERNODE, "Client not synced, skipping block payee checks\n");
         return true;
@@ -274,29 +255,6 @@ bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
 
     const bool isPoSActive = Params().GetConsensus().NetworkUpgradeActive(nBlockHeight, Consensus::UPGRADE_POS);
     const CTransaction& txNew = (isPoSActive ? block.vtx[1] : block.vtx[0]);
-
-    // //check if it's a budget block
-    // if (sporkManager.IsSporkActive(SPORK_13_ENABLE_SUPERBLOCKS)) {
-    //     if (budget.IsBudgetPaymentBlock(nBlockHeight)) {
-    //         transactionStatus = budget.IsTransactionValid(txNew, nBlockHeight);
-    //         if (transactionStatus == TrxValidationStatus::Valid) {
-    //             return true;
-    //         }
-
-    //         if (transactionStatus == TrxValidationStatus::InValid) {
-    //             LogPrint(BCLog::MASTERNODE,"Invalid budget payment detected %s\n", txNew.ToString().c_str());
-    //             if (sporkManager.IsSporkActive(SPORK_9_MASTERNODE_BUDGET_ENFORCEMENT))
-    //                 return false;
-
-    //             LogPrint(BCLog::MASTERNODE,"Budget enforcement is disabled, accepting block\n");
-    //         }
-    //     }
-    // }
-
-    // If we end here the transaction was either TrxValidationStatus::InValid and Budget enforcement is disabled, or
-    // a double budget payment (status = TrxValidationStatus::DoublePayment) was detected, or no/not enough masternode
-    // votes (status = TrxValidationStatus::VoteThreshold) for a finalized budget were found
-    // In all cases a masternode will get the payment for this block
 
     //check for masternode payee
     if (masternodePayments.IsTransactionValid(txNew, nBlockHeight))
@@ -312,22 +270,12 @@ bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
 
 void FillBlockPayee(CMutableTransaction& txNew, const CBlockIndex* pindexPrev, bool fProofOfStake)
 {
-    // if (!pindexPrev) return;
-
-    // if (sporkManager.IsSporkActive(SPORK_13_ENABLE_SUPERBLOCKS) && budget.IsBudgetPaymentBlock(pindexPrev->nHeight + 1)) {
-    //     budget.FillBlockPayee(txNew, fProofOfStake);
-    // } else {
     masternodePayments.FillBlockPayee(txNew, pindexPrev, fProofOfStake);
-    // }
 }
 
 std::string GetRequiredPaymentsString(int nBlockHeight)
 {
-    // if (sporkManager.IsSporkActive(SPORK_13_ENABLE_SUPERBLOCKS) && budget.IsBudgetPaymentBlock(nBlockHeight)) {
-    //     return budget.GetRequiredPaymentsString(nBlockHeight);
-    // } else {
     return masternodePayments.GetRequiredPaymentsString(nBlockHeight);
-    // }
 }
 
 void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const CBlockIndex* pindexPrev, bool fProofOfStake)
@@ -690,30 +638,26 @@ void CMasternodePayments::ProcessBlock(int nBlockHeight)
 
         CMasternodePaymentWinner newWinner(*(activeMasternode.vin));
 
-        if (budget.IsBudgetPaymentBlock(nBlockHeight)) {
-            //is budget payment block -- handled by the budgeting software
+        LogPrint(BCLog::MASTERNODE, "CMasternodePayments::ProcessBlock() Start nHeight %d - vin %s. \n", nBlockHeight, activeMasternode.vin->prevout.ToStringShort());
+
+        // pay to the oldest MN that still had no payment but its input is old enough and it was active long enough
+        int nCount = 0;
+        CMasternode* pmn = mnodeman.GetNextMasternodeInQueueForPayment(nBlockHeight, true, nCount);
+
+        if (pmn != NULL) {
+            LogPrint(BCLog::MASTERNODE, "CMasternodePayments::ProcessBlock() Found by FindOldestNotInVec \n");
+
+            newWinner.nBlockHeight = nBlockHeight;
+
+            CScript payee = GetScriptForDestination(pmn->pubKeyCollateralAddress.GetID());
+            newWinner.AddPayee(payee);
+
+            CTxDestination address1;
+            ExtractDestination(payee, address1);
+
+            LogPrint(BCLog::MASTERNODE, "CMasternodePayments::ProcessBlock() Winner payee %s nHeight %d. \n", EncodeDestination(address1).c_str(), newWinner.nBlockHeight);
         } else {
-            LogPrint(BCLog::MASTERNODE, "CMasternodePayments::ProcessBlock() Start nHeight %d - vin %s. \n", nBlockHeight, activeMasternode.vin->prevout.ToStringShort());
-
-            // pay to the oldest MN that still had no payment but its input is old enough and it was active long enough
-            int nCount = 0;
-            CMasternode* pmn = mnodeman.GetNextMasternodeInQueueForPayment(nBlockHeight, true, nCount);
-
-            if (pmn != NULL) {
-                LogPrint(BCLog::MASTERNODE, "CMasternodePayments::ProcessBlock() Found by FindOldestNotInVec \n");
-
-                newWinner.nBlockHeight = nBlockHeight;
-
-                CScript payee = GetScriptForDestination(pmn->pubKeyCollateralAddress.GetID());
-                newWinner.AddPayee(payee);
-
-                CTxDestination address1;
-                ExtractDestination(payee, address1);
-
-                LogPrint(BCLog::MASTERNODE, "CMasternodePayments::ProcessBlock() Winner payee %s nHeight %d. \n", EncodeDestination(address1).c_str(), newWinner.nBlockHeight);
-            } else {
-                LogPrint(BCLog::MASTERNODE, "CMasternodePayments::ProcessBlock() Failed to find masternode to pay\n");
-            }
+            LogPrint(BCLog::MASTERNODE, "CMasternodePayments::ProcessBlock() Failed to find masternode to pay\n");
         }
 
         std::string errorMessage;

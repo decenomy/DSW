@@ -4379,7 +4379,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
                            __DSW__ utilizes a Proof of Stake (PoS) consensus system algorithm,
                            allowing all owners of __DSW__ to participate in earning block rewards
                            while securing the network with full node wallets, as well as to
-                           run Masternodes to create and vote on proposals.
+                           run Masternodes to earn additional income regulary.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation type="unfinished"></translation>
@@ -4479,8 +4479,6 @@ There was an error trying to save the address list to %1. Please try again.</sou
                            &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
-                           &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
                            &lt;li&gt;Act as an additional full node in the network&lt;/li&gt;
                            &lt;/ul&gt;
@@ -6301,11 +6299,6 @@ __Decenomy__ Wallet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+3"/>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation type="unfinished">Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</translation>
-    </message>
-    <message>
         <location line="+6"/>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
         <translation type="unfinished">Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</translation>
@@ -6997,11 +6990,6 @@ __Decenomy__ Wallet</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Loading budget cache...</source>
-        <translation type="unfinished">Loading budget cache...</translation>
-    </message>
-    <message>
-        <location line="+1"/>
         <source>Loading masternode cache...</source>
         <translation type="unfinished">Loading masternode cache...</translation>
     </message>
@@ -7536,11 +7524,6 @@ __Decenomy__ Wallet</source>
         <location line="+1"/>
         <source>Synchronization finished</source>
         <translation type="unfinished">Synchronization finished</translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Synchronizing budgets...</source>
-        <translation type="unfinished">Synchronizing budgets...</translation>
     </message>
     <message>
         <location line="+1"/>
