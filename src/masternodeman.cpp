@@ -524,7 +524,7 @@ CMasternode* CMasternodeMan::GetNextMasternodeInQueueForPayment(int nBlockHeight
         }
 
         //make sure it has as many confirmations as there are masternodes
-        if (!sporkManager.IsSporkActive(SPORK_107_FORCE_COLLATERAL_CONFIRMATIONS)) {
+        if (!sporkManager.IsSporkActive(SPORK_107_IGNORE_COLLATERAL_CONFIRMATIONS)) {
             if (pcoinsTip->GetCoinDepthAtHeight(mn.vin.prevout, nBlockHeight) < nMnCount) continue;
         }
 
