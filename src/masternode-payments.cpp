@@ -580,7 +580,14 @@ bool CMasternodeBlockPayees::IsTransactionValid(const CTransaction& txNew, int n
         }
 
         if (payee.nVotes >= MNPAYMENTS_SIGNATURES_REQUIRED) {
-            if (found) return true;
+            if (found) {
+                if(sporkManager.IsSporkActive(SPORK_110_FORCE_ENABLED_MASTERNODE_PAYMENT)) {
+                    CMasternode* pmn = mnodeman.Find(payee.scriptPubKey);
+                    return pmn && pmn->IsEnabled(); // it is a existing masternode and it is enabled then it is OK
+                } else {
+                    return true;
+                }
+            }
 
             CTxDestination address1;
             ExtractDestination(payee.scriptPubKey, address1);
