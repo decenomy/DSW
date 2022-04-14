@@ -23,6 +23,7 @@ enum SporkId : int32_t {
     SPORK_105_MAX_BLOCK_SIZE                    = 10104,
     SPORK_106_STAKING_SKIP_MN_SYNC              = 10105,
     SPORK_107_IGNORE_COLLATERAL_CONFIRMATIONS   = 10106,
+    SPORK_108_FORCE_MN_MIN_AGE                  = 10107,
 
     SPORK_2_NOOP                                = 10001,
     SPORK_3_NOOP                                = 10002,
