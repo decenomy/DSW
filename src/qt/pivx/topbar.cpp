@@ -649,7 +649,7 @@ void TopBar::refreshStatus()
     updateStyle(ui->pushButtonLock);
 
     // Collateral
-    ui->labelCollateralPiv->setText(GUIUtil::formatBalance(CMasternode::GetMasternodeNodeCollateral(chainActive.Tip()->nHeight), nDisplayUnit));
+    ui->labelCollateralPiv->setText(GUIUtil::formatBalance(CMasternode::GetCurrentMasternodeCollateral(), nDisplayUnit));
 }
 
 void TopBar::updateDisplayUnit()
@@ -685,7 +685,7 @@ void TopBar::updateBalances(const interfaces::WalletBalances& newBalance)
     refreshMasternodeStatus();
 
     // Collateral
-    ui->labelCollateralPiv->setText(GUIUtil::formatBalance(CMasternode::GetMasternodeNodeCollateral(chainActive.Tip()->nHeight), nDisplayUnit));
+    ui->labelCollateralPiv->setText(GUIUtil::formatBalance(CMasternode::GetCurrentMasternodeCollateral(), nDisplayUnit));
 }
 
 void TopBar::resizeEvent(QResizeEvent* event)
