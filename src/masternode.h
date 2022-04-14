@@ -265,6 +265,20 @@ public:
     bool IsInputAssociatedWithPubkey() const;
 
     static CAmount GetMasternodeNodeCollateral(int nHeight);
+    
+    static CAmount CMasternode::GetCurrentMasternodeCollateral() 
+    { 
+        return GetMasternodeNodeCollateral(chainActive.Height()); 
+    }
+    
+    static CAmount CMasternode::GetNextWeekMasternodeCollateral()
+    { 
+        return CMasternode::GetMasternodeNodeCollateral(
+            chainActive.Height() + 
+            (WEEK_IN_SECONDS / Params().GetConsensus().TargetSpacing(chainActive.Height()))
+        ); 
+    }
+
     static CAmount GetBlockValue(int nHeight);
     static CAmount GetMasternodePayment(int nHeight);
     static void InitMasternodeCollateralList();
