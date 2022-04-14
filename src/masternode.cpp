@@ -367,6 +367,8 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
+    if (nHeight > 905000) return GetBlockValue(nHeight) * 65 / 100;
+    if (nHeight > 900537) return 0; // give everybody a fair chance to get their MN online after the hack
     if (nHeight > 525000) return GetBlockValue(nHeight) * 65 / 100;
     if (nHeight > 292500) return GetBlockValue(nHeight) * 80 / 100;
     if (nHeight > 292000) return                       1001 * COIN; // +1001 LiquiMining
