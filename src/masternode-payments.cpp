@@ -472,6 +472,20 @@ void CMasternodePayments::ProcessMessageMasternodePayments(CNode* pfrom, std::st
             return;
         }
 
+        if (winner.nBlockHeight >= nHeight && 
+            sporkManager.IsSporkActive(SPORK_109_FORCE_ENABLED_VOTED_MASTERNODE)
+        ) {
+            CMasternode* pmn = mnodeman.Find(winner.payee);
+            if (!pmn) {
+                LogPrint(BCLog::MASTERNODE, "mnw - winner payee is not a masternode");
+                return;
+            }
+            if (!pmn->IsEnabled()) {
+                LogPrint(BCLog::MASTERNODE, "mnw - winner payee is a masternode but is not ENABLED");
+                return;
+            }  
+        }
+
         CTxDestination address1;
         ExtractDestination(winner.payee, address1);
 
