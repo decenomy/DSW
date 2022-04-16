@@ -564,6 +564,28 @@ bool CMasternodePayments::AddWinningMasternode(CMasternodePaymentWinner& winnerI
     return true;
 }
 
+bool CMasternodeBlockPayees::HasPaidPayee(const CScript& payee) {
+
+    if(paidPayee.empty() && nBlockHeight <= chainActive.Height()) {
+        CBlockIndex* pblockindex = chainActive[nBlockHeight];
+        CBlock block;
+
+        if (ReadBlockFromDisk(block, pblockindex)) {
+            CTransaction tx = block.vtx[block.IsProofOfWork() ? 0 : 1];
+
+            for (CTxOut out : tx.vout) {
+                if (out.nValue == CMasternode::GetMasternodePayment(nBlockHeight) && 
+                    out.scriptPubKey == payee
+                ) {
+                    paidPayee = out.scriptPubKey;
+                }
+            }
+        }
+    }
+
+    return !paidPayee.empty() && paidPayee == payee;
+}
+
 bool CMasternodeBlockPayees::IsTransactionValid(const CTransaction& txNew, int nBlockHeight)
 {
     LOCK(cs_vecPayments);
@@ -594,12 +616,15 @@ bool CMasternodeBlockPayees::IsTransactionValid(const CTransaction& txNew, int n
 
         if (payee.nVotes >= MNPAYMENTS_SIGNATURES_REQUIRED) {
             if (found) {
+                bool ret = false;
                 if(sporkManager.IsSporkActive(SPORK_110_FORCE_ENABLED_MASTERNODE_PAYMENT)) {
                     CMasternode* pmn = mnodeman.Find(payee.scriptPubKey);
-                    return pmn && pmn->IsEnabled(); // it is a existing masternode and it is enabled then it is OK
+                    ret = pmn && pmn->IsEnabled(); // it is a existing masternode and it is enabled then it is OK
                 } else {
-                    return true;
+                    ret = true;
                 }
+                if (ret) masternodePayments.mapMasternodeBlocks[nBlockHeight].paidPayee = payee.scriptPubKey;
+                return ret;
             }
 
             CTxDestination address1;
