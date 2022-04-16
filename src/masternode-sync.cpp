@@ -72,8 +72,10 @@ bool CMasternodeSync::IsBlockchainSynced()
         blockTime = pindex->nTime;
     }
 
-    if (blockTime + 60 * 60 < lastProcess)
-        return false;
+    if(sporkManager.GetSporkValue(SPORK_104_MAX_BLOCK_TIME) > lastProcess) {
+        if (blockTime + 60 * 60 < lastProcess)
+            return false;
+    }
 
     fBlockchainSynced = true;
 
@@ -181,6 +183,9 @@ void CMasternodeSync::GetNextAsset()
     }
     RequestedMasternodeAttempt = 0;
     nAssetSyncStarted = GetTime();
+
+    // Notify the UI
+    uiInterface.NotifyBlockTip(IsInitialBlockDownload(), chainActive.Tip());
 }
 
 std::string CMasternodeSync::GetSyncStatus()
