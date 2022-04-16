@@ -133,6 +133,7 @@ struct Params {
     uint256 ProofOfStakeLimit(const bool fV2) const { return fV2 ? posLimitV2 : posLimitV1; }
     bool MoneyRange(const CAmount& nValue) const { return (nValue >= 0 && nValue <= nMaxMoneyOut); }
     bool IsTimeProtocolV2(const int nHeight) const { return NetworkUpgradeActive(nHeight, UPGRADE_TIME_PROTOCOL_V2); }
+    int64_t TargetSpacing(const int nHeight) const { return nTargetSpacing; }
 
     int FutureBlockTimeDrift(const int nHeight) const
     {
