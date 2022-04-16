@@ -275,7 +275,7 @@ public:
     { 
         return CMasternode::GetMasternodeNodeCollateral(
             chainActive.Height() + 
-            (WEEK_IN_SECONDS / Params().GetConsensus().nTargetSpacing))
+            (WEEK_IN_SECONDS / Params().GetConsensus().nTargetSpacing)
         ); 
     }
 
