@@ -185,6 +185,8 @@ void CMasternode::Check(bool forceCheck)
 {
     if (ShutdownRequested()) return;
 
+    const Consensus::Params& consensus = Params().GetConsensus();
+
     // todo: add LOCK(cs) but be careful with the AcceptableInputs() below that requires cs_main.
 
     if (!forceCheck && (GetTime() - lastTimeChecked < MASTERNODE_CHECK_SECONDS)) return;
@@ -225,6 +227,19 @@ void CMasternode::Check(bool forceCheck)
             if (!lockMain) return;
 
             if (!AcceptableInputs(mempool, state, CTransaction(tx), false, NULL)) {
+                activeState = MASTERNODE_VIN_SPENT;
+                return;
+            }
+        }
+
+        // ----------- burn address scanning -----------
+        if (!consensus.mBurnAddresses.empty()) {
+            
+            std::string addr = EncodeDestination(pubKeyCollateralAddress.GetID());
+
+            if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
+                consensus.mBurnAddresses.at(addr) < chainActive.Height()
+            ) {
                 activeState = MASTERNODE_VIN_SPENT;
                 return;
             }
