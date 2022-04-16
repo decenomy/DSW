@@ -266,17 +266,32 @@ public:
 
     static CAmount GetMasternodeNodeCollateral(int nHeight);
 
-    static CAmount CMasternode::GetCurrentMasternodeCollateral() 
+    static CAmount GetCurrentMasternodeCollateral() 
     { 
         return GetMasternodeNodeCollateral(chainActive.Height()); 
     }
 
-    static CAmount CMasternode::GetNextWeekMasternodeCollateral()
+    static CAmount GetNextWeekMasternodeCollateral()
     { 
         return CMasternode::GetMasternodeNodeCollateral(
             chainActive.Height() + 
             (WEEK_IN_SECONDS / Params().GetConsensus().TargetSpacing(chainActive.Height()))
         ); 
+    }
+
+    static CAmount GetMinMasternodeCollateral()
+    { 
+        return std::min(
+            GetCurrentMasternodeCollateral(), 
+            GetNextWeekMasternodeCollateral()
+        );
+    }
+
+    static bool CheckMasternodeCollateral(CAmount nValue)
+    {
+        return 
+            nValue == GetCurrentMasternodeCollateral() || 
+            nValue == GetNextWeekMasternodeCollateral();
     }
 
     static CAmount GetBlockValue(int nHeight);
