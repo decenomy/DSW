@@ -200,11 +200,6 @@ enum opcodetype
     OP_NOP9 = 0xb8,
     OP_NOP10 = 0xb9,
 
-    // zerocoin
-    OP_ZEROCOINMINT = 0xc1, // TODO: Will be removed in another branch
-    OP_ZEROCOINSPEND = 0xc2, // TODO: Will be removed in another branch
-    OP_ZEROCOINPUBLICSPEND = 0xc3, // TODO: Will be removed in another branch
-
     // memory store
     OP_MLOAD = 0xc4, // reads a (u)int256 from memory (from Ethereum)
     OP_MSTORE = 0xc5, // writes a (u)int256 to memory (from Ethereum)
@@ -217,9 +212,12 @@ enum opcodetype
     OP_PUBLISH = 0xc9, // For storing smart-contract
     OP_RUN = 0xca, // For activating smart-contract
     OP_UPDATE_STATUS = 0xcb, // For enabling/disabling a smart-contract and unprevent/prevent it being run by OP_RUN
-
     OP_INVALIDOPCODE = 0xff,
 };
+
+// Maximum value that an opcode can be
+static const unsigned int MAX_OPCODE = OP_NOP10;
+
 
 const char* GetOpName(opcodetype opcode);
 
@@ -678,9 +676,6 @@ public:
     bool IsNormalPaymentScript() const;
     bool IsPayToScriptHash() const;
     bool StartsWithOpcode(const opcodetype opcode) const;
-    bool IsZerocoinMint() const;
-    bool IsZerocoinSpend() const;
-    bool IsZerocoinPublicSpend() const;
 
     /** Called by IsStandardTx and P2SH/BIP62 VerifyScript (which makes it consensus-critical). */
     bool IsPushOnly(const_iterator pc) const;

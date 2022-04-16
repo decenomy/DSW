@@ -7,6 +7,7 @@
 #ifndef ACTIVEMASTERNODE_H
 #define ACTIVEMASTERNODE_H
 
+#include "activemasternodeconfig.h"
 #include "init.h"
 #include "key.h"
 #include "masternode.h"
@@ -37,9 +38,13 @@ public:
         status = ACTIVE_MASTERNODE_INITIAL;
     }
 
+    std::string strAlias {""};
+
     // Initialized by init.cpp
     // Keys for the main Masternode
     CPubKey pubKeyMasternode;
+
+    std::string strMasterNodePrivKey {""};
 
     // Initialized while registering Masternode
     Optional<CTxIn> vin;
@@ -55,4 +60,4 @@ public:
     bool EnableHotColdMasterNode(CTxIn& vin, CService& addr);
 };
 
-#endif
+#endif //ACTIVEMASTERNODE_H
