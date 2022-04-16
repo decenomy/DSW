@@ -501,7 +501,6 @@ CMasternode* CMasternodeMan::GetNextMasternodeInQueueForPayment(int nBlockHeight
     LOCK2(cs_main, cs);
 
     CMasternode* pBestMasternode = NULL;
-    //std::vector<std::pair<int64_t, CTxIn>> vecMasternodeLastPaid;
 
     /*
         Make a vector with all of the last paid times
