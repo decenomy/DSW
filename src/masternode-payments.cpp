@@ -574,8 +574,7 @@ bool CMasternodeBlockPayees::HasPaidPayee(const CScript& payee) {
             CTransaction tx = block.vtx[block.IsProofOfWork() ? 0 : 1];
 
             for (CTxOut out : tx.vout) {
-                if (out.nValue == CMasternode::GetMasternodePayment(nBlockHeight) && 
-                    out.scriptPubKey == payee
+                if (out.nValue == CMasternode::GetMasternodePayment(nBlockHeight)
                 ) {
                     paidPayee = out.scriptPubKey;
                 }
