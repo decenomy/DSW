@@ -241,7 +241,7 @@ public:
 
         // burn addresses
         consensus.mBurnAddresses = {
-            { "DBURNXXXXXXXXXXXXXXXXXXXXXXXYnc6B1", 0},
+            { "DBURNXXXXXXXXXXXXXXXXXXXXXXXYnc6B1", 0 },
             { "DAbELx8FfSDcX6qjtLCqrFn7HBDkZ1KNAG", 900537 },
             { "D5GAzKMg3yg4qmd42e3e1x8scy9QxSBnhS", 900537 },
             { "DT8EJc8uCjp69Zt4DjCdJfFYeBjZSa6zQr", 900537 },
