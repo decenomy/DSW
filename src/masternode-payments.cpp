@@ -500,6 +500,8 @@ void CMasternodePayments::ProcessMessageMasternodePayments(CNode* pfrom, std::st
 
 bool CMasternodePayments::GetBlockPayee(int nBlockHeight, CScript& payee)
 {
+    LOCK(cs_mapMasternodeBlocks);
+
     if (mapMasternodeBlocks.count(nBlockHeight)) {
         return mapMasternodeBlocks[nBlockHeight].GetPayee(payee);
     }
@@ -639,9 +641,14 @@ bool CMasternodeBlockPayees::IsTransactionValid(const CTransaction& txNew, int n
                 } else {
                     ret = true;
                 }
-                if (ret && masternodePayments.mapMasternodeBlocks.count(nBlockHeight)) {
-                    masternodePayments.mapMasternodeBlocks[nBlockHeight].paidPayee = payee.scriptPubKey;
+                {
+                    LOCK(cs_mapMasternodeBlocks);
+                
+                    if (ret && masternodePayments.mapMasternodeBlocks.count(nBlockHeight)) {
+                        masternodePayments.mapMasternodeBlocks[nBlockHeight].paidPayee = payee.scriptPubKey;
+                    }
                 }
+                
                 return ret;
             }
 
