@@ -862,13 +862,22 @@ UniValue getburnaddresses(const JSONRPCRequest& request)
     if (nHeight < 0) return "[]";
 
     if (fWithValues) FlushStateToDisk();
+    CAmount nSum = 0;
 
     for (const auto& kv : GetBurnStats(pcoinsTip, fWithValues, nHeight)) {
         UniValue obj(UniValue::VOBJ);
         obj.push_back(Pair("address", kv.first));
         if (fWithValues) {
             obj.push_back(Pair("amount", ValueFromAmount(kv.second)));
+            nSum += kv.second;
         }
+        ret.push_back(obj);
+    }
+
+    if (fWithValues) {
+        UniValue obj(UniValue::VOBJ);
+        obj.push_back(Pair("address", "sum"));
+        obj.push_back(Pair("amount", ValueFromAmount(nSum)));
         ret.push_back(obj);
     }
 
