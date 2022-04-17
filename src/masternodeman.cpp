@@ -649,21 +649,25 @@ std::vector<std::pair<int, CMasternode> > CMasternodeMan::GetMasternodeRanks(int
     uint256 hash;
     if (!GetBlockHash(hash, nBlockHeight)) return vecMasternodeRanks;
 
-    // scan for winner
-    for (CMasternode& mn : vMasternodes) {
-        mn.Check();
+    {
+        LOCK(cs);
 
-        if (mn.protocolVersion < minProtocol) continue;
+        // scan for winner
+        for (CMasternode& mn : vMasternodes) {
+            mn.Check();
 
-        if (!mn.IsEnabled()) {
-            vecMasternodeScores.push_back(std::make_pair(INT_MAX, mn));
-            continue;
+            if (mn.protocolVersion < minProtocol) continue;
+
+            if (!mn.IsEnabled()) {
+                vecMasternodeScores.push_back(std::make_pair(INT_MAX, mn));
+                continue;
+            }
+
+            uint256 n = mn.CalculateScore(1, nBlockHeight);
+            int64_t n2 = n.GetCompact(false);
+
+            vecMasternodeScores.push_back(std::make_pair(n2, mn));
         }
-
-        uint256 n = mn.CalculateScore(1, nBlockHeight);
-        int64_t n2 = n.GetCompact(false);
-
-        vecMasternodeScores.push_back(std::make_pair(n2, mn));
     }
 
     sort(vecMasternodeScores.rbegin(), vecMasternodeScores.rend(), CompareScoreMN());
