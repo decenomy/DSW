@@ -45,7 +45,7 @@ QT_TRANSLATE_NOOP("pivx-core", ""
 "Delete all wallet transactions and only recover those parts of the "
 "blockchain through -rescan on startup"),
 QT_TRANSLATE_NOOP("pivx-core", ""
-"Disable all __DSW__ specific functionality (Masternodes)"
+"Disable all FLS specific functionality (Masternodes)"
 "(0-1, default: %u)"),
 QT_TRANSLATE_NOOP("pivx-core", ""
 "Distributed under the MIT software license, see the accompanying file "
@@ -137,7 +137,7 @@ QT_TRANSLATE_NOOP("pivx-core", ""
 "Maximum total fees to use in a single wallet transaction, setting too low "
 "may abort large transactions (default: %s)"),
 QT_TRANSLATE_NOOP("pivx-core", ""
-"Minimum positive amount (in __DSW__) allowed by GUI and RPC for the stake split "
+"Minimum positive amount (in FLS) allowed by GUI and RPC for the stake split "
 "threshold (default: %s)"),
 QT_TRANSLATE_NOOP("pivx-core", ""
 "Number of seconds to keep misbehaving peers from reconnecting (default: %u)"),
@@ -366,7 +366,7 @@ QT_TRANSLATE_NOOP("pivx-core", "RPC server options:"),
 QT_TRANSLATE_NOOP("pivx-core", "Randomly drop 1 of every <n> network messages"),
 QT_TRANSLATE_NOOP("pivx-core", "Randomly fuzz 1 of every <n> network messages"),
 QT_TRANSLATE_NOOP("pivx-core", "Rebuild block chain index from current blk000??.dat files"),
-QT_TRANSLATE_NOOP("pivx-core", "Recalculating __DSW__ supply..."),
+QT_TRANSLATE_NOOP("pivx-core", "Recalculating FLS supply..."),
 QT_TRANSLATE_NOOP("pivx-core", "Reindex the %s money supply statistics"),
 QT_TRANSLATE_NOOP("pivx-core", "Relay and mine data carrier transactions (default: %u)"),
 QT_TRANSLATE_NOOP("pivx-core", "Relay non-P2SH multisig (default: %u)"),

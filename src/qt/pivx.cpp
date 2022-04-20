@@ -178,7 +178,7 @@ private:
     void handleRunawayException(const std::exception* e);
 };
 
-/** Main __DSW__ application object */
+/** Main FLS application object */
 class BitcoinApplication : public QApplication
 {
     Q_OBJECT
