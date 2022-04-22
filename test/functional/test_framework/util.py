@@ -592,7 +592,7 @@ def find_vout_for_address(node, txid, addr):
             return i
     raise RuntimeError("Vout not found for address: txid=%s, addr=%s" % (txid, addr))
 
-### __Decenomy__ specific utils ###
+### Flits specific utils ###
 DEFAULT_FEE = 0.01
 SPORK_ACTIVATION_TIME = 1563253447
 SPORK_DEACTIVATION_TIME = 4070908800
