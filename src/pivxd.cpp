@@ -29,8 +29,8 @@
  *
  * \section intro_sec Introduction
  *
- * This is the developer documentation of the reference client for an experimental new digital currency called __Decenomy__ (__decenomy_website_link__/),
- * which enables instant payments to anyone, anywhere in the world. __Decenomy__ uses peer-to-peer technology to operate
+ * This is the developer documentation of the reference client for an experimental new digital currency called Flits (__decenomy_website_link__/),
+ * which enables instant payments to anyone, anywhere in the world. Flits uses peer-to-peer technology to operate
  * with no central authority: managing transactions and issuing money are carried out collectively by the network.
  *
  * The software is a community-driven open source project, released under the MIT license.
@@ -68,13 +68,13 @@ bool AppInit(int argc, char* argv[])
 
     // Process help and version before taking care about datadir
     if (mapArgs.count("-?") || mapArgs.count("-help") || mapArgs.count("-version")) {
-        std::string strUsage = _("__Decenomy__ Daemon") + " " + _("version") + " " + FormatFullVersion() + "\n";
+        std::string strUsage = _("Flits Daemon") + " " + _("version") + " " + FormatFullVersion() + "\n";
 
         if (mapArgs.count("-version")) {
             strUsage += LicenseInfo();
         } else {
             strUsage += "\n" + _("Usage:") + "\n" +
-                        "  __decenomy__d [options]                     " + _("Start __Decenomy__ Daemon") + "\n";
+                        "  __decenomy__d [options]                     " + _("Start Flits Daemon") + "\n";
 
             strUsage += "\n" + HelpMessage(HMM_BITCOIND);
         }
@@ -120,7 +120,7 @@ bool AppInit(int argc, char* argv[])
 #ifndef WIN32
         fDaemon = GetBoolArg("-daemon", false);
         if (fDaemon) {
-            fprintf(stdout, "__Decenomy__ server starting\n");
+            fprintf(stdout, "Flits server starting\n");
 
             // Daemonize
             pid_t pid = fork();
