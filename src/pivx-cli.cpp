@@ -75,9 +75,9 @@ static bool AppInitRPC(int argc, char* argv[])
         std::string strUsage = _("Flits RPC client version") + " " + FormatFullVersion() + "\n";
         if (!mapArgs.count("-version")) {
             strUsage += "\n" + _("Usage:") + "\n" +
-                        "  __decenomy__-cli [options] <command> [params]  " + _("Send command to Flits") + "\n" +
-                        "  __decenomy__-cli [options] help                " + _("List commands") + "\n" +
-                        "  __decenomy__-cli [options] help <command>      " + _("Get help for a command") + "\n";
+                        "  flits-cli [options] <command> [params]  " + _("Send command to Flits") + "\n" +
+                        "  flits-cli [options] help                " + _("List commands") + "\n" +
+                        "  flits-cli [options] help <command>      " + _("Get help for a command") + "\n";
 
             strUsage += "\n" + HelpMessageCli();
         }

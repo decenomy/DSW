@@ -953,7 +953,7 @@ bool AppInitActiveMasternode(CActiveMasternodeConfig::CActiveMasternodeEntry act
     );
 }
 
-/** Initialize __decenomy__.
+/** Initialize flits.
  *  @pre Parameters should be parsed and config file should be read.
  */
 bool AppInit2()
