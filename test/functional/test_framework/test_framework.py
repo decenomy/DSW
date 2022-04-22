@@ -723,9 +723,9 @@ class PivxTestFramework():
                  nHeight:                   (int) height of the previous block. used only if zpos=True for
                                             stake checksum. Optional, if not provided rpc_conn's height is used.
         :return: prevouts:         ({bytes --> (int, bytes, int)} dictionary)
-                                   maps CStake "uniqueness" (i.e. serialized COutPoint -or hash stake, for z__DSW__-)
+                                   maps CStake "uniqueness" (i.e. serialized COutPoint -or hash stake, for zFLS-)
                                    to (amount, prevScript, timeBlockFrom).
-                                   For z__DSW__ prevScript is replaced with serialHash hex string.
+                                   For zFLS prevScript is replaced with serialHash hex string.
         """
         assert_greater_than(len(self.nodes), node_id)
         rpc_conn = self.nodes[node_id]
@@ -756,9 +756,9 @@ class PivxTestFramework():
         """ makes a list of CTransactions each spending an input from spending PrevOuts to an output to_pubKey
         :param   node_id:            (int) index of the CTestNode used as rpc connection. Must own spendingPrevOuts.
                  spendingPrevouts:   ({bytes --> (int, bytes, int)} dictionary)
-                                     maps CStake "uniqueness" (i.e. serialized COutPoint -or hash stake, for z__DSW__-)
+                                     maps CStake "uniqueness" (i.e. serialized COutPoint -or hash stake, for zFLS-)
                                      to (amount, prevScript, timeBlockFrom).
-                                     For z__DSW__ prevScript is replaced with serialHash hex string.
+                                     For zFLS prevScript is replaced with serialHash hex string.
                  to_pubKey           (bytes) recipient public key
         :return: block_txes:         ([CTransaction] list)
         """
@@ -766,7 +766,7 @@ class PivxTestFramework():
         rpc_conn = self.nodes[node_id]
         block_txes = []
         for uniqueness in spendingPrevOuts:
-            # spend __DSW__
+            # spend FLS
             value_out = int(spendingPrevOuts[uniqueness][0] - DEFAULT_FEE * COIN)
             scriptPubKey = CScript([to_pubKey, OP_CHECKSIG])
             prevout = COutPoint()
@@ -796,9 +796,9 @@ class PivxTestFramework():
                  prevHash:          (string) hex string of the previous block hash
                  prevModifier       (string) hex string of the previous block stake modifier
                  stakeableUtxos:    ({bytes --> (int, bytes, int)} dictionary)
-                                    maps CStake "uniqueness" (i.e. serialized COutPoint -or hash stake, for z__DSW__-)
+                                    maps CStake "uniqueness" (i.e. serialized COutPoint -or hash stake, for zFLS-)
                                     to (amount, prevScript, timeBlockFrom).
-                                    For z__DSW__ prevScript is replaced with serialHash hex string.
+                                    For zFLS prevScript is replaced with serialHash hex string.
                  startTime:         (int) epoch time to be used as blocktime (iterated in solve_stake)
                  privKeyWIF:        (string) private key to be used for staking/signing
                                     If empty string, it will be used the pk from the stake input
@@ -864,7 +864,7 @@ class PivxTestFramework():
         # Don't add tx doublespending the coinstake input, unless fDoubleSpend=True
         for tx in vtx:
             if not fDoubleSpend:
-                # assume txes don't double spend z__DSW__ inputs when fDoubleSpend is false. It needs to
+                # assume txes don't double spend zFLS inputs when fDoubleSpend is false. It needs to
                 # be checked outside until a convenient tx.spends is added to the framework.
                 if tx.spends(prevout):
                     continue
