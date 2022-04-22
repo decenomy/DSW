@@ -854,16 +854,16 @@ Rozpocznie się automatycznie, gdy portfel będzie miał wystarczającą liczbę
         <translation>Wersja</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Flits</source>
+        <translation>Flits</translation>
     </message>
     <message>
         <source>(%1-bit)</source>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About __Decenomy__</source>
-        <translation>O __Decenomy__</translation>
+        <source>About Flits</source>
+        <translation>O Flits</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -917,16 +917,16 @@ Rozpocznie się automatycznie, gdy portfel będzie miał wystarczającą liczbę
         <translation>Zapraszamy</translation>
     </message>
     <message>
-        <source>Welcome to __Decenomy__.</source>
-        <translation>Zapraszamy do __Decenomy__</translation>
+        <source>Welcome to Flits.</source>
+        <translation>Zapraszamy do Flits</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where __Decenomy__ will store its data.</source>
-        <translation>Ponieważ program jest uruchamiany po raz pierwszy, możesz wybrać miejsce, w którym __Decenomy__ będzie przechowywać swoje dane.</translation>
+        <source>As this is the first time the program is launched, you can choose where Flits will store its data.</source>
+        <translation>Ponieważ program jest uruchamiany po raz pierwszy, możesz wybrać miejsce, w którym Flits będzie przechowywać swoje dane.</translation>
     </message>
     <message>
-        <source>__Decenomy__ will download and store a copy of the FLS block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>__Decenomy__ pobierze i zapisze kopię łańcucha bloków FLS. Przynajmniej %1 GB danych zostanie zapisanych w tym katalogu, a jego liczba będzie rosnąć z czasem. Portfel zostanie również zapisany w tym katalogu.</translation>
+        <source>Flits will download and store a copy of the FLS block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Flits pobierze i zapisze kopię łańcucha bloków FLS. Przynajmniej %1 GB danych zostanie zapisanych w tym katalogu, a jego liczba będzie rosnąć z czasem. Portfel zostanie również zapisany w tym katalogu.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -945,8 +945,8 @@ Rozpocznie się automatycznie, gdy portfel będzie miał wystarczającą liczbę
         <translation>OK</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Flits</source>
+        <translation>Flits</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1657,8 +1657,8 @@ Jesteś pewny?</translation>
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Flits</source>
+        <translation>Flits</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -1685,8 +1685,8 @@ Jesteś pewny?</translation>
         <translation>Wyjdź z aplikacji</translation>
     </message>
     <message>
-        <source>__Decenomy__ client</source>
-        <translation>__Decenomy__ klient</translation>
+        <source>Flits client</source>
+        <translation>Flits klient</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1890,8 +1890,8 @@ Adres: %4
         <translation>Wystąpił błąd krytyczny. FLS nie może już działać bezpiecznie i zakończy działanie.</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Flits</source>
+        <translation>Flits</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
@@ -1910,8 +1910,8 @@ Adres: %4
         <translation>Błąd odczytu pliku konfiguracyjnego masternode: %1</translation>
     </message>
     <message>
-        <source>__Decenomy__ didn't yet exit safely...</source>
-        <translation>__Decenomy__ nie zamkną się jeszcze bezpiecznie ...</translation>
+        <source>Flits didn't yet exit safely...</source>
+        <translation>Flits nie zamkną się jeszcze bezpiecznie ...</translation>
     </message>
     <message>
         <source>Contact</source>
@@ -3974,8 +3974,8 @@ Jesteś pewny?
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>__Decenomy__ is shutting down...</source>
-        <translation>__Decenomy__ się wyłącza ...</translation>
+        <source>Flits is shutting down...</source>
+        <translation>Flits się wyłącza ...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -4004,8 +4004,8 @@ Jesteś pewny?
         <translation>Ładowanie…</translation>
     </message>
     <message>
-        <source>__Decenomy__</source>
-        <translation>__Decenomy__</translation>
+        <source>Flits</source>
+        <translation>Flits</translation>
     </message>
 </context>
 <context>
@@ -4440,9 +4440,9 @@ kopia zapasowa zostanie utworzona.
     </message>
     <message>
         <source>Welcome to
-__Decenomy__ Wallet</source>
+Flits Wallet</source>
         <translation>Witamy
-Portfel __Decenomy__</translation>
+Portfel Flits</translation>
     </message>
     <message>
         <source>FLS is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
@@ -4488,8 +4488,8 @@ Portfel __Decenomy__</translation>
         <translation>Powiąż z podanym adresem, aby odsłuchać połączenia JSON-RPC. Użyj [host]:port dla IPv6. Ta opcja może być określona wiele razy (domyślnie: powiązanie ze wszystkimi interfejsami)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. __Decenomy__ is probably already running.</source>
-        <translation>Nie można uzyskać dostępu do katalogu danych %s. __Decenomy__ prawdopodobnie już działa.</translation>
+        <source>Cannot obtain a lock on data directory %s. Flits is probably already running.</source>
+        <translation>Nie można uzyskać dostępu do katalogu danych %s. Flits prawdopodobnie już działa.</translation>
     </message>
     <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
@@ -4640,8 +4640,8 @@ Portfel __Decenomy__</translation>
         <translation>Całkowita długość string wersji sieciowej (%i) przekracza maksymalną długość (%i). Zmniejsz liczbę lub rozmiar uacomments.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. __Decenomy__ is probably already running.</source>
-        <translation>Nie można podłączyć %s na tym komputerze. __Decenomy__ prawdopodobnie już działa.</translation>
+        <source>Unable to bind to %s on this computer. Flits is probably already running.</source>
+        <translation>Nie można podłączyć %s na tym komputerze. Flits prawdopodobnie już działa.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -4656,8 +4656,8 @@ Portfel __Decenomy__</translation>
         <translation>Ostrzeżenie: -paytxfee jest ustawione bardzo wysoko! Jest to opłata transakcyjna, którą zapłacisz, jeśli wyślesz transakcję.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</source>
-        <translation>Ostrzeżenie: sprawdź, czy data i godzina komputera są poprawne! Jeśli zegar jest nieprawidłowy, __Decenomy__ nie będzie działać poprawnie.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Flits will not work properly.</source>
+        <translation>Ostrzeżenie: sprawdź, czy data i godzina komputera są poprawne! Jeśli zegar jest nieprawidłowy, Flits nie będzie działać poprawnie.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -4860,8 +4860,8 @@ Portfel __Decenomy__</translation>
         <translation>Informacje</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. __Decenomy__ is shutting down.</source>
-        <translation>Sprawdzenie poprawności inicjalizacji nie powiodło się. __Decenomy__ zamyka się.</translation>
+        <source>Initialization sanity check failed. Flits is shutting down.</source>
+        <translation>Sprawdzenie poprawności inicjalizacji nie powiodło się. Flits zamyka się.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -5128,8 +5128,8 @@ Portfel __Decenomy__</translation>
         <translation>Przygotowanie do ponownej synchronizacji ...</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.</source>
-        <translation>Sprawdź, czy data i godzina komputera są poprawne! Jeśli zegar jest nieprawidłowy, __Decenomy__ nie będzie działać poprawnie.</translation>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong Flits will not work properly.</source>
+        <translation>Sprawdź, czy data i godzina komputera są poprawne! Jeśli zegar jest nieprawidłowy, Flits nie będzie działać poprawnie.</translation>
     </message>
     <message>
         <source>Specify location of debug log file: this can be an absolute path or a path relative to the data directory (default: %s)</source>
@@ -5420,8 +5420,8 @@ Portfel __Decenomy__</translation>
         <translation>Portfel %s znajduje się poza katalogiem danych %s</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart __Decenomy__ to complete</source>
-        <translation>Portfel musiał zostać przepisany: zrestartuj __Decenomy__, aby zakończyć</translation>
+        <source>Wallet needed to be rewritten: restart Flits to complete</source>
+        <translation>Portfel musiał zostać przepisany: zrestartuj Flits, aby zakończyć</translation>
     </message>
     <message>
         <source>Wallet options:</source>
