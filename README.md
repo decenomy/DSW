@@ -7,12 +7,12 @@ DECENOMY Standard wallet repository
 ### Coin Specs
 
 • PoW Algorithm: X11KVS
-• Premine: 1,000,000,000 __DSW__
+• Premine: 1,000,000,000 FLS
 • PoW Blocks: 1 - 1000
 • PoS Blocks: Starting from 1001
 • Block Time: 60 Seconds
 • Maturity: 100 Confirmations
-• Prefix: __DSW__ adresses start with the capital letter "D"
+• Prefix: FLS adresses start with the capital letter "D"
 • Ports: __PORT_MAINNET__ (p2p) / __RPCPORT_MAINNET__ (rpc)
 
 • Explorer https://explorer.decenomy.net/
