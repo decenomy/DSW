@@ -51,7 +51,7 @@ static const int MAX_URI_LENGTH = 255;
 
 
 #define QAPP_ORG_NAME "Flits"
-#define QAPP_ORG_DOMAIN "__decenomy__.org"
+#define QAPP_ORG_DOMAIN "flits.org"
 #define QAPP_APP_NAME_DEFAULT "Flits-Qt"
 #define QAPP_APP_NAME_TESTNET "Flits-Qt-testnet"
 

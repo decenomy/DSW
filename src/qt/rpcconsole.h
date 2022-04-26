@@ -106,7 +106,7 @@ public Q_SLOTS:
     void showPeers();
     /** Switch to wallet-repair tab and show */
     void showRepair();
-    /** Open external (default) editor with __decenomy__.conf */
+    /** Open external (default) editor with flits.conf */
     void showConfEditor();
     /** Open external (default) editor with masternode.conf */
     void showMNConfEditor();
