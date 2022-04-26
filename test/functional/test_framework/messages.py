@@ -503,7 +503,7 @@ class CBlockHeader():
         self.calc_sha256()
         return self.sha256
 
-    # __decenomy__
+    # flits
     def solve_stake(self, stakeInputs, prevModifier):
         target0 = uint256_from_compact(self.nBits)
         loop = True
