@@ -1,6 +1,6 @@
 [Protocol]
-exec=__decenomy__-qt '%u'
-protocol=__decenomy__
+exec=flits-qt '%u'
+protocol=flits
 input=none
 output=none
 helper=true
