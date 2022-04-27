@@ -3,7 +3,7 @@ Flits Core
 
 Setup
 ---------------------
-[Flits Core](__decenomy_website_link__/) is the original Flits client and it builds the backbone of the network. However, it downloads and stores the entire history of Flits transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
+[Flits Core](https://flitswallet.app/) is the original Flits client and it builds the backbone of the network. However, it downloads and stores the entire history of Flits transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
 
 Running
 ---------------------
@@ -55,7 +55,7 @@ The Flits repo's [root README](/README.md) contains relevant information on the 
 - [Dnsseed Policy](dnsseed-policy.md)
 
 ### Resources
-* Discuss on the [Flits Homepage](__decenomy_website_link__/).
+* Discuss on the [Flits Homepage](https://flitswallet.app//).
 * Join the [Flits Discord](__decenomy_discord_link__).
 
 ### Miscellaneous
