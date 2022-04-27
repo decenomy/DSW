@@ -3,9 +3,9 @@
 
 #define MyAppName "Flits Core"
 #define MyAppPublisher "2022 DECENOMY Core Developers"
-#define MyAppURL "https://__decenomy__.com"
+#define MyAppURL "https://flitswallet.app/"
 #define MyAppExeName "flits-qt.exe"
-#define MyAppExtraData "https://explorer.decenomy.net/bootstraps/__DSW__/bootstrap.zip"
+#define MyAppExtraData "https://explorer.decenomy.net/bootstraps/FLS/bootstrap.zip"
 #define MyAppVersion GetVersionNumbersString(".\package\" + MyAppExeName)
 
 #include ReadReg(HKLM, 'Software\WOW6432Node\Mitrich Software\Inno Download Plugin', 'InstallDir') + '\idp.iss'
@@ -13,7 +13,7 @@
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{67A6CA9B-71C3-4FE2-AA2E-D0DF3D53C4EB}
+AppId={0D86428A-96DD-4938-91EF-52C8017609AF}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 VersionInfoVersion={#MyAppVersion}

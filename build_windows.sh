@@ -12,11 +12,11 @@ fi
 	echo "1" | sudo update-alternatives --config x86_64-w64-mingw32-g++
 
 # Clone code from official Github repository
-	rm -rf DSW
-	git clone https://github.com/decenomy/DSW.git
+	rm -rf FLS
+	git clone https://github.com/decenomy/FLS.git
 
 # Entering directory
-	cd DSW
+	cd FLS
 
 # Compile dependencies
 	cd depends
@@ -30,6 +30,6 @@ fi
 	cd ..
 
 # Create zip file of binaries
-	cp DSW/src/__decenomy__d.exe DSW/src/__decenomy__-cli.exe DSW/src/__decenomy__-tx.exe DSW/src/qt/__decenomy__-qt.exe .
-	zip __DSW__-Windows.zip __decenomy__d.exe __decenomy__-cli.exe __decenomy__-tx.exe __decenomy__-qt.exe
-	rm -f __decenomy__d.exe __decenomy__-cli.exe __decenomy__-tx.exe __decenomy__-qt.exe
+	cp FLS/src/flitsd.exe FLS/src/flits-cli.exe FLS/src/flits-tx.exe FLS/src/qt/flits-qt.exe .
+	zip FLS-Windows.zip flitsd.exe flits-cli.exe flits-tx.exe flits-qt.exe
+	rm -f flitsd.exe flits-cli.exe flits-tx.exe flits-qt.exe
