@@ -28,7 +28,7 @@ Build-Depends: debhelper,
  libzmq3-dev,
  dh-systemd
 Standards-Version: 3.9.2
-Homepage: __decenomy_website_link__
+Homepage: https://flitswallet.app
 Vcs-Git: git://decenomy/FLS.git
 Vcs-Browser: https://decenomy/FLS
 
