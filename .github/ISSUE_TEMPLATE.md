@@ -1,7 +1,7 @@
 <!--- Remove this description and sections that do not apply -->
 
 This issue tracker is only for technical issues related to Flits Core.
-General Flits questions and/or support requests and are best directed to the [Flits Discord](__decenomy_discord_link__).
+General Flits questions and/or support requests and are best directed to the [Flits Discord](https://discord.gg/kKwrqGcf).
 
 ### Describe the issue
 

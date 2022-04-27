@@ -28,7 +28,7 @@ Drag Flits-Qt to your applications folder, and then run Flits-Qt.
 
 * See the documentation at the [Flits Wiki](https://decenomy/FLS/)
 for help and more information.
-* Join our Discord server [Discord Server](__decenomy_discord_link__)
+* Join our Discord server [Discord Server](https://discord.gg/kKwrqGcf)
 
 Building
 ---------------------
@@ -55,8 +55,8 @@ The Flits repo's [root README](/README.md) contains relevant information on the 
 - [Dnsseed Policy](dnsseed-policy.md)
 
 ### Resources
-* Discuss on the [Flits Homepage](https://flitswallet.app//).
-* Join the [Flits Discord](__decenomy_discord_link__).
+* Discuss on the [Flits Homepage](https://flitswallet.app/).
+* Join the [Flits Discord](https://discord.gg/kKwrqGcf).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

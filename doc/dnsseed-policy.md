@@ -44,7 +44,7 @@ related to the DNS seed operation.
 If these expectations cannot be satisfied the operator should
 discontinue providing services and contact the active Flits
 Core development team as well as posting on the
-[Flits Discord](__decenomy_discord_link__).
+[Flits Discord](https://discord.gg/kKwrqGcf).
 
 Behavior outside of these expectations may be reasonable in some
 situations but should be discussed in public in advance.
