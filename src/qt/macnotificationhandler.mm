@@ -15,7 +15,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"io.__decenomy__.Flits-Qt";
+        return @"io.flits.Flits-Qt";
     } else {
         return [self __bundleIdentifier];
     }

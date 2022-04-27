@@ -38,7 +38,7 @@
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>io.__decenomy__.Flits-Qt</string>
+  <string>io.flits.Flits-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
