@@ -66,7 +66,7 @@ UniValue listmasternodes(const JSONRPCRequest& request)
         std::string strTxHash = s.second.vin.prevout.hash.ToString();
         uint32_t oIdx = s.second.vin.prevout.n;
 
-        CMasternode* mn = &s.second;
+        CMasternode* mn = mnodeman.Find(s.second.vin);
 
         if (mn != NULL) {
             if (strFilter != "" && strTxHash.find(strFilter) == std::string::npos &&

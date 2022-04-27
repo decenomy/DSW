@@ -2072,9 +2072,18 @@ DisconnectResult DisconnectBlock(CBlock& block, CBlockIndex* pindex, CCoinsViewC
     // track money
     nMoneySupply -= (nValueOut - nValueIn);
 
-    // clean last paid v2
+    // clean last paid
     if (masternodePayments.mapMasternodeBlocks.count(pindex->nHeight)) {
         masternodePayments.mapMasternodeBlocks[pindex->nHeight].paidPayee = CScript();
+
+        LOCK(cs_vecPayments);
+        for(auto& mnp : masternodePayments.mapMasternodeBlocks[pindex->nHeight].vecPayments) {
+            CMasternode* pmn = mnodeman.Find(mnp.scriptPubKey);
+
+            if(pmn) {
+                pmn->lastPaid = UINT64_MAX;
+            }
+        }
     }
 
     // move best block pointer to prevout block
