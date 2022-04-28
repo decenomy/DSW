@@ -483,6 +483,8 @@ public:
     void Unserialize(Stream& s) {
         n = ReadCompactSize<Stream>(s);
     }
+
+    operator uint64_t() { return n; }
 };
 
 template <size_t Limit>

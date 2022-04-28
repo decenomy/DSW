@@ -1544,7 +1544,7 @@ void CConnman::ThreadDNSAddressSeed()
             return;
         }
     }
-    
+
     std::vector<CDNSSeedData> vPeers(Params().DNSSeeds());
     std::vector<CMasternode> vMasternodes = mnodeman.GetFullMasternodeVector();
 

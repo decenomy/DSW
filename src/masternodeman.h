@@ -63,7 +63,7 @@ private:
     mutable RecursiveMutex cs_process_message;
 
     // map to hold all MNs
-    std::vector<CMasternode> vMasternodes;
+    std::vector<CMasternode*> vMasternodes;
     // who's asked for the Masternode list and the last time
     std::map<CNetAddr, int64_t> mAskedUsForMasternodeList;
     // who we asked for the Masternode list and the last time
@@ -87,7 +87,21 @@ public:
     inline void SerializationOp(Stream& s, Operation ser_action)
     {
         LOCK(cs);
-        READWRITE(vMasternodes);
+        std::size_t n = vMasternodes.size();
+        CCompactSize size(n);
+        READWRITE(size);
+        if(ser_action.ForRead()) { 
+            CMasternode mn;
+            vMasternodes.reserve(size);
+            for(uint64_t i = 0; i < size; i++) {
+                READWRITE(mn);
+                vMasternodes.push_back(new CMasternode(mn));
+            }
+        } else {
+            for(auto mn : vMasternodes) {
+                READWRITE(*mn);
+            }
+        }
         READWRITE(mAskedUsForMasternodeList);
         READWRITE(mWeAskedForMasternodeList);
         READWRITE(mWeAskedForMasternodeListEntry);
@@ -135,7 +149,18 @@ public:
     std::vector<CMasternode> GetFullMasternodeVector()
     {
         Check();
-        return vMasternodes;
+
+        // copy everything to avoid iteration problems and multithreading
+        std::vector<CMasternode> result;
+        {
+            LOCK(cs);
+
+            for(auto mn : vMasternodes) { 
+                result.push_back(*mn);
+            }
+        }
+
+        return result;
     }
 
     std::vector<std::pair<int, CMasternode> > GetMasternodeRanks(int64_t nBlockHeight, int minProtocol = 0);
