@@ -355,7 +355,7 @@ void CMasternodeMan::CheckAndRemove(bool forceExpiredRemoval)
 void CMasternodeMan::Clear()
 {
     LOCK(cs);
-    
+
     mapScriptMasternodes.clear();
     mapTxInMasternodes.clear();
     auto it = vMasternodes.begin();

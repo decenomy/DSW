@@ -95,9 +95,9 @@ public:
         CCompactSize size(n);
         READWRITE(size);
         if(ser_action.ForRead()) { 
-            auto mn = new CMasternode();
             vMasternodes.reserve(size);
             for(uint64_t i = 0; i < size; i++) {
+                auto mn = new CMasternode();
                 READWRITE(*mn);
                 vMasternodes.push_back(mn);
                 mapScriptMasternodes[GetScriptForDestination(mn->pubKeyCollateralAddress.GetID())] = mn;
