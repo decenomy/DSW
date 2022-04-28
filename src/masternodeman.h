@@ -62,8 +62,10 @@ private:
     // critical section to protect the inner data structures specifically on messaging
     mutable RecursiveMutex cs_process_message;
 
-    // map to hold all MNs
+    // vector to hold all MNs
     std::vector<CMasternode*> vMasternodes;
+    // map MNs by CScript
+    std::unordered_map<CScript, CMasternode*, CScriptCheapHasher> mapScriptMasternodes;
     // who's asked for the Masternode list and the last time
     std::map<CNetAddr, int64_t> mAskedUsForMasternodeList;
     // who we asked for the Masternode list and the last time
@@ -91,11 +93,12 @@ public:
         CCompactSize size(n);
         READWRITE(size);
         if(ser_action.ForRead()) { 
-            CMasternode mn;
+            auto mn = new CMasternode();
             vMasternodes.reserve(size);
             for(uint64_t i = 0; i < size; i++) {
-                READWRITE(mn);
-                vMasternodes.push_back(new CMasternode(mn));
+                READWRITE(*mn);
+                vMasternodes.push_back(mn);
+                mapScriptMasternodes[GetScriptForDestination(mn->pubKeyCollateralAddress.GetID())] = mn;
             }
         } else {
             for(auto mn : vMasternodes) {

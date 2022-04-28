@@ -218,7 +218,9 @@ bool CMasternodeMan::Add(CMasternode& mn)
     bool masternodeRankV2 = Params().GetConsensus().NetworkUpgradeActive(chainActive.Height(), Consensus::UPGRADE_MASTERNODE_RANK_V2);
     if (pmn == NULL && (!masternodeRankV2 || pmnByAddr == NULL)) {
         LogPrint(BCLog::MASTERNODE, "CMasternodeMan: Adding new Masternode %s - count %i now\n", mn.vin.prevout.ToStringShort(), size() + 1);
-        vMasternodes.push_back(new CMasternode(mn));
+        auto m = new CMasternode(mn);
+        vMasternodes.push_back(m);
+        mapScriptMasternodes[GetScriptForDestination(m->pubKeyCollateralAddress.GetID())] = m;
         return true;
     }
 
@@ -288,6 +290,7 @@ void CMasternodeMan::CheckAndRemove(bool forceExpiredRemoval)
                 }
             }
 
+            mapScriptMasternodes.erase(GetScriptForDestination((*it)->pubKeyCollateralAddress.GetID()));
             delete *it;
             it = vMasternodes.erase(it);
         } else {
@@ -350,6 +353,7 @@ void CMasternodeMan::CheckAndRemove(bool forceExpiredRemoval)
 void CMasternodeMan::Clear()
 {
     LOCK(cs);
+    mapScriptMasternodes.clear();
     auto it = vMasternodes.begin();
     while (it != vMasternodes.end()) {
         delete *it;
@@ -461,14 +465,11 @@ CMasternode* CMasternodeMan::Find(const CScript& payee)
 {
     LOCK(cs);
 
-    CScript payee2;
-
-    for (auto mn : vMasternodes) {
-        payee2 = GetScriptForDestination(mn->pubKeyCollateralAddress.GetID());
-        if (payee2 == payee)
-            return mn;
-    }
-    return NULL;
+    auto it = mapScriptMasternodes.find(payee);
+    if (it != mapScriptMasternodes.end())
+        return it->second;
+        
+    return NULL;       
 }
 
 CMasternode* CMasternodeMan::Find(const CTxIn& vin)
@@ -851,6 +852,7 @@ void CMasternodeMan::Remove(CTxIn vin)
     while (it != vMasternodes.end()) {
         if ((**it).vin == vin) {
             LogPrint(BCLog::MASTERNODE, "CMasternodeMan: Removing Masternode %s - %i now\n", (**it).vin.prevout.ToStringShort(), size() - 1);
+            mapScriptMasternodes.erase(GetScriptForDestination((*it)->pubKeyCollateralAddress.GetID()));
             delete *it;
             vMasternodes.erase(it);
             break;
