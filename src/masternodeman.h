@@ -66,6 +66,8 @@ private:
     std::vector<CMasternode*> vMasternodes;
     // map MNs by CScript
     std::unordered_map<CScript, CMasternode*, CScriptCheapHasher> mapScriptMasternodes;
+    // map MNs by CTxIn
+    std::unordered_map<CTxIn, CMasternode*, CTxInCheapHasher> mapTxInMasternodes;
     // who's asked for the Masternode list and the last time
     std::map<CNetAddr, int64_t> mAskedUsForMasternodeList;
     // who we asked for the Masternode list and the last time
@@ -99,6 +101,7 @@ public:
                 READWRITE(*mn);
                 vMasternodes.push_back(mn);
                 mapScriptMasternodes[GetScriptForDestination(mn->pubKeyCollateralAddress.GetID())] = mn;
+                mapTxInMasternodes[mn->vin] = mn;
             }
         } else {
             for(auto mn : vMasternodes) {

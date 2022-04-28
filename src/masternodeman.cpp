@@ -221,6 +221,7 @@ bool CMasternodeMan::Add(CMasternode& mn)
         auto m = new CMasternode(mn);
         vMasternodes.push_back(m);
         mapScriptMasternodes[GetScriptForDestination(m->pubKeyCollateralAddress.GetID())] = m;
+        mapTxInMasternodes[m->vin] = m;
         return true;
     }
 
@@ -291,6 +292,7 @@ void CMasternodeMan::CheckAndRemove(bool forceExpiredRemoval)
             }
 
             mapScriptMasternodes.erase(GetScriptForDestination((*it)->pubKeyCollateralAddress.GetID()));
+            mapTxInMasternodes.erase((*it)->vin);
             delete *it;
             it = vMasternodes.erase(it);
         } else {
@@ -353,7 +355,9 @@ void CMasternodeMan::CheckAndRemove(bool forceExpiredRemoval)
 void CMasternodeMan::Clear()
 {
     LOCK(cs);
+    
     mapScriptMasternodes.clear();
+    mapTxInMasternodes.clear();
     auto it = vMasternodes.begin();
     while (it != vMasternodes.end()) {
         delete *it;
@@ -476,10 +480,10 @@ CMasternode* CMasternodeMan::Find(const CTxIn& vin)
 {
     LOCK(cs);
 
-    for (auto mn : vMasternodes) {
-        if (mn->vin.prevout == vin.prevout)
-            return mn;
-    }
+    auto it = mapTxInMasternodes.find(vin);
+    if (it != mapTxInMasternodes.end())
+        return it->second;
+        
     return NULL;
 }
 
@@ -853,6 +857,7 @@ void CMasternodeMan::Remove(CTxIn vin)
         if ((**it).vin == vin) {
             LogPrint(BCLog::MASTERNODE, "CMasternodeMan: Removing Masternode %s - %i now\n", (**it).vin.prevout.ToStringShort(), size() - 1);
             mapScriptMasternodes.erase(GetScriptForDestination((*it)->pubKeyCollateralAddress.GetID()));
+            mapTxInMasternodes.erase((*it)->vin);
             delete *it;
             vMasternodes.erase(it);
             break;

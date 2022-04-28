@@ -63,6 +63,12 @@ public:
 
 };
 
+struct COutPointCheapHasher {
+    int operator()(const COutPoint& vout) const {
+        return ((int)vout.hash.GetCheapHash()) ^ vout.n;
+    }
+};
+
 /** An input of a transaction.  It contains the location of the previous
  * transaction's output that it claims and a signature that matches the
  * output's public key.
@@ -115,6 +121,16 @@ public:
     std::string ToString() const;
 
     size_t DynamicMemoryUsage() const { return scriptSig.DynamicMemoryUsage(); }
+};
+
+struct CTxInCheapHasher {
+    int operator()(const CTxIn& txin) const {
+        return 
+            COutPointCheapHasher{}(txin.prevout) ^
+            CScriptCheapHasher{}(txin.scriptSig) ^
+            txin.nSequence ^
+            CScriptCheapHasher{}(txin.prevPubKey);
+    }
 };
 
 /** An output of a transaction.  It contains the public key that the next input
