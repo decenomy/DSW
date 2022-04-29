@@ -253,8 +253,8 @@ QPushButton:focus {
 }
 
 QPushButton:pressed {
-background-color: #810890;
-border:1px solid #810890;
+background-color: #587eff;
+border:1px solid #587eff;
 background-color: qlineargradient(y1:0, y2: 1, stop: 0 #c226d6, stop: 0.1 #c226d6, stop: 0.101 #c226d6, stop: 0.9 #c226d6, stop: 0.901 #c226d6, stop: 1 #c226d6);
 }
 
@@ -280,7 +280,7 @@ background-color: #f2f2f2;
 }
 
 QComboBox { /* Dropdown Menus */
-border:1px solid #810890;
+border:1px solid #587eff;
 padding: 3px 5px 3px 5px;
 background:#fcfcfc;
 min-height:25px;
@@ -573,22 +573,22 @@ border-radius: 4px;
 }
 
 QSlider::sub-page:horizontal {
-background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #810890, stop: 1 #810890);
-border: 1px solid #810890;
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #587eff, stop: 1 #587eff);
+border: 1px solid #587eff;
 height: 10px;
 border-radius: 4px;
 }
 
 QSlider::add-page:horizontal {
-background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #810890, stop: 1 #810890);
-border: 1px solid #810890;
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #587eff, stop: 1 #587eff);
+border: 1px solid #587eff;
 height: 10px;
 border-radius: 4px;
 }
 
 QSlider::handle:horizontal {
 background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #fff, stop:1 #f8f6f6);
-border: 1px solid #810890;
+border: 1px solid #587eff;
 width: 18px;
 height: 18px;
 margin-top: -6px;
@@ -598,7 +598,7 @@ border-radius: 9px;
 
 QSlider::handle:horizontal:hover {
 background-color: qradialgradient(cx: 0.5, cy: 0.5, fx: 0.5, fy: 0.5, radius: 0.7, stop: 0 #c226d6, stop: 0.7 #ffffff);
-border: 2px solid #810890;
+border: 2px solid #587eff;
 width: 16px;
 height: 16px;
 margin-top: -6px;
