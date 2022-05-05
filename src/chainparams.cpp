@@ -218,15 +218,15 @@ public:
         pchMessageStart[3] = 0xc2;
         nDefaultPort = 12270;
 
-        vSeeds.push_back(CDNSSeedData("seeder", "seeder.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed2", "seed2.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed3", "seed3.__decenomy.net__"));
-        vSeeds.push_back(CDNSSeedData("seed4", "seed4.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.__decenomy.net__"));
-	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.__decenomy.net__"));
+        vSeeds.push_back(CDNSSeedData("seeder", "seeder.flitsnode.app"));
+	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.flitsnode.app"));
+        vSeeds.push_back(CDNSSeedData("seed2", "seed2.flitsnode.app"));
+        vSeeds.push_back(CDNSSeedData("seed3", "seed3.flitsnode.app"));
+        vSeeds.push_back(CDNSSeedData("seed4", "seed4.flitsnode.app"));
+	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.flitsnode.app"));
+	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.flitsnode.app"));
+	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.flitsnode.app"));
+	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.flitsnode.app"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 36); // F
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 48); // L
