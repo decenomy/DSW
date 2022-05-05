@@ -216,7 +216,7 @@ public:
         pchMessageStart[1] = 0x7b;
         pchMessageStart[2] = 0x86;
         pchMessageStart[3] = 0x77;
-        nDefaultPort = __PORT_MAINNET__;
+        nDefaultPort = 12270;
 
         vSeeds.push_back(CDNSSeedData("seeder", "seeder.__decenomy.net__"));
 	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.__decenomy.net__"));
