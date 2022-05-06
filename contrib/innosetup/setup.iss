@@ -23,7 +23,7 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-DefaultDirName={autopf}\__Decenomy__
+DefaultDirName={autopf}\Flits
 DisableProgramGroupPage=no
 ; The [Icons] "quicklaunchicon" entry uses {userappdata} but its [Tasks] entry has a proper IsAdminInstallMode Check.
 UsedUserAreasWarning=no
@@ -31,14 +31,14 @@ UsedUserAreasWarning=no
 ;PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
 OutputDir=.\output
-OutputBaseFilename=__Decenomy__Setup
+OutputBaseFilename=FlitsSetup
 SetupIconFile=.\bitcoin.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
 DisableStartupPrompt=False
 DisableWelcomePage=False
-DefaultGroupName=__Decenomy__ Core
+DefaultGroupName=Flits Core
 WizardSmallImageFile=.\logo-small.bmp
 WizardImageFile=.\logo.bmp
 InternalCompressLevel=ultra64
@@ -87,7 +87,7 @@ Filename: "{tmp}\7za.exe"; Parameters: "x ""{tmp}\bootstrap.zip"" -o""{code:GetD
 Filename: "{app}\{#MyAppExeName}"; Flags: nowait postinstall skipifsilent; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"
 
 [Registry]
-Root: "HKCU"; Subkey: "Software\__Decenomy__\__Decenomy__-Qt"; ValueType: string; ValueName: "strDataDir"; ValueData: "{code:GetDataDir}\"
+Root: "HKCU"; Subkey: "Software\Flits\Flits-Qt"; ValueType: string; ValueName: "strDataDir"; ValueData: "{code:GetDataDir}\"
 
 [Code]
 var
@@ -119,7 +119,7 @@ function NextButtonClick(CurPageID: Integer): Boolean;
 begin
   // Set default folder if empty
   if DataDirPage.Values[0] = '' then
-     DataDirPage.Values[0] := ExpandConstant('{reg:HKCU\Software\__Decenomy__\__Decenomy__-Qt,strDataDir|{userappdata}\__Decenomy__\}');
+     DataDirPage.Values[0] := ExpandConstant('{reg:HKCU\Software\Flits\Flits-Qt,strDataDir|{userappdata}\Flits\}');
   Result := True;
 end;
 
