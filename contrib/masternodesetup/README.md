@@ -1,10 +1,10 @@
 ![Example-Logo](https://avatars.githubusercontent.com/u/74193190?v=4)
 
-# __Decenomy__ Masternode Setup Guide
+# Flits Masternode Setup Guide
 ***
 ## Required
-1) **__DSW__ collateral value at current block** ([consult the collateral table](../../README.md#rewards-breakdown))
-2) **Local Wallet https://github.com/decenomy/DSW/releases**
+1) **FLS collateral value at current block** ([consult the collateral table](../../README.md#rewards-breakdown))
+2) **Local Wallet https://github.com/decenomy/FLS/releases**
 3) **VPS with UBUNTU 18.04** (it is possible to work on other versions but it is not tested)
 4) **Putty https://www.putty.org/**
 5) **Text editor on your local pc to save data for copy/paste**
@@ -30,7 +30,7 @@ You will then receive your private key, save it in a txt to use it later.
 * Once logged in your vps, *copy/paste* each line one by one with *Enter*
 
 ```
-wget -q https://raw.githubusercontent.com/__GITHUB_ACCOUNT__/__GITHUB_REPOSITORY__/master/contrib/masternodesetup/masternodesetup.sh
+wget -q https://raw.githubusercontent.com/decenomy/FLS/master/contrib/masternodesetup/masternodesetup.sh
 ```
 
 ```
@@ -43,14 +43,14 @@ bash masternodesetup.sh
 
 * Last thing script will ask you is to provide Masternode Genkey. Copy the one you got previously (createmasternodekey) and press enter.
 
-Remember to do `__decenomy__-cli getblockcount` to check if VPS catching blocks till it synced with chain, if not follow this procedure:
+Remember to do `flits-cli getblockcount` to check if VPS catching blocks till it synced with chain, if not follow this procedure:
 
-* Go to your wallet-qt and check peers list (tools - peers list) and select one ip from the list. With that ip do the follow command at VPS `__decenomy__-cli addnode "ip" onetry`
+* Go to your wallet-qt and check peers list (tools - peers list) and select one ip from the list. With that ip do the follow command at VPS `flits-cli addnode "ip" onetry`
 
       Example:
-		  __decenomy__-cli addnode 45.32.144.158 onetry
+		  flits-cli addnode 45.32.144.158 onetry
     
-* Check now if VPS already downloading blocks with the command `__decenomy__-cli getblockcount`, and if yes give it time now to catch last block number 
+* Check now if VPS already downloading blocks with the command `flits-cli getblockcount`, and if yes give it time now to catch last block number 
 
 Do not close your terminal/ command prompt window at this point.
 
@@ -76,9 +76,9 @@ Do not close your terminal/ command prompt window at this point.
 ***Go back to Putty***
 
 ```
-__decenomy__-cli getmasternodestatus
+flits-cli getmasternodestatus
 ```
 
 You need to get **"status" : 4** 
 
-## Congratulations your __Decenomy__ node it's running
+## Congratulations your Flits node it's running

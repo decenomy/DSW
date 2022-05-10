@@ -7,7 +7,7 @@ DECENOMY Standard wallet repository
 ### Coin Specs
 
 • PoW Algorithm: X11KVS
-• Premine: 1,000,000,000 __DSW__
+• Premine: 1,000,000,000 FLS
 • PoW Blocks: 1 - 1000
 • PoS Blocks: Starting from 1001
 • Block Time: 60 Seconds
@@ -17,7 +17,7 @@ DECENOMY Standard wallet repository
 
 • Explorer https://explorer.decenomy.net/
 
-• Website [__decenomy_website_link__](__decenomy_website_link__)
+• Website [flitswallet.app](https://flitswallet.app/)
 
 ### Rewards Breakdown
 <table border=0 cellpadding=0 cellspacing=0 width=701 class=xl6553517252

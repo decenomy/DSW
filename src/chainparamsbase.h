@@ -12,8 +12,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between __decenomy__-cli and __decenomy__d)
- * of a given instance of the __decenomy__ system.
+ * CBaseChainParams defines the base parameters (shared between flits-cli and flitsd)
+ * of a given instance of the flits system.
  */
 class CBaseChainParams
 {

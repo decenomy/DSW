@@ -34,7 +34,7 @@ class WalletModel;
 
 
 /**
-  __Decenomy__ GUI main class. This class represents the main window of the __Decenomy__ UI. It communicates with both the client and
+  Flits GUI main class. This class represents the main window of the Flits UI. It communicates with both the client and
   wallet models to give the user an up-to-date view of the current core state.
 */
 class PIVXGUI : public QMainWindow

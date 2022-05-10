@@ -128,7 +128,7 @@ public:
 };
 
 /**
- * __DSW__ RPC command dispatcher.
+ * FLS RPC command dispatcher.
  */
 class CRPCTable
 {

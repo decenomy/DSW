@@ -53,7 +53,7 @@ class ReorgStakeTest(PivxTestFramework):
 
     def check_money_supply(self, expected_piv):
         g_info = [self.nodes[i].getinfo() for i in range(self.num_nodes)]
-        # verify that nodes have the expected __DSW__ supply
+        # verify that nodes have the expected FLS supply
         for node in g_info:
             assert_equal(node['moneysupply'], DecimalAmt(expected_piv))
 
@@ -66,9 +66,9 @@ class ReorgStakeTest(PivxTestFramework):
                     return True, x
             return False, None
 
-        # Check __DSW__ supply at the beginning
+        # Check FLS supply at the beginning
         # ------------------------------------------
-        # __DSW__ supply: block rewards minus burned fees for minting
+        # FLS supply: block rewards minus burned fees for minting
         expected_money_supply = 250.0 * 330 - 16 * 0.01
         self.check_money_supply(expected_money_supply)
 
@@ -182,8 +182,8 @@ class ReorgStakeTest(PivxTestFramework):
         res, utxo = findUtxoInList(stakeinput["txid"], stakeinput["vout"], self.nodes[0].listunspent())
         assert (not res or not utxo["spendable"])
 
-        # Verify that __DSW__ supplies were properly updated after the spends and reorgs
-        self.log.info("Check __DSW__ supply...")
+        # Verify that FLS supplies were properly updated after the spends and reorgs
+        self.log.info("Check FLS supply...")
         expected_money_supply += 250.0 * (self.nodes[1].getblockcount() - 330)
         self.check_money_supply(expected_money_supply)
         self.log.info("Supply checks out.")
