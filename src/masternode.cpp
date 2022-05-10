@@ -334,7 +334,7 @@ CAmount CMasternode::GetBlockValue(int nHeight)
     CAmount nSubsidy;
 
     if (nHeight == 1) {
-        nSubsidy = 30000000 * COIN; // __DSW__ coin supply (30M)
+        nSubsidy = 30000000 * COIN; // FLS coin supply (30M)
     } else
         nSubsidy = 800 * COIN;
 

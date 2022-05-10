@@ -8,7 +8,7 @@ COIN_CLI='flits-cli'
 COIN_PATH='/usr/local/bin/'
 COIN_TGZ=`curl -s https://api.github.com/repos/decenomy/FLS/releases/latest | grep "browser_download_url.*Linux\\.zip" | cut -d : -f 2,3 | tr -d \" | xargs`
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
-COIN_NAME='__decenomy__'
+COIN_NAME='flits'
 COIN_PORT=12270
 RPC_PORT=22271
 

@@ -12,7 +12,7 @@ DECENOMY Standard wallet repository
 • PoS Blocks: Starting from 1001
 • Block Time: 60 Seconds
 • Maturity: 100 Confirmations
-• Prefix: __DSW__ adresses start with the capital letter "D"
+• Prefix: FLS adresses start with the capital letter "D"
 • Ports: 12270 (p2p) / 22271 (rpc)
 
 • Explorer https://explorer.decenomy.net/
