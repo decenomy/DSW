@@ -219,7 +219,7 @@ QColor getRowColor(bool isLightTheme, bool isHovered, bool isSelected)
         } else if (isHovered) {
             return QColor("#212121");
         } else {
-            return QColor("#1c1839");
+            return QColor("#121b35");
         }
     }
 }
