@@ -483,7 +483,25 @@ void CMasternodePayments::ProcessMessageMasternodePayments(CNode* pfrom, std::st
             if (!pmn->IsEnabled()) {
                 LogPrint(BCLog::MASTERNODE, "mnw - winner payee is a masternode but is not ENABLED");
                 return;
-            }  
+            }
+            if (sporkManager.IsSporkActive(SPORK_113_FORCE_ELIGIBLE_VOTED_MASTERNODE)) {
+                
+                bool found = false;
+                int nCount = 0;
+                std::vector<std::pair<int64_t, CTxIn>> vecMasternodeLastPaid;
+                mnodeman.GetNextMasternodeInQueueForPayment(nHeight, true, nCount, vecMasternodeLastPaid);
+
+                for (auto& s : vecMasternodeLastPaid) {
+                    if(pmn->vin == s.second) {
+                        found = true;
+                    }
+                }
+
+                if (!found) {
+                    LogPrint(BCLog::MASTERNODE, "mnw - winner payee is a masternode is ENABLED, but is not eligible");
+                    return;
+                }
+            }
         }
 
         CTxDestination address1;
