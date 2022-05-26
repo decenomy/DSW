@@ -9,8 +9,8 @@ COIN_PATH='/usr/local/bin/'
 COIN_TGZ=`curl -s https://api.github.com/repos/ucrcoin/UCR/releases/latest | grep "browser_download_url.*Linux\\.zip" | cut -d : -f 2,3 | tr -d \" | xargs`
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
 COIN_NAME='ultraclear'
-COIN_PORT=32627
-RPC_PORT=32628
+COIN_PORT=32628
+RPC_PORT=32627
 
 BLUE="\033[0;34m"
 YELLOW="\033[0;33m"
