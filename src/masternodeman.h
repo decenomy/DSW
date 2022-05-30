@@ -94,7 +94,7 @@ public:
     {
         LOCK(cs);
         std::size_t n = vMasternodes.size();
-        CCompactSize size(n);
+        CCompactSize size = COMPACTSIZE(n);
         READWRITE(size);
         if(ser_action.ForRead()) { 
             vMasternodes.reserve(size);
