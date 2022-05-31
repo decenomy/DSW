@@ -236,7 +236,7 @@ int64_t CMasternode::SecondsSincePayment()
 {
 
     int64_t sec = (GetAdjustedTime() - GetLastPaid());
-    int64_t month = 60 * 60 * 24 * 30;
+    int64_t month = MONTH_IN_SECONDS;
     if (sec < month) return sec; //if it's less than 30 days, give seconds
 
     CHashWriter ss(SER_GETHASH, PROTOCOL_VERSION);
@@ -253,18 +253,15 @@ int64_t CMasternode::GetLastPaid()
     const CBlockIndex* BlockReading = GetChainTip();
     if (BlockReading == nullptr) return false;
 
-    CScript mnpayee;
-    mnpayee = GetScriptForDestination(pubKeyCollateralAddress.GetID());
+    CScript mnpayee = GetScriptForDestination(pubKeyCollateralAddress.GetID());
 
-    CHashWriter ss(SER_GETHASH, PROTOCOL_VERSION);
-    ss << vin;
-    ss << sigTime;
-    uint256 hash = ss.GetHash();
+    int nMnCount = 
+        mnodeman.CountEnabled() *
+        (sporkManager.IsSporkActive(SPORK_112_MASTERNODE_LAST_PAID_V2) ? 
+            2 : // go a little bit further
+            1.25
+        );
 
-    // use a deterministic offset to break a tie -- 2.5 minutes
-    int64_t nOffset = hash.GetCompact(false) % 150;
-
-    int nMnCount = mnodeman.CountEnabled() * 1.25;
     int n = 0;
     for (unsigned int i = 1; BlockReading && BlockReading->nHeight > 0; i++) {
         if (n >= nMnCount) {
@@ -273,12 +270,30 @@ int64_t CMasternode::GetLastPaid()
         n++;
 
         if (masternodePayments.mapMasternodeBlocks.count(BlockReading->nHeight)) {
-            /*
-                Search for this payee, with at least 2 votes. This will aid in consensus allowing the network
-                to converge on the same payees quickly, then keep the same schedule.
-            */
-            if (masternodePayments.mapMasternodeBlocks[BlockReading->nHeight].HasPayeeWithVotes(mnpayee, 2)) {
-                return BlockReading->nTime + nOffset;
+            if(sporkManager.IsSporkActive(SPORK_112_MASTERNODE_LAST_PAID_V2)) {
+                /*
+                    Search for this payee, on the blockchain
+                */
+                if (masternodePayments.mapMasternodeBlocks[BlockReading->nHeight].HasPaidPayee(mnpayee)) {
+                    return BlockReading->nTime; // doesn't need the offset because it is deterministically read from the blockchain
+                }
+            } else {
+
+                CHashWriter ss(SER_GETHASH, PROTOCOL_VERSION);
+                ss << vin;
+                ss << sigTime;
+                uint256 hash = ss.GetHash();
+
+                // use a deterministic offset to break a tie -- 2.5 minutes
+                int64_t nOffset = hash.GetCompact(false) % 150;
+
+                /*
+                    Search for this payee, with at least 2 votes. This will aid in consensus allowing the network
+                    to converge on the same payees quickly, then keep the same schedule.
+                */
+                if (masternodePayments.mapMasternodeBlocks[BlockReading->nHeight].HasPayeeWithVotes(mnpayee, 2)) {
+                    return BlockReading->nTime + nOffset;
+                }
             }
         }
 

@@ -144,6 +144,7 @@ public:
         return false;
     }
 
+    bool HasPaidPayee(const CScript& payee);
     bool IsTransactionValid(const CTransaction& txNew, int nBlockHeight);
     std::string GetRequiredPaymentsString();
 
