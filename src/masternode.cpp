@@ -306,12 +306,16 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 {
     CScript payee;
     payee = GetScriptForDestination(pubKeyCollateralAddress.GetID());
+    const int WEEK_IN_SECONDS = 7 * 24 * 60 * 60;
+    const Consensus::Params& consensus = Params().GetConsensus();
+    const CAmount nCollateral = CMasternode::GetMasternodeNodeCollateral(chainActive.Height());
+    const CAmount nWeeksCollateral = CMasternode::GetMasternodeNodeCollateral(chainActive.Height() + (WEEK_IN_SECONDS / consensus.TargetSpacing(chainActive.Height())));
 
     CTransaction txVin;
     uint256 hash;
     if(GetTransaction(vin.prevout.hash, txVin, hash, true)) {
         for (CTxOut out : txVin.vout) {
-            if (out.nValue == CMasternode::GetMasternodeNodeCollateral(chainActive.Height()) && out.scriptPubKey == payee) return true;
+            if ((out.nValue == nCollateral || out.nValue == nWeeksCollateral) && out.scriptPubKey == payee) return true;
         }
     }
 
