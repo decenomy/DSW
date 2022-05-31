@@ -215,7 +215,7 @@ void CMasternode::Check(bool forceCheck)
         CMutableTransaction tx = CMutableTransaction();
         CScript dummyScript;
         dummyScript << ToByteVector(pubKeyCollateralAddress) << OP_CHECKSIG;
-        CTxOut vout = CTxOut((CMasternode::GetMasternodeNodeCollateral(chainActive.Height()) - 0.01 * COIN), dummyScript);
+        CTxOut vout = CTxOut((CMasternode::GetMinMasternodeCollateral() - 0.01 * COIN), dummyScript);
         tx.vin.push_back(vin);
         tx.vout.push_back(vout);
         {
@@ -234,8 +234,6 @@ void CMasternode::Check(bool forceCheck)
 
 int64_t CMasternode::SecondsSincePayment()
 {
-    CScript pubkeyScript;
-    pubkeyScript = GetScriptForDestination(pubKeyCollateralAddress.GetID());
 
     int64_t sec = (GetAdjustedTime() - GetLastPaid());
     int64_t month = 60 * 60 * 24 * 30;
@@ -306,16 +304,12 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 {
     CScript payee;
     payee = GetScriptForDestination(pubKeyCollateralAddress.GetID());
-    const int WEEK_IN_SECONDS = 7 * 24 * 60 * 60;
-    const Consensus::Params& consensus = Params().GetConsensus();
-    const CAmount nCollateral = CMasternode::GetMasternodeNodeCollateral(chainActive.Height());
-    const CAmount nWeeksCollateral = CMasternode::GetMasternodeNodeCollateral(chainActive.Height() + (WEEK_IN_SECONDS / consensus.TargetSpacing(chainActive.Height())));
 
     CTransaction txVin;
     uint256 hash;
     if(GetTransaction(vin.prevout.hash, txVin, hash, true)) {
         for (CTxOut out : txVin.vout) {
-            if ((out.nValue == nCollateral || out.nValue == nWeeksCollateral) && out.scriptPubKey == payee) return true;
+            if (CMasternode::CheckMasternodeCollateral(out.nValue) && out.scriptPubKey == payee) return true;
         }
     }
 
@@ -699,7 +693,7 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
     CMutableTransaction tx = CMutableTransaction();
     CScript dummyScript;
     dummyScript << ToByteVector(pubKeyCollateralAddress) << OP_CHECKSIG;
-    CTxOut vout = CTxOut((CMasternode::GetMasternodeNodeCollateral(chainActive.Height()) - 0.01 * COIN), dummyScript);
+    CTxOut vout = CTxOut((CMasternode::GetMinMasternodeCollateral() - 0.01 * COIN), dummyScript);
     tx.vin.push_back(vin);
     tx.vout.push_back(vout);
 
