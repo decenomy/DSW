@@ -445,6 +445,8 @@ void CMasternodePayments::ProcessMessageMasternodePayments(CNode* pfrom, std::st
 
 bool CMasternodePayments::GetBlockPayee(int nBlockHeight, CScript& payee)
 {
+    LOCK(cs_mapMasternodeBlocks);
+
     if (mapMasternodeBlocks.count(nBlockHeight)) {
         return mapMasternodeBlocks[nBlockHeight].GetPayee(payee);
     }
@@ -520,8 +522,7 @@ bool CMasternodeBlockPayees::HasPaidPayee(const CScript& payee) {
             CTransaction tx = block.vtx[block.IsProofOfWork() ? 0 : 1];
 
             for (CTxOut out : tx.vout) {
-                if (out.nValue == CMasternode::GetMasternodePayment(nBlockHeight) && 
-                    out.scriptPubKey == payee
+                if (out.nValue == CMasternode::GetMasternodePayment(nBlockHeight)
                 ) {
                     paidPayee = out.scriptPubKey;
                 }
@@ -585,8 +586,12 @@ bool CMasternodeBlockPayees::IsTransactionValid(const CTransaction& txNew, int n
                 } else {
                     ret = true;
                 }
-                if (ret && masternodePayments.mapMasternodeBlocks.count(nBlockHeight)) {
-                    masternodePayments.mapMasternodeBlocks[nBlockHeight].paidPayee = payee.scriptPubKey;
+                {
+                    LOCK(cs_mapMasternodeBlocks);
+
+                    if (ret && masternodePayments.mapMasternodeBlocks.count(nBlockHeight)) {
+                        masternodePayments.mapMasternodeBlocks[nBlockHeight].paidPayee = payee.scriptPubKey;
+                    }
                 }
                 return ret;
             }
@@ -657,7 +662,7 @@ void CMasternodePayments::CleanPaymentList()
     LOCK2(cs_mapMasternodePayeeVotes, cs_mapMasternodeBlocks);
 
     //keep up to five cycles for historical sake
-    int nLimit = std::max(int(mnodeman.size() * 1.25), 1000);
+    int nLimit = std::max(int(mnodeman.size() * (sporkManager.IsSporkActive(SPORK_112_MASTERNODE_LAST_PAID_V2) ? 2 : 1.25)), 1000);
 
     std::map<uint256, CMasternodePaymentWinner>::iterator it = mapMasternodePayeeVotes.begin();
     while (it != mapMasternodePayeeVotes.end()) {
