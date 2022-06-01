@@ -566,10 +566,28 @@ bool CMasternodeBlockPayees::IsTransactionValid(const CTransaction& txNew, int n
                 if(sporkManager.IsSporkActive(SPORK_110_FORCE_ENABLED_MASTERNODE_PAYMENT)) {
                     CMasternode* pmn = mnodeman.Find(payee.scriptPubKey);
                     ret = pmn && pmn->IsEnabled(); // it is a existing masternode and it is enabled then it is OK
+
+                    if(ret && sporkManager.IsSporkActive(SPORK_111_FORCE_ELIGIBLE_MASTERNODE_PAYMENT)) {
+                        ret = false;
+                        int nCount = 0;
+                        std::vector<std::pair<int64_t, CTxIn>> vecMasternodeLastPaid;
+                        mnodeman.GetNextMasternodeInQueueForPayment(nBlockHeight, true, nCount, vecMasternodeLastPaid);
+
+                        for (PAIRTYPE(int64_t, CTxIn) & s : vecMasternodeLastPaid) {
+                            pmn = mnodeman.Find(s.second);
+                            if (!pmn) continue;
+
+                            if (GetScriptForDestination(pmn->pubKeyCollateralAddress.GetID()) == payee.scriptPubKey) {
+                                ret = true;
+                            }
+                        }
+                    }
                 } else {
                     ret = true;
                 }
-                if (ret) masternodePayments.mapMasternodeBlocks[nBlockHeight].paidPayee = payee.scriptPubKey;
+                if (ret && masternodePayments.mapMasternodeBlocks.count(nBlockHeight)) {
+                    masternodePayments.mapMasternodeBlocks[nBlockHeight].paidPayee = payee.scriptPubKey;
+                }
                 return ret;
             }
 
@@ -688,7 +706,8 @@ void CMasternodePayments::ProcessBlock(int nBlockHeight)
 
         // pay to the oldest MN that still had no payment but its input is old enough and it was active long enough
         int nCount = 0;
-        CMasternode* pmn = mnodeman.GetNextMasternodeInQueueForPayment(nBlockHeight, true, nCount);
+        std::vector<std::pair<int64_t, CTxIn>> vecMasternodeLastPaid;
+        CMasternode* pmn = mnodeman.GetNextMasternodeInQueueForPayment(nBlockHeight, true, nCount, vecMasternodeLastPaid);
 
         if (pmn != NULL) {
             LogPrint(BCLog::MASTERNODE, "CMasternodePayments::ProcessBlock() Found by FindOldestNotInVec \n");
