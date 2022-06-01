@@ -544,7 +544,23 @@ bool CMasternodeBlockPayees::IsTransactionValid(const CTransaction& txNew, int n
             nMaxSignatures = payee.nVotes;
 
     // if we don't have at least 6 signatures on a payee, approve whichever is the longest chain
-    if (nMaxSignatures < MNPAYMENTS_SIGNATURES_REQUIRED) return true;
+    if (nMaxSignatures < MNPAYMENTS_SIGNATURES_REQUIRED) {
+
+        {
+            if (masternodePayments.mapMasternodeBlocks.count(nBlockHeight)) {
+                LOCK(cs_vecPayments);
+                for(auto& mnp : masternodePayments.mapMasternodeBlocks[nBlockHeight].vecPayments) {
+                    CMasternode* pmn = mnodeman.Find(mnp.scriptPubKey);
+
+                    if(pmn) {
+                        pmn->lastPaid = UINT64_MAX;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
 
     std::string strPayeesPossible = "";
     CAmount requiredMasternodePayment = CMasternode::GetMasternodePayment(nBlockHeight);
@@ -593,6 +609,19 @@ bool CMasternodeBlockPayees::IsTransactionValid(const CTransaction& txNew, int n
                         masternodePayments.mapMasternodeBlocks[nBlockHeight].paidPayee = payee.scriptPubKey;
                     }
                 }
+                {
+                    if (masternodePayments.mapMasternodeBlocks.count(nBlockHeight)) {
+                        LOCK(cs_vecPayments);
+                        for(auto& mnp : masternodePayments.mapMasternodeBlocks[nBlockHeight].vecPayments) {
+                            CMasternode* pmn = mnodeman.Find(mnp.scriptPubKey);
+
+                            if(pmn) {
+                                pmn->lastPaid = UINT64_MAX;
+                            }
+                        }
+                    }
+                }
+
                 return ret;
             }
 
@@ -607,6 +636,20 @@ bool CMasternodeBlockPayees::IsTransactionValid(const CTransaction& txNew, int n
     }
 
     LogPrint(BCLog::MASTERNODE,"CMasternodePayments::IsTransactionValid - Missing required payment of %s to %s\n", FormatMoney(requiredMasternodePayment).c_str(), strPayeesPossible.c_str());
+
+    {
+        if (masternodePayments.mapMasternodeBlocks.count(nBlockHeight)) {
+            LOCK(cs_vecPayments);
+            for(auto& mnp : masternodePayments.mapMasternodeBlocks[nBlockHeight].vecPayments) {
+                CMasternode* pmn = mnodeman.Find(mnp.scriptPubKey);
+
+                if(pmn) {
+                    pmn->lastPaid = UINT64_MAX;
+                }
+            }
+        }
+    }
+    
     return false;
 }
 

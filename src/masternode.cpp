@@ -80,6 +80,7 @@ CMasternode::CMasternode() :
     nScanningErrorCount = 0;
     nLastScanningErrorBlockHeight = 0;
     lastTimeChecked = 0;
+    lastPaid = UINT64_MAX;
 }
 
 CMasternode::CMasternode(const CMasternode& other) :
@@ -100,6 +101,7 @@ CMasternode::CMasternode(const CMasternode& other) :
     nScanningErrorCount = other.nScanningErrorCount;
     nLastScanningErrorBlockHeight = other.nLastScanningErrorBlockHeight;
     lastTimeChecked = 0;
+    lastPaid = other.lastPaid;
 }
 
 uint256 CMasternode::GetSignatureHash() const
@@ -265,6 +267,8 @@ int64_t CMasternode::SecondsSincePayment()
 
 int64_t CMasternode::GetLastPaid()
 {
+    if(lastPaid != UINT64_MAX) return lastPaid;
+
     const CBlockIndex* BlockReading = GetChainTip();
     if (BlockReading == nullptr) return false;
 
@@ -280,7 +284,8 @@ int64_t CMasternode::GetLastPaid()
     int n = 0;
     for (unsigned int i = 1; BlockReading && BlockReading->nHeight > 0; i++) {
         if (n >= nMnCount) {
-            return 0;
+            lastPaid = 0;
+            return lastPaid;
         }
         n++;
 
@@ -290,7 +295,8 @@ int64_t CMasternode::GetLastPaid()
                     Search for this payee, on the blockchain
                 */
                 if (masternodePayments.mapMasternodeBlocks[BlockReading->nHeight].HasPaidPayee(mnpayee)) {
-                    return BlockReading->nTime; // doesn't need the offset because it is deterministically read from the blockchain
+                    lastPaid = BlockReading->nTime; // doesn't need the offset because it is deterministically read from the blockchain
+                    return lastPaid;
                 }
             } else {
 
@@ -307,7 +313,8 @@ int64_t CMasternode::GetLastPaid()
                     to converge on the same payees quickly, then keep the same schedule.
                 */
                 if (masternodePayments.mapMasternodeBlocks[BlockReading->nHeight].HasPayeeWithVotes(mnpayee, 2)) {
-                    return BlockReading->nTime + nOffset;
+                    lastPaid = BlockReading->nTime + nOffset;
+                    return lastPaid;
                 }
             }
         }
@@ -319,7 +326,8 @@ int64_t CMasternode::GetLastPaid()
         BlockReading = BlockReading->pprev;
     }
 
-    return 0;
+    lastPaid = 0;
+    return lastPaid;
 }
 
 bool CMasternode::IsValidNetAddr()

@@ -665,11 +665,17 @@ std::vector<std::pair<int, CMasternode> > CMasternodeMan::GetMasternodeRanks(int
     if (!GetBlockHash(hash, nBlockHeight)) return vecMasternodeRanks;
 
     {
-        LOCK2(cs_main, cs);
+        std::vector<CMasternode> vmn;
+
+        {
+            LOCK(cs);
+
+            vmn.assign(vMasternodes.begin(), vMasternodes.end());
+        }
+
 
         // scan for winner
-        for (CMasternode& mn : vMasternodes) {
-            mn.Check()
+        for (CMasternode& mn : vmn) {
 
             if (mn.protocolVersion < minProtocol) continue;
 
