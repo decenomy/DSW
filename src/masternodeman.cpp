@@ -365,6 +365,8 @@ int CMasternodeMan::stable_size ()
     int64_t nMasternode_Min_Age = MN_WINNER_MINIMUM_AGE;
     int64_t nMasternode_Age = 0;
 
+    LOCK2(cs_main, cs);
+
     for (CMasternode& mn : vMasternodes) {
         if (mn.protocolVersion < nMinProtocol) {
             continue; // Skip obsolete versions
@@ -392,6 +394,8 @@ int CMasternodeMan::CountEnabled(int protocolVersion)
     int i = 0;
     protocolVersion = protocolVersion == -1 ? ActiveProtocol() : protocolVersion;
 
+    LOCK2(cs_main, cs);
+
     for (CMasternode& mn : vMasternodes) {
         mn.Check();
         if (mn.protocolVersion < protocolVersion || !mn.IsEnabled()) continue;
@@ -403,6 +407,8 @@ int CMasternodeMan::CountEnabled(int protocolVersion)
 
 void CMasternodeMan::CountNetworks(int protocolVersion, int& ipv4, int& ipv6, int& onion)
 {
+    LOCK(cs);
+
     for (CMasternode& mn : vMasternodes) {
         mn.Check();
         std::string strHost;
@@ -449,6 +455,7 @@ void CMasternodeMan::DsegUpdate(CNode* pnode)
 CMasternode* CMasternodeMan::Find(const CScript& payee)
 {
     LOCK(cs);
+
     CScript payee2;
 
     for (CMasternode& mn : vMasternodes) {
@@ -498,7 +505,6 @@ CMasternode* CMasternodeMan::Find(const CService &addr)
 //
 CMasternode* CMasternodeMan::GetNextMasternodeInQueueForPayment(int nBlockHeight, bool fFilterSigTime, int& nCount, std::vector<std::pair<int64_t, CTxIn>>& vecMasternodeLastPaid)
 {
-    LOCK2(cs_main, cs);
 
     CMasternode* pBestMasternode = NULL;
 
@@ -506,30 +512,35 @@ CMasternode* CMasternodeMan::GetNextMasternodeInQueueForPayment(int nBlockHeight
         Make a vector with all of the last paid times
     */
 
-    int nMnCount = CountEnabled();
-    for (CMasternode& mn : vMasternodes) {
-        mn.Check();
-        if (!mn.IsEnabled()) continue;
+    int nMnCount = 0;
+    {
+        LOCK2(cs_main, cs);
 
-        // //check protocol version
-        if (mn.protocolVersion < ActiveProtocol()) continue;
+        nMnCount = CountEnabled();
+        for (CMasternode& mn : vMasternodes) {
+            mn.Check();
+            if (!mn.IsEnabled()) continue;
 
-        //it's in the list (up to 8 entries ahead of current block to allow propagation) -- so let's skip it
-        if (masternodePayments.IsScheduled(mn, nBlockHeight)) continue;
+            // //check protocol version
+            if (mn.protocolVersion < ActiveProtocol()) continue;
 
-        //it's too new, wait for a cycle
-        if (Params().GetConsensus().NetworkUpgradeActive(chainActive.Tip()->nHeight, Consensus::UPGRADE_STAKE_MODIFIER_V2)) {
-            if (fFilterSigTime && mn.sigTime + (nMnCount * 60) > GetAdjustedTime()) continue;
-        } else {
-            if (fFilterSigTime && mn.sigTime + (nMnCount * 2.6 * 60) > GetAdjustedTime()) continue;
+            //it's in the list (up to 8 entries ahead of current block to allow propagation) -- so let's skip it
+            if (masternodePayments.IsScheduled(mn, nBlockHeight)) continue;
+
+            //it's too new, wait for a cycle
+            if (Params().GetConsensus().NetworkUpgradeActive(chainActive.Tip()->nHeight, Consensus::UPGRADE_STAKE_MODIFIER_V2)) {
+                if (fFilterSigTime && mn.sigTime + (nMnCount * 60) > GetAdjustedTime()) continue;
+            } else {
+                if (fFilterSigTime && mn.sigTime + (nMnCount * 2.6 * 60) > GetAdjustedTime()) continue;
+            }
+
+            //make sure it has as many confirmations as there are masternodes
+            if (!sporkManager.IsSporkActive(SPORK_107_IGNORE_COLLATERAL_CONFIRMATIONS)) {
+                if (pcoinsTip->GetCoinDepthAtHeight(mn.vin.prevout, nBlockHeight) < nMnCount) continue;
+            }
+
+            vecMasternodeLastPaid.push_back(std::make_pair(mn.SecondsSincePayment(), mn.vin));
         }
-
-        //make sure it has as many confirmations as there are masternodes
-        if (!sporkManager.IsSporkActive(SPORK_107_IGNORE_COLLATERAL_CONFIRMATIONS)) {
-            if (pcoinsTip->GetCoinDepthAtHeight(mn.vin.prevout, nBlockHeight) < nMnCount) continue;
-        }
-
-        vecMasternodeLastPaid.push_back(std::make_pair(mn.SecondsSincePayment(), mn.vin));
     }
 
     nCount = (int)vecMasternodeLastPaid.size();
@@ -567,6 +578,8 @@ CMasternode* CMasternodeMan::GetCurrentMasterNode(int mod, int64_t nBlockHeight,
     int64_t score = 0;
     CMasternode* winner = NULL;
 
+    LOCK(cs);
+
     // scan for winner
     for (CMasternode& mn : vMasternodes) {
         mn.Check();
@@ -600,6 +613,8 @@ int CMasternodeMan::GetMasternodeRank(const CTxIn& vin, int64_t nBlockHeight, in
     //make sure we know about this block
     uint256 hash;
     if (!GetBlockHash(hash, nBlockHeight)) return defaultValue;
+
+    LOCK2(cs_main, cs);
 
     // scan for winner
     for (CMasternode& mn : vMasternodes) {
@@ -650,7 +665,7 @@ std::vector<std::pair<int, CMasternode> > CMasternodeMan::GetMasternodeRanks(int
     if (!GetBlockHash(hash, nBlockHeight)) return vecMasternodeRanks;
 
     {
-        LOCK(cs);
+        LOCK2(cs_main, cs);
 
         // scan for winner
         for (CMasternode& mn : vMasternodes) {
@@ -786,10 +801,13 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
 
         int nInvCount = 0;
 
-        for (CMasternode& mn : vMasternodes) {
-            if (mn.addr.IsRFC1918()) continue; //local network
+        {
+            LOCK(cs);
 
-            if (mn.IsEnabled()) {
+            for (CMasternode& mn : vMasternodes) {
+                if (mn.addr.IsRFC1918()) continue; //local network
+
+                if (mn.IsEnabled()) {
                 LogPrint(BCLog::MASTERNODE, "dseg - Sending Masternode entry - %s \n", mn.vin.prevout.ToStringShort());
                 if (vin == CTxIn() || vin == mn.vin) {
                     CMasternodeBroadcast mnb = CMasternodeBroadcast(mn);
@@ -799,9 +817,10 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
 
                     if (!mapSeenMasternodeBroadcast.count(hash)) mapSeenMasternodeBroadcast.insert(std::make_pair(hash, mnb));
 
-                    if (vin == mn.vin) {
-                        LogPrint(BCLog::MASTERNODE, "dseg - Sent 1 Masternode entry to peer %i\n", pfrom->GetId());
-                        return;
+                        if (vin == mn.vin) {
+                            LogPrint(BCLog::MASTERNODE, "dseg - Sent 1 Masternode entry to peer %i\n", pfrom->GetId());
+                            return;
+                        }
                     }
                 }
             }
