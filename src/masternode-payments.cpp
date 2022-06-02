@@ -476,8 +476,6 @@ bool CMasternodePayments::GetBlockPayee(int nBlockHeight, CScript& payee)
 // -- Only look ahead up to 8 blocks to allow for propagation of the latest 2 winners
 bool CMasternodePayments::IsScheduled(CMasternode& mn, int nNotBlockHeight)
 {
-    LOCK(cs_mapMasternodeBlocks);
-
     int nHeight;
     {
         TRY_LOCK(cs_main, locked);
@@ -491,10 +489,14 @@ bool CMasternodePayments::IsScheduled(CMasternode& mn, int nNotBlockHeight)
     CScript payee;
     for (int64_t h = nHeight; h <= nHeight + 8; h++) {
         if (h == nNotBlockHeight) continue;
-        if (mapMasternodeBlocks.count(h)) {
-            if (mapMasternodeBlocks[h].GetPayee(payee)) {
-                if (mnpayee == payee) {
-                    return true;
+        {
+            LOCK(cs_mapMasternodeBlocks);
+
+            if (mapMasternodeBlocks.count(h)) {
+                if (mapMasternodeBlocks[h].GetPayee(payee)) {
+                    if (mnpayee == payee) {
+                        return true;
+                    }
                 }
             }
         }
@@ -511,21 +513,25 @@ bool CMasternodePayments::AddWinningMasternode(CMasternodePaymentWinner& winnerI
     }
 
     {
-        LOCK2(cs_mapMasternodePayeeVotes, cs_mapMasternodeBlocks);
+        LOCK(cs_mapMasternodePayeeVotes);
 
         if (mapMasternodePayeeVotes.count(winnerIn.GetHash())) {
             return false;
         }
 
         mapMasternodePayeeVotes[winnerIn.GetHash()] = winnerIn;
+        }
+
+    {
+        LOCK(cs_mapMasternodeBlocks);
 
         if (!mapMasternodeBlocks.count(winnerIn.nBlockHeight)) {
             CMasternodeBlockPayees blockPayees(winnerIn.nBlockHeight);
             mapMasternodeBlocks[winnerIn.nBlockHeight] = blockPayees;
         }
-    }
 
-    mapMasternodeBlocks[winnerIn.nBlockHeight].AddPayee(winnerIn.payee, 1);
+        mapMasternodeBlocks[winnerIn.nBlockHeight].AddPayee(winnerIn.payee, 1);
+    }
 
     return true;
 }
@@ -553,7 +559,7 @@ bool CMasternodeBlockPayees::HasPaidPayee(const CScript& payee) {
 
 bool CMasternodeBlockPayees::IsTransactionValid(const CTransaction& txNew, int nBlockHeight)
 {
-    LOCK(cs_vecPayments);
+    LOCK2(cs_mapMasternodeBlocks, cs_vecPayments);
 
     //require at least 6 signatures
     int nMaxSignatures = 0;
@@ -562,17 +568,13 @@ bool CMasternodeBlockPayees::IsTransactionValid(const CTransaction& txNew, int n
             nMaxSignatures = payee.nVotes;
 
     // if we don't have at least 6 signatures on a payee, approve whichever is the longest chain
-    if (nMaxSignatures < MNPAYMENTS_SIGNATURES_REQUIRED) {
-
-        {
-            if (masternodePayments.mapMasternodeBlocks.count(nBlockHeight)) {
-                LOCK(cs_vecPayments);
-                for(auto& mnp : masternodePayments.mapMasternodeBlocks[nBlockHeight].vecPayments) {
-                    CMasternode* pmn = mnodeman.Find(mnp.scriptPubKey);
+    if (nMaxSignatures < MNPAYMENTS_SIGNATURES_REQUIRED) {   
+        if (masternodePayments.mapMasternodeBlocks.count(nBlockHeight)) {
+            for(auto& mnp : masternodePayments.mapMasternodeBlocks[nBlockHeight].vecPayments) {
+                CMasternode* pmn = mnodeman.Find(mnp.scriptPubKey);
 
                     if(pmn) {
-                        pmn->lastPaid = UINT64_MAX;
-                    }
+                    pmn->lastPaid = UINT64_MAX;
                 }
             }
         }
@@ -620,22 +622,15 @@ bool CMasternodeBlockPayees::IsTransactionValid(const CTransaction& txNew, int n
                 } else {
                     ret = true;
                 }
-                {
-                    LOCK(cs_mapMasternodeBlocks);
-
-                    if (ret && masternodePayments.mapMasternodeBlocks.count(nBlockHeight)) {
-                        masternodePayments.mapMasternodeBlocks[nBlockHeight].paidPayee = payee.scriptPubKey;
-                    }
+                if (ret && masternodePayments.mapMasternodeBlocks.count(nBlockHeight)) {
+                    masternodePayments.mapMasternodeBlocks[nBlockHeight].paidPayee = payee.scriptPubKey;
                 }
-                {
-                    if (masternodePayments.mapMasternodeBlocks.count(nBlockHeight)) {
-                        LOCK(cs_vecPayments);
-                        for(auto& mnp : masternodePayments.mapMasternodeBlocks[nBlockHeight].vecPayments) {
-                            CMasternode* pmn = mnodeman.Find(mnp.scriptPubKey);
+                if (masternodePayments.mapMasternodeBlocks.count(nBlockHeight)) {
+                    for(auto& mnp : masternodePayments.mapMasternodeBlocks[nBlockHeight].vecPayments) {
+                        CMasternode* pmn = mnodeman.Find(mnp.scriptPubKey);
 
-                            if(pmn) {
-                                pmn->lastPaid = UINT64_MAX;
-                            }
+                        if(pmn) {
+                            pmn->lastPaid = UINT64_MAX;
                         }
                     }
                 }
@@ -655,15 +650,12 @@ bool CMasternodeBlockPayees::IsTransactionValid(const CTransaction& txNew, int n
 
     LogPrint(BCLog::MASTERNODE,"CMasternodePayments::IsTransactionValid - Missing required payment of %s to %s\n", FormatMoney(requiredMasternodePayment).c_str(), strPayeesPossible.c_str());
 
-    {
-        if (masternodePayments.mapMasternodeBlocks.count(nBlockHeight)) {
-            LOCK(cs_vecPayments);
-            for(auto& mnp : masternodePayments.mapMasternodeBlocks[nBlockHeight].vecPayments) {
-                CMasternode* pmn = mnodeman.Find(mnp.scriptPubKey);
+    if (masternodePayments.mapMasternodeBlocks.count(nBlockHeight)) {
+        for(auto& mnp : masternodePayments.mapMasternodeBlocks[nBlockHeight].vecPayments) {
+            CMasternode* pmn = mnodeman.Find(mnp.scriptPubKey);
 
                 if(pmn) {
-                    pmn->lastPaid = UINT64_MAX;
-                }
+                pmn->lastPaid = UINT64_MAX;
             }
         }
     }
