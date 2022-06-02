@@ -93,7 +93,7 @@ public:
     inline void SerializationOp(Stream& s, Operation ser_action)
     {
         LOCK(cs);
-        std::size_t n = vMasternodes.size();
+        uint64_t n = (uint64_t)vMasternodes.size();
         CCompactSize size(n);
         READWRITE(size);
         if(ser_action.ForRead()) { 
