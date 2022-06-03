@@ -423,7 +423,7 @@ int CMasternodeMan::CountEnabled(int protocolVersion)
 
 void CMasternodeMan::CountNetworks(int protocolVersion, int& ipv4, int& ipv6, int& onion)
 {
-    LOCK(cs);
+    LOCK2(cs_main, cs);
 
     for (auto mn : vMasternodes) {
         mn->Check();
