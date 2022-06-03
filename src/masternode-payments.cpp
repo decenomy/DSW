@@ -348,6 +348,7 @@ void CMasternodePayments::ProcessMessageMasternodePayments(CNode* pfrom, std::st
 
     if (strCommand == NetMsgType::GETMNWINNERS) { //Masternode Payments Request Sync
         if (fLiteMode) return;   //disable all Masternode related functionality
+        if (sporkManager.IsSporkActive(SPORK_112_MASTERNODE_LAST_PAID_V2)) return;
 
         int nCountNeeded;
         vRecv >> nCountNeeded;
@@ -366,6 +367,8 @@ void CMasternodePayments::ProcessMessageMasternodePayments(CNode* pfrom, std::st
         //this is required in litemodef
         CMasternodePaymentWinner winner;
         vRecv >> winner;
+
+        if (sporkManager.IsSporkActive(SPORK_112_MASTERNODE_LAST_PAID_V2)) return;
 
         if (pfrom->nVersion < ActiveProtocol()) return;
 
@@ -428,24 +431,6 @@ void CMasternodePayments::ProcessMessageMasternodePayments(CNode* pfrom, std::st
             if (!pmn->IsEnabled()) {
                 LogPrint(BCLog::MASTERNODE, "mnw - winner payee is a masternode but is not ENABLED");
                 return;
-            }
-            if (sporkManager.IsSporkActive(SPORK_113_FORCE_ELIGIBLE_VOTED_MASTERNODE)) {
-
-                bool found = false;
-                int nCount = 0;
-                std::vector<std::pair<int64_t, CTxIn>> vecMasternodeLastPaid;
-                mnodeman.GetNextMasternodeInQueueForPayment(nHeight, true, nCount, vecMasternodeLastPaid);
-
-                for (auto& s : vecMasternodeLastPaid) {
-                    if(pmn->vin == s.second) {
-                        found = true;
-                    }
-                }
-
-                if (!found) {
-                    LogPrint(BCLog::MASTERNODE, "mnw - winner payee is a masternode is ENABLED, but is not eligible");
-                    return;
-                }
             }  
         }
 
@@ -463,10 +448,34 @@ void CMasternodePayments::ProcessMessageMasternodePayments(CNode* pfrom, std::st
 
 bool CMasternodePayments::GetBlockPayee(int nBlockHeight, CScript& payee)
 {
-    LOCK(cs_mapMasternodeBlocks);
+    if (sporkManager.IsSporkActive(SPORK_112_MASTERNODE_LAST_PAID_V2)) {
+        LogPrint(BCLog::MASTERNODE, "CMasternodePayments::GetBlockPayee() nHeight %d. \n", nBlockHeight);
 
-    if (mapMasternodeBlocks.count(nBlockHeight)) {
-        return mapMasternodeBlocks[nBlockHeight].GetPayee(payee);
+    // pay to the oldest MN that still had no payment but its input is old enough and it was active long enough
+        int nCount = 0;
+        std::vector<CTxIn> vecEligibleTxIns;
+        CMasternode* pmn = mnodeman.GetNextMasternodeInQueueForPayment(nBlockHeight, true, nCount, vecEligibleTxIns);
+
+        if (pmn) {
+            LogPrint(BCLog::MASTERNODE,"CMasternodePayments::GetBlockPayee() Found by GetNextMasternodeInQueueForPayment \n");
+
+            payee = GetScriptForDestination(pmn->pubKeyCollateralAddress.GetID());
+
+            CTxDestination address1;
+            ExtractDestination(payee, address1);
+
+            LogPrint(BCLog::MASTERNODE,"CMasternodePayments::GetBlockPayee() Winner payee %s nHeight %d. \n", EncodeDestination(address1).c_str(), nBlockHeight);
+
+            return true;
+        } else {
+            LogPrint(BCLog::MASTERNODE,"CMasternodePayments::GetBlockPayee() Failed to find masternode to pay\n");
+        }
+    } else {
+        LOCK(cs_mapMasternodeBlocks);
+
+        if (mapMasternodeBlocks.count(nBlockHeight)) {
+            return mapMasternodeBlocks[nBlockHeight].GetPayee(payee);
+        }
     }
 
     return false;
@@ -476,6 +485,8 @@ bool CMasternodePayments::GetBlockPayee(int nBlockHeight, CScript& payee)
 // -- Only look ahead up to 8 blocks to allow for propagation of the latest 2 winners
 bool CMasternodePayments::IsScheduled(CMasternode& mn, int nNotBlockHeight)
 {
+    if (sporkManager.IsSporkActive(SPORK_112_MASTERNODE_LAST_PAID_V2)) return false;
+
     int nHeight;
     {
         TRY_LOCK(cs_main, locked);
@@ -604,21 +615,6 @@ bool CMasternodeBlockPayees::IsTransactionValid(const CTransaction& txNew, int n
                     CMasternode* pmn = mnodeman.Find(payee.scriptPubKey);
                     ret = pmn && pmn->IsEnabled(); // it is a existing masternode and it is enabled then it is OK
 
-                    if(ret && sporkManager.IsSporkActive(SPORK_111_FORCE_ELIGIBLE_MASTERNODE_PAYMENT)) {
-                        ret = false;
-                        int nCount = 0;
-                        std::vector<std::pair<int64_t, CTxIn>> vecMasternodeLastPaid;
-                        mnodeman.GetNextMasternodeInQueueForPayment(nBlockHeight, true, nCount, vecMasternodeLastPaid);
-
-                        for (PAIRTYPE(int64_t, CTxIn) & s : vecMasternodeLastPaid) {
-                            pmn = mnodeman.Find(s.second);
-                            if (!pmn) continue;
-
-                            if (GetScriptForDestination(pmn->pubKeyCollateralAddress.GetID()) == payee.scriptPubKey) {
-                                ret = true;
-                            }
-                        }
-                    }
                 } else {
                     ret = true;
                 }
@@ -764,8 +760,8 @@ void CMasternodePayments::ProcessBlock(int nBlockHeight)
 
         // pay to the oldest MN that still had no payment but its input is old enough and it was active long enough
         int nCount = 0;
-        std::vector<std::pair<int64_t, CTxIn>> vecMasternodeLastPaid;
-        CMasternode* pmn = mnodeman.GetNextMasternodeInQueueForPayment(nBlockHeight, true, nCount, vecMasternodeLastPaid);
+        std::vector<CTxIn> vecEligibleTxIns;
+        CMasternode* pmn = mnodeman.GetNextMasternodeInQueueForPayment(nBlockHeight, true, nCount, vecEligibleTxIns);
 
         if (pmn != NULL) {
             LogPrint(BCLog::MASTERNODE, "CMasternodePayments::ProcessBlock() Found by FindOldestNotInVec \n");
