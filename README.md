@@ -3,7 +3,7 @@ DashDiamond Standard wallet repository
 
 ### Coin Specs
 
-• PoW Algorithm: Quark    
+• PoW Algorithm: Xevan    
 • Premine: 180,000 DASHD   
 • Liquimine: 500,500 DASHD    
 • PoW Blocks: 1 - 200    
