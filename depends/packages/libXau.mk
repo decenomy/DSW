@@ -1,7 +1,7 @@
 package=libXau
 $(package)_version=1.0.8
 # $(package)_download_path=https://xorg.freedesktop.org/releases/individual/lib/
-$(package)_download_path=https://cloudflare-ipfs.com/ipfs/QmYv9wHqKa5gZE1kL4ZpcVqKp1coS5tS9cYKGe4mUxxrqL
+$(package)_download_path=https://github.com/decenomy/depends/raw/main/
 $(package)_file_name=$(package)-$($(package)_version).tar.bz2
 $(package)_sha256_hash=fdd477320aeb5cdd67272838722d6b7d544887dfe7de46e1e7cc0c27c2bea4f2
 $(package)_dependencies=xproto
