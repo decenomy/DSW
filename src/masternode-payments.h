@@ -91,6 +91,7 @@ class CMasternodeBlockPayees
 public:
     int nBlockHeight;
     std::vector<CMasternodePayee> vecPayments;
+    CScript paidPayee;
 
     CMasternodeBlockPayees()
     {
