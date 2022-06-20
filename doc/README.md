@@ -26,7 +26,7 @@ Drag Kyanite-Qt to your applications folder, and then run Kyanite-Qt.
 
 ### Need Help?
 
-* See the documentation at the [Kyanite Wiki](https://github.com/kyancoin/KYAN/)
+* See the documentation at the [Kyanite Wiki](https://github.com/decenomy/KYAN/)
 for help and more information.
 * Join our Discord server [Discord Server](https://discord.gg/R2Racbr)
 
@@ -48,7 +48,7 @@ The Kyanite repo's [root README](/README.md) contains relevant information on th
 - [Multiwallet Qt Development](multiwallet-qt.md)
 - [Release Notes](release-notes.md)
 - [Release Process](release-process.md)
-- [Source Code Documentation (External Link)](https://github.com/kyancoin/KYAN/)
+- [Source Code Documentation (External Link)](https://github.com/decenomy/KYAN/)
 - [Translation Process](translation_process.md)
 - [Unit Tests](unit-tests.md)
 - [Unauthenticated REST Interface](REST-interface.md)

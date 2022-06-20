@@ -29,8 +29,8 @@ Build-Depends: debhelper,
  dh-systemd
 Standards-Version: 3.9.2
 Homepage: https://kyancoin.net
-Vcs-Git: git://github.com/kyancoin/KYAN.git
-Vcs-Browser: https://github.com/kyancoin/KYAN
+Vcs-Git: git://github.com/decenomy/KYAN.git
+Vcs-Browser: https://github.com/decenomy/KYAN
 
 Package: kyanited
 Architecture: any
