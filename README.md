@@ -13,7 +13,7 @@ Peps wallet repository
 • Ports: 15252 (p2p) / 16262 (rpc)  
 
 • Explorer https://explorer.decenomy.net/PEPS/blocks  
-• Website [https://github.com/PEPS-Project/PEPS](https://github.com/PEPS-Project/PEPS)
+• Website [https://github.com/decenomy/PEPS](https://github.com/decenomy/PEPS)
 
 ### Rewards Breakdown
 

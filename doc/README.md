@@ -26,7 +26,7 @@ Drag Peps-Qt to your applications folder, and then run Peps-Qt.
 
 ### Need Help?
 
-* See the documentation at the [Peps Wiki](https://github.com/PEPS-Project/peps/)
+* See the documentation at the [Peps Wiki](https://github.com/decenomy/PEPS/)
 for help and more information.
 * Join our Discord server [Discord Server](http://discord.peps.today/)
 
@@ -48,7 +48,7 @@ The Peps repo's [root README](/README.md) contains relevant information on the d
 - [Multiwallet Qt Development](multiwallet-qt.md)
 - [Release Notes](release-notes.md)
 - [Release Process](release-process.md)
-- [Source Code Documentation (External Link)](https://github.com/PEPS-Project/peps/)
+- [Source Code Documentation (External Link)](https://github.com/decenomy/PEPS/)
 - [Translation Process](translation_process.md)
 - [Unit Tests](unit-tests.md)
 - [Unauthenticated REST Interface](REST-interface.md)
