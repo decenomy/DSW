@@ -29,8 +29,8 @@ Build-Depends: debhelper,
  dh-systemd
 Standards-Version: 3.9.2
 Homepage: https://dashdiamond.net/
-Vcs-Git: git://github.com/Dash-Diamond/DASHD.git
-Vcs-Browser: https://github.com/Dash-Diamond/DASHD
+Vcs-Git: git://github.com/decenomy/DASHD.git
+Vcs-Browser: https://github.com/decenomy/DASHD
 
 Package: dashdiamondd
 Architecture: any

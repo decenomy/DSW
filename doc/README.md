@@ -26,7 +26,7 @@ Drag DashDiamond-Qt to your applications folder, and then run DashDiamond-Qt.
 
 ### Need Help?
 
-* See the documentation at the [DashDiamond Wiki](https://github.com/Dash-Diamond/DASHD/)
+* See the documentation at the [DashDiamond Wiki](https://github.com/decenomy/DASHD/)
 for help and more information.
 * Join our Discord server [Discord Server](https://discord.gg/CeJb7Yxku3)
 
@@ -48,7 +48,7 @@ The DashDiamond repo's [root README](/README.md) contains relevant information o
 - [Multiwallet Qt Development](multiwallet-qt.md)
 - [Release Notes](release-notes.md)
 - [Release Process](release-process.md)
-- [Source Code Documentation (External Link)](https://github.com/Dash-Diamond/DASHD/)
+- [Source Code Documentation (External Link)](https://github.com/decenomy/DASHD/)
 - [Translation Process](translation_process.md)
 - [Unit Tests](unit-tests.md)
 - [Unauthenticated REST Interface](REST-interface.md)
