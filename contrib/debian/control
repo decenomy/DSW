@@ -29,8 +29,8 @@ Build-Depends: debhelper,
  dh-systemd
 Standards-Version: 3.9.2
 Homepage: https://sappcoin.com
-Vcs-Git: git://github.com/sappcoin-com/SAPP.git
-Vcs-Browser: https://github.com/sappcoin-com/SAPP
+Vcs-Git: git://github.com/decenomy/SAPP.git
+Vcs-Browser: https://github.com/decenomy/SAPP
 
 Package: sapphired
 Architecture: any
