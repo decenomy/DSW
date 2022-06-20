@@ -29,8 +29,8 @@ Build-Depends: debhelper,
  dh-systemd
 Standards-Version: 3.9.2
 Homepage:  https://ucrcoin.net/
-Vcs-Git: git://github.com/ucrcoin/UCR.git
-Vcs-Browser: https://github.com/ucrcoin/UCR
+Vcs-Git: git://github.com/decenomy/UCR.git
+Vcs-Browser: https://github.com/decenomy/UCR
 
 Package: ultracleard
 Architecture: any
