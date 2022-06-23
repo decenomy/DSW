@@ -1,6 +1,7 @@
 PACKAGE=qt
 $(package)_version=5.9.9
-$(package)_download_path=https://download.qt.io/archive/qt/5.9/$($(package)_version)/submodules
+# $(package)_download_path=https://download.qt.io/archive/qt/5.9/$($(package)_version)/submodules
+$(package)_download_path=https://github.com/decenomy/depends/raw/main/
 $(package)_suffix=opensource-src-$($(package)_version).tar.xz
 $(package)_file_name=qtbase-$($(package)_suffix)
 $(package)_sha256_hash=d5a97381b9339c0fbaf13f0c05d599a5c999dcf94145044058198987183fed65

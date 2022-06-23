@@ -266,12 +266,12 @@ public:
     bool IsInputAssociatedWithPubkey() const;
 
     static CAmount GetMasternodeNodeCollateral(int nHeight);
-    
-    static CAmount GetCurrentMasternodeCollateral() 
+
+    static CAmount GetCurrentMasternodeCollateral()
     { 
         return GetMasternodeNodeCollateral(chainActive.Height()); 
     }
-    
+
     static CAmount GetNextWeekMasternodeCollateral()
     { 
         return CMasternode::GetMasternodeNodeCollateral(

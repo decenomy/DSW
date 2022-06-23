@@ -24,7 +24,7 @@
 /** Masternode manager */
 CMasternodeMan mnodeman;
 /** Keep track of the active Masternode */
-CActiveMasternode activeMasternode;
+CActiveMasternodeMan amnodeman;
 
 struct CompareLastPaid {
     bool operator()(const std::pair<int64_t, CTxIn>& t1,
@@ -216,7 +216,7 @@ bool CMasternodeMan::Add(CMasternode& mn)
     CMasternode* pmn = Find(mn.vin);
     CMasternode* pmnByAddr = Find(mn.addr);
     bool masternodeRankV2 = Params().GetConsensus().NetworkUpgradeActive(chainActive.Height(), Consensus::UPGRADE_MASTERNODE_RANK_V2);
-    if (pmn == NULL && (!masternodeRankV2 || pmnByAddr == NULL)) {
+    if (pmn == NULL && (sporkManager.IsSporkActive(SPORK_114_ALLOW_DUPLICATE_MN_IPS) || !masternodeRankV2 || pmnByAddr == NULL)) {
         LogPrint(BCLog::MASTERNODE, "CMasternodeMan: Adding new Masternode %s - count %i now\n", mn.vin.prevout.ToStringShort(), size() + 1);
         auto m = new CMasternode(mn);
         vMasternodes.push_back(m);
@@ -475,8 +475,8 @@ CMasternode* CMasternodeMan::Find(const CScript& payee)
     auto it = mapScriptMasternodes.find(payee);
     if (it != mapScriptMasternodes.end())
         return it->second;
-        
-    return NULL;       
+
+    return NULL;
 }
 
 CMasternode* CMasternodeMan::Find(const CTxIn& vin)
@@ -486,7 +486,6 @@ CMasternode* CMasternodeMan::Find(const CTxIn& vin)
     auto it = mapTxInMasternodes.find(vin);
     if (it != mapTxInMasternodes.end())
         return it->second;
-        
     return NULL;
 }
 
@@ -498,7 +497,6 @@ CMasternode* CMasternodeMan::Find(const CPubKey& pubKeyMasternode)
     auto it = mapPubKeyMasternodes.find(pubKeyMasternode);
     if (it != mapPubKeyMasternodes.end())
         return it->second;
-        
     return NULL;
 }
 
@@ -929,7 +927,7 @@ void ThreadCheckMasternodes()
 
                 // check if we should activate or ping every few minutes,
                 // start right after sync is considered to be done
-                if (c % MASTERNODE_PING_SECONDS == 1) activeMasternode.ManageStatus();
+                if (c % MASTERNODE_PING_SECONDS == 1) amnodeman.ManageStatus();
 
                 if (c % 60 == 0) {
                     mnodeman.CheckAndRemove();

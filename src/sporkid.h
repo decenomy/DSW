@@ -27,6 +27,7 @@ enum SporkId : int32_t {
     SPORK_109_FORCE_ENABLED_VOTED_MASTERNODE    = 10108,
     SPORK_110_FORCE_ENABLED_MASTERNODE_PAYMENT  = 10109,
     SPORK_112_MASTERNODE_LAST_PAID_V2           = 10111,
+    SPORK_114_ALLOW_DUPLICATE_MN_IPS            = 10113,
 
     SPORK_2_NOOP                                = 10001,
     SPORK_3_NOOP                                = 10002,

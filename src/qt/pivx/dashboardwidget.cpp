@@ -458,28 +458,29 @@ void DashboardWidget::initChart()
 
 void DashboardWidget::changeChartColors()
 {
-    QColor gridLineColorX;
-    QColor linePenColorY;
+    QColor gridLineColor;
+    QColor labelsColor;
     QColor backgroundColor;
-    QColor gridY;
+    
     if (isLightTheme()) {
-        gridLineColorX = QColor(255,255,255);
-        linePenColorY = gridLineColorX;
-        backgroundColor = linePenColorY;
-        axisY->setGridLineColor(QColor("#1a000000"));
+        gridLineColor = QColor("#1a000000");
+        labelsColor = QColor("#77000000");
+        backgroundColor = QColor(255,255,255);
     } else {
-        gridY = QColor("#40ffffff");
-        axisY->setGridLineColor(gridY);
-        gridLineColorX = QColor(15,11,22);
-        linePenColorY =  gridLineColorX;
-        backgroundColor = linePenColorY;
+        gridLineColor = QColor("#40ffffff");
+        labelsColor = QColor("#a0ffffff");
+        backgroundColor = QColor(15,11,22);
     }
 
-    axisX->setGridLineColor(gridLineColorX);
-    axisY->setLinePenColor(linePenColorY);
+    axisX->setGridLineColor(backgroundColor);
+    axisY->setGridLineColor(gridLineColor);
+    axisX->setLabelsColor(labelsColor);
+    axisY->setLabelsColor(labelsColor);
+    axisX->setLinePenColor(backgroundColor);
+    axisY->setLinePenColor(backgroundColor);
     chart->setBackgroundBrush(QBrush(backgroundColor));
-    if (set0) set0->setBorderColor(gridLineColorX);
-    if (set1) set1->setBorderColor(gridLineColorX);
+    if (set0) set0->setBorderColor(backgroundColor);
+    if (set1) set1->setBorderColor(backgroundColor);
 }
 
 void DashboardWidget::updateStakeFilter()
@@ -518,7 +519,7 @@ void DashboardWidget::updateStakeFilter()
     }
 }
 
-// pair DASHD, zDASHD
+// pair DASHD
 const QMap<int, QMap<QString, qint64>> DashboardWidget::getAmountBy()
 {
     updateStakeFilter();
@@ -579,7 +580,7 @@ bool DashboardWidget::loadChartData(bool withMonthNames)
     }
 
     chartData = new ChartData();
-    chartData->amountsByCache = getAmountBy(); // pair DASHD, zDASHD
+    chartData->amountsByCache = getAmountBy(); // pair DASHD
 
     std::pair<int,int> range = getChartRange(chartData->amountsByCache);
     if (range.first == 0 && range.second == 0) {

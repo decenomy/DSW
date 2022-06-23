@@ -103,9 +103,6 @@ public:
         return (nSequence == std::numeric_limits<uint32_t>::max());
     }
 
-    bool IsZerocoinSpend() const;
-    bool IsZerocoinPublicSpend() const;
-
     friend bool operator==(const CTxIn& a, const CTxIn& b)
     {
         return (a.prevout   == b.prevout &&
@@ -206,8 +203,6 @@ public:
         return (nValue < GetDustThreshold(minRelayTxFee));
     }
 
-    bool IsZerocoinMint() const;
-
     friend bool operator==(const CTxOut& a, const CTxOut& b)
     {
         return (a.nValue       == b.nValue &&
@@ -290,21 +285,9 @@ public:
     // Compute modified tx size for priority calculation (optionally given tx size)
     unsigned int CalculateModifiedSize(unsigned int nTxSize=0) const;
 
-    bool HasZerocoinSpendInputs() const;
-    bool HasZerocoinPublicSpendInputs() const;
-
-    bool HasZerocoinMintOutputs() const;
-
-    bool ContainsZerocoins() const
-    {
-        return HasZerocoinSpendInputs() || HasZerocoinMintOutputs();
-    }
-
-    CAmount GetZerocoinSpent() const;
-
     bool IsCoinBase() const
     {
-        return (vin.size() == 1 && vin[0].prevout.IsNull() && !ContainsZerocoins());
+        return (vin.size() == 1 && vin[0].prevout.IsNull());
     }
 
     bool IsCoinStake() const;

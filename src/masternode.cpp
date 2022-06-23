@@ -233,10 +233,10 @@ void CMasternode::Check(bool forceCheck)
                 return;
             }
         }
-
+        
         // ----------- burn address scanning -----------
         if (!consensus.mBurnAddresses.empty()) {
-            
+
             std::string addr = EncodeDestination(pubKeyCollateralAddress.GetID());
 
             if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
@@ -717,9 +717,12 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
 {
     // we are a masternode with the same vin (i.e. already activated) and this mnb is ours (matches our Masternode privkey)
     // so nothing to do here for us
-    if (fMasterNode && activeMasternode.vin != nullopt &&
-            vin.prevout == activeMasternode.vin->prevout && pubKeyMasternode == activeMasternode.pubKeyMasternode)
-        return true;
+    for (auto& activeMasternode : amnodeman.GetActiveMasternodes()) {
+        if (fMasterNode && 
+            activeMasternode.vin != nullopt &&
+            vin.prevout == activeMasternode.vin->prevout && 
+            pubKeyMasternode == activeMasternode.pubKeyMasternode) return true;
+    }
 
     // incorrect ping or its sigTime
     if(lastPing.IsNull() || !lastPing.CheckAndUpdate(nDoS, false, true)) return false;
@@ -787,15 +790,23 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
                 sigTime, vin.prevout.hash.ToString(), MASTERNODE_MIN_CONFIRMATIONS, pConfIndex->GetBlockTime());
             return false;
         }
+        if (GetMasternodeNodeCollateral(nConfHeight) != GetMasternodeNodeCollateral(chainActive.Height())) {
+            LogPrint(BCLog::MASTERNODE,"mnb - Wrong collateral transaction value of %d for Masternode %s (%i conf block is at %d)\n",
+                GetMasternodeNodeCollateral(nConfHeight) / COIN, vin.prevout.hash.ToString(), MASTERNODE_MIN_CONFIRMATIONS, pConfIndex->GetBlockTime());
+            return false;
+        }
     }
-
+    
     LogPrint(BCLog::MASTERNODE, "mnb - Got NEW Masternode entry - %s - %lli \n", vin.prevout.ToStringShort(), sigTime);
     CMasternode mn(*this);
     mnodeman.Add(mn);
 
     // if it matches our Masternode privkey, then we've been remotely activated
-    if (pubKeyMasternode == activeMasternode.pubKeyMasternode && protocolVersion == PROTOCOL_VERSION) {
-        activeMasternode.EnableHotColdMasterNode(vin, addr);
+    for (auto& activeMasternode : amnodeman.GetActiveMasternodes()) {
+        if (pubKeyMasternode == activeMasternode.pubKeyMasternode &&
+            protocolVersion == PROTOCOL_VERSION) {
+            activeMasternode.EnableHotColdMasterNode(vin, addr);
+        }
     }
 
     bool isLocal = (addr.IsRFC1918() || addr.IsLocal()) && !Params().IsRegTestNet();

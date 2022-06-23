@@ -47,11 +47,6 @@ const char* MNBROADCAST = "mnb";
 const char* MNPING = "mnp";
 const char* MNWINNER = "mnw";
 const char* GETMNWINNERS = "mnget";
-const char* BUDGETPROPOSAL = "mprop";
-const char* BUDGETVOTE = "mvote";
-const char* BUDGETVOTESYNC = "mnvs";
-const char* FINALBUDGET = "fbs";
-const char* FINALBUDGETVOTE = "fbvote";
 const char* SYNCSTATUSCOUNT = "ssc";
 const char* GETMNLIST = "dseg";
 }; // namespace NetMsgType
@@ -70,10 +65,6 @@ static const char* ppszTypeName[] = {
     NetMsgType::MNWINNER,
     NetMsgType::GETMNWINNERS,
     NetMsgType::GETMNLIST,
-    NetMsgType::BUDGETPROPOSAL,
-    NetMsgType::BUDGETVOTE,
-    NetMsgType::FINALBUDGET,
-    NetMsgType::FINALBUDGETVOTE
 };
 
 /** All known message types. Keep this in the same order as the list of
@@ -111,12 +102,7 @@ const static std::string allNetMessageTypes[] = {
     NetMsgType::MNWINNER,
     NetMsgType::GETMNWINNERS,
     NetMsgType::GETMNLIST,
-    NetMsgType::BUDGETPROPOSAL,
-    NetMsgType::BUDGETVOTE,
-    NetMsgType::BUDGETVOTESYNC,
-    NetMsgType::FINALBUDGET,
-    NetMsgType::FINALBUDGETVOTE,
-    NetMsgType::SYNCSTATUSCOUNT
+    NetMsgType::SYNCSTATUSCOUNT,
 };
 const static std::vector<std::string> allNetMessageTypesVec(allNetMessageTypes, allNetMessageTypes + ARRAYLEN(allNetMessageTypes));
 

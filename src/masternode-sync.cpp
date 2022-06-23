@@ -7,9 +7,9 @@
 // clang-format off
 #include "main.h"
 #include "activemasternode.h"
+#include "activemasternodeman.h"
 #include "masternode-sync.h"
 #include "masternode-payments.h"
-#include "masternode-budget.h"
 #include "masternode.h"
 #include "masternodeman.h"
 #include "netmessagemaker.h"
@@ -88,20 +88,14 @@ void CMasternodeSync::Reset()
     lastProcess = 0;
     lastMasternodeList = 0;
     lastMasternodeWinner = 0;
-    lastBudgetItem = 0;
     mapSeenSyncMNB.clear();
     mapSeenSyncMNW.clear();
-    mapSeenSyncBudget.clear();
     lastFailure = 0;
     nCountFailures = 0;
     sumMasternodeList = 0;
     sumMasternodeWinner = 0;
-    sumBudgetItemProp = 0;
-    sumBudgetItemFin = 0;
     countMasternodeList = 0;
     countMasternodeWinner = 0;
-    countBudgetItemProp = 0;
-    countBudgetItemFin = 0;
     RequestedMasternodeAssets = MASTERNODE_SYNC_INITIAL;
     RequestedMasternodeAttempt = 0;
     nAssetSyncStarted = GetTime();
@@ -133,32 +127,6 @@ void CMasternodeSync::AddedMasternodeWinner(const uint256& hash)
     }
 }
 
-void CMasternodeSync::AddedBudgetItem(const uint256& hash)
-{
-    if (budget.HaveSeenProposal(hash) ||
-            budget.HaveSeenProposalVote(hash) ||
-            budget.HaveSeenFinalizedBudget(hash) ||
-            budget.HaveSeenFinalizedBudgetVote(hash)) {
-        if (mapSeenSyncBudget[hash] < MASTERNODE_SYNC_THRESHOLD) {
-            lastBudgetItem = GetTime();
-            mapSeenSyncBudget[hash]++;
-        }
-    } else {
-        lastBudgetItem = GetTime();
-        mapSeenSyncBudget.insert(std::make_pair(hash, 1));
-    }
-}
-
-bool CMasternodeSync::IsBudgetPropEmpty()
-{
-    return sumBudgetItemProp == 0 && countBudgetItemProp > 0;
-}
-
-bool CMasternodeSync::IsBudgetFinEmpty()
-{
-    return sumBudgetItemFin == 0 && countBudgetItemFin > 0;
-}
-
 void CMasternodeSync::GetNextAsset()
 {
     switch (RequestedMasternodeAssets) {
@@ -174,9 +142,6 @@ void CMasternodeSync::GetNextAsset()
         RequestedMasternodeAssets = MASTERNODE_SYNC_MNW;
         break;
     case (MASTERNODE_SYNC_MNW):
-        RequestedMasternodeAssets = MASTERNODE_SYNC_BUDGET;
-        break;
-    case (MASTERNODE_SYNC_BUDGET):
         LogPrintf("CMasternodeSync::GetNextAsset - Sync has finished\n");
         RequestedMasternodeAssets = MASTERNODE_SYNC_FINISHED;
         break;
@@ -199,8 +164,6 @@ std::string CMasternodeSync::GetSyncStatus()
         return _("Synchronizing masternodes...");
     case MASTERNODE_SYNC_MNW:
         return _("Synchronizing masternode winners...");
-    case MASTERNODE_SYNC_BUDGET:
-        return _("Synchronizing budgets...");
     case MASTERNODE_SYNC_FAILED:
         return _("Synchronization failed");
     case MASTERNODE_SYNC_FINISHED:
@@ -230,16 +193,6 @@ void CMasternodeSync::ProcessMessage(CNode* pfrom, std::string& strCommand, CDat
             sumMasternodeWinner += nCount;
             countMasternodeWinner++;
             break;
-        case (MASTERNODE_SYNC_BUDGET_PROP):
-            if (RequestedMasternodeAssets != MASTERNODE_SYNC_BUDGET) return;
-            sumBudgetItemProp += nCount;
-            countBudgetItemProp++;
-            break;
-        case (MASTERNODE_SYNC_BUDGET_FIN):
-            if (RequestedMasternodeAssets != MASTERNODE_SYNC_BUDGET) return;
-            sumBudgetItemFin += nCount;
-            countBudgetItemFin++;
-            break;
         }
 
         LogPrint(BCLog::MASTERNODE, "CMasternodeSync:ProcessMessage - ssc - got inventory count %d %d\n", nItemID, nCount);
@@ -252,7 +205,6 @@ void CMasternodeSync::ClearFulfilledRequest()
         pnode->ClearFulfilledRequest("getspork");
         pnode->ClearFulfilledRequest("mnsync");
         pnode->ClearFulfilledRequest("mnwsync");
-        pnode->ClearFulfilledRequest("busync");
     });
 }
 
@@ -306,8 +258,6 @@ bool CMasternodeSync::SyncWithNode(CNode* pnode, bool isRegTestNet)
             int nMnCount = mnodeman.CountEnabled();
 
             g_connman->PushMessage(pnode, msgMaker.Make(NetMsgType::GETMNWINNERS, nMnCount)); //sync payees
-            uint256 n;
-            g_connman->PushMessage(pnode, msgMaker.Make(NetMsgType::BUDGETVOTESYNC, n)); //sync masternode votes
         } else {
             RequestedMasternodeAssets = MASTERNODE_SYNC_FINISHED;
         }
@@ -366,9 +316,10 @@ bool CMasternodeSync::SyncWithNode(CNode* pnode, bool isRegTestNet)
                 GetNextAsset();
                 return false;
             }
-
+            
             if (lastMasternodeWinner > 0 && lastMasternodeWinner < GetTime() - MASTERNODE_SYNC_TIMEOUT * 2 && RequestedMasternodeAttempt >= MASTERNODE_SYNC_THRESHOLD) { //hasn't received a new item in the last five seconds, so we'll move to the
                 GetNextAsset();
+                amnodeman.ManageStatus();
                 return false;
             }
 
@@ -386,6 +337,7 @@ bool CMasternodeSync::SyncWithNode(CNode* pnode, bool isRegTestNet)
                     nCountFailures++;
                 } else {
                     GetNextAsset();
+                    amnodeman.ManageStatus();
                 }
                 return false;
             }
@@ -395,37 +347,6 @@ bool CMasternodeSync::SyncWithNode(CNode* pnode, bool isRegTestNet)
             int nMnCount = mnodeman.CountEnabled();
 
             g_connman->PushMessage(pnode, msgMaker.Make(NetMsgType::GETMNWINNERS, nMnCount)); //sync payees
-            RequestedMasternodeAttempt++;
-            return false;
-        }
-
-        if (RequestedMasternodeAssets == MASTERNODE_SYNC_BUDGET) {
-            // We'll start rejecting votes if we accidentally get set as synced too soon
-            if (lastBudgetItem > 0 && lastBudgetItem < GetTime() - MASTERNODE_SYNC_TIMEOUT * 2 && RequestedMasternodeAttempt >= MASTERNODE_SYNC_THRESHOLD) {
-                // Hasn't received a new item in the last five seconds, so we'll move to the
-                GetNextAsset();
-
-                // Try to activate our masternode if possible
-                activeMasternode.ManageStatus();
-                return false;
-            }
-
-            // timeout
-            if (lastBudgetItem == 0 &&
-                (RequestedMasternodeAttempt >= MASTERNODE_SYNC_THRESHOLD * 3 || GetTime() - nAssetSyncStarted > MASTERNODE_SYNC_TIMEOUT * 5)) {
-                // maybe there is no budgets at all, so just finish syncing
-                GetNextAsset();
-                activeMasternode.ManageStatus();
-                return false;
-            }
-
-            if (pnode->HasFulfilledRequest("busync")) return true;
-            pnode->FulfilledRequest("busync");
-
-            if (RequestedMasternodeAttempt >= MASTERNODE_SYNC_THRESHOLD * 3) return false;
-
-            uint256 n;
-            g_connman->PushMessage(pnode, msgMaker.Make(NetMsgType::BUDGETVOTESYNC, n)); //sync masternode votes
             RequestedMasternodeAttempt++;
             return false;
         }

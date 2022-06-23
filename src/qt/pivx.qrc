@@ -95,7 +95,6 @@
         <file alias="ic-close-white">pivx/res/img/ic-close-white.svg</file>
         <file alias="ic-close">pivx/res/img/ic-close.svg</file>
         <file alias="ic-coin-piv">pivx/res/img/ic-coin-piv.svg</file>
-        <file alias="ic-coin-zpiv">pivx/res/img/ic-coin-zpiv.svg</file>
         <file alias="ic-combo-box">pivx/res/img/ic-combo-box.svg</file>
         <file alias="ic-connect">pivx/res/img/ic-connect.svg</file>
         <file alias="ic-copy-liliac">pivx/res/img/ic-copy-liliac.svg</file>
