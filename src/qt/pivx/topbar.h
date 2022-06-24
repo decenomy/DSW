@@ -37,6 +37,7 @@ public:
 
     void openPassPhraseDialog(AskPassphraseDialog::Mode mode, AskPassphraseDialog::Context ctx);
     void encryptWallet();
+    void addOTP();
     void showUpgradeDialog();
 
     void run(int type) override;

@@ -131,6 +131,7 @@ public:
     enum EncryptionStatus {
         Unencrypted,                 // !wallet->IsCrypted()
         Locked,                      // wallet->IsCrypted() && wallet->IsLocked()
+        LockedOTP,                  // wallet->IsCrypted() && wallet->IsLocked() && wallet->IsOTP()
         Unlocked,                    // wallet->IsCrypted() && !wallet->IsLocked()
         UnlockedForStaking          // wallet->IsCrypted() && !wallet->IsLocked() && wallet->fWalletUnlockStaking
     };
@@ -188,7 +189,7 @@ public:
     SendCoinsReturn sendCoins(WalletModelTransaction& transaction);
 
     // Wallet encryption
-    bool setWalletEncrypted(bool encrypted, const SecureString& passphrase);
+    bool setWalletEncrypted(bool encrypted, bool otpEnabled, const SecureString& passphrase);
     // Passphrase only needed when unlocking
     bool setWalletLocked(bool locked, const SecureString& passPhrase = SecureString(), bool stakingOnly = false);
 

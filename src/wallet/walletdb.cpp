@@ -449,6 +449,7 @@ public:
     unsigned int nZKeyMeta;
     unsigned int nSapZAddrs;
     bool fIsEncrypted;
+    bool fIsOTPEnabled;
     bool fAnyUnordered;
     int nFileVersion;
     std::vector<uint256> vWalletUpgrade;
@@ -457,6 +458,7 @@ public:
     {
         nKeys = nCKeys = nKeyMeta = nZKeys = nZKeyMeta = nSapZAddrs = 0;
         fIsEncrypted = false;
+        fIsOTPEnabled = false;
         fAnyUnordered = false;
         nFileVersion = 0;
     }

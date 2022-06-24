@@ -480,15 +480,17 @@ WalletModel::EncryptionStatus WalletModel::getEncryptionStatus() const
         return Unencrypted;
     } else if (wallet->fWalletUnlockStaking) {
         return UnlockedForStaking;
-    } else if (wallet->IsLocked()) {
+    } else if (wallet->IsLocked() && !wallet->IsOTP()) {
         return Locked;
+    } else if (wallet->IsLocked() && wallet->IsOTP()) {
+        return LockedOTP;
     } else {
         return Unlocked;
     }
 
 }
 
-bool WalletModel::setWalletEncrypted(bool encrypted, const SecureString& passphrase)
+bool WalletModel::setWalletEncrypted(bool encrypted, bool otpEnabled, const SecureString& passphrase)
 {
     if (encrypted) {
         // Encrypt

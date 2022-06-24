@@ -223,6 +223,15 @@ void TopBar::encryptWallet()
     return openPassPhraseDialog(AskPassphraseDialog::Mode::Encrypt, AskPassphraseDialog::Context::Encrypt);
 }
 
+void TopBar::addOTP()
+{
+    EncryptionStatus status = getEncryptionStatus();
+    if(!status) {
+        return openPassPhraseDialog(AskPassphraseDialog::Mode::Encrypt, AskPassphraseDialog::Context::Encrypt);
+    }
+    return openPassPhraseDialog(AskPassphraseDialog::Mode::AddOTP, AskPassphraseDialog::Context::AddOTP);       
+}
+
 void TopBar::unlockWallet()
 {
     if (!walletModel)

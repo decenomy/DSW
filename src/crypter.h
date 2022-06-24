@@ -160,7 +160,7 @@ public:
 
     bool IsLocked() const
     {
-        if (!IsCrypted())
+        if ((!IsCrypted()) || (!IsCrypted() && !IsOTP()))
             return false;
         bool result;
         {
@@ -170,13 +170,18 @@ public:
         return result;
     }
 
+    bool IsOTP() const
+    {
+        return fUseCrypto;
+    }
+
     virtual bool AddCryptedKey(const CPubKey& vchPubKey, const std::vector<unsigned char>& vchCryptedSecret);
     bool AddKeyPubKey(const CKey& key, const CPubKey& pubkey);
     bool HaveKey(const CKeyID& address) const
     {
         {
             LOCK(cs_KeyStore);
-            if (!IsCrypted())
+            if ((!IsCrypted()) || (!IsCrypted() && !IsOTP()))
                 return CBasicKeyStore::HaveKey(address);
             return mapCryptedKeys.count(address) > 0;
         }
@@ -187,7 +192,7 @@ public:
     void GetKeys(std::set<CKeyID>& setAddress) const
     {
         LOCK(cs_KeyStore);
-        if (!IsCrypted()) {
+        if ((!IsCrypted()) || (!IsCrypted() && !IsOTP())) {
             CBasicKeyStore::GetKeys(setAddress);
             return;
         }

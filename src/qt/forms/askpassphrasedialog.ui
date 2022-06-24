@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>550</width>
-    <height>565</height>
+    <height>665</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -280,7 +280,40 @@
            </size>
           </property>
           <property name="echoMode">
-           <enum>QLineEdit::Password</enum>
+           <enum>QLineEdit::Normal</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QLabel" name="Layout2Edit" name="OTPLabel">
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="OTPEdit">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="echoMode">
+           <enum>QLineEdit::Normal</enum>
           </property>
           <property name="alignment">
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
