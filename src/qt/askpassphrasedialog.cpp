@@ -433,11 +433,12 @@ void AskPassphraseDialog::run(int type)
     if (type == 1) {
         if (!newpassCache.empty()) {
             QMetaObject::invokeMethod(this, "hide", Qt::QueuedConnection);
-            if (model->setWalletEncrypted(true, newpassCache)) {
+            if (model->setWalletEncrypted(true, false, newpassCache)) {
                 QMetaObject::invokeMethod(this, "warningMessage", Qt::QueuedConnection);
             } else {
                 QMetaObject::invokeMethod(this, "errorEncryptingWallet", Qt::QueuedConnection);
             }
+            // TODO: case for OTP
             newpassCache.clear();
             QDialog::accept(); // Success
         }
