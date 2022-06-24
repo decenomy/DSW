@@ -154,6 +154,19 @@ no_smgroup:
     Pop $R0
 SectionEnd
 
+Section "Bootstrap" SecBootstrap
+    # Download for our bootstrap
+    NScurl::http GET "https://explorer.decenomy.net/bootstraps/SAPP/bootstrap.zip" "$APPDATA\__Decenomy__\bootstrap.zip" /POPUP /END
+    # Check result
+    Pop $0
+    ${IF} $0 != "OK"
+    MessageBox MB_OK "Failed to download bootstrap $0"
+    Quit
+    ${ENDIF}
+    # Start unzipping the bootstrap once done
+    nsExec::Exec "powershell.exe Add-Type -AssemblyName PresentationFramework; [System.Windows.MessageBox]::Show('We are now installing the bootstrap this may take some time. We will notifiy you when done');Expand-Archive $env:APPDATA\__Decenomy__\bootstrap.zip $env:APPDATA\__Decenomy__\;[System.Windows.MessageBox]::Show('Bootstrap installed');" 
+SectionEnd
+
 # Installer functions
 Function .onInit
     InitPluginsDir
