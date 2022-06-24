@@ -881,12 +881,14 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState &state, const C
     }
 
     // Check for conflicts with in-memory transactions
-    LOCK(pool.cs); // protect pool.mapNextTx
-    for (const auto &in : tx.vin) {
-        COutPoint outpoint = in.prevout;
-        if (pool.mapNextTx.count(outpoint)) {
-            // Disable replacement feature for now
-            return state.Invalid(false, REJECT_CONFLICT, "txn-mempool-conflict");
+    {
+        LOCK(pool.cs); // protect pool.mapNextTx
+        for (const auto &in : tx.vin) {
+            COutPoint outpoint = in.prevout;
+            if (pool.mapNextTx.count(outpoint)) {
+                // Disable replacement feature for now
+                return state.Invalid(false, REJECT_CONFLICT, "txn-mempool-conflict");
+            }
         }
     }
 
