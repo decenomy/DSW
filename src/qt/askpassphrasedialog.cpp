@@ -98,7 +98,7 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget* parent, WalletModel
         ui->layoutEdit->hide();
         title = tr("Encrypt wallet");
         initWatch(ui->layoutEdit2);
-        initWatch(ui->Layou);
+        initWatch(ui->OTPEdit);
         break;
     case Mode::UnlockAnonymize:
         ui->warningLabel->setText(tr("This operation needs your wallet passphrase to unlock the wallet."));
@@ -240,10 +240,11 @@ void AskPassphraseDialog::accept()
                 tr("Yes"), tr("No")
             );
             if (finalizeOTP) {
-                QString newOTPSeed = GoogleAuthenticator::CreateNewSeed();
+                std::string newOTPSeed = GoogleAuthenticator::CreateNewSeed();
+                QString str = QString::fromStdString(newOTPSeed);
                 QMessageBox::critical(this, 
                                         tr("Save this 2FA Seed"), 
-                                        tr("%1").arg(newOTPSeed));
+                                        tr("%1").arg(str));
 
             }
             break;
