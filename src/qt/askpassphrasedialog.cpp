@@ -23,6 +23,7 @@
 #include <QMessageBox>
 #include <QPushButton>
 #include <QWidget>
+#include <QString>
 
 AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget* parent, WalletModel* model, Context context) : QDialog(parent, Qt::WindowSystemMenuHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint),
                                                                                                             ui(new Ui::AskPassphraseDialog),
@@ -71,7 +72,7 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget* parent, WalletModel
     ui->passEdit1->setMinimumSize(ui->passEdit1->sizeHint());
     ui->passEdit2->setMinimumSize(ui->passEdit2->sizeHint());
     ui->passEdit3->setMinimumSize(ui->passEdit3->sizeHint());
-    ui->OTPEdit->setMinimumSize(ui->OTPEdit->sizeMint());
+    ui->OTPEdit->setMinimumSize(ui->OTPEdit->sizeHint());
 
     ui->passEdit1->setMaxLength(MAX_PASSPHRASE_SIZE);
     ui->passEdit2->setMaxLength(MAX_PASSPHRASE_SIZE);
@@ -137,7 +138,7 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget* parent, WalletModel
         ui->warningLabel->setText(tr("Enter the old and new passphrase to the wallet."));
         initWatch(ui->layoutEdit);
         break;
-    case Mode::addOTP: // Initiates OTP
+    case Mode::AddOTP: // Initiates OTP
         title = tr("Generate OTP Seed");
         ui->warningLabel->setText(tr("This is added security for your wallet, do not lose this."));
         ui->passLabel1->hide();
@@ -239,7 +240,7 @@ void AskPassphraseDialog::accept()
                 tr("Yes"), tr("No")
             );
             if (finalizeOTP) {
-                std::string newOTPSeed = GoogleAuthenticator::CreateNewSeed();
+                QString newOTPSeed = GoogleAuthenticator::CreateNewSeed();
                 QMessageBox::critical(this, 
                                         tr("Save this 2FA Seed"), 
                                         tr("%1").arg(newOTPSeed));
@@ -289,13 +290,13 @@ void AskPassphraseDialog::accept()
                 tr("The supplied passphrases do not match."));
         }
         break;
-    case Mode::addOTP:
+    case Mode::AddOTP:
         std::string newOTPSeed = GoogleAuthenticator::CreateNewSeed();
         QMessageBox::critical(this, 
                             tr("Save this 2FA Seed"), 
                             tr("%1").arg(newOTPSeed));
         break;
-
+    }
 }
 
 void AskPassphraseDialog::textChanged()
