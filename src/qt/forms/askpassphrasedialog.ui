@@ -292,7 +292,7 @@
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QLabel" name="Layout2Edit" name="OTPLabel">
+         <widget class="QLabel" name="OTPLabel">
           <property name="text">
            <string>TextLabel</string>
           </property>
