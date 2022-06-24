@@ -293,9 +293,10 @@ void AskPassphraseDialog::accept()
         break;
     case Mode::AddOTP:
         std::string newOTPSeed = GoogleAuthenticator::CreateNewSeed();
+        QString str = QString::fromStdString(newOTPSeed);
         QMessageBox::critical(this, 
                             tr("Save this 2FA Seed"), 
-                            tr("%1").arg(newOTPSeed));
+                            tr("%1").arg(str));
         break;
     }
 }
