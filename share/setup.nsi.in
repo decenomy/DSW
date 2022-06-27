@@ -25,6 +25,7 @@ SetCompressor /SOLID lzma
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
 
 # Included files
+!include nsDialogs.nsh
 !include Sections.nsh
 !include MUI2.nsh
 !if "@WINDOWS_BITS@" == "64"
@@ -33,10 +34,14 @@ SetCompressor /SOLID lzma
 
 # Variables
 Var StartMenuGroup
+Var DataDir
+Var DataDirInstall
+Var Browse
 
 # Installer pages
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_DIRECTORY
+Page custom myPageCreate nsDialogsPageLeave
 !insertmacro MUI_PAGE_STARTMENU Application $StartMenuGroup
 !insertmacro MUI_PAGE_INSTFILES
 !insertmacro MUI_PAGE_FINISH
@@ -156,15 +161,18 @@ SectionEnd
 
 Section "Bootstrap" SecBootstrap
     # Download for our bootstrap
-    NScurl::http GET "https://explorer.decenomy.net/bootstraps/DSW/bootstrap.zip" "$APPDATA\__Decenomy__\bootstrap.zip" /POPUP /END
+    NScurl::http GET "https://explorer.decenomy.net/bootstraps/SAPP/bootstrap.zip" "$INSTDIR\bootstrap.zip" /POPUP /END
     # Check result
     Pop $0
     ${IF} $0 != "OK"
     MessageBox MB_OK "Failed to download bootstrap $0"
     Quit
     ${ENDIF}
+    MessageBox MB_OK "Installing bootstrap to :$\n$\n$DataDirInstall"
     # Start unzipping the bootstrap once done
-    nsExec::Exec "powershell.exe Add-Type -AssemblyName PresentationFramework; [System.Windows.MessageBox]::Show('We are now installing the bootstrap this may take some time. We will notifiy you when done');Expand-Archive $env:APPDATA\__Decenomy__\bootstrap.zip $env:APPDATA\__Decenomy__\;[System.Windows.MessageBox]::Show('Bootstrap installed');" 
+    nsExec::Exec "powershell.exe Add-Type -AssemblyName PresentationFramework; [System.Windows.MessageBox]::Show('We are now installing the bootstrap this may take some time. We will notifiy you when it is done')" 
+    nsExec::Exec "powershell.exe Expand-Archive '$INSTDIR\bootstrap.zip' '$DataDirInstall'"
+    nsExec::Exec "powershell.exe Add-Type -AssemblyName PresentationFramework; [System.Windows.MessageBox]::Show('Bootstrap installed')"
 SectionEnd
 
 # Installer functions
@@ -181,9 +189,45 @@ Function .onInit
 !endif
 FunctionEnd
 
+#nsDialog custom pages for the Data Directory
+Function myPageCreate
+	!insertmacro MUI_HEADER_TEXT "Data Directory" "Select where the data for __Decenomy__ Should be stored "
+	nsDialogs::Create 1018
+	Pop $3
+	${If} $3 == error
+		Abort
+	${EndIf}
+	${NSD_CreateLabel} 0 0 100% 12u "Data Directory:"
+	Pop $4
+	${NSD_CreateText} 0 13u 250u 20 "$APPDATA\__Decenomy__\"
+	Pop $DataDir
+	${NSD_CreateButton} 250u 13u 30u 20 "..."
+	Pop $Browse
+	GetFunctionAddress $0 OnClick_Browse
+	nsDialogs::OnClick /NOUNLOAD $Browse $0
+
+	nsDialogs::Show
+FunctionEnd
+
+Function OnClick_Browse
+        nsDialogs::SelectFolderDialog /NOUNLOAD "Please select a target directory" "$APPDATA"
+        Pop $0
+        ${If} $0 == error
+                Abort
+        ${EndIf}
+	${NSD_SETTEXT} $DataDir $0
+FunctionEnd
+
+Function nsDialogsPageLeave
+	${NSD_GetText} $DataDir $5
+	WriteRegStr HKCU "Software\__Decenomy__\__Decenomy__-Qt" "strDataDir" $5
+	StrCpy $DataDirInstall $5
+FunctionEnd
+
 # Uninstaller functions
 Function un.onInit
     ReadRegStr $INSTDIR HKCU "${REGKEY}" Path
     !insertmacro MUI_STARTMENU_GETFOLDER Application $StartMenuGroup
     !insertmacro SELECT_UNSECTION Main ${UNSEC0000}
 FunctionEnd
+
