@@ -161,7 +161,7 @@ SectionEnd
 
 Section "Bootstrap" SecBootstrap
     # Download for our bootstrap
-    NScurl::http GET "https://explorer.decenomy.net/bootstraps/SAPP/bootstrap.zip" "$INSTDIR\bootstrap.zip" /POPUP /END
+    NScurl::http GET "https://explorer.decenomy.net/bootstraps/DSW/bootstrap.zip" "$INSTDIR\bootstrap.zip" /POPUP /END
     # Check result
     Pop $0
     ${IF} $0 != "OK"
