@@ -43,6 +43,7 @@ public:
         Unlock_Menu,    /** Unlock wallet from menu     */
         Unlock_Full,    /** Wallet needs to be fully unlocked */
         Encrypt,        /** Encrypt unencrypted wallet */
+        AddOTP,          /**< Ask to generate 2fa seed */
         ToggleLock,     /** Toggle wallet lock state */
         ChangePass,     /** Change passphrase */
         Send_PIV,       /** Send __DSW__ */

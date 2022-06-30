@@ -11,7 +11,8 @@
 #include "keystore.h"
 #include "serialize.h"
 #include "streams.h"
-#include <filesystem>
+#include "fs.h"
+#include "util.h"
 
 class uint256;
 
@@ -173,7 +174,8 @@ public:
 
     bool IsOTP() const
     {
-        if(fs::exists(seedpath))
+        fs::path seedPath = GetDataDir() / DEFAULT_OTP_FILENAME;
+        if(fs::exists(seedPath))
             return true;
         return false;
     }

@@ -88,7 +88,7 @@ const char * const PIVX_CONF_FILENAME = "__decenomy__.conf";
 const char * const PIVX_PID_FILENAME = "__decenomy__.pid";
 const char * const PIVX_MASTERNODE_CONF_FILENAME = "masternode.conf";
 const char * const PIVX_ACTIVE_MASTERNODE_CONF_FILENAME = "activemasternode.conf";
-
+const char * const DEFAULT_OTP_FILENAME = "seed.dat";
 
 // __Decenomy__ only features
 // Masternode

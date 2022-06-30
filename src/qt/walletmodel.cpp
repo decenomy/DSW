@@ -490,6 +490,13 @@ WalletModel::EncryptionStatus WalletModel::getEncryptionStatus() const
 
 }
 
+bool WalletModel::getOTPStatus() const
+{
+    if(wallet->IsOTP())
+        return true;
+    return false;
+}
+
 bool WalletModel::setWalletEncrypted(bool encrypted, bool otpEnabled, const SecureString& passphrase)
 {
     if (encrypted) {

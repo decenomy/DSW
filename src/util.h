@@ -38,7 +38,7 @@ extern const char * const PIVX_CONF_FILENAME;
 extern const char * const PIVX_PID_FILENAME;
 extern const char * const PIVX_MASTERNODE_CONF_FILENAME;
 extern const char * const DEFAULT_DEBUGLOGFILE;
-extern const char * const DEFAULT_OTP_FILENAME = "seed.dat";
+extern const char * const DEFAULT_OTP_FILENAME;
 
 //__DSW__ only features
 

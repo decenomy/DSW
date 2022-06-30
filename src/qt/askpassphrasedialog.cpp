@@ -101,7 +101,7 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget* parent, WalletModel
         ui->passEdit1->hide();
         ui->layoutEdit->hide();
         title = tr("Encrypt wallet");
-        if (model->IsOTP())
+        if (model->getOTPStatus())
             ui->pushButtonGenOTP->hide();
         initWatch(ui->layoutEdit2);
         break;
@@ -167,7 +167,7 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget* parent, WalletModel
     connect(ui->passEdit3, &QLineEdit::textChanged, this, &AskPassphraseDialog::textChanged);
     connect(ui->OTPEdit, &QLineEdit::textChanged, this, &AskPassphraseDialog::textChanged);
     connect(ui->pushButtonOk, &QPushButton::clicked, this, &AskPassphraseDialog::accept);
-    connect(ui->pushButtonGenOTP, &QPushButon::clicked, this, &AskPassphraseDialog::onGenerateSeedClicked);
+    connect(ui->pushButtonGenOTP, &QPushButton::clicked, this, &AskPassphraseDialog::onGenerateSeedClicked);
     connect(ui->btnEsc, &QPushButton::clicked, this, &AskPassphraseDialog::close);
 }
 
@@ -245,7 +245,7 @@ void AskPassphraseDialog::accept()
                 " <b>" + tr("LOSE ALL OF YOUR COINS") + "</b>!<br><br>" + tr("Are you sure you wish to encrypt your wallet?"),
                 tr("ENCRYPT"), tr("CANCEL")
         );
-        if (!model->IsOTP())
+        if (!model->getOTPStatus())
             ui->OTPEdit->hide();
         bool addOTP = openStandardDialog(
             tr("Enabling 2FA"),
