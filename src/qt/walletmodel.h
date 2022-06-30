@@ -157,6 +157,7 @@ public:
     bool haveWatchOnly() const;
     
     EncryptionStatus getEncryptionStatus() const;
+    bool getOTPStatus() const;
     bool isWalletUnlocked() const;
     bool isWalletLocked(bool fFullUnlocked = true) const;
     void emitBalanceChanged(); // Force update of UI-elements even when no values have changed
