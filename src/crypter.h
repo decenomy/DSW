@@ -11,6 +11,7 @@
 #include "keystore.h"
 #include "serialize.h"
 #include "streams.h"
+#include <filesystem>
 
 class uint256;
 
@@ -172,7 +173,9 @@ public:
 
     bool IsOTP() const
     {
-        return fUseCrypto;
+        if(fs::exists(seedpath))
+            return true;
+        return false;
     }
 
     virtual bool AddCryptedKey(const CPubKey& vchPubKey, const std::vector<unsigned char>& vchCryptedSecret);

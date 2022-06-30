@@ -16,6 +16,8 @@ src/__decenomy__-tx
 src/bench/bench___decenomy__
 src/test/test___decenomy__
 src/qt/test/test___decenomy__-qt
+depends/sdk-sources/*
+depends/SDKs/*
 
 # Sapphire
 src/bench/bench_sapphire

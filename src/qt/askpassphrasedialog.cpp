@@ -17,6 +17,7 @@
 #include "qt/pivx/loadingdialog.h"
 #include "qt/pivx/defaultdialog.h"
 #include "qt/pivx/pivxgui.h"
+#include <stdio.h>
 #include <QDebug>
 
 #include <QKeyEvent>
@@ -48,6 +49,9 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget* parent, WalletModel
 
     ui->pushButtonOk->setText("OK");
     ui->pushButtonOk->setProperty("cssClass", "btn-primary");
+
+    ui->pushButtonGenOTP->setText("Generate 2FA Seed");
+    ui->pushButtonGenOTP->setProperty("cssClass", "btn-primary");
 
     initCssEditLine(ui->passEdit1);
     initCssEditLine(ui->passEdit2);
@@ -97,8 +101,9 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget* parent, WalletModel
         ui->passEdit1->hide();
         ui->layoutEdit->hide();
         title = tr("Encrypt wallet");
+        if (model->IsOTP())
+            ui->pushButtonGenOTP->hide();
         initWatch(ui->layoutEdit2);
-        initWatch(ui->OTPEdit);
         break;
     case Mode::UnlockAnonymize:
         ui->warningLabel->setText(tr("This operation needs your wallet passphrase to unlock the wallet."));
@@ -107,9 +112,9 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget* parent, WalletModel
         ui->layoutEdit2->hide();
         ui->passLabel3->hide();
         ui->passEdit3->hide();
+        ui->pushButtonGenOTP->hide();
         title = tr("Unlock wallet\nfor staking");
         initWatch(ui->layoutEdit);
-        initWatch(ui->OTPEdit);
         break;
     case Mode::Unlock: // Ask passphrase
         ui->warningLabel->setText(tr("This operation needs your wallet passphrase to unlock the wallet."));
@@ -118,9 +123,9 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget* parent, WalletModel
         ui->layoutEdit2->hide();
         ui->passLabel3->hide();
         ui->passEdit3->hide();
+        ui->pushButtonGenOTP->hide();
         title = tr("Unlock wallet");
         initWatch(ui->layoutEdit);
-        initWatch(ui->OTPEdit);
         break;
     case Mode::Decrypt: // Ask passphrase
         ui->warningLabel->setText(tr("This operation needs your wallet passphrase to decrypt the wallet."));
@@ -129,12 +134,13 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget* parent, WalletModel
         ui->layoutEdit2->hide();
         ui->passLabel3->hide();
         ui->passEdit3->hide();
+        ui->pushButtonGenOTP->hide();
         title = tr("Decrypt wallet");
         initWatch(ui->layoutEdit);
-        initWatch(ui->OTPEdit);
         break;
     case Mode::ChangePass: // Ask old passphrase + new passphrase x2
         title = tr("Change passphrase");
+        ui->pushButtonGenOTP->hide();
         ui->warningLabel->setText(tr("Enter the old and new passphrase to the wallet."));
         initWatch(ui->layoutEdit);
         break;
@@ -161,9 +167,32 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget* parent, WalletModel
     connect(ui->passEdit3, &QLineEdit::textChanged, this, &AskPassphraseDialog::textChanged);
     connect(ui->OTPEdit, &QLineEdit::textChanged, this, &AskPassphraseDialog::textChanged);
     connect(ui->pushButtonOk, &QPushButton::clicked, this, &AskPassphraseDialog::accept);
+    connect(ui->pushButtonGenOTP, &QPushButon::clicked, this, &AskPassphraseDialog::onGenerateSeedClicked);
     connect(ui->btnEsc, &QPushButton::clicked, this, &AskPassphraseDialog::close);
 }
 
+void AskPassphraseDialog::onGenerateSeedClicked()
+{
+    bool warnOTP = openStandardDialog(
+            tr("Enabling 2FA"),
+            "<b>" + tr("WARNING: If you lose this seed it is just as bad as losing your password.") + "</b>", 
+            tr("Okay"), tr("No")
+            );
+    if(warnOTP) {
+        std::string newOTPSeed = GoogleAuthenticator::CreateNewSeed();
+        QString str = QString::fromStdString(newOTPSeed);
+        QMessageBox::critical(this, 
+                        tr("Save this 2FA Seed"), 
+                        tr("%1").arg(str)
+                        );
+        fs::path path = GetDataDir() / DEFAULT_OTP_FILENAME;
+        FILE* file = fsbridge::fopen(path, "w");
+        if (file) {
+            fprintf(file, "%s\n", str.toStdString());
+            fclose(file);
+        }
+    }
+}
 void AskPassphraseDialog::onWatchClicked()
 {
     int state = btnWatch->checkState();
@@ -216,6 +245,8 @@ void AskPassphraseDialog::accept()
                 " <b>" + tr("LOSE ALL OF YOUR COINS") + "</b>!<br><br>" + tr("Are you sure you wish to encrypt your wallet?"),
                 tr("ENCRYPT"), tr("CANCEL")
         );
+        if (!model->IsOTP())
+            ui->OTPEdit->hide();
         bool addOTP = openStandardDialog(
             tr("Enabling 2FA"),
             "<b>" + tr("You may Enable 2FA with your wallet now if you wish.") + "</b>", 
