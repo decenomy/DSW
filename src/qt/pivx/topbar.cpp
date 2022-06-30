@@ -225,7 +225,7 @@ void TopBar::encryptWallet()
 
 void TopBar::addOTP()
 {
-    EncryptionStatus status = getEncryptionStatus();
+    WalletModel::EncryptionStatus status = getEncryptionStatus();
     if(!status) {
         return openPassPhraseDialog(AskPassphraseDialog::Mode::Encrypt, AskPassphraseDialog::Context::Encrypt);
     }
