@@ -26,7 +26,7 @@ Drag Jackpot-Qt to your applications folder, and then run Jackpot-Qt.
 
 ### Need Help?
 
-* See the documentation at the [Jackpot Wiki](https://github.com/777-project/777/)
+* See the documentation at the [Jackpot Wiki](https://github.com/decenomy/777/)
 for help and more information.
 * Join our Discord server [Discord Server](https://discordapp.com/invite/HNyRevT)
 
@@ -48,7 +48,7 @@ The Jackpot repo's [root README](/README.md) contains relevant information on th
 - [Multiwallet Qt Development](multiwallet-qt.md)
 - [Release Notes](release-notes.md)
 - [Release Process](release-process.md)
-- [Source Code Documentation (External Link)](https://github.com/777-project/777/)
+- [Source Code Documentation (External Link)](https://github.com/decenomy/777/)
 - [Translation Process](translation_process.md)
 - [Unit Tests](unit-tests.md)
 - [Unauthenticated REST Interface](REST-interface.md)

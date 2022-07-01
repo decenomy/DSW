@@ -29,8 +29,8 @@ Build-Depends: debhelper,
  dh-systemd
 Standards-Version: 3.9.2
 Homepage: https://777coin.win/
-Vcs-Git: git://github.com/777-project/777.git
-Vcs-Browser: https://github.com/777-project/777
+Vcs-Git: git://github.com/decenomy/777.git
+Vcs-Browser: https://github.com/decenomy/777
 
 Package: jackpotd
 Architecture: any
