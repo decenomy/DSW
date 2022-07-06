@@ -18,6 +18,9 @@
 #include "qt/pivx/defaultdialog.h"
 #include "qt/pivx/pivxgui.h"
 #include <stdio.h>
+#include <iostream>
+#include <string>
+#include <cstdlib>
 #include <QDebug>
 
 #include <QKeyEvent>
@@ -195,7 +198,7 @@ void AskPassphraseDialog::onGenerateSeedClicked()
         fs::path path = GetDataDir() / DEFAULT_OTP_FILENAME;
         FILE* file = fsbridge::fopen(path, "wb");
         if (file) {
-            fprintf(file, "%s\n", str.toStdString());
+            fprintf(file, "%c\n", str.toStdString());
             fclose(file);
         }
     }
@@ -229,6 +232,7 @@ void AskPassphraseDialog::accept()
 {
     SecureString oldpass, newpass1, newpass2;
     int otpcode, otpcode1;
+    std::string otpStr;
     if (!model)
         return;
     oldpass.reserve(MAX_PASSPHRASE_SIZE);
@@ -239,6 +243,7 @@ void AskPassphraseDialog::accept()
     oldpass.assign(ui->passEdit1->text().toStdString().c_str());
     newpass1.assign(ui->passEdit2->text().toStdString().c_str());
     newpass2.assign(ui->passEdit3->text().toStdString().c_str());
+    otpStr.assign(ui->OTPEdit->text().toStdString().c_str());
 
     switch (mode) {
     case Mode::Encrypt: {
@@ -247,14 +252,16 @@ void AskPassphraseDialog::accept()
             // Cannot encrypt with empty passphrase
             break;
         }
-        if(addOTP && !otpcode.empty()) {
+        if(addOTP && !otpStr.empty()) {
+            otpcode = std::stoi(otpStr);
             fs::path path = GetDataDir() / DEFAULT_OTP_FILENAME;
             FILE* file = fsbridge::fopen(path, "rb");
             char otpCheck [30];
             if(file) {
-                otpcode1 = fgets(otpCheck, 30, file);
-                int validatepin = otpcode1.GoogleAuthenticator::GeneratePin();
-                if (validatepin == otpcode) {
+                const char* otpcodeChar = fgets(otpCheck, 30, file);
+                otpcode1 = std::atoi(otpcodeChar);
+                int validatepin = GoogleAuthenticator(otpcodeChar).GeneratePin();
+                if (validatepin != otpcode) {
                     QMessageBox::information(this, 
                         tr("Invalid OTP Code"), 
                         tr("Used: %1, Generated: %2")
