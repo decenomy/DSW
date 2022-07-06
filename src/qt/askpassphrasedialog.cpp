@@ -227,7 +227,8 @@ void AskPassphraseDialog::showEvent(QShowEvent *event)
 
 void AskPassphraseDialog::accept()
 {
-    SecureString oldpass, newpass1, newpass2, otpcode, otpcode1;
+    SecureString oldpass, newpass1, newpass2;
+    int otpcode, otpcode1;
     if (!model)
         return;
     oldpass.reserve(MAX_PASSPHRASE_SIZE);
@@ -252,14 +253,13 @@ void AskPassphraseDialog::accept()
             char otpCheck [30];
             if(file) {
                 otpcode1 = fgets(otpCheck, 30, file);
-                std::string validatepin = otpcode1.GoogleAuthenticator::GeneratePin();
+                int validatepin = otpcode1.GoogleAuthenticator::GeneratePin();
                 if (validatepin == otpcode) {
                     QMessageBox::information(this, 
                         tr("Invalid OTP Code"), 
                         tr("Used: %1, Generated: %2")
                             .arg(otpcode)
                             .arg(validatepin));
-                    continue;
                 } else {
                     QDialog::reject();
                 }
