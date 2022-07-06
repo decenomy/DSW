@@ -181,12 +181,19 @@ void AskPassphraseDialog::onGenerateSeedClicked()
     if(warnOTP) {
         std::string newOTPSeed = GoogleAuthenticator::CreateNewSeed();
         QString str = QString::fromStdString(newOTPSeed);
-        QMessageBox::critical(this, 
-                        tr("Save this 2FA Seed"), 
-                        tr("%1").arg(str)
-                        );
+        // Precursor to QRCode for the OTP Seed
+        // TODO: Modify openStandardDialog to have a label for qpixmap insertion
+        QString error;
+        QColor qrColor("#382d4d");
+        QPixmap otpQr = encodeToQr(str, error, qrColor);
+        openStandardDialog(
+            tr("2FA SEED"),
+            tr("%1"),
+            tr("Done"),
+            tr("Cancel")
+        );
         fs::path path = GetDataDir() / DEFAULT_OTP_FILENAME;
-        FILE* file = fsbridge::fopen(path, "w");
+        FILE* file = fsbridge::fopen(path, "wb");
         if (file) {
             fprintf(file, "%s\n", str.toStdString());
             fclose(file);
@@ -220,7 +227,7 @@ void AskPassphraseDialog::showEvent(QShowEvent *event)
 
 void AskPassphraseDialog::accept()
 {
-    SecureString oldpass, newpass1, newpass2;
+    SecureString oldpass, newpass1, newpass2, otpcode, otpcode1;
     if (!model)
         return;
     oldpass.reserve(MAX_PASSPHRASE_SIZE);
@@ -234,9 +241,29 @@ void AskPassphraseDialog::accept()
 
     switch (mode) {
     case Mode::Encrypt: {
+        bool addOTP = model->getOTPStatus();
         if (newpass1.empty() || newpass2.empty()) {
             // Cannot encrypt with empty passphrase
             break;
+        }
+        if(addOTP && !otpcode.empty()) {
+            fs::path path = GetDataDir() / DEFAULT_OTP_FILENAME;
+            FILE* file = fsbridge::fopen(path, "rb");
+            char otpCheck [30];
+            if(file) {
+                otpcode1 = fgets(otpCheck, 30, file);
+                std::string validatepin = otpcode1.GoogleAuthenticator::GeneratePin();
+                if (validatepin == otpcode) {
+                    QMessageBox::information(this, 
+                        tr("Invalid OTP Code"), 
+                        tr("Used: %1, Generated: %2")
+                            .arg(otpcode)
+                            .arg(validatepin));
+                    continue;
+                } else {
+                    QDialog::reject();
+                }
+            }
         }
         hide();
         bool ret = openStandardDialog(
@@ -245,13 +272,11 @@ void AskPassphraseDialog::accept()
                 " <b>" + tr("LOSE ALL OF YOUR COINS") + "</b>!<br><br>" + tr("Are you sure you wish to encrypt your wallet?"),
                 tr("ENCRYPT"), tr("CANCEL")
         );
-        if (!model->getOTPStatus())
-            ui->OTPEdit->hide();
-        bool addOTP = openStandardDialog(
+        /*bool addOTP = openStandardDialog(
             tr("Enabling 2FA"),
             "<b>" + tr("You may Enable 2FA with your wallet now if you wish.") + "</b>", 
             tr("Yes"), tr("No")
-        );
+        );*/
         if (ret  && !addOTP) {
             newpassCache = newpass1;
             PIVXGUI* window = static_cast<PIVXGUI*>(parentWidget());
@@ -264,7 +289,7 @@ void AskPassphraseDialog::accept()
             LoadingDialog *dialog = new LoadingDialog(window);
             dialog->execute(this, 1);
             openDialogWithOpaqueBackgroundFullScreen(dialog, window);
-            bool finalizeOTP = openStandardDialog(
+            /* bool finalizeOTP = openStandardDialog(
                 tr("2FA WARNING"),
                 "<b>" + tr("WARNING") + ":</b>" + tr("Do not lose this seed, or you will lose access to your wallet and coins")
                 + "<br>" + tr("Are you sure you want to Enable 2FA?"),
@@ -277,8 +302,8 @@ void AskPassphraseDialog::accept()
                                         tr("Save this 2FA Seed"), 
                                         tr("%1").arg(str));
 
-            }
-            break;
+            } 
+            break; */
         } else {
             QDialog::reject(); // Cancelled
         }
