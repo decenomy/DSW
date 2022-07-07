@@ -176,33 +176,43 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget* parent, WalletModel
 
 void AskPassphraseDialog::onGenerateSeedClicked()
 {
-    bool warnOTP = openStandardDialog(
+    fs::path path = GetDataDir() / DEFAULT_OTP_FILENAME;
+    FILE* file = fsbridge::fopen(path, "wb");
+    if (!file) {
+        bool warnOTP = openStandardDialog(
             tr("Enabling 2FA"),
             "<b>" + tr("WARNING: If you lose this seed it is just as bad as losing your password.") + "</b>", 
             tr("Okay"), tr("No")
             );
-    if(warnOTP) {
-        std::string newOTPSeed = GoogleAuthenticator::CreateNewSeed();
-        QString str = QString::fromStdString(newOTPSeed);
-        // Precursor to QRCode for the OTP Seed
-        // TODO: Modify openStandardDialog to have a label for qpixmap insertion
-        QString error;
-        QColor qrColor("#382d4d");
-        QPixmap otpQr = encodeToQr(str, error, qrColor);
-        openStandardDialog(
-            tr("2FA SEED"),
-            tr("%1").arg(str),
-            tr("Done"),
-            tr("Cancel")
-        );
-        fs::path path = GetDataDir() / DEFAULT_OTP_FILENAME;
-        FILE* file = fsbridge::fopen(path, "wb");
-        if (file) {
-            fprintf(file, "%i\n", str.toInt());
-            fclose(file);
+        if(warnOTP) {
+            std::string newOTPSeed = GoogleAuthenticator::CreateNewSeed();
+            QString str = QString::fromStdString(newOTPSeed);
+            // Precursor to QRCode for the OTP Seed
+            // TODO: Modify openStandardDialog to have a label for qpixmap insertion
+            QString error;
+            QColor qrColor("#382d4d");
+            QPixmap otpQr = encodeToQr(str, error, qrColor);
+            openStandardDialog(
+                tr("2FA SEED"),
+                tr("%1").arg(str),
+                tr("Done"),
+                tr("Cancel")
+            );
+            if (file) {
+                fprintf(file, "%i\n", str.toInt());
+                fclose(file);
+            }
         }
+    } else {
+        openStandardDialog(
+                tr("2FA SEED"),
+                tr("It seems you already have 2FA Enabled, would you like to create a new seed?"),
+                tr("Yes"),
+                tr("No")
+            );
     }
 }
+
 void AskPassphraseDialog::onWatchClicked()
 {
     int state = btnWatch->checkState();
