@@ -270,7 +270,7 @@ void AskPassphraseDialog::accept()
                 } else if (validatepin == otpcode) {
                     QMessageBox::information(this, 
                         tr("OTP Code Success"), 
-                        tr("Used: %1, Generated: %2");
+                        tr("Used: %1, Generated: %2"));
                 }
             }
         }
