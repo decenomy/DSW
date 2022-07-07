@@ -191,7 +191,7 @@ void AskPassphraseDialog::onGenerateSeedClicked()
         QPixmap otpQr = encodeToQr(str, error, qrColor);
         openStandardDialog(
             tr("2FA SEED"),
-            tr("%1"),
+            tr("%1").arg(str),
             tr("Done"),
             tr("Cancel")
         );
@@ -267,7 +267,7 @@ void AskPassphraseDialog::accept()
                         tr("Used: %1, Generated: %2")
                             .arg(otpcode)
                             .arg(validatepin));
-                } else {
+                } else if (validatepin == otpcode) {
                     QMessageBox::information(this, 
                         tr("OTP Code Success"), 
                         tr("Used: %1, Generated: %2");
