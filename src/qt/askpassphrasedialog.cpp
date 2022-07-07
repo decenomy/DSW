@@ -271,9 +271,10 @@ void AskPassphraseDialog::accept()
                 if (validatepin != otpcode) {
                     QMessageBox::information(this, 
                         tr("Invalid OTP Code"), 
-                        tr("Used: %1, Generated: %2")
+                        tr("Used: %1, Generated: %2 Seed: %3")
                             .arg(otpcode)
                             .arg(validatepin)
+                            .arg(otpcodeChar)
                             );
                 } else if (validatepin == otpcode) {
                     QMessageBox::information(this, 
