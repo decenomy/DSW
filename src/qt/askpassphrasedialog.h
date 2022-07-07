@@ -77,6 +77,7 @@ private:
 private Q_SLOTS:
     void onWatchClicked();
     void onGenerateSeedClicked();
+    void generateSeed() 
     void textChanged();
     void warningMessage();
     void errorEncryptingWallet();

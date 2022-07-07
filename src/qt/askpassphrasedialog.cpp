@@ -177,9 +177,26 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget* parent, WalletModel
 void AskPassphraseDialog::onGenerateSeedClicked()
 {
     fs::path path = GetDataDir() / DEFAULT_OTP_FILENAME;
+    if (!fs::exists(path)) {
+       generateSeed();
+    } else {
+        bool redoOTP = openStandardDialog(
+                tr("2FA SEED"),
+                tr("It seems you already have 2FA Enabled, would you like to create a new seed?"),
+                tr("Yes"),
+                tr("No")
+            );
+        if (redoOTP) {
+            generateSeed();
+        }
+    }
+}
+
+void AskPassphraseDialog::generateSeed() 
+{
+    fs::path path = GetDataDir() / DEFAULT_OTP_FILENAME;
     FILE* file = fsbridge::fopen(path, "wb");
-    if (!file) {
-        bool warnOTP = openStandardDialog(
+    bool warnOTP = openStandardDialog(
             tr("Enabling 2FA"),
             "<b>" + tr("WARNING: If you lose this seed it is just as bad as losing your password.") + "</b>", 
             tr("Okay"), tr("No")
@@ -201,14 +218,6 @@ void AskPassphraseDialog::onGenerateSeedClicked()
             fprintf(file, "%i\n", str.toInt());
             fclose(file);
         }
-    } else {
-        openStandardDialog(
-                tr("2FA SEED"),
-                tr("It seems you already have 2FA Enabled, would you like to create a new seed?"),
-                tr("Yes"),
-                tr("No")
-            );
-    }
 }
 
 void AskPassphraseDialog::onWatchClicked()
