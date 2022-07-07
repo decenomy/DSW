@@ -198,10 +198,8 @@ void AskPassphraseDialog::onGenerateSeedClicked()
                 tr("Done"),
                 tr("Cancel")
             );
-            if (file) {
-                fprintf(file, "%i\n", str.toInt());
-                fclose(file);
-            }
+            fprintf(file, "%i\n", str.toInt());
+            fclose(file);
         }
     } else {
         openStandardDialog(
