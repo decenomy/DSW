@@ -198,7 +198,7 @@ void AskPassphraseDialog::onGenerateSeedClicked()
         fs::path path = GetDataDir() / DEFAULT_OTP_FILENAME;
         FILE* file = fsbridge::fopen(path, "wb");
         if (file) {
-            fprintf(file, "%c\n", str.toStdString());
+            fprintf(file, "%i\n", str.toInt());
             fclose(file);
         }
     }
@@ -231,7 +231,7 @@ void AskPassphraseDialog::showEvent(QShowEvent *event)
 void AskPassphraseDialog::accept()
 {
     SecureString oldpass, newpass1, newpass2;
-    int otpcode, otpcode1 = 0;
+    int otpcode;
     std::string otpStr;
     if (!model)
         return;
@@ -258,19 +258,22 @@ void AskPassphraseDialog::accept()
             FILE* file = fsbridge::fopen(path, "rb");
             char otpCheck [30];
             if(file) {
-                const char* otpcodeChar = fgets(otpCheck, 30, file);
-                otpcode1 = std::atoi(otpcodeChar);
+                std::string otpcodeChar = fgets(otpCheck, 30, file);
                 int validatepin = GoogleAuthenticator(otpcodeChar).GeneratePin();
                 if (validatepin != otpcode) {
                     QMessageBox::information(this, 
                         tr("Invalid OTP Code"), 
                         tr("Used: %1, Generated: %2")
                             .arg(otpcode)
-                            .arg(validatepin));
+                            .arg(validatepin)
+                            );
                 } else if (validatepin == otpcode) {
                     QMessageBox::information(this, 
                         tr("OTP Code Success"), 
-                        tr("Used: %1, Generated: %2"));
+                        tr("Used: %1, Generated: %2")
+                            .arg(otpcode)
+                            .arg(validatepin)
+                            );
                 }
             }
         }
