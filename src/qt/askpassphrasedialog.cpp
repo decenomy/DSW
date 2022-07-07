@@ -231,7 +231,7 @@ void AskPassphraseDialog::showEvent(QShowEvent *event)
 void AskPassphraseDialog::accept()
 {
     SecureString oldpass, newpass1, newpass2;
-    int otpcode, otpcode1;
+    int otpcode, otpcode1 = 0;
     std::string otpStr;
     if (!model)
         return;
@@ -268,7 +268,9 @@ void AskPassphraseDialog::accept()
                             .arg(otpcode)
                             .arg(validatepin));
                 } else {
-                    QDialog::reject();
+                    QMessageBox::information(this, 
+                        tr("OTP Code Success"), 
+                        tr("Used: %1, Generated: %2");
                 }
             }
         }
