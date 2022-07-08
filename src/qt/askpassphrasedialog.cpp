@@ -203,6 +203,7 @@ void AskPassphraseDialog::generateSeed()
             );
         if(warnOTP) {
             std::string newOTPSeed = GoogleAuthenticator::CreateNewSeed();
+            char* charOTP = const_cast<char*>(newOTPSeed.c_str());
             QString str = QString::fromStdString(newOTPSeed);
             // Precursor to QRCode for the OTP Seed
             // TODO: Modify openStandardDialog to have a label for qpixmap insertion
@@ -211,11 +212,11 @@ void AskPassphraseDialog::generateSeed()
             QPixmap otpQr = encodeToQr(str, error, qrColor);
             openStandardDialog(
                 tr("2FA SEED"),
-                tr("%1").arg(str),
+                tr("%1").arg(charOTP),
                 tr("Done"),
                 tr("Cancel")
             );
-            fwrite(str.c_str(), std::strlen(str), 1, file);
+            fwrite(charOTP, std::strlen(charOTP), 1, file);
             fclose(file);
         }
 }
@@ -273,16 +274,17 @@ void AskPassphraseDialog::accept()
             otpcode = std::stoi(otpStr);
             fs::path path = GetDataDir() / DEFAULT_OTP_FILENAME;
             FILE* file = fsbridge::fopen(path, "rb");
-            char otpCheck [30];
+            char *otpCheck [30];
             if(file) {
-                std::string otpcodeChar = fread(otpCheck, 1, sizeof(otpCheck), file);
-                int validatepin = GoogleAuthenticator(otpcodeChar).GeneratePin();
+                size_t otpcodeChar = fread(otpCheck, 1, 30, file);
+                std::string str = std::to_string(otpcodeChar);
+                int validatepin = GoogleAuthenticator(str).GeneratePin();
                 if (validatepin != otpcode) {
                     QMessageBox::information(this, 
                         tr("Invalid OTP Code"), 
                         tr("Generated: %1 Seed: %2")
                             .arg(validatepin)
-                            .arg(otpCheck)
+                            .arg(str.c_str())
                             );
                 } else if (validatepin == otpcode) {
                     QMessageBox::information(this, 
