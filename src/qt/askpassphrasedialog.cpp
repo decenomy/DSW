@@ -215,7 +215,7 @@ void AskPassphraseDialog::generateSeed()
                 tr("Done"),
                 tr("Cancel")
             );
-            fprintf(file, "%i\n", str.toInt());
+            fwrite(str.c_str(), std::strlen(str), 1, file);
             fclose(file);
         }
 }
@@ -275,7 +275,7 @@ void AskPassphraseDialog::accept()
             FILE* file = fsbridge::fopen(path, "rb");
             char otpCheck [30];
             if(file) {
-                std::string otpcodeChar = fgets(otpCheck, 30, file);
+                std::string otpcodeChar = fread(otpCheck, 1, sizeof(otpCheck), file);
                 int validatepin = GoogleAuthenticator(otpcodeChar).GeneratePin();
                 if (validatepin != otpcode) {
                     QMessageBox::information(this, 
