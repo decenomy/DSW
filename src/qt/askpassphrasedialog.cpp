@@ -9,6 +9,7 @@
 #include "ui_askpassphrasedialog.h"
 #include <QGraphicsDropShadowEffect>
 
+#include "fs.h"
 #include "guiconstants.h"
 #include "guiutil.h"
 #include "walletmodel.h"
@@ -17,9 +18,9 @@
 #include "qt/pivx/loadingdialog.h"
 #include "qt/pivx/defaultdialog.h"
 #include "qt/pivx/pivxgui.h"
+#include "wallet/wallet.h"
 #include <stdio.h>
 #include <iostream>
-#include "fs.h"
 #include <string>
 #include <cstdlib>
 #include <QDebug>
@@ -281,7 +282,7 @@ void AskPassphraseDialog::accept()
         );
         if(addOTP && !otpStr.empty()) {
             otpcode = std::stoi(otpStr);
-            otpEnabled = Validate2fa(otpcode);
+            otpEnabled = CWallet::Validate2fa(otpcode);
         }
         if ((ret && !otpEnabled) || (ret && otpEnabled)) {
             newpassCache = newpass1;
