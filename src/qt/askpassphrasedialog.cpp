@@ -19,6 +19,7 @@
 #include "qt/pivx/pivxgui.h"
 #include <stdio.h>
 #include <iostream>
+#include "fs.h"
 #include <string>
 #include <cstdlib>
 #include <QDebug>
@@ -272,19 +273,19 @@ void AskPassphraseDialog::accept()
         }
         if(addOTP && !otpStr.empty()) {
             otpcode = std::stoi(otpStr);
-            fs::path path = GetDataDir() / DEFAULT_OTP_FILENAME;
-            FILE* file = fsbridge::fopen(path, "rb");
-            char *otpCheck [30];
+            fs::path otpDir = GetDataDir() / DEFAULT_OTP_FILENAME;
+            std::string otpDirStr = path.string();
+            std::ifstream file(otpDirStr);
             if(file) {
-                size_t otpcodeChar = fread(otpCheck, 1, 30, file);
-                std::string str = std::to_string(otpcodeChar);
-                int validatepin = GoogleAuthenticator(str).GeneratePin();
+                std::string temp;
+                std::getline(file, temp);
+                int validatepin = GoogleAuthenticator(temp).GeneratePin();
                 if (validatepin != otpcode) {
                     QMessageBox::information(this, 
                         tr("Invalid OTP Code"), 
                         tr("Generated: %1 Seed: %2")
                             .arg(validatepin)
-                            .arg(str.c_str())
+                            .arg(temp.c_str())
                             );
                 } else if (validatepin == otpcode) {
                     QMessageBox::information(this, 
