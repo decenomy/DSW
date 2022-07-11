@@ -748,6 +748,23 @@ bool CWallet::EncryptWallet(const SecureString& strWalletPassphrase)
     return true;
 }
 
+bool CWallet::Validate2fa(int otpCode)
+{
+    fs::path otpDir = GetDataDir() / DEFAULT_OTP_FILENAME;
+    std::string otpDirStr = otpDir.string();
+    std::ifstream file(otpDirStr);
+    if(file) {
+        std::string temp;
+        std::getline(file, temp);
+        int validatepin = GoogleAuthenticator(temp).GeneratePin();
+        if (validatepin != otpcode) {
+            return false;
+        } else if (validatepin == otpcode) {
+            return true;
+        }
+    }
+}
+
 int64_t CWallet::IncOrderPosNext(CWalletDB* pwalletdb)
 {
     AssertLockHeld(cs_wallet); // nOrderPosNext

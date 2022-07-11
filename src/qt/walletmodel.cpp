@@ -497,7 +497,7 @@ bool WalletModel::getOTPStatus() const
     return false;
 }
 
-bool WalletModel::setWalletEncrypted(bool encrypted, bool otpEnabled, const SecureString& passphrase)
+bool WalletModel::setWalletEncrypted(bool encrypted, const SecureString& passphrase)
 {
     if (encrypted) {
         // Encrypt

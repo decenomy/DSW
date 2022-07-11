@@ -252,6 +252,7 @@ void AskPassphraseDialog::accept()
     SecureString oldpass, newpass1, newpass2;
     int otpcode;
     std::string otpStr;
+    bool otpEnabled = false;
     if (!model)
         return;
     oldpass.reserve(MAX_PASSPHRASE_SIZE);
@@ -271,32 +272,6 @@ void AskPassphraseDialog::accept()
             // Cannot encrypt with empty passphrase
             break;
         }
-        if(addOTP && !otpStr.empty()) {
-            otpcode = std::stoi(otpStr);
-            fs::path otpDir = GetDataDir() / DEFAULT_OTP_FILENAME;
-            std::string otpDirStr = otpDir.string();
-            std::ifstream file(otpDirStr);
-            if(file) {
-                std::string temp;
-                std::getline(file, temp);
-                int validatepin = GoogleAuthenticator(temp).GeneratePin();
-                if (validatepin != otpcode) {
-                    QMessageBox::information(this, 
-                        tr("Invalid OTP Code"), 
-                        tr("Generated: %1 Seed: %2")
-                            .arg(validatepin)
-                            .arg(temp.c_str())
-                            );
-                } else if (validatepin == otpcode) {
-                    QMessageBox::information(this, 
-                        tr("OTP Code Success"), 
-                        tr("Used: %1, Generated: %2")
-                            .arg(otpcode)
-                            .arg(validatepin)
-                            );
-                }
-            }
-        }
         hide();
         bool ret = openStandardDialog(
                 tr("Confirm wallet encryption"),
@@ -304,38 +279,16 @@ void AskPassphraseDialog::accept()
                 " <b>" + tr("LOSE ALL OF YOUR COINS") + "</b>!<br><br>" + tr("Are you sure you wish to encrypt your wallet?"),
                 tr("ENCRYPT"), tr("CANCEL")
         );
-        /*bool addOTP = openStandardDialog(
-            tr("Enabling 2FA"),
-            "<b>" + tr("You may Enable 2FA with your wallet now if you wish.") + "</b>", 
-            tr("Yes"), tr("No")
-        );*/
-        if (ret  && !addOTP) {
+        if(addOTP && !otpStr.empty()) {
+            otpcode = std::stoi(otpStr);
+            otpEnabled = Validate2fa(otpcode);
+        }
+        if ((ret && !otpEnabled) || (ret && otpEnabled)) {
             newpassCache = newpass1;
             PIVXGUI* window = static_cast<PIVXGUI*>(parentWidget());
             LoadingDialog *dialog = new LoadingDialog(window);
             dialog->execute(this, 1);
             openDialogWithOpaqueBackgroundFullScreen(dialog, window);
-        } else if (ret && addOTP) {
-            newpassCache = newpass1;
-            PIVXGUI* window = static_cast<PIVXGUI*>(parentWidget());
-            LoadingDialog *dialog = new LoadingDialog(window);
-            dialog->execute(this, 1);
-            openDialogWithOpaqueBackgroundFullScreen(dialog, window);
-            /* bool finalizeOTP = openStandardDialog(
-                tr("2FA WARNING"),
-                "<b>" + tr("WARNING") + ":</b>" + tr("Do not lose this seed, or you will lose access to your wallet and coins")
-                + "<br>" + tr("Are you sure you want to Enable 2FA?"),
-                tr("Yes"), tr("No")
-            );
-            if (finalizeOTP) {
-                std::string newOTPSeed = GoogleAuthenticator::CreateNewSeed();
-                QString str = QString::fromStdString(newOTPSeed);
-                QMessageBox::critical(this, 
-                                        tr("Save this 2FA Seed"), 
-                                        tr("%1").arg(str));
-
-            } 
-            break; */
         } else {
             QDialog::reject(); // Cancelled
         }
@@ -357,7 +310,7 @@ void AskPassphraseDialog::accept()
         }
         break;
     case Mode::Decrypt:
-        if (!model->setWalletEncrypted(false, false, oldpass)) {
+        if (!model->setWalletEncrypted(false, oldpass)) {
             QMessageBox::critical(this, tr("Wallet decryption failed"),
                 tr("The passphrase entered for the wallet decryption was incorrect."));
         } else {
@@ -378,13 +331,6 @@ void AskPassphraseDialog::accept()
             QMessageBox::critical(this, tr("Wallet encryption failed"),
                 tr("The supplied passphrases do not match."));
         }
-        break;
-    case Mode::AddOTP:
-        std::string newOTPSeed = GoogleAuthenticator::CreateNewSeed();
-        QString str = QString::fromStdString(newOTPSeed);
-        QMessageBox::critical(this, 
-                            tr("Save this 2FA Seed"), 
-                            tr("%1").arg(str));
         break;
     }
 }
@@ -521,7 +467,7 @@ void AskPassphraseDialog::run(int type)
     if (type == 1) {
         if (!newpassCache.empty()) {
             QMetaObject::invokeMethod(this, "hide", Qt::QueuedConnection);
-            if (model->setWalletEncrypted(true, false, newpassCache)) {
+            if (model->setWalletEncrypted(true, newpassCache)) {
                 QMetaObject::invokeMethod(this, "warningMessage", Qt::QueuedConnection);
             } else {
                 QMetaObject::invokeMethod(this, "errorEncryptingWallet", Qt::QueuedConnection);
