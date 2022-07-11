@@ -660,7 +660,7 @@ bool CWallet::GetVinAndKeysFromOutput(COutput out, CTxIn& txinRet, CPubKey& pubK
 
 bool CWallet::EncryptWallet(const SecureString& strWalletPassphrase)
 {
-    if ((IsCrypted()) || (IsOTP()))
+    if (IsCrypted())
         return false;
 
     CKeyingMaterial vMasterKey;
