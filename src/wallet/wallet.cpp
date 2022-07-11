@@ -758,12 +758,11 @@ bool CWallet::Validate2fa(int otpCode)
         std::string temp;
         std::getline(file, temp);
         int validatepin = GoogleAuthenticator(temp).GeneratePin();
-        if (validatepin != otpCode) {
-            return false;
-        } else if (validatepin == otpCode) {
+        if (validatepin == otpCode) {
             return true;
         }
     }
+    return false;
 }
 
 int64_t CWallet::IncOrderPosNext(CWalletDB* pwalletdb)
