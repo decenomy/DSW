@@ -274,7 +274,7 @@ void AskPassphraseDialog::accept()
         if(addOTP && !otpStr.empty()) {
             otpcode = std::stoi(otpStr);
             fs::path otpDir = GetDataDir() / DEFAULT_OTP_FILENAME;
-            std::string otpDirStr = path.string();
+            std::string otpDirStr = otpDir.string();
             std::ifstream file(otpDirStr);
             if(file) {
                 std::string temp;
