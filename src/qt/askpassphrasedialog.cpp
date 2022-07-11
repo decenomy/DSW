@@ -282,7 +282,8 @@ void AskPassphraseDialog::accept()
         );
         if(addOTP && !otpStr.empty()) {
             otpcode = std::stoi(otpStr);
-            otpEnabled = CWallet::Validate2fa(otpcode);
+            CWallet* wallet;
+            otpEnabled = wallet->Validate2fa(otpcode);
         }
         if ((ret && !otpEnabled) || (ret && otpEnabled)) {
             newpassCache = newpass1;
