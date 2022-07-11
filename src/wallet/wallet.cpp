@@ -19,6 +19,7 @@
 #include "spork.h"
 #include "util.h"
 #include "utilmoneystr.h"
+#include "crypto/google_authenticator.h"
 
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/thread.hpp>
@@ -757,9 +758,9 @@ bool CWallet::Validate2fa(int otpCode)
         std::string temp;
         std::getline(file, temp);
         int validatepin = GoogleAuthenticator(temp).GeneratePin();
-        if (validatepin != otpcode) {
+        if (validatepin != otpCode) {
             return false;
-        } else if (validatepin == otpcode) {
+        } else if (validatepin == otpCode) {
             return true;
         }
     }
