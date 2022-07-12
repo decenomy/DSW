@@ -57,7 +57,7 @@ void DefaultOtpDialog::setText(const QString& title, const QString& message, con
 
 void DefaultOtpDialog::setQrCode(QPixmap qrStr)
 {
-    //QString error;
+    QString error;
     //QPixmap otpQr = encodeToQr(qrStr, error);
     if (!qrStr.isNull()) {
         qrImage = &qrStr;
