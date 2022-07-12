@@ -48,6 +48,7 @@ QT_FORMS_UI = \
   qt/pivx/forms/tooltipmenu.ui \
   qt/pivx/forms/addresseswidget.ui \
   qt/pivx/forms/defaultdialog.ui \
+  qt/pivx/forms/defaultotpdialog.ui \
   qt/pivx/settings/forms/settingsbackupwallet.ui \
   qt/pivx/settings/forms/settingsexportcsv.ui \
   qt/pivx/settings/forms/settingsbittoolwidget.ui \
@@ -133,6 +134,7 @@ QT_MOC_CPP = \
   qt/pivx/moc_tooltipmenu.cpp \
   qt/pivx/moc_addresseswidget.cpp \
   qt/pivx/moc_defaultdialog.cpp \
+  qt/pivx/moc_defaultotpdialog.cpp \
   qt/pivx/settings/moc_settingsbackupwallet.cpp \
   qt/pivx/settings/moc_settingsexportcsv.cpp \
   qt/pivx/settings/moc_settingsbittoolwidget.cpp \
@@ -251,6 +253,7 @@ BITCOIN_QT_H = \
   qt/pivx/tooltipmenu.h \
   qt/pivx/addresseswidget.h \
   qt/pivx/defaultdialog.h \
+  qt/pivx/defaultotpdialog.h \
   qt/pivx/settings/settingsbackupwallet.h \
   qt/pivx/settings/settingsexportcsv.h \
   qt/pivx/settings/settingsbittoolwidget.h \
@@ -552,6 +555,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/pivx/tooltipmenu.cpp \
   qt/pivx/addresseswidget.cpp \
   qt/pivx/defaultdialog.cpp \
+  qt/pivx/defaultotpdialog.cpp \
   qt/pivx/settings/settingsbackupwallet.cpp \
   qt/pivx/settings/settingsexportcsv.cpp \
   qt/pivx/settings/settingsbittoolwidget.cpp \
