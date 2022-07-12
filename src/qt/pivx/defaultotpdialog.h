@@ -22,7 +22,7 @@ public:
     ~DefaultOtpDialog();
 
     void setText(const QString& title = "", const QString& message = "", const QString& okBtnText = "", const QString& cancelBtnText = "");
-    void setQrCode(QString qrStr);
+    void setQrCode(QPixmap qrStr);
 
     bool isOk = false;
 
