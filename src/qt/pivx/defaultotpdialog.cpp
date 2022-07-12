@@ -59,7 +59,7 @@ void DefaultOtpDialog::setQrCode(QPixmap qrStr)
 {
     //QString error;
     //QPixmap otpQr = encodeToQr(qrStr, error);
-    if (!otpQr.isNull()) {
+    if (!qrStr.isNull()) {
         qrImage = &qrStr;
         ui->labelOtp->setPixmap(qrImage->scaled(ui->labelOtp->width(), ui->labelOtp->height()));
     } else{
