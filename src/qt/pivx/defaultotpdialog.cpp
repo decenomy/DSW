@@ -57,10 +57,10 @@ void DefaultOtpDialog::setText(const QString& title, const QString& message, con
 
 void DefaultOtpDialog::setQrCode(QPixmap qrStr)
 {
-    QString error;
-    QPixmap otpQr = encodeToQr(qrStr, error);
+    //QString error;
+    //QPixmap otpQr = encodeToQr(qrStr, error);
     if (!otpQr.isNull()) {
-        qrImage = &otpQr;
+        qrImage = &qrStr;
         ui->labelOtp->setPixmap(qrImage->scaled(ui->labelOtp->width(), ui->labelOtp->height()));
     } else{
         ui->labelOtp->setText(!error.isEmpty() ? error : "Error encoding Seedphrase.");

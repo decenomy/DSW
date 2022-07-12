@@ -210,15 +210,15 @@ void AskPassphraseDialog::generateSeed()
             QString str = QString::fromStdString(newOTPSeed);
             // Precursor to QRCode for the OTP Seed
             // TODO: Modify openStandardDialog to have a label for qpixmap insertion
-            QString error;
-            QColor qrColor("#382d4d");
-            QPixmap otpQr = encodeToQr(str, error, qrColor);
+            //QString error;
+            //QColor qrColor("#382d4d");
+            //QPixmap otpQr = encodeToQr(str, error, qrColor);
             openOtpDialog(
                 tr("2FA SEED"),
                 tr("%1").arg(charOTP),
                 tr("Done"),
                 tr("Cancel"),
-                tr("%2").arg(otpQr)
+                tr("%2").arg(str)
 
             );
             fwrite(charOTP, std::strlen(charOTP), 1, file);
@@ -420,12 +420,15 @@ bool AskPassphraseDialog::openStandardDialog(QString title, QString body, QStrin
     return ret;
 }
 
-bool AskPassphraseDialog::openOtpDialog(QString title, QString body, QString okBtn, QString cancelBtn, QPixmap qrOtp)
+bool AskPassphraseDialog::openOtpDialog(QString title, QString body, QString okBtn, QString cancelBtn, QString qrOtp)
 {
+    QString error;
+    QColor qrColor("#382d4d");
+    QPixmap qrCode = encodeToQr(qrOtp, error, qrColor);
     PIVXGUI* gui = static_cast<PIVXGUI*>(parentWidget());
     DefaultOtpDialog *confirmDialog = new DefaultOtpDialog(gui);
     confirmDialog->setText(title, body, okBtn, cancelBtn);
-    confirmDialog->setQrCode(qrOtp);
+    confirmDialog->setQrCode(qrCode);
     confirmDialog->adjustSize();
     openDialogWithOpaqueBackground(confirmDialog, gui);
     bool ret = confirmDialog->isOk;
