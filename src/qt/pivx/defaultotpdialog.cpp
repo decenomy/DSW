@@ -73,7 +73,7 @@ void DefaultOtpDialog::accept()
     QDialog::accept();
 }
 
-DefaultOtpDialog::~DefaultDialog()
+DefaultOtpDialog::~DefaultOtpDialog()
 {
     delete ui;
 }
