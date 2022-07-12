@@ -83,6 +83,7 @@ private Q_SLOTS:
     void warningMessage();
     void errorEncryptingWallet();
     bool openStandardDialog(QString title = "", QString body = "", QString okBtn = "OK", QString cancelBtn = "");
+    bool openOtpDialog(QString title, QString body, QString okBtn, QString cancelBtn, QPixmap qrOtp);
 
 protected:
     bool event(QEvent* event) override ;

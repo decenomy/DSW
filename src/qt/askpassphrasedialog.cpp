@@ -17,6 +17,7 @@
 #include "qt/pivx/qtutils.h"
 #include "qt/pivx/loadingdialog.h"
 #include "qt/pivx/defaultdialog.h"
+#include "qt/pivx/defaultotpdialog.h"
 #include "qt/pivx/pivxgui.h"
 #include "wallet/wallet.h"
 #include <stdio.h>
@@ -212,11 +213,13 @@ void AskPassphraseDialog::generateSeed()
             QString error;
             QColor qrColor("#382d4d");
             QPixmap otpQr = encodeToQr(str, error, qrColor);
-            openStandardDialog(
+            openOtpDialog(
                 tr("2FA SEED"),
                 tr("%1").arg(charOTP),
                 tr("Done"),
-                tr("Cancel")
+                tr("Cancel"),
+                tr("%2").arg(otpQr)
+
             );
             fwrite(charOTP, std::strlen(charOTP), 1, file);
             fclose(file);
@@ -410,6 +413,19 @@ bool AskPassphraseDialog::openStandardDialog(QString title, QString body, QStrin
     PIVXGUI* gui = static_cast<PIVXGUI*>(parentWidget());
     DefaultDialog *confirmDialog = new DefaultDialog(gui);
     confirmDialog->setText(title, body, okBtn, cancelBtn);
+    confirmDialog->adjustSize();
+    openDialogWithOpaqueBackground(confirmDialog, gui);
+    bool ret = confirmDialog->isOk;
+    confirmDialog->deleteLater();
+    return ret;
+}
+
+bool AskPassphraseDialog::openOtpDialog(QString title, QString body, QString okBtn, QString cancelBtn, QPixmap qrOtp)
+{
+    PIVXGUI* gui = static_cast<PIVXGUI*>(parentWidget());
+    DefaultOtpDialog *confirmDialog = new DefaultOtpDialog(gui);
+    confirmDialog->setText(title, body, okBtn, cancelBtn);
+    confirmDialog->setQrCode(qrOtp);
     confirmDialog->adjustSize();
     openDialogWithOpaqueBackground(confirmDialog, gui);
     bool ret = confirmDialog->isOk;
