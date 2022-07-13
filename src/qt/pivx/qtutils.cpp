@@ -101,7 +101,36 @@ bool openDialogWithOpaqueBackgroundFullScreen(QDialog* widget, PIVXGUI* gui)
     return res;
 }
 
-QPixmap encodeToOtpQr(QString str, QString& errorStr, QColor qrColor)
+QPixmap encodeToQr(QString str, QString& errorStr, QColor qrColor)
+{
+    if (!str.isEmpty()) {
+        // limit URI length
+        if (str.length() > MAX_URI_LENGTH) {
+            errorStr = "Resulting URI too long, try to reduce the text for label / message.";
+            return QPixmap();
+        } else {
+            QRcode* code = QRcode_encodeString(str.toUtf8().constData(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);
+            if (!code) {
+                errorStr = "Error encoding URI into QR Code.";
+                return QPixmap();
+            }
+            QImage myImage = QImage(code->width + 8, code->width + 8, QImage::Format_RGB32);
+            myImage.fill(0xffffff);
+            unsigned char* p = code->data;
+            for (int y = 0; y < code->width; y++) {
+                for (int x = 0; x < code->width; x++) {
+                    myImage.setPixel(x + 4, y + 4, ((*p & 1) ? qrColor.rgb() : 0xffffff));
+                    p++;
+                }
+            }
+            QRcode_free(code);
+            return QPixmap::fromImage(myImage);
+        }
+    }
+    return QPixmap();
+}
+
+QPixmap encodeToQr(QString str, QString& errorStr, QColor qrColor)
 {
     if (!str.isEmpty()) {
         // limit URI length
@@ -135,8 +164,7 @@ QPixmap encodeToOtpQr(QString str, QString& errorStr, QColor qrColor)
     return QPixmap();
 }
 
-
-QPixmap encodeToQr(QString str, QString& errorStr, QColor qrColor)
+QPixmap encodeToOtpQr(QString str, QString& errorStr, QColor qrColor)
 {
     if (!str.isEmpty()) {
         // limit URI length
@@ -144,7 +172,7 @@ QPixmap encodeToQr(QString str, QString& errorStr, QColor qrColor)
             errorStr = "Resulting URI too long, try to reduce the text for label / message.";
             return QPixmap();
         } else {
-            QRcode* code = QRcode_encodeString(str.toUtf8().constData(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);
+            QRcode* code = QRcode_encodeString(str, 0, QR_ECLEVEL_L, QR_MODE_8, 1);
             if (!code) {
                 errorStr = "Error encoding URI into QR Code.";
                 return QPixmap();

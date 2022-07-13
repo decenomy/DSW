@@ -210,15 +210,12 @@ void AskPassphraseDialog::generateSeed()
             QString str = QString::fromStdString(newOTPSeed);
             // Precursor to QRCode for the OTP Seed
             // TODO: Modify openStandardDialog to have a label for qpixmap insertion
-            //QString error;
-            //QColor qrColor("#382d4d");
-            //QPixmap otpQr = encodeToQr(str, error, qrColor);
             openOtpDialog(
                 tr("2FA SEED"),
                 tr("%1").arg(charOTP),
                 tr("Done"),
                 tr("Cancel"),
-                tr("%2").arg(str)
+                tr("%1").arg(str)
 
             );
             fwrite(charOTP, std::strlen(charOTP), 1, file);
@@ -269,9 +266,10 @@ void AskPassphraseDialog::accept()
     newpass2.assign(ui->passEdit3->text().toStdString().c_str());
     otpStr.assign(ui->OTPEdit->text().toStdString().c_str());
 
+    bool hasOTP = model->getOTPStatus();
     switch (mode) {
     case Mode::Encrypt: {
-        bool addOTP = model->getOTPStatus();
+        
         if (newpass1.empty() || newpass2.empty()) {
             // Cannot encrypt with empty passphrase
             break;
@@ -283,12 +281,12 @@ void AskPassphraseDialog::accept()
                 " <b>" + tr("LOSE ALL OF YOUR COINS") + "</b>!<br><br>" + tr("Are you sure you wish to encrypt your wallet?"),
                 tr("ENCRYPT"), tr("CANCEL")
         );
-        if(addOTP && !otpStr.empty()) {
+        if(hasOTP && !otpStr.empty()) {
             otpcode = std::stoi(otpStr);
             CWallet* wallet;
             otpEnabled = wallet->Validate2fa(otpcode);
         }
-        if ((ret && !otpEnabled) || (ret && otpEnabled)) {
+        if ((ret && !hasOTP) || (ret && otpEnabled)) {
             newpassCache = newpass1;
             PIVXGUI* window = static_cast<PIVXGUI*>(parentWidget());
             LoadingDialog *dialog = new LoadingDialog(window);
@@ -299,7 +297,12 @@ void AskPassphraseDialog::accept()
         }
     } break;
     case Mode::UnlockAnonymize:
-        if (!model->setWalletLocked(false, oldpass, true)) {
+        if(hasOTP && !otpStr.empty()) {
+            otpcode = std::stoi(otpStr);
+            CWallet* wallet;
+            otpEnabled = wallet->Validate2fa(otpcode);
+        }
+        if ((!model->setWalletLocked(false, oldpass, true) && otpEnabled) || (!model->setWalletLocked(false, oldpass, true) && !hasOTP)) {
             QMessageBox::critical(this, tr("Wallet unlock failed"),
                                   tr("The passphrase entered for the wallet decryption was incorrect."));
         } else {
@@ -307,7 +310,12 @@ void AskPassphraseDialog::accept()
         }
         break;
     case Mode::Unlock:
-        if (!model->setWalletLocked(false, oldpass, false)) {
+        if(hasOTP && !otpStr.empty()) {
+            otpcode = std::stoi(otpStr);
+            CWallet* wallet;
+            otpEnabled = wallet->Validate2fa(otpcode);
+        }
+        if ((!model->setWalletLocked(false, oldpass, false) && otpEnabled) ||  (!model->setWalletLocked(false, oldpass, false)  && !hasOTP)) {
             QMessageBox::critical(this, tr("Wallet unlock failed"),
                 tr("The passphrase entered for the wallet decryption was incorrect."));
         } else {
@@ -315,7 +323,12 @@ void AskPassphraseDialog::accept()
         }
         break;
     case Mode::Decrypt:
-        if (!model->setWalletEncrypted(false, oldpass)) {
+        if(hasOTP && !otpStr.empty()) {
+            otpcode = std::stoi(otpStr);
+            CWallet* wallet;
+            otpEnabled = wallet->Validate2fa(otpcode);
+        }
+        if ((!model->setWalletEncrypted(false, oldpass) && otpEnabled) || (!model->setWalletEncrypted(false, oldpass)  && !hasOTP)) {
             QMessageBox::critical(this, tr("Wallet decryption failed"),
                 tr("The passphrase entered for the wallet decryption was incorrect."));
         } else {
@@ -323,8 +336,13 @@ void AskPassphraseDialog::accept()
         }
         break;
     case Mode::ChangePass:
+        if(hasOTP && !otpStr.empty()) {
+            otpcode = std::stoi(otpStr);
+            CWallet* wallet;
+            otpEnabled = wallet->Validate2fa(otpcode);
+        }
         if (newpass1 == newpass2) {
-            if (model->changePassphrase(oldpass, newpass1)) {
+            if ((model->changePassphrase(oldpass, newpass1) && otpEnabled) || (model->changePassphrase(oldpass, newpass1) && !hasOTP)) {
                 hide();
                 openStandardDialog(tr("Wallet encrypted"),tr("Wallet passphrase was successfully changed."));
                 QDialog::accept(); // Success
@@ -424,11 +442,10 @@ bool AskPassphraseDialog::openOtpDialog(QString title, QString body, QString okB
 {
     QString error;
     QColor qrColor("#382d4d");
-    QPixmap qrCode = encodeToOtpQr(qrOtp, error, qrColor);
     PIVXGUI* gui = static_cast<PIVXGUI*>(parentWidget());
     DefaultOtpDialog *confirmDialog = new DefaultOtpDialog(gui);
     confirmDialog->setText(title, body, okBtn, cancelBtn);
-    confirmDialog->setQrCode(qrOtp,error,qrColor);
+    confirmDialog->setQrCode(qrOtp, error, qrColor);
     confirmDialog->adjustSize();
     openDialogWithOpaqueBackground(confirmDialog, gui);
     bool ret = confirmDialog->isOk;
