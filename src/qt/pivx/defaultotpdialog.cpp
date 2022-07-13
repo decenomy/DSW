@@ -55,15 +55,14 @@ void DefaultOtpDialog::setText(const QString& title, const QString& message, con
     if (!title.isNull()) ui->labelTitle->setText(title);
 }
 
-void DefaultOtpDialog::setQrCode(QPixmap qrStr)
+void DefaultOtpDialog::setQrCode(QString str, QString& errorStr, QColor qrColor)
 {
-    QString error;
-    //QPixmap otpQr = encodeToQr(qrStr, error);
-    if (!qrStr.isNull()) {
-        qrImage = &qrStr;
-        ui->labelOtp->setPixmap(qrImage->scaled(ui->labelOtp->width(), ui->labelOtp->height()));
+    QPixmap otpQr = encodeToOtpQr(str, errorStr, qrColor);
+    if (!str.isNull()) {
+        qrImage = &otpQr;
+        ui->labelOtp->setPixmap(qrImage->scaled(250, 250));
     } else{
-        ui->labelOtp->setText(!error.isEmpty() ? error : "Error encoding Seedphrase.");
+        ui->labelOtp->setText(!errorStr.isEmpty() ? errorStr : "Error encoding Seedphrase.");
     }
 }
 

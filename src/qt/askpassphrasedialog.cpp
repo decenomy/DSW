@@ -424,11 +424,11 @@ bool AskPassphraseDialog::openOtpDialog(QString title, QString body, QString okB
 {
     QString error;
     QColor qrColor("#382d4d");
-    QPixmap qrCode = encodeToQr(qrOtp, error, qrColor);
+    QPixmap qrCode = encodeToOtpQr(qrOtp, error, qrColor);
     PIVXGUI* gui = static_cast<PIVXGUI*>(parentWidget());
     DefaultOtpDialog *confirmDialog = new DefaultOtpDialog(gui);
     confirmDialog->setText(title, body, okBtn, cancelBtn);
-    confirmDialog->setQrCode(qrCode);
+    confirmDialog->setQrCode(qrOtp,error,qrColor);
     confirmDialog->adjustSize();
     openDialogWithOpaqueBackground(confirmDialog, gui);
     bool ret = confirmDialog->isOk;

@@ -101,6 +101,41 @@ bool openDialogWithOpaqueBackgroundFullScreen(QDialog* widget, PIVXGUI* gui)
     return res;
 }
 
+QPixmap encodeToOtpQr(QString str, QString& errorStr, QColor qrColor)
+{
+    if (!str.isEmpty()) {
+        // limit URI length
+        if (str.length() > MAX_URI_LENGTH) {
+            errorStr = "Resulting URI too long, try to reduce the text for label / message.";
+            return QPixmap();
+        } else {
+            std::string coin = "Decenomy:__DSW__Wallet";
+            std::string uri = "otpauth://totp/";
+            std::string secret = "?secret=";
+            std::string issuer = "&issuer=Decenomy";
+            std::string str2 = uri + coin + secret + str.toStdString() + issuer;
+            QRcode* code = QRcode_encodeString(str2.c_str(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);
+            if (!code) {
+                errorStr = "Error encoding URI into QR Code.";
+                return QPixmap();
+            }
+            QImage myImage = QImage(code->width + 8, code->width + 8, QImage::Format_RGB32);
+            myImage.fill(0xffffff);
+            unsigned char* p = code->data;
+            for (int y = 0; y < code->width; y++) {
+                for (int x = 0; x < code->width; x++) {
+                    myImage.setPixel(x + 4, y + 4, ((*p & 1) ? qrColor.rgb() : 0xffffff));
+                    p++;
+                }
+            }
+            QRcode_free(code);
+            return QPixmap::fromImage(myImage);
+        }
+    }
+    return QPixmap();
+}
+
+
 QPixmap encodeToQr(QString str, QString& errorStr, QColor qrColor)
 {
     if (!str.isEmpty()) {

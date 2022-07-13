@@ -42,6 +42,8 @@ bool openDialogWithOpaqueBackgroundFullScreen(QDialog* widget, PIVXGUI* gui);
 
 //
 QPixmap encodeToQr(QString str, QString& errorStr, QColor qrColor = Qt::black);
+QPixmap encodeToOtpQr(QString str, QString& errorStr, QColor qrColor = Qt::black);
+
 
 // Helpers
 void updateStyle(QWidget* widget);
