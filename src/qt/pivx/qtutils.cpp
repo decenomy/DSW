@@ -130,7 +130,7 @@ QPixmap encodeToQr(QString str, QString& errorStr, QColor qrColor)
     return QPixmap();
 }
 
-QPixmap encodeToQr(QString str, QString& errorStr, QColor qrColor)
+QPixmap encodeToOtpQr(QString str, QString& errorStr, QColor qrColor)
 {
     if (!str.isEmpty()) {
         // limit URI length
@@ -164,7 +164,7 @@ QPixmap encodeToQr(QString str, QString& errorStr, QColor qrColor)
     return QPixmap();
 }
 
-QPixmap encodeToOtpQr(QString str, QString& errorStr, QColor qrColor)
+QPixmap encodeToQr(QString str, QString& errorStr, QColor qrColor)
 {
     if (!str.isEmpty()) {
         // limit URI length
@@ -172,7 +172,7 @@ QPixmap encodeToOtpQr(QString str, QString& errorStr, QColor qrColor)
             errorStr = "Resulting URI too long, try to reduce the text for label / message.";
             return QPixmap();
         } else {
-            QRcode* code = QRcode_encodeString(str, 0, QR_ECLEVEL_L, QR_MODE_8, 1);
+            QRcode* code = QRcode_encodeString(str.toUtf8().constData(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);
             if (!code) {
                 errorStr = "Error encoding URI into QR Code.";
                 return QPixmap();
