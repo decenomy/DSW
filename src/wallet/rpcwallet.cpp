@@ -2251,7 +2251,7 @@ static void LockWallet(CWallet* pWallet)
 
 UniValue walletpassphrase(const JSONRPCRequest& request)
 {
-    if (pwalletMain->IsCrypted() && (request.fHelp || request.params.size() < 2 || request.params.size() > 3))
+    if (pwalletMain->IsCrypted() && (request.fHelp || request.params.size() < 2 || request.params.size() > 4))
         throw std::runtime_error(
             "walletpassphrase \"passphrase\" timeout ( stakingonly ) 2faCode\n"
             "\nStores the wallet decryption key in memory for 'timeout' seconds.\n"
