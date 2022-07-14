@@ -7,6 +7,7 @@
 #define DEFAULTOTPDIALOG_H
 
 #include "qt/pivx/focuseddialog.h"
+#include "qt/pivx/snackbar.h"
 #include <QPixmap>
 
 namespace Ui {
