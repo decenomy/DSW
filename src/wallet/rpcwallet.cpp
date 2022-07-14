@@ -2288,7 +2288,7 @@ UniValue walletpassphrase(const JSONRPCRequest& request)
 
     bool otpValid;
     if(pwalletMain->IsOTP())
-        otpValid = pwalletMain->Validate2fa(request.params[4].get_int());
+        otpValid = pwalletMain->Validate2fa(request.params[3].get_int());
         if (!otpValid)
             throw JSONRPCError(RPC_WALLET_ALREADY_UNLOCKED, "Error: 2 Factor Authentication Failed.");
 
