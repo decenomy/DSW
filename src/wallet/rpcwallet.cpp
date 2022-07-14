@@ -2286,6 +2286,7 @@ UniValue walletpassphrase(const JSONRPCRequest& request)
     if (!pwalletMain->IsCrypted())
         throw JSONRPCError(RPC_WALLET_WRONG_ENC_STATE, "Error: running with an unencrypted wallet, but walletpassphrase was called.");
 
+    bool otpValid;
     if(pwalletMain->IsOTP())
         otpValid = pwalletMain->Validate2fa(request.params[4].get_int());
         if (!otpValid)
@@ -2354,6 +2355,7 @@ UniValue walletpassphrasechange(const JSONRPCRequest& request)
     if (!pwalletMain->IsCrypted())
         throw JSONRPCError(RPC_WALLET_WRONG_ENC_STATE, "Error: running with an unencrypted wallet, but walletpassphrasechange was called.");
 
+    bool otpValid;
     if(pwalletMain->IsOTP())
         otpValid = pwalletMain->Validate2fa(request.params[4].get_int());
         if (!otpValid)
@@ -2480,12 +2482,12 @@ UniValue generate2faseed(const JSONRPCRequest& request)
                 "\nReturns a base32 encoded seed for Google Authenticator or other 2fa applications\n"
                 "\nRe-running this command will reset your 2fa currently, so if you use it again make sure to save your seed.\n"
                 "\nYour seed phrase is very important if you set it and lose this you will lose access to your coins.\n"
-        )
+        );
+    LOCK2(cs_main, pwalletMain->cs_wallet);
     fs::path path = GetDataDir() / DEFAULT_OTP_FILENAME;
     FILE* file = fsbridge::fopen(path, "wb");
     std::string newOTPSeed = GoogleAuthenticator::CreateNewSeed();
     char* charOTP = const_cast<char*>(newOTPSeed.c_str());
-    QString str = QString::fromStdString(newOTPSeed);
     fwrite(charOTP, std::strlen(charOTP), 1, file);
     fclose(file);
     return newOTPSeed;
