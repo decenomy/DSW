@@ -11,15 +11,18 @@
 #include "base58.h"
 #include "coincontrol.h"
 #include "core_io.h"
+#include "fs.h"
 #include "init.h"
 #include "key_io.h"
 #include "net.h"
+#include "crypto/google_authenticator.h"
 #include "rpc/server.h"
 #include "timedata.h"
 #include "util.h"
 #include "utilmoneystr.h"
 #include "wallet.h"
 #include "walletdb.h"
+#include "walletmodel.h"
 
 #include <stdint.h>
 
@@ -2249,16 +2252,17 @@ static void LockWallet(CWallet* pWallet)
 
 UniValue walletpassphrase(const JSONRPCRequest& request)
 {
-    if (pwalletMain->IsCrypted() && (request.fHelp || request.params.size() < 2 || request.params.size() > 3))
+    if (pwalletMain->IsCrypted() && (request.fHelp || request.params.size() < 2 || request.params.size() > 3 || request.params.size() > 4))
         throw std::runtime_error(
-            "walletpassphrase \"passphrase\" timeout ( stakingonly )\n"
+            "walletpassphrase \"passphrase\" timeout ( stakingonly ) 2faCode\n"
             "\nStores the wallet decryption key in memory for 'timeout' seconds.\n"
             "This is needed prior to performing transactions related to private keys such as sending __DSW__s\n"
 
             "\nArguments:\n"
             "1. \"passphrase\"     (string, required) The wallet passphrase\n"
             "2. timeout            (numeric, required) The time to keep the decryption key in seconds.\n"
-            "3. stakingonly        (boolean, optional, default=false) If is true sending functions are disabled."
+            "3. stakingonly        (boolean, optional, default=false) If is true sending functions are disabled.\n"
+            "4. 2faCode            (numeric, optional) The OTP code to unlock wallet if set for added security."
 
             "\nNote:\n"
             "Issuing the walletpassphrase command while the wallet is already unlocked will set a new unlock\n"
@@ -2269,6 +2273,8 @@ UniValue walletpassphrase(const JSONRPCRequest& request)
             HelpExampleCli("walletpassphrase", "\"my pass phrase\" 60") +
             "\nUnlock the wallet for 60 seconds but allow staking only\n" +
             HelpExampleCli("walletpassphrase", "\"my pass phrase\" 60 true") +
+            "\nUnlock the wallet for 60 seconds, allowing staking only but verifying 2fa\n" +
+            HelpExampleCli("walletpassphrase", "\"my pass phrase\" 60 true 123456") +
             "\nLock the wallet again (before 60 seconds)\n" +
             HelpExampleCli("walletlock", "") +
             "\nAs json rpc call\n" +
@@ -2280,6 +2286,11 @@ UniValue walletpassphrase(const JSONRPCRequest& request)
         return true;
     if (!pwalletMain->IsCrypted())
         throw JSONRPCError(RPC_WALLET_WRONG_ENC_STATE, "Error: running with an unencrypted wallet, but walletpassphrase was called.");
+
+    if(pwalletMain->IsOTP())
+        otpValid = pwalletMain->Validate2fa(request.params[4].get_int());
+        if (!otpValid)
+            throw JSONRPCError(RPC_WALLET_ALREADY_UNLOCKED, "Error: 2 Factor Authentication Failed.");
 
     // Note that the walletpassphrase is stored in params[0] which is not mlock()ed
     SecureString strWalletPass;
@@ -2323,17 +2334,19 @@ UniValue walletpassphrase(const JSONRPCRequest& request)
 
 UniValue walletpassphrasechange(const JSONRPCRequest& request)
 {
-    if (pwalletMain->IsCrypted() && (request.fHelp || request.params.size() != 2))
+    if (pwalletMain->IsCrypted() && (request.fHelp || request.params.size() == 2 || request.params.size() == 3))
         throw std::runtime_error(
-            "walletpassphrasechange \"oldpassphrase\" \"newpassphrase\"\n"
+            "walletpassphrasechange \"oldpassphrase\" \"newpassphrase\" \"2fa code\" \n"
             "\nChanges the wallet passphrase from 'oldpassphrase' to 'newpassphrase'.\n"
 
             "\nArguments:\n"
             "1. \"oldpassphrase\"      (string) The current passphrase\n"
             "2. \"newpassphrase\"      (string) The new passphrase\n"
+            "3. \"2fa code\"           (numeric) The OTP verification code\n"
 
             "\nExamples:\n" +
-            HelpExampleCli("walletpassphrasechange", "\"old one\" \"new one\"") + HelpExampleRpc("walletpassphrasechange", "\"old one\", \"new one\""));
+            HelpExampleCli("walletpassphrasechange", "\"old one\" \"new one\"") + 
+            HelpExampleRpc("walletpassphrasechange", "\"old one\", \"new one\", \"otpCode\""));
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
@@ -2341,6 +2354,11 @@ UniValue walletpassphrasechange(const JSONRPCRequest& request)
         return true;
     if (!pwalletMain->IsCrypted())
         throw JSONRPCError(RPC_WALLET_WRONG_ENC_STATE, "Error: running with an unencrypted wallet, but walletpassphrasechange was called.");
+
+    if(pwalletMain->IsOTP())
+        otpValid = pwalletMain->Validate2fa(request.params[4].get_int());
+        if (!otpValid)
+            throw JSONRPCError(RPC_WALLET_ALREADY_UNLOCKED, "Error: 2 Factor Authentication Failed.");
 
     // TODO: get rid of these .c_str() calls by implementing SecureString::operator=(std::string)
     // Alternately, find a way to make request.params[0] mlock()'d to begin with.
@@ -2453,6 +2471,25 @@ UniValue encryptwallet(const JSONRPCRequest& request)
     // unencrypted private keys. So:
     StartShutdown();
     return "wallet encrypted; __decenomy__ server stopping, restart to run with encrypted wallet. The keypool has been flushed, you need to make a new backup.";
+}
+
+UniValue generate2faseed(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() > 1)
+        throw std::runtime_error(
+                "generate2faseed\n"
+                "\nReturns a base32 encoded seed for Google Authenticator or other 2fa applications\n"
+                "\nRe-running this command will reset your 2fa currently, so if you use it again make sure to save your seed.\n"
+                "\nYour seed phrase is very important if you set it and lose this you will lose access to your coins.\n"
+        )
+    fs::path path = GetDataDir() / DEFAULT_OTP_FILENAME;
+    FILE* file = fsbridge::fopen(path, "wb");
+    std::string newOTPSeed = GoogleAuthenticator::CreateNewSeed();
+    char* charOTP = const_cast<char*>(newOTPSeed.c_str());
+    QString str = QString::fromStdString(newOTPSeed);
+    fwrite(charOTP, std::strlen(charOTP), 1, file);
+    fclose(file);
+    return newOTPSeed;
 }
 
 UniValue listunspent(const JSONRPCRequest& request)
@@ -3174,6 +3211,7 @@ const CRPCCommand vWalletRPCCommands[] =
         { "wallet",             "dumpprivkey",              &dumpprivkey,              true  },
         { "wallet",             "dumpwallet",               &dumpwallet,               true  },
         { "wallet",             "encryptwallet",            &encryptwallet,            true  },
+        { "wallet",             "generate2faseed",          &generate2faseed,          true  },
         { "wallet",             "getbalance",               &getbalance,               false },
         { "wallet",             "upgradewallet",            &upgradewallet,            true  },
         { "wallet",             "sethdseed",                &sethdseed,                true  },
