@@ -23,6 +23,7 @@ public:
 
     void setText(const QString& title = "", const QString& message = "", const QString& okBtnText = "", const QString& cancelBtnText = "");
     void setQrCode(QString str, QString& errorStr, QColor qrColor);
+    void onCopyClicked();
 
     bool isOk = false;
 

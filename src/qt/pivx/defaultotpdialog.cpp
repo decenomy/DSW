@@ -37,9 +37,12 @@ DefaultOtpDialog::DefaultOtpDialog(QWidget *parent) :
     ui->btnCancel->setProperty("cssClass", "btn-dialog-cancel");
     ui->btnSave->setProperty("cssClass", "btn-primary");
 
+    ui->btnCopy->setProperty("cssClass", "ic-copy");
+
     connect(ui->btnEsc, &QPushButton::clicked, this, &DefaultOtpDialog::close);
     connect(ui->btnCancel, &QPushButton::clicked, this, &DefaultOtpDialog::close);
     connect(ui->btnSave, &QPushButton::clicked, this, &DefaultOtpDialog::accept);
+    connect(ui->btnCopyUrl, &QPushButton::clicked, this, &DefaultOtpDialog::onCopyClicked);
 }
 
 void DefaultOtpDialog::setText(const QString& title, const QString& message, const QString& okBtnText, const QString& cancelBtnText)
@@ -64,6 +67,12 @@ void DefaultOtpDialog::setQrCode(QString str, QString& errorStr, QColor qrColor)
     } else{
         ui->labelOtp->setText(!errorStr.isEmpty() ? errorStr : "Error encoding Seedphrase.");
     }
+}
+
+void DefaultOtpDialog::onCopyClicked()
+{
+    GUIUtil::setClipboard(ui->labelMessage->text());
+    inform(tr("Seed copied"));
 }
 
 void DefaultOtpDialog::accept()
