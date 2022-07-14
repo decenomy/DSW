@@ -22,7 +22,6 @@
 #include "utilmoneystr.h"
 #include "wallet.h"
 #include "walletdb.h"
-#include "walletmodel.h"
 
 #include <stdint.h>
 
