@@ -1088,6 +1088,9 @@ bool AppInit2()
     if (!CWallet::ParameterInteraction())
         return false;
 #endif // ENABLE_WALLET
+    std::string strOtpFile = GetArg("-otp", DEFAULT_OTP_FILENAME);
+    if (!CWallet::ParameterInteraction())
+        return false;
 
     fIsBareMultisigStd = GetBoolArg("-permitbaremultisig", DEFAULT_PERMIT_BAREMULTISIG);
     nMaxDatacarrierBytes = GetArg("-datacarriersize", nMaxDatacarrierBytes);
