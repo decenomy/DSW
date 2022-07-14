@@ -33,6 +33,7 @@ public Q_SLOTS:
 private:
     Ui::DefaultOtpDialog *ui;
     QPixmap *qrImage;
+    SnackBar *snackBar = nullptr;
     void inform(const QString& text);
 };
 
