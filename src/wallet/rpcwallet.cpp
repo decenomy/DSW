@@ -2251,7 +2251,7 @@ static void LockWallet(CWallet* pWallet)
 
 UniValue walletpassphrase(const JSONRPCRequest& request)
 {
-    if (pwalletMain->IsCrypted() && (request.fHelp || request.params.size() < 2 || request.params.size() > 3 || request.params.size() > 4))
+    if (pwalletMain->IsCrypted() && (request.fHelp || request.params.size() < 2 || request.params.size() > 3))
         throw std::runtime_error(
             "walletpassphrase \"passphrase\" timeout ( stakingonly ) 2faCode\n"
             "\nStores the wallet decryption key in memory for 'timeout' seconds.\n"
@@ -2287,10 +2287,11 @@ UniValue walletpassphrase(const JSONRPCRequest& request)
         throw JSONRPCError(RPC_WALLET_WRONG_ENC_STATE, "Error: running with an unencrypted wallet, but walletpassphrase was called.");
 
     bool otpValid;
-    if(pwalletMain->IsOTP())
-        otpValid = pwalletMain->Validate2fa(request.params[3].get_int());
-        if (!otpValid)
-            throw JSONRPCError(RPC_WALLET_ALREADY_UNLOCKED, "Error: 2 Factor Authentication Failed.");
+    if(request.params.size() == 4)
+        if(pwalletMain->IsOTP())
+            otpValid = pwalletMain->Validate2fa(request.params[3].get_int());
+            if (!otpValid)
+                throw JSONRPCError(RPC_WALLET_ALREADY_UNLOCKED, "Error: 2 Factor Authentication Failed.");
 
     // Note that the walletpassphrase is stored in params[0] which is not mlock()ed
     SecureString strWalletPass;
