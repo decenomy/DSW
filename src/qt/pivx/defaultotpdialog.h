@@ -33,6 +33,7 @@ public Q_SLOTS:
 private:
     Ui::DefaultOtpDialog *ui;
     QPixmap *qrImage;
+    void inform(const QString& text);
 };
 
 #endif // DEFAULTDIALOG_H

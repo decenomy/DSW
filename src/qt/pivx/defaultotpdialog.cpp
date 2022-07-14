@@ -42,7 +42,7 @@ DefaultOtpDialog::DefaultOtpDialog(QWidget *parent) :
     connect(ui->btnEsc, &QPushButton::clicked, this, &DefaultOtpDialog::close);
     connect(ui->btnCancel, &QPushButton::clicked, this, &DefaultOtpDialog::close);
     connect(ui->btnSave, &QPushButton::clicked, this, &DefaultOtpDialog::accept);
-    connect(ui->btnCopyUrl, &QPushButton::clicked, this, &DefaultOtpDialog::onCopyClicked);
+    connect(ui->btnCopy, &QPushButton::clicked, this, &DefaultOtpDialog::onCopyClicked);
 }
 
 void DefaultOtpDialog::setText(const QString& title, const QString& message, const QString& okBtnText, const QString& cancelBtnText)
@@ -73,6 +73,14 @@ void DefaultOtpDialog::onCopyClicked()
 {
     GUIUtil::setClipboard(ui->labelMessage->text());
     inform(tr("Seed copied"));
+}
+
+void DefaultOtpDialog::inform(const QString& text)
+{
+    if (!snackBar) snackBar = new SnackBar(nullptr, this);
+    snackBar->setText(text);
+    snackBar->resize(this->width(), snackBar->height());
+    openDialog(snackBar, this);
 }
 
 void DefaultOtpDialog::accept()
