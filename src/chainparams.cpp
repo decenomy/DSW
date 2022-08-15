@@ -282,6 +282,10 @@ public:
         consensus.nTokenSwapCoinMint = 10000000 * COIN;
         consensus.sTokenSwapMintAddress = "PUxx7vSa88YY83QFWJiMdLMprkyncrwNJs";
 
+        consensus.nCoinBurnMintHeight = 2008645;
+        consensus.nCoinBurnMint = 8300000 * COIN;
+        consensus.sCoinBurnAddress = "PHWyfksLjWcU4SqQPE1ysFWZWaNKkQUKuT";
+
         // spork keys
         consensus.strSporkPubKey = "03b64dac8c2acd3c69917968e5eb188fafd5b299191c261fbe41c9288ee2df3639";
         consensus.strSporkPubKeyOld = "0414F669AC091EDE9237A4B6754C34A60AB13B26FFA38CBF3E61A07B9C05A6E85BA4C8589191D45F7D45B09C0D2A17865FA2F16132DB1922C73EE3DCAB43EBBC44";
@@ -290,15 +294,15 @@ public:
 
         // burn addresses
         consensus.mBurnAddresses = {
-            { "PXXXXXXXXXXXXXXXXXXXXXXXXXXXVtkn93", 0 }
-            { "PQdawbkogbPqKWNfQ5WUdgrJeq9nP5Y1tT", 2008645 }
-            { "PSdb6vuvsZvu2v28tzhUSdFDLZtBTmCmRY", 2008645 }
-            { "PX9U5ogR57D38zFQWXyKz7GHFnNFMjHGet", 2008645 }
-            { "PJ6bmV2vjKBCf8twBh4vvtrEEt6rjguzJ6", 2008645 }
-            { "PJLfihK29Wro3rp8H7pBMw4kWDo8dXsrnj", 2008645 }
-            { "PWJn4eCpxL9YEy84vTSELG6Yf2Lyjy4B46", 2008645 }
-            { "PHRkNodFMDApFL6KrCsJv6X7ykHXtRtFmG", 2008645 }
-            { "PHjDdS7mXor6WSgg1oCa1gfzcnF8fVf3X7", 2008645 }            
+            { "PXXXXXXXXXXXXXXXXXXXXXXXXXXXVtkn93", 0 },
+            { "PQdawbkogbPqKWNfQ5WUdgrJeq9nP5Y1tT", consensus.nCoinBurnMintHeight },
+            { "PSdb6vuvsZvu2v28tzhUSdFDLZtBTmCmRY", consensus.nCoinBurnMintHeight },
+            { "PX9U5ogR57D38zFQWXyKz7GHFnNFMjHGet", consensus.nCoinBurnMintHeight },
+            { "PJ6bmV2vjKBCf8twBh4vvtrEEt6rjguzJ6", consensus.nCoinBurnMintHeight },
+            { "PJLfihK29Wro3rp8H7pBMw4kWDo8dXsrnj", consensus.nCoinBurnMintHeight },
+            { "PWJn4eCpxL9YEy84vTSELG6Yf2Lyjy4B46", consensus.nCoinBurnMintHeight },
+            { "PHRkNodFMDApFL6KrCsJv6X7ykHXtRtFmG", consensus.nCoinBurnMintHeight },
+            { "PHjDdS7mXor6WSgg1oCa1gfzcnF8fVf3X7", consensus.nCoinBurnMintHeight },          
         };
 
         // height-based activations

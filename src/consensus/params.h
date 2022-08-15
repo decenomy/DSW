@@ -110,9 +110,14 @@ struct Params {
     int64_t nTargetTimespanV2;
     int64_t nTargetSpacing;
     int nTimeSlotLength;
+
     int nTokenSwapMintHeight = -1;
     CAmount nTokenSwapCoinMint = 0;
     std::string sTokenSwapMintAddress;
+
+    int nCoinBurnMintHeight = -1;
+    CAmount nCoinBurnMint = 0;
+    std::string sCoinBurnAddress;
 
     // burn addresses
     std::map<std::string, int> mBurnAddresses = {};

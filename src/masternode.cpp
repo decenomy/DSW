@@ -338,8 +338,19 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 {
     const Consensus::Params& consensus = Params().GetConsensus();
 
-    // Token swap mint for distribution
-    if (nHeight == consensus.nTokenSwapMintHeight) return consensus.nTokenSwapCoinMint + GetBlockValue(nHeight + 1);
+    CAmount nMint = 0;
+
+    // Token swap mint
+    if (consensus.nTokenSwapMintHeight == nHeight) {
+        nMint = consensus.nTokenSwapCoinMint;
+    } else
+    // Coin burn mint
+    if (consensus.nCoinBurnMintHeight == nHeight) {
+        nMint = consensus.nCoinBurnMint;
+    }
+
+    // Extra mint for distribution
+    if (nMint > 0) return nMint + GetBlockValue(nHeight + 1);
 
     if (nHeight > 2500000)      return       80.00 * COIN;
     if (nHeight > 2400000)      return       60.00 * COIN;
@@ -368,14 +379,27 @@ CAmount CMasternode::GetBlockValue(int nHeight)
     if (nHeight >   20001)      return        2.00 * COIN;
     if (nHeight >       1)      return        1.00 * COIN;
     if (nHeight >       0)      return 25000000.00 * COIN;
+
+    return 0;
 }
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
     const Consensus::Params& consensus = Params().GetConsensus();
 
-    // Token swap mint for distribution
-    if (nHeight == consensus.nTokenSwapMintHeight) return GetMasternodePayment(nHeight + 1);
+    CAmount nMint = 0;
+
+    // Token swap mint
+    if (consensus.nTokenSwapMintHeight == nHeight) {
+        nMint = consensus.nTokenSwapCoinMint;
+    } else
+    // Coin burn mint
+    if (consensus.nCoinBurnMintHeight == nHeight) {
+        nMint = consensus.nCoinBurnMint;
+    }
+
+    // Extra mint for distribution
+    if (nMint > 0) return GetMasternodePayment(nHeight + 1);
 
     if (nHeight > 1650000)      return CMasternode::GetBlockValue(nHeight) * 0.65;
     if (nHeight > 1500000)      return CMasternode::GetBlockValue(nHeight) * 0.60;
