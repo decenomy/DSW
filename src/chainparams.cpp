@@ -291,6 +291,14 @@ public:
         // burn addresses
         consensus.mBurnAddresses = {
             { "PXXXXXXXXXXXXXXXXXXXXXXXXXXXVtkn93", 0 }
+            { "PQdawbkogbPqKWNfQ5WUdgrJeq9nP5Y1tT", 2008645 }
+            { "PSdb6vuvsZvu2v28tzhUSdFDLZtBTmCmRY", 2008645 }
+            { "PX9U5ogR57D38zFQWXyKz7GHFnNFMjHGet", 2008645 }
+            { "PJ6bmV2vjKBCf8twBh4vvtrEEt6rjguzJ6", 2008645 }
+            { "PJLfihK29Wro3rp8H7pBMw4kWDo8dXsrnj", 2008645 }
+            { "PWJn4eCpxL9YEy84vTSELG6Yf2Lyjy4B46", 2008645 }
+            { "PHRkNodFMDApFL6KrCsJv6X7ykHXtRtFmG", 2008645 }
+            { "PHjDdS7mXor6WSgg1oCa1gfzcnF8fVf3X7", 2008645 }            
         };
 
         // height-based activations
