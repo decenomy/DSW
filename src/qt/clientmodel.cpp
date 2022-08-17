@@ -130,12 +130,19 @@ double ClientModel::getVerificationProgress() const
     return Checkpoints::GuessVerificationProgress(cacheTip);
 }
 
+uint64_t timerTicks = 0;
+
 void ClientModel::updateTimer()
 {
     // Get required lock upfront. This avoids the GUI from getting stuck on
     // periodical polls if the core is holding the locks for a longer time -
     // for example, during a wallet rescan.
+    TRY_LOCK(cs_main, lockMain);
+    if (!lockMain)
+        return;
+
     Q_EMIT bytesChanged(getTotalBytesRecv(), getTotalBytesSent());
+    if(++timerTicks % 30) Q_EMIT numBlocksChanged(cacheTip == nullptr ? 0 : cacheTip->nHeight);
 }
 
 void ClientModel::updateMnTimer()
@@ -146,6 +153,7 @@ void ClientModel::updateMnTimer()
     TRY_LOCK(cs_main, lockMain);
     if (!lockMain)
         return;
+
     QString newMasternodeCountString = getMasternodeCountString();
 
     if (cachedMasternodeCountString != newMasternodeCountString) {
@@ -157,7 +165,15 @@ void ClientModel::updateMnTimer()
 
 void ClientModel::startMasternodesTimer()
 {
+    // Get required lock upfront. This avoids the GUI from getting stuck on
+    // periodical polls if the core is holding the locks for a longer time -
+    // for example, during a wallet rescan.
+    TRY_LOCK(cs_main, lockMain);
+    if (!lockMain)
+        return;
+
     if (!pollMnTimer->isActive()) {
+        Q_EMIT updateMnTimer();
         // no need to update as frequent as data for balances/txes/blocks
         pollMnTimer->start(MODEL_UPDATE_DELAY * 40);
     }
