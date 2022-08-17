@@ -72,7 +72,12 @@ bool CMasternodeSync::IsBlockchainSynced()
         blockTime = pindex->nTime;
     }
 
-    if (blockTime + 60 * 60 < lastProcess)
+    auto maxBlockTime = sporkManager.GetSporkValue(SPORK_104_MAX_BLOCK_TIME);
+
+    if (maxBlockTime > lastProcess && blockTime + 60 * 60 < lastProcess)
+        return false;
+
+    if (maxBlockTime <= lastProcess && blockTime + 60 * 60 < maxBlockTime)
         return false;
 
     fBlockchainSynced = true;
