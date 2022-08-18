@@ -8,6 +8,7 @@
 
 #include "chainparams.h"
 
+#include "base58.h"
 #include "chainparamsseeds.h"
 #include "consensus/merkle.h"
 #include "util.h"
@@ -662,6 +663,14 @@ void SelectParams(CBaseChainParams::Network network)
 {
     SelectBaseParams(network);
     pCurrentParams = &Params(network);
+
+    // ----------- burn address verification -----------
+    const Consensus::Params& consensus = Params().GetConsensus();
+    if (!consensus.mBurnAddresses.empty()) {
+        for(auto kv : consensus.mBurnAddresses) {
+            assert(IsValidDestinationString(kv.first, Params()));
+        }
+    }
 }
 
 bool SelectParamsFromCommandLine()
