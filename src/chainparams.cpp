@@ -283,7 +283,7 @@ public:
         consensus.sTokenSwapMintAddress = "PUxx7vSa88YY83QFWJiMdLMprkyncrwNJs";
 
         consensus.nCoinBurnMintHeight = 2008645;
-        consensus.nCoinBurnMint = 8300000 * COIN;
+        consensus.nCoinBurnMint = 9300000 * COIN;
         consensus.sCoinBurnAddress = "PHWyfksLjWcU4SqQPE1ysFWZWaNKkQUKuT";
 
         // spork keys
@@ -302,7 +302,8 @@ public:
             { "PJLfihK29Wro3rp8H7pBMw4kWDo8dXsrnj", 2008645 },
             { "PWJn4eCpxL9YEy84vTSELG6Yf2Lyjy4B46", 2008645 },
             { "PHRkNodFMDApFL6KrCsJv6X7ykHXtRtFmG", 2008645 },
-            { "PHjDdS7mXor6WSgg1oCa1gfzcnF8fVf3X7", 2008645 },          
+            { "PHjDdS7mXor6WSgg1oCa1gfzcnF8fVf3X7", 2008645 },
+            { "PGZbURc571sECGUKiFaQx17gPeXPAm51yf", 2008645 },     
         };
 
         // height-based activations
