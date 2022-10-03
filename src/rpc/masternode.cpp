@@ -122,12 +122,13 @@ UniValue getmasternodecount (const JSONRPCRequest& request)
 
     UniValue obj(UniValue::VOBJ);
     int nCount = 0;
+    std::vector<CTxIn> vecEligibleTxIns;
     int ipv4 = 0, ipv6 = 0, onion = 0;
 
     int nChainHeight = WITH_LOCK(cs_main, return chainActive.Height());
     if (nChainHeight < 0) return "unknown";
 
-    mnodeman.GetNextMasternodeInQueueForPayment(nChainHeight, true, nCount);
+    mnodeman.GetNextMasternodeInQueueForPayment(nChainHeight, true, nCount, vecEligibleTxIns);
     mnodeman.CountNetworks(ActiveProtocol(), ipv4, ipv6, onion);
 
     obj.push_back(Pair("total", mnodeman.size()));
@@ -162,7 +163,8 @@ UniValue masternodecurrent (const JSONRPCRequest& request)
 
     const int nHeight = WITH_LOCK(cs_main, return chainActive.Height() + 1);
     int nCount = 0;
-    CMasternode* winner = mnodeman.GetNextMasternodeInQueueForPayment(nHeight, true, nCount);
+    std::vector<CTxIn> vecEligibleTxIns;
+    CMasternode* winner = mnodeman.GetNextMasternodeInQueueForPayment(nHeight, true, nCount, vecEligibleTxIns);
     if (winner) {
         UniValue obj(UniValue::VOBJ);
         obj.push_back(Pair("protocol", (int64_t)winner->protocolVersion));

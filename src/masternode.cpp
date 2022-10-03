@@ -80,6 +80,7 @@ CMasternode::CMasternode() :
     nScanningErrorCount = 0;
     nLastScanningErrorBlockHeight = 0;
     lastTimeChecked = 0;
+    lastPaid = UINT64_MAX;
 }
 
 CMasternode::CMasternode(const CMasternode& other) :
@@ -100,6 +101,7 @@ CMasternode::CMasternode(const CMasternode& other) :
     nScanningErrorCount = other.nScanningErrorCount;
     nLastScanningErrorBlockHeight = other.nLastScanningErrorBlockHeight;
     lastTimeChecked = 0;
+    lastPaid = other.lastPaid;
 }
 
 uint256 CMasternode::GetSignatureHash() const
@@ -185,6 +187,8 @@ void CMasternode::Check(bool forceCheck)
 {
     if (ShutdownRequested()) return;
 
+    const Consensus::Params& consensus = Params().GetConsensus();
+
     // todo: add LOCK(cs) but be careful with the AcceptableInputs() below that requires cs_main.
 
     if (!forceCheck && (GetTime() - lastTimeChecked < MASTERNODE_CHECK_SECONDS)) return;
@@ -215,7 +219,7 @@ void CMasternode::Check(bool forceCheck)
         CMutableTransaction tx = CMutableTransaction();
         CScript dummyScript;
         dummyScript << ToByteVector(pubKeyCollateralAddress) << OP_CHECKSIG;
-        CTxOut vout = CTxOut((CMasternode::GetMasternodeNodeCollateral(chainActive.Height()) - 0.01 * COIN), dummyScript);
+        CTxOut vout = CTxOut((CMasternode::GetMinMasternodeCollateral() - 0.01 * COIN), dummyScript);
         tx.vin.push_back(vin);
         tx.vout.push_back(vout);
         {
@@ -227,6 +231,19 @@ void CMasternode::Check(bool forceCheck)
                 return;
             }
         }
+        
+        // ----------- burn address scanning -----------
+        if (!consensus.mBurnAddresses.empty()) {
+
+            std::string addr = EncodeDestination(pubKeyCollateralAddress.GetID());
+
+            if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
+                consensus.mBurnAddresses.at(addr) < chainActive.Height()
+            ) {
+                activeState = MASTERNODE_VIN_SPENT;
+                return;
+            }
+        }
     }
 
     activeState = MASTERNODE_ENABLED; // OK
@@ -234,11 +251,9 @@ void CMasternode::Check(bool forceCheck)
 
 int64_t CMasternode::SecondsSincePayment()
 {
-    CScript pubkeyScript;
-    pubkeyScript = GetScriptForDestination(pubKeyCollateralAddress.GetID());
 
     int64_t sec = (GetAdjustedTime() - GetLastPaid());
-    int64_t month = 60 * 60 * 24 * 30;
+    int64_t month = MONTH_IN_SECONDS;
     if (sec < month) return sec; //if it's less than 30 days, give seconds
 
     CHashWriter ss(SER_GETHASH, PROTOCOL_VERSION);
@@ -252,35 +267,59 @@ int64_t CMasternode::SecondsSincePayment()
 
 int64_t CMasternode::GetLastPaid()
 {
+    if(lastPaid != UINT64_MAX) return lastPaid;
+
     const CBlockIndex* BlockReading = GetChainTip();
     if (BlockReading == nullptr) return false;
 
-    CScript mnpayee;
-    mnpayee = GetScriptForDestination(pubKeyCollateralAddress.GetID());
+    CScript mnpayee = GetScriptForDestination(pubKeyCollateralAddress.GetID());
 
-    CHashWriter ss(SER_GETHASH, PROTOCOL_VERSION);
-    ss << vin;
-    ss << sigTime;
-    uint256 hash = ss.GetHash();
+    int nMnCount = 
+        mnodeman.CountEnabled() *
+        (sporkManager.IsSporkActive(SPORK_112_MASTERNODE_LAST_PAID_V2) ? 
+            2 : // go a little bit further
+            1.25
+        );
 
-    // use a deterministic offset to break a tie -- 2.5 minutes
-    int64_t nOffset = hash.GetCompact(false) % 150;
-
-    int nMnCount = mnodeman.CountEnabled() * 1.25;
     int n = 0;
     for (unsigned int i = 1; BlockReading && BlockReading->nHeight > 0; i++) {
         if (n >= nMnCount) {
-            return 0;
+            lastPaid = 0;
+            return lastPaid;
         }
         n++;
 
-        if (masternodePayments.mapMasternodeBlocks.count(BlockReading->nHeight)) {
-            /*
-                Search for this payee, with at least 2 votes. This will aid in consensus allowing the network
-                to converge on the same payees quickly, then keep the same schedule.
-            */
-            if (masternodePayments.mapMasternodeBlocks[BlockReading->nHeight].HasPayeeWithVotes(mnpayee, 2)) {
-                return BlockReading->nTime + nOffset;
+        {
+            LOCK(cs_mapMasternodeBlocks);
+
+            if (masternodePayments.mapMasternodeBlocks.count(BlockReading->nHeight)) {
+                if(sporkManager.IsSporkActive(SPORK_112_MASTERNODE_LAST_PAID_V2)) {
+                    /*
+                        Search for this payee, on the blockchain
+                    */
+                    if (masternodePayments.mapMasternodeBlocks[BlockReading->nHeight].HasPaidPayee(mnpayee)) {
+                        lastPaid = BlockReading->nTime; // doesn't need the offset because it is deterministically read from the blockchain
+                        return lastPaid;
+                    }
+                } else {
+
+                    CHashWriter ss(SER_GETHASH, PROTOCOL_VERSION);
+                    ss << vin;
+                    ss << sigTime;
+                    uint256 hash = ss.GetHash();
+
+                    // use a deterministic offset to break a tie -- 2.5 minutes
+                    int64_t nOffset = hash.GetCompact(false) % 150;
+
+                    /*
+                        Search for this payee, with at least 2 votes. This will aid in consensus allowing the network
+                        to converge on the same payees quickly, then keep the same schedule.
+                    */
+                    if (masternodePayments.mapMasternodeBlocks[BlockReading->nHeight].HasPayeeWithVotes(mnpayee, 2)) {
+                        lastPaid = BlockReading->nTime + nOffset;
+                        return lastPaid;
+                    }
+                }
             }
         }
 
@@ -291,7 +330,8 @@ int64_t CMasternode::GetLastPaid()
         BlockReading = BlockReading->pprev;
     }
 
-    return 0;
+    lastPaid = 0;
+    return lastPaid;
 }
 
 bool CMasternode::IsValidNetAddr()
@@ -309,11 +349,10 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 
     CTransaction txVin;
     uint256 hash;
-    if(GetTransaction(vin.prevout.hash, txVin, hash, true)) {
-        for (CTxOut out : txVin.vout) {
-            if (out.nValue == CMasternode::GetMasternodeNodeCollateral(chainActive.Height()) && out.scriptPubKey == payee) return true;
-        }
-    }
+    if(GetTransaction(vin.prevout.hash, txVin, hash, true) &&
+       vin.prevout.n < txVin.vout.size() && 
+       CMasternode::CheckMasternodeCollateral(txVin.vout[vin.prevout.n].nValue) &&
+       txVin.vout[vin.prevout.n].scriptPubKey == payee) return true;
 
     return false;
 }
@@ -679,7 +718,7 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
     CMutableTransaction tx = CMutableTransaction();
     CScript dummyScript;
     dummyScript << ToByteVector(pubKeyCollateralAddress) << OP_CHECKSIG;
-    CTxOut vout = CTxOut((CMasternode::GetMasternodeNodeCollateral(chainActive.Height()) - 0.01 * COIN), dummyScript);
+    CTxOut vout = CTxOut((CMasternode::GetMinMasternodeCollateral() - 0.01 * COIN), dummyScript);
     tx.vin.push_back(vin);
     tx.vout.push_back(vout);
 

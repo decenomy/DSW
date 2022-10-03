@@ -140,6 +140,7 @@ public:
     int nScanningErrorCount;
     int nLastScanningErrorBlockHeight;
     CMasternodePing lastPing;
+    uint64_t lastPaid;
 
     CMasternode();
     CMasternode(const CMasternode& other);
@@ -265,6 +266,34 @@ public:
     bool IsInputAssociatedWithPubkey() const;
 
     static CAmount GetMasternodeNodeCollateral(int nHeight);
+
+    static CAmount GetCurrentMasternodeCollateral()
+    { 
+        return GetMasternodeNodeCollateral(chainActive.Height()); 
+    }
+
+    static CAmount GetNextWeekMasternodeCollateral()
+    { 
+        return CMasternode::GetMasternodeNodeCollateral(
+            chainActive.Height() + 
+            (WEEK_IN_SECONDS / Params().GetConsensus().nTargetSpacing)
+        ); 
+    }
+    static CAmount GetMinMasternodeCollateral()
+    { 
+        return std::min(
+            GetCurrentMasternodeCollateral(), 
+            GetNextWeekMasternodeCollateral()
+        );
+    }
+
+    static bool CheckMasternodeCollateral(CAmount nValue)
+    {
+        return 
+            nValue == GetCurrentMasternodeCollateral() || 
+            nValue == GetNextWeekMasternodeCollateral();
+    }
+
     static CAmount GetBlockValue(int nHeight);
     static CAmount GetMasternodePayment(int nHeight);
     static void InitMasternodeCollateralList();
