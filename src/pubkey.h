@@ -208,6 +208,16 @@ public:
 
 };
 
+struct CPubKeyCheapHasher {
+    int operator()(const CPubKey& pubKey) const {
+        int hash = pubKey.size();
+        for(auto &i : pubKey.Raw()) {
+            hash ^= i + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+        }
+        return hash;
+    }
+};
+
 struct CExtPubKey {
     unsigned char nDepth;
     unsigned char vchFingerprint[4];

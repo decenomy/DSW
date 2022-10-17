@@ -1810,7 +1810,8 @@ bool CWallet::GetMasternodeVinAndKeys(CTxIn& txinRet, CPubKey& pubKeyRet, CKey& 
     CTxOut txOut = wtx.vout[nOutputIndex];
 
     // Masternode collateral value
-    if (txOut.nValue != CMasternode::GetMasternodeNodeCollateral(chainActive.Height())) {
+    if (!CMasternode::CheckMasternodeCollateral(txOut.nValue)) 
+    {
         strError = "Invalid collateral tx value";
         return error("%s: tx %s, index %d not a masternode collateral", __func__, strTxHash, nOutputIndex);
     }
@@ -1884,7 +1885,7 @@ bool CWallet::AvailableCoins(std::vector<COutput>* pCoins,      // --> populates
             for (unsigned int i = 0; i < pcoin->vout.size(); i++) {
 
                 // Check for only 10k utxo
-                if (nCoinType == ONLY_10000 && pcoin->vout[i].nValue != CMasternode::GetMasternodeNodeCollateral(chainActive.Height())) continue;
+                if (nCoinType == ONLY_10000 && !CMasternode::CheckMasternodeCollateral(pcoin->vout[i].nValue)) continue;
 
                 // Check if the utxo was spent.
                 if (IsSpent(wtxid, i)) continue;

@@ -62,8 +62,14 @@ private:
     // critical section to protect the inner data structures specifically on messaging
     mutable RecursiveMutex cs_process_message;
 
-    // map to hold all MNs
-    std::vector<CMasternode> vMasternodes;
+    // vector to hold all MNs
+    std::vector<CMasternode*> vMasternodes;
+    // map MNs by CScript
+    std::unordered_map<CScript, CMasternode*, CScriptCheapHasher> mapScriptMasternodes;
+    // map MNs by CTxIn
+    std::unordered_map<CTxIn, CMasternode*, CTxInCheapHasher> mapTxInMasternodes;
+    // map MNs by CTxIn
+    std::unordered_map<CPubKey, CMasternode*, CPubKeyCheapHasher> mapPubKeyMasternodes;
     // who's asked for the Masternode list and the last time
     std::map<CNetAddr, int64_t> mAskedUsForMasternodeList;
     // who we asked for the Masternode list and the last time
@@ -87,7 +93,24 @@ public:
     inline void SerializationOp(Stream& s, Operation ser_action)
     {
         LOCK(cs);
-        READWRITE(vMasternodes);
+        uint64_t n = (uint64_t)vMasternodes.size();
+        CCompactSize size(n);
+        READWRITE(size);
+        if(ser_action.ForRead()) { 
+            vMasternodes.reserve(size);
+            for(uint64_t i = 0; i < size; i++) {
+                auto mn = new CMasternode();
+                READWRITE(*mn);
+                vMasternodes.push_back(mn);
+                mapScriptMasternodes[GetScriptForDestination(mn->pubKeyCollateralAddress.GetID())] = mn;
+                mapTxInMasternodes[mn->vin] = mn;
+                mapPubKeyMasternodes[mn->pubKeyMasternode] = mn;
+            }
+        } else {
+            for(auto mn : vMasternodes) {
+                READWRITE(*mn);
+            }
+        }
         READWRITE(mAskedUsForMasternodeList);
         READWRITE(mWeAskedForMasternodeList);
         READWRITE(mWeAskedForMasternodeListEntry);
@@ -127,7 +150,7 @@ public:
     CMasternode* Find(const CService &addr);
 
     /// Find an entry in the masternode list that is next to be paid
-    CMasternode* GetNextMasternodeInQueueForPayment(int nBlockHeight, bool fFilterSigTime, int& nCount);
+    CMasternode* GetNextMasternodeInQueueForPayment(int nBlockHeight, bool fFilterSigTime, int& nCount, std::vector<CTxIn>& vecEligibleTxIns);
 
     /// Get the current winner for this block
     CMasternode* GetCurrentMasterNode(int mod = 1, int64_t nBlockHeight = 0, int minProtocol = 0);
@@ -135,7 +158,17 @@ public:
     std::vector<CMasternode> GetFullMasternodeVector()
     {
         Check();
-        return vMasternodes;
+        // copy everything to avoid iteration problems and multithreading
+        std::vector<CMasternode> result;
+        {
+            LOCK(cs);
+
+            for(auto mn : vMasternodes) { 
+                result.push_back(*mn);
+            }
+        }
+
+        return result;
     }
 
     std::vector<std::pair<int, CMasternode> > GetMasternodeRanks(int64_t nBlockHeight, int minProtocol = 0);

@@ -1099,6 +1099,14 @@ void CConnman::AcceptConnection(const ListenSocket& hListenSocket) {
         return;
     }
 
+    CNode* dupnode = FindNode((CNetAddr)addr);
+    if (dupnode) {
+        // drop nodes already connected
+        LogPrint(BCLog::NET, "dropped, %s already connected\n",addr.ToStringIP());
+        CloseSocket(hSocket);
+        return;
+    }
+
     if (nInbound >= nMaxConnections - nMaxOutbound) {
         // try to evict 10% of the inbound connections
         int n = std::max(1, (nMaxConnections - nMaxOutbound) / 10);

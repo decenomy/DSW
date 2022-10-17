@@ -881,12 +881,14 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState &state, const C
     }
 
     // Check for conflicts with in-memory transactions
-    LOCK(pool.cs); // protect pool.mapNextTx
-    for (const auto &in : tx.vin) {
-        COutPoint outpoint = in.prevout;
-        if (pool.mapNextTx.count(outpoint)) {
-            // Disable replacement feature for now
-            return state.Invalid(false, REJECT_CONFLICT, "txn-mempool-conflict");
+    {
+        LOCK(pool.cs); // protect pool.mapNextTx
+        for (const auto &in : tx.vin) {
+            COutPoint outpoint = in.prevout;
+            if (pool.mapNextTx.count(outpoint)) {
+                // Disable replacement feature for now
+                return state.Invalid(false, REJECT_CONFLICT, "txn-mempool-conflict");
+            }
         }
     }
 
@@ -1952,6 +1954,28 @@ DisconnectResult DisconnectBlock(CBlock& block, CBlockIndex* pindex, CCoinsViewC
 
     // track money
     nMoneySupply -= (nValueOut - nValueIn);
+
+    // clean last paid
+    {
+        std::vector<CMasternodePayee> mnpayees;
+
+        {
+            LOCK2(cs_mapMasternodeBlocks, cs_vecPayments);
+
+            if (masternodePayments.mapMasternodeBlocks.count(pindex->nHeight)) {
+                masternodePayments.mapMasternodeBlocks[pindex->nHeight].paidPayee = CScript();
+                mnpayees = masternodePayments.mapMasternodeBlocks[pindex->nHeight].vecPayments;
+            }
+        }
+
+        for(auto mnp : mnpayees) {
+            auto pmn = mnodeman.Find(mnp.scriptPubKey);
+
+            if(pmn) {
+                pmn->lastPaid = UINT64_MAX;
+            }
+        }
+    }
 
     // move best block pointer to prevout block
     view.SetBestBlock(pindex->pprev->GetBlockHash());

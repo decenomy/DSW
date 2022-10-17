@@ -483,10 +483,6 @@ void TopBar::setNumBlocks(int count)
         int secs = lastBlockDate.secsTo(currentDate);
 
         QString timeBehindText;
-        const int HOUR_IN_SECONDS = 60 * 60;
-        const int DAY_IN_SECONDS = 24 * 60 * 60;
-        const int WEEK_IN_SECONDS = 7 * 24 * 60 * 60;
-        const int YEAR_IN_SECONDS = 31556952; // Average length of year in Gregorian calendar
         if (secs < 2 * DAY_IN_SECONDS) {
             timeBehindText = tr("%n hour(s)", "", secs / HOUR_IN_SECONDS);
         } else if (secs < 2 * WEEK_IN_SECONDS) {
@@ -653,7 +649,7 @@ void TopBar::refreshStatus()
     updateStyle(ui->pushButtonLock);
 
     // Collateral
-    ui->labelCollateralPiv->setText(GUIUtil::formatBalance(CMasternode::GetMasternodeNodeCollateral(chainActive.Tip()->nHeight), nDisplayUnit));
+    ui->labelCollateralPiv->setText(GUIUtil::formatBalance(CMasternode::GetCurrentMasternodeCollateral(), nDisplayUnit));
 }
 
 void TopBar::updateDisplayUnit()
@@ -689,7 +685,7 @@ void TopBar::updateBalances(const interfaces::WalletBalances& newBalance)
     refreshMasternodeStatus();
 
     // Collateral
-    ui->labelCollateralPiv->setText(GUIUtil::formatBalance(CMasternode::GetMasternodeNodeCollateral(chainActive.Tip()->nHeight), nDisplayUnit));
+    ui->labelCollateralPiv->setText(GUIUtil::formatBalance(CMasternode::GetCurrentMasternodeCollateral(), nDisplayUnit));
 }
 
 void TopBar::resizeEvent(QResizeEvent* event)
