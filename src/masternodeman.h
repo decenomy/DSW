@@ -58,6 +58,9 @@ class CMasternodeMan
 private:
     // critical section to protect the inner data structures
     mutable RecursiveMutex cs;
+    mutable RecursiveMutex cs_script;
+    mutable RecursiveMutex cs_txin;
+    mutable RecursiveMutex cs_pubkey;
 
     // critical section to protect the inner data structures specifically on messaging
     mutable RecursiveMutex cs_process_message;
@@ -102,9 +105,18 @@ public:
                 auto mn = new CMasternode();
                 READWRITE(*mn);
                 vMasternodes.push_back(mn);
-                mapScriptMasternodes[GetScriptForDestination(mn->pubKeyCollateralAddress.GetID())] = mn;
-                mapTxInMasternodes[mn->vin] = mn;
-                mapPubKeyMasternodes[mn->pubKeyMasternode] = mn;
+                {
+                    LOCK(cs_script);
+                    mapScriptMasternodes[GetScriptForDestination(mn->pubKeyCollateralAddress.GetID())] = mn;
+                }
+                {
+                    LOCK(cs_txin);
+                    mapTxInMasternodes[mn->vin] = mn;
+                }
+                {
+                    LOCK(cs_pubkey);
+                    mapPubKeyMasternodes[mn->pubKeyMasternode] = mn;
+                }
             }
         } else {
             for(auto mn : vMasternodes) {

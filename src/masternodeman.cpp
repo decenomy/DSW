@@ -220,9 +220,18 @@ bool CMasternodeMan::Add(CMasternode& mn)
         LogPrint(BCLog::MASTERNODE, "CMasternodeMan: Adding new Masternode %s - count %i now\n", mn.vin.prevout.ToStringShort(), size() + 1);
         auto m = new CMasternode(mn);
         vMasternodes.push_back(m);
-        mapScriptMasternodes[GetScriptForDestination(m->pubKeyCollateralAddress.GetID())] = m;
-        mapTxInMasternodes[m->vin] = m;
-        mapPubKeyMasternodes[m->pubKeyMasternode] = m;
+        {
+            LOCK(cs_script);
+            mapScriptMasternodes[GetScriptForDestination(m->pubKeyCollateralAddress.GetID())] = m;
+        }
+        {
+            LOCK(cs_txin);
+            mapTxInMasternodes[m->vin] = m;
+        }
+        {
+            LOCK(cs_pubkey);
+            mapPubKeyMasternodes[m->pubKeyMasternode] = m;
+        }
         return true;
     }
 
@@ -292,9 +301,18 @@ void CMasternodeMan::CheckAndRemove(bool forceExpiredRemoval)
                 }
             }
 
-            mapScriptMasternodes.erase(GetScriptForDestination((*it)->pubKeyCollateralAddress.GetID()));
-            mapTxInMasternodes.erase((*it)->vin);
-            mapPubKeyMasternodes.erase((*it)->pubKeyMasternode);
+            {
+                LOCK(cs_script);
+                mapScriptMasternodes.erase(GetScriptForDestination((*it)->pubKeyCollateralAddress.GetID()));
+            }
+            {
+                LOCK(cs_txin);
+                mapTxInMasternodes.erase((*it)->vin);
+            }
+            {
+                LOCK(cs_pubkey);
+                mapPubKeyMasternodes.erase((*it)->pubKeyMasternode);
+            }
             delete *it;
             it = vMasternodes.erase(it);
         } else {
@@ -356,11 +374,20 @@ void CMasternodeMan::CheckAndRemove(bool forceExpiredRemoval)
 
 void CMasternodeMan::Clear()
 {
-    LOCK(cs);
+    {
+        LOCK(cs_script);
+        mapScriptMasternodes.clear();
+    }
+    {
+        LOCK(cs_txin);
+        mapTxInMasternodes.clear();
+    }
+    {
+        LOCK(cs_pubkey);
+        mapPubKeyMasternodes.clear();
+    }
 
-    mapScriptMasternodes.clear();
-    mapTxInMasternodes.clear();
-    mapPubKeyMasternodes.clear();
+    LOCK(cs);
     auto it = vMasternodes.begin();
     while (it != vMasternodes.end()) {
         delete *it;
@@ -470,7 +497,7 @@ void CMasternodeMan::DsegUpdate(CNode* pnode)
 
 CMasternode* CMasternodeMan::Find(const CScript& payee)
 {
-    LOCK(cs);
+    LOCK(cs_script);
 
     auto it = mapScriptMasternodes.find(payee);
     if (it != mapScriptMasternodes.end())
@@ -481,7 +508,7 @@ CMasternode* CMasternodeMan::Find(const CScript& payee)
 
 CMasternode* CMasternodeMan::Find(const CTxIn& vin)
 {
-    LOCK(cs);
+    LOCK(cs_txin);
 
     auto it = mapTxInMasternodes.find(vin);
     if (it != mapTxInMasternodes.end())
@@ -493,7 +520,7 @@ CMasternode* CMasternodeMan::Find(const CTxIn& vin)
 
 CMasternode* CMasternodeMan::Find(const CPubKey& pubKeyMasternode)
 {
-    LOCK(cs);
+    LOCK(cs_pubkey);
 
     auto it = mapPubKeyMasternodes.find(pubKeyMasternode);
     if (it != mapPubKeyMasternodes.end())
@@ -864,9 +891,18 @@ void CMasternodeMan::Remove(CTxIn vin)
     while (it != vMasternodes.end()) {
         if ((**it).vin == vin) {
             LogPrint(BCLog::MASTERNODE, "CMasternodeMan: Removing Masternode %s - %i now\n", (**it).vin.prevout.ToStringShort(), size() - 1);
-            mapScriptMasternodes.erase(GetScriptForDestination((*it)->pubKeyCollateralAddress.GetID()));
-            mapTxInMasternodes.erase((*it)->vin);
-            mapPubKeyMasternodes.erase((*it)->pubKeyMasternode);
+            {
+                LOCK(cs_script);
+                mapScriptMasternodes.erase(GetScriptForDestination((*it)->pubKeyCollateralAddress.GetID()));
+            }
+            {
+                LOCK(cs_txin);
+                mapTxInMasternodes.erase((*it)->vin);
+            }
+            {
+                LOCK(cs_pubkey);
+                mapPubKeyMasternodes.erase((*it)->pubKeyMasternode);
+            }
             delete *it;
             vMasternodes.erase(it);
             break;
