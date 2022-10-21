@@ -86,5 +86,6 @@ void AddTimeData(const CNetAddr& ip, int64_t nTime, int nOffsetLimit);
 // Time Protocol V2
 int64_t GetTimeSlot(const int64_t nTime);
 int64_t GetCurrentTimeSlot();
+int64_t GetNextTimeSlot();
 
 #endif // BITCOIN_TIMEDATA_H

@@ -21,6 +21,8 @@
 
 #include <stdarg.h>
 #include <thread>
+#include <sstream>
+#include <iomanip>
 
 #include <boost/date_time/posix_time/posix_time.hpp>
 
@@ -93,6 +95,9 @@ const char * const PIVX_ACTIVE_MASTERNODE_CONF_FILENAME = "activemasternode.conf
 // Kyanite only features
 // Masternode
 bool fMasterNode = false;
+bool fStaking = false;
+bool fStakingActive = false;
+bool fStakingStatus = false;
 bool fLiteMode = false;
 
 /** Spork enforcement enabled time */
@@ -638,4 +643,53 @@ void SetThreadPriority(int nPriority)
 int GetNumCores()
 {
     return std::thread::hardware_concurrency();
+}
+
+std::string GetReadableHashRate(uint64_t hashrate) 
+{
+    // Determine the suffix and readable value
+    std::string suffix;
+    double readable;
+    std::stringstream ss;
+
+    if (hashrate >= 1000000000000000000) // Exa
+    {
+        suffix = " EH/s";
+        readable = hashrate / 1000000000000000;
+    }
+    else if (hashrate >= 1000000000000000) // Peta
+    {
+        suffix = " PH/s";
+        readable = hashrate / 1000000000000;
+    }
+    else if (hashrate >= 1000000000000) // Tera
+    {
+        suffix = " TH/s";
+        readable = hashrate / 1000000000;
+    }
+    else if (hashrate >= 1000000000) // Giga
+    {
+        suffix = " GH/s";
+        readable = hashrate / 1000000;
+    }
+    else if (hashrate >= 1000000) // Mega
+    {
+        suffix = " MH/s";
+        readable = hashrate / 1000;
+    }
+    else if (hashrate >= 1000) // Kilo
+    {
+        suffix = " KH/s";
+        readable = hashrate;
+    }
+    else // regular
+    {
+        ss << readable << " H/s";
+        return ss.str();
+    }
+    // Divide by 1000 to get fractional value
+    readable = (readable / 1000);
+    // Return formatted number with suffix
+    ss << std::setprecision(3) << std::fixed << readable << suffix;
+    return ss.str();
 }
