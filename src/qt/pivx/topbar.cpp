@@ -630,6 +630,8 @@ void TopBar::refreshMasternodeStatus()
             ui->labelNextCollateralBlocks->setText(tr("%1 Blocks").arg(p.first));
         }
     }
+
+    ui->labelNetworkHashRateValue->setText(GetReadableHashRate(GetNetworkHashPS()).c_str());
 }
 
 void TopBar::refreshStatus()

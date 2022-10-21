@@ -50,4 +50,6 @@ struct CBlockTemplate {
     std::vector<int64_t> vTxSigOps;
 };
 
+uint64_t GetNetworkHashPS();
+
 #endif // BITCOIN_MINER_H
