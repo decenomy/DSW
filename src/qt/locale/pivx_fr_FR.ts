@@ -4565,7 +4565,7 @@ Confirmez-vous ?
         <translation>Staking actif</translation>
     </message>
     <message>
-        <source>Staking not active</source>
+        <source>Staking inactive</source>
         <translation>Staking inactif</translation>
     </message>
     <message>

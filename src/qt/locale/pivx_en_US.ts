@@ -4579,8 +4579,8 @@ Are you sure?
         <translation>Staking active</translation>
     </message>
     <message>
-        <source>Staking not active</source>
-        <translation>Staking not active</translation>
+        <source>Staking inactive</source>
+        <translation>Staking inactive</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s)</source>

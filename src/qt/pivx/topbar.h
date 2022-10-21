@@ -42,6 +42,7 @@ public:
     void run(int type) override;
     void onError(QString error, int type) override;
     void unlockWallet();
+    void onStakingBtnClicked();
 
 public Q_SLOTS:
     void updateBalances(const interfaces::WalletBalances& newBalance);
@@ -59,6 +60,7 @@ Q_SIGNALS:
 
 protected:
     void resizeEvent(QResizeEvent *event) override;
+
 private Q_SLOTS:
     void onBtnReceiveClicked();
     void onThemeClicked();
@@ -72,6 +74,7 @@ private Q_SLOTS:
     void onBtnMasternodesClicked();
     void refreshProgressBarSize();
     void expandSync();
+
 private:
     Ui::TopBar *ui;
     LockUnlock *lockUnlockWidget = nullptr;

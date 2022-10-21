@@ -23,6 +23,8 @@
 
 #include "masternode-sync.h"
 #include "masternodeman.h"
+#include "miner.h"
+#include "util.h"
 #include "wallet/wallet.h"
 
 #include <QPixmap>
@@ -41,8 +43,9 @@ TopBar::TopBar(PIVXGUI* _mainWindow, QWidget* parent) : PWidget(_mainWindow, par
     ui->containerTop->setProperty("cssClass", "container-top");
 
     setCssProperty({ui->labelTitle1, ui->labelTitle3, ui->labelTitle4, ui->labelTitle5,
-                       ui->labelTitle6, ui->labelMasternodesTitle, ui->labelTitle8,
-                       ui->labelNextMasternodesTitle, ui->labelTitle9},
+                       ui->labelTitle6, ui->labelMasternodesTitle, ui->labelCollateralTitle,
+                       ui->labelNetworkHashRateTitle, ui->labelWalletHashRateTitle,
+                       ui->labelNextMasternodesTitle, ui->labelRemainingBlocks},
         "text-title-topbar");
 
     // Amount information top
@@ -51,7 +54,8 @@ TopBar::TopBar(PIVXGUI* _mainWindow, QWidget* parent) : PWidget(_mainWindow, par
     setCssProperty({ui->labelAmountTopPiv}, "amount-small-topbar");
     setCssProperty({ui->labelAmountPiv}, "amount-topbar");
     setCssProperty({ui->labelPendingPiv, ui->labelImmaturePiv, ui->labelAvailablePiv,
-                       ui->labelLockedPiv, ui->labelMasternodeCount, ui->labelCollateralPiv,
+                       ui->labelLockedPiv, ui->labelMasternodeCount, ui->labelCollateralValue,
+                       ui->labelNetworkHashRateValue, ui->labelWalletHashRateValue, 
                        ui->labelNextCollateralBlocks, ui->labelNextCollateralValue},
         "amount-small-topbar");
 
@@ -140,6 +144,7 @@ TopBar::TopBar(PIVXGUI* _mainWindow, QWidget* parent) : PWidget(_mainWindow, par
     connect(ui->pushButtonSync, &ExpandableButton::Mouse_Pressed, [this]() { window->goToSettingsInfo(); });
     connect(ui->pushButtonConsole, &ExpandableButton::Mouse_Pressed, [this]() { window->goToDebugConsole(); });
     connect(ui->pushButtonConnection, &ExpandableButton::Mouse_Pressed, [this]() { window->showPeers(); });
+    connect(ui->pushButtonStack, &ExpandableButton::Mouse_Pressed, this, &TopBar::onStakingBtnClicked);
 
     refreshStatus();
 }
@@ -382,7 +387,7 @@ void TopBar::loadClientModel()
 
         timerStakingIcon = new QTimer(ui->pushButtonStack);
         connect(timerStakingIcon, &QTimer::timeout, this, &TopBar::updateStakingStatus);
-        timerStakingIcon->start(50000);
+        timerStakingIcon->start(1000);
         updateStakingStatus();
     }
 }
@@ -390,19 +395,28 @@ void TopBar::loadClientModel()
 void TopBar::setStakingStatusActive(bool fActive)
 {
     if (ui->pushButtonStack->isChecked() != fActive) {
-        ui->pushButtonStack->setButtonText(fActive ? tr("Staking active") : tr("Staking not active"));
+        ui->pushButtonStack->setButtonText(fActive ? tr("Staking active") : tr("Staking inactive"));
         ui->pushButtonStack->setChecked(fActive);
         ui->pushButtonStack->setButtonClassStyle("cssClass", (fActive ? "btn-check-stack" : "btn-check-stack-inactive"), true);
     }
 }
+
 void TopBar::updateStakingStatus()
 {
     setStakingStatusActive(walletModel &&
                            !walletModel->isWalletLocked() &&
-                           walletModel->isStakingStatusActive());
+                           fStakingActive);
 
     // Taking advantage of this timer to update Tor status if needed.
     updateTorIcon();
+
+    if(fStakingActive && fStakingStatus && pwalletMain->pStakerStatus->GetLastValue() > 100) {
+        const Consensus::Params& consensus = Params().GetConsensus();
+        CBlockIndex* pindexPrev = GetChainTip();
+        ui->labelWalletHashRateValue->setText(GetReadableHashRate((pwalletMain->pStakerStatus->GetLastValue() / 100) / consensus.TimeSlotLength(chainActive.Tip()->nHeight + 1)).c_str());
+    } else {
+        ui->labelWalletHashRateValue->setText("-- H/s");
+    }
 }
 
 void TopBar::setNumConnections(int count)
@@ -612,7 +626,7 @@ void TopBar::refreshMasternodeStatus()
 
         ui->widgetNextCollateral->setVisible(p.first > 0);
         if(p.first > 0) {
-            ui->labelNextCollateralValue->setText(GUIUtil::formatBalance(p.second, nDisplayUnit));
+            ui->labelNextCollateralValue->setText(tr("%1 %2").arg(p.second / COIN).arg(BitcoinUnits::id(BitcoinUnit::PIV)));
             ui->labelNextCollateralBlocks->setText(tr("%1 Blocks").arg(p.first));
         }
     }
@@ -649,7 +663,10 @@ void TopBar::refreshStatus()
     updateStyle(ui->pushButtonLock);
 
     // Collateral
-    ui->labelCollateralPiv->setText(GUIUtil::formatBalance(CMasternode::GetCurrentMasternodeCollateral(), nDisplayUnit));
+    ui->labelCollateralValue->setText(tr("%1 %2").arg(CMasternode::GetMasternodeNodeCollateral(chainActive.Tip()->nHeight) / COIN).arg(BitcoinUnits::id(BitcoinUnit::PIV)));
+    
+    if(!fStaking) ui->pushButtonStack->setVisible(false);
+    ui->widgetStaking->setVisible(fStaking);
 }
 
 void TopBar::updateDisplayUnit()
@@ -685,7 +702,7 @@ void TopBar::updateBalances(const interfaces::WalletBalances& newBalance)
     refreshMasternodeStatus();
 
     // Collateral
-    ui->labelCollateralPiv->setText(GUIUtil::formatBalance(CMasternode::GetCurrentMasternodeCollateral(), nDisplayUnit));
+    ui->labelCollateralValue->setText(tr("%1 %2").arg(CMasternode::GetMasternodeNodeCollateral(chainActive.Tip()->nHeight) / COIN).arg(BitcoinUnits::id(BitcoinUnit::PIV)));
 }
 
 void TopBar::resizeEvent(QResizeEvent* event)
@@ -749,5 +766,23 @@ void TopBar::onError(QString error, int type)
 {
     if (type == REQUEST_UPGRADE_WALLET) {
         warn(tr("Upgrade Wallet Error"), error);
+    }
+}
+
+void TopBar::onStakingBtnClicked()
+{
+    if(ask(
+        tr("Confirm your choice"), 
+        tr("Do you really want to %1 staking?").arg(fStakingActive ? "DISABLE" : "ENABLE"))
+    ) {
+        if (!fStakingActive && walletModel && walletModel->isWalletLocked(true)) {
+            openPassPhraseDialog(AskPassphraseDialog::Mode::UnlockAnonymize, AskPassphraseDialog::Context::Unlock_Full);
+
+            if(!walletModel->isWalletLocked(true)) {
+                fStakingActive = true;
+            }
+        } else {
+            fStakingActive ^= true;
+        }
     }
 }
