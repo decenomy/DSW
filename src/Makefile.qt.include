@@ -104,6 +104,7 @@ QT_MOC_CPP = \
   qt/pivx/moc_navmenuwidget.cpp \
   qt/pivx/moc_lockunlock.cpp \
   qt/pivx/moc_expandablebutton.cpp \
+  qt/pivx/moc_privatelabel.cpp \
   qt/pivx/moc_furabstractlistitemdelegate.cpp \
   qt/pivx/moc_receivedialog.cpp \
   qt/pivx/moc_pfborderimage.cpp \
@@ -223,6 +224,7 @@ BITCOIN_QT_H = \
   qt/pivx/txviewholder.h \
   qt/pivx/qtutils.h \
   qt/pivx/expandablebutton.h \
+  qt/pivx/privatelabel.h \
   qt/pivx/topbar.h \
   qt/pivx/txrow.h \
   qt/pivx/addressholder.h \
@@ -332,6 +334,8 @@ RES_ICONS = \
   qt/pivx/res/img/ic-contact-arrow-down-white.svg \
   qt/pivx/res/img/ic-check-sync.svg \
   qt/pivx/res/img/ic-check-faq.svg \
+  qt/pivx/res/img/ic-check-privacy.svg \
+  qt/pivx/res/img/ic-check-privacy-off.svg \
   qt/pivx/res/img/ic-nav-privacy.svg \
   qt/pivx/res/img/img-empty-dark-error.svg \
   qt/pivx/res/img/ic-add-label.svg \
@@ -524,6 +528,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/pivx/txviewholder.cpp \
   qt/pivx/qtutils.cpp \
   qt/pivx/expandablebutton.cpp \
+  qt/pivx/privatelabel.cpp \
   qt/pivx/topbar.cpp \
   qt/pivx/txrow.cpp \
   qt/pivx/addressholder.cpp \

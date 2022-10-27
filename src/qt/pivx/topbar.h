@@ -72,19 +72,21 @@ private Q_SLOTS:
     void openLockUnlock();
     void onBtnConfClicked();
     void onBtnMasternodesClicked();
+    void onBtnPrivacyClicked();
     void refreshProgressBarSize();
     void expandSync();
 
 private:
     Ui::TopBar *ui;
     LockUnlock *lockUnlockWidget = nullptr;
+    QTimer* timerStakingIcon = nullptr;
     QProgressBar* progressBar = nullptr;
 
     int nDisplayUnit = -1;
-    QTimer* timerStakingIcon = nullptr;
     bool isInitializing = true;
 
     void updateTorIcon();
+    void privacyUpdate();
 };
 
 #endif // TOPBAR_H

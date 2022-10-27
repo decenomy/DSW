@@ -46,6 +46,7 @@ extern bool fStaking;
 extern bool fStakingActive;
 extern bool fStakingStatus;
 extern bool fLiteMode;
+extern bool fPrivacyMode;
 extern int64_t enforceMasternodePaymentsTime;
 extern int keysLoaded;
 extern bool fSucessfullyLoaded;
