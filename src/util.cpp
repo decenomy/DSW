@@ -98,6 +98,7 @@ bool fMasterNode = false;
 bool fStaking = false;
 bool fStakingActive = false;
 bool fStakingStatus = false;
+bool fPrivacyMode = false;
 bool fLiteMode = false;
 
 /** Spork enforcement enabled time */

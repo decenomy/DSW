@@ -117,7 +117,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="labelAmountPiv">
+               <widget class="PrivateQLabel" name="labelAmountPiv">
                 <property name="text">
                  <string notr="true">-- KYAN</string>
                 </property>
@@ -151,7 +151,7 @@
                <number>0</number>
               </property>
               <item alignment="Qt::AlignTop">
-               <widget class="QLabel" name="labelAmountTopPiv">
+               <widget class="PrivateQLabel" name="labelAmountTopPiv">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -394,6 +394,22 @@
              </property>
             </widget>
            </item>
+           <item>
+            <widget class="ExpandableButton" name="pushButtonPrivacy" native="true">
+             <property name="minimumSize">
+              <size>
+               <width>36</width>
+               <height>36</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>36</height>
+              </size>
+             </property>
+            </widget>
+           </item>
           </layout>
          </item>
         </layout>
@@ -454,7 +470,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLabel" name="labelAvailablePiv">
+                  <widget class="PrivateQLabel" name="labelAvailablePiv">
                    <property name="text">
                     <string>-- KYAN</string>
                    </property>
@@ -468,7 +484,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLabel" name="labelImmaturePiv">
+                  <widget class="PrivateQLabel" name="labelImmaturePiv">
                    <property name="text">
                     <string notr="true">- KYAN</string>
                    </property>
@@ -489,7 +505,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLabel" name="labelLockedPiv">
+                  <widget class="PrivateQLabel" name="labelLockedPiv">
                    <property name="text">
                     <string>- KYAN</string>
                    </property>
@@ -503,7 +519,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLabel" name="labelPendingPiv">
+                  <widget class="PrivateQLabel" name="labelPendingPiv">
                    <property name="text">
                     <string notr="true">-- KYAN</string>
                    </property>
@@ -599,7 +615,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="labelWalletHashRateValue">
+               <widget class="PrivateQLabel" name="labelWalletHashRateValue">
                 <property name="text">
                  <string notr="true">-- H/s</string>
                 </property>
@@ -637,7 +653,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="labelMasternodeCount">
+               <widget class="PrivateQLabel" name="labelMasternodeCount">
                 <property name="text">
                  <string>-/-</string>
                 </property>
@@ -863,6 +879,12 @@
    <extends>QFrame</extends>
    <header>qt/pivx/pfborderimage.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>PrivateQLabel</class>
+   <extends>QLabel</extends>
+   <header>qt/pivx/privatelabel.h</header>
+   <container>0</container>
   </customwidget>
  </customwidgets>
  <resources/>

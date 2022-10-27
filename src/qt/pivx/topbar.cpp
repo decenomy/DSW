@@ -28,6 +28,7 @@
 #include "wallet/wallet.h"
 
 #include <QPixmap>
+#include <QSettings>
 
 #define REQUEST_UPGRADE_WALLET 1
 
@@ -35,6 +36,9 @@ TopBar::TopBar(PIVXGUI* _mainWindow, QWidget* parent) : PWidget(_mainWindow, par
                                                         ui(new Ui::TopBar)
 {
     ui->setupUi(this);
+
+    QSettings settings;
+    fPrivacyMode = settings.value("fPrivacyMode", false).toBool();
 
     // Set parent stylesheet
     this->setStyleSheet(_mainWindow->styleSheet());
@@ -145,6 +149,9 @@ TopBar::TopBar(PIVXGUI* _mainWindow, QWidget* parent) : PWidget(_mainWindow, par
     connect(ui->pushButtonConsole, &ExpandableButton::Mouse_Pressed, [this]() { window->goToDebugConsole(); });
     connect(ui->pushButtonConnection, &ExpandableButton::Mouse_Pressed, [this]() { window->showPeers(); });
     connect(ui->pushButtonStack, &ExpandableButton::Mouse_Pressed, this, &TopBar::onStakingBtnClicked);
+    connect(ui->pushButtonPrivacy, &ExpandableButton::Mouse_Pressed, this, &TopBar::onBtnPrivacyClicked);
+
+    privacyUpdate();
 
     refreshStatus();
 }
@@ -365,6 +372,40 @@ void TopBar::onBtnMasternodesClicked()
 
     if (!GUIUtil::openMNConfigfile())
         inform(tr("Unable to open masternode.conf with default application"));
+}
+
+void TopBar::privacyUpdate()
+{
+    if (fPrivacyMode) {
+        ui->pushButtonPrivacy->setButtonClassStyle("cssClass", "btn-check-privacy-inactive", true);
+        ui->pushButtonPrivacy->setButtonText(tr("Discreet"));
+    } else {
+        ui->pushButtonPrivacy->setButtonClassStyle("cssClass", "btn-check-privacy", true);
+        ui->pushButtonPrivacy->setButtonText(tr("All Visible"));
+    }
+
+    if(QWidget::window() != Q_NULLPTR) {
+        for (auto widget : QWidget::window()->findChildren<PrivateQLabel*>()) {
+            widget->setIsPrivate(fPrivacyMode);
+        }
+
+        auto dashboardList = QWidget::window()->findChildren<DashboardWidget*>();
+
+        if(dashboardList.size()) {
+            auto dashboard = dashboardList[0];
+            dashboard->setPrivacy(fPrivacyMode);
+        }
+    }
+}
+
+void TopBar::onBtnPrivacyClicked()
+{
+    fPrivacyMode = !fPrivacyMode;
+
+    QSettings settings;
+    settings.setValue("fPrivacyMode", fPrivacyMode);
+
+    privacyUpdate();
 }
 
 TopBar::~TopBar()

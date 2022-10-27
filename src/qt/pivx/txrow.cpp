@@ -39,6 +39,11 @@ void TxRow::updateStatus(bool isLightTheme, bool isHover, bool isSelected)
         ui->lblDivisory->setStyleSheet("background-color:#bababa");
     else
         ui->lblDivisory->setStyleSheet("background-color:#40ffffff");
+    
+    for (auto widget : this->findChildren<PrivateQLabel*>()) {
+        widget->setIsHovered(isHover);
+        widget->setIsPrivate(fPrivacyMode);
+    }
 }
 
 void TxRow::setDate(QDateTime date)
