@@ -421,7 +421,7 @@ QPushButton[cssClass="btn-check-hd-upgrade"]:checked {
 QPushButton[cssClass="btn-check-privacy"] {
   qproperty-icon: url("://ic-check-privacy");
   qproperty-iconSize: 24px 24px;
-  background-color: #4b1452;
+  background-color: #150016;
   color: #ffffff;
   padding-right: 6px;
   padding-left: 6px;
@@ -431,7 +431,7 @@ QPushButton[cssClass="btn-check-privacy"] {
 QPushButton[cssClass="btn-check-privacy-inactive"] {
   qproperty-icon: url("://ic-check-privacy-off");
   qproperty-iconSize: 24px 24px;
-  background-color: #4b1452;
+  background-color: #150016;
   color: #ffffff;
   padding-right: 6px;
   padding-left: 6px;
@@ -439,7 +439,7 @@ QPushButton[cssClass="btn-check-privacy-inactive"] {
 }
 
 QPushButton[cssClass="btn-check-privacy"]:checked {
-  background-color: #4b1452;
+  background-color: #150016;
   border-radius: 2px;
 }
 
