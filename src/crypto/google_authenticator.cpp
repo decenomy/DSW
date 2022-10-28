@@ -51,7 +51,7 @@ int GoogleAuthenticator::GeneratePin()
     return pin;
 }
 
-std::string GoogleAuthenticator::CreateNewSeed(uint size)
+std::string GoogleAuthenticator::CreateNewSeed(int size)
 {
     const char alphanum[] = "0123456789!@#$%^&*abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     int string_length = sizeof(alphanum) - 1;
