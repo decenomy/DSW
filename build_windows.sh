@@ -38,4 +38,4 @@ sudo bash -c "echo 0 > /proc/sys/fs/binfmt_misc/status"
 	rm -f __decenomy__d.exe __decenomy__-cli.exe __decenomy__-tx.exe __decenomy__-qt.exe
 
 # Enable WSL support for Win32 applications.
-sudo bash -c "echo 1 > /proc/sys/fs/binfmt_misc/status"
+	sudo bash -c "echo 1 > /proc/sys/fs/binfmt_misc/status"
