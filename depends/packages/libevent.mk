@@ -1,7 +1,7 @@
 package=libevent
 $(package)_version=2.1.12-stable
-$(package)_download_path=https://github.com/libevent/libevent/releases/download/release-2.1.12-stable/
-#$(package)_download_path=https://github.com/decenomy/depends/raw/main/
+#$(package)_download_path=https://github.com/libevent/libevent/releases/download/release-2.1.12-stable/
+$(package)_download_path=https://github.com/decenomy/depends/raw/main/
 $(package)_file_name=libevent-$($(package)_version).tar.gz
 $(package)_sha256_hash=92e6de1be9ec176428fd2367677e61ceffc2ee1cb119035037a27d346b0403bb
 
