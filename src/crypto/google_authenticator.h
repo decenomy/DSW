@@ -25,7 +25,7 @@ public:
 
     int GeneratePin();
 
-    static std::string CreateNewSeed(uint size = 20);
+    static std::string CreateNewSeed(int size = 20);
 };
 
 #endif // CRYPTO_GOOGLE_AUTHENTICATOR_H

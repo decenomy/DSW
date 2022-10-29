@@ -3097,30 +3097,38 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                 return state.DoS(100, false, REJECT_INVALID, "bad-cs-multiple", false, "more than one coinstake");
     }
 
+    bool isBlockFromFork = false;
+
     // masternode payments / budgets
     CBlockIndex* pindexPrev = chainActive.Tip();
     int nHeight = 0;
     if (pindexPrev != NULL) {
         if (pindexPrev->GetBlockHash() == block.hashPrevBlock) {
             nHeight = pindexPrev->nHeight + 1;
-        } else { //out of order
+        } else { // Out of order, blocks arrives in order, so if prev block is not the tip then we are on a fork.
             BlockMap::iterator mi = mapBlockIndex.find(block.hashPrevBlock);
-            if (mi != mapBlockIndex.end() && (*mi).second)
+            if (mi != mapBlockIndex.end() && (*mi).second) {
                 nHeight = (*mi).second->nHeight + 1;
+                isBlockFromFork = true;
+            }
         }
 
         // Kyanite
-        // It is entierly possible that we don't have enough data and this could fail
+        // It is entirely possible that we don't have enough data and this could fail
         // (i.e. the block could indeed be valid). Store the block for later consideration
         // but issue an initial reject message.
         // The case also exists that the sending peer could not have enough data to see
         // that this block is invalid, so don't issue an outright ban.
-        if (nHeight != 0 && !IsInitialBlockDownload()) {
+        if (nHeight != 0 && !IsInitialBlockDownload() && !isBlockFromFork) {
             // check masternode payment
             if (!IsBlockPayeeValid(block, nHeight)) {
                 mapRejectedBlocks.insert(std::make_pair(block.GetHash(), GetTime()));
                 return state.DoS(0, false, REJECT_INVALID, "bad-cb-payee", false, "Couldn't find masternode payment");
             }
+        }  else if(nHeight == 0 && !IsInitialBlockDownload()) {
+            std::cout << "Prev not found: " << block.hashPrevBlock.ToString() << std::endl;
+            mapRejectedBlocks.insert(std::make_pair(block.GetHash(), GetTime()));
+            return state.DoS(0, false, REJECT_INVALID, "bad-prevblock-missing", false, "Couldn't find previous block");
         } else {
             LogPrintf("%s: Masternode payment checks skipped on sync\n", __func__);
         }
