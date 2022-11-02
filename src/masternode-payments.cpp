@@ -271,7 +271,7 @@ bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
         reconsiderWindowTime = t;
     }
 
-    if (sporkManager.IsSporkActive(SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT) && (t / 60) % 10 != reconsiderWindowMin)
+    if (sporkManager.IsSporkActive(SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT) && (t / MINUTE_IN_SECONDS) % 10 != reconsiderWindowMin)
         return false;
 
     LogPrint(BCLog::MASTERNODE,"Masternode payment enforcement is disabled, accepting block\n");
