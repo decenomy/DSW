@@ -21,6 +21,9 @@
 /** Object for who's going to get paid on which blocks */
 CMasternodePayments masternodePayments;
 
+uint64_t reconsiderWindowMin    = 0;
+uint64_t reconsiderWindowTime   = 0;
+
 RecursiveMutex cs_vecPayments;
 RecursiveMutex cs_mapMasternodeBlocks;
 RecursiveMutex cs_mapMasternodePayeeVotes;
@@ -261,8 +264,20 @@ bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
         return true;
     LogPrint(BCLog::MASTERNODE,"Invalid mn payment detected %s\n", txNew.ToString().c_str());
 
-    if (sporkManager.IsSporkActive(SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT))
+    auto t = GetTime();
+
+    if((t - reconsiderWindowTime) > HOUR_IN_SECONDS) {  // shift the reconsider window at each hour 
+        reconsiderWindowMin = GetRand() % 10;           // choose randomly from minute 0 to minute 9
+        reconsiderWindowTime = t;
+
+        for (auto it = mapRejectedBlocks.cbegin(); it != mapRejectedBlocks.cend();) { // clean up old entries
+            it = (GetTime() - (*it).second) > HOUR_IN_SECONDS ? mapRejectedBlocks.erase(it) : std::next(it);
+        }
+    }
+
+    if (sporkManager.IsSporkActive(SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT) && (t / MINUTE_IN_SECONDS) % 10 != reconsiderWindowMin)
         return false;
+
     LogPrint(BCLog::MASTERNODE,"Masternode payment enforcement is disabled, accepting block\n");
     return true;
 }
