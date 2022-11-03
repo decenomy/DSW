@@ -298,6 +298,15 @@ void TopBar::lockDropdownClicked(const StateClicked& state)
             if (walletModel->getEncryptionStatus() == WalletModel::UnlockedForStaking) {
                 ui->pushButtonLock->setButtonText(tr("Wallet Unlocked for staking"));
                 ui->pushButtonLock->setButtonClassStyle("cssClass", "btn-check-status-staking", true);
+
+                if(!fStakingActive && 
+                    ask(
+                        tr("Confirm your choice"), 
+                        tr("Do you want to also ENABLE staking?"))
+                ) {
+                    fStakingActive = true;
+                    updateStakingStatus();
+                }
             }
             break;
         }
