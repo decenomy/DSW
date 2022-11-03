@@ -10,8 +10,8 @@ echo -e "\033[0;32mDo you want to disable the tests? (yes/no)\033[0m"
 read -e TEST_ANSWER
 case "$TEST_ANSWER" in
         [nN] | [n|N][O|o] ) TEST_STATUS='--enable-tests --without-gui' 	# qt tests still have some problems
-           ;;											# so use --without-gui
-        [yY] | [yY][Ee][Ss] ) TEST_STATUS='--disable-tests'
+		;;																# so use --without-gui
+        [yY] | [yY][Ee][Ss] ) TEST_STATUS='--disable-tests'				# or alternatively simply disable the tests
            ;;
         *) TEST_STATUS='--disable-tests'
             ;;
@@ -21,8 +21,8 @@ echo -e "\033[0;32mDo you want to disable the debug? (yes/no)\033[0m"
 read -e DEBUG_ANSWER
 case "$DEBUG_ANSWER" in
         [nN] | [n|N][O|o] ) DEBUG_STATUS='--enable-debug --without-gui' 	# qt tests still have some problems
-           ;;											# so use --without-gui
-        [yY] | [yY][Ee][Ss] ) DEBUG_STATUS='--disable-debug'
+           ;;																# so use --without-gui
+        [yY] | [yY][Ee][Ss] ) DEBUG_STATUS='--disable-debug'				# or alternatively simply disable the tests
            ;;
         *) DEBUG_STATUS='--disable-debug'
             ;;
