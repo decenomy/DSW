@@ -269,6 +269,10 @@ bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
     if((t - reconsiderWindowTime) > HOUR_IN_SECONDS) {  // shift the reconsider window at each hour 
         reconsiderWindowMin = GetRand() % 10;           // choose randomly from minute 0 to minute 9
         reconsiderWindowTime = t;
+
+        for (auto it = mapRejectedBlocks.cbegin(); it != mapRejectedBlocks.cend();) { // clean up old entries
+            it = (GetTime() - (*it).second) > HOUR_IN_SECONDS ? mapRejectedBlocks.erase(it) : std::next(it);
+        }
     }
 
     if (sporkManager.IsSporkActive(SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT) && (t / MINUTE_IN_SECONDS) % 10 != reconsiderWindowMin)
