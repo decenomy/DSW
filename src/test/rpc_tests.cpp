@@ -60,21 +60,21 @@ BOOST_AUTO_TEST_CASE(rpc_rawparams)
     // Test raw transaction API argument handling
     UniValue r;
 
-    // BOOST_CHECK_THROW(CallRPC("getrawtransaction"), std::runtime_error);
-    // BOOST_CHECK_THROW(CallRPC("getrawtransaction not_hex"), std::runtime_error);
-    // BOOST_CHECK_THROW(CallRPC("getrawtransaction a3b807410df0b60fcb9736768df5823938b2f838694939ba45f3c0a1bff150ed not_int"), std::runtime_error);
+    BOOST_CHECK_THROW(CallRPC("getrawtransaction"), std::runtime_error);
+    BOOST_CHECK_THROW(CallRPC("getrawtransaction not_hex"), std::runtime_error);
+    BOOST_CHECK_THROW(CallRPC("getrawtransaction a3b807410df0b60fcb9736768df5823938b2f838694939ba45f3c0a1bff150ed not_int"), std::runtime_error);
 
-    // BOOST_CHECK_THROW(CallRPC("createrawtransaction"), std::runtime_error);
-    // BOOST_CHECK_THROW(CallRPC("createrawtransaction null null"), std::runtime_error);
-    // BOOST_CHECK_THROW(CallRPC("createrawtransaction not_array"), std::runtime_error);
-    // BOOST_CHECK_THROW(CallRPC("createrawtransaction [] []"), std::runtime_error);
-    // BOOST_CHECK_THROW(CallRPC("createrawtransaction {} {}"), std::runtime_error);
-    // BOOST_CHECK_NO_THROW(CallRPC("createrawtransaction [] {}"));
-    // BOOST_CHECK_THROW(CallRPC("createrawtransaction [] {} extra"), std::runtime_error);
+    BOOST_CHECK_THROW(CallRPC("createrawtransaction"), std::runtime_error);
+    BOOST_CHECK_THROW(CallRPC("createrawtransaction null null"), std::runtime_error);
+    BOOST_CHECK_THROW(CallRPC("createrawtransaction not_array"), std::runtime_error);
+    BOOST_CHECK_THROW(CallRPC("createrawtransaction [] []"), std::runtime_error);
+    BOOST_CHECK_THROW(CallRPC("createrawtransaction {} {}"), std::runtime_error);
+    BOOST_CHECK_NO_THROW(CallRPC("createrawtransaction [] {}"));
+    BOOST_CHECK_THROW(CallRPC("createrawtransaction [] {} extra"), std::runtime_error);
 
-    // BOOST_CHECK_THROW(CallRPC("decoderawtransaction"), std::runtime_error);
-    // BOOST_CHECK_THROW(CallRPC("decoderawtransaction null"), std::runtime_error);
-    // BOOST_CHECK_THROW(CallRPC("decoderawtransaction DEADBEEF"), std::runtime_error);
+    BOOST_CHECK_THROW(CallRPC("decoderawtransaction"), std::runtime_error);
+    BOOST_CHECK_THROW(CallRPC("decoderawtransaction null"), std::runtime_error);
+    BOOST_CHECK_THROW(CallRPC("decoderawtransaction DEADBEEF"), std::runtime_error);
     std::string rawtx = "01000000027799bdbef794a55b3d5fe6f9e02811089f0b880cd79771da3e521d8517418ba1490000006a473044022066d02bd6c4ac6dabc0836891be3ddcb996f23d39b3f4320d269d142772a0caed02205a1260ed717d13f652f15288c715af9ba883c3c184d6a82e314058485f085c8c01210249752403df81d55a2206133001d6e09082d6075277a5b3cb317d35802276001fffffffffa00da235e9298571b19b2d0862f5c8a0aa1a50bb7345386b581a3ead40e8c22f000000006b483045022100d88e0162058116c4eb6fb1e886566e3f2181d776a0a06727b59b4ded37ccaf9302201e6c781a159e7856b1cb4216815ce8e733eb3e940465117bb979615b9f1bc337012102b3483eb1bd800c2062d87c9d92b290e89e0193baf39f7340928d340e488fd7f3ffffffff020089b387c90300001976a914d1f0506fc40b03b431c0fdd5fdddfe2ab240fd4588ac7a68c904000000001976a91402fd7e6dd7d8b5282d102567284cbc48f4984e8288ac00000000";
     BOOST_CHECK_NO_THROW(r = CallRPC(std::string("decoderawtransaction ")+rawtx));
     BOOST_CHECK_EQUAL(find_value(r.get_obj(), "version").get_int(), 1);
