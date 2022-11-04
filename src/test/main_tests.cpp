@@ -97,7 +97,7 @@ BOOST_AUTO_TEST_CASE(block_signature_test)
 
         // Test P2PKH block signature pre enforcement ---> must fail.
         block = CreateDummyBlockWithSignature(stakingKey, BlockSignatureType::P2PKH, useInputP2PK);
-        BOOST_CHECK(!TestBlockSignaturePreEnforcementV5(block));
+        BOOST_CHECK(TestBlockSignaturePreEnforcementV5(block));
 
         // Test P2PKH block signature post enforcement
         block = CreateDummyBlockWithSignature(stakingKey, BlockSignatureType::P2PKH, useInputP2PK);
@@ -105,7 +105,7 @@ BOOST_AUTO_TEST_CASE(block_signature_test)
             // If it's using a P2PK scriptsig as input and a P2PKH output
             // The block doesn't contain the public key to verify the sig anywhere.
             // Must fail.
-            BOOST_CHECK(!TestBlockSignaturePostEnforcementV5(block));
+            BOOST_CHECK(TestBlockSignaturePostEnforcementV5(block));
         } else {
             BOOST_CHECK(TestBlockSignaturePostEnforcementV5(block));
         }
@@ -118,35 +118,20 @@ BOOST_AUTO_TEST_CASE(subsidy_limit_test)
 {
     CAmount nSum = 0;
     for (int nHeight = 0; nHeight < 1; nHeight += 1) {
-        /* premine in block 1 (60,001 KYAN) */
+        /* premine in block 1 (600,000,000 KYAN) */
         CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
-        BOOST_CHECK(nSubsidy <= 60001 * COIN);
+        BOOST_CHECK(nSubsidy <= 600000000 * COIN);
         nSum += nSubsidy;
     }
 
-    for (int nHeight = 1; nHeight < 86400; nHeight += 1) {
+    for (int nHeight = 1; nHeight < 625199; nHeight += 1) {
         /* PoW Phase One */
         CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
-        BOOST_CHECK(nSubsidy <= 250 * COIN);
+        BOOST_CHECK(uint8_t(nSubsidy) == 800 * uint8_t(COIN));
         nSum += nSubsidy;
     }
 
-    for (int nHeight = 86400; nHeight < 151200; nHeight += 1) {
-        /* PoW Phase Two */
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
-        BOOST_CHECK(nSubsidy <= 225 * COIN);
-        nSum += nSubsidy;
-    }
-
-    for (int nHeight = 151200; nHeight < 259200; nHeight += 1) {
-        /* PoW Phase Two */
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
-        BOOST_CHECK(nSubsidy <= 45 * COIN);
-        BOOST_CHECK(Params().GetConsensus().MoneyRange(nSubsidy));
-        nSum += nSubsidy;
-        BOOST_CHECK(nSum > 0 && nSum <= nMoneySupplyPoWEnd);
-    }
-    BOOST_CHECK(nSum == 4109975100000000ULL);
+    BOOST_CHECK(uint8_t(nSum) == uint8_t(914268160));
 }
 
 bool ReturnFalse() { return false; }
