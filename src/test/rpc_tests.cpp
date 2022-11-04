@@ -107,6 +107,7 @@ BOOST_AUTO_TEST_CASE(rpc_rawsign)
     std::string notsigned = r.get_str();
     std::string privkey1 = "\"7NyFgTpc89iY9GKLfbvkq3qwVuHsMBXw9SwdsoqPm38UpKS3qfLC\"";
     std::string privkey2 = "\"7NK3b53ZZTUoQAYHDrxaLJwyPxqxPZRdJuZ5hknMqEUY1pLwYQAR\"";
+    //TODO: Fix below commented part.
 //     r = CallRPC(std::string("signrawtransaction \"")+notsigned+"\" \""+prevout+"\" "+"[]");
 //     printf("\n\r ---------------- notsigned = %s  ------- \n\r\n\r prevout = %s ----- \n\r\n\r r.get_obj() = %s \n\r", notsigned.c_str(), prevout.c_str(), r.get_obj().get_str().c_str());
 //    BOOST_CHECK(find_value(r.get_obj(), "complete").get_bool() == false);
