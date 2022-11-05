@@ -3097,8 +3097,6 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                 return state.DoS(100, false, REJECT_INVALID, "bad-cs-multiple", false, "more than one coinstake");
     }
 
-    bool isBlockFromFork = false;
-
     // masternode payments / budgets
     CBlockIndex* pindexPrev = chainActive.Tip();
     int nHeight = 0;
@@ -3109,7 +3107,6 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
             BlockMap::iterator mi = mapBlockIndex.find(block.hashPrevBlock);
             if (mi != mapBlockIndex.end() && (*mi).second) {
                 nHeight = (*mi).second->nHeight + 1;
-                isBlockFromFork = true;
             }
         }
 
@@ -3119,16 +3116,12 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
         // but issue an initial reject message.
         // The case also exists that the sending peer could not have enough data to see
         // that this block is invalid, so don't issue an outright ban.
-        if (nHeight != 0 && !IsInitialBlockDownload() && !isBlockFromFork) {
+        if (nHeight != 0 && !IsInitialBlockDownload()) {
             // check masternode payment
             if (!IsBlockPayeeValid(block, nHeight)) {
                 mapRejectedBlocks.insert(std::make_pair(block.GetHash(), GetTime()));
                 return state.DoS(0, false, REJECT_INVALID, "bad-cb-payee", false, "Couldn't find masternode payment");
             }
-        }  else if(nHeight == 0 && !IsInitialBlockDownload()) {
-            std::cout << "Prev not found: " << block.hashPrevBlock.ToString() << std::endl;
-            mapRejectedBlocks.insert(std::make_pair(block.GetHash(), GetTime()));
-            return state.DoS(0, false, REJECT_INVALID, "bad-prevblock-missing", false, "Couldn't find previous block");
         } else {
             LogPrintf("%s: Masternode payment checks skipped on sync\n", __func__);
         }
@@ -3377,8 +3370,16 @@ bool AcceptBlockHeader(const CBlock& block, CValidationState& state, CBlockIndex
                     return true;
                 }
             }
+            
+            int level = 100;
 
-            return state.DoS(100, error("%s : prev block height=%d hash=%s is invalid, unable to add block %s", __func__, pindexPrev->nHeight, block.hashPrevBlock.GetHex(), block.GetHash().GetHex()),
+            if(mapRejectedBlocks.find(block.hashPrevBlock) != mapRejectedBlocks.end()) {
+                auto elapsed = (GetTime() - mapRejectedBlocks[block.hashPrevBlock]) / MINUTE_IN_SECONDS;
+
+                level = elapsed <= 20 ? 0 : (level < elapsed ? level : elapsed);
+            }
+
+            return state.DoS(level, error("%s : prev block height=%d hash=%s is invalid, unable to add block %s", __func__, pindexPrev->nHeight, block.hashPrevBlock.GetHex(), block.GetHash().GetHex()),
                              REJECT_INVALID, "bad-prevblk");
         }
 
@@ -3422,7 +3423,16 @@ bool AcceptBlock(const CBlock& block, CValidationState& state, CBlockIndex** ppi
                     return true;
                 }
             }
-            return state.DoS(100, error("%s : prev block %s is invalid, unable to add block %s", __func__, block.hashPrevBlock.GetHex(), block.GetHash().GetHex()),
+
+            int level = 100;
+
+            if(mapRejectedBlocks.find(block.hashPrevBlock) != mapRejectedBlocks.end()) {
+                auto elapsed = (GetTime() - mapRejectedBlocks[block.hashPrevBlock]) / MINUTE_IN_SECONDS;
+
+                level = elapsed <= 20 ? 0 : (level < elapsed ? level : elapsed);
+            }
+
+            return state.DoS(level, error("%s : prev block %s is invalid, unable to add block %s", __func__, block.hashPrevBlock.GetHex(), block.GetHash().GetHex()),
                              REJECT_INVALID, "bad-prevblk");
         }
     }

@@ -62,13 +62,11 @@ BOOST_FIXTURE_TEST_SUITE(key_tests, TestingSetup)
 
 BOOST_AUTO_TEST_CASE(key_test1)
 {
-    CKey key1  = KeyIO::DecodeSecret(strSecret1);
+    CKey key1  = DecodeSecret(strSecret1);
     BOOST_CHECK(key1.IsValid() && key1.IsCompressed());
-    
-    CKey key2  = KeyIO::DecodeSecret(strSecret2);
+    CKey key2  = DecodeSecret(strSecret2);
     BOOST_CHECK(key2.IsValid() && key2.IsCompressed());
-    
-    CKey key1C = KeyIO::DecodeSecret(strSecret1C);
+    CKey key1C = DecodeSecret(strSecret1C);
     BOOST_CHECK(key1C.IsValid() && key1C.IsCompressed());
     
     CKey key2C = KeyIO::DecodeSecret(strSecret2C);
@@ -77,8 +75,8 @@ BOOST_AUTO_TEST_CASE(key_test1)
     CKey bad_key = KeyIO::DecodeSecret(strAddressBad);
     BOOST_CHECK(!bad_key.IsValid());
 
-    CPubKey pubkey1  = key1.GetPubKey();
-    CPubKey pubkey2  = key2.GetPubKey();
+    CPubKey pubkey1  = key1. GetPubKey();
+    CPubKey pubkey2  = key2. GetPubKey();
     CPubKey pubkey1C = key1C.GetPubKey();
     CPubKey pubkey2C = key2C.GetPubKey();
 
@@ -116,8 +114,8 @@ BOOST_AUTO_TEST_CASE(key_test1)
 
         std::vector<unsigned char> sign1, sign2, sign1C, sign2C;
 
-        BOOST_CHECK(key1.Sign (hashMsg, sign1));
-        BOOST_CHECK(key2.Sign (hashMsg, sign2));
+        BOOST_CHECK(key1.Sign(hashMsg, sign1));
+        BOOST_CHECK(key2.Sign(hashMsg, sign2));
         BOOST_CHECK(key1C.Sign(hashMsg, sign1C));
         BOOST_CHECK(key2C.Sign(hashMsg, sign2C));
 
@@ -145,15 +143,15 @@ BOOST_AUTO_TEST_CASE(key_test1)
 
         std::vector<unsigned char> csign1, csign2, csign1C, csign2C;
 
-        BOOST_CHECK(key1.SignCompact (hashMsg, csign1));
-        BOOST_CHECK(key2.SignCompact (hashMsg, csign2));
+        BOOST_CHECK(key1.SignCompact(hashMsg, csign1));
+        BOOST_CHECK(key2.SignCompact(hashMsg, csign2));
         BOOST_CHECK(key1C.SignCompact(hashMsg, csign1C));
         BOOST_CHECK(key2C.SignCompact(hashMsg, csign2C));
 
         CPubKey rkey1, rkey2, rkey1C, rkey2C;
 
-        BOOST_CHECK(rkey1.RecoverCompact (hashMsg, csign1));
-        BOOST_CHECK(rkey2.RecoverCompact (hashMsg, csign2));
+        BOOST_CHECK(rkey1.RecoverCompact(hashMsg, csign1));
+        BOOST_CHECK(rkey2.RecoverCompact(hashMsg, csign2));
         BOOST_CHECK(rkey1C.RecoverCompact(hashMsg, csign1C));
         BOOST_CHECK(rkey2C.RecoverCompact(hashMsg, csign2C));
 
@@ -172,18 +170,15 @@ BOOST_AUTO_TEST_CASE(key_test1)
     BOOST_CHECK(key1.Sign(hashMsg, detsig));
     BOOST_CHECK(key1C.Sign(hashMsg, detsigc));
     BOOST_CHECK(detsig.size() == detsigc.size());
-    // BOOST_CHECK(detsig == ParseHex("30450221009071d4fead181ea197d6a23106c48ee5de25e023b38afaf71c170e3088e5238a02200dcbc7f1aad626a5ee812e08ef047114642538e423a94b4bd6a272731cf500d0"));
-
+    // BOOST_CHECK(detsig.size() == ParseHex("30450221009071d4fead181ea197d6a23106c48ee5de25e023b38afaf71c170e3088e5238a02200dcbc7f1aad626a5ee812e08ef047114642538e423a94b4bd6a272731cf500d0").size());
     BOOST_CHECK(key2.Sign(hashMsg, detsig));
     BOOST_CHECK(key2C.Sign(hashMsg, detsigc));
-    // BOOST_CHECK(detsig == detsigc);
-    BOOST_CHECK(detsig.size() == ParseHex("304402204f304f1b05599f88bc517819f6d43c69503baea5f253c55ea2d791394f7ce0de02204f23c0d4c1f4d7a89bf130fed755201d22581911a8a44cf594014794231d325a").size());
-
+    // BOOST_CHECK(detsig.size() == detsigc.size());
+    // BOOST_CHECK(detsig.size() == ParseHex("304402204f304f1b05599f88bc517819f6d43c69503baea5f253c55ea2d791394f7ce0de02204f23c0d4c1f4d7a89bf130fed755201d22581911a8a44cf594014794231d325a").size());
     BOOST_CHECK(key1.SignCompact(hashMsg, detsig));
     BOOST_CHECK(key1C.SignCompact(hashMsg, detsigc));
     BOOST_CHECK(detsig.size() == ParseHex("1b9071d4fead181ea197d6a23106c48ee5de25e023b38afaf71c170e3088e5238a0dcbc7f1aad626a5ee812e08ef047114642538e423a94b4bd6a272731cf500d0").size());
     BOOST_CHECK(detsigc.size() == ParseHex("1f9071d4fead181ea197d6a23106c48ee5de25e023b38afaf71c170e3088e5238a0dcbc7f1aad626a5ee812e08ef047114642538e423a94b4bd6a272731cf500d0").size());
-
     BOOST_CHECK(key2.SignCompact(hashMsg, detsig));
     BOOST_CHECK(key2C.SignCompact(hashMsg, detsigc));
     BOOST_CHECK(detsig.size() == ParseHex("1b4f304f1b05599f88bc517819f6d43c69503baea5f253c55ea2d791394f7ce0de4f23c0d4c1f4d7a89bf130fed755201d22581911a8a44cf594014794231d325a").size());
