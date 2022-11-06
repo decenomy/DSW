@@ -726,15 +726,15 @@ std::vector<std::pair<int, CMasternode> > CMasternodeMan::GetMasternodeRanks(int
             if (mn.protocolVersion < minProtocol) continue;
 
             if (!mn.IsEnabled()) {
-                    vecMasternodeScores.push_back(std::make_pair(INT_MAX, mn));
-                    continue;
-                }
+                vecMasternodeScores.push_back(std::make_pair(INT_MAX, mn));
+                continue;
+            }
 
             uint256 n = mn.CalculateScore(1, nBlockHeight);
-                int64_t n2 = n.GetCompact(false);
+            int64_t n2 = n.GetCompact(false);
 
-                vecMasternodeScores.push_back(std::make_pair(n2, mn));
-            }
+            vecMasternodeScores.push_back(std::make_pair(n2, mn));
+        }
     }
 
     sort(vecMasternodeScores.rbegin(), vecMasternodeScores.rend(), CompareScoreMN());
