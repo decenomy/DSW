@@ -469,7 +469,7 @@ bool CMasternodePayments::GetBlockPayee(int nBlockHeight, CScript& payee)
     if (sporkManager.IsSporkActive(SPORK_112_MASTERNODE_LAST_PAID_V2)) {
         LogPrint(BCLog::MASTERNODE, "CMasternodePayments::GetBlockPayee() nHeight %d. \n", nBlockHeight);
 
-    // pay to the oldest MN that still had no payment but its input is old enough and it was active long enough
+        // pay to the oldest MN that still had no payment but its input is old enough and it was active long enough
         int nCount = 0;
         std::vector<CTxIn> vecEligibleTxIns;
         CMasternode* pmn = mnodeman.GetNextMasternodeInQueueForPayment(nBlockHeight, true, nCount, vecEligibleTxIns);
