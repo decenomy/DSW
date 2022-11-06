@@ -275,7 +275,10 @@ bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
         }
     }
 
-    if (sporkManager.IsSporkActive(SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT) && (t / MINUTE_IN_SECONDS) % 10 != reconsiderWindowMin)
+    // fails if spork 8 is enabled and
+    // spork 113 is disabled or current time is outside the reconsider window
+    if (sporkManager.IsSporkActive(SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT) && 
+       (!sporkManager.IsSporkActive(SPORK_113_RECONSIDER_WINDOW_ENFORCEMENT) || (t / MINUTE_IN_SECONDS) % 10 != reconsiderWindowMin))
         return false;
 
     LogPrint(BCLog::MASTERNODE,"Masternode payment enforcement is disabled, accepting block\n");
@@ -466,7 +469,7 @@ bool CMasternodePayments::GetBlockPayee(int nBlockHeight, CScript& payee)
     if (sporkManager.IsSporkActive(SPORK_112_MASTERNODE_LAST_PAID_V2)) {
         LogPrint(BCLog::MASTERNODE, "CMasternodePayments::GetBlockPayee() nHeight %d. \n", nBlockHeight);
 
-    // pay to the oldest MN that still had no payment but its input is old enough and it was active long enough
+        // pay to the oldest MN that still had no payment but its input is old enough and it was active long enough
         int nCount = 0;
         std::vector<CTxIn> vecEligibleTxIns;
         CMasternode* pmn = mnodeman.GetNextMasternodeInQueueForPayment(nBlockHeight, true, nCount, vecEligibleTxIns);
