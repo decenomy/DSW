@@ -20,21 +20,22 @@ BOOST_FIXTURE_TEST_SUITE(Checkpoints_tests, BasicTestingSetup)
 
 BOOST_AUTO_TEST_CASE(sanity)
 {
-    uint256 p259201 = uint256S("0x1c9121bf9329a6234bfd1ea2d91515f19cd96990725265253f4b164283ade5dd");
-    uint256 p623933 = uint256S("0xc7aafa648a0f1450157dc93bd4d7448913a85b7448f803b4ab970d91fc2a7da7");
-    BOOST_CHECK(Checkpoints::CheckBlock(259201, p259201));
-    BOOST_CHECK(Checkpoints::CheckBlock(623933, p623933));
+    uint256 p0 = uint256S("0x0000095e24c9de08faea91e7dcafda400edcd769c0a4201081966f10bdef7896");
+    //TODO: The below commented section should be uncommented when the blockchain have a few blocks mined.
+    // uint256 p623933 = uint256S("0xc7aafa648a0f1450157dc93bd4d7448913a85b7448f803b4ab970d91fc2a7da7");
+    // BOOST_CHECK(Checkpoints::CheckBlock(259201, p259201));
+    // BOOST_CHECK(Checkpoints::CheckBlock(623933, p623933));
 
 
-    // Wrong hashes at checkpoints should fail:
-    BOOST_CHECK(!Checkpoints::CheckBlock(259201, p623933));
-    BOOST_CHECK(!Checkpoints::CheckBlock(623933, p259201));
+    // // Wrong hashes at checkpoints should fail:
+    // BOOST_CHECK(!Checkpoints::CheckBlock(259201, p623933));
+    // BOOST_CHECK(!Checkpoints::CheckBlock(623933, p259201));
 
-    // ... but any hash not at a checkpoint should succeed:
-    BOOST_CHECK(Checkpoints::CheckBlock(259201+1, p623933));
-    BOOST_CHECK(Checkpoints::CheckBlock(623933+1, p259201));
+    // // ... but any hash not at a checkpoint should succeed:
+    // BOOST_CHECK(Checkpoints::CheckBlock(259201+1, p623933));
+    // BOOST_CHECK(Checkpoints::CheckBlock(623933+1, p259201));
 
-    BOOST_CHECK(Checkpoints::GetTotalBlocksEstimate() >= 623933);
+    // BOOST_CHECK(Checkpoints::GetTotalBlocksEstimate() >= 623933);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

@@ -547,7 +547,6 @@ SOURCES += src/activemasternode.cpp \
            src/test/sanity_tests.cpp \
            src/test/script_P2SH_tests.cpp \
            src/test/script_tests.cpp \
-           src/test/scriptnum_tests.cpp \
            src/test/serialize_tests.cpp \
            src/test/sighash_tests.cpp \
            src/test/sigopcount_tests.cpp \
