@@ -622,6 +622,8 @@ CMasternode* CMasternodeMan::GetCurrentMasterNode(int mod, int64_t nBlockHeight,
     int64_t score = 0;
     CMasternode* winner = NULL;
 
+    if(minProtocol == 0) minProtocol = ActiveProtocol();
+
     LOCK(cs);
 
     // scan for winner
