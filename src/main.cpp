@@ -3700,6 +3700,12 @@ bool ProcessNewBlock(CValidationState& state, CNode* pfrom, const CBlock* pblock
     if (!ActivateBestChain(state, pblock, checked, connman))
         return error("%s : ActivateBestChain failed", __func__);
 
+    if (!fLiteMode) {
+        if (masternodeSync.RequestedMasternodeAssets > MASTERNODE_SYNC_LIST) {
+            masternodePayments.ProcessBlock(newHeight + 10);
+        }
+    }
+
     if (pwalletMain) {
         /* disable multisend
         // If turned on MultiSend will send a transaction (or more) on the after maturity of a stake
