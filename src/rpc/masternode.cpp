@@ -15,6 +15,7 @@
 #include "masternodeman.h"
 #include "netbase.h"
 #include "rpc/server.h"
+#include "spork.h"
 #include "utilmoneystr.h"
 
 #include <univalue.h>
@@ -499,34 +500,39 @@ UniValue getmasternodestatus(const JSONRPCRequest& request)
 
     UniValue resultsObj(UniValue::VARR);
 
-    for (auto& activeMasternode : amnodeman.GetActiveMasternodes()) {
-        if (activeMasternode.vin == nullopt) {
+    auto amns = amnodeman.GetActiveMasternodes();
+    auto legacy = amns.size() == 1 && amns[0].strAlias == "legacy";
+
+    for (auto& amn : amns) {
+        if (amn.vin == nullopt) {
             UniValue mnObj(UniValue::VOBJ);
-            mnObj.push_back(Pair("alias", activeMasternode.strAlias));
+            mnObj.push_back(Pair("alias", amn.strAlias));
             mnObj.push_back(Pair("txhash", "N/A"));
             mnObj.push_back(Pair("outputidx", -1));
-            mnObj.push_back(Pair("netaddr", activeMasternode.service.ToString()));
+            mnObj.push_back(Pair("netaddr", amn.service.ToString()));
             mnObj.push_back(Pair("addr", "N/A"));
-            mnObj.push_back(Pair("status", activeMasternode.GetStatus()));
-            mnObj.push_back(Pair("message", activeMasternode.GetStatusMessage()));
+            mnObj.push_back(Pair("status", amn.GetStatus()));
+            mnObj.push_back(Pair("message", amn.GetStatusMessage()));
             resultsObj.push_back(mnObj);
+            if(legacy && amn.strAlias == "legacy") return mnObj;
             continue;
         }
 
-        CMasternode* pmn = mnodeman.Find(*(activeMasternode.vin));
+        CMasternode* pmn = mnodeman.Find(*(amn.vin));
 
         if (pmn) {
             UniValue mnObj(UniValue::VOBJ);
-            mnObj.push_back(Pair("alias", activeMasternode.strAlias));
-            mnObj.push_back(Pair("txhash", activeMasternode.vin->prevout.hash.ToString()));
-            mnObj.push_back(Pair("outputidx", (uint64_t)activeMasternode.vin->prevout.n));
-            mnObj.push_back(Pair("netaddr", activeMasternode.service.ToString()));
+            mnObj.push_back(Pair("alias", amn.strAlias));
+            mnObj.push_back(Pair("txhash", amn.vin->prevout.hash.ToString()));
+            mnObj.push_back(Pair("outputidx", (uint64_t)amn.vin->prevout.n));
+            mnObj.push_back(Pair("netaddr", amn.service.ToString()));
             mnObj.push_back(Pair("addr", EncodeDestination(pmn->pubKeyCollateralAddress.GetID())));
-            mnObj.push_back(Pair("status", activeMasternode.GetStatus()));
-            mnObj.push_back(Pair("message", activeMasternode.GetStatusMessage()));
+            mnObj.push_back(Pair("status", amn.GetStatus()));
+            mnObj.push_back(Pair("message", amn.GetStatusMessage()));
+            if(legacy && amn.strAlias == "legacy") return mnObj;
             resultsObj.push_back(mnObj);
         } else {
-            throw std::runtime_error("Masternode not found in the list of available masternodes. Current status: " + activeMasternode.GetStatusMessage());
+            throw std::runtime_error("Masternode not found in the list of available masternodes. Current status: " + amn.GetStatusMessage());
         }
     }
 
@@ -576,6 +582,7 @@ UniValue getmasternodewinners (const JSONRPCRequest& request)
 
     int nHeight = WITH_LOCK(cs_main, return chainActive.Height());
     if (nHeight < 0) return "[]";
+    if (sporkManager.IsSporkActive(SPORK_114_MN_PAYMENT_V2)) return "[]"; // voting is disabled
 
     int nLast = 10;
     std::string strFilter = "";
@@ -659,7 +666,9 @@ UniValue getmasternodescores (const JSONRPCRequest& request)
         }
     }
     int nChainHeight = WITH_LOCK(cs_main, return chainActive.Height());
-    if (nChainHeight < 0) return "unknown";
+    if (nChainHeight < 0) return "{}";
+    if (sporkManager.IsSporkActive(SPORK_114_MN_PAYMENT_V2)) return "{}"; // voting is disabled
+
     UniValue obj(UniValue::VOBJ);
     std::vector<CMasternode> vMasternodes = mnodeman.GetFullMasternodeVector();
     for (int nHeight = nChainHeight - nLast; nHeight < nChainHeight + 20; nHeight++) {
