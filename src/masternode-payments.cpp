@@ -359,6 +359,8 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const CBloc
 
 void CMasternodePayments::ProcessMessageMasternodePayments(CNode* pfrom, std::string& strCommand, CDataStream& vRecv)
 {
+    if (sporkManager.IsSporkActive(SPORK_114_MN_PAYMENT_V2)) return; // voting is disabled
+
     if (!masternodeSync.IsBlockchainSynced()) return;
 
     if (fLiteMode) return; //disable all Masternode related functionality
@@ -366,7 +368,6 @@ void CMasternodePayments::ProcessMessageMasternodePayments(CNode* pfrom, std::st
 
     if (strCommand == NetMsgType::GETMNWINNERS) { //Masternode Payments Request Sync
         if (fLiteMode) return;   //disable all Masternode related functionality
-        if (sporkManager.IsSporkActive(SPORK_112_MASTERNODE_LAST_PAID_V2)) return;
 
         int nCountNeeded;
         vRecv >> nCountNeeded;
@@ -385,8 +386,6 @@ void CMasternodePayments::ProcessMessageMasternodePayments(CNode* pfrom, std::st
         //this is required in litemodef
         CMasternodePaymentWinner winner;
         vRecv >> winner;
-
-        if (sporkManager.IsSporkActive(SPORK_112_MASTERNODE_LAST_PAID_V2)) return;
 
         if (pfrom->nVersion < ActiveProtocol()) return;
 
@@ -466,7 +465,7 @@ void CMasternodePayments::ProcessMessageMasternodePayments(CNode* pfrom, std::st
 
 bool CMasternodePayments::GetBlockPayee(int nBlockHeight, CScript& payee)
 {
-    if (sporkManager.IsSporkActive(SPORK_112_MASTERNODE_LAST_PAID_V2)) {
+    if (sporkManager.IsSporkActive(SPORK_114_MN_PAYMENT_V2)) { // pay by last paid
         LogPrint(BCLog::MASTERNODE, "CMasternodePayments::GetBlockPayee() nHeight %d. \n", nBlockHeight);
 
         // pay to the oldest MN that still had no payment but its input is old enough and it was active long enough
@@ -503,7 +502,7 @@ bool CMasternodePayments::GetBlockPayee(int nBlockHeight, CScript& payee)
 // -- Only look ahead up to 8 blocks to allow for propagation of the latest 2 winners
 bool CMasternodePayments::IsScheduled(CMasternode& mn, int nNotBlockHeight)
 {
-    if (sporkManager.IsSporkActive(SPORK_112_MASTERNODE_LAST_PAID_V2)) return false;
+    if (sporkManager.IsSporkActive(SPORK_114_MN_PAYMENT_V2)) return false; // voting is disabled
 
     int nHeight;
     {
@@ -791,6 +790,8 @@ void CMasternodePayments::CleanPaymentList()
 void CMasternodePayments::ProcessBlock(int nBlockHeight)
 {
     if (!fMasterNode) return;
+
+    if (sporkManager.IsSporkActive(SPORK_114_MN_PAYMENT_V2)) return; // voting is disabled
 
     for (auto& activeMasternode : amnodeman.GetActiveMasternodes()) {
         if (activeMasternode.vin == nullopt) {

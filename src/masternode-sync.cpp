@@ -312,7 +312,7 @@ bool CMasternodeSync::SyncWithNode(CNode* pnode, bool isRegTestNet)
 
         if (RequestedMasternodeAssets == MASTERNODE_SYNC_MNW) {
 
-            if (sporkManager.IsSporkActive(SPORK_112_MASTERNODE_LAST_PAID_V2)) {
+            if (!sporkManager.IsSporkActive(SPORK_114_MN_PAYMENT_V2)) { // voting is disabled
                 GetNextAsset();
                 return false;
             }
