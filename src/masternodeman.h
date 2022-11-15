@@ -80,6 +80,12 @@ private:
     // which Masternodes we've asked for
     std::map<COutPoint, int64_t> mWeAskedForMasternodeListEntry;
 
+    // find an entry in the masternode list that is next to be paid (internally)
+    CMasternode* GetNextMasternodeInQueueForPayment(
+        int nBlockHeight, bool fFilterSigTime, 
+        int& nCount, std::vector<CTxIn>& vecEligibleTxIns,
+        bool fJustCount = false);
+
 public:
     // Keep track of all broadcasts I've seen
     std::map<uint256, CMasternodeBroadcast> mapSeenMasternodeBroadcast;
@@ -161,8 +167,26 @@ public:
     CMasternode* Find(const CPubKey& pubKeyMasternode);
     CMasternode* Find(const CService &addr);
 
-    /// Find an entry in the masternode list that is next to be paid
-    CMasternode* GetNextMasternodeInQueueForPayment(int nBlockHeight, bool fFilterSigTime, int& nCount, std::vector<CTxIn>& vecEligibleTxIns);
+    // Find an entry in the masternode list that is next to be paid
+    inline CMasternode* GetNextMasternodeInQueueForPayment(int nBlockHeight) {
+        int nCount = 0;
+        std::vector<CTxIn> vEligibleTxIns;
+        return GetNextMasternodeInQueueForPayment(nBlockHeight, true, nCount, vEligibleTxIns);
+    }
+
+    inline int GetNextMasternodeInQueueCount(int nBlockHeight) {
+        int nCount = 0;
+        std::vector<CTxIn> vEligibleTxIns;
+        GetNextMasternodeInQueueForPayment(nBlockHeight, true, nCount, vEligibleTxIns, true);
+        return nCount;
+    }
+
+    inline std::pair<CMasternode*, std::vector<CTxIn>> GetNextMasternodeInQueueEligible(int nBlockHeight) {
+        int nCount = 0;
+        std::vector<CTxIn> vEligibleTxIns;
+        auto mn = GetNextMasternodeInQueueForPayment(nBlockHeight, true, nCount, vEligibleTxIns);
+        return std::pair<CMasternode*, std::vector<CTxIn>>(mn, vEligibleTxIns);
+    }
 
     /// Get the current winner for this block
     CMasternode* GetCurrentMasterNode(int mod = 1, int64_t nBlockHeight = 0, int minProtocol = 0);

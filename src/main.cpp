@@ -1963,13 +1963,20 @@ DisconnectResult DisconnectBlock(CBlock& block, CBlockIndex* pindex, CCoinsViewC
             LOCK2(cs_mapMasternodeBlocks, cs_vecPayments);
 
             if (masternodePayments.mapMasternodeBlocks.count(pindex->nHeight)) {
-                masternodePayments.mapMasternodeBlocks[pindex->nHeight].paidPayee = CScript();
                 mnpayees = masternodePayments.mapMasternodeBlocks[pindex->nHeight].vecPayments;
             }
         }
 
         for(auto mnp : mnpayees) {
             auto pmn = mnodeman.Find(mnp.scriptPubKey);
+
+            if(pmn) {
+                pmn->lastPaid = UINT64_MAX;
+            }
+        }
+
+        if(pindex->paidPayee) {
+            auto pmn = mnodeman.Find(*pindex->paidPayee);
 
             if(pmn) {
                 pmn->lastPaid = UINT64_MAX;
