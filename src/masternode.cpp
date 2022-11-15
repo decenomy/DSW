@@ -80,6 +80,7 @@ CMasternode::CMasternode() :
     nScanningErrorCount = 0;
     nLastScanningErrorBlockHeight = 0;
     lastTimeChecked = 0;
+    lastTimeCollateralChecked = 0;
     lastPaid = UINT64_MAX;
 }
 
@@ -101,6 +102,7 @@ CMasternode::CMasternode(const CMasternode& other) :
     nScanningErrorCount = other.nScanningErrorCount;
     nLastScanningErrorBlockHeight = other.nLastScanningErrorBlockHeight;
     lastTimeChecked = 0;
+    lastTimeCollateralChecked = 0;
     lastPaid = other.lastPaid;
 }
 
@@ -139,6 +141,7 @@ bool CMasternode::UpdateFromNewBroadcast(CMasternodeBroadcast& mnb)
         protocolVersion = mnb.protocolVersion;
         addr = mnb.addr;
         lastTimeChecked = 0;
+        lastTimeCollateralChecked = 0;
         int nDoS = 0;
         if (mnb.lastPing.IsNull() || (!mnb.lastPing.IsNull() && mnb.lastPing.CheckAndUpdate(nDoS, false))) {
             lastPing = mnb.lastPing;
@@ -214,8 +217,8 @@ void CMasternode::Check(bool forceCheck)
         return;
     }
 
-    auto tipTime = chainActive.TipTime();
-    if (!unitTest && lastTimeChecked - tipTime > MINUTE_IN_SECONDS) {
+    if (!unitTest && lastTimeChecked - lastTimeCollateralChecked > MINUTE_IN_SECONDS) {
+        lastTimeCollateralChecked = lastTimeChecked;
         CValidationState state;
         CMutableTransaction tx = CMutableTransaction();
         CScript dummyScript;

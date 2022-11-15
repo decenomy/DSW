@@ -113,6 +113,7 @@ private:
     // critical section to protect the inner data structures
     mutable RecursiveMutex cs;
     int64_t lastTimeChecked;
+    int64_t lastTimeCollateralChecked;
 
     int64_t GetLastPaidV1(CBlockIndex* blockIndex, const CScript& mnpayee);
     int64_t GetLastPaidV2(CBlockIndex* blockIndex, const CScript& mnpayee);
