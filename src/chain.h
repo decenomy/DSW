@@ -447,7 +447,7 @@ public:
     /** Find the successor of a block in this chain, or NULL if the given index is not found or is the tip. */
     CBlockIndex* Next(const CBlockIndex* pindex) const
     {
-        return WITH_LOCK(cs, return Contains(pindex) ? vChain[pindex->nHeight + 1] : nullptr);
+        return WITH_LOCK(cs, return Contains(pindex) ? (*this)[pindex->nHeight + 1] : nullptr);
     }
 
     /** Return the maximal height in the chain. Is equal to chain.Tip() ? chain.Tip()->nHeight : -1. */
