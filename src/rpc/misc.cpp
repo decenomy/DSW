@@ -701,6 +701,7 @@ UniValue getstakingstatus(const JSONRPCRequest& request)
         LOCK2(cs_main, &pwalletMain->cs_wallet);
         UniValue obj(UniValue::VOBJ);
         obj.push_back(Pair("staking_status", pwalletMain->pStakerStatus->IsActive()));
+        obj.push_back(Pair("staking_active", fStakingActive));
         obj.push_back(Pair("staking_enabled", GetBoolArg("-staking", DEFAULT_STAKING)));
         obj.push_back(Pair("haveconnections", (g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) > 0)));
         obj.push_back(Pair("mnsync", !masternodeSync.NotCompleted()));
