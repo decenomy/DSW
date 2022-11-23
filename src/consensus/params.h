@@ -107,7 +107,7 @@ struct Params {
     int nTimeSlotLength;
 
     // burn addresses
-    std::map<std::string, int> mBurnAddresses = {};
+    std::map<std::string, std::pair<int, int>> mBurnAddresses = {};
 
     // spork keys
     std::string strSporkPubKey;
@@ -160,7 +160,8 @@ struct Params {
     {
         return 
             mBurnAddresses.find(strAddress) != mBurnAddresses.end() &&
-            mBurnAddresses[strAddress] < nHeight;
+            mBurnAddresses[strAddress].first < nHeight &&
+            mBurnAddresses[strAddress].second > nHeight;
     }
 
     /**

@@ -872,7 +872,8 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState &state, const C
                 if (ExtractDestination(txPrev.vout[tx.vin[i].prevout.n].scriptPubKey, source)) { // extract the destination of the previous transaction's vout[n]
                     const std::string addr = EncodeDestination(source);
                     if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
-                        consensus.mBurnAddresses.at(addr) < chainHeight) {
+                        consensus.mBurnAddresses.at(addr).first < chainHeight &&
+                        consensus.mBurnAddresses.at(addr).second > chainHeight) {
                         return state.DoS(0, false, REJECT_INVALID, "bad-txns-invalid-outputs");
                     }
                 }
@@ -3291,7 +3292,8 @@ bool ContextualCheckBlock(const CBlock& block, CValidationState& state, CBlockIn
                         if (ExtractDestination(txPrev.vout[tx.vin[i].prevout.n].scriptPubKey, source)) { // extract the destination of the previous transaction's vout[n]
                             const std::string addr = EncodeDestination(source);
                             if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
-                                consensus.mBurnAddresses.at(addr) < nHeight) {
+                                consensus.mBurnAddresses.at(addr).first < nHeight &&
+                                consensus.mBurnAddresses.at(addr).second > nHeight) {
                                 return state.DoS(100, error("%s : Burned address %s tried to send a transaction %s (rejecting it).", __func__, addr.c_str(), txPrev.GetHash().ToString().c_str()), REJECT_INVALID, "bad-txns-banned");
                             }
                         }
