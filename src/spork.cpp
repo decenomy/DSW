@@ -32,6 +32,7 @@ std::vector<CSporkDef> sporkDefs = {
     MAKE_SPORK_DEF(SPORK_112_MASTERNODE_LAST_PAID_V2,           4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_113_RECONSIDER_WINDOW_ENFORCEMENT,     4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_114_MN_PAYMENT_V2,                     4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_115_MN_COLLATERAL_WINDOW,              4070908800ULL), // OFF
 
     MAKE_SPORK_DEF(SPORK_2_NOOP,                                4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_3_NOOP,                                4070908800ULL), // OFF
@@ -47,7 +48,6 @@ std::vector<CSporkDef> sporkDefs = {
     MAKE_SPORK_DEF(SPORK_17_NOOP,                               4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_18_NOOP,                               4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_19_NOOP,                               4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_111_NOOP,                              4070908800ULL), // OFF
 };
 
 CSporkManager sporkManager;

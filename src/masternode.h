@@ -13,6 +13,7 @@
 #include "messagesigner.h"
 #include "net.h"
 #include "sync.h"
+#include "spork.h"
 #include "timedata.h"
 #include "util.h"
 
@@ -276,12 +277,17 @@ public:
     }
 
     static CAmount GetNextWeekMasternodeCollateral()
-    { 
-        return CMasternode::GetMasternodeNodeCollateral(
-            chainActive.Height() + 
-            (WEEK_IN_SECONDS / Params().GetConsensus().nTargetSpacing)
-        ); 
+    {
+        if(sporkManager.IsSporkActive(SPORK_115_MN_COLLATERAL_WINDOW)) {
+            return CMasternode::GetMasternodeNodeCollateral(
+                chainActive.Height() + 
+                (WEEK_IN_SECONDS / Params().GetConsensus().nTargetSpacing)
+            );
+        } else {
+            return GetCurrentMasternodeCollateral();
+        }
     }
+    
     static CAmount GetMinMasternodeCollateral()
     { 
         return std::min(
