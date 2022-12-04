@@ -594,12 +594,18 @@ CMasternode* CMasternodeMan::GetNextMasternodeInQueueForPayment(int nBlockHeight
         // Sort them high to low
         sort(vecMasternodeLastPaid.rbegin(), vecMasternodeLastPaid.rend(), CompareLastPaid());
 
-        // Look at 1/10 of the oldest nodes (by last payment), calculate their scores and pay the best one
+        // Look at 1/10 or 1/100 min 10 (V2) of the oldest nodes (by last payment), calculate their scores and pay the best one
         //  -- This doesn't look at who is being paid in the +8-10 blocks, allowing for double payments very rarely
         //  -- 1/100 payments should be a double payment on mainnet - (1/(3000/10))*2
         //  -- (chance per block * chances before IsScheduled will fire)
-        int nTenthNetwork = CountEnabled() / 10;
-        int nCountTenth = 0;
+        auto nEnabled = CountEnabled();
+        int nEligibleNetwork = nEnabled / 10; 
+        
+        if(sporkManager.IsSporkActive(SPORK_114_MN_PAYMENT_V2)) {
+            nEligibleNetwork = std::max(10, nEnabled / 100);
+        }
+        
+        int nCountEligible = 0;
         uint256 nHigh;
         for (const auto& s : vecMasternodeLastPaid) {
             CMasternode* pmn = Find(s.second);
@@ -612,8 +618,8 @@ CMasternode* CMasternodeMan::GetNextMasternodeInQueueForPayment(int nBlockHeight
             }
 
             vEligibleTxIns.push_back(s.second);
-            nCountTenth++;
-            if (nCountTenth >= nTenthNetwork) break;
+            nCountEligible++;
+            if (nCountEligible >= nEligibleNetwork) break;
         }
     }
 

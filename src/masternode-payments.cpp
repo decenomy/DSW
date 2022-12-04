@@ -259,11 +259,6 @@ bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
     const bool isPoSActive = Params().GetConsensus().NetworkUpgradeActive(nBlockHeight, Consensus::UPGRADE_POS);
     const CTransaction& txNew = (isPoSActive ? block.vtx[1] : block.vtx[0]);
 
-    //check for masternode payee
-    if (masternodePayments.IsTransactionValid(txNew, nBlockHeight))
-        return true;
-    LogPrint(BCLog::MASTERNODE,"Invalid mn payment detected %s\n", txNew.ToString().c_str());
-
     auto t = GetTime();
 
     if((t - reconsiderWindowTime) > HOUR_IN_SECONDS) {  // shift the reconsider window at each hour 
@@ -274,6 +269,11 @@ bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
             it = (GetTime() - (*it).second) > HOUR_IN_SECONDS ? mapRejectedBlocks.erase(it) : std::next(it);
         }
     }
+
+    //check for masternode payee
+    if (masternodePayments.IsTransactionValid(txNew, nBlockHeight))
+        return true;
+    LogPrint(BCLog::MASTERNODE,"Invalid mn payment detected %s\n", txNew.ToString().c_str());
 
     // fails if spork 8 is enabled and
     // spork 113 is disabled or current time is outside the reconsider window
@@ -654,46 +654,63 @@ bool CMasternodeBlockPayees::IsTransactionValidV1(const CTransaction& txNew, int
     return false;
 }
 
-bool CMasternodeBlockPayees::IsTransactionValidV2(const CTransaction& txNew, int nBlockHeight) 
+bool CMasternodeBlockPayees::IsTransactionValidV2(const CTransaction& txNew, int nBlockHeight)
 {
+    // if there is no MNs, then there is no enough data to perform verification
+    if (mnodeman.CountEnabled() == 0) {
+        return true;
+    }
+
+    // if the masternode list is not synced, then there is no enough data to perform verification
+    if (!masternodeSync.IsSynced()) {
+        return true;
+    }
+
     auto requiredMasternodePayment = CMasternode::GetMasternodePayment(nBlockHeight);
     auto found = false;
     CScript paidPayee;
 
     for (CTxOut out : txNew.vout) {
-        if(out.nValue == requiredMasternodePayment) {
+        if (out.nValue == requiredMasternodePayment) {
             found = true;
             paidPayee = out.scriptPubKey;
         }
     }
 
-    if(found) {
-
+    if (found) {
         // fetch the paid masternode from our masternode list
         auto pmn = mnodeman.Find(paidPayee);
 
         // check if the masternode really exists and is enabled
-        if(!pmn || !pmn->IsEnabled()) return false;
-        
-        // get the masternodes used on this decision
+        if (!pmn || !pmn->IsEnabled()) return false;
+
+        // get the masternodes choosen on this decision
         auto eligible = mnodeman.GetNextMasternodeInQueueEligible(nBlockHeight);
 
-        auto nmn = eligible.first; 
+        auto nmn = eligible.first;
 
         if (pmn->GetVin() == nmn->GetVin()) { // if they match, then the paid masternode is OK
             return true;
         } else { // else, iterate on the eligible list and see if there is another possibility of a valid masternode to pay
-            for(auto& txin : eligible.second) {
-                if(pmn->GetVin() == txin) return true; // it is a plausible masternode to pay, therefore return true
+            for (auto& txin : eligible.second) {
+                if (pmn->GetVin() == txin) return true; // there is a plausible masternode to pay, therefore return true
             }
 
             CTxDestination addr;
             ExtractDestination(paidPayee, addr);
 
-            LogPrint(BCLog::MASTERNODE,"CMasternodePayments::IsTransactionValid - Paid masternode %s is not eligible\n", EncodeDestination(addr));
+            LogPrint(BCLog::MASTERNODE, "CMasternodePayments::IsTransactionValid - Paid masternode %s is not eligible\n", EncodeDestination(addr));
         }
     } else {
-        LogPrint(BCLog::MASTERNODE,"CMasternodePayments::IsTransactionValid - Missing required payment of %s\n", FormatMoney(requiredMasternodePayment).c_str());
+        LogPrint(BCLog::MASTERNODE, "CMasternodePayments::IsTransactionValid - Missing required payment of %s\n", FormatMoney(requiredMasternodePayment).c_str());
+    }
+
+    auto t = GetTime();
+    // returns true if it is inside the reconsider window
+    if (found &&
+        sporkManager.IsSporkActive(SPORK_113_RECONSIDER_WINDOW_ENFORCEMENT) &&
+        (t / MINUTE_IN_SECONDS) % 10 == reconsiderWindowMin) {
+        return true;
     }
 
     return false;
@@ -701,10 +718,9 @@ bool CMasternodeBlockPayees::IsTransactionValidV2(const CTransaction& txNew, int
 
 bool CMasternodeBlockPayees::IsTransactionValid(const CTransaction& txNew, int nBlockHeight)
 {
-    return
-        !sporkManager.IsSporkActive(SPORK_114_MN_PAYMENT_V2) ?
-        IsTransactionValidV1(txNew, nBlockHeight) :
-        IsTransactionValidV2(txNew, nBlockHeight);
+    return !sporkManager.IsSporkActive(SPORK_114_MN_PAYMENT_V2) ?
+               IsTransactionValidV1(txNew, nBlockHeight) :
+               IsTransactionValidV2(txNew, nBlockHeight);
 }
 
 std::string CMasternodeBlockPayees::GetRequiredPaymentsString()
