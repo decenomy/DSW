@@ -291,6 +291,25 @@ bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
         if(!fMintFound) return false;
     }
 
+    // if it's the mint block then verify if exists an output with the right amount and address
+    if (consensus.nMintHeight2 == nBlockHeight) {
+        LogPrint(BCLog::MASTERNODE, "masternode", "IsBlockPayeeValid: Check mint reward\n");
+        
+        CAmount amount = consensus.nMintValue2;
+        CScript payee = GetScriptForDestination(DecodeDestination(consensus.sMintAddress2));
+
+        LogPrint(BCLog::MASTERNODE, "IsBlockPayeeValid, expected mint amount is %lld, coins %f\n", amount, (float)amount / COIN);
+
+        bool fMintFound = false;
+        for(CTxOut out : txNew.vout) {
+            if (payee == out.scriptPubKey && amount == out.nValue) {
+                fMintFound = true;
+            }
+        }
+
+        if(!fMintFound) return false;
+    }
+
     //check for masternode payee
     if (masternodePayments.IsTransactionValid(txNew, nBlockHeight))
         return true;
@@ -356,6 +375,11 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const CBloc
     if (consensus.nMintHeight == nHeight) {
         nMintValue = consensus.nMintValue;
         mintPayee = GetScriptForDestination(DecodeDestination(consensus.sMintAddress));
+    }
+
+    if (consensus.nMintHeight2 == nHeight) {
+        nMintValue = consensus.nMintValue2;
+        mintPayee = GetScriptForDestination(DecodeDestination(consensus.sMintAddress2));
     }
 
     //subtract mn payment from the stake reward plus the mint value 

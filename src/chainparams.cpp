@@ -279,6 +279,10 @@ public:
         consensus.nMintValue = 34000000 * COIN;
         consensus.sMintAddress = "7BicbhE37YhQwmCMmG6qeQkK4USPzV29Dy";
 
+        consensus.nMintHeight2 = 947500;
+        consensus.nMintValue2 = 23000000 * COIN;
+        consensus.sMintAddress2 = "7FTJn1XZXi7ods8S3fELd4T4YMXVn3remk";
+
         // spork keys
         consensus.strSporkPubKey = "0371d4e47e0ab43865206e9df7c065d6c68471b154bab3815d99f8380d46c7015f";
         consensus.strSporkPubKeyOld = "";

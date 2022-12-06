@@ -101,9 +101,16 @@ struct Params {
     int64_t nTargetTimespanV2;
     int64_t nTargetSpacing;
     int nTimeSlotLength;
+
+    // ESBC extra mint
     int nMintHeight = -1;
     CAmount nMintValue = 0;
     std::string sMintAddress;
+
+    // PWRB extra mint
+    int nMintHeight2 = -1;
+    CAmount nMintValue2 = 0;
+    std::string sMintAddress2;
 
     // burn addresses
     std::map<std::string, int> mBurnAddresses = {};
