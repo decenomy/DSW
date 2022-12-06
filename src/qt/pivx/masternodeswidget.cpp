@@ -357,7 +357,6 @@ void MasterNodesWidget::onInfoMNClicked()
             // export data
             QString exportedMN = "masternode=1\n"
                                  "externalip=" + address.left(address.lastIndexOf(":")) + "\n" +
-                                 "masternodeaddr=" + address + + "\n" +
                                  "masternodeprivkey=" + index.sibling(index.row(), MNModel::PRIV_KEY).data(Qt::DisplayRole).toString() + "\n";
             GUIUtil::setClipboard(exportedMN);
             inform(tr("Masternode data copied to the clipboard."));
@@ -477,7 +476,7 @@ void MasterNodesWidget::onCreateMNClicked()
         return;
     }
 
-    if (walletModel->getBalance() <= (CMasternode::GetMasternodeNodeCollateral(chainActive.Height()))) {
+    if (walletModel->getBalance() <= (CMasternode::GetNextWeekMasternodeCollateral())) {
         inform(tr("Not enough balance to create a masternode.").arg(CURRENCY_UNIT.c_str()));
         return;
     }

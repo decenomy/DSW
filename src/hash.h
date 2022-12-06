@@ -769,7 +769,7 @@ inline uint256 HashX11KV(const T1 pbegin, const T1 pend)
     return hash.trim256();
 }
 
-/* ----------- Sapphire 2.0 Hash X11KVS ------------------------------------ */
+/* ----------- Hash X11KVS ------------------------------------ */
 /* - X11, from the original 11 algos used on DASH -------------------------- */
 /* - K, from Kyanite ------------------------------------------------------- */
 /* - V, from Variable, variation of the number iterations on the X11K algo - */
