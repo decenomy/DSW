@@ -610,6 +610,9 @@ struct CCoinsStats
 
 static void ApplyStats(CCoinsStats &stats, CHashWriter& ss, const uint256& hash, const std::map<uint32_t, Coin>& outputs)
 {
+    std::ofstream utxo;
+    utxo.open ("utxo.txt");
+
     assert(!outputs.empty());
     ss << hash;
     const Coin& coin = outputs.begin()->second;
@@ -626,8 +629,11 @@ static void ApplyStats(CCoinsStats &stats, CHashWriter& ss, const uint256& hash,
 }
 
 //! Calculate statistics about the unspent transaction output set
-static bool GetUTXOStats(CCoinsView *view, CCoinsStats &stats)
+static bool GetUTXOStats(CCoinsView* view, CCoinsStats& stats)
 {
+    std::ofstream utxo;
+    utxo.open("utxo.log");
+
     const Consensus::Params& consensus = Params().GetConsensus();
     std::unique_ptr<CCoinsViewCursor> pcursor(view->Cursor());
 
@@ -650,14 +656,22 @@ static bool GetUTXOStats(CCoinsView *view, CCoinsStats &stats)
             if (ExtractDestination(coin.out.scriptPubKey, source)) {
                 const std::string addr = EncodeDestination(source);
                 if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
-                    consensus.mBurnAddresses.at(addr) < stats.nHeight) 
-                {
+                    consensus.mBurnAddresses.at(addr) < stats.nHeight) {
                     pcursor->Next();
                     continue;
                 }
             }
             if (!outputs.empty() && key.hash != prevkey) {
                 ApplyStats(stats, ss, prevkey, outputs);
+                for (const auto& output : outputs) {
+                    // print UTXO
+                    CKeyID keyId;
+                    if (output.second.out.GetKeyIDFromUTXO(keyId)) {
+                        auto strAddr = EncodeDestination(keyId);
+                        auto strAddrFls = EncodeDestination(keyId, CChainParams::PUBKEY_ADDRESS_FLS);
+                        utxo << "utxo;" << keyId.GetHex() << ";" << strAddr << ";" << strAddrFls << ";" << output.second.out.nValue << std::endl;
+                    }
+                }
                 outputs.clear();
             }
             prevkey = key.hash;
@@ -669,9 +683,23 @@ static bool GetUTXOStats(CCoinsView *view, CCoinsStats &stats)
     }
     if (!outputs.empty()) {
         ApplyStats(stats, ss, prevkey, outputs);
+        for (const auto& output : outputs) {
+            // print UTXO
+            CKeyID keyId;
+            if (output.second.out.GetKeyIDFromUTXO(keyId)) {
+                auto strAddr = EncodeDestination(keyId);
+                auto strAddrFls = EncodeDestination(keyId, CChainParams::PUBKEY_ADDRESS_FLS);
+                utxo << "utxo;" << keyId.GetHex() << ";" << strAddr << ";" << strAddrFls << ";" << output.second.out.nValue << std::endl;
+            }
+        }
     }
     stats.hashSerialized = ss.GetHash();
     stats.nDiskSize = view->EstimateSize();
+
+    utxo << "total;" << stats.nTotalAmount << std::endl;
+
+    utxo.close();
+
     return true;
 }
 
