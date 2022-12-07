@@ -323,7 +323,10 @@ public:
         base58Prefixes[EXT_COIN_TYPE]   = boost::assign::list_of(0x80)(0x00)(0x03)(0x46).convert_to_container<std::vector<unsigned char> >();
 
         base58Prefixes[PUBKEY_ADDRESS_BIR]  = std::vector<unsigned char>(1, 45);
-        base58Prefixes[SECRET_KEY_BIR]      = std::vector<unsigned char>(1, 179);        
+        base58Prefixes[SECRET_KEY_BIR]      = std::vector<unsigned char>(1, 179);  
+
+        base58Prefixes[PUBKEY_ADDRESS_FLS]  = std::vector<unsigned char>(1, 36);
+        base58Prefixes[SECRET_KEY_FLS]      = std::vector<unsigned char>(1, 66);        
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
         //convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main)); // added

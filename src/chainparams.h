@@ -55,6 +55,9 @@ public:
         PUBKEY_ADDRESS_BIR,
         SECRET_KEY_BIR,
 
+        PUBKEY_ADDRESS_FLS,
+        SECRET_KEY_FLS,
+
         MAX_BASE58_TYPES
     };
 
