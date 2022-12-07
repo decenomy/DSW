@@ -20,6 +20,8 @@ namespace KeyIO {
 
     std::string EncodeSecret(const CKey &key);
 
+    std::string EncodeSecret(const CKey &key, const CChainParams::Base58Type addrType);
+
     CExtKey DecodeExtKey(const std::string &str);
 
     std::string EncodeExtKey(const CExtKey &extkey);

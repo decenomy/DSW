@@ -34,8 +34,12 @@ namespace KeyIO {
     }
 
     std::string EncodeSecret(const CKey &key) {
+        return EncodeSecret(key, CChainParams::SECRET_KEY);
+    }
+
+    std::string EncodeSecret(const CKey &key, const CChainParams::Base58Type addrType) {
         assert(key.IsValid());
-        std::vector<unsigned char> data = Params().Base58Prefix(CChainParams::SECRET_KEY);
+        std::vector<unsigned char> data = Params().Base58Prefix(addrType);
         data.insert(data.end(), key.begin(), key.end());
         if (key.IsCompressed()) {
             data.push_back(1);

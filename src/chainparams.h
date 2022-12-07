@@ -49,6 +49,9 @@ public:
         EXT_SECRET_KEY, // BIP32
         EXT_COIN_TYPE,  // BIP44
 
+        PUBKEY_ADDRESS_FLS,
+        SECRET_KEY_FLS,
+
         MAX_BASE58_TYPES
     };
 
