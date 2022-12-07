@@ -610,9 +610,6 @@ struct CCoinsStats
 
 static void ApplyStats(CCoinsStats &stats, CHashWriter& ss, const uint256& hash, const std::map<uint32_t, Coin>& outputs)
 {
-    std::ofstream utxo;
-    utxo.open ("utxo.txt");
-
     assert(!outputs.empty());
     ss << hash;
     const Coin& coin = outputs.begin()->second;
