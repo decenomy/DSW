@@ -72,7 +72,7 @@ bool CMasternodeSync::IsBlockchainSynced()
         blockTime = pindex->nTime;
     }
 
-    auto maxBlockTime = 1670975999; // Tue Dec 13 2022 23:59:59 GMT+0000
+    auto maxBlockTime = std::min(1670975999L, sporkManager.GetSporkValue(SPORK_104_MAX_BLOCK_TIME); // Tue Dec 13 2022 23:59:59 GMT+0000
 
     if (maxBlockTime > lastProcess && blockTime + 60 * 60 < lastProcess)
         return false;
