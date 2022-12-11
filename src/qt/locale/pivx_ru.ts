@@ -4528,7 +4528,7 @@ Are you sure?
         <translation>Стекинг активен</translation>
     </message>
     <message>
-        <source>Staking not active</source>
+        <source>Staking inactive</source>
         <translation>Стекинг не активен</translation>
     </message>
     <message>

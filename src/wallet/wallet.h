@@ -167,6 +167,7 @@ public:
  *  - nTime          time slot of last attempt
  *  - nTries         number of UTXOs hashed during last attempt
  *  - nCoins         number of stakeable utxos during last attempt
+ *  - nValue         value of stakeable utxos during last attempt
 **/
 class CStakerStatus
 {
@@ -175,6 +176,7 @@ private:
     int64_t nTime{0};
     int nTries{0};
     int nCoins{0};
+    CAmount nValue{0};
 
 public:
     // Get
@@ -184,17 +186,22 @@ public:
     int GetLastCoins() const { return nCoins; }
     int GetLastTries() const { return nTries; }
     int64_t GetLastTime() const { return nTime; }
+    CAmount GetLastValue() const { return nValue; }
+
     // Set
     void SetLastCoins(const int coins) { nCoins = coins; }
     void SetLastTries(const int tries) { nTries = tries; }
     void SetLastTip(const CBlockIndex* lastTip) { tipBlock = lastTip; }
     void SetLastTime(const uint64_t lastTime) { nTime = lastTime; }
+    void SetLastValue(CAmount lastValue) { nValue = lastValue; }
+
     void SetNull()
     {
         SetLastCoins(0);
         SetLastTries(0);
         SetLastTip(nullptr);
         SetLastTime(0);
+        SetLastValue(0);
     }
     // Check whether staking status is active (last attempt earlier than 30 seconds ago)
     bool IsActive() const { return (nTime + 30) >= GetTime(); }

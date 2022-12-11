@@ -72,14 +72,17 @@ bool CMasternodeSync::IsBlockchainSynced()
         blockTime = pindex->nTime;
     }
 
-    if(sporkManager.GetSporkValue(SPORK_104_MAX_BLOCK_TIME) > lastProcess) {
-        if (blockTime + 60 * 60 < lastProcess)
-            return false;
-    }
+    auto maxBlockTime = sporkManager.GetSporkValue(SPORK_104_MAX_BLOCK_TIME);
+
+    if (maxBlockTime > lastProcess && blockTime + HOUR_IN_SECONDS < lastProcess)
+        return false;
+
+    if (maxBlockTime <= lastProcess && blockTime + HOUR_IN_SECONDS < maxBlockTime)
+        return false;
 
     fBlockchainSynced = true;
 
-    return true;
+    return fBlockchainSynced;
 }
 
 void CMasternodeSync::Reset()
@@ -312,8 +315,9 @@ bool CMasternodeSync::SyncWithNode(CNode* pnode, bool isRegTestNet)
 
         if (RequestedMasternodeAssets == MASTERNODE_SYNC_MNW) {
 
-            if (sporkManager.IsSporkActive(SPORK_112_MASTERNODE_LAST_PAID_V2)) {
+            if (sporkManager.IsSporkActive(SPORK_114_MN_PAYMENT_V2)) { // voting is disabled
                 GetNextAsset();
+                amnodeman.ManageStatus();
                 return false;
             }
             

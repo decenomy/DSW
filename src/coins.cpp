@@ -259,7 +259,7 @@ double CCoinsViewCache::GetPriority(const CTransaction& tx, int nHeight, CAmount
         const Coin& coin = AccessCoin(txin.prevout);
         if (coin.IsSpent()) continue;
         if (coin.nHeight <= (unsigned)nHeight) {
-            dResult += coin.out.nValue * (nHeight - coin.nHeight);
+            dResult += (coin.out.nValue / COIN) * (nHeight - coin.nHeight);
             inChainInputValue += coin.out.nValue;
         }
     }

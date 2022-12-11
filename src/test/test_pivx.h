@@ -8,6 +8,7 @@
 
 #include "fs.h"
 #include "txdb.h"
+#include "random.h"
 
 #include <boost/thread.hpp>
 

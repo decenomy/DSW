@@ -502,17 +502,46 @@ bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, Optional<CReserveKey>& r
 bool fGenerateBitcoins = false;
 bool fStakeableCoins = false;
 bool fMasternodeSync = false;
-int nMintableLastCheck = 0;
 
-void CheckForCoins(CWallet* pwallet, const int minutes, std::vector<COutput>* availableCoins)
+void CheckForCoins(CWallet* pwallet, std::vector<COutput>* availableCoins)
 {
-    //control the amount of times the client will check for mintable coins
-    int nTimeNow = GetTime();
-    if ((nTimeNow - nMintableLastCheck > minutes * 60)) {
-        nMintableLastCheck = nTimeNow;
-        fStakeableCoins = pwallet->StakeableCoins(availableCoins);
-        fMasternodeSync = sporkManager.IsSporkActive(SPORK_106_STAKING_SKIP_MN_SYNC) || !masternodeSync.NotCompleted();
+    fStakeableCoins = pwallet->StakeableCoins(availableCoins);
+}
+
+void SleepUntilNexSlot() 
+{
+    MilliSleep((GetNextTimeSlot() - GetAdjustedTime()) * 1000);
+}
+
+uint64_t GetNetworkHashPS()
+{
+    CBlockIndex *pb = chainActive.Tip();
+
+    if (!pb || !pb->nHeight) return 0; 
+
+    uint64_t n_blocks = Params().GetConsensus().TargetTimespan(pb->nHeight) / Params().GetConsensus().nTargetSpacing;
+
+    if (pb->nHeight < n_blocks)
+        n_blocks = pb->nHeight;
+
+    CBlockIndex* pb0 = pb;
+    int64_t minTime = pb0->GetBlockTime();
+    int64_t maxTime = minTime;
+    for (int i = 0; i < n_blocks; i++) {
+        pb0 = pb0->pprev;
+        int64_t time = pb0->GetBlockTime();
+        minTime = std::min(time, minTime);
+        maxTime = std::max(time, maxTime);
     }
+
+    // In case there's a situation where minTime == maxTime, we don't want a divide by zero exception.
+    if (minTime == maxTime)
+        return 0;
+
+    uint256 workDiff = pb->nChainWork - pb0->nChainWork;
+    int64_t timeDiff = maxTime - minTime;
+
+    return (int64_t)(workDiff.getdouble() / timeDiff);
 }
 
 void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
@@ -521,7 +550,6 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
     util::ThreadRename("pivx-miner");
     const Consensus::Params& consensus = Params().GetConsensus();
-    const int64_t nSpacingMillis = consensus.nTargetSpacing * 1000;
 
     // Each thread has its own key and counter
     Optional<CReserveKey> opReservekey{nullopt};
@@ -534,32 +562,69 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
     unsigned int nExtraNonce = 0;
 
     while (fGenerateBitcoins || fProofOfStake) {
+
+        fMasternodeSync = sporkManager.IsSporkActive(SPORK_106_STAKING_SKIP_MN_SYNC) || !masternodeSync.NotCompleted();
+
         CBlockIndex* pindexPrev = GetChainTip();
         if (!pindexPrev) {
-            MilliSleep(nSpacingMillis); // sleep a block
+            SleepUntilNexSlot();               // sleep a time slot and try again
             continue;
         }
         if (fProofOfStake) {
-            if (!consensus.NetworkUpgradeActive(pindexPrev->nHeight + 1, Consensus::UPGRADE_POS)) {
-                // The last PoW block hasn't even been mined yet.
-                MilliSleep(nSpacingMillis); // sleep a block
+
+            if (!fStakingActive) {             // if not active then
+                SleepUntilNexSlot();           // sleep a time slot and try again
+                fStakingStatus = false;
                 continue;
             }
 
-            // update fStakeableCoins (5 minute check time);
-            CheckForCoins(pwallet, 5, &availableCoins);
+            if (!fMasternodeSync) {            // if not in sync with masternode second layer then 
+                SleepUntilNexSlot();           // sleep a time slot and try again
+                fStakingStatus = false;
+                continue;
+            }
 
-            while ((g_connman && g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && Params().MiningRequiresPeers()) || pwallet->IsLocked() || !fStakeableCoins || !fMasternodeSync) {
-                MilliSleep(5000);
-                // Do a separate 1 minute check here to ensure fStakeableCoins and fMasternodeSync is updated
-                if (!fStakeableCoins || !fMasternodeSync) CheckForCoins(pwallet, 1, &availableCoins);
+            if (pwallet->IsLocked()) {         // if the wallet is locked then
+                SleepUntilNexSlot();           // sleep a time slot and try again
+                fStakingStatus = false;
+                continue;
+            }
+
+            if (g_connman && 
+                g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && 
+                Params().MiningRequiresPeers()) {      // if there is no connections to other peers then
+                SleepUntilNexSlot();                   // sleep a time slot and try again
+                fStakingStatus = false;
+                continue;
             }
 
             //search our map of hashed blocks, see if bestblock has been hashed yet
             if (pwallet->pStakerStatus &&
                 pwallet->pStakerStatus->GetLastHash() == pindexPrev->GetBlockHash() &&
                 pwallet->pStakerStatus->GetLastTime() >= GetCurrentTimeSlot()) {
-                MilliSleep(2000);
+
+                for(int i = 0; i < (GetNextTimeSlot() - GetAdjustedTime()); i++) {
+                    if(pwallet->pStakerStatus->GetLastHash() == pindexPrev->GetBlockHash() &&
+                       pwallet->pStakerStatus->GetLastTime() >= GetCurrentTimeSlot()) {
+                        MilliSleep(1000);
+                    } else {
+                        break;
+                    }
+                }
+                continue;
+            }
+
+            if (!consensus.NetworkUpgradeActive(pindexPrev->nHeight + 1, Consensus::UPGRADE_POS)) {
+                // The last PoW block hasn't even been mined yet.
+                SleepUntilNexSlot();                   // sleep a time slot and try again
+                continue;
+            }
+
+            // update fStakeableCoins
+            CheckForCoins(pwallet, &availableCoins);
+            if (!fStakeableCoins) {                    // if there is no coins to stake then
+                SleepUntilNexSlot();                   // sleep a time slot and try again
+                fStakingStatus = false;
                 continue;
             }
 
@@ -577,6 +642,9 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
         std::unique_ptr<CBlockTemplate> pblocktemplate((fProofOfStake ?
                                                             CreateNewBlock(CScript(), pwallet, true, &availableCoins) :
                                                             CreateNewBlockWithKey(*opReservekey, pwallet)));
+
+        fStakingStatus = true;
+        
         if (!pblocktemplate.get()) continue;
         CBlock* pblock = &pblocktemplate->block;
 

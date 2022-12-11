@@ -2488,6 +2488,13 @@ bool CWallet::CreateCoinStake(
     CScript scriptPubKeyKernel;
     bool fKernelFound = false;
     int nAttempts = 0;
+
+    CAmount nStakedValue = 0;
+    for (const COutput &out : *availableCoins) {
+        nStakedValue += out.Value();
+    }
+    pStakerStatus->SetLastValue(nStakedValue);
+
     for (const COutput &out : *availableCoins) {
         CPivStake stakeInput;
         stakeInput.SetPrevout((CTransaction) *out.tx, out.i);

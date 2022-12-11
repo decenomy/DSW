@@ -4420,7 +4420,7 @@ Jeste li sigurni?
         <translation>Staking aktivan</translation>
     </message>
     <message>
-        <source>Staking not active</source>
+        <source>Staking inactive</source>
         <translation>Staking nije aktivan</translation>
     </message>
     <message>

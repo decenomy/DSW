@@ -4544,7 +4544,7 @@ Are you sure?
         <translation>Stake activo  </translation>
     </message>
     <message>
-        <source>Staking not active</source>
+        <source>Staking inactive</source>
         <translation>Stake inactivo </translation>
     </message>
     <message>

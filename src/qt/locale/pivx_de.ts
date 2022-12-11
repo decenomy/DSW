@@ -4516,8 +4516,8 @@ Sind Sie sicher?</translation>
         <translation>Staking aktiv</translation>
     </message>
     <message>
-        <source>Staking not active</source>
-        <translation>Staking nicht aktiv</translation>
+        <source>Staking inactive</source>
+        <translation>Staking inaktiv</translation>
     </message>
     <message>
         <source>Synchronized - Block: %1</source>

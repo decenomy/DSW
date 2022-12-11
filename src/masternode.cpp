@@ -80,6 +80,7 @@ CMasternode::CMasternode() :
     nScanningErrorCount = 0;
     nLastScanningErrorBlockHeight = 0;
     lastTimeChecked = 0;
+    lastTimeCollateralChecked = 0;
     lastPaid = UINT64_MAX;
 }
 
@@ -101,6 +102,7 @@ CMasternode::CMasternode(const CMasternode& other) :
     nScanningErrorCount = other.nScanningErrorCount;
     nLastScanningErrorBlockHeight = other.nLastScanningErrorBlockHeight;
     lastTimeChecked = 0;
+    lastTimeCollateralChecked = 0;
     lastPaid = other.lastPaid;
 }
 
@@ -139,6 +141,7 @@ bool CMasternode::UpdateFromNewBroadcast(CMasternodeBroadcast& mnb)
         protocolVersion = mnb.protocolVersion;
         addr = mnb.addr;
         lastTimeChecked = 0;
+        lastTimeCollateralChecked = 0;
         int nDoS = 0;
         if (mnb.lastPing.IsNull() || (!mnb.lastPing.IsNull() && mnb.lastPing.CheckAndUpdate(nDoS, false))) {
             lastPing = mnb.lastPing;
@@ -209,12 +212,13 @@ void CMasternode::Check(bool forceCheck)
         return;
     }
 
-    if(lastPing.sigTime - sigTime < MASTERNODE_MIN_MNP_SECONDS){
+    if(lastPing.sigTime - sigTime < MASTERNODE_MIN_MNP_SECONDS) {
         activeState = MASTERNODE_PRE_ENABLED;
         return;
     }
 
-    if (!unitTest) {
+    if (!unitTest && lastTimeChecked - lastTimeCollateralChecked > MINUTE_IN_SECONDS) {
+        lastTimeCollateralChecked = lastTimeChecked;
         CValidationState state;
         CMutableTransaction tx = CMutableTransaction();
         CScript dummyScript;
@@ -265,73 +269,77 @@ int64_t CMasternode::SecondsSincePayment()
     return month + hash.GetCompact(false);
 }
 
-int64_t CMasternode::GetLastPaid()
+int64_t CMasternode::GetLastPaidV1(CBlockIndex* pblockindex, const CScript& mnpayee)
 {
-    if(lastPaid != UINT64_MAX) return lastPaid;
+    CHashWriter ss(SER_GETHASH, PROTOCOL_VERSION);
+    ss << vin;
+    ss << sigTime;
+    uint256 hash = ss.GetHash();
 
-    const CBlockIndex* BlockReading = GetChainTip();
-    if (BlockReading == nullptr) return false;
+    // use a deterministic offset to break a tie -- 2.5 minutes
+    int64_t nOffset = hash.GetCompact(false) % 150;
 
-    CScript mnpayee = GetScriptForDestination(pubKeyCollateralAddress.GetID());
-
-    int nMnCount = 
-        mnodeman.CountEnabled() *
-        (sporkManager.IsSporkActive(SPORK_112_MASTERNODE_LAST_PAID_V2) ? 
-            2 : // go a little bit further
-            1.25
-        );
-
-    int n = 0;
-    for (unsigned int i = 1; BlockReading && BlockReading->nHeight > 0; i++) {
-        if (n >= nMnCount) {
-            lastPaid = 0;
-            return lastPaid;
-        }
-        n++;
-
+    int max_depth = mnodeman.CountEnabled() * 1.25;
+    for (int n = 0; n < max_depth; n++) { 
         {
             LOCK(cs_mapMasternodeBlocks);
 
-            if (masternodePayments.mapMasternodeBlocks.count(BlockReading->nHeight)) {
-                if(sporkManager.IsSporkActive(SPORK_112_MASTERNODE_LAST_PAID_V2)) {
-                    /*
-                        Search for this payee, on the blockchain
-                    */
-                    if (masternodePayments.mapMasternodeBlocks[BlockReading->nHeight].HasPaidPayee(mnpayee)) {
-                        lastPaid = BlockReading->nTime; // doesn't need the offset because it is deterministically read from the blockchain
-                        return lastPaid;
-                    }
-                } else {
-
-                    CHashWriter ss(SER_GETHASH, PROTOCOL_VERSION);
-                    ss << vin;
-                    ss << sigTime;
-                    uint256 hash = ss.GetHash();
-
-                    // use a deterministic offset to break a tie -- 2.5 minutes
-                    int64_t nOffset = hash.GetCompact(false) % 150;
-
-                    /*
-                        Search for this payee, with at least 2 votes. This will aid in consensus allowing the network
-                        to converge on the same payees quickly, then keep the same schedule.
-                    */
-                    if (masternodePayments.mapMasternodeBlocks[BlockReading->nHeight].HasPayeeWithVotes(mnpayee, 2)) {
-                        lastPaid = BlockReading->nTime + nOffset;
-                        return lastPaid;
-                    }
+            const auto& it = masternodePayments.mapMasternodeBlocks.find(pblockindex->nHeight);
+            if (it != masternodePayments.mapMasternodeBlocks.end()) {
+                // Search for this payee, with at least 2 votes. This will aid in consensus
+                // allowing the network to converge on the same payees quickly, then keep the same schedule.
+                if (it->second.HasPayeeWithVotes(mnpayee, 2)) {
+                    lastPaid = pblockindex->nTime + nOffset;
+                    return lastPaid;
                 }
             }
         }
+        
+        pblockindex = pblockindex->pprev;
 
-        if (BlockReading->pprev == NULL) {
-            assert(BlockReading);
+        if (pblockindex == nullptr || pblockindex->nHeight <= 0) {
             break;
         }
-        BlockReading = BlockReading->pprev;
     }
 
     lastPaid = 0;
     return lastPaid;
+}
+
+int64_t CMasternode::GetLastPaidV2(CBlockIndex* pblockindex, const CScript& mnpayee)
+{
+    int max_depth = mnodeman.CountEnabled() * 2; // go a little bit further than V1
+    for (int n = 0; n < max_depth; n++) { 
+
+        auto paidpayee = pblockindex->GetPaidPayee();
+        if(paidpayee && mnpayee == *paidpayee) {
+            lastPaid = pblockindex->nTime; // doesn't need the offset because it is deterministically read from the blockchain
+            return lastPaid;
+        }
+        
+        pblockindex = pblockindex->pprev;
+
+        if (pblockindex == nullptr || pblockindex->nHeight <= 0) {
+            break;
+        }
+    }
+
+    lastPaid = 0;
+    return lastPaid;
+}
+
+int64_t CMasternode::GetLastPaid()
+{
+    if(lastPaid != UINT64_MAX) return lastPaid;
+    CBlockIndex* pblockindex = GetChainTip();
+    if (pblockindex == nullptr) return false;
+
+    const CScript& mnpayee = GetScriptForDestination(pubKeyCollateralAddress.GetID());
+
+    return
+        !sporkManager.IsSporkActive(SPORK_112_MASTERNODE_LAST_PAID_V2) ?
+        GetLastPaidV1(pblockindex, mnpayee) :
+        GetLastPaidV2(pblockindex, mnpayee);
 }
 
 bool CMasternode::IsValidNetAddr()

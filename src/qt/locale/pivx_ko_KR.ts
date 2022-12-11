@@ -3878,7 +3878,7 @@ Are you sure?
         <translation>스테이킹 활성화</translation>
     </message>
     <message>
-        <source>Staking not active</source>
+        <source>Staking inactive</source>
         <translation>스테이킹 비활성화</translation>
     </message>
     <message>

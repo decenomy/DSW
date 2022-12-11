@@ -5616,7 +5616,7 @@ Are you sure?
     </message>
     <message>
         <location line="+0"/>
-        <source>Staking not active</source>
+        <source>Staking inactive</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">

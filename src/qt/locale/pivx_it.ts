@@ -4574,7 +4574,7 @@ Sei sicuro?
         <translation>Stacking attivo</translation>
     </message>
     <message>
-        <source>Staking not active</source>
+        <source>Staking inactive</source>
         <translation>Stacking non attivo</translation>
     </message>
     <message>
