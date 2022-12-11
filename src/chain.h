@@ -223,7 +223,6 @@ public:
     unsigned int nTime{0};
     unsigned int nBits{0};
     unsigned int nNonce{0};
-    uint256 nAccumulatorCheckpoint{};
 
     //! (memory only) Sequential id assigned to distinguish order in which blocks are received.
     uint32_t nSequenceId{0};
@@ -275,10 +274,6 @@ public:
 };
 
 /** Used to marshal pointers into hashes for db storage. */
-
-// New serialization introduced on PIVX
-static const int DBI_SER_VERSION_NO_MS = 0;   // removes nMoneySupply
-
 class CDiskBlockIndex : public CBlockIndex
 {
 public:
@@ -313,53 +308,14 @@ public:
         if (nStatus & BLOCK_HAVE_UNDO)
             READWRITE(VARINT(nUndoPos));
 
-        if (nSerVersion >= DBI_SER_VERSION_NO_MS) {
-            // Serialization with CLIENT_VERSION >= DBI_SER_VERSION_NO_MS
-            READWRITE(nFlags);
-            READWRITE(this->nVersion);
-            READWRITE(vStakeModifier);
-            READWRITE(hashPrev);
-            READWRITE(hashMerkleRoot);
-            READWRITE(nTime);
-            READWRITE(nBits);
-            READWRITE(nNonce);
-            if(this->nVersion > 3 && this->nVersion < 7)
-                READWRITE(nAccumulatorCheckpoint);
-
-        } else if (ser_action.ForRead()) {
-            // Serialization with CLIENT_VERSION <= DBI_SER_VERSION_NO_MS
-            int64_t nMint = 0;
-            uint256 hashNext{};
-            int64_t nMoneySupply = 0;
-            READWRITE(nMint);
-            READWRITE(nMoneySupply);
-            READWRITE(nFlags);
-            if (!Params().GetConsensus().NetworkUpgradeActive(nHeight, Consensus::UPGRADE_STAKE_MODIFIER_V2)) {
-                uint64_t nStakeModifier = 0;
-                READWRITE(nStakeModifier);
-                this->SetStakeModifier(nStakeModifier, this->GeneratedStakeModifier());
-            } else {
-                uint256 nStakeModifierV2;
-                READWRITE(nStakeModifierV2);
-                this->SetStakeModifier(nStakeModifierV2);
-            }
-            if (IsProofOfStake()) {
-                COutPoint prevoutStake;
-                unsigned int nStakeTime = 0;
-                READWRITE(prevoutStake);
-                READWRITE(nStakeTime);
-            }
-            READWRITE(this->nVersion);
-            READWRITE(hashPrev);
-            READWRITE(hashNext);
-            READWRITE(hashMerkleRoot);
-            READWRITE(nTime);
-            READWRITE(nBits);
-            READWRITE(nNonce);
-            if(this->nVersion > 3) {
-                READWRITE(nAccumulatorCheckpoint);
-            }
-        }
+        READWRITE(nFlags);
+        READWRITE(this->nVersion);
+        READWRITE(vStakeModifier);
+        READWRITE(hashPrev);
+        READWRITE(hashMerkleRoot);
+        READWRITE(nTime);
+        READWRITE(nBits);
+        READWRITE(nNonce);
     }
 
 
@@ -372,8 +328,6 @@ public:
         block.nTime = nTime;
         block.nBits = nBits;
         block.nNonce = nNonce;
-        if (nVersion > 3 && nVersion < 7)
-            block.nAccumulatorCheckpoint = nAccumulatorCheckpoint;
         return block.GetHash();
     }
 
