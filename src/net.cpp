@@ -1100,7 +1100,7 @@ void CConnman::AcceptConnection(const ListenSocket& hListenSocket) {
     }
 
     CNode* dupnode = FindNode((CNetAddr)addr);
-    if (dupnode) {
+    if (dupnode && !whitelisted) {
         // drop nodes already connected
         LogPrint(BCLog::NET, "dropped, %s already connected\n",addr.ToStringIP());
         CloseSocket(hSocket);
