@@ -162,7 +162,7 @@ pipeline {
                 sh '''#!/bin/bash
                     make clean
                     ./autogen.sh
-                    ./configure --prefix=$(pwd)/depends/arm-linux-gnueabihf --disable-debug --disable-tests --disable-bench CFLAGS="-O0" CXXFLAGS="-O0"
+                    ./configure --prefix=$(pwd)/depends/arm-linux-gnueabihf --disable-debug --disable-tests --disable-bench CFLAGS="-O0 -funroll-loops -marm" CXXFLAGS="-O0 -funroll-loops -marm"
 	                make -j $(nproc) HOST=arm-linux-gnueabihf
                 '''
             }
