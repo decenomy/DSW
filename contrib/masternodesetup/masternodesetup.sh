@@ -9,8 +9,8 @@ COIN_PATH='/usr/local/bin/'
 COIN_TGZ=`curl -s https://api.github.com/repos/decenomy/FLS/releases/latest | grep "browser_download_url.*Linux\\.zip" | cut -d : -f 2,3 | tr -d \" | xargs`
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
 COIN_NAME='flits'
-COIN_PORT=12270
-RPC_PORT=22271
+COIN_PORT=32972
+RPC_PORT=32973
 
 BLUE="\033[0;34m"
 YELLOW="\033[0;33m"

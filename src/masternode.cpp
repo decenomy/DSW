@@ -365,28 +365,131 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
     return false;
 }
 
-CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
+CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
 {
-    return 200000;
+    if (nHeight >=       1 && nHeight <  100001) return  1500 * COIN;
+    if (nHeight >=  100001 && nHeight <  200001) return  2000 * COIN;
+    if (nHeight >=  200001 && nHeight <  300001) return  2000 * COIN;
+    if (nHeight >=  300001 && nHeight <  400001) return  2500 * COIN;
+    if (nHeight >=  400001 && nHeight <  500001) return  2500 * COIN;
+    if (nHeight >=  500001 && nHeight <  600001) return  3000 * COIN;
+    if (nHeight >=  600001 && nHeight <  700001) return  3000 * COIN;
+    if (nHeight >=  700001 && nHeight <  800001) return  4000 * COIN;
+    if (nHeight >=  800001 && nHeight <  900001) return  4000 * COIN;
+    if (nHeight >=  900001 && nHeight < 1000001) return  5000 * COIN;
+    if (nHeight >= 1000001 && nHeight < 1100001) return  6000 * COIN;
+    if (nHeight >= 1100001 && nHeight < 1200001) return  6000 * COIN;
+    if (nHeight >= 1200001 && nHeight < 1300001) return  7000 * COIN;
+    if (nHeight >= 1300001 && nHeight < 1400001) return  8000 * COIN;
+    if (nHeight >= 1400001 && nHeight < 1500001) return  8000 * COIN;
+    if (nHeight >= 1500001 && nHeight < 1600001) return  9000 * COIN;
+    if (nHeight >= 1600001 && nHeight < 1700001) return 10000 * COIN;
+    if (nHeight >= 1700001 && nHeight < 1800001) return 10000 * COIN;
+    if (nHeight >= 1800001 && nHeight < 1900001) return 12000 * COIN;
+    if (nHeight >= 1900001 && nHeight < 2000001) return 14000 * COIN;
+    if (nHeight >= 2000001 && nHeight < 2100001) return 14000 * COIN;
+    if (nHeight >= 2100001 && nHeight < 2200001) return 16000 * COIN;
+    if (nHeight >= 2200001 && nHeight < 2300001) return 16000 * COIN;
+    if (nHeight >= 2300001 && nHeight < 2400001) return 18000 * COIN;
+    if (nHeight >= 2400001 && nHeight < 2500001) return 20000 * COIN;
+    if (nHeight >= 2500001 && nHeight < 2600001) return 20000 * COIN;
+    if (nHeight >= 2600001 && nHeight < 2700001) return 20000 * COIN;
+    if (nHeight >= 2700001 && nHeight < 2800001) return 25000 * COIN;
+    if (nHeight >= 2800001 && nHeight < 2900001) return 25000 * COIN;
+    if (nHeight >= 2900001 && nHeight < 3000001) return 30000 * COIN;
+    if (nHeight >= 3000001 && nHeight < 3100001) return 30000 * COIN;
+    if (nHeight >= 3100001 && nHeight < 3200001) return 35000 * COIN;
+
+    return 40000 * COIN;
 }
 
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
-    CAmount maxMoneyOut= Params().GetConsensus().nMaxMoneyOut;
+    CAmount nSubsidy = 0;
 
-    if(nMoneySupply >= maxMoneyOut) {
-        return 0;
-    }
+    if (nHeight >= 1 && nHeight < 100001)
+        nSubsidy = 45 * COIN;
+    else if (nHeight >= 100001 && nHeight < 200001)
+        nSubsidy = 40 * COIN;
+    else if (nHeight >= 200001 && nHeight < 300001)
+        nSubsidy = 40 * COIN;
+    else if (nHeight >= 300001 && nHeight < 400001)
+        nSubsidy = 40 * COIN;
+    else if (nHeight >= 400001 && nHeight < 500001)
+        nSubsidy = 40 * COIN;
+    else if (nHeight >= 500001 && nHeight < 600001)
+        nSubsidy = 35 * COIN;
+    else if (nHeight >= 600001 && nHeight < 700001)
+        nSubsidy = 35 * COIN;
+    else if (nHeight >= 700001 && nHeight < 800001)
+        nSubsidy = 35 * COIN;
+    else if (nHeight >= 800001 && nHeight < 900001)
+        nSubsidy = 30 * COIN;
+    else if (nHeight >= 900001 && nHeight < 1000001)
+        nSubsidy = 30 * COIN;
+    else if (nHeight >= 1000001 && nHeight < 1100001)
+        nSubsidy = 25 * COIN;
+    else if (nHeight >= 1100001 && nHeight < 1200001)
+        nSubsidy = 25 * COIN;
+    else if (nHeight >= 1200001 && nHeight < 1300001)
+        nSubsidy = 25 * COIN;
+    else if (nHeight >= 1300001 && nHeight < 1400001)
+        nSubsidy = 20 * COIN;
+    else if (nHeight >= 1400001 && nHeight < 1500001)
+        nSubsidy = 20 * COIN;
+    else if (nHeight >= 1500001 && nHeight < 1600001)
+        nSubsidy = 20 * COIN;
+    else if (nHeight >= 1600001 && nHeight < 1700001)
+        nSubsidy = 15 * COIN;
+    else if (nHeight >= 1700001 && nHeight < 1800001)
+        nSubsidy = 15 * COIN;
+    else if (nHeight >= 1800001 && nHeight < 1900001)
+        nSubsidy = 15 * COIN;
+    else if (nHeight >= 1900001 && nHeight < 2000001)
+        nSubsidy = 15 * COIN;
+    else if (nHeight >= 2000001 && nHeight < 2100001)
+        nSubsidy = 10 * COIN;
+    else if (nHeight >= 2100001 && nHeight < 2200001)
+        nSubsidy = 10 * COIN;
+    else if (nHeight >= 2200001 && nHeight < 2300001)
+        nSubsidy = 10 * COIN;
+    else if (nHeight >= 2300001 && nHeight < 2400001)
+        nSubsidy = 8 * COIN;
+    else if (nHeight >= 2400001 && nHeight < 2500001)
+        nSubsidy = 8 * COIN;
+    else if (nHeight >= 2500001 && nHeight < 2600001)
+        nSubsidy = 8 * COIN;
+    else if (nHeight >= 2600001 && nHeight < 2700001)
+        nSubsidy = 6 * COIN;
+    else if (nHeight >= 2700001 && nHeight < 2800001)
+        nSubsidy = 6 * COIN;
+    else if (nHeight >= 2800001 && nHeight < 2900001)
+        nSubsidy = 6 * COIN;
+    else if (nHeight >= 2900001 && nHeight < 3000001)
+        nSubsidy = 4 * COIN;
+    else if (nHeight >= 3000001 && nHeight < 3100001)
+        nSubsidy = 4 * COIN;
+    else if (nHeight >= 3100001 && nHeight < 3200001)
+        nSubsidy = 4 * COIN;
+    else if (nHeight >= 3200001 && nHeight < 3300001)
+        nSubsidy = 4 * COIN;
+    else if (nHeight >= 3300001 && nHeight < 3400001)
+        nSubsidy = 3 * COIN;
+    else if (nHeight >= 3400001 && nHeight < 3500001)
+        nSubsidy = 3 * COIN;
+    else if (nHeight >= 3500001 && nHeight < 3600001)
+        nSubsidy = 3 * COIN;
+    else
+        nSubsidy = 2 * COIN;
 
-    CAmount nSubsidy;
+    const auto& consensus = Params().GetConsensus();
 
-    if (nHeight == 1) {
-        nSubsidy = 30000000 * COIN; // FLS coin supply (30M)
-    } else
-        nSubsidy = 800 * COIN;
+    if (consensus.mSwapEmission.find(nHeight) != consensus.mSwapEmission.end()) {
+        const auto& se = consensus.mSwapEmission.at(nHeight);
 
-    if(nMoneySupply + nSubsidy > maxMoneyOut) {
-        return nMoneySupply + nSubsidy - maxMoneyOut;
+        for (const auto& av : se) {
+            nSubsidy += av.second;
+        }
     }
 
     return nSubsidy;
@@ -394,7 +497,7 @@ CAmount CMasternode::GetBlockValue(int nHeight)
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    if(nHeight < 3000) return 0;
+    if(nHeight < 2000) return 0;
 
     return CMasternode::GetBlockValue(nHeight) * 65 / 100;
 }

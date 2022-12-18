@@ -460,13 +460,25 @@ void TopBar::updateStakingStatus()
     // Taking advantage of this timer to update Tor status if needed.
     updateTorIcon();
 
-    if(fStakingActive && fStakingStatus && pwalletMain->pStakerStatus->GetLastValue() > 100) {
-        const Consensus::Params& consensus = Params().GetConsensus();
-        CBlockIndex* pindexPrev = GetChainTip();
-        ui->labelWalletHashRateValue->setText(GetReadableHashRate((pwalletMain->pStakerStatus->GetLastValue() / 100) / consensus.TimeSlotLength(chainActive.Tip()->nHeight + 1)).c_str());
+    const auto& consensus = Params().GetConsensus();
+
+    if(consensus.NetworkUpgradeActive(chainActive.Height(), Consensus::UPGRADE_POS)) {
+        if(fStakingActive && fStakingStatus && pwalletMain->pStakerStatus->GetLastValue() > 100) { // PoS phase
+            const Consensus::Params& consensus = Params().GetConsensus();
+            CBlockIndex* pindexPrev = GetChainTip();
+            ui->labelWalletHashRateValue->setText(GetReadableHashRate((pwalletMain->pStakerStatus->GetLastValue() / 100) / consensus.TimeSlotLength(chainActive.Tip()->nHeight + 1)).c_str());
+        } else {
+            ui->labelWalletHashRateValue->setText("-- H/s");
+        }
     } else {
-        ui->labelWalletHashRateValue->setText("-- H/s");
+        if(dHashesPerSec > 0) { // PoW phase
+            ui->labelWalletHashRateValue->setText(GetReadableHashRate((int64_t)dHashesPerSec).c_str());
+        } else {
+            ui->labelWalletHashRateValue->setText("-- H/s");
+        }
     }
+
+    ui->labelNetworkHashRateValue->setText(GetReadableHashRate(GetNetworkHashPS()).c_str());
 }
 
 void TopBar::setNumConnections(int count)
@@ -680,8 +692,6 @@ void TopBar::refreshMasternodeStatus()
             ui->labelNextCollateralBlocks->setText(tr("%1 Blocks").arg(p.first));
         }
     }
-
-    ui->labelNetworkHashRateValue->setText(GetReadableHashRate(GetNetworkHashPS()).c_str());
 }
 
 void TopBar::refreshStatus()

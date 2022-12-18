@@ -19,6 +19,7 @@ EXCLUDE = [
     # auto generated:
     'src/qt/pivxstrings.cpp',
     'src/chainparamsseeds.h',
+    'src/chainparamsswapemission.h',
     # other external copyrights:
     'src/tinyformat.h',
     'src/crypto/scrypt.cpp',

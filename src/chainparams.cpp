@@ -8,8 +8,11 @@
 
 #include "chainparams.h"
 
+#include "base58.h"
 #include "chainparamsseeds.h"
+#include "chainparamsswapemission.h"
 #include "consensus/merkle.h"
+#include "script/standard.h"
 #include "util.h"
 #include "utilstrencodings.h"
 
@@ -52,8 +55,9 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "Flits - powered by CryptoDevs.co.uk and CDEV coin. Provider of quality wallets and related services.";
-    const CScript genesisOutputScript = CScript() << ParseHex("04c10e54f7633cde562f7d47eddd5855ac7c10bd055814ce121ba32607d573b8810c02c0582aed05b4deb9c4b77b26d92428c61256cd42774babea0a073b2ed0c9") << OP_CHECKSIG;
+    const char* pszTimestamp = "COINTELEGRAPH 17/Dec/2022 SEC was “asleep at the wheel” about FTX - US Rep. Sessions";
+    const CScript genesisOutputScript = CScript() << ParseHex("041bc0301bf765c0ba2047937f7c1c0386bbec764b2c023751dbbbb1c4bebffc74e405340552a6591325da57dc8a4906e0e544650530b895b734d7c0d9faac30bd") << OP_CHECKSIG;
+
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
 
@@ -69,7 +73,7 @@ static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits
  */
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("0x0000095e24c9de08faea91e7dcafda400edcd769c0a4201081966f10bdef7896")) // Genesis
+    (0, uint256S("0x0"))
 ; 
 
 static const Checkpoints::CCheckpointData data = {
@@ -110,7 +114,7 @@ public:
         // // This is used inorder to mine the genesis block. Once found, we can use the nonce and block hash found to create a valid genesis block
         // /////////////////////////////////////////////////////////////////
 
-        // uint32_t nGenesisTime = 1612360301; // 2021-02-03T13:51:41+00:00
+        // uint32_t nGenesisTime = 1671465720;
 
         // arith_uint256 test;
         // bool fNegative;
@@ -145,6 +149,7 @@ public:
         // std::cout << "\n";
         // std::cout << "\n";
 
+        // std::cout << "nGenesisTime to " << nGenesisTime << std::endl;
         // std::cout << "hashGenesisBlock to 0x" << BestBlockHash.GetHex() << std::endl;
         // std::cout << "Genesis Nonce to " << genesisNonce << std::endl;
         // std::cout << "Genesis Merkle 0x" << genesis.hashMerkleRoot.GetHex() << std::endl;
@@ -153,88 +158,93 @@ public:
 
         // /////////////////////////////////////////////////////////////////
 
-        genesis = CreateGenesisBlock(1554402932, 1497761, 0x1e0ffff0, 1, 0 * COIN);
+        genesis = CreateGenesisBlock(1671465720, 1187616, 0x1e0ffff0, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x0000080ab32d3fdbb4c9e2c5c84419f8dabea84676ad2ef8ca86f73b86cf86c0"));
-        assert(genesis.hashMerkleRoot == uint256S("0x3a498d64ca00ee8d217c5985342fef31829dbc0ac144cac4af7100f5a8982cbe"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000001120699c31c261884ac30ac6036e00c4689057a129ff60ae332fa72208c"));
+        assert(genesis.hashMerkleRoot == uint256S("0x974c0a0e71ef29244b04ca29e2a308efde9cb295ad39beca871d208e79d2ca78"));
 
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.powLimit   = ~UINT256_ZERO >> 20;   
         consensus.posLimitV1 = ~UINT256_ZERO >> 24;
         consensus.posLimitV2 = ~UINT256_ZERO >> 20;
         consensus.nCoinbaseMaturity = 100;
-        consensus.nFutureTimeDriftPoW = 7200;
-        consensus.nFutureTimeDriftPoS = 180;
+        consensus.nFutureTimeDriftPoW = 120;
+        consensus.nFutureTimeDriftPoS = 120;
         consensus.nMaxMoneyOut = 9999999999 * COIN;
         consensus.nPoolMaxTransactions = 3;
         consensus.nStakeMinAge = 60 * 60; // 1h
         consensus.nStakeMinDepth = 100;
         consensus.nStakeMinDepthV2 = 600;
         consensus.nTargetTimespan = 40 * 60;
-        consensus.nTargetTimespanV2 = 30 * 60;
-        consensus.nTargetSpacing = 1 * 60;
+        consensus.nTargetTimespanV2 = 2 * 60 * 60;
+        consensus.nTargetSpacing = 60;
         consensus.nTimeSlotLength = 15;
 
         // spork keys
-        consensus.strSporkPubKey = "0371d4e47e0ab43865206e9df7c065d6c68471b154bab3815d99f8380d46c7015f";
+        consensus.strSporkPubKey = "036495ceb2a9c576177816d77152880e024ad4d0c6c276e02210ef1ac7559db173";
         consensus.strSporkPubKeyOld = "";
         consensus.nTime_EnforceNewSporkKey = 0;
         consensus.nTime_RejectOldSporkKey = 0;
 
         // burn addresses
         consensus.mBurnAddresses = {
-           //{ "7XXXXXXXXXXXXXXXXXXXXXXXXXXXaqpZch", 0 }
+            { "FXXXXXXXXXXXXXXXXXXXXXXXXXXXVqtnVL", 0 },
+            { "FrCzb47ToX5hPwvNrssN3KH4g1rcd7RoYQ", 0 }
         };
+
+        // swap emission
+        int batchBlock = 0;
+        int batchCounter = 0;
+        for(const auto& pav : mMainSwapEmission) {
+            if(batchCounter == 3000) batchCounter = 0;
+            if(batchCounter == 0) {
+                batchBlock++;
+                consensus.mSwapEmission[batchBlock] = std::map<std::string, CAmount>();
+            }
+            consensus.mSwapEmission[batchBlock][pav.first] = pav.second;
+            batchCounter++;
+        }
 
         // Network upgrades
         consensus.vUpgrades[Consensus::BASE_NETWORK].nActivationHeight                   = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
         consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight              = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight                    = 10001;
-        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight                 = 10101;
-        consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight                  = 10201;
-        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MODIFIER_V2].nActivationHeight      = 10301;
-        consensus.vUpgrades[Consensus::UPGRADE_TIME_PROTOCOL_V2].nActivationHeight       = 10401;
-        consensus.vUpgrades[Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES].nActivationHeight = 10501;
-        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].nActivationHeight     = 10601;
-        consensus.vUpgrades[Consensus::UPGRADE_MASTERNODE_RANK_V2].nActivationHeight     = 10701;
-
-        consensus.vUpgrades[Consensus::UPGRADE_POS].hashActivationBlock                    = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].hashActivationBlock                 = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_BIP65].hashActivationBlock                  = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MODIFIER_V2].hashActivationBlock      = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_TIME_PROTOCOL_V2].hashActivationBlock       = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES].hashActivationBlock = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].hashActivationBlock     = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_MASTERNODE_RANK_V2].hashActivationBlock     = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight                    = 1001;
+        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight                 = 1101;
+        consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight                  = 1201;
+        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MODIFIER_V2].nActivationHeight      = 1301;
+        consensus.vUpgrades[Consensus::UPGRADE_TIME_PROTOCOL_V2].nActivationHeight       = 1401;
+        consensus.vUpgrades[Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES].nActivationHeight = 1501;
+        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].nActivationHeight     = 1501;
+        consensus.vUpgrades[Consensus::UPGRADE_MASTERNODE_RANK_V2].nActivationHeight     = 1501;
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0xf4;
-        pchMessageStart[1] = 0xe1;
-        pchMessageStart[2] = 0xef;
-        pchMessageStart[3] = 0xc2;
-        nDefaultPort = 12270;
+        pchMessageStart[0] = 0xe1;
+        pchMessageStart[1] = 0xf4;
+        pchMessageStart[2] = 0xc2;
+        pchMessageStart[3] = 0xef;
+        nDefaultPort = 32972;
 
         vSeeds.push_back(CDNSSeedData("seeder", "seeder.flitsnode.app"));
-	    vSeeds.push_back(CDNSSeedData("seed1", "seed1.flitsnode.app"));
-        vSeeds.push_back(CDNSSeedData("seed2", "seed2.flitsnode.app"));
-        vSeeds.push_back(CDNSSeedData("seed3", "seed3.flitsnode.app"));
-        vSeeds.push_back(CDNSSeedData("seed4", "seed4.flitsnode.app"));
-	    vSeeds.push_back(CDNSSeedData("seed5", "seed5.flitsnode.app"));
-	    vSeeds.push_back(CDNSSeedData("seed6", "seed6.flitsnode.app"));
-	    vSeeds.push_back(CDNSSeedData("seed7", "seed7.flitsnode.app"));
-	    vSeeds.push_back(CDNSSeedData("seed8", "seed8.flitsnode.app"));
+	    vSeeds.push_back(CDNSSeedData("seed1",  "seed1.flitsnode.app"));
+        vSeeds.push_back(CDNSSeedData("seed2",  "seed2.flitsnode.app"));
+        vSeeds.push_back(CDNSSeedData("seed3",  "seed3.flitsnode.app"));
+        vSeeds.push_back(CDNSSeedData("seed4",  "seed4.flitsnode.app"));
+	    vSeeds.push_back(CDNSSeedData("seed5",  "seed5.flitsnode.app"));
+	    vSeeds.push_back(CDNSSeedData("seed6",  "seed6.flitsnode.app"));
+	    vSeeds.push_back(CDNSSeedData("seed7",  "seed7.flitsnode.app"));
+	    vSeeds.push_back(CDNSSeedData("seed8",  "seed8.flitsnode.app"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 36); // F
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 48); // L
-        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 63);  // S
-        base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x02)(0x2D)(0x25)(0x33).convert_to_container<std::vector<unsigned char> >();
-        base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x02)(0x21)(0x31)(0x2B).convert_to_container<std::vector<unsigned char> >();
+        base58Prefixes[PUBKEY_ADDRESS]  = std::vector<unsigned char>(1, 36);
+        base58Prefixes[SCRIPT_ADDRESS]  = std::vector<unsigned char>(1, 48);
+        base58Prefixes[SECRET_KEY]      = std::vector<unsigned char>(1, 66);
+        base58Prefixes[EXT_PUBLIC_KEY]  = boost::assign::list_of(0x02)(0x2D)(0x25)(0x33).convert_to_container<std::vector<unsigned char>>();
+        base58Prefixes[EXT_SECRET_KEY]  = boost::assign::list_of(0x02)(0x21)(0x31)(0x2B).convert_to_container<std::vector<unsigned char>>();
         // BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md
-        base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x03)(0x52).convert_to_container<std::vector<unsigned char> >();
+        base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x03)(0x52).convert_to_container<std::vector<unsigned char>>();
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
         //convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main)); // added
@@ -268,14 +278,14 @@ public:
         consensus.powLimit   = ~UINT256_ZERO >> 20;   // flits starting difficulty is 1 / 2^12
         consensus.posLimitV1 = ~UINT256_ZERO >> 24;
         consensus.posLimitV2 = ~UINT256_ZERO >> 20;
-        consensus.nCoinbaseMaturity = 15;
+        consensus.nCoinbaseMaturity = 100;
         consensus.nFutureTimeDriftPoW = 7200;
         consensus.nFutureTimeDriftPoS = 180;
-        consensus.nMaxMoneyOut = 43199500 * COIN;
-        consensus.nPoolMaxTransactions = 2;
+        consensus.nMaxMoneyOut = 9999999999 * COIN;
+        consensus.nPoolMaxTransactions = 3;
         consensus.nStakeMinAge = 60 * 60;
         consensus.nStakeMinDepth = 100;
-        consensus.nStakeMinDepthV2 = 200;
+        consensus.nStakeMinDepthV2 = 600;
         consensus.nTargetTimespan = 40 * 60;
         consensus.nTargetTimespanV2 = 30 * 60;
         consensus.nTargetSpacing = 1 * 60;
@@ -288,23 +298,16 @@ public:
         consensus.nTime_RejectOldSporkKey = 0;
 
         // Network upgrades
-        consensus.vUpgrades[Consensus::BASE_NETWORK].nActivationHeight                      = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
-        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight                 = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight                       = 201;
-        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight                    = 1441;
-        consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight                     = 1441;
-        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MODIFIER_V2].nActivationHeight         = 1541;
-        consensus.vUpgrades[Consensus::UPGRADE_TIME_PROTOCOL_V2].nActivationHeight          = 1641;
-        consensus.vUpgrades[Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES].nActivationHeight    = 1741;
-        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].nActivationHeight        = 1841;
-
-        consensus.vUpgrades[Consensus::UPGRADE_POS].hashActivationBlock                     = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].hashActivationBlock                  = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_BIP65].hashActivationBlock                   = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MODIFIER_V2].hashActivationBlock       = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_TIME_PROTOCOL_V2].hashActivationBlock        = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES].hashActivationBlock  =uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].hashActivationBlock      = uint256S("0x0");
+        consensus.vUpgrades[Consensus::BASE_NETWORK].nActivationHeight                   = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
+        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight              = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight                    = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
+        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight                 = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
+        consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight                  = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
+        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MODIFIER_V2].nActivationHeight      = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
+        consensus.vUpgrades[Consensus::UPGRADE_TIME_PROTOCOL_V2].nActivationHeight       = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
+        consensus.vUpgrades[Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES].nActivationHeight = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
+        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].nActivationHeight     = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
+        consensus.vUpgrades[Consensus::UPGRADE_MASTERNODE_RANK_V2].nActivationHeight     = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -316,7 +319,7 @@ public:
         pchMessageStart[1] = 0x76;
         pchMessageStart[2] = 0x65;
         pchMessageStart[3] = 0xba;
-        nDefaultPort = 22270;
+        nDefaultPort = 42972;
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -409,7 +412,7 @@ public:
         pchMessageStart[1] = 0xcf;
         pchMessageStart[2] = 0x7e;
         pchMessageStart[3] = 0xac;
-        nDefaultPort = 32270;
+        nDefaultPort = 52972;
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.

@@ -794,7 +794,6 @@ static inline void le32enc(void* pp, uint32_t x)
 }
 
 const unsigned int HASHX11KVS_MAX_LEVEL = 7;
-const unsigned int HASHX11KVS_MIN_LEVEL = 1;
 const unsigned int HASHX11KVS_MAX_DRIFT = 0xFFFF;
 
 template <typename T1>
@@ -802,7 +801,7 @@ inline uint256 HashX11KVS(const T1 pbegin, const T1 pend, const unsigned int lev
 {
     uint256 hash = HashX11KV(pbegin, pend);
 
-    if (level == HASHX11KVS_MIN_LEVEL) return hash;
+    if (level == 1) return hash;
 
     uint32_t nonce = le32dec(pbegin + 76);
 
@@ -820,6 +819,39 @@ inline uint256 HashX11KVS(const T1 pbegin, const T1 pend, const unsigned int lev
 
     uint256 hash1 = HashX11KVS((const T1)nextheader1, (const T1)nextheader1 + 80, level - 1);
     uint256 hash2 = HashX11KVS((const T1)nextheader2, (const T1)nextheader2 + 80, level - 1);
+
+    return Hash(
+        (const T1)hash.begin(), (const T1)hash.begin() + hash.size(),
+        (const T1)hash1.begin(), (const T1)hash1.begin() + hash1.size(),
+        (const T1)hash2.begin(), (const T1)hash2.begin() + hash2.size());
+}
+
+const unsigned int HASHRECURSIVE_MAX_LEVEL = 4;
+const unsigned int HASHRECURSIVE_MAX_DRIFT = 0xFF;
+
+template <typename T1>
+inline uint256 HashRecursive(const T1 pbegin, const T1 pend, const unsigned int level = HASHRECURSIVE_MAX_LEVEL)
+{
+    uint256 hash = Hash(pbegin, pend);
+
+    if (level == 1) return hash;
+
+    uint32_t nonce = le32dec(pbegin + 76);
+
+    uint8_t nextheader1[80];
+    uint8_t nextheader2[80];
+
+    uint32_t nextnonce1 = nonce + (le32dec(hash.begin() + 24) % HASHRECURSIVE_MAX_DRIFT);
+    uint32_t nextnonce2 = nonce + (le32dec(hash.begin() + 28) % HASHRECURSIVE_MAX_DRIFT);
+
+    memcpy(nextheader1, pbegin, 76);
+    le32enc(nextheader1 + 76, nextnonce1);
+
+    memcpy(nextheader2, pbegin, 76);
+    le32enc(nextheader2 + 76, nextnonce2);
+
+    uint256 hash1 = HashRecursive((const T1)nextheader1, (const T1)nextheader1 + 80, level - 1);
+    uint256 hash2 = HashRecursive((const T1)nextheader2, (const T1)nextheader2 + 80, level - 1);
 
     return Hash(
         (const T1)hash.begin(), (const T1)hash.begin() + hash.size(),

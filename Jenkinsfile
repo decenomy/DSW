@@ -38,7 +38,7 @@ pipeline {
                 sh '''#!/bin/bash
                     make clean
                     ./autogen.sh
-                    ./configure --enable-glibc-back-compat --prefix=$(pwd)/depends/x86_64-pc-linux-gnu LDFLAGS="-static-libstdc++" --enable-cxx --enable-static --disable-shared --disable-debug --disable-tests --disable-bench --with-pic CPPFLAGS="-fPIC -O3" CXXFLAGS="-fPIC -O3"
+                    ./configure --enable-glibc-back-compat --prefix=$(pwd)/depends/x86_64-pc-linux-gnu LDFLAGS="-static-libstdc++" --enable-cxx --enable-static --disable-shared --disable-debug --disable-tests --disable-bench --with-pic CPPFLAGS="-fPIC -O0" CXXFLAGS="-fPIC -O0"
 	                make -j $(nproc) HOST=x86_64-pc-linux-gnu
                 '''
             }
@@ -70,7 +70,7 @@ pipeline {
                 sh '''#!/bin/bash
                     make clean
                     ./autogen.sh
-                    ./configure --prefix=$(pwd)/depends/x86_64-w64-mingw32 --disable-debug --disable-tests --disable-bench CFLAGS="-O3" CXXFLAGS="-O3"
+                    ./configure --prefix=$(pwd)/depends/x86_64-w64-mingw32 --disable-debug --disable-tests --disable-bench CFLAGS="-O0" CXXFLAGS="-O0"
 	                make -j $(nproc) HOST=x86_64-w64-mingw32
                 '''
             }
@@ -134,7 +134,7 @@ pipeline {
                 sh '''#!/bin/bash
                     make clean
                     ./autogen.sh
-                    ./configure --prefix=$(pwd)/depends/aarch64-linux-gnu --disable-debug --disable-tests --disable-bench CFLAGS="-O3" CXXFLAGS="-O3"
+                    ./configure --prefix=$(pwd)/depends/aarch64-linux-gnu --disable-debug --disable-tests --disable-bench CFLAGS="-O0" CXXFLAGS="-O0"
 	                make -j $(nproc) HOST=aarch64-linux-gnu
                 '''
             }
@@ -162,7 +162,7 @@ pipeline {
                 sh '''#!/bin/bash
                     make clean
                     ./autogen.sh
-                    ./configure --prefix=$(pwd)/depends/arm-linux-gnueabihf --disable-debug --disable-tests --disable-bench CFLAGS="-O3" CXXFLAGS="-O3"
+                    ./configure --prefix=$(pwd)/depends/arm-linux-gnueabihf --disable-debug --disable-tests --disable-bench CFLAGS="-O0" CXXFLAGS="-O0"
 	                make -j $(nproc) HOST=arm-linux-gnueabihf
                 '''
             }

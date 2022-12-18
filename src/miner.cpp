@@ -117,6 +117,23 @@ bool CreateCoinbaseTx(CBlock* pblock, const CScript& scriptPubKeyIn, CBlockIndex
         txNew.vout[0].nValue = CMasternode::GetBlockValue(pindexPrev->nHeight + 1);
     }
 
+    int nHeight = pindexPrev->nHeight + 1;
+    const auto& consensus = Params().GetConsensus();
+
+    if (consensus.mSwapEmission.find(nHeight) != consensus.mSwapEmission.end()) 
+    {
+        const auto& se = consensus.mSwapEmission.at(nHeight);
+
+        for(const auto& av : se) {
+            unsigned int i = txNew.vout.size();
+            txNew.vout.resize(i + 1);
+
+            txNew.vout[i].scriptPubKey = GetScriptForDestination(DecodeDestination(av.first));
+            txNew.vout[i].nValue = av.second;
+            txNew.vout[0].nValue -= av.second;
+        }
+    }
+
     pblock->vtx.emplace_back(txNew);
     return true;
 }
@@ -590,13 +607,13 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
                 continue;
             }
 
-            if (g_connman && 
-                g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && 
-                Params().MiningRequiresPeers()) {      // if there is no connections to other peers then
-                SleepUntilNexSlot();                   // sleep a time slot and try again
-                fStakingStatus = false;
-                continue;
-            }
+            // if (g_connman && 
+            //     g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && 
+            //     Params().MiningRequiresPeers()) {      // if there is no connections to other peers then
+            //     SleepUntilNexSlot();                   // sleep a time slot and try again
+            //     fStakingStatus = false;
+            //     continue;
+            // }
 
             //search our map of hashed blocks, see if bestblock has been hashed yet
             if (pwallet->pStakerStatus &&
@@ -645,7 +662,10 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
 
         fStakingStatus = true;
         
-        if (!pblocktemplate.get()) continue;
+        if (!pblocktemplate.get()) {
+            MilliSleep(MINUTE_IN_SECONDS * 1000);
+            continue;
+        }
         CBlock* pblock = &pblocktemplate->block;
 
         // POS - block found: process it
@@ -671,6 +691,7 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
         //
         int64_t nStart = GetTime();
         uint256 hashTarget = uint256().SetCompact(pblock->nBits);
+
         while (true) {
             unsigned int nHashesDone = 0;
 
@@ -724,7 +745,7 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
 
             // Check for stop or if block needs to be rebuilt
             boost::this_thread::interruption_point();
-            if ((g_connman && g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && Params().MiningRequiresPeers()) || // Regtest mode doesn't require peers
+            if (//(g_connman && g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && Params().MiningRequiresPeers()) || // Regtest mode doesn't require peers
                 (pblock->nNonce >= 0xffff0000) ||
                 (mempool.GetTransactionsUpdated() != nTransactionsUpdatedLast && GetTime() - nStart > 60) ||
                 (pindexPrev != chainActive.Tip())) break;

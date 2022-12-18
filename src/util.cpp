@@ -685,7 +685,7 @@ std::string GetReadableHashRate(uint64_t hashrate)
     }
     else // regular
     {
-        ss << readable << " H/s";
+        ss << hashrate << " H/s";
         return ss.str();
     }
     // Divide by 1000 to get fractional value
