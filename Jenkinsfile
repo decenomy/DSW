@@ -105,7 +105,7 @@ pipeline {
                 sh '''#!/bin/bash
                     make clean
                     ./autogen.sh
-                    ./configure --prefix=$(pwd)/depends/x86_64-apple-darwin14 --enable-cxx --enable-static --disable-shared --disable-debug --disable-tests --disable-bench
+                    ./configure --prefix=$(pwd)/depends/x86_64-apple-darwin14 --enable-cxx --enable-static --disable-shared --disable-debug --disable-tests --disable-bench CFLAGS="-O0" CXXFLAGS="-O0"
                     make -j $(nproc) HOST=x86_64-apple-darwin14
                 '''
             }
