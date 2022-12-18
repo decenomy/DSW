@@ -70,7 +70,7 @@ pipeline {
                 sh '''#!/bin/bash
                     make clean
                     ./autogen.sh
-                    ./configure --prefix=$(pwd)/depends/x86_64-w64-mingw32 --disable-debug --disable-tests --disable-bench CFLAGS="-O0" CXXFLAGS="-O0"
+                    ./configure --prefix=$(pwd)/depends/x86_64-w64-mingw32 --disable-debug --disable-tests --disable-bench CFLAGS="-O0 -Wa,-mbig-obj" CXXFLAGS="-O0 -Wa,-mbig-obj"
 	                make -j $(nproc) HOST=x86_64-w64-mingw32
                 '''
             }
