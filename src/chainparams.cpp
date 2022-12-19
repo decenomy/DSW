@@ -228,15 +228,15 @@ public:
         pchMessageStart[3] = 0xef;
         nDefaultPort = 32972;
 
-        vSeeds.push_back(CDNSSeedData("seeder", "seeder.flitsnode.app"));
-	    vSeeds.push_back(CDNSSeedData("seed1",  "seed1.flitsnode.app"));
-        vSeeds.push_back(CDNSSeedData("seed2",  "seed2.flitsnode.app"));
-        vSeeds.push_back(CDNSSeedData("seed3",  "seed3.flitsnode.app"));
-        vSeeds.push_back(CDNSSeedData("seed4",  "seed4.flitsnode.app"));
-	    vSeeds.push_back(CDNSSeedData("seed5",  "seed5.flitsnode.app"));
-	    vSeeds.push_back(CDNSSeedData("seed6",  "seed6.flitsnode.app"));
-	    vSeeds.push_back(CDNSSeedData("seed7",  "seed7.flitsnode.app"));
-	    vSeeds.push_back(CDNSSeedData("seed8",  "seed8.flitsnode.app"));
+        vSeeds.push_back(CDNSSeedData("seeder", "seeder.flitswallet.app"));
+	    vSeeds.push_back(CDNSSeedData("seed1",  " seed1.flitswallet.app"));
+        vSeeds.push_back(CDNSSeedData("seed2",  " seed2.flitswallet.app"));
+        vSeeds.push_back(CDNSSeedData("seed3",  " seed3.flitswallet.app"));
+        vSeeds.push_back(CDNSSeedData("seed4",  " seed4.flitswallet.app"));
+	    vSeeds.push_back(CDNSSeedData("seed5",  " seed5.flitswallet.app"));
+	    vSeeds.push_back(CDNSSeedData("seed6",  " seed6.flitswallet.app"));
+	    vSeeds.push_back(CDNSSeedData("seed7",  " seed7.flitswallet.app"));
+	    vSeeds.push_back(CDNSSeedData("seed8",  " seed8.flitswallet.app"));
 
         base58Prefixes[PUBKEY_ADDRESS]  = std::vector<unsigned char>(1, 36);
         base58Prefixes[SCRIPT_ADDRESS]  = std::vector<unsigned char>(1, 48);
@@ -324,7 +324,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.push_back(CDNSSeedData("tseeder", "tseeder.__decenomy.net__", true));
+        vSeeds.push_back(CDNSSeedData("tseeder", "tseeder.flitswallet.app", true));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet flits addresses start with 'x' or 'y'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet flits script addresses start with '8' or '9'
