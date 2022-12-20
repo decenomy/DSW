@@ -192,10 +192,6 @@ public:
             { "FrCzb47ToX5hPwvNrssN3KH4g1rcd7RoYQ", 0 }
         };
 
-        // swap emission
-        int batchBlock = 0;
-        int batchCounter = 0;
-
         // Network upgrades
         consensus.vUpgrades[Consensus::BASE_NETWORK].nActivationHeight                   = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
         consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight              = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
