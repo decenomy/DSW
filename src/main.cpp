@@ -3381,9 +3381,7 @@ bool AcceptBlockHeader(const CBlock& block, CValidationState& state, CBlockIndex
             int level = 100;
 
             if(mapRejectedBlocks.find(block.hashPrevBlock) != mapRejectedBlocks.end()) {
-                auto elapsed = (GetTime() - mapRejectedBlocks[block.hashPrevBlock]) / MINUTE_IN_SECONDS;
-
-                level = elapsed <= 20 ? 0 : (level < elapsed ? level : elapsed);
+                level = 0; // let it be reconsidered
             }
 
             return state.DoS(level, error("%s : prev block height=%d hash=%s is invalid, unable to add block %s", __func__, pindexPrev->nHeight, block.hashPrevBlock.GetHex(), block.GetHash().GetHex()),
