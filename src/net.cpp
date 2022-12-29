@@ -1068,6 +1068,21 @@ void CConnman::AcceptConnection(const ListenSocket& hListenSocket) {
     int nMaxInbound = nMaxConnections - (nMaxOutbound + nMaxFeeler);
     assert(nMaxInbound > 0);
 
+    // close lagging nodes' connection
+    {
+        LOCK(cs_vNodes);
+        for (CNode* pnode : vNodes) {
+            int64_t nPingUsecWait = 0;
+            if ((pnode->nPingNonceSent != 0) && (pnode->nPingUsecStart != 0)) {
+                nPingUsecWait = GetTimeMicros() - pnode->nPingUsecStart;
+            }
+            if (pnode->nPingUsecTime > 5 * 1e6 || nPingUsecWait > 5 * 1e6) {
+                pnode->fDisconnect = true;
+                pnode->CloseSocketDisconnect();
+            }
+        }
+    }
+
     if (hSocket != INVALID_SOCKET)
         if (!addr.SetSockAddr((const struct sockaddr*)&sockaddr))
             LogPrintf("Warning: Unknown socket family\n");
@@ -1076,7 +1091,7 @@ void CConnman::AcceptConnection(const ListenSocket& hListenSocket) {
     {
         LOCK(cs_vNodes);
         for (CNode* pnode : vNodes)
-            if (pnode->fInbound)
+            if (pnode->fInbound && !pnode->fDisconnect)
                 nInbound++;
     }
 
