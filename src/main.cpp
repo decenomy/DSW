@@ -1957,24 +1957,6 @@ DisconnectResult DisconnectBlock(CBlock& block, CBlockIndex* pindex, CCoinsViewC
 
     // clean last paid
     {
-        std::vector<CMasternodePayee> mnpayees;
-
-        {
-            LOCK2(cs_mapMasternodeBlocks, cs_vecPayments);
-
-            if (masternodePayments.mapMasternodeBlocks.count(pindex->nHeight)) {
-                mnpayees = masternodePayments.mapMasternodeBlocks[pindex->nHeight].vecPayments;
-            }
-        }
-
-        for(auto mnp : mnpayees) {
-            auto pmn = mnodeman.Find(mnp.scriptPubKey);
-
-            if(pmn) {
-                pmn->lastPaid = UINT64_MAX;
-            }
-        }
-
         if(pindex->paidPayee) {
             auto pmn = mnodeman.Find(*pindex->paidPayee);
 

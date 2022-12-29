@@ -289,8 +289,7 @@ int64_t CMasternode::GetLastPaidV1(CBlockIndex* pblockindex, const CScript& mnpa
                 // Search for this payee, with at least 2 votes. This will aid in consensus
                 // allowing the network to converge on the same payees quickly, then keep the same schedule.
                 if (it->second.HasPayeeWithVotes(mnpayee, 2)) {
-                    lastPaid = pblockindex->nTime + nOffset;
-                    return lastPaid;
+                    return pblockindex->nTime + nOffset;
                 }
             }
         }
@@ -302,12 +301,13 @@ int64_t CMasternode::GetLastPaidV1(CBlockIndex* pblockindex, const CScript& mnpa
         }
     }
 
-    lastPaid = 0;
-    return lastPaid;
+    return 0;
 }
 
 int64_t CMasternode::GetLastPaidV2(CBlockIndex* pblockindex, const CScript& mnpayee)
 {
+    if(lastPaid != UINT64_MAX) return lastPaid;
+
     int max_depth = mnodeman.CountEnabled() * 2; // go a little bit further than V1
     for (int n = 0; n < max_depth; n++) { 
 
@@ -330,7 +330,6 @@ int64_t CMasternode::GetLastPaidV2(CBlockIndex* pblockindex, const CScript& mnpa
 
 int64_t CMasternode::GetLastPaid()
 {
-    if(lastPaid != UINT64_MAX) return lastPaid;
     CBlockIndex* pblockindex = GetChainTip();
     if (pblockindex == nullptr) return false;
 
