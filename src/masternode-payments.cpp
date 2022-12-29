@@ -814,6 +814,8 @@ void CMasternodePayments::ProcessBlock(int nBlockHeight)
 
     if (sporkManager.IsSporkActive(SPORK_114_MN_PAYMENT_V2)) return; // voting is disabled
 
+    auto nHeight = nLastBlockHeight;
+
     for (auto& activeMasternode : amnodeman.GetActiveMasternodes()) {
         if (activeMasternode.vin == nullopt) {
             LogPrint(BCLog::MASTERNODE, "%s: Active Masternode not initialized.", __func__);
@@ -874,10 +876,12 @@ void CMasternodePayments::ProcessBlock(int nBlockHeight)
 
             if (AddWinningMasternode(newWinner)) {
                 newWinner.Relay();
-                nLastBlockHeight = nBlockHeight;
+                nHeight = nBlockHeight;
             }
         }
     }
+
+    nLastBlockHeight = nHeight;
 }
 
 void CMasternodePayments::Sync(CNode* node, int nCountNeeded)
