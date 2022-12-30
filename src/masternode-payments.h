@@ -10,6 +10,7 @@
 #include "key.h"
 #include "main.h"
 #include "masternode.h"
+#include "masternodeman.h"
 
 
 extern RecursiveMutex cs_vecPayments;
@@ -112,6 +113,12 @@ public:
     void AddPayee(const CScript& payeeIn, int nIncrement)
     {
         LOCK(cs_vecPayments);
+
+        // clean last paid
+        auto pmn = mnodeman.Find(payeeIn);
+        if(pmn) {
+            pmn->lastPaid = UINT64_MAX;
+        }
 
         for (CMasternodePayee& payee : vecPayments) {
             if (payee.scriptPubKey == payeeIn) {

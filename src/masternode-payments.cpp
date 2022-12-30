@@ -636,15 +636,21 @@ bool CMasternodeBlockPayees::IsTransactionValidV1(const CTransaction& txNew, int
 
         if (payee.nVotes >= MNPAYMENTS_SIGNATURES_REQUIRED) {
             if (found) {
-                bool ret = false;
+                
+                CMasternode* pmn = mnodeman.Find(payee.scriptPubKey);
+
+                bool result = false;
                 if(sporkManager.IsSporkActive(SPORK_110_FORCE_ENABLED_MASTERNODE_PAYMENT)) {
-                    CMasternode* pmn = mnodeman.Find(payee.scriptPubKey);
-                    ret = pmn && pmn->IsEnabled(); // it is a existing masternode and it is enabled then it is OK
+                    result = pmn && pmn->IsEnabled(); // it is a existing masternode and it is enabled then it is OK
                 } else {
-                    ret = true;
+                    result = true;
                 }
-               
-                return ret;
+
+                if(pmn && result) {
+                    pmn->lastPaid = UINT64_MAX;
+                }
+
+                return result;
             }
 
             CTxDestination address1;
@@ -696,19 +702,30 @@ bool CMasternodeBlockPayees::IsTransactionValidV2(const CTransaction& txNew, int
         auto eligible = mnodeman.GetNextMasternodeInQueueEligible(nBlockHeight);
 
         auto nmn = eligible.first;
+        auto result = false;
 
         if (pmn->GetVin() == nmn->GetVin()) { // if they match, then the paid masternode is OK
-            return true;
+            result = true;
         } else { // else, iterate on the eligible list and see if there is another possibility of a valid masternode to pay
             for (auto& txin : eligible.second) {
-                if (pmn->GetVin() == txin) return true; // there is a plausible masternode to pay, therefore return true
+                if (pmn->GetVin() == txin) { 
+                    result = true; // there is a plausible masternode to pay, therefore return true
+                }
             }
 
-            CTxDestination addr;
-            ExtractDestination(paidPayee, addr);
+            if(!result) {
+                CTxDestination addr;
+                ExtractDestination(paidPayee, addr);
 
-            LogPrint(BCLog::MASTERNODE, "CMasternodePayments::IsTransactionValid - Paid masternode %s is not eligible\n", EncodeDestination(addr));
+                LogPrint(BCLog::MASTERNODE, "CMasternodePayments::IsTransactionValid - Paid masternode %s is not eligible\n", EncodeDestination(addr));
+            }
         }
+
+        if(result) {
+            pmn->lastPaid = UINT64_MAX;
+        }
+
+        return result;
     } else {
         LogPrint(BCLog::MASTERNODE, "CMasternodePayments::IsTransactionValid - Missing required payment of %s\n", FormatMoney(requiredMasternodePayment).c_str());
     }

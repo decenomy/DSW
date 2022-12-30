@@ -271,6 +271,8 @@ int64_t CMasternode::SecondsSincePayment()
 
 int64_t CMasternode::GetLastPaidV1(CBlockIndex* pblockindex, const CScript& mnpayee)
 {
+    if(lastPaid != UINT64_MAX) return lastPaid;
+
     CHashWriter ss(SER_GETHASH, PROTOCOL_VERSION);
     ss << vin;
     ss << sigTime;
@@ -308,6 +310,8 @@ int64_t CMasternode::GetLastPaidV1(CBlockIndex* pblockindex, const CScript& mnpa
 
 int64_t CMasternode::GetLastPaidV2(CBlockIndex* pblockindex, const CScript& mnpayee)
 {
+    if(lastPaid != UINT64_MAX) return lastPaid;
+
     int max_depth = mnodeman.CountEnabled() * 2; // go a little bit further than V1
     for (int n = 0; n < max_depth; n++) { 
 
@@ -330,7 +334,6 @@ int64_t CMasternode::GetLastPaidV2(CBlockIndex* pblockindex, const CScript& mnpa
 
 int64_t CMasternode::GetLastPaid()
 {
-    if(lastPaid != UINT64_MAX) return lastPaid;
     CBlockIndex* pblockindex = GetChainTip();
     if (pblockindex == nullptr) return false;
 
