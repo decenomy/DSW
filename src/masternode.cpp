@@ -271,6 +271,8 @@ int64_t CMasternode::SecondsSincePayment()
 
 int64_t CMasternode::GetLastPaidV1(CBlockIndex* pblockindex, const CScript& mnpayee)
 {
+    if(lastPaid != UINT64_MAX) return lastPaid;
+
     CHashWriter ss(SER_GETHASH, PROTOCOL_VERSION);
     ss << vin;
     ss << sigTime;
@@ -289,7 +291,8 @@ int64_t CMasternode::GetLastPaidV1(CBlockIndex* pblockindex, const CScript& mnpa
                 // Search for this payee, with at least 2 votes. This will aid in consensus
                 // allowing the network to converge on the same payees quickly, then keep the same schedule.
                 if (it->second.HasPayeeWithVotes(mnpayee, 2)) {
-                    return pblockindex->nTime + nOffset;
+                    lastPaid = pblockindex->nTime + nOffset;
+                    return lastPaid;
                 }
             }
         }
@@ -301,7 +304,8 @@ int64_t CMasternode::GetLastPaidV1(CBlockIndex* pblockindex, const CScript& mnpa
         }
     }
 
-    return 0;
+    lastPaid = 0;
+    return lastPaid;
 }
 
 int64_t CMasternode::GetLastPaidV2(CBlockIndex* pblockindex, const CScript& mnpayee)

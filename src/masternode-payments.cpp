@@ -587,6 +587,27 @@ bool CMasternodePayments::AddWinningMasternode(CMasternodePaymentWinner& winnerI
 
 bool CMasternodeBlockPayees::IsTransactionValidV1(const CTransaction& txNew, int nBlockHeight) 
 {
+    // clean last paid
+    {
+        std::vector<CMasternodePayee> mnpayees;
+
+        {
+            LOCK2(cs_mapMasternodeBlocks, cs_vecPayments);
+
+            if (masternodePayments.mapMasternodeBlocks.count(nBlockHeight)) {
+                mnpayees = masternodePayments.mapMasternodeBlocks[nBlockHeight].vecPayments;
+            }
+        }
+
+        for(auto mnp : mnpayees) {
+            auto pmn = mnodeman.Find(mnp.scriptPubKey);
+
+            if(pmn) {
+                pmn->lastPaid = UINT64_MAX;
+            }
+        }
+    }
+
     //require at least 6 signatures
     int nMaxSignatures = 0;
     for (CMasternodePayee& payee : vecPayments)
