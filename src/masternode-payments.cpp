@@ -277,15 +277,10 @@ bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
 
     // fails if spork 8 is enabled and
     // spork 113 is disabled or current time is outside the reconsider window
-    if(sporkManager.IsSporkActive(SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT)) {
-        if(sporkManager.IsSporkActive(SPORK_114_MN_PAYMENT_V2)) {
+    if (sporkManager.IsSporkActive(SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT)) {
+        if (!sporkManager.IsSporkActive(SPORK_113_RECONSIDER_WINDOW_ENFORCEMENT) ||
+            (t / MINUTE_IN_SECONDS) % 10 != reconsiderWindowMin) {
             return false;
-        } else {
-            if (!sporkManager.IsSporkActive(SPORK_113_RECONSIDER_WINDOW_ENFORCEMENT) || 
-                (t / MINUTE_IN_SECONDS) % 10 != reconsiderWindowMin)
-            {
-                return false;
-            }
         }
     }
 
@@ -587,27 +582,6 @@ bool CMasternodePayments::AddWinningMasternode(CMasternodePaymentWinner& winnerI
 
 bool CMasternodeBlockPayees::IsTransactionValidV1(const CTransaction& txNew, int nBlockHeight) 
 {
-    // clean last paid
-    {
-        std::vector<CMasternodePayee> mnpayees;
-
-        {
-            LOCK2(cs_mapMasternodeBlocks, cs_vecPayments);
-
-            if (masternodePayments.mapMasternodeBlocks.count(nBlockHeight)) {
-                mnpayees = masternodePayments.mapMasternodeBlocks[nBlockHeight].vecPayments;
-            }
-        }
-
-        for(auto mnp : mnpayees) {
-            auto pmn = mnodeman.Find(mnp.scriptPubKey);
-
-            if(pmn) {
-                pmn->lastPaid = UINT64_MAX;
-            }
-        }
-    }
-
     //require at least 6 signatures
     int nMaxSignatures = 0;
     for (CMasternodePayee& payee : vecPayments)
@@ -644,10 +618,6 @@ bool CMasternodeBlockPayees::IsTransactionValidV1(const CTransaction& txNew, int
                     result = pmn && pmn->IsEnabled(); // it is a existing masternode and it is enabled then it is OK
                 } else {
                     result = true;
-                }
-
-                if(pmn && result) {
-                    pmn->lastPaid = UINT64_MAX;
                 }
 
                 return result;
@@ -719,10 +689,6 @@ bool CMasternodeBlockPayees::IsTransactionValidV2(const CTransaction& txNew, int
 
                 LogPrint(BCLog::MASTERNODE, "CMasternodePayments::IsTransactionValid - Paid masternode %s is not eligible\n", EncodeDestination(addr));
             }
-        }
-
-        if(result) {
-            pmn->lastPaid = UINT64_MAX;
         }
 
         return result;
