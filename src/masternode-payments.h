@@ -114,12 +114,6 @@ public:
     {
         LOCK(cs_vecPayments);
 
-        // clean last paid
-        auto pmn = mnodeman.Find(payeeIn);
-        if(pmn) {
-            pmn->lastPaid = UINT64_MAX;
-        }
-
         for (CMasternodePayee& payee : vecPayments) {
             if (payee.scriptPubKey == payeeIn) {
                 payee.nVotes += nIncrement;
