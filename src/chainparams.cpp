@@ -216,14 +216,14 @@ public:
         nDefaultPort = 32972;
 
         vSeeds.push_back(CDNSSeedData("seeder", "seeder.flitswallet.app"));
-	    vSeeds.push_back(CDNSSeedData("seed1",  " seed1.flitswallet.app"));
-        vSeeds.push_back(CDNSSeedData("seed2",  " seed2.flitswallet.app"));
-        vSeeds.push_back(CDNSSeedData("seed3",  " seed3.flitswallet.app"));
-        vSeeds.push_back(CDNSSeedData("seed4",  " seed4.flitswallet.app"));
-	    vSeeds.push_back(CDNSSeedData("seed5",  " seed5.flitswallet.app"));
-	    vSeeds.push_back(CDNSSeedData("seed6",  " seed6.flitswallet.app"));
-	    vSeeds.push_back(CDNSSeedData("seed7",  " seed7.flitswallet.app"));
-	    vSeeds.push_back(CDNSSeedData("seed8",  " seed8.flitswallet.app"));
+	    vSeeds.push_back(CDNSSeedData("seed1",   "seed1.flitswallet.app"));
+        vSeeds.push_back(CDNSSeedData("seed2",   "seed2.flitswallet.app"));
+        vSeeds.push_back(CDNSSeedData("seed3",   "seed3.flitswallet.app"));
+        vSeeds.push_back(CDNSSeedData("seed4",   "seed4.flitswallet.app"));
+	    vSeeds.push_back(CDNSSeedData("seed5",   "seed5.flitswallet.app"));
+	    vSeeds.push_back(CDNSSeedData("seed6",   "seed6.flitswallet.app"));
+	    vSeeds.push_back(CDNSSeedData("seed7",   "seed7.flitswallet.app"));
+	    vSeeds.push_back(CDNSSeedData("seed8",   "seed8.flitswallet.app"));
 
         base58Prefixes[PUBKEY_ADDRESS]  = std::vector<unsigned char>(1, 36);
         base58Prefixes[SCRIPT_ADDRESS]  = std::vector<unsigned char>(1, 48);
