@@ -8,7 +8,7 @@ NO_QT ?=
 NO_WALLET ?=
 NO_ZMQ ?=
 NO_UPNP ?=
-FALLBACK_DOWNLOAD_PATH ?= https://depends.pivx.org
+FALLBACK_DOWNLOAD_PATH ?= https://gateway.pinata.cloud/ipfs/QmYv9wHqKa5gZE1kL4ZpcVqKp1coS5tS9cYKGe4mUxxrqL
 
 BUILD = $(shell ./config.guess)
 HOST ?= $(BUILD)

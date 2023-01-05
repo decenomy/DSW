@@ -74,18 +74,12 @@ public:
         Other,
         Generated,
         StakeMint,
-        StakeZPIV,
         SendToAddress,
         SendToOther,
         RecvWithAddress,
         MNReward,
         RecvFromOther,
         SendToSelf,
-        ZerocoinMint,
-        ZerocoinSpend,
-        RecvFromZerocoinSpend,
-        ZerocoinSpend_Change_zPiv,
-        ZerocoinSpend_FromMe,
     };
 
     /** Number of confirmation recommended for accepting a transaction */
@@ -113,10 +107,6 @@ public:
     static bool decomposeCoinStake(const CWallet* wallet, const CWalletTx& wtx,
                                    const CAmount& nCredit, const CAmount& nDebit, bool fZSpendFromMe,
                                    QList<TransactionRecord>& parts);
-
-    static bool decomposeZcSpendTx(const CWallet* wallet, const CWalletTx& wtx,
-                                    const CAmount& nCredit, const CAmount& nDebit, bool fZSpendFromMe,
-                                    QList<TransactionRecord>& parts);
 
     static bool decomposeCreditTransaction(const CWallet* wallet, const CWalletTx& wtx,
                                     QList<TransactionRecord>& parts);

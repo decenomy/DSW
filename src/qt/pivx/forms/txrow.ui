@@ -105,7 +105,7 @@
             <number>9</number>
            </property>
            <item>
-            <widget class="QLabel" name="lblAddress">
+            <widget class="PrivateQLabel" name="lblAddress">
              <property name="styleSheet">
               <string notr="true"/>
              </property>
@@ -118,7 +118,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="lblDate">
+            <widget class="PrivateQLabel" name="lblDate">
              <property name="styleSheet">
               <string notr="true"/>
              </property>
@@ -133,7 +133,7 @@
           </layout>
          </item>
          <item>
-          <widget class="QLabel" name="lblAmount">
+          <widget class="PrivateQLabel" name="lblAmount">
            <property name="styleSheet">
             <string notr="true"/>
            </property>
@@ -175,6 +175,14 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PrivateQLabel</class>
+   <extends>QLabel</extends>
+   <header>qt/pivx/privatelabel.h</header>
+   <container>0</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

@@ -57,6 +57,8 @@ INCLUDEPATH += . \
 
 # Input
 HEADERS += src/activemasternode.h \
+           src/activemasternodeman.h \
+           src/activemasternodeconfig.h \
            src/addrman.h \
            src/alert.h \
            src/allocators.h \
@@ -90,7 +92,6 @@ HEADERS += src/activemasternode.h \
            src/leveldbwrapper.h \
            src/limitedmap.h \
            src/main.h \
-           src/masternode-budget.h \
            src/masternode-payments.h \
            src/masternode-sync.h \
            src/masternode.h \
@@ -356,6 +357,8 @@ FORMS += src/qt/forms/addressbookpage.ui \
          src/qt/forms/signverifymessagedialog.ui \
          src/qt/forms/transactiondescdialog.ui
 SOURCES += src/activemasternode.cpp \
+           src/activemasternodeconfig.cpp \
+           src/activemasternodeman.cpp \
            src/addrman.cpp \
            src/alert.cpp \
            src/allocators.cpp \
@@ -388,7 +391,6 @@ SOURCES += src/activemasternode.cpp \
            src/keystore.cpp \
            src/leveldbwrapper.cpp \
            src/main.cpp \
-           src/masternode-budget.cpp \
            src/masternode-payments.cpp \
            src/masternode-sync.cpp \
            src/masternode.cpp \
@@ -407,7 +409,6 @@ SOURCES += src/activemasternode.cpp \
            src/rpcblockchain.cpp \
            src/rpcclient.cpp \
            src/rpcdump.cpp \
-           src/rpcmasternode-budget.cpp \
            src/rpcmasternode.cpp \
            src/rpcmining.cpp \
            src/rpcmisc.cpp \
@@ -546,7 +547,6 @@ SOURCES += src/activemasternode.cpp \
            src/test/sanity_tests.cpp \
            src/test/script_P2SH_tests.cpp \
            src/test/script_tests.cpp \
-           src/test/scriptnum_tests.cpp \
            src/test/serialize_tests.cpp \
            src/test/sighash_tests.cpp \
            src/test/sigopcount_tests.cpp \
