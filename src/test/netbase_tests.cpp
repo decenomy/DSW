@@ -85,7 +85,7 @@ BOOST_AUTO_TEST_CASE(netbase_splithost)
     BOOST_CHECK(TestSplitHost("::ffff:127.0.0.1", "::ffff:127.0.0.1", -1));
     BOOST_CHECK(TestSplitHost("[::ffff:127.0.0.1]:36779", "::ffff:127.0.0.1", 36779));
     BOOST_CHECK(TestSplitHost("[::]:36779", "::", 36779));
-    BOOST_CHECK(TestSplitHost("::36779", "::36779", -1));
+    BOOST_CHECK(TestSplitHost("::36779", "::9999", -1));
     BOOST_CHECK(TestSplitHost(":36779", "", 36779));
     BOOST_CHECK(TestSplitHost("[]:36779", "", 36779));
     BOOST_CHECK(TestSplitHost("", "", -1));

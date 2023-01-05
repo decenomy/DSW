@@ -747,8 +747,8 @@ para staking</translation>
         <translation>Filtrar por</translation>
     </message>
     <message>
-        <source>Amount of PNY and zPNY staked.</source>
-        <translation>Cantidad de PNY y zPNY por stake.</translation>
+        <source>Amount of PNY staked.</source>
+        <translation>Cantidad de PNY por stake.</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -1620,36 +1620,8 @@ MAESTROS</translation>
         <translation>Mapear un puerto utilizando &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of PNY units to zPNY</source>
-        <translation>Activar la conversión automática de unidades PNY a zPNY</translation>
-    </message>
-    <message>
-        <source>Enable zPNY Automint</source>
-        <translation>Activar zPNY Automint</translation>
-    </message>
-    <message>
-        <source>Enable automatic zPNY minting from specific addresses</source>
-        <translation>Habilita la conversión automática de zPNY desde direcciones específicas</translation>
-    </message>
-    <message>
         <source>Enable Automint Addresses</source>
         <translation>Habilitar direcciones de Auto-acuñamiento</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming PNY which get automatically converted to zPNY via Zerocoin Protocol (min: 10%)</source>
-        <translation>Porcentaje de PNY entrantes que serán automáticamente convertidos a zPNY a través del Protocolo Zerocoin (mín: 10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted zPNY</source>
-        <translation>Porcentaje de zPNY autogenerados</translation>
-    </message>
-    <message>
-        <source>Wait with automatic conversion to Zerocoin until enough PNY for this denomination is available</source>
-        <translation>Esperar con la conversión automática a Zerocoin hasta que hayan suficientes PNY disponibles para este tamaño de esa denominación</translation>
-    </message>
-    <message>
-        <source>Preferred Automint zPNY Denomination</source>
-        <translation>Tamaño de billete zPNY preferido en la creación automática de dinero</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
@@ -2413,10 +2385,6 @@ Dirección: %4
     <message>
         <source>Custom Backup Path:</source>
         <translation>Ruta personalizada de la copia de seguridad:</translation>
-    </message>
-    <message>
-        <source>Custom zPNY Backup Path:</source>
-        <translation>Ruta personalizada de la copia de seguridad zPNY:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -3529,18 +3497,17 @@ Ha habido un error al tratar de guardar la libreta de direcciones en %1. Por fav
                            PNY is a form of digital online money using blockchain technology
                            that can be easily transferred globally, instantly, and with near
                            zero fees.  PNY incorporates market leading security &amp;
-                           privacy and is also the first PoS (Proof of Stake) Cryptocurrency
-                           to implement ZeroCoin(zPNY) and Zerocoin staking.
+                           privacy.
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            PNY utilizes a Proof of Stake (PoS) consensus system algorithm,
                            allowing all owners of PNY to participate in earning block rewards
                            while securing the network with full node wallets, as well as to
-                           run Masternodes to create and vote on proposals.
+                           run Masternodes to earn additional income regulary.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-PNY es una forma de dinero digital en línea que utiliza la tecnología blockchain que se puede transferir a nivel global, de forma instantánea  y con comisiones casi nulas. PNY incorpora un sistema de seguridad y privacidad líder en el mercado y es también la primera criptomoneda PoS (Proof of Stake) que implementa el sistema de Stake de ZeroCoin(zPNY) y Zerocoin.
+PNY es una forma de dinero digital en línea que utiliza la tecnología blockchain que se puede transferir a nivel global, de forma instantánea  y con comisiones casi nulas. PNY incorpora un sistema de seguridad y privacidad líder en el mercado.
 &lt;/p&gt;&lt;p align="justify"&gt;
  PNY utiliza un algoritmo de consenso de Prueba de Stake (PoS), que permite a todos los propietarios de PNY participar en la obtención de recompensas de los nuevos bloques generados mientras aseguran la red con wallet de nodo completo , así como también ejecutan Masternodos para crear y votar las propuestas.
 . &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
@@ -3620,8 +3587,6 @@ Tu cartera PNY también necesita estar completamente sincronizada para que pueda
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
-                           &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
                            &lt;li&gt;Act as an additional full node in the network&lt;/li&gt;
                            &lt;/ul&gt;
@@ -3661,8 +3626,6 @@ regularmente. Estos servicios incluyen:
 &lt;/p&gt;&lt;p align="justify"&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Una gobernanza descentralizada (Propuesta de Votación)&lt;/li&gt;
-&lt;li&gt;Un sistema de presupuestación descentralizado (Tesorería)&lt;/li&gt;
 &lt;li&gt;Validación de transacciones dentro de cada bloque&lt;/li&gt;
 &lt;li&gt;Actuar como un nodo completo adicional en la red&lt;/li&gt;
 &lt;/ul&gt;
@@ -4581,7 +4544,7 @@ Are you sure?
         <translation>Stake activo  </translation>
     </message>
     <message>
-        <source>Staking not active</source>
+        <source>Staking inactive</source>
         <translation>Stake inactivo </translation>
     </message>
     <message>
@@ -5096,10 +5059,6 @@ Peony Wallet</translation>
         <translation>No se puede obtener un bloqueo sobre el directorio de datos %s. Peony esta probablemente en ejecución.</translation>
     </message>
     <message>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation>Cambiar el comportamiento automático de votación de presupuesto final. modo=auto: Votar sólo por coincidencia exacta de un presupuesto finalizado con el generado por mí. (cadena, por defecto: auto)</translation>
-    </message>
-    <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
         <translation>Limite continuo de transacciones gratuitas &lt;n&gt;*1000 bytes por minuto (default:%u)</translation>
     </message>
@@ -5110,10 +5069,6 @@ Peony Wallet</translation>
     <message>
         <source>Delete all wallet transactions and only recover those parts of the blockchain through -rescan on startup</source>
         <translation>Borrar todas las transacciones de la wallet y solo recuperar partes de la cadena de bloque a traves de -rescan al inicio.</translation>
-    </message>
-    <message>
-        <source>Delete all zerocoin spends and mints that have been recorded to the blockchain database and reindex them (0-1, default: %u)</source>
-        <translation>Elimina todos registros de las transferencias y el acuñado de Zerocoin que se hayan registrado en la base de datos de Blockchain y vuelva a indexarlos (0-1, default: %u)</translation>
     </message>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
@@ -5408,10 +5363,6 @@ Peony Wallet</translation>
         <translation>Error al leer desde la base de datos, apagando.</translation>
     </message>
     <message>
-        <source>Error writing zerocoinDB to disk</source>
-        <translation>Error al escribir zerocoinDB en el disco</translation>
-    </message>
-    <message>
         <source>Error</source>
         <translation>Error</translation>
     </message>
@@ -5512,14 +5463,6 @@ Peony Wallet</translation>
         <translation>Recalculando suministro PNY...</translation>
     </message>
     <message>
-        <source>Reindexing zerocoin database...</source>
-        <translation>Reindexando la base de datos zerocoin...</translation>
-    </message>
-    <message>
-        <source>Reindexing zerocoin failed</source>
-        <translation>La reindexación zerocoin ha fallado</translation>
-    </message>
-    <message>
         <source>Selected coins value is less than payment target</source>
         <translation>El valor de las monedas seleccionadas es menor que el monto a pagar</translation>
     </message>
@@ -5536,8 +5479,8 @@ Peony Wallet</translation>
         <translation>Esto es una versión pre-release de prueba - use bajo su propia responsabilidad - ¡No lo utilice para recompensa de participación ni aplicaciones de comercio!</translation>
     </message>
     <message>
-        <source>Disable all PNY specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
-        <translation>Desabilitar toda la funcionalidad especifica PNY (Masternodes, Obfuscation, Budgeting) (0-1, predeterminado: %u)</translation>
+        <source>Disable all PNY specific functionality (Masternodes) (0-1, default: %u)</source>
+        <translation>Desabilitar toda la funcionalidad especifica PNY (Masternodes) (0-1, predeterminado: %u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -5628,14 +5571,6 @@ Peony Wallet</translation>
         <translation>No se analizó el gasto público</translation>
     </message>
     <message>
-        <source>Failed to select a zerocoin</source>
-        <translation>Error al seleccionar una zerocoin</translation>
-    </message>
-    <message>
-        <source>Failed to wipe zerocoinDB</source>
-        <translation>Error al borrar zerocoinDB</translation>
-    </message>
-    <message>
         <source>Failed to write coin serial number into wallet</source>
         <translation>Error al escribir el número de serie de la moneda en la wallet</translation>
     </message>
@@ -5670,10 +5605,6 @@ Peony Wallet</translation>
     <message>
         <source>Loading block index...</source>
         <translation>Cargando índice de bloque...</translation>
-    </message>
-    <message>
-        <source>Loading budget cache...</source>
-        <translation>Cargando cache de presupuestos...</translation>
     </message>
     <message>
         <source>Loading masternode cache...</source>
@@ -5880,10 +5811,6 @@ Peony Wallet</translation>
 </translation>
     </message>
     <message>
-        <source>Failed to find Zerocoins in wallet database</source>
-        <translation>No se pudo encontrar Zerocoins en la base de datos de billetera</translation>
-    </message>
-    <message>
         <source>Fee (in %s/kB) to add to transactions you send (default: %s)</source>
         <translation>Tarifa (en %s/kB) para agregar a las transacciones que envíe (predeterminado: %s)</translation>
     </message>
@@ -6084,10 +6011,6 @@ Peony Wallet</translation>
         <translation>Sincronización finalizada!</translation>
     </message>
     <message>
-        <source>Synchronizing budgets...</source>
-        <translation>Sincronizando presupuestos...</translation>
-    </message>
-    <message>
         <source>Synchronizing masternode winners...</source>
         <translation>Sincronizando ganadores masternode...</translation>
     </message>
@@ -6098,10 +6021,6 @@ Peony Wallet</translation>
     <message>
         <source>Synchronizing sporks...</source>
         <translation>Sincronizando con la red... </translation>
-    </message>
-    <message>
-        <source>Syncing zPNY wallet...</source>
-        <translation>Sincronizando la wallet zPNY...</translation>
     </message>
     <message>
         <source>The threshold value cannot be less than %s</source>
@@ -6220,10 +6139,6 @@ Peony Wallet</translation>
         <translation>Nombre de usuario para conexiones JSON-RPC</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of zPNY</source>
-        <translation>El valor está por debajo de la denominación más pequeña disponible (= 1) de zPNY</translation>
-    </message>
-    <message>
         <source>Verifying blocks...</source>
         <translation>Verificando bloques...</translation>
     </message>
@@ -6268,10 +6183,6 @@ Peony Wallet</translation>
         <translation>Advertencia: Argumento no soportado -debugnet ignorado, use -debug=net.</translation>
     </message>
     <message>
-        <source>You don't have enough Zerocoins in your wallet</source>
-        <translation>No tienes suficientes Zerocoins en tu wallet</translation>
-    </message>
-    <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
         <translation>Usted necesita reconstruir la base de datos usando -reindex para cambiar -txindex</translation>
     </message>
@@ -6282,14 +6193,6 @@ Peony Wallet</translation>
     <message>
         <source>ZeroMQ notification options:</source>
         <translation>Opciones de notificación ZeroMQ:</translation>
-    </message>
-    <message>
-        <source>Zerocoin minting available only on regtest</source>
-        <translation>Minting de Zerocoin disponible solo en regtest</translation>
-    </message>
-    <message>
-        <source>Zerocoin options:</source>
-        <translation>Opciones Zerocoin:</translation>
     </message>
     <message>
         <source>on startup</source>

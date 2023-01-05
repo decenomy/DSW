@@ -13,6 +13,7 @@
 #include "messagesigner.h"
 #include "net.h"
 #include "sync.h"
+#include "spork.h"
 #include "timedata.h"
 #include "util.h"
 
@@ -113,7 +114,10 @@ private:
     // critical section to protect the inner data structures
     mutable RecursiveMutex cs;
     int64_t lastTimeChecked;
+    int64_t lastTimeCollateralChecked;
 
+    int64_t GetLastPaidV1(CBlockIndex* blockIndex, const CScript& mnpayee);
+    int64_t GetLastPaidV2(CBlockIndex* blockIndex, const CScript& mnpayee);
 public:
     enum state {
         MASTERNODE_PRE_ENABLED,
@@ -265,6 +269,39 @@ public:
     bool IsInputAssociatedWithPubkey() const;
 
     static CAmount GetMasternodeNodeCollateral(int nHeight);
+
+    static CAmount GetCurrentMasternodeCollateral()
+    { 
+        return GetMasternodeNodeCollateral(chainActive.Height()); 
+    }
+
+    static CAmount GetNextWeekMasternodeCollateral()
+    {
+        if(sporkManager.IsSporkActive(SPORK_115_MN_COLLATERAL_WINDOW)) {
+            return CMasternode::GetMasternodeNodeCollateral(
+                chainActive.Height() + 
+                (WEEK_IN_SECONDS / Params().GetConsensus().nTargetSpacing)
+            );
+        } else {
+            return GetCurrentMasternodeCollateral();
+        }
+    }
+    
+    static CAmount GetMinMasternodeCollateral()
+    { 
+        return std::min(
+            GetCurrentMasternodeCollateral(), 
+            GetNextWeekMasternodeCollateral()
+        );
+    }
+
+    static bool CheckMasternodeCollateral(CAmount nValue)
+    {
+        return 
+            nValue == GetCurrentMasternodeCollateral() || 
+            nValue == GetNextWeekMasternodeCollateral();
+    }
+
     static CAmount GetBlockValue(int nHeight);
     static CAmount GetMasternodePayment(int nHeight);
     static void InitMasternodeCollateralList();
