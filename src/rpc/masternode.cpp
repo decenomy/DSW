@@ -554,7 +554,7 @@ UniValue getmasternodestatus(const JSONRPCRequest& request)
             mnObj.push_back(Pair("status", amn.GetStatus()));
             mnObj.push_back(Pair("message", amn.GetStatusMessage()));
             resultsObj.push_back(mnObj);
-            if(legacy && amn.strAlias == "legacy") return mnObj;
+            if(legacy) return mnObj;
             continue;
         }
 
@@ -568,7 +568,7 @@ UniValue getmasternodestatus(const JSONRPCRequest& request)
         mnObj.push_back(Pair("addr", pmn ? EncodeDestination(pmn->pubKeyCollateralAddress.GetID()) : "N/A"));
         mnObj.push_back(Pair("status", amn.GetStatus()));
         mnObj.push_back(Pair("message", amn.GetStatusMessage()));
-        if(legacy && amn.strAlias == "legacy") return mnObj;
+        if(legacy) return mnObj;
         resultsObj.push_back(mnObj);
     }
 
