@@ -171,12 +171,13 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
     (612695, uint256S("ce050536a70e48d2705217c94dffb88df5c056bda2f7a2e43f5ce61455e9e1ab"))
     (618947, uint256S("d1688bf2e27b25dc84a9e588182c15bd564a38685fe6ed90460be17d044f9615"))
     (625199, uint256S("17e062cb0ff30a233a2b539a04ff57e1fc75ab1a4b5ddd4f4d8766276e9fa915"))
+    (738170, uint256S("fc4e5b120f2fa141cb16eb90571793bd95961af0613315ca7e36bd8171590b3d"))
 ; 
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1666169445, // * UNIX timestamp of last checkpoint block
-    1361307,    // * total number of transactions between genesis and last checkpoint
+    1673112480, // * UNIX timestamp of last checkpoint block
+    1600255,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the UpdateTip debug.log lines)
     2840        // * estimated number of transactions per day after checkpoint. 2000 for 10 minutes of bitcoin blockchain (1M block size). With 2M of block size and 1 minute of block time, this field should be around 4000 * 10 * 6 * 24 = 5760000
 };
