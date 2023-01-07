@@ -297,25 +297,9 @@ UniValue startmasternode (const JSONRPCRequest& request)
 
             if (amn.GetStatus() != ACTIVE_MASTERNODE_STARTED) {
                 amn.ResetStatus();
-                if (fLock)
-                    pwalletMain->Lock();
             }
 
-            CMasternode* pmn = mnodeman.Find(*(amn.vin));
-
-            if (pmn) {
-                UniValue mnObj(UniValue::VOBJ);
-                mnObj.push_back(Pair("alias", amn.strAlias));
-                mnObj.push_back(Pair("txhash", amn.vin->prevout.hash.ToString()));
-                mnObj.push_back(Pair("outputidx", (uint64_t)amn.vin->prevout.n));
-                mnObj.push_back(Pair("netaddr", amn.service.ToString()));
-                mnObj.push_back(Pair("addr", EncodeDestination(pmn->pubKeyCollateralAddress.GetID())));
-                mnObj.push_back(Pair("status", amn.GetStatus()));
-                mnObj.push_back(Pair("message", amn.GetStatusMessage()));
-                if (legacy && amn.strAlias == "legacy") return amn.GetStatusMessage();
-                resultsObj.push_back(mnObj);
-            } else {
-                UniValue mnObj(UniValue::VOBJ);
+            if (amn.vin == nullopt) {
                 mnObj.push_back(Pair("alias", amn.strAlias));
                 mnObj.push_back(Pair("txhash", "N/A"));
                 mnObj.push_back(Pair("outputidx", -1));
@@ -324,10 +308,25 @@ UniValue startmasternode (const JSONRPCRequest& request)
                 mnObj.push_back(Pair("status", amn.GetStatus()));
                 mnObj.push_back(Pair("message", amn.GetStatusMessage()));
                 resultsObj.push_back(mnObj);
-                if (legacy && amn.strAlias == "legacy") return amn.GetStatusMessage();
+                if(legacy) break;
                 continue;
             }
+
+            CMasternode* pmn = mnodeman.Find(*(amn.vin));
+
+            mnObj.push_back(Pair("alias", amn.strAlias));
+            mnObj.push_back(Pair("txhash", amn.vin->prevout.hash.ToString()));
+            mnObj.push_back(Pair("outputidx", (uint64_t)amn.vin->prevout.n));
+            mnObj.push_back(Pair("netaddr", amn.service.ToString()));
+            mnObj.push_back(Pair("addr", pmn ? EncodeDestination(pmn->pubKeyCollateralAddress.GetID()) : "N/A"));
+            mnObj.push_back(Pair("status", amn.GetStatus()));
+            mnObj.push_back(Pair("message", amn.GetStatusMessage()));
+            resultsObj.push_back(mnObj);
+            if (legacy) break;
         }
+
+        if (fLock) pwalletMain->Lock();
+        if(legacy) amns[0].GetStatusMessage();
 
         return resultsObj;
     }
