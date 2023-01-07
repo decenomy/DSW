@@ -351,10 +351,9 @@ UniValue startmasternode (const JSONRPCRequest& request)
             CMasternodeBroadcast mnb;
             std::string errorMessage;
             bool fSuccess = false;
-            if (!StartMasternodeEntry(statusObj, mnb, fSuccess, mne, errorMessage, strCommand))
-                continue;
+            if (StartMasternodeEntry(statusObj, mnb, fSuccess, mne, errorMessage, strCommand))
+                RelayMNB(mnb, fSuccess, successful, failed);
             resultsObj.push_back(statusObj);
-            RelayMNB(mnb, fSuccess, successful, failed);
         }
         if (fLock)
             pwalletMain->Lock();
