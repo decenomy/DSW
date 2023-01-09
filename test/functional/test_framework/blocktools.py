@@ -100,9 +100,3 @@ def create_coinbase_pos(height):
     coinbase.vout = [CTxOut(0, b"")]
     coinbase.calc_sha256()
     return coinbase
-
-def is_zerocoin(uniqueness):
-    ulen = len(uniqueness)
-    if ulen == 32: return True
-    if ulen == 36: return False
-    raise Exception("Wrong uniqueness len: %d" % ulen)

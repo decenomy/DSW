@@ -1,9 +1,9 @@
 dnl require autoconf 2.60 (AS_ECHO/AS_ECHO_N)
 AC_PREREQ([2.60])
 define(_CLIENT_VERSION_MAJOR, 1)
-define(_CLIENT_VERSION_MINOR, 4)
-define(_CLIENT_VERSION_REVISION, 2)
-define(_CLIENT_VERSION_BUILD, 3)
+define(_CLIENT_VERSION_MINOR, 5)
+define(_CLIENT_VERSION_REVISION, 0)
+define(_CLIENT_VERSION_BUILD, 0)
 define(_CLIENT_VERSION_RC, 0)
 define(_CLIENT_VERSION_IS_RELEASE, true)
 define(_COPYRIGHT_YEAR, 2021)
@@ -221,12 +221,6 @@ AC_ARG_ENABLE([zmq],
   [disable ZMQ notifications])],
   [use_zmq=$enableval],
   [use_zmq=yes])
-
-AC_ARG_WITH([zerocoin-bignum],
-  [AS_HELP_STRING([--with-zerocoin-bignum=gmp|openssl|auto],
-  [Specify Bignum Implementation. Default is auto])],
-  [req_bignum=$withval],
-  [req_bignum=auto])
 
 AC_ARG_WITH([protoc-bindir],[AS_HELP_STRING([--with-protoc-bindir=BIN_DIR],[specify protoc bin path])], [protoc_bin_path=$withval], [])
 
@@ -1183,11 +1177,9 @@ AC_SUBST(UNIVALUE_LIBS)
 
 BITCOIN_QT_PATH_PROGS([PROTOC], [protoc],$protoc_bin_path)
 
-# Additional Zcash flags
+# Additional flags
 AX_CHECK_COMPILE_FLAG([-fno-strict-aliasing],[CXXFLAGS="$CXXFLAGS -fno-strict-aliasing"])
 AX_CHECK_COMPILE_FLAG([-Wno-builtin-declaration-mismatch],[CXXFLAGS="$CXXFLAGS -Wno-builtin-declaration-mismatch"],,[[$CXXFLAG_WERROR]])
-
-LIBZCASH_LIBS="$BOOST_SYSTEM_LIB $CRYPTO_LIBS"
 
 AC_MSG_CHECKING([whether to build sapphired])
 AM_CONDITIONAL([BUILD_BITCOIND], [test x$build_bitcoind = xyes])
@@ -1225,32 +1217,6 @@ fi
 if test "x$use_ccache" = "xyes"; then
     AX_CHECK_PREPROC_FLAG([-Qunused-arguments],[CPPFLAGS="-Qunused-arguments $CPPFLAGS"])
 fi
-
-dnl bignum value
-set_bignum=$req_bignum
-case $req_bignum in
-auto)
-  GMP_CHECK
-  if test x"$has_gmp" != x"yes"; then
-    AC_MSG_ERROR([gmp bignum automatically selected but libgmp is not available. Use depends,
-    install libgmp or select an other bignum implementation (ONLY gmp is fully SUPPORTED)])
-  else
-    set_bignum=gmp
-  fi
-  ;;
-gmp)
-  GMP_CHECK
-  if test x"$has_gmp" != x"yes"; then
-    AC_MSG_ERROR([gmp bignum explicitly requested but libgmp is not available])
-  fi
-  ;;
-openssl)
-    AC_MSG_WARN([openssl bignum explicitly requested. This is DEPRECATED.])
-  ;;
-*)
-  AC_MSG_ERROR([invalid bignum implementation selection])
-  ;;
-esac
 
 dnl enable wallet
 AC_MSG_CHECKING([if wallet should be enabled])
@@ -1331,22 +1297,6 @@ if test x$bitcoin_enable_qt != xno; then
 fi
 
 AM_CONDITIONAL([ENABLE_ZMQ], [test "x$use_zmq" = "xyes"])
-
-# select bignum implementation
-case $set_bignum in
-gmp)
-  AC_DEFINE(USE_NUM_GMP, 1, [Define this symbol to use the gmp implementation])
-  ;;
-openssl)
-  AC_DEFINE(USE_NUM_OPENSSL, 1, [Define this symbol to use openssl implementation])
-  ;;
-*)
-  AC_MSG_ERROR([invalid bignum implementation])
-  ;;
-esac
-
-AM_CONDITIONAL([USE_NUM_GMP], [test "x$set_bignum" = "xgmp"])
-AM_CONDITIONAL([USE_NUM_OPENSSL], [test "x$set_bignum" = "xopenssl"])
 
 AC_MSG_CHECKING([whether to build test_sapphire])
 if test x$use_tests = xyes; then
@@ -1440,7 +1390,6 @@ AC_SUBST(SSL_LIBS)
 AC_SUBST(EVENT_LIBS)
 AC_SUBST(EVENT_PTHREADS_LIBS)
 AC_SUBST(ZMQ_LIBS)
-AC_SUBST(LIBZCASH_LIBS)
 AC_SUBST(PROTOBUF_LIBS)
 AC_SUBST(QR_LIBS)
 AC_SUBST(USE_NUM_GMP)
@@ -1487,7 +1436,7 @@ if test x$need_bundled_univalue = xyes; then
   AC_CONFIG_SUBDIRS([src/univalue])
 fi
 
-ac_configure_args="${ac_configure_args} --disable-shared --with-pic --with-bignum=no --enable-module-recovery --disable-jni"
+ac_configure_args="${ac_configure_args} --disable-shared --with-pic --enable-module-recovery --disable-jni"
 AC_CONFIG_SUBDIRS([src/secp256k1])
 
 AC_OUTPUT
@@ -1519,7 +1468,6 @@ if test x$bitcoin_enable_qt != xno; then
     echo "    with qtcharts     = $use_qtcharts"
 fi
 echo "  with zmq      = $use_zmq"
-echo "  with bignum   = $set_bignum"
 echo "  with test     = $use_tests"
 echo "  with bench    = $use_bench"
 echo "  with upnp     = $use_upnp"

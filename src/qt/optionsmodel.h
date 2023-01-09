@@ -46,10 +46,6 @@ public:
         ThreadsScriptVerif,  // int
         DatabaseCache,       // int
         SpendZeroConfChange, // bool
-        ZeromintEnable,      // bool
-        ZeromintAddresses,   // bool
-        ZeromintPercentage,  // int
-        ZeromintPrefDenom,   // int
         HideCharts,          // bool
         HideZeroBalances,    // bool
         HideOrphans,    // bool

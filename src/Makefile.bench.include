@@ -25,9 +25,7 @@ bench_bench_pivx_LDADD = \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBLEVELDB) \
   $(LIBMEMENV) \
-  $(LIBSECP256K1) \
-  $(LIBBITCOIN_ZEROCOIN) \
-  $(LIBZCASH_LIBS)
+  $(LIBSECP256K1)
 
 if ENABLE_ZMQ
 bench_bench_pivx_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)

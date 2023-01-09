@@ -2,10 +2,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef DECENOMY_CRYPTO_GOOGLE_AUTHENTICATOR_H
-#define DECENOMY_CRYPTO_GOOGLE_AUTHENTICATOR_H
+#ifndef CRYPTO_GOOGLE_AUTHENTICATOR_H
+#define CRYPTO_GOOGLE_AUTHENTICATOR_H
 
-#include <cstdint>
+#include "utilstrencodings.h"
+#include <string>
 
 /** A Google Authenticator support class. */
 class GoogleAuthenticator
@@ -14,12 +15,17 @@ private:
     static const int INTERVAL_LENGHT = 30;
     static const int PIN_LENGHT = 6;
 
-    const unsigned char* key;
-    const int len;
+    std::string seed;
+
 public:
-    GoogleAuthenticator(const unsigned char* key, const int len) : key(key), len(len) {}
+    GoogleAuthenticator(std::string base32_seed)
+    {
+        seed = DecodeBase32(base32_seed);
+    }
 
     int GeneratePin();
+
+    static std::string CreateNewSeed(int size = 20);
 };
 
-#endif // DECENOMY_CRYPTO_GOOGLE_AUTHENTICATOR_H
+#endif // CRYPTO_GOOGLE_AUTHENTICATOR_H
