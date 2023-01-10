@@ -13,6 +13,7 @@
 #include "uint256.h"
 
 #include <stdint.h>
+#include <limits>
 
 /* Seed OpenSSL PRNG with additional entropy data */
 void RandAddSeed();
@@ -21,7 +22,7 @@ void RandAddSeed();
  * Functions to gather random data via the OpenSSL PRNG
  */
 void GetRandBytes(unsigned char* buf, int num);
-uint64_t GetRand(uint64_t nMax);
+uint64_t GetRand(uint64_t nMax = std::numeric_limits<uint64_t>::max());
 int GetRandInt(int nMax);
 uint256 GetRandHash();
 

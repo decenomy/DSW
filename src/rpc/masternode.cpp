@@ -15,6 +15,7 @@
 #include "masternodeman.h"
 #include "netbase.h"
 #include "rpc/server.h"
+#include "spork.h"
 #include "utilmoneystr.h"
 
 #include <univalue.h>
@@ -121,14 +122,12 @@ UniValue getmasternodecount (const JSONRPCRequest& request)
             HelpExampleCli("getmasternodecount", "") + HelpExampleRpc("getmasternodecount", ""));
 
     UniValue obj(UniValue::VOBJ);
-    int nCount = 0;
-    std::vector<CTxIn> vecEligibleTxIns;
     int ipv4 = 0, ipv6 = 0, onion = 0;
 
     int nChainHeight = WITH_LOCK(cs_main, return chainActive.Height());
     if (nChainHeight < 0) return "unknown";
 
-    mnodeman.GetNextMasternodeInQueueForPayment(nChainHeight, true, nCount, vecEligibleTxIns);
+    int nCount = mnodeman.GetNextMasternodeInQueueCount(nChainHeight);
     mnodeman.CountNetworks(ActiveProtocol(), ipv4, ipv6, onion);
 
     obj.push_back(Pair("total", mnodeman.size()));
@@ -162,9 +161,7 @@ UniValue masternodecurrent (const JSONRPCRequest& request)
             HelpExampleCli("masternodecurrent", "") + HelpExampleRpc("masternodecurrent", ""));
 
     const int nHeight = WITH_LOCK(cs_main, return chainActive.Height() + 1);
-    int nCount = 0;
-    std::vector<CTxIn> vecEligibleTxIns;
-    CMasternode* winner = mnodeman.GetNextMasternodeInQueueForPayment(nHeight, true, nCount, vecEligibleTxIns);
+    CMasternode* winner = mnodeman.GetNextMasternodeInQueueForPayment(nHeight);
     if (winner) {
         UniValue obj(UniValue::VOBJ);
         obj.push_back(Pair("protocol", (int64_t)winner->protocolVersion));
@@ -287,7 +284,51 @@ UniValue startmasternode (const JSONRPCRequest& request)
     EnsureWalletIsUnlocked();
 
     if (strCommand == "local") {
-        throw std::runtime_error("'local' disabled\n");
+        if (!fMasterNode) throw std::runtime_error("you must set masternode=1 in the configuration\n");
+
+        UniValue resultsObj(UniValue::VARR);
+        
+        auto amns = amnodeman.GetActiveMasternodes();
+        auto legacy = amns.size() == 1 && amns[0].strAlias == "legacy";
+
+        for (auto& amn : amns) {
+
+            UniValue mnObj(UniValue::VOBJ);
+
+            if (amn.GetStatus() != ACTIVE_MASTERNODE_STARTED) {
+                amn.ResetStatus();
+            }
+
+            if (amn.vin == nullopt) {
+                mnObj.push_back(Pair("alias", amn.strAlias));
+                mnObj.push_back(Pair("txhash", "N/A"));
+                mnObj.push_back(Pair("outputidx", -1));
+                mnObj.push_back(Pair("netaddr", amn.service.ToString()));
+                mnObj.push_back(Pair("addr", "N/A"));
+                mnObj.push_back(Pair("status", amn.GetStatus()));
+                mnObj.push_back(Pair("message", amn.GetStatusMessage()));
+                resultsObj.push_back(mnObj);
+                if(legacy) break;
+                continue;
+            }
+
+            CMasternode* pmn = mnodeman.Find(*(amn.vin));
+
+            mnObj.push_back(Pair("alias", amn.strAlias));
+            mnObj.push_back(Pair("txhash", amn.vin->prevout.hash.ToString()));
+            mnObj.push_back(Pair("outputidx", (uint64_t)amn.vin->prevout.n));
+            mnObj.push_back(Pair("netaddr", amn.service.ToString()));
+            mnObj.push_back(Pair("addr", pmn ? EncodeDestination(pmn->pubKeyCollateralAddress.GetID()) : "N/A"));
+            mnObj.push_back(Pair("status", amn.GetStatus()));
+            mnObj.push_back(Pair("message", amn.GetStatusMessage()));
+            resultsObj.push_back(mnObj);
+            if (legacy) break;
+        }
+
+        if (fLock) pwalletMain->Lock();
+        if(legacy) amns[0].GetStatusMessage();
+
+        return resultsObj;
     }
 
     if (strCommand == "all" || strCommand == "many" || strCommand == "missing" || strCommand == "disabled") {
@@ -310,10 +351,9 @@ UniValue startmasternode (const JSONRPCRequest& request)
             CMasternodeBroadcast mnb;
             std::string errorMessage;
             bool fSuccess = false;
-            if (!StartMasternodeEntry(statusObj, mnb, fSuccess, mne, errorMessage, strCommand))
-                continue;
+            if (StartMasternodeEntry(statusObj, mnb, fSuccess, mne, errorMessage, strCommand))
+                RelayMNB(mnb, fSuccess, successful, failed);
             resultsObj.push_back(statusObj);
-            RelayMNB(mnb, fSuccess, successful, failed);
         }
         if (fLock)
             pwalletMain->Lock();
@@ -499,35 +539,37 @@ UniValue getmasternodestatus(const JSONRPCRequest& request)
 
     UniValue resultsObj(UniValue::VARR);
 
-    for (auto& activeMasternode : amnodeman.GetActiveMasternodes()) {
-        if (activeMasternode.vin == nullopt) {
+    auto amns = amnodeman.GetActiveMasternodes();
+    auto legacy = amns.size() == 1 && amns[0].strAlias == "legacy";
+
+    for (auto& amn : amns) {
+
+        if (amn.vin == nullopt) {
             UniValue mnObj(UniValue::VOBJ);
-            mnObj.push_back(Pair("alias", activeMasternode.strAlias));
+            mnObj.push_back(Pair("alias", amn.strAlias));
             mnObj.push_back(Pair("txhash", "N/A"));
             mnObj.push_back(Pair("outputidx", -1));
-            mnObj.push_back(Pair("netaddr", activeMasternode.service.ToString()));
+            mnObj.push_back(Pair("netaddr", amn.service.ToString()));
             mnObj.push_back(Pair("addr", "N/A"));
-            mnObj.push_back(Pair("status", activeMasternode.GetStatus()));
-            mnObj.push_back(Pair("message", activeMasternode.GetStatusMessage()));
+            mnObj.push_back(Pair("status", amn.GetStatus()));
+            mnObj.push_back(Pair("message", amn.GetStatusMessage()));
             resultsObj.push_back(mnObj);
+            if(legacy) return mnObj;
             continue;
         }
 
-        CMasternode* pmn = mnodeman.Find(*(activeMasternode.vin));
+        CMasternode* pmn = mnodeman.Find(*(amn.vin));
 
-        if (pmn) {
-            UniValue mnObj(UniValue::VOBJ);
-            mnObj.push_back(Pair("alias", activeMasternode.strAlias));
-            mnObj.push_back(Pair("txhash", activeMasternode.vin->prevout.hash.ToString()));
-            mnObj.push_back(Pair("outputidx", (uint64_t)activeMasternode.vin->prevout.n));
-            mnObj.push_back(Pair("netaddr", activeMasternode.service.ToString()));
-            mnObj.push_back(Pair("addr", EncodeDestination(pmn->pubKeyCollateralAddress.GetID())));
-            mnObj.push_back(Pair("status", activeMasternode.GetStatus()));
-            mnObj.push_back(Pair("message", activeMasternode.GetStatusMessage()));
-            resultsObj.push_back(mnObj);
-        } else {
-            throw std::runtime_error("Masternode not found in the list of available masternodes. Current status: " + activeMasternode.GetStatusMessage());
-        }
+        UniValue mnObj(UniValue::VOBJ);
+        mnObj.push_back(Pair("alias", amn.strAlias));
+        mnObj.push_back(Pair("txhash", amn.vin->prevout.hash.ToString()));
+        mnObj.push_back(Pair("outputidx", (uint64_t)amn.vin->prevout.n));
+        mnObj.push_back(Pair("netaddr", amn.service.ToString()));
+        mnObj.push_back(Pair("addr", pmn ? EncodeDestination(pmn->pubKeyCollateralAddress.GetID()) : "N/A"));
+        mnObj.push_back(Pair("status", amn.GetStatus()));
+        mnObj.push_back(Pair("message", amn.GetStatusMessage()));
+        if(legacy) return mnObj;
+        resultsObj.push_back(mnObj);
     }
 
     return resultsObj;
@@ -576,6 +618,7 @@ UniValue getmasternodewinners (const JSONRPCRequest& request)
 
     int nHeight = WITH_LOCK(cs_main, return chainActive.Height());
     if (nHeight < 0) return "[]";
+    if (sporkManager.IsSporkActive(SPORK_114_MN_PAYMENT_V2)) return "[]"; // voting is disabled
 
     int nLast = 10;
     std::string strFilter = "";
@@ -659,7 +702,9 @@ UniValue getmasternodescores (const JSONRPCRequest& request)
         }
     }
     int nChainHeight = WITH_LOCK(cs_main, return chainActive.Height());
-    if (nChainHeight < 0) return "unknown";
+    if (nChainHeight < 0) return "{}";
+    if (sporkManager.IsSporkActive(SPORK_114_MN_PAYMENT_V2)) return "{}"; // voting is disabled
+
     UniValue obj(UniValue::VOBJ);
     std::vector<CMasternode> vMasternodes = mnodeman.GetFullMasternodeVector();
     for (int nHeight = nChainHeight - nLast; nHeight < nChainHeight + 20; nHeight++) {

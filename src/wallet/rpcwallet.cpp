@@ -2245,6 +2245,7 @@ static void LockWallet(CWallet* pWallet)
     nWalletUnlockTime = 0;
     pWallet->fWalletUnlockStaking = false;
     pWallet->Lock();
+    fStakingActive = false;
 }
 
 UniValue walletpassphrase(const JSONRPCRequest& request)
@@ -2311,6 +2312,8 @@ UniValue walletpassphrase(const JSONRPCRequest& request)
         throw JSONRPCError(RPC_WALLET_PASSPHRASE_INCORRECT, "Error: The wallet passphrase entered was incorrect.");
 
     pwalletMain->TopUpKeyPool();
+
+    fStakingActive = stakingOnly;
 
     if (nSleepTime > 0) {
         nWalletUnlockTime = GetTime () + nSleepTime;
@@ -2394,6 +2397,7 @@ UniValue walletlock(const JSONRPCRequest& request)
         LOCK(cs_nWalletUnlockTime);
         pwalletMain->Lock();
         nWalletUnlockTime = 0;
+        fStakingActive = false;
     }
 
     return NullUniValue;

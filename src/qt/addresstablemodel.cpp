@@ -492,11 +492,12 @@ QString AddressTableModel::getAddressToShow() const
     QString addressStr;
     LOCK(wallet->cs_wallet);
     if (!wallet->mapAddressBook.empty()) {
-        for (auto it = wallet->mapAddressBook.rbegin(); it != wallet->mapAddressBook.rend(); ++it ) {
-            if (it->second.purpose == AddressBook::AddressBookPurpose::RECEIVE) {
-                const CTxDestination &address = it->first;
+        for (auto& it : wallet->mapAddressBook) {
+            if (it.second.purpose == AddressBook::AddressBookPurpose::RECEIVE) {
+                const CTxDestination &address = it.first;
                 if (IsValidDestination(address) && IsMine(*wallet, address)) {
                     addressStr = QString::fromStdString(EncodeDestination(address));
+                    break;
                 }
             }
         }

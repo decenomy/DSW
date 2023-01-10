@@ -114,7 +114,7 @@ UniValue getinfo(const JSONRPCRequest& request)
         obj.push_back(Pair("balance", ValueFromAmount(pwalletMain->GetAvailableBalance())));
         obj.push_back(Pair("staking status", (pwalletMain->pStakerStatus->IsActive() ?
                                                 "Staking Active" :
-                                                "Staking Not Active")));
+                                                "Staking Inactive")));
     }
 #endif
     obj.push_back(Pair("blocks", (int)chainActive.Height()));
@@ -266,7 +266,9 @@ UniValue spork(const JSONRPCRequest& request)
     if (request.params.size() == 1 && request.params[0].get_str() == "show") {
         UniValue ret(UniValue::VOBJ);
         for (const auto& sporkDef : sporkDefs) {
-            ret.push_back(Pair(sporkDef.name, sporkManager.GetSporkValue(sporkDef.sporkId)));
+            if (sporkDef.name.find("NOOP") == std::string::npos) { // show only useful sporks
+                ret.push_back(Pair(sporkDef.name, sporkManager.GetSporkValue(sporkDef.sporkId)));
+            }
         }
         return ret;
     } else if (request.params.size() == 1 && request.params[0].get_str() == "active") {
@@ -699,6 +701,7 @@ UniValue getstakingstatus(const JSONRPCRequest& request)
         LOCK2(cs_main, &pwalletMain->cs_wallet);
         UniValue obj(UniValue::VOBJ);
         obj.push_back(Pair("staking_status", pwalletMain->pStakerStatus->IsActive()));
+        obj.push_back(Pair("staking_active", fStakingActive));
         obj.push_back(Pair("staking_enabled", GetBoolArg("-staking", DEFAULT_STAKING)));
         obj.push_back(Pair("haveconnections", (g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) > 0)));
         obj.push_back(Pair("mnsync", !masternodeSync.NotCompleted()));

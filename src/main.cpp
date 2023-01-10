@@ -1956,28 +1956,6 @@ DisconnectResult DisconnectBlock(CBlock& block, CBlockIndex* pindex, CCoinsViewC
     // track money
     nMoneySupply -= (nValueOut - nValueIn);
 
-    // clean last paid
-    {
-        std::vector<CMasternodePayee> mnpayees;
-
-        {
-            LOCK2(cs_mapMasternodeBlocks, cs_vecPayments);
-
-            if (masternodePayments.mapMasternodeBlocks.count(pindex->nHeight)) {
-                masternodePayments.mapMasternodeBlocks[pindex->nHeight].paidPayee = CScript();
-                mnpayees = masternodePayments.mapMasternodeBlocks[pindex->nHeight].vecPayments;
-            }
-        }
-
-        for(auto mnp : mnpayees) {
-            auto pmn = mnodeman.Find(mnp.scriptPubKey);
-
-            if(pmn) {
-                pmn->lastPaid = UINT64_MAX;
-            }
-        }
-    }
-
     // move best block pointer to prevout block
     view.SetBestBlock(pindex->pprev->GetBlockHash());
 
@@ -3104,14 +3082,15 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
     if (pindexPrev != NULL) {
         if (pindexPrev->GetBlockHash() == block.hashPrevBlock) {
             nHeight = pindexPrev->nHeight + 1;
-        } else { //out of order
+        } else { // Out of order, blocks arrives in order, so if prev block is not the tip then we are on a fork.
             BlockMap::iterator mi = mapBlockIndex.find(block.hashPrevBlock);
-            if (mi != mapBlockIndex.end() && (*mi).second)
+            if (mi != mapBlockIndex.end() && (*mi).second) {
                 nHeight = (*mi).second->nHeight + 1;
+            }
         }
 
         // DashDiamond
-        // It is entierly possible that we don't have enough data and this could fail
+        // It is entirely possible that we don't have enough data and this could fail
         // (i.e. the block could indeed be valid). Store the block for later consideration
         // but issue an initial reject message.
         // The case also exists that the sending peer could not have enough data to see
@@ -3371,8 +3350,14 @@ bool AcceptBlockHeader(const CBlock& block, CValidationState& state, CBlockIndex
                     return true;
                 }
             }
+            
+            int level = 100;
 
-            return state.DoS(100, error("%s : prev block height=%d hash=%s is invalid, unable to add block %s", __func__, pindexPrev->nHeight, block.hashPrevBlock.GetHex(), block.GetHash().GetHex()),
+            if(mapRejectedBlocks.find(block.hashPrevBlock) != mapRejectedBlocks.end()) {
+                level = 0; // let it be reconsidered
+            }
+
+            return state.DoS(level, error("%s : prev block height=%d hash=%s is invalid, unable to add block %s", __func__, pindexPrev->nHeight, block.hashPrevBlock.GetHex(), block.GetHash().GetHex()),
                              REJECT_INVALID, "bad-prevblk");
         }
 
@@ -3416,7 +3401,16 @@ bool AcceptBlock(const CBlock& block, CValidationState& state, CBlockIndex** ppi
                     return true;
                 }
             }
-            return state.DoS(100, error("%s : prev block %s is invalid, unable to add block %s", __func__, block.hashPrevBlock.GetHex(), block.GetHash().GetHex()),
+
+            int level = 100;
+
+            if(mapRejectedBlocks.find(block.hashPrevBlock) != mapRejectedBlocks.end()) {
+                auto elapsed = (GetTime() - mapRejectedBlocks[block.hashPrevBlock]) / MINUTE_IN_SECONDS;
+
+                level = elapsed <= 20 ? 0 : (level < elapsed ? level : elapsed);
+            }
+
+            return state.DoS(level, error("%s : prev block %s is invalid, unable to add block %s", __func__, block.hashPrevBlock.GetHex(), block.GetHash().GetHex()),
                              REJECT_INVALID, "bad-prevblk");
         }
     }
@@ -3683,6 +3677,12 @@ bool ProcessNewBlock(CValidationState& state, CNode* pfrom, const CBlock* pblock
 
     if (!ActivateBestChain(state, pblock, checked, connman))
         return error("%s : ActivateBestChain failed", __func__);
+
+    if (!fLiteMode) {
+        if (masternodeSync.RequestedMasternodeAssets > MASTERNODE_SYNC_LIST) {
+            masternodePayments.ProcessBlock(newHeight + 10);
+        }
+    }
 
     if (pwalletMain) {
         /* disable multisend

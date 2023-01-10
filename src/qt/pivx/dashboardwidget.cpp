@@ -454,6 +454,8 @@ void DashboardWidget::initChart()
     ui->chartContainer->setLayout(baseScreensContainer);
     ui->chartContainer->setContentsMargins(0,0,0,0);
     setCssProperty(ui->chartContainer, "container-chart");
+
+    setPrivacy(fPrivacyMode);
 }
 
 void DashboardWidget::changeChartColors()
@@ -899,6 +901,21 @@ void DashboardWidget::run(int type)
 void DashboardWidget::onError(QString error, int type)
 {
     inform(tr("Error loading chart: %1").arg(error));
+}
+
+void DashboardWidget::setPrivacy(bool isPrivate) 
+{
+#ifdef USE_QTCHARTS
+    if (axisY) {
+        if(isPrivate) {
+            axisY->hide();
+        } else {
+            axisY->show();
+        }
+    }
+#endif
+
+    ui->listTransactions->update();
 }
 
 void DashboardWidget::processNewTransaction(const QModelIndex& parent, int start, int /*end*/)

@@ -220,9 +220,18 @@ bool CMasternodeMan::Add(CMasternode& mn)
         LogPrint(BCLog::MASTERNODE, "CMasternodeMan: Adding new Masternode %s - count %i now\n", mn.vin.prevout.ToStringShort(), size() + 1);
         auto m = new CMasternode(mn);
         vMasternodes.push_back(m);
-        mapScriptMasternodes[GetScriptForDestination(m->pubKeyCollateralAddress.GetID())] = m;
-        mapTxInMasternodes[m->vin] = m;
-        mapPubKeyMasternodes[m->pubKeyMasternode] = m;
+        {
+            LOCK(cs_script);
+            mapScriptMasternodes[GetScriptForDestination(m->pubKeyCollateralAddress.GetID())] = m;
+        }
+        {
+            LOCK(cs_txin);
+            mapTxInMasternodes[m->vin] = m;
+        }
+        {
+            LOCK(cs_pubkey);
+            mapPubKeyMasternodes[m->pubKeyMasternode] = m;
+        }
         return true;
     }
 
@@ -292,9 +301,18 @@ void CMasternodeMan::CheckAndRemove(bool forceExpiredRemoval)
                 }
             }
 
-            mapScriptMasternodes.erase(GetScriptForDestination((*it)->pubKeyCollateralAddress.GetID()));
-            mapTxInMasternodes.erase((*it)->vin);
-            mapPubKeyMasternodes.erase((*it)->pubKeyMasternode);
+            {
+                LOCK(cs_script);
+                mapScriptMasternodes.erase(GetScriptForDestination((*it)->pubKeyCollateralAddress.GetID()));
+            }
+            {
+                LOCK(cs_txin);
+                mapTxInMasternodes.erase((*it)->vin);
+            }
+            {
+                LOCK(cs_pubkey);
+                mapPubKeyMasternodes.erase((*it)->pubKeyMasternode);
+            }
             delete *it;
             it = vMasternodes.erase(it);
         } else {
@@ -356,11 +374,20 @@ void CMasternodeMan::CheckAndRemove(bool forceExpiredRemoval)
 
 void CMasternodeMan::Clear()
 {
-    LOCK(cs);
+    {
+        LOCK(cs_script);
+        mapScriptMasternodes.clear();
+    }
+    {
+        LOCK(cs_txin);
+        mapTxInMasternodes.clear();
+    }
+    {
+        LOCK(cs_pubkey);
+        mapPubKeyMasternodes.clear();
+    }
 
-    mapScriptMasternodes.clear();
-    mapTxInMasternodes.clear();
-    mapPubKeyMasternodes.clear();
+    LOCK(cs);
     auto it = vMasternodes.begin();
     while (it != vMasternodes.end()) {
         delete *it;
@@ -470,7 +497,7 @@ void CMasternodeMan::DsegUpdate(CNode* pnode)
 
 CMasternode* CMasternodeMan::Find(const CScript& payee)
 {
-    LOCK(cs);
+    LOCK(cs_script);
 
     auto it = mapScriptMasternodes.find(payee);
     if (it != mapScriptMasternodes.end())
@@ -481,22 +508,24 @@ CMasternode* CMasternodeMan::Find(const CScript& payee)
 
 CMasternode* CMasternodeMan::Find(const CTxIn& vin)
 {
-    LOCK(cs);
+    LOCK(cs_txin);
 
     auto it = mapTxInMasternodes.find(vin);
     if (it != mapTxInMasternodes.end())
         return it->second;
+
     return NULL;
 }
 
 
 CMasternode* CMasternodeMan::Find(const CPubKey& pubKeyMasternode)
 {
-    LOCK(cs);
+    LOCK(cs_pubkey);
 
     auto it = mapPubKeyMasternodes.find(pubKeyMasternode);
     if (it != mapPubKeyMasternodes.end())
         return it->second;
+
     return NULL;
 }
 
@@ -514,15 +543,17 @@ CMasternode* CMasternodeMan::Find(const CService &addr)
 //
 // Deterministically select the oldest/best masternode to pay on the network
 //
-CMasternode* CMasternodeMan::GetNextMasternodeInQueueForPayment(int nBlockHeight, bool fFilterSigTime, int& nCount, std::vector<CTxIn>& vecEligibleTxIns)
+CMasternode* CMasternodeMan::GetNextMasternodeInQueueForPayment(int nBlockHeight, bool fFilterSigTime, int& nCount, std::vector<CTxIn>& vEligibleTxIns, bool fJustCount)
 {
-    CMasternode* pBestMasternode = NULL;
+
+    CMasternode* pBestMasternode = nullptr;
 
     /*
         Make a vector with all of the last paid times
     */
+
     std::vector<std::pair<int64_t, CTxIn>> vecMasternodeLastPaid;
-    vecEligibleTxIns.clear();
+    vEligibleTxIns.clear();
     int nMnCount = 0;
     {
         LOCK2(cs_main, cs);
@@ -557,32 +588,41 @@ CMasternode* CMasternodeMan::GetNextMasternodeInQueueForPayment(int nBlockHeight
     nCount = (int)vecMasternodeLastPaid.size();
 
     //when the network is in the process of upgrading, don't penalize nodes that recently restarted
-    if (fFilterSigTime && nCount < nMnCount / 3) return GetNextMasternodeInQueueForPayment(nBlockHeight, false, nCount, vecEligibleTxIns);
+    if (fFilterSigTime && nCount < nMnCount / 3) return GetNextMasternodeInQueueForPayment(nBlockHeight, false, nCount, vEligibleTxIns, fJustCount);
 
-    // Sort them high to low
-    sort(vecMasternodeLastPaid.rbegin(), vecMasternodeLastPaid.rend(), CompareLastPaid());
+    if(!fJustCount) {
+        // Sort them high to low
+        sort(vecMasternodeLastPaid.rbegin(), vecMasternodeLastPaid.rend(), CompareLastPaid());
 
-    // Look at 1/10 of the oldest nodes (by last payment), calculate their scores and pay the best one
-    //  -- This doesn't look at who is being paid in the +8-10 blocks, allowing for double payments very rarely
-    //  -- 1/100 payments should be a double payment on mainnet - (1/(3000/10))*2
-    //  -- (chance per block * chances before IsScheduled will fire)
-    int nTenthNetwork = CountEnabled() / 10;
-    int nCountTenth = 0;
-    uint256 nHigh;
-    for (PAIRTYPE(int64_t, CTxIn) & s : vecMasternodeLastPaid) {
-        CMasternode* pmn = Find(s.second);
-        if (!pmn) continue;
-
-        uint256 n = pmn->CalculateScore(1, nBlockHeight - 100);
-        if (n > nHigh) {
-            nHigh = n;
-            pBestMasternode = pmn;
+        // Look at 1/10 or 1/100 min 10 (V2) of the oldest nodes (by last payment), calculate their scores and pay the best one
+        //  -- This doesn't look at who is being paid in the +8-10 blocks, allowing for double payments very rarely
+        //  -- 1/100 payments should be a double payment on mainnet - (1/(3000/10))*2
+        //  -- (chance per block * chances before IsScheduled will fire)
+        auto nEnabled = CountEnabled();
+        int nEligibleNetwork = nEnabled / 10; 
+        
+        if(sporkManager.IsSporkActive(SPORK_114_MN_PAYMENT_V2)) {
+            nEligibleNetwork = std::max(10, nEnabled / 100);
         }
+        
+        int nCountEligible = 0;
+        uint256 nHigh;
+        for (const auto& s : vecMasternodeLastPaid) {
+            CMasternode* pmn = Find(s.second);
+            if (!pmn) continue;
 
-        vecEligibleTxIns.push_back(s.second);
-        nCountTenth++;
-        if (nCountTenth >= nTenthNetwork) break;
+            uint256 n = pmn->CalculateScore(1, nBlockHeight - 100);
+            if (n > nHigh) {
+                nHigh = n;
+                pBestMasternode = pmn;
+            }
+
+            vEligibleTxIns.push_back(s.second);
+            nCountEligible++;
+            if (nCountEligible >= nEligibleNetwork) break;
+        }
     }
+
     return pBestMasternode;
 }
 
@@ -591,7 +631,9 @@ CMasternode* CMasternodeMan::GetCurrentMasterNode(int mod, int64_t nBlockHeight,
     int64_t score = 0;
     CMasternode* winner = NULL;
 
-    LOCK(cs);
+    if(minProtocol == 0) minProtocol = ActiveProtocol();
+
+    LOCK2(cs_main, cs);
 
     // scan for winner
     for (auto mn : vMasternodes) {
@@ -686,10 +728,10 @@ std::vector<std::pair<int, CMasternode> > CMasternodeMan::GetMasternodeRanks(int
                 vmn.push_back(*mn);
             }
         }
-        
+
         // scan for winner
         for (CMasternode& mn : vmn) {
-            
+
             if (mn.protocolVersion < minProtocol) continue;
 
             if (!mn.IsEnabled()) {
@@ -821,14 +863,15 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
         int nInvCount = 0;
 
         {
-            LOCK(cs);
+            if(vin == CTxIn()) { // send all
+                LOCK(cs);
 
-            for (auto mn : vMasternodes) {
-                if (mn->addr.IsRFC1918()) continue; //local network
+                for (auto mn : vMasternodes) {
+                    if (mn->addr.IsRFC1918()) continue; // local network
 
-                if (mn->IsEnabled()) {
-                    LogPrint(BCLog::MASTERNODE, "dseg - Sending Masternode entry - %s \n", mn->vin.prevout.ToStringShort());
-                    if (vin == CTxIn() || vin == mn->vin) {
+                    if (mn->IsEnabled()) {
+                        LogPrint(BCLog::MASTERNODE, "dseg - Sending Masternode entry - %s \n", mn->vin.prevout.ToStringShort());
+                        
                         CMasternodeBroadcast mnb = CMasternodeBroadcast(*mn);
                         uint256 hash = mnb.GetHash();
                         pfrom->PushInventory(CInv(MSG_MASTERNODE_ANNOUNCE, hash));
@@ -842,10 +885,27 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
                         }
                     }
                 }
+            } else { // send specific one
+
+                auto mn = Find(vin);
+
+                if(mn && mn->IsEnabled() && !mn->addr.IsRFC1918()) {
+                    LogPrint(BCLog::MASTERNODE, "dseg - Sending Masternode entry - %s \n", mn->vin.prevout.ToStringShort());
+
+                    CMasternodeBroadcast mnb = CMasternodeBroadcast(*mn);
+                    uint256 hash = mnb.GetHash();
+                    pfrom->PushInventory(CInv(MSG_MASTERNODE_ANNOUNCE, hash));
+
+                    if (!mapSeenMasternodeBroadcast.count(hash)) mapSeenMasternodeBroadcast.insert(std::make_pair(hash, mnb));
+
+                    LogPrint(BCLog::MASTERNODE, "dseg - Sent 1 Masternode entry to peer %i\n", pfrom->GetId());
+                }
+
+                return;
             }
         }
 
-        if (vin == CTxIn()) {
+        if (vin == CTxIn()) { // send the total count
             g_connman->PushMessage(pfrom, CNetMsgMaker(pfrom->GetSendVersion()).Make(NetMsgType::SYNCSTATUSCOUNT, MASTERNODE_SYNC_LIST, nInvCount));
             LogPrint(BCLog::MASTERNODE, "dseg - Sent %d Masternode entries to peer %i\n", nInvCount, pfrom->GetId());
         }
@@ -860,9 +920,18 @@ void CMasternodeMan::Remove(CTxIn vin)
     while (it != vMasternodes.end()) {
         if ((**it).vin == vin) {
             LogPrint(BCLog::MASTERNODE, "CMasternodeMan: Removing Masternode %s - %i now\n", (**it).vin.prevout.ToStringShort(), size() - 1);
-            mapScriptMasternodes.erase(GetScriptForDestination((*it)->pubKeyCollateralAddress.GetID()));
-            mapTxInMasternodes.erase((*it)->vin);
-            mapPubKeyMasternodes.erase((*it)->pubKeyMasternode);
+            {
+                LOCK(cs_script);
+                mapScriptMasternodes.erase(GetScriptForDestination((*it)->pubKeyCollateralAddress.GetID()));
+            }
+            {
+                LOCK(cs_txin);
+                mapTxInMasternodes.erase((*it)->vin);
+            }
+            {
+                LOCK(cs_pubkey);
+                mapPubKeyMasternodes.erase((*it)->pubKeyMasternode);
+            }
             delete *it;
             vMasternodes.erase(it);
             break;

@@ -4575,7 +4575,7 @@ Weet je zeker dat?
         <translation>Staking actief</translation>
     </message>
     <message>
-        <source>Staking not active</source>
+        <source>Staking inactive</source>
         <translation>Staking niet actief</translation>
     </message>
     <message>

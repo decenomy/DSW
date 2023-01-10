@@ -3,10 +3,9 @@
 *.sublime-workspace
 todo.txt
 reset-files.bash
-
 *.tar.gz
-
 *.exe
+configure~
 
 # DSW
 src/__decenomy__
@@ -346,3 +345,4 @@ dashdiamondd-new-gui.*
 # for Visual Studio Code
 
 .vscode/*
+null.d

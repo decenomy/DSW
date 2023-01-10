@@ -8,7 +8,7 @@ fi
 
 # Upgrade the system and install required dependencies
 	sudo apt update
-	sudo apt install git zip unzip build-essential libtool bsdmainutils autotools-dev autoconf pkg-config automake python3 curl g++-mingw-w64-x86-64 libqt5svg5-dev -y
+	sudo apt install git zip unzip build-essential libtool bsdmainutils autotools-dev autoconf pkg-config automake python3 curl g++-mingw-w64-x86-64 g++-mingw-w64-x86-64-posix libqt5svg5-dev -y
 	echo "1" | sudo update-alternatives --config x86_64-w64-mingw32-g++
 
 # Clone code from official Github repository
@@ -18,14 +18,17 @@ fi
 # Entering directory
 	cd DASHD
 
+# Disable WSL support for Win32 applications.
+sudo bash -c "echo 0 > /proc/sys/fs/binfmt_misc/status"
+
 # Compile dependencies
-	cd depends
+	cd depends 
 	make -j$(echo $CPU_CORES) HOST=x86_64-w64-mingw32 
 	cd ..
 
 # Compile
 	./autogen.sh
-	./configure --prefix=$(pwd)/depends/x86_64-w64-mingw32 --disable-debug --disable-tests --disable-bench --disable-online-rust CFLAGS="-O3" CXXFLAGS="-O3"
+	./configure --prefix=$(pwd)/depends/x86_64-w64-mingw32 --disable-debug --disable-tests --disable-bench --disable-online-rust --enable-upnp-default CFLAGS="-O3" CXXFLAGS="-O3"
 	make -j$(echo $CPU_CORES) HOST=x86_64-w64-mingw32
 	cd ..
 
@@ -33,3 +36,6 @@ fi
 	cp DASHD/src/dashdiamondd.exe DASHD/src/dashdiamond-cli.exe DASHD/src/dashdiamond-tx.exe DASHD/src/qt/dashdiamond-qt.exe .
 	zip DASHD-Windows.zip dashdiamondd.exe dashdiamond-cli.exe dashdiamond-tx.exe dashdiamond-qt.exe
 	rm -f dashdiamondd.exe dashdiamond-cli.exe dashdiamond-tx.exe dashdiamond-qt.exe
+
+# Enable WSL support for Win32 applications.
+	sudo bash -c "echo 1 > /proc/sys/fs/binfmt_misc/status"

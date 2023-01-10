@@ -4073,7 +4073,7 @@ Jesteś pewny?
         <translation>Staking aktywny</translation>
     </message>
     <message>
-        <source>Staking not active</source>
+        <source>Staking inactive</source>
         <translation>Staking nieaktywny</translation>
     </message>
     <message>
