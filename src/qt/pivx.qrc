@@ -84,6 +84,8 @@
         <file alias="ic-check-sync-off">pivx/res/img/ic-check-sync-off.svg</file>
         <file alias="ic-check-sync">pivx/res/img/ic-check-sync.svg</file>
         <file alias="ic-check-faq">pivx/res/img/ic-check-faq.svg</file>
+        <file alias="ic-check-privacy">pivx/res/img/ic-check-privacy.svg</file>
+        <file alias="ic-check-privacy-off">pivx/res/img/ic-check-privacy-off.svg</file>
         <file alias="ic-check-theme-dark">pivx/res/img/ic-check-theme-dark.svg</file>
         <file alias="ic-check-theme-light">pivx/res/img/ic-check-theme-light.svg</file>
         <file alias="ic-check-white">pivx/res/img/ic-check-white.svg</file>
@@ -95,7 +97,6 @@
         <file alias="ic-close-white">pivx/res/img/ic-close-white.svg</file>
         <file alias="ic-close">pivx/res/img/ic-close.svg</file>
         <file alias="ic-coin-piv">pivx/res/img/ic-coin-piv.svg</file>
-        <file alias="ic-coin-zpiv">pivx/res/img/ic-coin-zpiv.svg</file>
         <file alias="ic-combo-box">pivx/res/img/ic-combo-box.svg</file>
         <file alias="ic-connect">pivx/res/img/ic-connect.svg</file>
         <file alias="ic-copy-liliac">pivx/res/img/ic-copy-liliac.svg</file>

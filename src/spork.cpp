@@ -28,23 +28,26 @@ std::vector<CSporkDef> sporkDefs = {
     MAKE_SPORK_DEF(SPORK_108_FORCE_MASTERNODE_MIN_AGE,          0),             // ON
     MAKE_SPORK_DEF(SPORK_109_FORCE_ENABLED_VOTED_MASTERNODE,    4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_110_FORCE_ENABLED_MASTERNODE_PAYMENT,  4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_111_FORCE_ELIGIBLE_MASTERNODE_PAYMENT, 4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_111_ALLOW_DUPLICATE_MN_IPS,            4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_112_MASTERNODE_LAST_PAID_V2,           4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_113_RECONSIDER_WINDOW_ENFORCEMENT,     4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_114_MN_PAYMENT_V2,                     4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_115_MN_COLLATERAL_WINDOW,              4070908800ULL), // OFF
 
-    MAKE_SPORK_DEF(SPORK_2_NOOP,                            4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_3_NOOP,                            4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_5_NOOP,                            4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_7_NOOP,                            4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_9_NOOP,                            4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_10_NOOP,                           4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_11_NOOP,                           4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_12_NOOP,                           4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_13_NOOP,                           4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_15_NOOP,                           4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_16_NOOP,                           4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_17_NOOP,                           4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_18_NOOP,                           4070908800ULL), // OFF
-    MAKE_SPORK_DEF(SPORK_19_NOOP,                           4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_2_NOOP,                                4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_3_NOOP,                                4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_5_NOOP,                                4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_7_NOOP,                                4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_9_NOOP,                                4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_10_NOOP,                               4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_11_NOOP,                               4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_12_NOOP,                               4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_13_NOOP,                               4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_15_NOOP,                               4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_16_NOOP,                               4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_17_NOOP,                               4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_18_NOOP,                               4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_19_NOOP,                               4070908800ULL), // OFF
 };
 
 CSporkManager sporkManager;

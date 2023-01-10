@@ -74,10 +74,8 @@ Type: filesandordirs; Name: {code:GetDataDir}\blocks; Components: bootstrap
 Type: filesandordirs; Name: {code:GetDataDir}\chainstate; Components: bootstrap
 Type: filesandordirs; Name: {code:GetDataDir}\database; Components: bootstrap
 Type: filesandordirs; Name: {code:GetDataDir}\sporks; Components: bootstrap
-Type: filesandordirs; Name: {code:GetDataDir}\zerocoin; Components: bootstrap
 Type: filesandordirs; Name: {code:GetDataDir}\.lock; Components: bootstrap
 Type: filesandordirs; Name: {code:GetDataDir}\banlist.dat; Components: bootstrap
-Type: filesandordirs; Name: {code:GetDataDir}\budget.dat; Components: bootstrap
 Type: filesandordirs; Name: {code:GetDataDir}\fee_estimates.dat; Components: bootstrap
 Type: filesandordirs; Name: {code:GetDataDir}\mncache.dat; Components: bootstrap
 Type: filesandordirs; Name: {code:GetDataDir}\mnpayments.dat; Components: bootstrap
