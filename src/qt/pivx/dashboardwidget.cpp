@@ -697,8 +697,13 @@ void DashboardWidget::onChartRefreshed()
     }
 
 	forceUpdateStyle({ui->labelAmountPiv, ui->labelAmountMNRewards});
-    ui->labelAmountPiv->setText(GUIUtil::formatBalance(chartData->totalPiv, nDisplayUnit));
+if (chartShow != MONTH) {
+ui->labelAmountPiv->setText(GUIUtil::formatBalance(chartData->totalPiv, nDisplayUnit));
 	ui->labelAmountMNRewards->setText(GUIUtil::formatBalance(chartData->totalMNRewards, nDisplayUnit));
+} else {
+    	ui->labelAmountPiv->setText(GUIUtil::formatBalance(chartData->totalDayPiv, nDisplayUnit)+" / "+GUIUtil::formatBalance(chartData->totalPiv, nDisplayUnit));
+		ui->labelAmountMNRewards->setText(GUIUtil::formatBalance(chartData->totalDayMNRewards, nDisplayUnit)+" / "+GUIUtil::formatBalance(chartData->totalMNRewards, nDisplayUnit));
+}
 
     series->append(set0);
 
