@@ -285,8 +285,7 @@ bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
     }
 
     LogPrint(BCLog::MASTERNODE,"Masternode payment enforcement is disabled, accepting block\n");
-	
-	return true;
+    return true;
 }
 
 
@@ -372,7 +371,6 @@ void CMasternodePayments::ProcessMessageMasternodePayments(CNode* pfrom, std::st
 
     if (strCommand == NetMsgType::GETMNWINNERS) { //Masternode Payments Request Sync
         if (fLiteMode) return;   //disable all Masternode related functionality
-        if (sporkManager.IsSporkActive(SPORK_112_MASTERNODE_LAST_PAID_V2)) return;
 
         int nCountNeeded;
         vRecv >> nCountNeeded;
@@ -391,8 +389,6 @@ void CMasternodePayments::ProcessMessageMasternodePayments(CNode* pfrom, std::st
         //this is required in litemodef
         CMasternodePaymentWinner winner;
         vRecv >> winner;
-
-        if (sporkManager.IsSporkActive(SPORK_112_MASTERNODE_LAST_PAID_V2)) return;
 
         if (pfrom->nVersion < ActiveProtocol()) return;
 

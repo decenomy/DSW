@@ -790,7 +790,12 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
                 sigTime, vin.prevout.hash.ToString(), MASTERNODE_MIN_CONFIRMATIONS, pConfIndex->GetBlockTime());
             return false;
         }
-        if (GetMasternodeNodeCollateral(nConfHeight) != GetMasternodeNodeCollateral(chainActive.Height())) {
+
+        auto week_in_blocks = WEEK_IN_SECONDS / Params().GetConsensus().TargetSpacing(chainActive.Height());
+
+        if (GetMasternodeNodeCollateral(nConfHeight) != GetMasternodeNodeCollateral(chainActive.Height()) && 
+            GetMasternodeNodeCollateral(nConfHeight + week_in_blocks) != GetMasternodeNodeCollateral(chainActive.Height())) 
+        {
             LogPrint(BCLog::MASTERNODE,"mnb - Wrong collateral transaction value of %d for Masternode %s (%i conf block is at %d)\n",
                 GetMasternodeNodeCollateral(nConfHeight) / COIN, vin.prevout.hash.ToString(), MASTERNODE_MIN_CONFIRMATIONS, pConfIndex->GetBlockTime());
             return false;

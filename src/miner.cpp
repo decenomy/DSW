@@ -458,7 +458,7 @@ CBlockTemplate* CreateNewBlockWithKey(CReserveKey& reservekey, CWallet* pwallet)
     if (Params().GetConsensus().NetworkUpgradeActive(nHeightNext, Consensus::UPGRADE_POS)) {
         LogPrintf("%s: Aborting PoW block creation during PoS phase\n", __func__);
         // sleep 1/2 a block time so we don't go into a tight loop.
-        MilliSleep((Params().GetConsensus().nTargetSpacing * 1000) >> 1);
+        MilliSleep((Params().GetConsensus().TargetSpacing(chainActive.Height()) * 1000) >> 1);
         return nullptr;
     }
 
@@ -519,7 +519,7 @@ uint64_t GetNetworkHashPS()
 
     if (!pb || !pb->nHeight) return 0; 
 
-    uint64_t n_blocks = Params().GetConsensus().TargetTimespan(pb->nHeight) / Params().GetConsensus().nTargetSpacing;
+    uint64_t n_blocks = Params().GetConsensus().TargetTimespan(pb->nHeight) / Params().GetConsensus().TargetSpacing(chainActive.Height());
 
     if (pb->nHeight < n_blocks)
         n_blocks = pb->nHeight;

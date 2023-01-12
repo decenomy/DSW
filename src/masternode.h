@@ -281,7 +281,7 @@ public:
         if(sporkManager.IsSporkActive(SPORK_115_MN_COLLATERAL_WINDOW)) {
             return CMasternode::GetMasternodeNodeCollateral(
                 chainActive.Height() + 
-                (WEEK_IN_SECONDS / Params().GetConsensus().nTargetSpacing)
+                (WEEK_IN_SECONDS / Params().GetConsensus().TargetSpacing(chainActive.Height()))
             );
         } else {
             return GetCurrentMasternodeCollateral();
