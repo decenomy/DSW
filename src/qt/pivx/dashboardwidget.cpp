@@ -603,6 +603,10 @@ bool DashboardWidget::loadChartData(bool withMonthNames)
             mnrewards = (pair["mn"] != 0) ? pair["mn"] / 100000000 : 0;
             chartData->totalPiv += pair["piv"];
             chartData->totalMNRewards += pair["mn"];
+            if (chartShow != MONTH || (chartShow == MONTH && j == range.first)) {
+            	chartData->totalDayPiv += pair["piv"];
+            	chartData->totalDayMNRewards += pair["mn"];
+            }
         }
 
         chartData->xLabels << ((withMonthNames) ? monthsNames[num - 1] : QString::number(num));
