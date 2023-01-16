@@ -153,6 +153,7 @@ private:
     int yearFilter = 0;
     int monthFilter = 0;
     int dayStart = 1;
+    int daySetOnce = 0;
 	bool hasMNRewards = false;
 
     ChartData* chartData = nullptr;
