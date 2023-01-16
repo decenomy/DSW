@@ -393,6 +393,10 @@ void DashboardWidget::loadChart()
         if (!chart) {
             showHideEmptyChart(false, false);
             initChart();
+		if (daySetOnce == 0) {
+			dayStart = currentDate.day();
+			daySetOnce = 1;
+		}
             QDate currentDate = QDate::currentDate();
             monthFilter = currentDate.month();
             yearFilter = currentDate.year();
