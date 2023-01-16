@@ -268,7 +268,7 @@ public:
         consensus.nFutureTimeDriftPoS = 180;
         consensus.nMaxMoneyOut = 9999999999 * COIN;
         consensus.nPoolMaxTransactions = 3;
-        consensus.nStakeMinAge = 60 * 60; // 1h
+        consensus.nStakeMinAge = 30 * 60; // 30 min.
         consensus.nStakeMinDepth = 100;
         consensus.nStakeMinDepthV2 = 600;
         consensus.nTargetTimespan = 40 * 60;
