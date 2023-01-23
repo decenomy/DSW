@@ -27,6 +27,11 @@ void CActiveMasternodeMan::ManageStatus() {
 void CActiveMasternodeMan::ResetStatus() {
     
     LOCK(cs);
+
+    std::string strErr;
+    if(!Reload(strErr)) {
+        LogPrintf("CActiveMasternodeMan::ManageStatus() - %s\n", strErr);
+    }
     
     for(auto& amn : vActiveMasternodes) {
         amn.ResetStatus();
