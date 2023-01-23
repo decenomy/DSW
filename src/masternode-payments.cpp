@@ -278,10 +278,18 @@ bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
     // fails if spork 8 is enabled and
     // spork 113 is disabled or current time is outside the reconsider window
     if (sporkManager.IsSporkActive(SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT)) {
-        if (!sporkManager.IsSporkActive(SPORK_113_RECONSIDER_WINDOW_ENFORCEMENT) ||
-            (t / MINUTE_IN_SECONDS) % 10 != reconsiderWindowMin) {
+        if (!sporkManager.IsSporkActive(SPORK_113_RECONSIDER_WINDOW_ENFORCEMENT)) 
+        {
             return false;
         }
+
+        if ((t / MINUTE_IN_SECONDS) % 10 != reconsiderWindowMin) 
+        {
+            return false;
+        }
+
+        LogPrint(BCLog::MASTERNODE,"Masternode payment enforcement reconsidered, accepting block\n");
+        return true;
     }
 
     LogPrint(BCLog::MASTERNODE,"Masternode payment enforcement is disabled, accepting block\n");
@@ -694,14 +702,8 @@ bool CMasternodeBlockPayees::IsTransactionValidV2(const CTransaction& txNew, int
         return result;
     } else {
         LogPrint(BCLog::MASTERNODE, "CMasternodePayments::IsTransactionValid - Missing required payment of %s\n", FormatMoney(requiredMasternodePayment).c_str());
-    }
 
-    auto t = GetTime();
-    // returns true if it is inside the reconsider window
-    if (found &&
-        sporkManager.IsSporkActive(SPORK_113_RECONSIDER_WINDOW_ENFORCEMENT) &&
-        (t / MINUTE_IN_SECONDS) % 10 == reconsiderWindowMin) {
-        return true;
+        return false;
     }
 
     return false;
@@ -756,6 +758,10 @@ bool CMasternodePayments::IsTransactionValid(const CTransaction& txNew, int nBlo
     }
 
     if (mnbp.nBlockHeight > 0) {
+        return mnbp.IsTransactionValid(txNew, nBlockHeight);
+    }
+
+    if (sporkManager.IsSporkActive(SPORK_112_MASTERNODE_LAST_PAID_V2)) { // if voting is disabled, try again
         return mnbp.IsTransactionValid(txNew, nBlockHeight);
     }
 

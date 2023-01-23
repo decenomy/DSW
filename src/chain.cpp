@@ -7,6 +7,7 @@
 
 #include "chain.h"
 #include "masternode.h"
+#include "masternodeman.h"
 #include "legacy/stakemodifier.h"  // for ComputeNextStakeModifier
 
 
@@ -257,6 +258,10 @@ CScript* CBlockIndex::GetPaidPayee()
                 if (out.nValue == amount
                 ) {
                     paidPayee = new CScript(out.scriptPubKey);
+                    auto pmn = mnodeman.Find(out.scriptPubKey);
+                    if(pmn) {
+                        pmn->lastPaid = GetBlockTime();
+                    }
                 }
             }
         }
