@@ -180,12 +180,6 @@ bool CMasternodePaymentWinner::IsValid(CNode* pnode, std::string& strError)
         return false;
     }
 
-    if (pmn->protocolVersion < ActiveProtocol()) {
-        strError = strprintf("Masternode protocol too old %d - req %d", pmn->protocolVersion, ActiveProtocol());
-        LogPrint(BCLog::MASTERNODE,"CMasternodePaymentWinner::IsValid - %s\n", strError);
-        return false;
-    }
-
     if (sporkManager.IsSporkActive(SPORK_102_FORCE_ENABLED_MASTERNODE)) {
         if (pmn->Status() != "ENABLED") {
             strError = strprintf("Masternode is not in ENABLED state - Status(): %d", pmn->Status());
@@ -194,7 +188,7 @@ bool CMasternodePaymentWinner::IsValid(CNode* pnode, std::string& strError)
         }
     }
 
-    int n = mnodeman.GetMasternodeRank(vinMasternode, nBlockHeight - 100, ActiveProtocol());
+    int n = mnodeman.GetMasternodeRank(vinMasternode, nBlockHeight - 100);
 
     if (n > MNPAYMENTS_SIGNATURES_TOTAL) {
         //It's common to have masternodes mistakenly think they are in the top 10
@@ -813,7 +807,7 @@ void CMasternodePayments::ProcessBlock(int nBlockHeight)
 
         //reference node - hybrid mode
 
-        int n = mnodeman.GetMasternodeRank(*(activeMasternode.vin), nBlockHeight - 100, ActiveProtocol());
+        int n = mnodeman.GetMasternodeRank(*(activeMasternode.vin), nBlockHeight - 100);
 
         if (n == -1 || n == INT_MAX) {
             LogPrint(BCLog::MASTERNODE, "CMasternodePayments::ProcessBlock - Unknown Masternode\n");

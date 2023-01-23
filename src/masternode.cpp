@@ -636,11 +636,6 @@ bool CMasternodeBroadcast::CheckAndUpdate(int& nDos)
     if(lastPing.IsNull() || !lastPing.CheckAndUpdate(nDos, false, true))
     return false;
 
-    if (protocolVersion < ActiveProtocol()) {
-        LogPrint(BCLog::MASTERNODE, "mnb - ignoring outdated Masternode %s protocol version %d\n", vin.prevout.ToStringShort(), protocolVersion);
-        return false;
-    }
-
     CScript pubkeyScript;
     pubkeyScript = GetScriptForDestination(pubKeyCollateralAddress.GetID());
 
@@ -806,8 +801,7 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
 
     // if it matches our Masternode privkey, then we've been remotely activated
     for (auto& activeMasternode : amnodeman.GetActiveMasternodes()) {
-        if (pubKeyMasternode == activeMasternode.pubKeyMasternode &&
-            protocolVersion == PROTOCOL_VERSION) {
+        if (pubKeyMasternode == activeMasternode.pubKeyMasternode) {
             activeMasternode.EnableHotColdMasterNode(vin, addr);
         }
     }
@@ -905,7 +899,7 @@ bool CMasternodePing::CheckAndUpdate(int& nDos, bool fRequireEnabled, bool fChec
 
     LogPrint(BCLog::MNPING, "%s: New Ping - %s - %s - %lli\n", __func__, GetHash().ToString(), blockHash.ToString(), sigTime);
 
-    if (isMasternodeFound && pmn->protocolVersion >= ActiveProtocol()) {
+    if (isMasternodeFound) {
         if (fRequireEnabled && !pmn->IsEnabled()) return false;
 
         // update only if there is no known ping for this masternode or
