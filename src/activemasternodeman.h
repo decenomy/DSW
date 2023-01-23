@@ -18,6 +18,8 @@ class CActiveMasternodeMan
 private:
     std::vector<CActiveMasternode> vActiveMasternodes;
     uint256 fileHash = UINT256_ZERO;
+    // critical section to protect the inner data structures
+    mutable RecursiveMutex cs;
 public:
     /// Manage status of all Masternodes
     void ManageStatus();

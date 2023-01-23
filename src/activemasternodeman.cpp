@@ -12,6 +12,8 @@
 
 void CActiveMasternodeMan::ManageStatus() {
 
+    LOCK(cs);
+
     std::string strErr;
     if(!Reload(strErr)) {
         LogPrintf("CActiveMasternodeMan::ManageStatus() - %s\n", strErr);
@@ -23,6 +25,9 @@ void CActiveMasternodeMan::ManageStatus() {
 }
 
 void CActiveMasternodeMan::ResetStatus() {
+    
+    LOCK(cs);
+    
     for(auto& amn : vActiveMasternodes) {
         amn.ResetStatus();
     }
@@ -30,6 +35,8 @@ void CActiveMasternodeMan::ResetStatus() {
 
 bool CActiveMasternodeMan::Add(CActiveMasternodeConfig::CActiveMasternodeEntry ame, std::string& strErr) {
     
+    LOCK(cs);
+
     auto strAlias = ame.strAlias;
     auto strMasterNodePrivKey = ame.strMasterNodePrivKey;
 
@@ -59,6 +66,9 @@ bool CActiveMasternodeMan::Add(CActiveMasternodeConfig::CActiveMasternodeEntry a
 }
 
 bool CActiveMasternodeMan::Load(std::string& strErr) {
+    
+    LOCK(cs);
+    
     if (!activeMasternodeConfig.Load(strErr)) return false;
 
     fileHash = activeMasternodeConfig.GetFileHash();
@@ -71,6 +81,9 @@ bool CActiveMasternodeMan::Load(std::string& strErr) {
 }
 
 bool CActiveMasternodeMan::Reload(std::string& strErr) {
+
+    LOCK(cs);
+
     auto hash = activeMasternodeConfig.GetFileHash();
 
     if(fileHash != hash) {
@@ -86,6 +99,8 @@ bool CActiveMasternodeMan::Reload(std::string& strErr) {
                 return false;
             }
         }
+
+        fileHash = hash;
 
         ResetStatus();
 
