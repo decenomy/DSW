@@ -128,7 +128,7 @@ UniValue getmasternodecount (const JSONRPCRequest& request)
     if (nChainHeight < 0) return "unknown";
 
     int nCount = mnodeman.GetNextMasternodeInQueueCount(nChainHeight);
-    mnodeman.CountNetworks(ActiveProtocol(), ipv4, ipv6, onion);
+    mnodeman.CountNetworks(ipv4, ipv6, onion);
 
     obj.push_back(Pair("total", mnodeman.size()));
     obj.push_back(Pair("stable", mnodeman.stable_size()));
