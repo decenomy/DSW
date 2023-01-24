@@ -251,17 +251,14 @@ CScript* CBlockIndex::GetPaidPayee()
     if(paidPayee == nullptr || paidPayee->empty()) {
         CBlock block;
         if (nHeight <= chainActive.Height() && ReadBlockFromDisk(block, this)) {
-            const auto& tx = block.vtx[block.IsProofOfWork() ? 0 : 1];
             auto amount = CMasternode::GetMasternodePayment(nHeight);
-
-            for (const CTxOut& out : tx.vout) {
-                if (out.nValue == amount
-                ) {
-                    paidPayee = new CScript(out.scriptPubKey);
-                    auto pmn = mnodeman.Find(out.scriptPubKey);
-                    if(pmn) {
-                        pmn->lastPaid = GetBlockTime();
-                    }
+            auto mnpayee = block.GetPaidPayee(nHeight, amount);
+            
+            if(!mnpayee.empty()) {
+                paidPayee = new CScript(mnpayee);
+                auto pmn = mnodeman.Find(mnpayee);
+                if(pmn) {
+                    pmn->lastPaid = GetBlockTime();
                 }
             }
         }
