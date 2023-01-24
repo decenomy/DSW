@@ -1959,9 +1959,10 @@ DisconnectResult DisconnectBlock(CBlock& block, CBlockIndex* pindex, CCoinsViewC
     view.SetBestBlock(pindex->pprev->GetBlockHash());
 
     // Clean lastPaid
-    auto paidPayee = pindex->GetPaidPayee();
-    if(paidPayee) {
-        auto pmn = mnodeman.Find(*paidPayee);
+    auto amount = CMasternode::GetMasternodePayment(pindex->nHeight);
+    auto paidPayee = block.GetPaidPayee(pindex->nHeight, amount);
+    if(!paidPayee.empty()) {
+        auto pmn = mnodeman.Find(paidPayee);
 
         if(pmn) {
             pmn->lastPaid = INT64_MAX;
@@ -2200,9 +2201,10 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     LogPrint(BCLog::BENCH, "    - Callbacks: %.2fms [%.2fs]\n", 0.001 * (nTime4 - nTime3), nTimeCallbacks * 0.000001);
     
     // Fill lastPaid
-    auto paidPayee = pindex->GetPaidPayee();
-    if(paidPayee) {
-        auto pmn = mnodeman.Find(*paidPayee);
+    auto amount = CMasternode::GetMasternodePayment(pindex->nHeight);
+    auto paidPayee = block.GetPaidPayee(pindex->nHeight, amount);
+    if(!paidPayee.empty()) {
+        auto pmn = mnodeman.Find(paidPayee);
 
         if(pmn) {
             pmn->lastPaid = pindex->GetBlockTime();
