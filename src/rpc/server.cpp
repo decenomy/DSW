@@ -370,6 +370,7 @@ static const CRPCCommand vRPCCommands[] =
         {"jackpot", "createmasternodekey", &createmasternodekey, true },
         {"jackpot", "getmasternodeoutputs", &getmasternodeoutputs, true },
         {"jackpot", "listmasternodeconf", &listmasternodeconf, true },
+        {"jackpot", "getactivemasternodecount", &getactivemasternodecount, true },
         {"jackpot", "getmasternodestatus", &getmasternodestatus, true },
         {"jackpot", "getmasternodewinners", &getmasternodewinners, true },
         {"jackpot", "getmasternodescores", &getmasternodescores, true },
