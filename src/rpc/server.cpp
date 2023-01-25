@@ -370,6 +370,7 @@ static const CRPCCommand vRPCCommands[] =
         {"dashdiamond", "createmasternodekey", &createmasternodekey, true },
         {"dashdiamond", "getmasternodeoutputs", &getmasternodeoutputs, true },
         {"dashdiamond", "listmasternodeconf", &listmasternodeconf, true },
+        {"dashdiamond", "getactivemasternodecount", &getactivemasternodecount, true },
         {"dashdiamond", "getmasternodestatus", &getmasternodestatus, true },
         {"dashdiamond", "getmasternodewinners", &getmasternodewinners, true },
         {"dashdiamond", "getmasternodescores", &getmasternodescores, true },
