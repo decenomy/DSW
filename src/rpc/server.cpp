@@ -370,6 +370,7 @@ static const CRPCCommand vRPCCommands[] =
         {"mobic", "createmasternodekey", &createmasternodekey, true },
         {"mobic", "getmasternodeoutputs", &getmasternodeoutputs, true },
         {"mobic", "listmasternodeconf", &listmasternodeconf, true },
+        {"mobic", "getactivemasternodecount", &getactivemasternodecount, true },
         {"mobic", "getmasternodestatus", &getmasternodestatus, true },
         {"mobic", "getmasternodewinners", &getmasternodewinners, true },
         {"mobic", "getmasternodescores", &getmasternodescores, true },
