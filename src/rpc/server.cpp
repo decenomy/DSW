@@ -370,6 +370,7 @@ static const CRPCCommand vRPCCommands[] =
         {"peony", "createmasternodekey", &createmasternodekey, true },
         {"peony", "getmasternodeoutputs", &getmasternodeoutputs, true },
         {"peony", "listmasternodeconf", &listmasternodeconf, true },
+        {"peony", "getactivemasternodecount", &getactivemasternodecount, true },
         {"peony", "getmasternodestatus", &getmasternodestatus, true },
         {"peony", "getmasternodewinners", &getmasternodewinners, true },
         {"peony", "getmasternodescores", &getmasternodescores, true },
