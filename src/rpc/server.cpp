@@ -370,6 +370,7 @@ static const CRPCCommand vRPCCommands[] =
         {"sapphire", "createmasternodekey", &createmasternodekey, true },
         {"sapphire", "getmasternodeoutputs", &getmasternodeoutputs, true },
         {"sapphire", "listmasternodeconf", &listmasternodeconf, true },
+        {"sapphire", "getactivemasternodecount", &getactivemasternodecount, true },
         {"sapphire", "getmasternodestatus", &getmasternodestatus, true },
         {"sapphire", "getmasternodewinners", &getmasternodewinners, true },
         {"sapphire", "getmasternodescores", &getmasternodescores, true },
