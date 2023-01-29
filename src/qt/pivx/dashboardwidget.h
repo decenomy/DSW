@@ -66,7 +66,9 @@ public:
 	QMap<int, QMap<QString, qint64>> amountsByCache;
     qreal maxValue = 0;
     qint64 totalPiv = 0;
+    qint64 totalDayPiv = 0;
 	qint64 totalMNRewards = 0;
+	qint64 totalDayMNRewards = 0;
     QList<qreal> valuesPiv;
 	QList<qreal> valuesMNRewards;
     QStringList xLabels;
@@ -151,6 +153,7 @@ private:
     int yearFilter = 0;
     int monthFilter = 0;
     int dayStart = 1;
+    int daySetOnce = 0;
 	bool hasMNRewards = false;
 
     ChartData* chartData = nullptr;

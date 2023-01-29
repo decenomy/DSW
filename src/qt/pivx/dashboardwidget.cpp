@@ -393,6 +393,10 @@ void DashboardWidget::loadChart()
         if (!chart) {
             showHideEmptyChart(false, false);
             initChart();
+		if (daySetOnce == 0) {
+			dayStart = currentDate.day();
+			daySetOnce = 1;
+		}
             QDate currentDate = QDate::currentDate();
             monthFilter = currentDate.month();
             yearFilter = currentDate.year();
@@ -603,6 +607,10 @@ bool DashboardWidget::loadChartData(bool withMonthNames)
             mnrewards = (pair["mn"] != 0) ? pair["mn"] / 100000000 : 0;
             chartData->totalPiv += pair["piv"];
             chartData->totalMNRewards += pair["mn"];
+            if (chartShow != MONTH || (chartShow == MONTH && j == range.first)) {
+            	chartData->totalDayPiv += pair["piv"];
+            	chartData->totalDayMNRewards += pair["mn"];
+            }
         }
 
         chartData->xLabels << ((withMonthNames) ? monthsNames[num - 1] : QString::number(num));
@@ -693,8 +701,13 @@ void DashboardWidget::onChartRefreshed()
     }
 
 	forceUpdateStyle({ui->labelAmountPiv, ui->labelAmountMNRewards});
-    ui->labelAmountPiv->setText(GUIUtil::formatBalance(chartData->totalPiv, nDisplayUnit));
+if (chartShow != MONTH) {
+ui->labelAmountPiv->setText(GUIUtil::formatBalance(chartData->totalPiv, nDisplayUnit));
 	ui->labelAmountMNRewards->setText(GUIUtil::formatBalance(chartData->totalMNRewards, nDisplayUnit));
+} else {
+    	ui->labelAmountPiv->setText(GUIUtil::formatBalance(chartData->totalDayPiv, nDisplayUnit)+" / "+GUIUtil::formatBalance(chartData->totalPiv, nDisplayUnit));
+		ui->labelAmountMNRewards->setText(GUIUtil::formatBalance(chartData->totalDayMNRewards, nDisplayUnit)+" / "+GUIUtil::formatBalance(chartData->totalMNRewards, nDisplayUnit));
+}
 
     series->append(set0);
 
