@@ -81,7 +81,7 @@ DashboardWidget::DashboardWidget(PIVXGUI* parent) :
     ui->comboBoxMonths->setStyleSheet("selection-background-color:transparent; selection-color:transparent;");
     ui->comboBoxYears->setView(new QListView());
     ui->comboBoxYears->setStyleSheet("selection-background-color:transparent; selection-color:transparent;");
-    ui->pushButtonYear->setChecked(true);
+    ui->pushButtonMonth->setChecked(true);
 
     setCssProperty(ui->pushButtonChartArrow, "btn-chart-arrow");
     setCssProperty(ui->pushButtonChartRight, "btn-chart-arrow-right");
@@ -144,7 +144,7 @@ bool hasCharts = false;
 #ifdef USE_QTCHARTS
     hasCharts = true;
     isLoading = false;
-    setChartShow(YEAR);
+    setChartShow(MONTH);
     connect(ui->pushButtonYear, &QPushButton::clicked, [this](){setChartShow(YEAR);});
     connect(ui->pushButtonMonth, &QPushButton::clicked, [this](){setChartShow(MONTH);});
     connect(ui->pushButtonAll, &QPushButton::clicked, [this](){setChartShow(ALL);});
@@ -398,6 +398,11 @@ void DashboardWidget::loadChart()
 			daySetOnce = 1;
 		}
             QDate currentDate = QDate::currentDate();
+            //dreamlineNL
+	    (daySetOnce == 0) {
+	    dayStart = currentDate.day();
+	    daySetOnce = 1;
+	    }
             monthFilter = currentDate.month();
             yearFilter = currentDate.year();
             for (int i = 1; i < 13; ++i) ui->comboBoxMonths->addItem(QString(monthsNames[i-1]), QVariant(i));
