@@ -149,12 +149,12 @@ private:
 
     QChart *chart = nullptr;
     bool isChartMin = false;
-    ChartShowType chartShow = YEAR;
+    ChartShowType chartShow = MONTH;
     int yearFilter = 0;
     int monthFilter = 0;
     int dayStart = 1;
     int daySetOnce = 0;
-	bool hasMNRewards = false;
+    bool hasMNRewards = false;
 
     ChartData* chartData = nullptr;
     bool hasStakes = false;
