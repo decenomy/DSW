@@ -2404,7 +2404,7 @@ Adresa: %4
         <source>Deletes all local blockchain folders so the wallet synchronizes from scratch.</source>
         <translation>Briše sve lokalne blockchain direktorije pa se novčanik sinkronizira od početka.</translation>
     </message>
-    <message>   
+    <message>
         <source>The buttons below will restart the wallet with command-line options to repair the wallet, fix issues with corrupt blockhain files or missing/obsolete transactions.</source>
         <translation>Donji gumbi će ponovo pokrenuti novčanik pomoću opcija naredbenog retka za popravak lisnice, popraviti probleme s korumpiranim datotekama blockchaina ili nedostajućim / zastarjelim transakcijama.</translation>
     </message>
