@@ -3501,7 +3501,7 @@ Es gab ein Problem bei dem Versuch die Adressen unter %1 zu speichern. Bitte ver
                            __DSW__ utilizes a Proof of Stake (PoS) consensus system algorithm,
                            allowing all owners of __DSW__ to participate in earning block rewards
                            while securing the network with full node wallets, as well as to
-                           run Masternodes to earn additional income regulary.
+                           run Masternodes to earn additional income regularly.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>__DSW__ ist eine Form von digitalem Online-Geld mit Blockchain-Technologie, das einfach weltweit, sofort und nahezu gebührenfrei überwiesen werden kann. __DSW__ beinhaltet marktführende Datenschutzsicherheit.

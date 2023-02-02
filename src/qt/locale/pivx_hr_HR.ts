@@ -3431,7 +3431,7 @@ Došlo je do greške prilikom spremanja popisa adresa u %1. Molimo pokušajte po
                            __DSW__ utilizes a Proof of Stake (PoS) consensus system algorithm,
                            allowing all owners of __DSW__ to participate in earning block rewards
                            while securing the network with full node wallets, as well as to
-                           run Masternodes to earn additional income regulary.
+                           run Masternodes to earn additional income regularly.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
