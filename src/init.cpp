@@ -1015,6 +1015,8 @@ bool AppInit2()
 
     setvbuf(stdout, NULL, _IOLBF, 0); /// ***TODO*** do we still need this after -printtoconsole is gone?
 
+    int64_t nStaking = GetArg("-staking", (int64_t)(!Params().IsRegTestNet() && DEFAULT_STAKING));
+
     // Staking needs a CWallet instance, so make sure wallet is enabled
 #ifdef ENABLE_WALLET
     bool fDisableWallet = GetBoolArg("-disablewallet", false);
@@ -1024,6 +1026,10 @@ bool AppInit2()
             LogPrintf("AppInit2 : parameter interaction: wallet functionality not enabled -> setting -staking=0\n");
 #ifdef ENABLE_WALLET
     } else {
+        if (nStaking > 1) {
+            fStakingActive = true;
+            LogPrintf("AppInit2: staking forced on by default, staking > 1\n");
+        }
         // Register wallet RPC commands
         walletRegisterRPCCommands();
     }
@@ -1786,8 +1792,8 @@ bool AppInit2()
     if (pwalletMain) {
         pwalletMain->postInitProcess(threadGroup);
 
-        fStaking = GetBoolArg("-staking", !Params().IsRegTestNet() && DEFAULT_STAKING);
         // StakeMiner thread disabled by default on regtest
+        fStaking = (bool)nStaking;
         if (fStaking) {
             threadGroup.create_thread(boost::bind(&ThreadStakeMinter));
         }
