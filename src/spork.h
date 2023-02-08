@@ -53,7 +53,7 @@ public:
         nTimeSigned(nTimeSigned)
     { }
 
-    uint256 GetHash() const { return XEVAN(BEGIN(nSporkID), END(nTimeSigned)); }
+    uint256 GetHash() const { return Hash(BEGIN(nSporkID), END(nTimeSigned)); }
 
     // override CSignedMessage functions
     uint256 GetSignatureHash() const override;
