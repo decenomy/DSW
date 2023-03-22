@@ -803,7 +803,11 @@ UniValue createmasternodebroadcast(const JSONRPCRequest& request)
     std::string strCommand;
     if (request.params.size() >= 1)
         strCommand = request.params[0].get_str();
-    if (request.fHelp || (strCommand != "alias" && strCommand != "all") || (strCommand == "alias" && request.params.size() < 2))
+    if (request.fHelp || 
+        (strCommand != "alias" && strCommand != "all" && strCommand != "external") || 
+        (strCommand == "alias" && request.params.size() < 2) ||
+        (strCommand == "external" && request.params.size() < 5)
+    ) {
         throw std::runtime_error(
             "createmasternodebroadcast \"command\" ( \"alias\")\n"
             "\nCreates a masternode broadcast message for one or all masternodes configured in masternode.conf\n" +
@@ -837,6 +841,7 @@ UniValue createmasternodebroadcast(const JSONRPCRequest& request)
 
             "\nExamples:\n" +
             HelpExampleCli("createmasternodebroadcast", "alias mymn1") + HelpExampleRpc("createmasternodebroadcast", "alias mymn1"));
+    }
 
     EnsureWalletIsUnlocked();
 
