@@ -806,17 +806,24 @@ UniValue createmasternodebroadcast(const JSONRPCRequest& request)
     if (request.fHelp || 
         (strCommand != "alias" && strCommand != "all" && strCommand != "external") || 
         (strCommand == "alias" && request.params.size() < 2) ||
-        (strCommand == "external" && request.params.size() < 5)
+        (strCommand == "external" && request.params.size() < 6)
     ) {
         throw std::runtime_error(
             "createmasternodebroadcast \"command\" ( \"alias\")\n"
-            "\nCreates a masternode broadcast message for one or all masternodes configured in masternode.conf\n" +
+            "\nCreates a masternode broadcast message for one or all masternodes configured in masternode.conf or for an external one\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"command\"      (string, required) \"alias\" for single masternode, \"all\" for all masternodes\n"
-            "2. \"alias\"        (string, required if command is \"alias\") Alias of the masternode\n"
-
+            "1. \"command\"                 (string, required)\n" 
+            "                                   \"alias\" for single masternode, \"all\" for all masternodes\n"
+            "                                   \"external\" for starting an external masternode\n"
+            "2. \"alias\"                   (string, required if command is \"alias\") Alias of the masternode\n"
+            "   \"IP:port\"                 (string, required if command is \"external\") IP and port of the masternode\n"
+            "3. \"masternodeprivkey\"       (string, required if command is \"external\") operator masternode key\n"
+            "4. \"collateral_output_txid\"  (string, required if command is \"external\") collateral's transaction id\n"
+            "5. \"collateral_output_index\" (string, required if command is \"external\") collateral's output index\n"
+            "6. \"collateral_privkey\"      (string, required if command is \"external\") collateral's private key\n"
+            
             "\nResult (all):\n"
             "{\n"
             "  \"overall\": \"xxx\",        (string) Overall status message indicating number of successes.\n"
@@ -834,6 +841,13 @@ UniValue createmasternodebroadcast(const JSONRPCRequest& request)
             "\nResult (alias):\n"
             "{\n"
             "  \"alias\": \"xxx\",      (string) Alias of the masternode.\n"
+            "  \"success\": true|false, (boolean) Success status.\n"
+            "  \"hex\": \"xxx\"         (string, if success=true) Hex encoded broadcast message.\n"
+            "  \"error_message\": \"xxx\"   (string, if success=false) Error message, if any.\n"
+            "}\n"
+
+            "\nResult (external):\n"
+            "{\n"
             "  \"success\": true|false, (boolean) Success status.\n"
             "  \"hex\": \"xxx\"         (string, if success=true) Hex encoded broadcast message.\n"
             "  \"error_message\": \"xxx\"   (string, if success=false) Error message, if any.\n"
