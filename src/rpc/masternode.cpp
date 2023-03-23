@@ -175,7 +175,7 @@ UniValue masternodecurrent (const JSONRPCRequest& request)
     throw std::runtime_error("unknown");
 }
 
-bool StartMasternodeEntry(UniValue& statusObjRet, CMasternodeBroadcast& mnbRet, bool& fSuccessRet, const CMasternodeConfig::CMasternodeEntry& mne, std::string& errorMessage, std::string strCommand = "")
+bool StartMasternodeEntry(UniValue& statusObjRet, CMasternodeBroadcast& mnbRet, bool& fSuccessRet, const CMasternodeConfig::CMasternodeEntry& mne, std::string& errorMessage, std::string strCommand = "", std::string privkey = "")
 {
     int nIndex;
     if(!mne.castOutputIndex(nIndex)) {
@@ -189,9 +189,9 @@ bool StartMasternodeEntry(UniValue& statusObjRet, CMasternodeBroadcast& mnbRet, 
         if (strCommand == "disabled" && pmn->IsEnabled()) return false;
     }
 
-    fSuccessRet = CMasternodeBroadcast::Create(mne.getIp(), mne.getPrivKey(), mne.getTxHash(), mne.getOutputIndex(), errorMessage, mnbRet);
+    fSuccessRet = CMasternodeBroadcast::Create(mne.getIp(), mne.getPrivKey(), mne.getTxHash(), mne.getOutputIndex(), errorMessage, mnbRet, false, privkey);
 
-    statusObjRet.push_back(Pair("alias", mne.getAlias()));
+    if (strCommand != "external") statusObjRet.push_back(Pair("alias", mne.getAlias()));
     statusObjRet.push_back(Pair("result", fSuccessRet ? "success" : "failed"));
     statusObjRet.push_back(Pair("error", fSuccessRet ? "" : errorMessage));
 
@@ -800,6 +800,10 @@ bool DecodeHexMnb(CMasternodeBroadcast& mnb, std::string strHexMnb) {
 }
 UniValue createmasternodebroadcast(const JSONRPCRequest& request)
 {
+    // wait for reindex and/or import to finish
+    if (fImporting || fReindex)
+        throw JSONRPCError(RPC_INTERNAL_ERROR, "Wait for reindex and/or import to finish");
+
     std::string strCommand;
     if (request.params.size() >= 1)
         strCommand = request.params[0].get_str();
@@ -818,7 +822,7 @@ UniValue createmasternodebroadcast(const JSONRPCRequest& request)
             "                                   \"alias\" for single masternode, \"all\" for all masternodes\n"
             "                                   \"external\" for starting an external masternode\n"
             "2. \"alias\"                   (string, required if command is \"alias\") Alias of the masternode\n"
-            "   \"IP:port\"                 (string, required if command is \"external\") IP and port of the masternode\n"
+            "   \"ip:port\"                 (string, required if command is \"external\") masternode's IP address and port (port:default)\n"
             "3. \"masternodeprivkey\"       (string, required if command is \"external\") operator masternode key\n"
             "4. \"collateral_output_txid\"  (string, required if command is \"external\") collateral's transaction id\n"
             "5. \"collateral_output_index\" (string, required if command is \"external\") collateral's output index\n"
@@ -857,14 +861,10 @@ UniValue createmasternodebroadcast(const JSONRPCRequest& request)
             HelpExampleCli("createmasternodebroadcast", "alias mymn1") + HelpExampleRpc("createmasternodebroadcast", "alias mymn1"));
     }
 
-    EnsureWalletIsUnlocked();
+    if (strCommand == "alias" || strCommand == "all") EnsureWalletIsUnlocked();
 
     if (strCommand == "alias")
     {
-        // wait for reindex and/or import to finish
-        if (fImporting || fReindex)
-            throw JSONRPCError(RPC_INTERNAL_ERROR, "Wait for reindex and/or import to finish");
-
         std::string alias = request.params[1].get_str();
         bool found = false;
 
@@ -894,10 +894,6 @@ UniValue createmasternodebroadcast(const JSONRPCRequest& request)
 
     if (strCommand == "all")
     {
-        // wait for reindex and/or import to finish
-        if (fImporting || fReindex)
-            throw JSONRPCError(RPC_INTERNAL_ERROR, "Wait for reindex and/or import to finish");
-
         std::vector<CMasternodeConfig::CMasternodeEntry> mnEntries;
         mnEntries = masternodeConfig.getEntries();
 
@@ -923,6 +919,28 @@ UniValue createmasternodebroadcast(const JSONRPCRequest& request)
 
         return returnObj;
     }
+
+    if (strCommand == "external")
+    {
+        auto ip                 = request.params[1].get_str();
+        auto masternodeprivkey  = request.params[2].get_str();
+        auto txid               = request.params[3].get_str();
+        auto n                  = request.params[4].get_str();
+        auto privkey            = request.params[5].get_str();
+
+        UniValue statusObj(UniValue::VOBJ);
+
+        CMasternodeConfig::CMasternodeEntry mne("external", ip, masternodeprivkey, txid, n);
+        CMasternodeBroadcast mnb;
+        std::string errorMessage;
+        bool fSuccess = false;
+        if (!StartMasternodeEntry(statusObj, mnb, fSuccess, mne, errorMessage, strCommand, privkey)) {
+            SerializeMNB(statusObj, mnb, fSuccess);
+        }
+
+        return statusObj;
+    }
+
     return NullUniValue;
 }
 
