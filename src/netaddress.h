@@ -143,9 +143,7 @@ public:
     CService(const struct in_addr& ipv4Addr, unsigned short port);
     CService(const struct sockaddr_in& addr);
     explicit CService(const char* pszIpPort, int portDefault);
-    explicit CService(const char* pszIpPort);
     explicit CService(const std::string& strIpPort, int portDefault);
-    explicit CService(const std::string& strIpPort);
     void Init();
     void SetPort(unsigned short portIn);
     unsigned short GetPort() const;

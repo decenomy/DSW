@@ -33,7 +33,7 @@ UniValue checkconnection(const JSONRPCRequest& request)
             HelpExampleCli("checkconnection", "\"192.168.0.6:__PORT_MAINNET__\"") + HelpExampleRpc("checkconnection", "\"192.168.0.6:__PORT_MAINNET__\""));
 
     std::string strNode = request.params[0].get_str();
-    CService service = CService(strNode);
+    CService service = CService(strNode, Params().GetDefaultPort());
     CAddress addr(service, NODE_NETWORK);
     if (!g_connman->OpenNetworkConnection(addr, true, nullptr)) {
         throw std::runtime_error("Could not connect to " + service.ToString());

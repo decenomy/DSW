@@ -479,36 +479,15 @@ CService::CService(const struct sockaddr_in6 &addr) : CNetAddr(addr.sin6_addr, a
    assert(addr.sin6_family == AF_INET6);
 }
 
-CService::CService(const char* pszIpPort)
+CService::CService(const char* pszIpPort, int portDefault) : CService::CService()
 {
-    Init();
-    CService ip;
-    if (Lookup(pszIpPort, ip, 0, false))
-        *this = ip;
-}
-
-CService::CService(const char* pszIpPort, int portDefault)
-{
-    Init();
     CService ip;
     if (Lookup(pszIpPort, ip, portDefault, false))
         *this = ip;
 }
 
-CService::CService(const std::string& strIpPort)
+CService::CService(const std::string& strIpPort, int portDefault) : CService::CService(strIpPort.c_str(), portDefault)
 {
-    Init();
-    CService ip;
-    if (Lookup(strIpPort.c_str(), ip, 0, false))
-        *this = ip;
-}
-
-CService::CService(const std::string& strIpPort, int portDefault)
-{
-    Init();
-    CService ip;
-    if (Lookup(strIpPort.c_str(), ip, portDefault, false))
-        *this = ip;
 }
 
 bool CService::SetSockAddr(const struct sockaddr *paddr)
