@@ -19,9 +19,9 @@
 #include "version.h"
 #include <univalue.h>
 
-UniValue checkconnection (const JSONRPCRequest& request)
+UniValue checkconnection(const JSONRPCRequest& request)
 {
-    if (request.fHelp || (request.params.size() != 0))
+    if (request.fHelp || (request.params.size() != 1))
         throw std::runtime_error(
             "checkconnection \"address\"\n"
             "\nAttempts to connect to specified node\n"
