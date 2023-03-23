@@ -17,10 +17,29 @@
 #include "guiinterface.h"
 #include "util.h"
 #include "version.h"
-
-
 #include <univalue.h>
 
+UniValue checkconnection (const JSONRPCRequest& request)
+{
+    if (request.fHelp || (request.params.size() != 0))
+        throw std::runtime_error(
+            "checkconnection \"address\"\n"
+            "\nAttempts to connect to specified node\n"
+
+            "\nArguments:\n"
+            "1. \"node\"     (string, required) The node address (see getpeerinfo for nodes)\n"
+
+            "\nExamples:\n" +
+            HelpExampleCli("checkconnection", "\"192.168.0.6:__PORT_MAINNET__\"") + HelpExampleRpc("checkconnection", "\"192.168.0.6:__PORT_MAINNET__\""));
+
+    std::string strNode = request.params[0].get_str();
+    CService service = CService(strNode);
+    CAddress addr(service, NODE_NETWORK);
+    if (!g_connman->OpenNetworkConnection(addr, true, nullptr)) {
+        throw std::runtime_error("Could not connect to " + service.ToString());
+    }
+    return NullUniValue;
+}
 
 UniValue getconnectioncount(const JSONRPCRequest& request)
 {
