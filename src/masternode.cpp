@@ -473,16 +473,20 @@ bool CMasternodeBroadcast::Create(std::string strService, std::string strKeyMast
         return false;
     }
 
-    if(privkey == "") {
+    if(privkey == "") { // in-wallet transaction
         std::string strError;
         if (!pwalletMain->GetMasternodeVinAndKeys(txin, pubKeyCollateralAddressNew, keyCollateralAddressNew, strTxHash, strOutputIndex, strError)) {
             strErrorRet = strError; // GetMasternodeVinAndKeys logs this error. Only returned for GUI error notification.
             LogPrint(BCLog::MASTERNODE,"CMasternodeBroadcast::Create -- %s\n", strprintf("Could not allocate txin %s:%s for masternode %s", strTxHash, strOutputIndex, strService));
             return false;
         }
-    } else {
-        // TODO fetch txin from UTXO set
-        
+    } else { // external collateral transaction
+        txin = CTxIn(uint256(strTxHash), std::stoi(strOutputIndex.c_str()));
+        if (!CMessageSigner::GetKeysFromSecret(privkey, keyCollateralAddressNew, pubKeyCollateralAddressNew)) {
+            strErrorRet = strprintf("Invalid collateral key %s", privkey);
+            LogPrint(BCLog::MASTERNODE,"CMasternodeBroadcast::Create -- %s\n", strErrorRet);
+            return false;
+        }
     }
     
     int nPort;
