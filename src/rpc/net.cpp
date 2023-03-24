@@ -30,7 +30,7 @@ UniValue checkconnection(const JSONRPCRequest& request)
             "1. \"node\"     (string, required) The node address (see getpeerinfo for nodes)\n"
 
             "\nExamples:\n" +
-            HelpExampleCli("checkconnection", "\"192.168.0.6:__PORT_MAINNET__\"") + HelpExampleRpc("checkconnection", "\"192.168.0.6:__PORT_MAINNET__\""));
+            HelpExampleCli("checkconnection", "\"192.168.0.6:7757\"") + HelpExampleRpc("checkconnection", "\"192.168.0.6:7757\""));
 
     std::string strNode = request.params[0].get_str();
     CService service = CService(strNode, Params().GetDefaultPort());
