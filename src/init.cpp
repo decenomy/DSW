@@ -399,6 +399,7 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-reindex", _("Rebuild block chain index from current blk000??.dat files") + " " + _("on startup"));
     strUsage += HelpMessageOpt("-reindexmoneysupply", strprintf(_("Reindex the %s and z%s money supply statistics"), CURRENCY_UNIT, CURRENCY_UNIT) + " " + _("on startup"));
     strUsage += HelpMessageOpt("-resync", _("Delete blockchain folders and resync from scratch") + " " + _("on startup"));
+    strUsage += HelpMessageOpt("-rewindblockindex", _("Rewind blockchain to the last checkpoint"));
 #if !defined(WIN32)
     strUsage += HelpMessageOpt("-sysperms", _("Create new files with system default permissions, instead of umask 077 (only effective with disabled wallet functionality)"));
 #endif
@@ -1419,6 +1420,8 @@ bool AppInit2()
     LogPrintf("* Using %.1fMiB for chain state database\n", nCoinDBCache * (1.0 / 1024 / 1024));
     LogPrintf("* Using %.1fMiB for in-memory UTXO set\n", nCoinCacheUsage * (1.0 / 1024 / 1024));
 
+    const CChainParams& chainparams = Params();
+
     bool fLoaded = false;
     while (!fLoaded && !ShutdownRequested()) {
         bool fReset = fReindex;
@@ -1518,6 +1521,14 @@ bool AppInit2()
 
                 if (!fReindex) {
                     uiInterface.InitMessage(_("Verifying blocks..."));
+
+                    if (chainActive.Tip() != NULL && GetBoolArg("-rewindblockindex", false)) {
+                        uiInterface.InitMessage(_("Rewinding blocks to last checkpoint..."));
+                        if (!RewindBlockIndexToLastCheckpoint(chainparams)) {
+                            strLoadError = _("Unable to rewind the blockchain to last checkpoint. You will need to redownload the blockchain");
+                            break;
+                        }
+                    }
 
                     // Flag sent to validation code to let it know it can skip certain checks
                     fVerifyingBlocks = true;
