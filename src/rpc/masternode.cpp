@@ -934,7 +934,7 @@ UniValue createmasternodebroadcast(const JSONRPCRequest& request)
         CMasternodeBroadcast mnb;
         std::string errorMessage;
         bool fSuccess = false;
-        if (!StartMasternodeEntry(statusObj, mnb, fSuccess, mne, errorMessage, strCommand, privkey)) {
+        if (StartMasternodeEntry(statusObj, mnb, fSuccess, mne, errorMessage, strCommand, privkey)) {
             SerializeMNB(statusObj, mnb, fSuccess);
         }
 
