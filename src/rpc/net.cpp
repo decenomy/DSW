@@ -35,9 +35,22 @@ UniValue checkconnection(const JSONRPCRequest& request)
     std::string strNode = request.params[0].get_str();
     CService service = CService(strNode, Params().GetDefaultPort());
     CAddress addr(service, NODE_NETWORK);
-    if (!g_connman->OpenNetworkConnection(addr, true, nullptr)) {
-        throw std::runtime_error("Could not connect to " + service.ToString());
+
+    if(!g_connman)
+        throw JSONRPCError(RPC_CLIENT_P2P_DISABLED, "Error: Peer-to-peer functionality missing or disabled");
+
+    bool connected = false;
+    g_connman->ForEachNode([&connected, &service](CNode* pnode) {
+        if ((CNetAddr)pnode->addr == (CNetAddr)service)
+            connected = true;
+    });
+
+    if(!connected) {
+        if (!g_connman->OpenNetworkConnection(addr, true, nullptr)) {
+            throw std::runtime_error("Could not connect to " + service.ToString());
+        }
     }
+    
     return NullUniValue;
 }
 
