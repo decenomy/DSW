@@ -377,6 +377,7 @@ static const CRPCCommand vRPCCommands[] =
         {"kyanite", "getmasternodescores", &getmasternodescores, true },
         {"kyanite", "mnsync", &mnsync, true },
         {"kyanite", "spork", &spork, true },
+        {"kyanite", "mnping", &mnping, true },
 
 #ifdef ENABLE_WALLET
         /* Wallet */

@@ -265,6 +265,7 @@ extern UniValue getactivemasternodecount(const JSONRPCRequest& request);
 extern UniValue getmasternodestatus(const JSONRPCRequest& request);
 extern UniValue getmasternodewinners(const JSONRPCRequest& request);
 extern UniValue getmasternodescores(const JSONRPCRequest& request);
+extern UniValue mnping(const JSONRPCRequest& request);
 
 extern UniValue getinfo(const JSONRPCRequest& request); // in rpc/misc.cpp
 extern UniValue logging(const JSONRPCRequest& request);
