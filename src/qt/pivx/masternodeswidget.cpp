@@ -98,6 +98,7 @@ MasterNodesWidget::MasterNodesWidget(PIVXGUI *parent) :
     setCssSubtitleScreen(ui->labelSubtitle1);
 
     /* Buttons */
+    setCssBtnPrimary(ui->pushButtonReload);
     setCssBtnPrimary(ui->pushButtonSave);
     setCssBtnPrimary(ui->pushButtonStartAll);
     setCssBtnPrimary(ui->pushButtonStartMissing);
@@ -119,6 +120,7 @@ MasterNodesWidget::MasterNodesWidget(PIVXGUI *parent) :
     setCssProperty(ui->pushImgEmpty, "img-empty-master");
     setCssProperty(ui->labelEmpty, "text-empty");
 
+    connect(ui->pushButtonReload, &QPushButton::clicked, this, &MasterNodesWidget::onReloadClicked);
     connect(ui->pushButtonSave, &QPushButton::clicked, this, &MasterNodesWidget::onCreateMNClicked);
     connect(ui->pushButtonStartAll, &QPushButton::clicked, [this]() {
         onStartAllClicked(REQUEST_START_ALL);
@@ -465,6 +467,31 @@ void MasterNodesWidget::onDeleteMNClicked()
     } else {
         inform(tr("masternode.conf file doesn't exists"));
     }
+}
+
+void MasterNodesWidget::onReloadClicked()
+{
+    // Remember the previous MN count (for comparison)
+    int prevCount = masternodeConfig.getCount() + 1; // legacy preservation without showing a strange counting
+    // Clear the loaded config
+    masternodeConfig.clear();
+    // Load from disk
+    std::string error;
+    QString message;
+    if (!masternodeConfig.read(error)) {
+        message = tr("Error reloading masternode.conf, %1").arg(QString(error.c_str()));
+    } else {
+        // Success
+        int newCount = masternodeConfig.getCount() + 1; // legacy preservation without showing a strange counting
+        message = 
+            tr("Successfully reloaded from the masternode.conf file (Prev nodes: %1, New nodes: %2)")
+                .arg(QString(std::to_string(prevCount).c_str()))
+                .arg(QString(std::to_string(newCount).c_str()));
+    }
+
+    mnModel->updateMNList();
+    
+    inform(message);
 }
 
 void MasterNodesWidget::onCreateMNClicked()

@@ -291,8 +291,7 @@ UniValue reloadmasternodeconfig (const JSONRPCRequest& request)
     UniValue retObj(UniValue::VOBJ);
 
     // Remember the previous MN count (for comparison)
-    int prevCount = masternodeConfig.getCount();
-    prevCount = prevCount == -1 ? 0 : prevCount; // legacy preservation without showing a strange counting
+    int prevCount = masternodeConfig.getCount() + 1; // legacy preservation without showing a strange counting
     // Clear the loaded config
     masternodeConfig.clear();
     // Load from disk
@@ -303,8 +302,7 @@ UniValue reloadmasternodeconfig (const JSONRPCRequest& request)
         retObj.push_back(Pair("message", "Error reloading masternode.conf, " + error));
     } else {
         // Success
-        int newCount = masternodeConfig.getCount();
-        newCount = newCount == -1 ? 0 : newCount; // legacy preservation without showing a strange counting
+        int newCount = masternodeConfig.getCount() + 1; // legacy preservation without showing a strange counting
         retObj.push_back(Pair("success", true));
         retObj.push_back(Pair("message", "Successfully reloaded from the masternode.conf file (Prev nodes: " + std::to_string(prevCount) + ", New nodes: " + std::to_string(newCount) + ")"));
     }
