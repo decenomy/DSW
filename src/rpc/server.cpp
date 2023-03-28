@@ -368,6 +368,7 @@ static const CRPCCommand vRPCCommands[] =
         {"kyanite", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
         {"kyanite", "masternodecurrent", &masternodecurrent, true },
         {"kyanite", "startmasternode", &startmasternode, true },
+        {"kyanite", "reloadmasternodeconfig", &reloadmasternodeconfig, true },
         {"kyanite", "createmasternodekey", &createmasternodekey, true },
         {"kyanite", "getmasternodeoutputs", &getmasternodeoutputs, true },
         {"kyanite", "listmasternodeconf", &listmasternodeconf, true },
