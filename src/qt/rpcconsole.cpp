@@ -580,6 +580,7 @@ void RPCConsole::buildParameterlist(QString arg)
     args.removeAll(ZAPTXES2);
     args.removeAll(UPGRADEWALLET);
     args.removeAll(REINDEX);
+    args.removeAll(RESYNC);
     args.removeAll(REWIND);
 
     // Append repair parameter to command line.
