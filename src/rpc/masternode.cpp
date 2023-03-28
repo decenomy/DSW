@@ -272,6 +272,46 @@ void SerializeMNB(UniValue& statusObjRet, const CMasternodeBroadcast& mnb, const
     return SerializeMNB(statusObjRet, mnb, fSuccess, successful, failed);
 }
 
+UniValue reloadmasternodeconfig (const JSONRPCRequest& request)
+{
+    if (request.fHelp || (request.params.size() != 0))
+        throw std::runtime_error(
+            "reloadmasternodeconfig\n"
+            "\nHot-reloads the masternode.conf file, adding and/or removing masternodes from the wallet at runtime.\n"
+
+            "\nResult:\n"
+            "{\n"
+            "  \"success\": true|false, (boolean) Success status.\n"
+            "  \"message\": \"xxx\"   (string) result message.\n"
+            "}\n"
+
+            "\nExamples:\n" +
+            HelpExampleCli("reloadmasternodeconfig", "") + HelpExampleRpc("reloadmasternodeconfig", ""));
+
+    UniValue retObj(UniValue::VOBJ);
+
+    // Remember the previous MN count (for comparison)
+    int prevCount = masternodeConfig.getCount();
+    prevCount = prevCount == -1 ? 0 : prevCount; // legacy preservation without showing a strange counting
+    // Clear the loaded config
+    masternodeConfig.clear();
+    // Load from disk
+    std::string error;
+    if (!masternodeConfig.read(error)) {
+        // Failed
+        retObj.push_back(Pair("success", false));
+        retObj.push_back(Pair("message", "Error reloading masternode.conf, " + error));
+    } else {
+        // Success
+        int newCount = masternodeConfig.getCount();
+        newCount = newCount == -1 ? 0 : newCount; // legacy preservation without showing a strange counting
+        retObj.push_back(Pair("success", true));
+        retObj.push_back(Pair("message", "Successfully reloaded from the masternode.conf file (Prev nodes: " + std::to_string(prevCount) + ", New nodes: " + std::to_string(newCount) + ")"));
+    }
+
+    return retObj;
+}
+
 UniValue startmasternode (const JSONRPCRequest& request)
 {
     std::string strCommand;

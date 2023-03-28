@@ -257,6 +257,7 @@ extern UniValue createmasternodebroadcast(const JSONRPCRequest& request);
 extern UniValue decodemasternodebroadcast(const JSONRPCRequest& request);
 extern UniValue relaymasternodebroadcast(const JSONRPCRequest& request);
 extern UniValue masternodecurrent(const JSONRPCRequest& request);
+extern UniValue reloadmasternodeconfig(const JSONRPCRequest& request);
 extern UniValue startmasternode(const JSONRPCRequest& request);
 extern UniValue createmasternodekey(const JSONRPCRequest& request);
 extern UniValue getmasternodeoutputs(const JSONRPCRequest& request);

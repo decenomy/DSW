@@ -368,6 +368,7 @@ static const CRPCCommand vRPCCommands[] =
         {"__decenomy__", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
         {"__decenomy__", "masternodecurrent", &masternodecurrent, true },
         {"__decenomy__", "startmasternode", &startmasternode, true },
+        {"__decenomy__", "reloadmasternodeconfig", &reloadmasternodeconfig, true },
         {"__decenomy__", "createmasternodekey", &createmasternodekey, true },
         {"__decenomy__", "getmasternodeoutputs", &getmasternodeoutputs, true },
         {"__decenomy__", "listmasternodeconf", &listmasternodeconf, true },
