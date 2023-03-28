@@ -22,6 +22,45 @@
 
 #include <boost/tokenizer.hpp>
 
+UniValue mnping(const JSONRPCRequest& request)
+{
+    if (request.fHelp || !request.params.empty()) {
+        throw std::runtime_error(
+            "mnping \n"
+            "\nSend masternode ping.\n"
+
+            "\nResult:\n"
+            "[{\n"
+            "  \"alias\": \"xxxx\",        (string) masternode alias\n"        
+            "  \"sent\":  (string YES|NO) Whether the ping was sent and, if not, the error.\n"
+            "}]\n"
+
+            "\nExamples:\n" +
+            HelpExampleCli("mnping", "") + HelpExampleRpc("mnping", ""));
+    }
+
+    if (!fMasterNode) {
+        throw JSONRPCError(RPC_MISC_ERROR, "this is not a masternode");
+    }
+
+    UniValue resultsObj(UniValue::VARR);
+        
+    auto amns = amnodeman.GetActiveMasternodes();
+
+    for (auto& amn : amns) {
+
+        UniValue mnObj(UniValue::VOBJ);
+        std::string strError;
+
+        mnObj.push_back(Pair("alias", amn.strAlias));
+        mnObj.push_back(Pair("sent", amn.SendMasternodePing(strError) ? "YES" : strprintf("NO (%s)", strError)));
+
+        resultsObj.push_back(mnObj);
+    }
+
+    return resultsObj;
+}
+
 UniValue listmasternodes(const JSONRPCRequest& request)
 {
     std::string strFilter = "";
