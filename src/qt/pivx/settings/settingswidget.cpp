@@ -254,6 +254,7 @@ void SettingsWidget::onSaveOptionsClicked()
                 args.removeAll(ZAPTXES2);
                 args.removeAll(UPGRADEWALLET);
                 args.removeAll(REINDEX);
+                args.removeAll(REWIND);
 
                 Q_EMIT handleRestart(args);
             } else {
