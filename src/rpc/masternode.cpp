@@ -291,8 +291,24 @@ UniValue reloadmasternodeconfig (const JSONRPCRequest& request)
     UniValue retObj(UniValue::VOBJ);
 
     // Remember the previous MN count (for comparison)
-    int prevCount = masternodeConfig.getCount();
-    prevCount = prevCount == -1 ? 0 : prevCount; // legacy preservation without showing a strange counting
+    auto mnconflock = GetBoolArg("-mnconflock", DEFAULT_MNCONFLOCK);
+    auto& entries = masternodeConfig.getEntries();
+    int prevCount = entries.size();
+
+    // Creates a set with the outputs to unlock at the end of the method, and
+    // Save the old entries to restore them in case of an error on the file
+    std::set<COutPoint> outpointsToUnlock;
+    std::vector<CMasternodeConfig::CMasternodeEntry> oldEntries;
+    for (auto mne : entries) {
+        if (mnconflock) {
+            uint256 mnTxHash;
+            mnTxHash.SetHex(mne.getTxHash());
+            COutPoint outpoint = COutPoint(mnTxHash, (unsigned int)std::stoul(mne.getOutputIndex().c_str()));
+            outpointsToUnlock.insert(outpoint);
+        }
+        oldEntries.push_back(mne);
+    }
+
     // Clear the loaded config
     masternodeConfig.clear();
     // Load from disk
@@ -300,13 +316,30 @@ UniValue reloadmasternodeconfig (const JSONRPCRequest& request)
     if (!masternodeConfig.read(error)) {
         // Failed
         retObj.push_back(Pair("success", false));
-        retObj.push_back(Pair("message", "Error reloading masternode.conf, " + error));
+        retObj.push_back(Pair("message", "Error reloading masternode.conf, please fix it, " + error));
+
+        outpointsToUnlock.clear();
     } else {
         // Success
-        int newCount = masternodeConfig.getCount();
-        newCount = newCount == -1 ? 0 : newCount; // legacy preservation without showing a strange counting
+        int newCount = masternodeConfig.getCount() + 1; // legacy preservation without showing a strange counting
         retObj.push_back(Pair("success", true));
         retObj.push_back(Pair("message", "Successfully reloaded from the masternode.conf file (Prev nodes: " + std::to_string(prevCount) + ", New nodes: " + std::to_string(newCount) + ")"));
+
+        if (mnconflock) {
+            for (auto& mne : entries) {
+                uint256 mnTxHash;
+                mnTxHash.SetHex(mne.getTxHash());
+                COutPoint outpoint = COutPoint(mnTxHash, (unsigned int)std::stoul(mne.getOutputIndex().c_str()));
+                pwalletMain->LockCoin(outpoint);
+                outpointsToUnlock.erase(outpoint);
+            }
+        }
+    }
+
+    if (mnconflock) {
+        for (auto outpoint : outpointsToUnlock) {
+            pwalletMain->UnlockCoin(outpoint);
+        }
     }
 
     return retObj;
