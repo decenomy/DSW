@@ -54,6 +54,7 @@ const QString ZAPTXES2("-zapwallettxes=2");
 const QString UPGRADEWALLET("-upgradewallet");
 const QString REINDEX("-reindex");
 const QString RESYNC("-resync");
+const QString REWIND("-rewindblockindex");
 
 const struct {
     const char* url;
