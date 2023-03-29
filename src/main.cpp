@@ -4052,16 +4052,38 @@ bool RewindBlockIndexToLastCheckpoint(const CChainParams& chainparams)
 
     CValidationState state;
     const int blocksToRollBack = nHeight - checkPointHeight;
+    double blocksRolledBack = 0;
     // Iterate to start removing blocks
     while (nHeight > checkPointHeight) {
+        blocksRolledBack++;
+        // End loop if shutdown was requested
+        if (ShutdownRequested()) return false;
+
         if (!DisconnectTip(state)) {
+            FlushStateToDisk(state, FLUSH_STATE_PERIODIC);
             return error("%s: unable to disconnect block at height %i", __func__, nHeight);
         }
-        // Occasionally flush state to disk.
-        if (!FlushStateToDisk(state, FLUSH_STATE_PERIODIC))
-            return false;
+
+        if(nHeight % std::min((blocksToRollBack / 100), 1) == 0) {
+            uiInterface.InitMessage(
+                strprintf(
+                    _("Rewinding blocks: %d (%.2f%%) ..."),
+                    blocksRolledBack,
+                    (blocksRolledBack / blocksToRollBack) * 100
+                )
+            );
+            // flush state to disk.
+            if (!FlushStateToDisk(state, FLUSH_STATE_PERIODIC)) {
+                return false;
+            }
+        }
 
         nHeight = chainActive.Height();
+    }
+
+    // flush state to disk.
+    if (!FlushStateToDisk(state, FLUSH_STATE_PERIODIC)) {
+        return false;
     }
 
     // Collect blocks to be removed (blocks in mapBlockIndex must be at least BLOCK_VALID_TREE).
