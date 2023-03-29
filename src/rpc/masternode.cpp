@@ -105,7 +105,8 @@ UniValue listmasternodes(const JSONRPCRequest& request)
         std::string strTxHash = mn.vin.prevout.hash.ToString();
         uint32_t oIdx = mn.vin.prevout.n;
 
-        if (strFilter != "" && strTxHash.find(strFilter) == std::string::npos &&
+        if (strFilter != "" && 
+            strTxHash.find(strFilter) == std::string::npos &&
             mn.Status().find(strFilter) == std::string::npos &&
             EncodeDestination(mn.pubKeyCollateralAddress.GetID()).find(strFilter) == std::string::npos) continue;
 
@@ -131,7 +132,7 @@ UniValue listmasternodes(const JSONRPCRequest& request)
 
         ret.push_back(obj);
     }
-    
+
     return ret;
 }
 
