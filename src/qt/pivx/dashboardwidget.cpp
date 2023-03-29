@@ -840,11 +840,6 @@ void DashboardWidget::onChartArrowClicked(bool goLeft)
 
     if (updateYear)
         ui->comboBoxYears->setCurrentText(QString::number(yearFilter));
-
-    // enable/disable the pushButtonChartRight.
-    ui->pushButtonChartRight->setEnabled(!fEndDayisCurrent);
-
-
 }
 
 void DashboardWidget::windowResizeEvent(QResizeEvent* event)
