@@ -213,8 +213,12 @@ UniValue addnode(const JSONRPCRequest& request)
     std::string strCommand;
     if (request.params.size() == 2)
         strCommand = request.params[1].get_str();
-    if (request.fHelp || request.params.size() != 2 ||
-        (strCommand != "onetry" && strCommand != "add" && strCommand != "remove"))
+    else
+        strCommand = "onetry";
+
+    if (request.fHelp || 
+        (request.params.size() != 1 && request.params.size() != 2) ||
+        (request.params.size() == 2 && strCommand != "onetry" && strCommand != "add" && strCommand != "remove"))
         throw std::runtime_error(
             "addnode \"node\" \"add|remove|onetry\"\n"
             "\nAttempts add or remove a node from the addnode list.\n"
@@ -222,7 +226,7 @@ UniValue addnode(const JSONRPCRequest& request)
 
             "\nArguments:\n"
             "1. \"node\"     (string, required) The node (see getpeerinfo for nodes)\n"
-            "2. \"command\"  (string, required) 'add' to add a node to the list, 'remove' to remove a node from the list, 'onetry' to try a connection to the node once\n"
+            "2. \"command\"  (string, optional) 'add' to add a node to the list, 'remove' to remove a node from the list, 'onetry' (default) to try a connection to the node once\n"
 
             "\nExamples:\n" +
             HelpExampleCli("addnode", "\"192.168.0.6:__PORT_MAINNET__\" \"onetry\"") + HelpExampleRpc("addnode", "\"192.168.0.6:__PORT_MAINNET__\", \"onetry\""));
