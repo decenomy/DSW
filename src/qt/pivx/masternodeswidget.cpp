@@ -472,25 +472,63 @@ void MasterNodesWidget::onDeleteMNClicked()
 void MasterNodesWidget::onReloadClicked()
 {
     // Remember the previous MN count (for comparison)
-    int prevCount = masternodeConfig.getCount() + 1; // legacy preservation without showing a strange counting
+    auto mnconflock = GetBoolArg("-mnconflock", DEFAULT_MNCONFLOCK);
+    auto& entries = masternodeConfig.getEntries();
+    int prevCount = entries.size();
+
+    // Creates a set with the outputs to unlock at the end of the method, and
+    // Save the old entries to restore them in case of an error on the file
+    std::set<COutPoint> outpointsToUnlock;
+    std::vector<CMasternodeConfig::CMasternodeEntry> oldEntries;
+    for (auto mne : entries) {
+        if (mnconflock) {
+            uint256 mnTxHash;
+            mnTxHash.SetHex(mne.getTxHash());
+            COutPoint outpoint = COutPoint(mnTxHash, (unsigned int)std::stoul(mne.getOutputIndex().c_str()));
+            outpointsToUnlock.insert(outpoint);
+        }
+        oldEntries.push_back(mne);
+    }
+
     // Clear the loaded config
     masternodeConfig.clear();
     // Load from disk
     std::string error;
     QString message;
     if (!masternodeConfig.read(error)) {
-        message = tr("Error reloading masternode.conf, %1").arg(QString(error.c_str()));
+        // On Error
+        message = 
+            tr("Error reloading masternode.conf, please fix it, %1")
+                .arg(QString(error.c_str()));
+        outpointsToUnlock.clear();
     } else {
         // Success
-        int newCount = masternodeConfig.getCount() + 1; // legacy preservation without showing a strange counting
-        message = 
+        entries = masternodeConfig.getEntries();
+        int newCount = entries.size();
+        message =
             tr("Successfully reloaded from the masternode.conf file (Prev nodes: %1, New nodes: %2)")
                 .arg(QString(std::to_string(prevCount).c_str()))
                 .arg(QString(std::to_string(newCount).c_str()));
+
+        if (mnconflock) {
+            for (auto& mne : entries) {
+                uint256 mnTxHash;
+                mnTxHash.SetHex(mne.getTxHash());
+                COutPoint outpoint = COutPoint(mnTxHash, (unsigned int)std::stoul(mne.getOutputIndex().c_str()));
+                walletModel->lockCoin(outpoint);
+                outpointsToUnlock.erase(outpoint);
+            }
+        }
     }
 
     mnModel->updateMNList();
-    
+
+    if (mnconflock) {
+        for (auto outpoint : outpointsToUnlock) {
+            walletModel->unlockCoin(outpoint);
+        }
+    }
+
     inform(message);
 }
 
