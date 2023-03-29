@@ -1960,7 +1960,7 @@ DisconnectResult DisconnectBlock(CBlock& block, CBlockIndex* pindex, CCoinsViewC
 
     // Clean lastPaid
     auto amount = CMasternode::GetMasternodePayment(pindex->nHeight);
-    auto paidPayee = block.GetPaidPayee(pindex->nHeight, amount);
+    auto paidPayee = block.GetPaidPayee(amount);
     if(!paidPayee.empty()) {
         auto pmn = mnodeman.Find(paidPayee);
 
@@ -2202,7 +2202,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     
     // Fill lastPaid
     auto amount = CMasternode::GetMasternodePayment(pindex->nHeight);
-    auto paidPayee = block.GetPaidPayee(pindex->nHeight, amount);
+    auto paidPayee = block.GetPaidPayee(amount);
     if(!paidPayee.empty()) {
         auto pmn = mnodeman.Find(paidPayee);
 
