@@ -3,3 +3,4 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "ebf/jackpot/dice.h"
+#include "ebf/jackpot/jackpot.h"

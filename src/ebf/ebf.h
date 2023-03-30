@@ -5,6 +5,8 @@
 #ifndef DECENOMY_EBF_H
 #define DECENOMY_EBF_H
 
+#include "chain.h"
+
 enum EbfPlatforms { // 0-31 (32 Slots)
     SYSTEM          = 0x00,
     SAPPHIRE        = 0x01,
@@ -26,5 +28,8 @@ enum EbfContracts { // 0-7 (8 Slots per platform in one byte, more are possible 
     ROULETTE_CONTRACT       = EbfPlatforms::JACKPOT     + (0x01 << 5),
     LOTTERY_CONTRACT        = EbfPlatforms::JACKPOT     + (0X02 << 5),
 };
+
+bool CheckEBFs(const CBlock& block);
+void FillWithdrawalsAndPayouts(const CBlock& block, CMutableTransaction& txNew);
 
 #endif // DECENOMY_EBF_H

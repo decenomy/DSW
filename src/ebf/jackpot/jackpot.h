@@ -2,5 +2,7 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "ebf/jackpot/roulette.h"
-#include "ebf/jackpot/jackpot.h"
+#include "ebf/ebf.h"
+#include "chain.h"
+
+uint256 GetRandomSeed(const CBlockIndex* pindex) const;
