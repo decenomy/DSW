@@ -7,7 +7,8 @@
 
 enum EbfPlatforms { // 0-31 (32 Slots)
     BASE        = 0x00,
-    JACKPOT     = 0x01,
+    SAPPHIRE    = 0x01,
+    JACKPOT     = 0x02,
 };
 
 enum EbfType { // 0-7 (8 Slots for one byte, more are possible by using varint) 
