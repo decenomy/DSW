@@ -6,7 +6,7 @@
 #define DECENOMY_EBF_H
 
 enum EbfPlatforms { // 0-31 (32 Slots)
-    BASE            = 0x00,
+    SYSTEM          = 0x00,
     SAPPHIRE        = 0x01,
     JACKPOT         = 0x02,
     MAX_PLATFORMS   = 0x1F,
