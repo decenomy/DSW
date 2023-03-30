@@ -15,6 +15,7 @@ enum EbfType { // 0-7 (8 Slots for one byte, more are possible by using varint)
     // System
     HODL_CONTRACT           = 0x00 << 5 + EbfPlatforms::BASE,
     MASTERNODE_CONTRACT     = 0x01 << 5 + EbfPlatforms::BASE,
+    SPORK_CONTRACT          = 0x02 << 5 + EbfPlatforms::BASE,
 
     // Sapphire
     BOND_CONTRACT           = 0x00 << 5 + EbfPlatforms::SAPPHIRE,
