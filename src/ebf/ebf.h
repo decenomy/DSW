@@ -12,19 +12,19 @@ enum EbfPlatforms { // 0-31 (32 Slots)
     MAX_PLATFORMS   = 0x1F,
 };
 
-enum EbfType { // 0-7 (8 Slots for one byte, more are possible by using varint) 
+enum EbfContracts { // 0-7 (8 Slots per platform in one byte, more are possible by using varint) 
     // System
-    HODL_CONTRACT           = 0x00 << 5 + EbfPlatforms::BASE,
-    MASTERNODE_CONTRACT     = 0x01 << 5 + EbfPlatforms::BASE,
-    SPORK_CONTRACT          = 0x02 << 5 + EbfPlatforms::BASE,
+    HODL_CONTRACT           = EbfPlatforms::BASE + (0x00 << 5),
+    MASTERNODE_CONTRACT     = EbfPlatforms::BASE + (0x01 << 5),
+    SPORK_CONTRACT          = EbfPlatforms::BASE + (0x02 << 5),
 
     // Sapphire
-    BOND_CONTRACT           = 0x00 << 5 + EbfPlatforms::SAPPHIRE,
+    BOND_CONTRACT           = EbfPlatforms::SAPPHIRE + (0x00 << 5),
     
     // Jackpot
-    DICE_CONTRACT           = 0x00 << 5 + EbfPlatforms::JACKPOT,
-    ROULETTE_CONTRACT       = 0x01 << 5 + EbfPlatforms::JACKPOT,
-    LOTTERY_CONTRACT        = 0X02 << 5 + EbfPlatforms::JACKPOT,
+    DICE_CONTRACT           = EbfPlatforms::JACKPOT + (0x00 << 5),
+    ROULETTE_CONTRACT       = EbfPlatforms::JACKPOT + (0x01 << 5),
+    LOTTERY_CONTRACT        = EbfPlatforms::JACKPOT + (0X02 << 5),
 };
 
 #endif // DECENOMY_EBF_H
