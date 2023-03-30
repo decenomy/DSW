@@ -16,9 +16,9 @@ enum EbfPlatforms { // 0-31 (32 Slots)
 
 enum EbfContracts { // 0-7 (8 Slots per platform in one byte, more are possible by using varint) 
     // System
-    HODL_CONTRACT           = EbfPlatforms::BASE        + (0x00 << 5),
-    MASTERNODE_CONTRACT     = EbfPlatforms::BASE        + (0x01 << 5),
-    SPORK_CONTRACT          = EbfPlatforms::BASE        + (0x02 << 5),
+    HODL_CONTRACT           = EbfPlatforms::SYSTEM      + (0x00 << 5),
+    MASTERNODE_CONTRACT     = EbfPlatforms::SYSTEM      + (0x01 << 5),
+    SPORK_CONTRACT          = EbfPlatforms::SYSTEM      + (0x02 << 5),
 
     // Sapphire
     BOND_CONTRACT           = EbfPlatforms::SAPPHIRE    + (0x00 << 5),
