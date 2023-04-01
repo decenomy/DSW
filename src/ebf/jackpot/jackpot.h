@@ -4,5 +4,6 @@
 
 #include "ebf/ebf.h"
 #include "chain.h"
+#include "primitives/block.h"
 
-uint256 GetRandomSeed(const CBlockIndex* pindex) const;
+uint256 GetRandomSeed(const CBlock* pblock) const;
