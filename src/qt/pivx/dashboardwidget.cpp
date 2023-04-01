@@ -832,8 +832,6 @@ void DashboardWidget::onChartArrowClicked(bool goLeft)
     }
 
     refreshChart();
-    //Check if data end day is current date and monthfilter is current month
-    bool fEndDayisCurrent = dataenddate  == currentDate.day() && monthFilter == currentDate.month();
 
     if (updateMonth)
         ui->comboBoxMonths->setCurrentIndex(monthFilter - 1);
