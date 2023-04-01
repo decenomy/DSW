@@ -298,6 +298,7 @@ static const CRPCCommand vRPCCommands[] =
         {"network", "setban", &setban, true },
         {"network", "listbanned", &listbanned, true },
         {"network", "clearbanned", &clearbanned, true },
+        {"network", "checkconnection", &checkconnection, true },
 
         /* Block chain and UTXO */
         {"blockchain", "getblockindexstats", &getblockindexstats, true },
@@ -367,6 +368,7 @@ static const CRPCCommand vRPCCommands[] =
         {"jackpot", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
         {"jackpot", "masternodecurrent", &masternodecurrent, true },
         {"jackpot", "startmasternode", &startmasternode, true },
+        {"jackpot", "reloadmasternodeconfig", &reloadmasternodeconfig, true },
         {"jackpot", "createmasternodekey", &createmasternodekey, true },
         {"jackpot", "getmasternodeoutputs", &getmasternodeoutputs, true },
         {"jackpot", "listmasternodeconf", &listmasternodeconf, true },
@@ -376,6 +378,7 @@ static const CRPCCommand vRPCCommands[] =
         {"jackpot", "getmasternodescores", &getmasternodescores, true },
         {"jackpot", "mnsync", &mnsync, true },
         {"jackpot", "spork", &spork, true },
+        {"jackpot", "mnping", &mnping, true },
 
 #ifdef ENABLE_WALLET
         /* Wallet */
