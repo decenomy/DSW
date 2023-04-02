@@ -7,6 +7,9 @@
 
 #include "chain.h"
 
+#define EBF_MESSAGE_FIRST_FRAGMENT  0xE6
+#define EBF_MESSAGE_SECOND_FRAGMENT 0x72
+
 enum EbfPlatforms { // 0-31 (32 Slots)
     SYSTEM          = 0x00,
     SAPPHIRE        = 0x01,
