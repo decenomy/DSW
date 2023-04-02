@@ -108,6 +108,7 @@ BITCOIN_CORE_H = \
   consensus/params.h \
   consensus/upgrades.h \
   ebf/ebf.h \
+  ebf/jackpot/jackpot.h \
   primitives/block.h \
   primitives/transaction.h \
   core_io.h \
@@ -370,6 +371,7 @@ libbitcoin_common_a_SOURCES = \
   compressor.cpp \
   consensus/merkle.cpp \
   ebf/ebf.cpp \
+  ebf/jackpot/jackpot.cpp \
   primitives/block.cpp \
   primitives/transaction.cpp \
   core_read.cpp \

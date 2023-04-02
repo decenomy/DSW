@@ -217,11 +217,58 @@ void CBlockIndex::SetNewStakeModifier(const uint256& prevoutId)
     if (!Params().GetConsensus().NetworkUpgradeActive(nHeight, Consensus::UPGRADE_STAKE_MODIFIER_V2)) return;
     if (!pprev) throw std::runtime_error(strprintf("%s : ERROR: null pprev", __func__));
 
+    SetStakeModifier(CalculateStakeModifierV2(pprev, prevoutId));
+}
+
+// Generates and sets new V3 stake modifier
+void CBlockIndex::SetNewStakeModifierV3(const COutPoint& prevout)
+{
+    // Shouldn't be called on V1 modifier's blocks (or before setting pprev)
+    if (!Params().GetConsensus().NetworkUpgradeActive(nHeight, Consensus::UPGRADE_STAKE_MODIFIER_V2)) return;
+    if (!Params().GetConsensus().NetworkUpgradeActive(nHeight, Consensus::UPGRADE_STAKE_MODIFIER_V3)) return;
+    if (!pprev) throw std::runtime_error(strprintf("%s : ERROR: null pprev", __func__));
+
+    SetStakeModifier(CalculateStakeModifierV3(pprev, prevout));
+}
+
+uint256 CBlockIndex::CalculateStakeModifier(const CBlock& block) {
+
+    auto& consensus = Params().GetConsensus();
+
+    auto pprev = mapBlockIndex[block.hashPrevBlock];
+
+    if (!pprev) throw std::runtime_error(strprintf("%s : ERROR: null pprev", __func__));
+
+    auto nHeight = pprev->nHeight + 1;
+
+    if (!consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_STAKE_MODIFIER_V2)) {
+        throw std::runtime_error(strprintf("%s : ERROR: UPGRADE_STAKE_MODIFIER_V2 not activated", __func__));
+    } else {
+        if (!consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_STAKE_MODIFIER_V3)) {
+            return CBlockIndex::CalculateStakeModifierV2(pprev, block.vtx[1].vin[0].prevout.hash);
+        } else {
+            return CBlockIndex::CalculateStakeModifierV3(pprev, block.vtx[1].vin[0].prevout);
+        }
+    }
+
+    return UINT256_ZERO;
+}
+
+uint256 CBlockIndex::CalculateStakeModifierV2(const CBlockIndex* pprev, const uint256& prevoutId)  {
     // Generate Hash(prevoutId | prevModifier) - switch with genesis modifier (0) on upgrade block
     CHashWriter ss(SER_GETHASH, 0);
     ss << prevoutId;
     ss << pprev->GetStakeModifierV2();
-    SetStakeModifier(ss.GetHash());
+    return ss.GetHash();
+}
+
+uint256 CBlockIndex::CalculateStakeModifierV3(const CBlockIndex* pprev, const COutPoint& prevout) {
+    // Generate Hash(prevoutHash | prevoutN | prevPubKey | prevModifier)
+    CHashWriter ss(SER_GETHASH, 0);
+    ss << prevout.hash;
+    ss << prevout.n;
+    ss << pprev->GetStakeModifierV2();
+    return ss.GetHash();
 }
 
 // Returns V1 stake modifier (uint64_t)

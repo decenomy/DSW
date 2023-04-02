@@ -53,6 +53,10 @@ const struct NUInfo NetworkUpgradeInfo[Consensus::MAX_NETWORK_UPGRADES] = {
                 /*.strInfo =*/ "new masternode ranking system",
         },
         {
+                /*.strName =*/ "stake_modifier_v3",
+                /*.strInfo =*/ "new 256-bit stake modifier",
+        },
+        {
                 /*.strName =*/ "EBFs",
                 /*.strInfo =*/ "activation of the EBF system",
         },

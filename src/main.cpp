@@ -2893,8 +2893,13 @@ CBlockIndex* AddToBlockIndex(const CBlock& block)
             pindexNew->SetNewStakeModifier();
 
         } else {
-            // compute and set new V2 stake modifier (hash of prevout and prevModifier)
-            pindexNew->SetNewStakeModifier(block.vtx[1].vin[0].prevout.hash);
+            if (!consensus.NetworkUpgradeActive(pindexNew->nHeight, Consensus::UPGRADE_STAKE_MODIFIER_V3)) {
+                // compute and set new V2 stake modifier (hash of prevout and prevModifier)
+                pindexNew->SetNewStakeModifier(block.vtx[1].vin[0].prevout.hash);
+            } else {
+                // compute and set new V3 stake modifier (hash of prevout and prevModifier)
+                pindexNew->SetNewStakeModifierV3(block.vtx[1].vin[0].prevout);
+            }
         }
     }
     pindexNew->nChainWork = (pindexNew->pprev ? pindexNew->pprev->nChainWork : 0) + GetBlockProof(*pindexNew);

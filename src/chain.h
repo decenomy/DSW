@@ -174,6 +174,9 @@ enum {
  */
 class CBlockIndex
 {
+private:
+    static uint256 CalculateStakeModifierV2(const CBlockIndex* pprev, const uint256& prevoutId);
+    static uint256 CalculateStakeModifierV3(const CBlockIndex* pprev, const COutPoint& prevout);
 public:
     //! pointer to the hash of the block, if any. memory is owned by this CBlockIndex
     const uint256* phashBlock{nullptr};
@@ -258,6 +261,7 @@ public:
     void SetNewStakeModifier();                             // generates and sets new v1 modifier
     void SetStakeModifier(const uint256& nStakeModifier);
     void SetNewStakeModifier(const uint256& prevoutId);     // generates and sets new v2 modifier
+    void SetNewStakeModifierV3(const COutPoint& prevout);     // generates and sets new v3 modifier
     uint64_t GetStakeModifierV1() const;
     uint256 GetStakeModifierV2() const;
     CScript* GetPaidPayee();
@@ -272,6 +276,8 @@ public:
     //! Efficiently find an ancestor of this block.
     CBlockIndex* GetAncestor(int height);
     const CBlockIndex* GetAncestor(int height) const;
+
+    static uint256 CalculateStakeModifier(const CBlock& block);
 };
 
 /** Used to marshal pointers into hashes for db storage. */
