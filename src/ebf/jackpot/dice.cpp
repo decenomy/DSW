@@ -10,13 +10,14 @@ void CDiceEBF::ProcessBlock(CValidationState& state) {
     //   Perform Payouts
 }
 
-CScript CDiceEBF::GetBetScript(DiceBetType betType, CAmount amount) {
+CScript CDiceEBF::GetBetScript(DiceBetType betType, CAmount amount, CKeyID payee) {
     return CScript() << 
-        OP_RETURN <<                                // Bets are started with an OP_RETURN
-        CScriptNum(EBF_MESSAGE_FIRST_FRAGMENT) <<   // and identified by two random magic numbers
-        CScriptNum(EBF_MESSAGE_SECOND_FRAGMENT) <<  // ...
-        CScriptNum(EbfContracts::DICE_CONTRACT) <<  // Defines the type of the contract
-        CScriptNum(1) <<                            // Defines the version of the contract to run
-        CScriptNum(betType) <<                      // Defines the method of the contract, in this case: a bet on a roll of two dices
-        CScriptNum(amount);                         // Finally the amount being bet
+        OP_RETURN <<                                // 1 byte   Bets are started with an OP_RETURN
+        CScriptNum(EBF_MESSAGE_FIRST_FRAGMENT) <<   // 1 byte   and identified by two random magic numbers
+        CScriptNum(EBF_MESSAGE_SECOND_FRAGMENT) <<  // 1 byte   ...
+        CScriptNum(EbfContracts::DICE_CONTRACT) <<  // 1 byte   Defines the type of the contract
+        CScriptNum(1) <<                            // 1 byte   Defines the version of the contract to run
+        CScriptNum(betType) <<                      // 1 byte   Defines the method of the contract, in this case: a bet on a roll of two dices
+        CScriptNum(amount) <<                       // 8 bytes  Defines the amount being bet
+        ToByteVector(payee);                        // 20 bytes Finally define the key id of the address to be paid in case of a payout
 }

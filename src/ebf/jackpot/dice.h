@@ -53,7 +53,7 @@ public:
     CDiceEBF(const CBlock& block) : CJackpotEBF(block) {}
     void ProcessBlock(CValidationState& state);
 
-    static CScript GetBetScript(DiceBetType betType, CAmount amount);
+    static CScript GetBetScript(DiceBetType betType, CAmount amount, CKeyID payee);
 };
 
 #endif // DECENOMY_EBF_JACKPOT_DICE_H
