@@ -3199,7 +3199,7 @@ bool CheckBlockTime(const CBlockHeader& block, CValidationState& state, CBlockIn
 }
 
 //! Returns last CBlockIndex* that is a checkpoint
-static const CBlockIndex* GetLastCheckpoint() EXCLUSIVE_LOCKS_REQUIRED(cs_main)
+const CBlockIndex* GetLastCheckpoint() EXCLUSIVE_LOCKS_REQUIRED(cs_main)
 {
     AssertLockHeld(cs_main);
 
@@ -4041,20 +4041,22 @@ bool CVerifyDB::VerifyDB(CCoinsView* coinsview, int nCheckLevel, int nCheckDepth
     return true;
 }
 
-bool RewindBlockIndexToLastCheckpoint(const CChainParams& chainparams)
+bool RewindBlockIndex(int blocksToRollBack)
 {
     LOCK(cs_main);
 
-    // Get current Height and current Checkpoints
-    int nHeight = chainActive.Height();
-    const CBlockIndex* prevCheckPoint = GetLastCheckpoint();
-    const int checkPointHeight = prevCheckPoint ? prevCheckPoint->nHeight : 0;
-
     CValidationState state;
-    const int blocksToRollBack = nHeight - checkPointHeight;
+    int nHeight = chainActive.Height();
+
+    if (blocksToRollBack > nHeight) {
+        return false;
+    }
+
+    int targetHeight = nHeight - blocksToRollBack;
+
     double blocksRolledBack = 0;
     // Iterate to start removing blocks
-    while (nHeight > checkPointHeight) {
+    while (nHeight > targetHeight) {
         blocksRolledBack++;
         // End loop if shutdown was requested
         if (ShutdownRequested()) return false;
@@ -4064,7 +4066,7 @@ bool RewindBlockIndexToLastCheckpoint(const CChainParams& chainparams)
             return error("%s: unable to disconnect block at height %i", __func__, nHeight);
         }
 
-        if(nHeight % std::min((blocksToRollBack / 100), 1) == 0) {
+        if(nHeight % std::max((blocksToRollBack / 100), 1) == 0) {
             uiInterface.InitMessage(
                 strprintf(
                     _("Rewinding blocks: %d (%.2f%%) ..."),

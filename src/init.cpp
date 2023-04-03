@@ -399,7 +399,7 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-reindex", _("Rebuild block chain index from current blk000??.dat files") + " " + _("on startup"));
     strUsage += HelpMessageOpt("-reindexmoneysupply", strprintf(_("Reindex the %s and z%s money supply statistics"), CURRENCY_UNIT, CURRENCY_UNIT) + " " + _("on startup"));
     strUsage += HelpMessageOpt("-resync", _("Delete blockchain folders and resync from scratch") + " " + _("on startup"));
-    strUsage += HelpMessageOpt("-rewindblockindex", _("Rewind blockchain to the last checkpoint"));
+    strUsage += HelpMessageOpt("-rewindblockindex[=<n or hash>]", _("When used without a value, rewinds blockchain to last checkpoint. When passing a number, rolls back the chain by the given number of blocks. When passing a block hash (as a hex string), rewind up to (not including) the block with the matching hash."));
 #if !defined(WIN32)
     strUsage += HelpMessageOpt("-sysperms", _("Create new files with system default permissions, instead of umask 077 (only effective with disabled wallet functionality)"));
 #endif
@@ -1522,10 +1522,46 @@ bool AppInit2()
                 if (!fReindex) {
                     uiInterface.InitMessage(_("Verifying blocks..."));
 
-                    if (chainActive.Tip() != NULL && GetBoolArg("-rewindblockindex", false)) {
-                        uiInterface.InitMessage(_("Rewinding blocks to last checkpoint..."));
-                        if (!RewindBlockIndexToLastCheckpoint(chainparams)) {
-                            strLoadError = _("Unable to rewind the blockchain to last checkpoint. You will need to redownload the blockchain");
+                    // If the active chain has blocks and -rewindblockindex option is enabled.
+                    if (chainActive.Tip() != NULL && !SoftSetBoolArg("-rewindblockindex", false)) {
+
+                        // Figure out whether we got a parameter with -rewindblockindex, what type it is,
+                        // and how many blocks to rewind.
+                        std::string targetBlockHashStr = GetArg("-rewindblockindex", "");
+
+                        // Determining the default value (up to last checkpoint).
+                        int nHeight = chainActive.Height();
+                        const CBlockIndex* prevCheckPoint;
+                        {
+                            LOCK(cs_main);
+                            prevCheckPoint = GetLastCheckpoint();
+                        }
+                        const int checkPointHeight = prevCheckPoint ? prevCheckPoint->nHeight : 0;
+                        int blocksToRollBack = nHeight - checkPointHeight;
+
+                        // 256 bit hash has length 256/4=64 when represented as hex.
+                        if (targetBlockHashStr.length() == 64) {
+                            const uint256 hash(uint256S(targetBlockHashStr));
+
+                            if (mapBlockIndex.count(hash) == 0) {
+                                strLoadError = _("Block not found. Unable to rewind the blockchain to the given block.");
+                                break;
+                            }
+
+                            CBlockIndex* block = LookupBlockIndex(hash);
+
+                            blocksToRollBack = nHeight - block->nHeight;
+                        } else if (!targetBlockHashStr.empty()) {
+                            blocksToRollBack = GetArg("-rewindblockindex", 0);
+                            if (nHeight < blocksToRollBack || blocksToRollBack < 1) {
+                                strLoadError = _("Invalid value. Unable to rewind the blockchain by the given number of blocks.");
+                                break;
+                            }
+                        }
+
+                        uiInterface.InitMessage(_("Rewinding blocks..."));
+                        if (!RewindBlockIndex(blocksToRollBack)) {
+                            strLoadError = _("Unable to rewind the blockchain. You will need to redownload the blockchain");
                             break;
                         }
                     }

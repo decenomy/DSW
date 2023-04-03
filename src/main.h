@@ -395,8 +395,10 @@ public:
     bool VerifyDB(CCoinsView* coinsview, int nCheckLevel, int nCheckDepth);
 };
 
-/** Rewind chain up to the last checkpoint */
-bool RewindBlockIndexToLastCheckpoint(const CChainParams& chainparams);
+/** Rewind chain by the given number of blocks */
+bool RewindBlockIndex(int blocksToRollBack);
+
+const CBlockIndex* GetLastCheckpoint() EXCLUSIVE_LOCKS_REQUIRED(cs_main);
 
 inline CBlockIndex* LookupBlockIndex(const uint256& hash) EXCLUSIVE_LOCKS_REQUIRED(cs_main)
 {
