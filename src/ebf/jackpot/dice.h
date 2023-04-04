@@ -48,12 +48,48 @@ enum DiceBetType {
     OddSum      = 0x1B, // Odd Sum
 };
 
+class CDiceEBFBet {
+private:
+    uint8_t version = 0x01;
+    DiceBetType betType; 
+    CAmount amount; 
+    CKeyID payee;
+public:
+    CDiceEBFBet(DiceBetType betType, CAmount amount, CKeyID payee) : betType(betType), amount(amount), payee(payee) {}
+    CDiceEBFBet(CScript script);
+
+    ADD_SERIALIZE_METHODS;
+
+    template <typename Stream, typename Operation>
+    inline void SerializationOp(Stream& s, Operation ser_action)
+    {
+        uint8_t op                  = static_cast<uint8_t>(OP_RETURN);
+        uint8_t first_fragment      = EBF_MESSAGE_FIRST_FRAGMENT;
+        uint8_t second_fragment     = EBF_MESSAGE_SECOND_FRAGMENT;
+        uint8_t contract_type       = static_cast<uint8_t>(DICE_CONTRACT);
+        uint8_t betType             = static_cast<uint8_t>(this->betType);
+
+        READWRITE(op);
+        READWRITE(first_fragment);
+        READWRITE(second_fragment);
+        READWRITE(contract_type);
+        READWRITE(version);
+        READWRITE(betType);
+        READWRITE(amount);
+        READWRITE(payee);
+
+        if (ser_action.ForRead()) {
+            this->betType = static_cast<DiceBetType>(betType);
+        }
+    }
+    
+    CScript ToScript();
+};
+
 class CDiceEBF : public CJackpotEBF {
 public:
     CDiceEBF(const CBlock& block) : CJackpotEBF(block) {}
     void ProcessBlock(CValidationState& state);
-
-    static CScript GetBetScript(DiceBetType betType, CAmount amount, CKeyID payee);
 };
 
 #endif // DECENOMY_EBF_JACKPOT_DICE_H
