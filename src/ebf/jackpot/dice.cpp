@@ -5,9 +5,20 @@
 #include "ebf/jackpot/dice.h"
 #include "streams.h"
 
-CDiceEBFBet::CDiceEBFBet(CScript script)
+#define DICE_EBF_SCRIPT_SIZE    26
+#define DICE_EBF_MIN_AMOUNT     1000000
+
+CDiceEBFBet::CDiceEBFBet(CTxOut txout)
 {
-    if (script.size() != 34) {
+    amount = txout.nValue;
+
+    if(amount < DICE_EBF_MIN_AMOUNT) {
+        throw std::runtime_error(strprintf("%s : ERROR: amount too low", __func__));
+    }
+
+    auto script = txout.scriptPubKey;
+
+    if (script.size() != DICE_EBF_SCRIPT_SIZE) {
         throw std::runtime_error(strprintf("%s : ERROR: script with invalid size", __func__));
     }
 
@@ -29,7 +40,7 @@ CDiceEBFBet::CDiceEBFBet(CScript script)
     this->Unserialize(ss);
 }
 
-CScript CDiceEBFBet::ToScript()
+CTxOut CDiceEBFBet::ToTxOut()
 {
     CDataStream ss(SER_NETWORK, PROTOCOL_VERSION);
     this->Serialize(ss);
@@ -37,7 +48,7 @@ CScript CDiceEBFBet::ToScript()
     for(uint8_t byte : ss) {
         script << static_cast<opcodetype>(byte);
     }
-    return script;
+    return CTxOut(amount, script);
 }
 
 void CDiceEBF::ProcessBlock(CValidationState& state)

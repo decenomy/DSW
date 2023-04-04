@@ -56,7 +56,7 @@ private:
     CKeyID payee;
 public:
     CDiceEBFBet(DiceBetType betType, CAmount amount, CKeyID payee) : betType(betType), amount(amount), payee(payee) {}
-    CDiceEBFBet(CScript script);
+    CDiceEBFBet(CTxOut txout);
 
     ADD_SERIALIZE_METHODS;
 
@@ -75,7 +75,6 @@ public:
         READWRITE(contract_type);
         READWRITE(version);
         READWRITE(betType);
-        READWRITE(amount);
         READWRITE(payee);
 
         if (ser_action.ForRead()) {
@@ -83,7 +82,7 @@ public:
         }
     }
     
-    CScript ToScript();
+    CTxOut ToTxOut();
 };
 
 class CDiceEBF : public CJackpotEBF {
