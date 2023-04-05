@@ -6,7 +6,10 @@
 #define DECENOMY_EBF_JACKPOT_DICE_H
 
 #include "ebf/jackpot/jackpot.h"
-#include "script/script.h"
+
+#define DICE_EBF_SCRIPT_SIZE    26
+#define DICE_EBF_MIN_AMOUNT     1000000
+#define DICE_EBF_BLOCK_DELAY    6
 
 enum DiceFace {
     One     = 0x01,
@@ -88,7 +91,7 @@ public:
 class CDiceEBF : public CJackpotEBF {
 public:
     CDiceEBF(const CBlock& block) : CJackpotEBF(block) {}
-    void ProcessBlock(CValidationState& state);
+    void CheckAndRun(const CValidationState& state, const std::vector<CTxOut>& vout);
 };
 
 #endif // DECENOMY_EBF_JACKPOT_DICE_H

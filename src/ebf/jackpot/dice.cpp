@@ -5,9 +5,6 @@
 #include "ebf/jackpot/dice.h"
 #include "streams.h"
 
-#define DICE_EBF_SCRIPT_SIZE    26
-#define DICE_EBF_MIN_AMOUNT     1000000
-
 CDiceEBFBet::CDiceEBFBet(CTxOut txout)
 {
     amount = txout.nValue;
@@ -25,7 +22,7 @@ CDiceEBFBet::CDiceEBFBet(CTxOut txout)
     if (script[0] != OP_RETURN ||
         script[1] != EBF_MESSAGE_FIRST_FRAGMENT ||
         script[2] != EBF_MESSAGE_SECOND_FRAGMENT ||
-        script[3] != EbfContracts::DICE_CONTRACT ||
+        script[3] != EBFContracts::DICE_CONTRACT ||
         script[4] != 0x01) {
         throw std::runtime_error(strprintf("%s : ERROR: bet with invalid header format", __func__));
     }
@@ -51,8 +48,7 @@ CTxOut CDiceEBFBet::ToTxOut()
     return CTxOut(amount, script);
 }
 
-void CDiceEBF::ProcessBlock(CValidationState& state)
-{
+void CDiceEBF::CheckAndRun(const CValidationState& state, const std::vector<CTxOut>& vout) {
     // Foreach bet made at 6 blocks ago
     //   Check if it won
     //      If yes => perform the payouts

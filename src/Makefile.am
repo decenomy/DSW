@@ -112,6 +112,10 @@ BITCOIN_CORE_H = \
   ebf/jackpot/lottery.h \
   ebf/jackpot/jackpot.h \
   ebf/jackpot/roulette.h \
+  ebf/sapphire/bond.h \
+  ebf/system/hodl.h \
+  ebf/system/masternode.h \
+  ebf/system/spork.h \
   primitives/block.h \
   primitives/transaction.h \
   core_io.h \
@@ -378,6 +382,10 @@ libbitcoin_common_a_SOURCES = \
   ebf/jackpot/lottery.cpp \
   ebf/jackpot/jackpot.cpp \
   ebf/jackpot/roulette.cpp \
+  ebf/sapphire/bond.cpp \
+  ebf/system/hodl.cpp \
+  ebf/system/masternode.cpp \
+  ebf/system/spork.cpp \
   primitives/block.cpp \
   primitives/transaction.cpp \
   core_read.cpp \

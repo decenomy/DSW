@@ -3,4 +3,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "ebf/jackpot/lottery.h"
-#include "ebf/jackpot/jackpot.h"
+
+void CLotteryEBF::CheckAndRun(const CValidationState& state, const std::vector<CTxOut>& vout) {
+    
+}

@@ -3,3 +3,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "ebf/sapphire/bond.h"
+
+void CBondEBF::CheckAndRun(const CValidationState& state, const std::vector<CTxOut>& vout) {
+    
+}

@@ -9,13 +9,11 @@
 #include "ebf/ebf.h"
 #include "primitives/block.h"
 
-class CJackpotEBF {
+class CJackpotEBF : CEBF {
 protected:
-    const CBlock& block;
     uint256 GetRandomSeed(const CBlock& block);
 public:
-    CJackpotEBF(const CBlock& block) : block(block) {}
-    virtual void ProcessBlock(CValidationState& state) = 0;
+    CJackpotEBF(const CBlock& block) : CEBF(block) {}
 };
 
 #endif // DECENOMY_EBF_JACKPOT_H

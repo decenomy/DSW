@@ -3,3 +3,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "ebf/system/masternode.h"
+
+void CMasternodeEBF::CheckAndRun(const CValidationState& state, const std::vector<CTxOut>& vout) {
+    
+}
