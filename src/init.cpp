@@ -1542,8 +1542,7 @@ bool AppInit2()
                         // 256 bit hash has length 256/4=64 when represented as hex.
                         if (targetBlockHashStr.length() == 64) {
                             const uint256 hash(uint256S(targetBlockHashStr));
-
-                            if (mapBlockIndex.count(hash) == 0) {
+                            if (!IsBlockHashInChain(hash)) {
                                 strLoadError = _("Block not found. Unable to rewind the blockchain to the given block.");
                                 break;
                             }
