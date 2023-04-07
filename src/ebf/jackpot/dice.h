@@ -8,7 +8,8 @@
 #include "ebf/jackpot/jackpot.h"
 
 #define DICE_EBF_SCRIPT_SIZE    26
-#define DICE_EBF_MIN_AMOUNT     1000000
+#define DICE_EBF_MIN_AMOUNT     COIN
+#define DICE_EBF_MAX_AMOUNT     1000 * COIN
 #define DICE_EBF_BLOCK_DELAY    6
 
 enum DiceFace {
@@ -51,47 +52,39 @@ enum DiceBetType {
     OddSum      = 0x1B, // Odd Sum
 };
 
-class CDiceEBFBet {
+class CDiceEBFBet : public CEBFAction {
 private:
-    uint8_t version = 0x01;
     DiceBetType betType; 
-    CAmount amount; 
     CKeyID payee;
 public:
-    CDiceEBFBet(DiceBetType betType, CAmount amount, CKeyID payee) : betType(betType), amount(amount), payee(payee) {}
-    CDiceEBFBet(CTxOut txout);
+    CDiceEBFBet(DiceBetType betType, CAmount amount, CKeyID payee);
+    CDiceEBFBet(CTxOut& txout);
 
     ADD_SERIALIZE_METHODS;
 
     template <typename Stream, typename Operation>
     inline void SerializationOp(Stream& s, Operation ser_action)
     {
-        uint8_t op                  = static_cast<uint8_t>(OP_RETURN);
-        uint8_t first_fragment      = EBF_MESSAGE_FIRST_FRAGMENT;
-        uint8_t second_fragment     = EBF_MESSAGE_SECOND_FRAGMENT;
-        uint8_t contract_type       = static_cast<uint8_t>(DICE_CONTRACT);
-        uint8_t betType             = static_cast<uint8_t>(this->betType);
+        CEBFAction::SerializationOp(s, ser_action);
 
-        READWRITE(op);
-        READWRITE(first_fragment);
-        READWRITE(second_fragment);
-        READWRITE(contract_type);
-        READWRITE(version);
+        uint8_t betType = static_cast<uint8_t>(this->betType);
         READWRITE(betType);
-        READWRITE(payee);
-
         if (ser_action.ForRead()) {
             this->betType = static_cast<DiceBetType>(betType);
         }
+
+        READWRITE(payee);
     }
     
     CTxOut ToTxOut();
+
+    static bool CheckTxOut(const CTxOut& txout, CValidationState &state);
 };
 
 class CDiceEBF : public CJackpotEBF {
 public:
     CDiceEBF(const CBlock& block) : CJackpotEBF(block) {}
-    void CheckAndRun(const CValidationState& state, const std::vector<CTxOut>& vout);
+    bool Run(CValidationState& state, const std::vector<CTxOut>& vout);
 };
 
 #endif // DECENOMY_EBF_JACKPOT_DICE_H

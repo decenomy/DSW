@@ -10,7 +10,7 @@
 class CRouletteEBF : public CJackpotEBF {
 public:
     CRouletteEBF(const CBlock& block) : CJackpotEBF(block) {}
-    void CheckAndRun(const CValidationState& state, const std::vector<CTxOut>& vout);
+    bool Run(CValidationState& state, const std::vector<CTxOut>& vout);
 };
 
 #endif // DECENOMY_EBF_JACKPOT_ROULETTE_H

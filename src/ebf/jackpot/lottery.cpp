@@ -4,6 +4,6 @@
 
 #include "ebf/jackpot/lottery.h"
 
-void CLotteryEBF::CheckAndRun(const CValidationState& state, const std::vector<CTxOut>& vout) {
-    
+bool CLotteryEBF::Run(CValidationState& state, const std::vector<CTxOut>& vout) {
+    return true;
 }

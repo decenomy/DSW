@@ -10,7 +10,7 @@
 class CHodlEBF : public CEBF {
 public:
     CHodlEBF(const CBlock& block) : CEBF(block) {}
-    void CheckAndRun(const CValidationState& state, const std::vector<CTxOut>& vout);
+    bool Run(CValidationState& state, const std::vector<CTxOut>& vout);
 };
 
 #endif // DECENOMY_EBF_SYSTEM_HODL_H

@@ -10,7 +10,7 @@
 class CSporkEBF : public CEBF {
 public:
     CSporkEBF(const CBlock& block) : CEBF(block) {}
-    void CheckAndRun(const CValidationState& state, const std::vector<CTxOut>& vout);
+    bool Run(CValidationState& state, const std::vector<CTxOut>& vout);
 };
 
 #endif // DECENOMY_EBF_SYSTEM_SPORK_H

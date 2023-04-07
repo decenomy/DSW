@@ -5,7 +5,7 @@
 #include "ebf/jackpot/jackpot.h"
 #include "chain.h"
 
-uint256 CJackpotEBF::GetRandomSeed(const CBlock& block) {
+uint256 CJackpotEBF::GetRandomSeed() {
     // V1 Get the entropy value directly from the stake modifier
     return CBlockIndex::CalculateStakeModifier(block);
 }

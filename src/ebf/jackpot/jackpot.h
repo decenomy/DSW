@@ -9,9 +9,9 @@
 #include "ebf/ebf.h"
 #include "primitives/block.h"
 
-class CJackpotEBF : CEBF {
+class CJackpotEBF : public CEBF {
 protected:
-    uint256 GetRandomSeed(const CBlock& block);
+    uint256 GetRandomSeed();
 public:
     CJackpotEBF(const CBlock& block) : CEBF(block) {}
 };

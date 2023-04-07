@@ -21,6 +21,7 @@
 #include "consensus/merkle.h"
 #include "consensus/tx_verify.h"
 #include "consensus/validation.h"
+#include "ebf/ebf.h"
 #include "fs.h"
 #include "init.h"
 #include "kernel.h"
@@ -1075,6 +1076,10 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState &state, const C
         pool.TrimToSize(GetArg("-maxmempool", DEFAULT_MAX_MEMPOOL_SIZE) * 1000000);
         if (!pool.exists(tx.GetHash()))
             return state.DoS(0, false, REJECT_INSUFFICIENTFEE, "mempool full");
+    }
+
+    if(!CEBFPlatform::AcceptToMemoryPoolWorker(pool, state, tx)) {
+        return false;
     }
 
     GetMainSignals().SyncTransaction(tx, nullptr, CMainSignals::SYNC_TRANSACTION_NOT_IN_BLOCK);
