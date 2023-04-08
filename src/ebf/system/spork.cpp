@@ -4,6 +4,6 @@
 
 #include "ebf/system/spork.h"
 
-bool CSporkEBF::Run(CValidationState& state, const std::vector<CTxOut>& vout) {
+bool CSporkEBF::Run(CValidationState& state, std::vector<CTxOut>& vout) {
     return true;
 }

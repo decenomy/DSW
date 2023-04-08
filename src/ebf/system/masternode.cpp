@@ -4,6 +4,6 @@
 
 #include "ebf/system/masternode.h"
 
-bool CMasternodeEBF::Run(CValidationState& state, const std::vector<CTxOut>& vout) {
+bool CMasternodeEBF::Run(CValidationState& state, std::vector<CTxOut>& vout) {
     return true;   
 }

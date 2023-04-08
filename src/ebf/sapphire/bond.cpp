@@ -4,6 +4,6 @@
 
 #include "ebf/sapphire/bond.h"
 
-bool CBondEBF::Run(CValidationState& state, const std::vector<CTxOut>& vout) {
+bool CBondEBF::Run(CValidationState& state, std::vector<CTxOut>& vout) {
     return true;
 }

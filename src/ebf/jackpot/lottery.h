@@ -10,7 +10,7 @@
 class CLotteryEBF : public CJackpotEBF {
 public:
     CLotteryEBF(const CBlock& block) : CJackpotEBF(block) {}
-    bool Run(CValidationState& state, const std::vector<CTxOut>& vout);
+    bool Run(CValidationState& state, std::vector<CTxOut>& vout);
 };
 
 #endif // DECENOMY_EBF_JACKPOT_LOTTERY_H

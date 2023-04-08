@@ -4,6 +4,6 @@
 
 #include "ebf/jackpot/roulette.h"
 
-bool CRouletteEBF::Run(CValidationState& state, const std::vector<CTxOut>& vout) {
+bool CRouletteEBF::Run(CValidationState& state, std::vector<CTxOut>& vout) {
     return true;
 }

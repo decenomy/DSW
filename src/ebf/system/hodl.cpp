@@ -4,6 +4,6 @@
 
 #include "ebf/system/hodl.h"
 
-bool CHodlEBF::Run(CValidationState& state, const std::vector<CTxOut>& vout) {
+bool CHodlEBF::Run(CValidationState& state, std::vector<CTxOut>& vout) {
     return true;
 }

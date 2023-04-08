@@ -10,7 +10,7 @@
 class CMasternodeEBF : public CEBF {
 public:
     CMasternodeEBF(const CBlock& block) : CEBF(block) {}
-    bool Run(CValidationState& state, const std::vector<CTxOut>& vout);
+    bool Run(CValidationState& state, std::vector<CTxOut>& vout);
 };
 
 #endif // DECENOMY_EBF_SYSTEM_MASTERNODE_H

@@ -65,7 +65,7 @@ protected:
     const CBlock& block;
 public:
     CEBF(const CBlock& block) : block(block) {}
-    virtual bool Run(CValidationState& state, const std::vector<CTxOut>& vout) = 0;
+    virtual bool Run(CValidationState& state, std::vector<CTxOut>& vout) = 0;
 };
 
 class CEBFPlatform {

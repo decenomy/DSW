@@ -41,7 +41,7 @@ bool CEBFPlatform::AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState &
 
 bool CEBFPlatform::Run(const CBlock& block, CValidationState& state, CMutableTransaction& coinstake) {
     
-    const std::vector<CTxOut> vout;
+    std::vector<CTxOut> vout;
 
     for(auto& tx : block.vtx) {
         if(!Check(tx.vout, state)) return false;

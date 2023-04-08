@@ -79,12 +79,14 @@ public:
     CTxOut ToTxOut();
 
     static bool CheckTxOut(const CTxOut& txout, CValidationState &state);
+    CAmount CheckResults(DiceFace dice1, DiceFace dice2);
+    CScript GeneratePayoutScript();
 };
 
 class CDiceEBF : public CJackpotEBF {
 public:
     CDiceEBF(const CBlock& block) : CJackpotEBF(block) {}
-    bool Run(CValidationState& state, const std::vector<CTxOut>& vout);
+    bool Run(CValidationState& state, std::vector<CTxOut>& vout);
 };
 
 #endif // DECENOMY_EBF_JACKPOT_DICE_H

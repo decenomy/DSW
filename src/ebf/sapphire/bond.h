@@ -10,7 +10,7 @@
 class CBondEBF : public CEBF {
 public:
     CBondEBF(const CBlock& block) : CEBF(block) {}
-    bool Run(CValidationState& state, const std::vector<CTxOut>& vout);
+    bool Run(CValidationState& state, std::vector<CTxOut>& vout);
 };
 
 #endif // DECENOMY_EBF_SAPPHIRE_BOND_H
