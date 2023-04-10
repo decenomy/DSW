@@ -2908,6 +2908,13 @@ UniValue getstakesplitthreshold(const JSONRPCRequest& request)
 
 UniValue autocombinerewards(const JSONRPCRequest& request)
 {
+    if (!IsDeprecatedRPCEnabled("autocombinerewards")) {
+        if (request.fHelp) {
+            throw std::runtime_error("autocombinerewards (Deprecated, will be removed in a future update. To use this command, start __decenomy__d with -deprecatedrpc=autocombinerewards)");
+        }
+        throw JSONRPCError(RPC_METHOD_DEPRECATED, "autocombinerewards is deprecated and will be removed in a future update. To use this command, start __decenomy__d with -deprecatedrpc=autocombinerewards");
+    }
+
     bool fEnable;
     if (request.params.size() >= 1)
         fEnable = request.params[0].get_bool();
@@ -2915,6 +2922,7 @@ UniValue autocombinerewards(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() < 1 || (fEnable && request.params.size() != 2) || request.params.size() > 2)
         throw std::runtime_error(
             "autocombinerewards enable ( threshold )\n"
+            "\nDEPRECATED!!! This command will be removed in a future version!!!\n"
             "\nWallet will automatically monitor for any coins with value below the threshold amount, and combine them if they reside with the same __DSW__ address\n"
             "When autocombinerewards runs it will create a transaction, and therefore will be subject to transaction fees.\n"
 
