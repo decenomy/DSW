@@ -31,6 +31,8 @@ SettingsWalletOptionsWidget::SettingsWalletOptionsWidget(PIVXGUI* _window, QWidg
     ui->labelTitleStake->setProperty("cssClass", "text-main-settings");
     ui->spinBoxStakeSplitThreshold->setProperty("cssClass", "btn-spin-box");
     ui->spinBoxStakeSplitThreshold->setAttribute(Qt::WA_MacShowFocusRect, 0);
+    connect(ui->spinBoxStakeSplitThreshold, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
+            this, &SettingsWalletOptionsWidget::onSpinBoxStakeSplitThresholdChanged);
     setShadow(ui->spinBoxStakeSplitThreshold);
 
     // Checkbox+spinbox
@@ -92,6 +94,15 @@ void SettingsWalletOptionsWidget::setMapper(QDataWidgetMapper *mapper){
 void SettingsWalletOptionsWidget::setSpinBoxStakeSplitThreshold(double val)
 {
     ui->spinBoxStakeSplitThreshold->setValue(val);
+}
+
+void SettingsWalletOptionsWidget::onSpinBoxStakeSplitThresholdChanged(){
+    if (ui->spinBoxStakeSplitThreshold->value() > 0) {
+        // Autocombine threshold must be < 2*stake split threshold, and the smallest amount by which it can be smaller is 0.00000001.
+        ui->spinBoxAutoCombineThreshold->setMaximum(ui->spinBoxStakeSplitThreshold->value() * 2 - 0.00000001);
+    } else {
+        ui->spinBoxAutoCombineThreshold->setMaximum(0);
+    }
 }
 
 void SettingsWalletOptionsWidget::onAutoCombineCheckboxStateChanged(){
