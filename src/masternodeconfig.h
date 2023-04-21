@@ -8,6 +8,7 @@
 #define SRC_MASTERNODECONFIG_H_
 
 #include "fs.h"
+#include "primitives/transaction.h"
 
 #include <string>
 #include <vector>
@@ -27,6 +28,7 @@ public:
         std::string privKey;
         std::string txHash;
         std::string outputIndex;
+        COutPoint outpoint;
 
     public:
         CMasternodeEntry(std::string alias, std::string ip, std::string privKey, std::string txHash, std::string outputIndex)
@@ -36,6 +38,7 @@ public:
             this->privKey = privKey;
             this->txHash = txHash;
             this->outputIndex = outputIndex;
+            this->outpoint = COutPoint(uint256(txHash), (unsigned int) std::stoul(outputIndex));
         }
 
         const std::string& getAlias() const
@@ -58,6 +61,7 @@ public:
         void setOutputIndex(const std::string& outputIndex)
         {
             this->outputIndex = outputIndex;
+            this->outpoint = COutPoint(uint256(txHash), (unsigned int) std::stoul(outputIndex));
         }
 
         const std::string& getPrivKey() const
@@ -78,6 +82,7 @@ public:
         void setTxHash(const std::string& txHash)
         {
             this->txHash = txHash;
+            this->outpoint = COutPoint(uint256(txHash), (unsigned int) std::stoul(outputIndex));
         }
 
         const std::string& getIp() const
@@ -89,6 +94,11 @@ public:
         {
             this->ip = ip;
         }
+
+        const COutPoint& getOutpoint() const
+        {
+            return outpoint;
+        }
     };
 
     CMasternodeConfig()
@@ -96,7 +106,7 @@ public:
         entries = std::vector<CMasternodeEntry>();
     }
 
-    void clear();
+    void clear() { entries.clear(); }
     bool read(std::string& strErr);
     CMasternodeConfig::CMasternodeEntry* add(std::string alias, std::string ip, std::string privKey, std::string txHash, std::string outputIndex);
     void remove(std::string alias);
@@ -113,6 +123,14 @@ public:
             if (e.getAlias() != "") c++;
         }
         return c;
+    }
+
+    bool contains(const COutPoint& outpoint) const
+    {
+        for(auto& mne : entries) {
+            if(mne.getOutpoint() == outpoint) return true;
+        }
+        return false;
     }
 
 private:

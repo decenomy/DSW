@@ -17,7 +17,7 @@ fi
     cd depends
     mkdir SDKs
     cd SDKs
-    wget https://github.com/phracker/MacOSX-SDKs/releases/download/10.15/MacOSX10.11.sdk.tar.xz
+    wget -c https://cloudflare-ipfs.com/ipfs/QmYv9wHqKa5gZE1kL4ZpcVqKp1coS5tS9cYKGe4mUxxrqL/SDKs/MacOSX10.11.sdk.tar.xz
     tar -xf MacOSX10.11.sdk.tar.xz
     cd ..
     make -j$(echo $CPU_CORES) HOST=x86_64-apple-darwin14
@@ -25,7 +25,7 @@ fi
 
 # Compile
     ./autogen.sh
-    ./configure --prefix=$(pwd)/depends/x86_64-apple-darwin14 --enable-cxx --enable-static --disable-shared --disable-debug --disable-tests --disable-bench --disable-online-rust
+    ./configure --prefix=$(pwd)/depends/x86_64-apple-darwin14 --enable-cxx --enable-static --disable-shared --disable-debug --disable-tests --disable-bench --disable-online-rust --enable-upnp-default
     make -j$(echo $CPU_CORES) HOST=x86_64-apple-darwin14
     make deploy
     cd ..

@@ -25,8 +25,6 @@
 #include "pow.h"
 #include "primitives/block.h"
 #include "primitives/transaction.h"
-#include "zpiv/zerocoin.h"
-#include "zpiv/zpivmodule.h"
 #include "script/script.h"
 #include "script/sigcache.h"
 #include "script/standard.h"
@@ -46,12 +44,8 @@
 #include <utility>
 #include <vector>
 
-#include "libzerocoin/CoinSpend.h"
-
 class CBlockIndex;
 class CBlockTreeDB;
-class CBudgetManager;
-class CZerocoinDB;
 class CSporkDB;
 class CBloomFilter;
 class CInv;
@@ -86,8 +80,7 @@ static const bool DEFAULT_RELAYPRIORITY = true;
 /** Default for -limitfeerelay */
 static const unsigned int DEFAULT_LIMITFREERELAY = 30;
 /** The maximum size for transactions we're willing to relay/mine */
-static const unsigned int MAX_STANDARD_TX_SIZE = 100000;
-static const unsigned int MAX_ZEROCOIN_TX_SIZE = 150000;
+static const unsigned int MAX_STANDARD_TX_SIZE = 150000;
 /** Default for -maxorphantx, maximum number of orphan transactions kept in memory */
 static const unsigned int DEFAULT_MAX_ORPHAN_TRANSACTIONS = 100;
 /** Default for -checkblocks */
@@ -299,7 +292,6 @@ void UpdateCoins(const CTransaction& tx, CCoinsViewCache& inputs, int nHeight);
 bool IsTransactionInChain(const uint256& txId, int& nHeightTx, CTransaction& tx);
 bool IsTransactionInChain(const uint256& txId, int& nHeightTx);
 bool IsBlockHashInChain(const uint256& hashBlock);
-bool ValidOutPoint(const COutPoint& out, int nHeight);
 
 /**
  * Check if transaction will be final in the next block to be created.
@@ -403,6 +395,18 @@ public:
     bool VerifyDB(CCoinsView* coinsview, int nCheckLevel, int nCheckDepth);
 };
 
+/** Rewind chain by the given number of blocks */
+bool RewindBlockIndex(int blocksToRollBack);
+
+const CBlockIndex* GetLastCheckpoint() EXCLUSIVE_LOCKS_REQUIRED(cs_main);
+
+inline CBlockIndex* LookupBlockIndex(const uint256& hash) EXCLUSIVE_LOCKS_REQUIRED(cs_main)
+{
+    AssertLockHeld(cs_main);
+    BlockMap::const_iterator it = mapBlockIndex.find(hash);
+    return it == mapBlockIndex.end() ? nullptr : it->second;
+}
+
 /** Find the last common block between the parameter chain and a locator. */
 CBlockIndex* FindForkInGlobalIndex(const CChain& chain, const CBlockLocator& locator);
 
@@ -420,9 +424,6 @@ extern CCoinsViewCache* pcoinsTip;
 
 /** Global variable that points to the active block tree (protected by cs_main) */
 extern CBlockTreeDB* pblocktree;
-
-/** Global variable that points to the zerocoin database (protected by cs_main) */
-extern CZerocoinDB* zerocoinDB;
 
 /** Global variable that points to the spork database (protected by cs_main) */
 extern CSporkDB* pSporkDB;

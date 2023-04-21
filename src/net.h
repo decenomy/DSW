@@ -451,6 +451,7 @@ bool validateMasternodeIP(const std::string& addrStr);          // valid, reacha
 
 extern bool fDiscover;
 extern bool fListen;
+extern CService sHostIp;
 
 extern std::map<CInv, CDataStream> mapRelay;
 extern std::deque<std::pair<int64_t, CInv> > vRelayExpiration;

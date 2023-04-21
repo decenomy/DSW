@@ -20,6 +20,17 @@ uint256 CBlockHeader::GetHash() const
     return HashX15(BEGIN(nVersion), END(nNonce));
 }
 
+CScript CBlock::GetPaidPayee(CAmount nAmount) const
+{
+    const auto& tx = vtx[IsProofOfWork() ? 0 : 1];
+
+    for (const CTxOut& out : tx.vout) {
+        if (out.nValue == nAmount) return out.scriptPubKey;
+    }
+
+    return CScript();
+}
+
 std::string CBlock::ToString() const
 {
     std::stringstream s;
