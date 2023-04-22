@@ -5,7 +5,6 @@
 
 #include "blocksignature.h"
 #include "main.h"
-#include "zpivchain.h"
 
 bool SignBlockWithKey(CBlock& block, const CKey& key)
 {
@@ -42,7 +41,7 @@ bool SignBlock(CBlock& block, const CKeyStore& keystore)
 
 bool CheckBlockSignature(const CBlock& block, const bool enableP2PKH)
 {
-    // if we have already a checkpoint newer than this block 
+    // if we have already a checkpoint newer than this block
     // then bypass the signature check
     if (block.nTime <= Params().Checkpoints().nTimeLastCheckpoint)
         return true;
@@ -53,44 +52,38 @@ bool CheckBlockSignature(const CBlock& block, const bool enableP2PKH)
     if (block.vchBlockSig.empty())
         return error("%s: vchBlockSig is empty!", __func__);
 
-    /** Each block is signed by the private key of the input that is staked. This can be either zBECN or normal UTXO
-     *  zBECN: Each zBECN has a keypair associated with it. The serial number is a hash of the public key.
-     *  UTXO: The public key that signs must match the public key associated with the first utxo of the coinstake tx.
+    /** Each block is signed by the private key of the input that is staked.
+     * UTXO: The public key that signs must match the public key associated with the first utxo of the coinstake tx.
      */
     CPubKey pubkey;
-    bool fzPIVStake = block.vtx[1].vin[0].IsZerocoinSpend();
-    if (fzPIVStake) {
-        libzerocoin::CoinSpend spend = TxInToZerocoinSpend(block.vtx[1].vin[0]);
-        pubkey = spend.getPubKey();
-    } else {
-        txnouttype whichType;
-        std::vector<valtype> vSolutions;
-        const CTxOut& txout = block.vtx[1].vout[1];
-        if (!Solver(txout.scriptPubKey, whichType, vSolutions))
+
+    txnouttype whichType;
+    std::vector<valtype> vSolutions;
+    const CTxOut& txout = block.vtx[1].vout[1];
+    if (!Solver(txout.scriptPubKey, whichType, vSolutions))
+        return false;
+
+    if (!enableP2PKH) {
+        // Before v5 activation, P2PKH was always failing.
+        if (whichType == TX_PUBKEYHASH) {
             return false;
-
-        if (!enableP2PKH) {
-            // Before v5 activation, P2PKH was always failing.
-            if (whichType == TX_PUBKEYHASH) {
-                return false;
-            }
         }
+    }
 
-        if (whichType == TX_PUBKEY) {
-            valtype& vchPubKey = vSolutions[0];
-            pubkey = CPubKey(vchPubKey);
-        } else if (whichType == TX_PUBKEYHASH) {
-            const CTxIn& txin = block.vtx[1].vin[0];
-            // Check if the scriptSig is for a p2pk or a p2pkh
-            if (txin.scriptSig.size() == 73) { // Sig size + DER signature size.
-                // If the input is for a p2pk and the output is a p2pkh.
-                // We don't have the pubkey to verify the block sig anywhere in this block.
-                // p2pk scriptsig only contains the signature and p2pkh scriptpubkey only contain the hash.
-                return false;
-            } else {
-                int start = 1 + (int) *txin.scriptSig.begin(); // skip sig
-                pubkey = CPubKey(txin.scriptSig.begin()+start+1, txin.scriptSig.end());
-            }
+    if (whichType == TX_PUBKEY) {
+        valtype& vchPubKey = vSolutions[0];
+        pubkey = CPubKey(vchPubKey);
+    } else if (whichType == TX_PUBKEYHASH) {
+        const CTxIn& txin = block.vtx[1].vin[0];
+        // Check if the scriptSig is for a p2pk or a p2pkh
+        if (txin.scriptSig.size() == 73) { // Sig size + DER signature size.
+            // If the input is for a p2pk and the output is a p2pkh.
+            // We don't have the pubkey to verify the block sig anywhere in this block.
+            // p2pk scriptsig only contains the signature and p2pkh scriptpubkey only contain the hash.
+            return false;
+        } else {
+            int start = 1 + (int) *txin.scriptSig.begin(); // skip sig
+            pubkey = CPubKey(txin.scriptSig.begin()+start+1, txin.scriptSig.end());
         }
     }
 

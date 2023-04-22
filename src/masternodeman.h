@@ -8,6 +8,7 @@
 #define MASTERNODEMAN_H
 
 #include "activemasternode.h"
+#include "activemasternodeman.h"
 #include "base58.h"
 #include "key.h"
 #include "main.h"
@@ -24,8 +25,7 @@ class CMasternodeMan;
 class CActiveMasternode;
 
 extern CMasternodeMan mnodeman;
-extern CActiveMasternode activeMasternode;
-extern std::string strMasterNodePrivKey;
+extern CActiveMasternodeMan amnodeman;
 
 void DumpMasternodes();
 
@@ -58,18 +58,33 @@ class CMasternodeMan
 private:
     // critical section to protect the inner data structures
     mutable RecursiveMutex cs;
+    mutable RecursiveMutex cs_script;
+    mutable RecursiveMutex cs_txin;
+    mutable RecursiveMutex cs_pubkey;
 
     // critical section to protect the inner data structures specifically on messaging
     mutable RecursiveMutex cs_process_message;
 
-    // map to hold all MNs
-    std::vector<CMasternode> vMasternodes;
+    // vector to hold all MNs
+    std::vector<CMasternode*> vMasternodes;
+    // map MNs by CScript
+    std::unordered_map<CScript, CMasternode*, CScriptCheapHasher> mapScriptMasternodes;
+    // map MNs by CTxIn
+    std::unordered_map<CTxIn, CMasternode*, CTxInCheapHasher> mapTxInMasternodes;
+    // map MNs by CTxIn
+    std::unordered_map<CPubKey, CMasternode*, CPubKeyCheapHasher> mapPubKeyMasternodes;
     // who's asked for the Masternode list and the last time
     std::map<CNetAddr, int64_t> mAskedUsForMasternodeList;
     // who we asked for the Masternode list and the last time
     std::map<CNetAddr, int64_t> mWeAskedForMasternodeList;
     // which Masternodes we've asked for
     std::map<COutPoint, int64_t> mWeAskedForMasternodeListEntry;
+
+    // find an entry in the masternode list that is next to be paid (internally)
+    CMasternode* GetNextMasternodeInQueueForPayment(
+        int nBlockHeight, bool fFilterSigTime, 
+        int& nCount, std::vector<CTxIn>& vecEligibleTxIns,
+        bool fJustCount = false);
 
 public:
     // Keep track of all broadcasts I've seen
@@ -87,7 +102,33 @@ public:
     inline void SerializationOp(Stream& s, Operation ser_action)
     {
         LOCK(cs);
-        READWRITE(vMasternodes);
+        uint64_t n = (uint64_t)vMasternodes.size();
+        CCompactSize size(n);
+        READWRITE(size);
+        if(ser_action.ForRead()) { 
+            vMasternodes.reserve(size);
+            for(uint64_t i = 0; i < size; i++) {
+                auto mn = new CMasternode();
+                READWRITE(*mn);
+                vMasternodes.push_back(mn);
+                {
+                    LOCK(cs_script);
+                    mapScriptMasternodes[GetScriptForDestination(mn->pubKeyCollateralAddress.GetID())] = mn;
+                }
+                {
+                    LOCK(cs_txin);
+                    mapTxInMasternodes[mn->vin] = mn;
+                }
+                {
+                    LOCK(cs_pubkey);
+                    mapPubKeyMasternodes[mn->pubKeyMasternode] = mn;
+                }
+            }
+        } else {
+            for(auto mn : vMasternodes) {
+                READWRITE(*mn);
+            }
+        }
         READWRITE(mAskedUsForMasternodeList);
         READWRITE(mWeAskedForMasternodeList);
         READWRITE(mWeAskedForMasternodeListEntry);
@@ -114,9 +155,9 @@ public:
     /// Clear Masternode vector
     void Clear();
 
-    int CountEnabled(int protocolVersion = -1);
+    int CountEnabled();
 
-    void CountNetworks(int protocolVersion, int& ipv4, int& ipv6, int& onion);
+    void CountNetworks(int& ipv4, int& ipv6, int& onion);
 
     void DsegUpdate(CNode* pnode);
 
@@ -126,20 +167,48 @@ public:
     CMasternode* Find(const CPubKey& pubKeyMasternode);
     CMasternode* Find(const CService &addr);
 
-    /// Find an entry in the masternode list that is next to be paid
-    CMasternode* GetNextMasternodeInQueueForPayment(int nBlockHeight, bool fFilterSigTime, int& nCount);
+    // Find an entry in the masternode list that is next to be paid
+    inline CMasternode* GetNextMasternodeInQueueForPayment(int nBlockHeight) {
+        int nCount = 0;
+        std::vector<CTxIn> vEligibleTxIns;
+        return GetNextMasternodeInQueueForPayment(nBlockHeight, true, nCount, vEligibleTxIns);
+    }
+
+    inline int GetNextMasternodeInQueueCount(int nBlockHeight) {
+        int nCount = 0;
+        std::vector<CTxIn> vEligibleTxIns;
+        GetNextMasternodeInQueueForPayment(nBlockHeight, true, nCount, vEligibleTxIns, true);
+        return nCount;
+    }
+
+    inline std::pair<CMasternode*, std::vector<CTxIn>> GetNextMasternodeInQueueEligible(int nBlockHeight) {
+        int nCount = 0;
+        std::vector<CTxIn> vEligibleTxIns;
+        auto mn = GetNextMasternodeInQueueForPayment(nBlockHeight, true, nCount, vEligibleTxIns);
+        return std::pair<CMasternode*, std::vector<CTxIn>>(mn, vEligibleTxIns);
+    }
 
     /// Get the current winner for this block
-    CMasternode* GetCurrentMasterNode(int mod = 1, int64_t nBlockHeight = 0, int minProtocol = 0);
+    CMasternode* GetCurrentMasterNode(int mod = 1, int64_t nBlockHeight = 0);
 
     std::vector<CMasternode> GetFullMasternodeVector()
     {
         Check();
-        return vMasternodes;
+        // copy everything to avoid iteration problems and multithreading
+        std::vector<CMasternode> result;
+        {
+            LOCK(cs);
+
+            for(auto mn : vMasternodes) { 
+                result.push_back(*mn);
+            }
+        }
+
+        return result;
     }
 
-    std::vector<std::pair<int, CMasternode> > GetMasternodeRanks(int64_t nBlockHeight, int minProtocol = 0);
-    int GetMasternodeRank(const CTxIn& vin, int64_t nBlockHeight, int minProtocol = 0);
+    std::vector<std::pair<int, CMasternode> > GetMasternodeRanks(int64_t nBlockHeight);
+    int GetMasternodeRank(const CTxIn& vin, int64_t nBlockHeight);
 
     void ProcessMessage(CNode* pfrom, std::string& strCommand, CDataStream& vRecv);
 

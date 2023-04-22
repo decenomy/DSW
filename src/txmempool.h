@@ -80,7 +80,6 @@ private:
     size_t nModSize;      //! ... and modified size for priority
     size_t nUsageSize;    //! ... and total memory usage
     CFeeRate feeRate;     //! ... and fee per kB
-    bool hasZerocoins{false}; //! ... and checking if it contains zBECN (mints/spends)
     int64_t nTime;        //! Local time when entering the mempool
     double entryPriority;     //! Priority when entering the mempool
     unsigned int entryHeight; //! Chain height when entering the mempool
@@ -116,7 +115,6 @@ public:
     size_t GetTxSize() const { return nTxSize; }
     int64_t GetTime() const { return nTime; }
     unsigned int GetHeight() const { return entryHeight; }
-    bool HasZerocoins() const { return hasZerocoins; }
     bool WasClearAtEntry() const { return hadNoDependencies; }
     unsigned int GetSigOpCount() const { return sigOpCount; }
     int64_t GetModifiedFee() const { return nFee + feeDelta; }
@@ -636,7 +634,7 @@ private:
     void removeUnchecked(txiter entry);
 };
 
-/** 
+/**
  * CCoinsView that brings transactions from a memorypool into view.
  * It does not check for spendings by memory pool transactions.
  */

@@ -14,7 +14,7 @@
 #include "optionsmodel.h"
 #include "utiltime.h"
 #include <vector>
-#include <QPainter>	
+#include <QPainter>
 #include <QPainter>
 #include <QModelIndex>
 #include <QList>
@@ -454,32 +454,35 @@ void DashboardWidget::initChart()
     ui->chartContainer->setLayout(baseScreensContainer);
     ui->chartContainer->setContentsMargins(0,0,0,0);
     setCssProperty(ui->chartContainer, "container-chart");
+
+    setPrivacy(fPrivacyMode);
 }
 
 void DashboardWidget::changeChartColors()
 {
-    QColor gridLineColorX;
-    QColor linePenColorY;
+    QColor gridLineColor;
+    QColor labelsColor;
     QColor backgroundColor;
-    QColor gridY;
+
     if (isLightTheme()) {
-        gridLineColorX = QColor(255,255,255);
-        linePenColorY = gridLineColorX;
-        backgroundColor = linePenColorY;
-        axisY->setGridLineColor(QColor("#1a000000"));
+        gridLineColor = QColor("#1a000000");
+        labelsColor = QColor("#77000000");
+        backgroundColor = QColor(255,255,255);
     } else {
-        gridY = QColor("#40ffffff");
-        axisY->setGridLineColor(gridY);
-        gridLineColorX = QColor(15,11,22);
-        linePenColorY =  gridLineColorX;
-        backgroundColor = linePenColorY;
+        gridLineColor = QColor("#40ffffff");
+        labelsColor = QColor("#a0ffffff");
+        backgroundColor = QColor(15,11,22);
     }
 
-    axisX->setGridLineColor(gridLineColorX);
-    axisY->setLinePenColor(linePenColorY);
+    axisX->setGridLineColor(backgroundColor);
+    axisY->setGridLineColor(gridLineColor);
+    axisX->setLabelsColor(labelsColor);
+    axisY->setLabelsColor(labelsColor);
+    axisX->setLinePenColor(backgroundColor);
+    axisY->setLinePenColor(backgroundColor);
     chart->setBackgroundBrush(QBrush(backgroundColor));
-    if (set0) set0->setBorderColor(gridLineColorX);
-    if (set1) set1->setBorderColor(gridLineColorX);
+    if (set0) set0->setBorderColor(backgroundColor);
+    if (set1) set1->setBorderColor(backgroundColor);
 }
 
 void DashboardWidget::updateStakeFilter()
@@ -518,7 +521,7 @@ void DashboardWidget::updateStakeFilter()
     }
 }
 
-// pair BECN, zBECN
+// pair BECN
 const QMap<int, QMap<QString, qint64>> DashboardWidget::getAmountBy()
 {
     updateStakeFilter();
@@ -579,7 +582,7 @@ bool DashboardWidget::loadChartData(bool withMonthNames)
     }
 
     chartData = new ChartData();
-    chartData->amountsByCache = getAmountBy(); // pair BECN, zBECN
+    chartData->amountsByCache = getAmountBy(); // pair BECN
 
     std::pair<int,int> range = getChartRange(chartData->amountsByCache);
     if (range.first == 0 && range.second == 0) {
@@ -604,8 +607,8 @@ bool DashboardWidget::loadChartData(bool withMonthNames)
 
         chartData->xLabels << ((withMonthNames) ? monthsNames[num - 1] : QString::number(num));
 
-        chartData->valuesPiv.append(piv);    
-        chartData->valuesMNRewards.append(mnrewards);    
+        chartData->valuesPiv.append(piv);
+        chartData->valuesMNRewards.append(mnrewards);
 
         int max = std::max(piv, mnrewards);
         if (max > chartData->maxValue) {
@@ -829,19 +832,12 @@ void DashboardWidget::onChartArrowClicked(bool goLeft)
     }
 
     refreshChart();
-    //Check if data end day is current date and monthfilter is current month
-    bool fEndDayisCurrent = dataenddate  == currentDate.day() && monthFilter == currentDate.month();
 
     if (updateMonth)
         ui->comboBoxMonths->setCurrentIndex(monthFilter - 1);
 
     if (updateYear)
         ui->comboBoxYears->setCurrentText(QString::number(yearFilter));
-
-    // enable/disable the pushButtonChartRight.
-    ui->pushButtonChartRight->setEnabled(!fEndDayisCurrent);
-
-
 }
 
 void DashboardWidget::windowResizeEvent(QResizeEvent* event)
@@ -898,6 +894,21 @@ void DashboardWidget::run(int type)
 void DashboardWidget::onError(QString error, int type)
 {
     inform(tr("Error loading chart: %1").arg(error));
+}
+
+void DashboardWidget::setPrivacy(bool isPrivate)
+{
+#ifdef USE_QTCHARTS
+    if (axisY) {
+        if(isPrivate) {
+            axisY->hide();
+        } else {
+            axisY->show();
+        }
+    }
+#endif
+
+    ui->listTransactions->update();
 }
 
 void DashboardWidget::processNewTransaction(const QModelIndex& parent, int start, int /*end*/)

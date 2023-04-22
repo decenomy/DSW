@@ -10,8 +10,7 @@
     "description": "Creates a blank v1 transaction (output in json)"
   },
   { "exec": "./beacon-tx",
-    "args": ["-"],
-    "input": "blanktxv1.hex",
+    "args": ["-"], "input": "blanktxv1.hex",
     "output_cmp": "blanktxv1.hex",
     "description": "Creates a blank transaction when nothing is piped into beacon-tx"
   },
@@ -66,9 +65,7 @@
     "description": "Adds an nlocktime to a transaction (output in json)"
   },
   { "exec": "./beacon-tx",
-    "args":
-    ["-create",
-     "outaddr=1"],
+    "args": ["-create",  "outaddr=1"],
     "return_code": 1,
     "error_txt": "error: TX output missing separator",
     "description": "Malformed outaddr argument (no address specified). Expected to fail."

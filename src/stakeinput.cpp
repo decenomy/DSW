@@ -8,14 +8,10 @@
 #include "chain.h"
 #include "main.h"
 #include "txdb.h"
-#include "zpiv/deterministicmint.h"
 #include "wallet/wallet.h"
 
 bool CPivStake::InitFromTxIn(const CTxIn& txin)
 {
-    if (txin.IsZerocoinSpend())
-        return error("%s: unable to initialize CBECNStake from zerocoin spend", __func__);
-
     // Find the previous transaction in database
     uint256 hashBlock;
     CTransaction txPrev;
@@ -164,7 +160,7 @@ bool CPivStake::ContextCheck(int nHeight, uint32_t nTime)
         return error("%s : min age violation - height=%d - time=%d, nHeightBlockFrom=%d, nTimeBlockFrom=%d",
                          __func__, nHeight, nTime, nHeightBlockFrom, nTimeBlockFrom);
     }
-    
+
     // All good
     return true;
 }

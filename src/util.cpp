@@ -21,6 +21,8 @@
 
 #include <stdarg.h>
 #include <thread>
+#include <sstream>
+#include <iomanip>
 
 #include <boost/date_time/posix_time/posix_time.hpp>
 
@@ -87,19 +89,21 @@
 const char * const PIVX_CONF_FILENAME = "beacon.conf";
 const char * const PIVX_PID_FILENAME = "beacon.pid";
 const char * const PIVX_MASTERNODE_CONF_FILENAME = "masternode.conf";
+const char * const PIVX_ACTIVE_MASTERNODE_CONF_FILENAME = "activemasternode.conf";
 
 
 // Beacon only features
 // Masternode
 bool fMasterNode = false;
-std::string strMasterNodePrivKey = "";
-std::string strMasterNodeAddr = "";
+bool fStaking = false;
+bool fStakingActive = false;
+bool fStakingStatus = false;
+bool fPrivacyMode = false;
 bool fLiteMode = false;
 
 /** Spork enforcement enabled time */
 int64_t enforceMasternodePaymentsTime = 4085657524;
 bool fSucessfullyLoaded = false;
-std::string strBudgetMode = "";
 
 std::map<std::string, std::string> mapArgs;
 std::map<std::string, std::vector<std::string> > mapMultiArgs;
@@ -314,65 +318,7 @@ fs::path GetDefaultDataDir()
 
 static fs::path pathCached;
 static fs::path pathCachedNetSpecific;
-static fs::path zc_paramsPathCached;
 static RecursiveMutex csPathCached;
-
-static fs::path ZC_GetBaseParamsDir()
-{
-    // Copied from GetDefaultDataDir and adapter for zcash params.
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\beaconParams
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\beaconParams
-    // Mac: ~/Library/Application Support/beaconParams
-    // Unix: ~/.beacon-params
-#ifdef WIN32
-    // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "BeaconParams";
-#else
-    fs::path pathRet;
-    char* pszHome = getenv("HOME");
-    if (pszHome == NULL || strlen(pszHome) == 0)
-        pathRet = fs::path("/");
-    else
-        pathRet = fs::path(pszHome);
-#ifdef MAC_OSX
-    // Mac
-    pathRet /= "Library/Application Support";
-    TryCreateDirectory(pathRet);
-    return pathRet / "BeaconParams";
-#else
-    // Unix
-    return pathRet / ".beacon-params";
-#endif
-#endif
-}
-
-const fs::path &ZC_GetParamsDir()
-{
-    LOCK(csPathCached); // Reuse the same lock as upstream.
-
-    fs::path &path = zc_paramsPathCached;
-
-    // This can be called during exceptions by LogPrintf(), so we cache the
-    // value so we don't have to do memory allocations after that.
-    if (!path.empty())
-        return path;
-
-#ifdef USE_CUSTOM_PARAMS
-    path = fs::system_complete(PARAMS_DIR);
-#else
-    if (mapArgs.count("-paramsdir")) {
-        path = fs::system_complete(mapArgs["-paramsdir"]);
-        if (!fs::is_directory(path)) {
-            path = "";
-            return path;
-        }
-    } else {
-        path = ZC_GetBaseParamsDir();
-    }
-#endif
-
-    return path;
-}
 
 const fs::path& GetDataDir(bool fNetSpecific)
 {
@@ -417,6 +363,12 @@ fs::path GetConfigFile()
 fs::path GetMasternodeConfigFile()
 {
     fs::path pathConfigFile(GetArg("-mnconf", PIVX_MASTERNODE_CONF_FILENAME));
+    return AbsPathForConfigVal(pathConfigFile);
+}
+
+fs::path GetActiveMasternodeConfigFile()
+{
+    fs::path pathConfigFile(GetArg("-activemnconf", PIVX_ACTIVE_MASTERNODE_CONF_FILENAME));
     return AbsPathForConfigVal(pathConfigFile);
 }
 
@@ -692,4 +644,53 @@ void SetThreadPriority(int nPriority)
 int GetNumCores()
 {
     return std::thread::hardware_concurrency();
+}
+
+std::string GetReadableHashRate(uint64_t hashrate)
+{
+    // Determine the suffix and readable value
+    std::string suffix;
+    double readable;
+    std::stringstream ss;
+
+    if (hashrate >= 1000000000000000000) // Exa
+    {
+        suffix = " EH/s";
+        readable = hashrate / 1000000000000000;
+    }
+    else if (hashrate >= 1000000000000000) // Peta
+    {
+        suffix = " PH/s";
+        readable = hashrate / 1000000000000;
+    }
+    else if (hashrate >= 1000000000000) // Tera
+    {
+        suffix = " TH/s";
+        readable = hashrate / 1000000000;
+    }
+    else if (hashrate >= 1000000000) // Giga
+    {
+        suffix = " GH/s";
+        readable = hashrate / 1000000;
+    }
+    else if (hashrate >= 1000000) // Mega
+    {
+        suffix = " MH/s";
+        readable = hashrate / 1000;
+    }
+    else if (hashrate >= 1000) // Kilo
+    {
+        suffix = " KH/s";
+        readable = hashrate;
+    }
+    else // regular
+    {
+        ss << readable << " H/s";
+        return ss.str();
+    }
+    // Divide by 1000 to get fractional value
+    readable = (readable / 1000);
+    // Return formatted number with suffix
+    ss << std::setprecision(3) << std::fixed << readable << suffix;
+    return ss.str();
 }

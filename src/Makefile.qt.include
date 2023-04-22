@@ -104,6 +104,7 @@ QT_MOC_CPP = \
   qt/pivx/moc_navmenuwidget.cpp \
   qt/pivx/moc_lockunlock.cpp \
   qt/pivx/moc_expandablebutton.cpp \
+  qt/pivx/moc_privatelabel.cpp \
   qt/pivx/moc_furabstractlistitemdelegate.cpp \
   qt/pivx/moc_receivedialog.cpp \
   qt/pivx/moc_pfborderimage.cpp \
@@ -223,6 +224,7 @@ BITCOIN_QT_H = \
   qt/pivx/txviewholder.h \
   qt/pivx/qtutils.h \
   qt/pivx/expandablebutton.h \
+  qt/pivx/privatelabel.h \
   qt/pivx/topbar.h \
   qt/pivx/txrow.h \
   qt/pivx/addressholder.h \
@@ -332,6 +334,8 @@ RES_ICONS = \
   qt/pivx/res/img/ic-contact-arrow-down-white.svg \
   qt/pivx/res/img/ic-check-sync.svg \
   qt/pivx/res/img/ic-check-faq.svg \
+  qt/pivx/res/img/ic-check-privacy.svg \
+  qt/pivx/res/img/ic-check-privacy-off.svg \
   qt/pivx/res/img/ic-nav-privacy.svg \
   qt/pivx/res/img/img-empty-dark-error.svg \
   qt/pivx/res/img/ic-add-label.svg \
@@ -383,11 +387,9 @@ RES_ICONS = \
   qt/pivx/res/img/ic-receive-off.svg \
   qt/pivx/res/img/img-empty-staking-on.svg \
   qt/pivx/res/img/ic-arrow-drop-up-white.svg \
-  qt/pivx/res/img/ic-coin-zpiv.png \
   qt/pivx/res/img/ic-receive-on.svg \
   qt/pivx/res/img/img-empty-transactions.svg \
   qt/pivx/res/img/ic-arrow-drop-up.svg \
-  qt/pivx/res/img/ic-coin-zpiv.svg \
   qt/pivx/res/img/ic-received.svg \
   qt/pivx/res/img/img-logo-pivx.png \
   qt/pivx/res/img/ic-arrow-drop-white-down.svg \
@@ -526,6 +528,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/pivx/txviewholder.cpp \
   qt/pivx/qtutils.cpp \
   qt/pivx/expandablebutton.cpp \
+  qt/pivx/privatelabel.cpp \
   qt/pivx/topbar.cpp \
   qt/pivx/txrow.cpp \
   qt/pivx/addressholder.cpp \
@@ -639,7 +642,7 @@ endif
 if ENABLE_ZMQ
 qt_beacon_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 endif
-qt_beacon_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBBITCOIN_ZEROCOIN) $(LIBZCASH_LIBS) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
+qt_beacon_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
   $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(SVG_LIBS) $(CHARTS_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
   $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
 qt_beacon_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)

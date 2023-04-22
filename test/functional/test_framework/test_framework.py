@@ -23,7 +23,6 @@ from .blocktools import (
     create_block,
     create_coinbase_pos,
     create_transaction_from_outpoint,
-    is_zerocoin,
 )
 from .key import CECKey
 from .messages import (
@@ -58,7 +57,6 @@ from .util import (
     SPORK_DEACTIVATION_TIME,
     sync_blocks,
     sync_mempools,
-    vZC_DENOMS,
 )
 
 class TestStatus(Enum):
@@ -444,7 +442,7 @@ class PivxTestFramework():
             node_0_datadir = os.path.join(get_datadir_path(cachedir, 0), "regtest")
             for i in range(from_num, MAX_NODES):
                 node_i_datadir = os.path.join(get_datadir_path(cachedir, i), "regtest")
-                for subdir in ["blocks", "chainstate", "sporks", "zerocoin"]:
+                for subdir in ["blocks", "chainstate", "sporks"]:
                     copy_and_overwrite(os.path.join(node_0_datadir, subdir),
                                     os.path.join(node_i_datadir, subdir))
                 initialize_datadir(cachedir, i)  # Overwrite port/rpcport in beacon.conf
@@ -464,7 +462,7 @@ class PivxTestFramework():
 
             for i in range(MAX_NODES):
                 for entry in os.listdir(cache_path(i)):
-                    if entry not in ['wallet.dat', 'chainstate', 'blocks', 'sporks', 'zerocoin', 'backups']:
+                    if entry not in ['wallet.dat', 'chainstate', 'blocks', 'sporks', 'backups']:
                         os.remove(cache_path(i, entry))
 
         def clean_cache_dir():
@@ -590,8 +588,7 @@ class PivxTestFramework():
             # - Node 2 gets 56 mature blocks (pow) + 26 immmature (6 pow + 20 pos)
             #   35 rewards spendable (55 mature blocks - 20 spent rewards)
             # - Node 3 gets 50 mature blocks (pow) + 34 immmature (14 pow + 20 pos)
-            #   30 rewards spendable (50 mature blocks - 20 spent rewards)
-            # - Nodes 2 and 3 mint one zerocoin for each denom (tot 6666 BECN) on block 301/302
+            #   30 rewards spendable (50 mature blocks - 20 spent rewards
             #   8 mature zc + 8/3 rewards spendable (35/30 - 27 spent) + change 83.92
             #
             # Block 331-336 will mature last 6 pow blocks mined by node 2.
@@ -630,14 +627,6 @@ class PivxTestFramework():
                     # Stake block
                     block_time = self.generate_pos(peer, block_time)
                     nBlocks += 1
-                    # Mint zerocoins with node-2 at block 301 and with node-3 at block 302
-                    if nBlocks == 301 or nBlocks == 302:
-                        # mints 7 zerocoins, one for each denom (tot 6666 BECN), fee = 0.01 * 8
-                        # consumes 27 utxos (tot 6750 BECN), change = 6750 - 6666 - fee
-                        res.append(self.nodes[nBlocks-299].mintzerocoin(6666))
-                        self.sync_all()
-                        # lock the change output (so it's not used as stake input in generate_pos)
-                        assert (self.nodes[nBlocks-299].lockunspent(False, [{"txid": res[-1]['txid'], "vout": 8}]))
                 # Must sync before next peer starts generating blocks
                 sync_blocks(self.nodes)
                 time.sleep(1)
@@ -694,12 +683,6 @@ class PivxTestFramework():
         # 62 pow + 20 pos (26 immature)
         # - Nodes 3 gets 84 blocks:
         # 64 pow + 20 pos (34 immature)
-        # - Nodes 2 and 3 have 6666 BECN worth of zerocoins
-        zc_tot = sum(vZC_DENOMS)
-        zc_fee = len(vZC_DENOMS) * 0.01
-        used_utxos = (zc_tot // 250) + 1
-        zc_change = 250 * used_utxos - zc_tot - zc_fee
-
         # check at least 1 node and at most 5
         num_nodes = min(5, len(self.nodes))
         assert_greater_than(num_nodes, 0)
@@ -715,8 +698,6 @@ class PivxTestFramework():
         w_info = [self.nodes[i].getwalletinfo() for i in range(num_nodes)]
         assert_equal(w_info[0]["balance"], DecimalAmt(250.0 * (62 - 20)))
         assert_equal(w_info[1]["balance"], DecimalAmt(250.0 * (62 - 20)))
-        assert_equal(w_info[2]["balance"], DecimalAmt(250.0 * (56 - 20) - (used_utxos * 250) + zc_change))
-        assert_equal(w_info[3]["balance"], DecimalAmt(250.0 * (50 - 20) - (used_utxos * 250) + zc_change))
         for i in range(4, num_nodes):
             # only first 4 nodes have mined/staked
             assert_equal(w_info[i]["balance"], DecimalAmt(0))
@@ -731,29 +712,13 @@ class PivxTestFramework():
             # only first 4 nodes have mined/staked
             assert_equal(w_info[i]["immature_balance"], DecimalAmt(0))
 
-        # check zerocoin balances / mints
-        for peer in [2, 3]:
-            if num_nodes > peer:
-                zcBalance = self.nodes[peer].getzerocoinbalance()
-                zclist = self.nodes[peer].listmintedzerocoins(True)
-                zclist_spendable = self.nodes[peer].listmintedzerocoins(True, True)
-                assert_equal(len(zclist), len(vZC_DENOMS))
-                assert_equal(zcBalance['Total'], 6666)
-                assert_equal(zcBalance['Immature'], 0)
-                if peer == 2:
-                    assert_equal(len(zclist), len(zclist_spendable))
-                assert_equal(set([x['denomination'] for x in zclist]), set(vZC_DENOMS))
-                assert_equal([x['confirmations'] for x in zclist], [30-peer] * len(vZC_DENOMS))
-
         self.log.info("Balances of first %d nodes check out" % num_nodes)
 
 
-    def get_prevouts(self, node_id, utxo_list, zpos=False, nHeight=-1):
+    def get_prevouts(self, node_id, utxo_list, nHeight=-1):
         """ get prevouts (map) for each utxo in a list
         :param   node_id:                   (int) index of the CTestNode used as rpc connection. Must own the utxos.
                  utxo_list: <if zpos=False> (JSON list) utxos returned from listunspent used as input
-                            <if zpos=True>  (JSON list) mints returned from listmintedzerocoins used as input
-                 zpos:                      (bool) type of utxo_list
                  nHeight:                   (int) height of the previous block. used only if zpos=True for
                                             stake checksum. Optional, if not provided rpc_conn's height is used.
         :return: prevouts:         ({bytes --> (int, bytes, int)} dictionary)
@@ -800,19 +765,14 @@ class PivxTestFramework():
         rpc_conn = self.nodes[node_id]
         block_txes = []
         for uniqueness in spendingPrevOuts:
-            if is_zerocoin(uniqueness):
-                # spend zBECN
-                _, serialHash, _ = spendingPrevOuts[uniqueness]
-                raw_spend = rpc_conn.createrawzerocoinspend(serialHash, "", False)
-            else:
-                # spend BECN
-                value_out = int(spendingPrevOuts[uniqueness][0] - DEFAULT_FEE * COIN)
-                scriptPubKey = CScript([to_pubKey, OP_CHECKSIG])
-                prevout = COutPoint()
-                prevout.deserialize_uniqueness(BytesIO(uniqueness))
-                tx = create_transaction_from_outpoint(prevout, b"", value_out, scriptPubKey)
-                # sign tx
-                raw_spend = rpc_conn.signrawtransaction(bytes_to_hex_str(tx.serialize()))['hex']
+            # spend BECN
+            value_out = int(spendingPrevOuts[uniqueness][0] - DEFAULT_FEE * COIN)
+            scriptPubKey = CScript([to_pubKey, OP_CHECKSIG])
+            prevout = COutPoint()
+            prevout.deserialize_uniqueness(BytesIO(uniqueness))
+            tx = create_transaction_from_outpoint(prevout, b"", value_out, scriptPubKey)
+            # sign tx
+            raw_spend = rpc_conn.signrawtransaction(bytes_to_hex_str(tx.serialize()))['hex']
             # add signed tx to the list
             signed_tx = CTransaction()
             signed_tx.from_hex(raw_spend)
@@ -863,41 +823,36 @@ class PivxTestFramework():
 
         # Check if this is a zPoS block or regular stake - sign stake tx
         block_sig_key = CECKey()
-        isZPoS = is_zerocoin(block.prevoutStake)
-        if isZPoS:
-            # !TODO: remove me
-            raise Exception("zPOS tests discontinued")
 
+        coinstakeTx_unsigned = CTransaction()
+        prevout = COutPoint()
+        prevout.deserialize_uniqueness(BytesIO(block.prevoutStake))
+        coinstakeTx_unsigned.vin.append(CTxIn(prevout, b"", 0xffffffff))
+        coinstakeTx_unsigned.vout.append(CTxOut())
+        amount, prevScript, _ = stakeableUtxos[block.prevoutStake]
+        outNValue = int(amount + 250 * COIN)
+        coinstakeTx_unsigned.vout.append(CTxOut(outNValue, hex_str_to_bytes(prevScript)))
+        if privKeyWIF == "":
+            # Use dummy key
+            if not hasattr(self, 'DUMMY_KEY'):
+                self.init_dummy_key()
+            block_sig_key = self.DUMMY_KEY
+            # replace coinstake output script
+            coinstakeTx_unsigned.vout[1].scriptPubKey = CScript([block_sig_key.get_pubkey(), OP_CHECKSIG])
         else:
-            coinstakeTx_unsigned = CTransaction()
-            prevout = COutPoint()
-            prevout.deserialize_uniqueness(BytesIO(block.prevoutStake))
-            coinstakeTx_unsigned.vin.append(CTxIn(prevout, b"", 0xffffffff))
-            coinstakeTx_unsigned.vout.append(CTxOut())
-            amount, prevScript, _ = stakeableUtxos[block.prevoutStake]
-            outNValue = int(amount + 250 * COIN)
-            coinstakeTx_unsigned.vout.append(CTxOut(outNValue, hex_str_to_bytes(prevScript)))
-            if privKeyWIF == "":
-                # Use dummy key
-                if not hasattr(self, 'DUMMY_KEY'):
-                    self.init_dummy_key()
-                block_sig_key = self.DUMMY_KEY
-                # replace coinstake output script
-                coinstakeTx_unsigned.vout[1].scriptPubKey = CScript([block_sig_key.get_pubkey(), OP_CHECKSIG])
-            else:
-                if privKeyWIF == None:
-                    # Use pk of the input. Ask sk from rpc_conn
-                    rawtx = rpc_conn.getrawtransaction('{:064x}'.format(prevout.hash), True)
-                    privKeyWIF = rpc_conn.dumpprivkey(rawtx["vout"][prevout.n]["scriptPubKey"]["addresses"][0])
-                # Use the provided privKeyWIF 
-                # export the corresponding private key to sign block
-                privKey, compressed = wif_to_privkey(privKeyWIF)
-                block_sig_key.set_compressed(compressed)
-                block_sig_key.set_secretbytes(bytes.fromhex(privKey))
+            if privKeyWIF == None:
+                # Use pk of the input. Ask sk from rpc_conn
+                rawtx = rpc_conn.getrawtransaction('{:064x}'.format(prevout.hash), True)
+                privKeyWIF = rpc_conn.dumpprivkey(rawtx["vout"][prevout.n]["scriptPubKey"]["addresses"][0])
+            # Use the provided privKeyWIF
+            # export the corresponding private key to sign block
+            privKey, compressed = wif_to_privkey(privKeyWIF)
+            block_sig_key.set_compressed(compressed)
+            block_sig_key.set_secretbytes(bytes.fromhex(privKey))
 
-            # Sign coinstake TX and add it to the block
-            stake_tx_signed_raw_hex = rpc_conn.signrawtransaction(
-                bytes_to_hex_str(coinstakeTx_unsigned.serialize()))['hex']
+        # Sign coinstake TX and add it to the block
+        stake_tx_signed_raw_hex = rpc_conn.signrawtransaction(
+            bytes_to_hex_str(coinstakeTx_unsigned.serialize()))['hex']
 
         # Add coinstake to the block
         coinstakeTx = CTransaction()
@@ -909,8 +864,8 @@ class PivxTestFramework():
         for tx in vtx:
             if not fDoubleSpend:
                 # assume txes don't double spend zBECN inputs when fDoubleSpend is false. It needs to
-                # be checked outside until a convenient tx.spends(zerocoin) is added to the framework.
-                if not isZPoS and tx.spends(prevout):
+                # be checked outside until a convenient tx.spends is added to the framework.
+                if tx.spends(prevout):
                     continue
             block.vtx.append(tx)
 

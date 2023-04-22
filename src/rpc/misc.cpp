@@ -9,7 +9,6 @@
 #include "base58.h"
 #include "clientversion.h"
 #include "httpserver.h"
-#include "consensus/zerocoin_verify.h"
 #include "init.h"
 #include "main.h"
 #include "masternode-sync.h"
@@ -58,8 +57,7 @@ UniValue getinfo(const JSONRPCRequest& request)
             "  \"version\": xxxxx,             (numeric) the server version\n"
             "  \"protocolversion\": xxxxx,     (numeric) the protocol version\n"
             "  \"walletversion\": xxxxx,       (numeric) the wallet version\n"
-            "  \"balance\": xxxxxxx,           (numeric) the total BECN balance of the wallet (excluding zerocoins)\n"
-            "  \"zerocoinbalance\": xxxxxxx,   (numeric) the total zerocoin balance of the wallet\n"
+            "  \"balance\": xxxxxxx,           (numeric) the total BECN balance of the wallet\n"
             "  \"staking status\": true|false, (boolean) if the wallet is staking or not\n"
             "  \"blocks\": xxxxxx,             (numeric) the current number of blocks processed in the server\n"
             "  \"timeoffset\": xxxxx,          (numeric) the time offset\n"
@@ -114,10 +112,9 @@ UniValue getinfo(const JSONRPCRequest& request)
     if (pwalletMain) {
         obj.push_back(Pair("walletversion", pwalletMain->GetVersion()));
         obj.push_back(Pair("balance", ValueFromAmount(pwalletMain->GetAvailableBalance())));
-        obj.push_back(Pair("zerocoinbalance", ValueFromAmount(pwalletMain->GetZerocoinBalance(true))));
         obj.push_back(Pair("staking status", (pwalletMain->pStakerStatus->IsActive() ?
                                                 "Staking Active" :
-                                                "Staking Not Active")));
+                                                "Staking Inactive")));
     }
 #endif
     obj.push_back(Pair("blocks", (int)chainActive.Height()));
@@ -170,17 +167,12 @@ UniValue mnsync(const JSONRPCRequest& request)
             "  \"IsBlockchainSynced\": true|false,    (boolean) 'true' if blockchain is synced\n"
             "  \"lastMasternodeList\": xxxx,        (numeric) Timestamp of last MN list message\n"
             "  \"lastMasternodeWinner\": xxxx,      (numeric) Timestamp of last MN winner message\n"
-            "  \"lastBudgetItem\": xxxx,            (numeric) Timestamp of last MN budget message\n"
             "  \"lastFailure\": xxxx,           (numeric) Timestamp of last failed sync\n"
             "  \"nCountFailures\": n,           (numeric) Number of failed syncs (total)\n"
             "  \"sumMasternodeList\": n,        (numeric) Number of MN list messages (total)\n"
             "  \"sumMasternodeWinner\": n,      (numeric) Number of MN winner messages (total)\n"
-            "  \"sumBudgetItemProp\": n,        (numeric) Number of MN budget messages (total)\n"
-            "  \"sumBudgetItemFin\": n,         (numeric) Number of MN budget finalization messages (total)\n"
             "  \"countMasternodeList\": n,      (numeric) Number of MN list messages (local)\n"
             "  \"countMasternodeWinner\": n,    (numeric) Number of MN winner messages (local)\n"
-            "  \"countBudgetItemProp\": n,      (numeric) Number of MN budget messages (local)\n"
-            "  \"countBudgetItemFin\": n,       (numeric) Number of MN budget finalization messages (local)\n"
             "  \"RequestedMasternodeAssets\": n, (numeric) Status code of last sync phase\n"
             "  \"RequestedMasternodeAttempt\": n, (numeric) Status code of last sync attempt\n"
             "}\n"
@@ -198,17 +190,12 @@ UniValue mnsync(const JSONRPCRequest& request)
         obj.push_back(Pair("IsBlockchainSynced", masternodeSync.IsBlockchainSynced()));
         obj.push_back(Pair("lastMasternodeList", masternodeSync.lastMasternodeList));
         obj.push_back(Pair("lastMasternodeWinner", masternodeSync.lastMasternodeWinner));
-        obj.push_back(Pair("lastBudgetItem", masternodeSync.lastBudgetItem));
         obj.push_back(Pair("lastFailure", masternodeSync.lastFailure));
         obj.push_back(Pair("nCountFailures", masternodeSync.nCountFailures));
         obj.push_back(Pair("sumMasternodeList", masternodeSync.sumMasternodeList));
         obj.push_back(Pair("sumMasternodeWinner", masternodeSync.sumMasternodeWinner));
-        obj.push_back(Pair("sumBudgetItemProp", masternodeSync.sumBudgetItemProp));
-        obj.push_back(Pair("sumBudgetItemFin", masternodeSync.sumBudgetItemFin));
         obj.push_back(Pair("countMasternodeList", masternodeSync.countMasternodeList));
         obj.push_back(Pair("countMasternodeWinner", masternodeSync.countMasternodeWinner));
-        obj.push_back(Pair("countBudgetItemProp", masternodeSync.countBudgetItemProp));
-        obj.push_back(Pair("countBudgetItemFin", masternodeSync.countBudgetItemFin));
         obj.push_back(Pair("RequestedMasternodeAssets", masternodeSync.RequestedMasternodeAssets));
         obj.push_back(Pair("RequestedMasternodeAttempt", masternodeSync.RequestedMasternodeAttempt));
 
@@ -279,7 +266,9 @@ UniValue spork(const JSONRPCRequest& request)
     if (request.params.size() == 1 && request.params[0].get_str() == "show") {
         UniValue ret(UniValue::VOBJ);
         for (const auto& sporkDef : sporkDefs) {
-            ret.push_back(Pair(sporkDef.name, sporkManager.GetSporkValue(sporkDef.sporkId)));
+            if (sporkDef.name.find("NOOP") == std::string::npos) { // show only useful sporks
+                ret.push_back(Pair(sporkDef.name, sporkManager.GetSporkValue(sporkDef.sporkId)));
+            }
         }
         return ret;
     } else if (request.params.size() == 1 && request.params[0].get_str() == "active") {
@@ -338,7 +327,7 @@ class DescribePaymentAddressVisitor : public boost::static_visitor<UniValue>
 {
 public:
     explicit DescribePaymentAddressVisitor() {}
-    
+
     UniValue operator()(const CTxDestination &dest) const {
         UniValue ret(UniValue::VOBJ);
         std::string currentAddress = EncodeDestination(dest);
@@ -712,6 +701,7 @@ UniValue getstakingstatus(const JSONRPCRequest& request)
         LOCK2(cs_main, &pwalletMain->cs_wallet);
         UniValue obj(UniValue::VOBJ);
         obj.push_back(Pair("staking_status", pwalletMain->pStakerStatus->IsActive()));
+        obj.push_back(Pair("staking_active", fStakingActive));
         obj.push_back(Pair("staking_enabled", GetBoolArg("-staking", DEFAULT_STAKING)));
         obj.push_back(Pair("haveconnections", (g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) > 0)));
         obj.push_back(Pair("mnsync", !masternodeSync.NotCompleted()));

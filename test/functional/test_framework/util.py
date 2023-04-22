@@ -593,7 +593,6 @@ def find_vout_for_address(node, txid, addr):
     raise RuntimeError("Vout not found for address: txid=%s, addr=%s" % (txid, addr))
 
 ### Beacon specific utils ###
-vZC_DENOMS = [1, 5, 10, 50, 100, 500, 1000, 5000]
 DEFAULT_FEE = 0.01
 SPORK_ACTIVATION_TIME = 1563253447
 SPORK_DEACTIVATION_TIME = 4070908800

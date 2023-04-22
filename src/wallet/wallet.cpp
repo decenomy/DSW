@@ -11,14 +11,14 @@
 #include "coincontrol.h"
 #include "init.h"
 #include "guiinterfaceutil.h"
-#include "masternode-budget.h"
+#include "masternodeconfig.h"
 #include "masternode-payments.h"
+#include "masternodeconfig.h"
 #include "policy/policy.h"
 #include "script/sign.h"
 #include "spork.h"
 #include "util.h"
 #include "utilmoneystr.h"
-#include "zpivchain.h"
 
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/thread.hpp>
@@ -305,7 +305,6 @@ bool CWallet::Lock()
     {
         LOCK(cs_KeyStore);
         vMasterKey.clear();
-        if (zwallet) zwallet->Lock();
     }
 
     NotifyStatusChanged(this);
@@ -355,17 +354,6 @@ bool CWallet::Unlock(const CKeyingMaterial& vMasterKeyIn)
 
         vMasterKey = vMasterKeyIn;
         fDecryptionThoroughlyChecked = true;
-
-        if (zwallet) {
-            uint256 hashSeed;
-            if (CWalletDB(strWalletFile).ReadCurrentSeedHash(hashSeed)) {
-                uint256 nSeed;
-                if (!GetDeterministicSeed(hashSeed, nSeed)) {
-                    return error("Failed to read zBECN seed from DB. Wallet is probably corrupt.");
-                }
-                zwallet->SetMasterSeed(nSeed, false);
-            }
-        }
     }
 
     NotifyStatusChanged(this);
@@ -479,7 +467,7 @@ std::set<uint256> CWallet::GetConflicts(const uint256& txid) const
     std::pair<TxSpends::const_iterator, TxSpends::const_iterator> range;
 
     for (const CTxIn& txin : wtx.vin) {
-        if (mapTxSpends.count(txin.prevout) <= 1 || wtx.HasZerocoinSpendInputs())
+        if (mapTxSpends.count(txin.prevout) <= 1)
             continue; // No conflict if zero or one spends
         range = mapTxSpends.equal_range(txin.prevout);
         for (TxSpends::const_iterator it = range.first; it != range.second; ++it)
@@ -922,7 +910,7 @@ bool CWallet::AddToWalletIfInvolvingMe(const CTransaction& tx, const CBlockIndex
     {
         AssertLockHeld(cs_wallet);
 
-        if (posInBlock != -1 && !tx.HasZerocoinSpendInputs() && !tx.IsCoinBase()) {
+        if (posInBlock != -1 && !tx.IsCoinBase()) {
             for (const CTxIn& txin : tx.vin) {
                 std::pair<TxSpends::const_iterator, TxSpends::const_iterator> range = mapTxSpends.equal_range(txin.prevout);
                 while (range.first != range.second) {
@@ -1088,7 +1076,7 @@ void CWallet::SyncTransaction(const CTransaction& tx, const CBlockIndex *pindex,
     // available of the outputs it spends. So force those to be
     // recomputed, also:
     for (const CTxIn& txin : tx.vin) {
-        if (!txin.IsZerocoinSpend() && mapWallet.count(txin.prevout.hash))
+        if (mapWallet.count(txin.prevout.hash))
             mapWallet[txin.prevout.hash].MarkDirty();
     }
 }
@@ -1357,7 +1345,6 @@ void CWalletTx::GetAmounts(std::list<COutputEntry>& listReceived,
     }
 
     // Sent/received.
-    bool hasZerocoinSpends = HasZerocoinSpendInputs();
     for (unsigned int i = 0; i < vout.size(); ++i) {
         const CTxOut& txout = vout[i];
         isminetype fIsMine = pwallet->IsMine(txout);
@@ -1368,14 +1355,12 @@ void CWalletTx::GetAmounts(std::list<COutputEntry>& listReceived,
             // Don't report 'change' txouts
             if (pwallet->IsChange(txout))
                 continue;
-        } else if (!(fIsMine & filter) && !hasZerocoinSpends)
+        } else if (!(fIsMine & filter))
             continue;
 
         // In either case, we need to get the destination address
         CTxDestination address;
-        if (txout.IsZerocoinMint()) {
-            address = CNoDestination();
-        } else if (!ExtractDestination(txout.scriptPubKey, address)) {
+        if (!ExtractDestination(txout.scriptPubKey, address)) {
             if (!IsCoinStake() && !IsCoinBase()) {
                 LogPrintf("CWalletTx::GetAmounts: Unknown transaction type found, txid %s\n", this->GetHash().ToString());
             }
@@ -1418,9 +1403,6 @@ int CWallet::ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate, b
 {
     int ret = 0;
     int64_t nNow = GetTime();
-    bool fCheckZPIV = GetBoolArg("-zapwallettxes", false);
-    if (fCheckZPIV)
-        zpivTracker->Init();
 
     const Consensus::Params& consensus = Params().GetConsensus();
 
@@ -1431,7 +1413,7 @@ int CWallet::ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate, b
         // no need to read and scan block, if block was created before
         // our wallet birthday (as adjusted for block time variability)
         while (pindex && nTimeFirstKey && (pindex->GetBlockTime() < (nTimeFirstKey - 7200)) &&
-                (pindex->nHeight < 1 || !consensus.NetworkUpgradeActive(pindex->nHeight - 1, Consensus::UPGRADE_ZC)))
+                (pindex->nHeight < 1))
             pindex = chainActive.Next(pindex);
 
         ShowProgress(_("Rescanning..."), 0); // show rescan progress in GUI as dialog or on splashscreen, if -rescan on startup
@@ -1453,9 +1435,6 @@ int CWallet::ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate, b
                 if (AddToWalletIfInvolvingMe(block.vtx[posInBlock], pindex, posInBlock, fUpdate))
                     ret++;
             }
-
-            // Will try to rescan it if zBECN upgrade is active.
-            doZPivRescan(pindex, block, setAddedToWallet, consensus, fCheckZPIV);
 
             pindex = chainActive.Next(pindex);
             if (GetTime() >= nNow + 60) {
@@ -1672,9 +1651,9 @@ CAmount CWallet::GetStakingBalance() const
 {
     return std::max(CAmount(0), loopTxsBalance(
             [](const uint256& id, const CWalletTx& pcoin, CAmount& nTotal) {
-        if (pcoin.IsTrusted() && 
-            pcoin.GetDepthInMainChain() 
-                >= 
+        if (pcoin.IsTrusted() &&
+            pcoin.GetDepthInMainChain()
+                >=
             (Params().GetConsensus().NetworkUpgradeActive(chainActive.Height(), Consensus::UPGRADE_STAKE_MIN_DEPTH_V2) ?
                     Params().GetConsensus().nStakeMinDepthV2 : Params().GetConsensus().nStakeMinDepth)
         ) {
@@ -1831,7 +1810,8 @@ bool CWallet::GetMasternodeVinAndKeys(CTxIn& txinRet, CPubKey& pubKeyRet, CKey& 
     CTxOut txOut = wtx.vout[nOutputIndex];
 
     // Masternode collateral value
-    if (txOut.nValue != CMasternode::GetMasternodeNodeCollateral(chainActive.Height())) {
+    if (!CMasternode::CheckMasternodeCollateral(txOut.nValue))
+    {
         strError = "Invalid collateral tx value";
         return error("%s: tx %s, index %d not a masternode collateral", __func__, strTxHash, nOutputIndex);
     }
@@ -1883,7 +1863,7 @@ bool CWallet::AvailableCoins(std::vector<COutput>* pCoins,      // --> populates
 {
     if (pCoins) pCoins->clear();
     const bool fCoinsSelected = (coinControl != nullptr) && coinControl->HasSelected();
-    
+
     {
         LOCK2(cs_main, cs_wallet);
         for (std::map<uint256, CWalletTx>::const_iterator it = mapWallet.begin(); it != mapWallet.end(); ++it) {
@@ -1896,19 +1876,16 @@ bool CWallet::AvailableCoins(std::vector<COutput>* pCoins,      // --> populates
                 continue;
 
             // Check min depth requirement for stake inputs
-            if (nCoinType == STAKEABLE_COINS && 
-                nDepth 
-                    < 
+            if (nCoinType == STAKEABLE_COINS &&
+                nDepth
+                    <
                 (Params().GetConsensus().NetworkUpgradeActive(chainActive.Height(), Consensus::UPGRADE_STAKE_MIN_DEPTH_V2) ?
                     Params().GetConsensus().nStakeMinDepthV2 : Params().GetConsensus().nStakeMinDepth)) continue;
 
             for (unsigned int i = 0; i < pcoin->vout.size(); i++) {
 
                 // Check for only 10k utxo
-                if (nCoinType == ONLY_10000 && pcoin->vout[i].nValue != CMasternode::GetMasternodeNodeCollateral(chainActive.Height())) continue;
-
-                // Check for stakeable utxo
-                if (nCoinType == STAKEABLE_COINS && pcoin->vout[i].IsZerocoinMint()) continue;
+                if (nCoinType == ONLY_10000 && !CMasternode::CheckMasternodeCollateral(pcoin->vout[i].nValue)) continue;
 
                 // Check if the utxo was spent.
                 if (IsSpent(wtxid, i)) continue;
@@ -1923,6 +1900,9 @@ bool CWallet::AvailableCoins(std::vector<COutput>* pCoins,      // --> populates
 
                 // Skip locked utxo
                 if (IsLockedCoin((*it).first, i) && nCoinType != ONLY_10000) continue;
+
+                // Skip configured masternode collaterals
+                if (masternodeConfig.contains(COutPoint((*it).first, i)) && nCoinType != ONLY_10000) continue;
 
                 // Check if we should include zero value utxo
                 if (pcoin->vout[i].nValue <= 0) continue;
@@ -2158,27 +2138,6 @@ bool CWallet::SelectCoinsToSpend(const std::vector<COutput>& vAvailableCoins, co
     nValueRet += nValueFromPresetInputs;
 
     return res;
-}
-
-bool CWallet::CreateBudgetFeeTX(CWalletTx& tx, const uint256& hash, CReserveKey& keyChange, bool fFinalization)
-{
-    CScript scriptChange;
-    scriptChange << OP_RETURN << ToByteVector(hash);
-
-    CAmount nFeeRet = 0;
-    std::string strFail = "";
-    std::vector<CRecipient> vecSend;
-    vecSend.emplace_back(scriptChange, (fFinalization ? BUDGET_FEE_TX : BUDGET_FEE_TX_OLD), false);
-
-    CCoinControl* coinControl = NULL;
-    int nChangePosInOut = -1;
-    bool success = CreateTransaction(vecSend, tx, keyChange, nFeeRet, nChangePosInOut, strFail, coinControl, ALL_COINS, true, (CAmount)0);
-    if (!success) {
-        LogPrintf("%s: Error - %s\n", __func__, strFail);
-        return false;
-    }
-
-    return true;
 }
 
 bool CWallet::FundTransaction(CMutableTransaction& tx, CAmount& nFeeRet, bool overrideEstimatedFeeRate, const CFeeRate& specificFeeRate, int& nChangePosInOut, std::string& strFailReason, bool includeWatching, bool lockUnspents, const CTxDestination& destChange)
@@ -2529,6 +2488,13 @@ bool CWallet::CreateCoinStake(
     CScript scriptPubKeyKernel;
     bool fKernelFound = false;
     int nAttempts = 0;
+
+    CAmount nStakedValue = 0;
+    for (const COutput &out : *availableCoins) {
+        nStakedValue += out.Value();
+    }
+    pStakerStatus->SetLastValue(nStakedValue);
+
     for (const COutput &out : *availableCoins) {
         CPivStake stakeInput;
         stakeInput.SetPrevout((CTransaction) *out.tx, out.i);
@@ -2538,12 +2504,6 @@ bool CWallet::CreateCoinStake(
 
         // Make sure the wallet is unlocked and shutdown hasn't been requested
         if (IsLocked() || ShutdownRequested()) return false;
-
-        // This should never happen
-        if (stakeInput.IsZPIV()) {
-            LogPrintf("%s: ERROR - zPOS is disabled\n", __func__);
-            continue;
-        }
 
         nCredit = 0;
 
@@ -2663,17 +2623,16 @@ CWallet::CommitResult CWallet::CommitTransaction(CWalletTx& wtxNew, CReserveKey&
             AddToWallet(wtxNew);
 
             // Notify that old coins are spent
-            if (!wtxNew.HasZerocoinSpendInputs()) {
-                std::set<uint256> updated_hashes;
-                for (const CTxIn& txin : wtxNew.vin) {
-                    // notify only once
-                    if (updated_hashes.find(txin.prevout.hash) != updated_hashes.end()) continue;
 
-                    CWalletTx& coin = mapWallet[txin.prevout.hash];
-                    coin.BindWallet(this);
-                    NotifyTransactionChanged(this, txin.prevout.hash, CT_UPDATED);
-                    updated_hashes.insert(txin.prevout.hash);
-                }
+            std::set<uint256> updated_hashes;
+            for (const CTxIn& txin : wtxNew.vin) {
+                // notify only once
+                if (updated_hashes.find(txin.prevout.hash) != updated_hashes.end()) continue;
+
+                CWalletTx& coin = mapWallet[txin.prevout.hash];
+                coin.BindWallet(this);
+                NotifyTransactionChanged(this, txin.prevout.hash, CT_UPDATED);
+                updated_hashes.insert(txin.prevout.hash);
             }
         }
 
@@ -3511,7 +3470,6 @@ std::string CWallet::GetWalletHelpString(bool showDebug)
     strUsage += HelpMessageOpt("-rescan", _("Rescan the block chain for missing wallet transactions") + " " + _("on startup"));
     strUsage += HelpMessageOpt("-salvagewallet", _("Attempt to recover private keys from a corrupt wallet file") + " " + _("on startup"));
     strUsage += HelpMessageOpt("-sendfreetransactions", strprintf(_("Send transactions as zero-fee transactions if possible (default: %u)"), DEFAULT_SEND_FREE_TRANSACTIONS));
-    strUsage += HelpMessageOpt("-spendzeroconfchange", strprintf(_("Spend unconfirmed change when sending transactions (default: %u)"), DEFAULT_SPEND_ZEROCONF_CHANGE));
     strUsage += HelpMessageOpt("-txconfirmtarget=<n>", strprintf(_("If paytxfee is not set, include enough fee so transactions begin confirmation on average within n blocks (default: %u)"), 1));
     strUsage += HelpMessageOpt("-upgradewallet", _("Upgrade wallet to latest format") + " " + _("on startup"));
     strUsage += HelpMessageOpt("-wallet=<file>", _("Specify wallet file (within data directory)") + " " + strprintf(_("(default: %s)"), DEFAULT_WALLET_DAT));
@@ -3664,9 +3622,6 @@ CWallet* CWallet::CreateWalletFromFile(const std::string walletFile)
 
     LogPrintf("Wallet completed loading in %15dms\n", GetTimeMillis() - nStart);
 
-    CzPIVWallet* zwalletInstance = new CzPIVWallet(walletInstance);
-    walletInstance->setZWallet(zwalletInstance);
-
     RegisterValidationInterface(walletInstance);
 
     CBlockIndex* pindexRescan = chainActive.Tip();
@@ -3714,16 +3669,6 @@ CWallet* CWallet::CreateWalletFromFile(const std::string walletFile)
         }
     }
     fVerifyingBlocks = false;
-
-    if (!zwalletInstance->GetMasterSeed().IsNull()) {
-        //Inititalize zBECNWallet
-        uiInterface.InitMessage(_("Syncing zBECN wallet..."));
-
-        //Load zerocoin mint hashes to memory
-        walletInstance->zpivTracker->Init();
-        zwalletInstance->LoadMintPoolFromDB();
-        zwalletInstance->SyncWithChain();
-    }
 
     return walletInstance;
 }
@@ -3870,7 +3815,6 @@ CWallet::CWallet(std::string strWalletFileIn)
 
 CWallet::~CWallet()
 {
-    delete zwallet;
     delete pwalletdbEncryption;
     delete pStakerStatus;
 }

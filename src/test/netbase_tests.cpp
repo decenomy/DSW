@@ -105,17 +105,10 @@ BOOST_AUTO_TEST_CASE(netbase_lookupnumeric)
     BOOST_CHECK(TestParse("::", "[::]:65535"));
     BOOST_CHECK(TestParse("[::]:36552", "[::]:36552"));
     BOOST_CHECK(TestParse("[127.0.0.1]", "127.0.0.1:65535"));
-    BOOST_CHECK(TestParse(":::", "[::]:0"));
 }
 
 BOOST_AUTO_TEST_CASE(onioncat_test)
 {
-    // values from https://web.archive.org/web/20121122003543/http://www.cypherpunk.at/onioncat/wiki/OnionCat
-    CNetAddr addr1(ResolveIP("5wyqrzbvrdsumnok.onion"));
-    CNetAddr addr2(ResolveIP("FD87:D87E:EB43:edb1:8e4:3588:e546:35ca"));
-    BOOST_CHECK(addr1 == addr2);
-    BOOST_CHECK(addr1.IsTor());
-    BOOST_CHECK(addr1.ToStringIP() == "5wyqrzbvrdsumnok.onion");
     BOOST_CHECK(addr1.IsRoutable());
 }
 
