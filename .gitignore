@@ -3,10 +3,9 @@
 *.sublime-workspace
 todo.txt
 reset-files.bash
-
 *.tar.gz
-
 *.exe
+configure~
 
 # DSW
 src/__decenomy__
@@ -188,6 +187,15 @@ src/mobic-cli
 src/mobic-tx
 src/mobicd
 
+# Flits
+src/bench/bench_flits
+src/qt/test/test_flits-qt
+src/qt/flits-qt
+src/test/test_flits
+src/flits-cli
+src/flits-tx
+src/flitsd
+
 ##########################################
 # clear this section when it's fixed
 ###
@@ -336,3 +344,4 @@ __decenomy__d-new-gui.*
 # for Visual Studio Code
 
 .vscode/*
+null.d

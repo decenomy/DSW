@@ -7,6 +7,7 @@
 #ifndef ACTIVEMASTERNODE_H
 #define ACTIVEMASTERNODE_H
 
+#include "activemasternodeconfig.h"
 #include "init.h"
 #include "key.h"
 #include "masternode.h"
@@ -23,9 +24,6 @@
 class CActiveMasternode
 {
 private:
-    /// Ping Masternode
-    bool SendMasternodePing(std::string& errorMessage);
-
     int status;
     std::string notCapableReason;
 
@@ -37,9 +35,13 @@ public:
         status = ACTIVE_MASTERNODE_INITIAL;
     }
 
+    std::string strAlias {""};
+
     // Initialized by init.cpp
     // Keys for the main Masternode
     CPubKey pubKeyMasternode;
+
+    std::string strMasterNodePrivKey {""};
 
     // Initialized while registering Masternode
     Optional<CTxIn> vin;
@@ -53,6 +55,9 @@ public:
 
     /// Enable cold wallet mode (run a Masternode with no funds)
     bool EnableHotColdMasterNode(CTxIn& vin, CService& addr);
+
+    /// Ping Masternode
+    bool SendMasternodePing(std::string& errorMessage);
 };
 
-#endif
+#endif //ACTIVEMASTERNODE_H

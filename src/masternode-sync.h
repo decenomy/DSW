@@ -13,9 +13,6 @@
 #define MASTERNODE_SYNC_SPORKS 1
 #define MASTERNODE_SYNC_LIST 2
 #define MASTERNODE_SYNC_MNW 3
-#define MASTERNODE_SYNC_BUDGET 4
-#define MASTERNODE_SYNC_BUDGET_PROP 10
-#define MASTERNODE_SYNC_BUDGET_FIN 11
 #define MASTERNODE_SYNC_FAILED 998
 #define MASTERNODE_SYNC_FINISHED 999
 
@@ -34,11 +31,9 @@ class CMasternodeSync
 public:
     std::map<uint256, int> mapSeenSyncMNB;
     std::map<uint256, int> mapSeenSyncMNW;
-    std::map<uint256, int> mapSeenSyncBudget;
 
     int64_t lastMasternodeList;
     int64_t lastMasternodeWinner;
-    int64_t lastBudgetItem;
     int64_t lastFailure;
     int nCountFailures;
 
@@ -48,13 +43,9 @@ public:
     // sum of all counts
     int sumMasternodeList;
     int sumMasternodeWinner;
-    int sumBudgetItemProp;
-    int sumBudgetItemFin;
     // peers that reported counts
     int countMasternodeList;
     int countMasternodeWinner;
-    int countBudgetItemProp;
-    int countBudgetItemFin;
 
     // Count peers we've requested the list from
     int RequestedMasternodeAssets;
@@ -67,12 +58,9 @@ public:
 
     void AddedMasternodeList(const uint256& hash);
     void AddedMasternodeWinner(const uint256& hash);
-    void AddedBudgetItem(const uint256& hash);
     void GetNextAsset();
     std::string GetSyncStatus();
     void ProcessMessage(CNode* pfrom, std::string& strCommand, CDataStream& vRecv);
-    bool IsBudgetFinEmpty();
-    bool IsBudgetPropEmpty();
 
     void Reset();
     void Process();
