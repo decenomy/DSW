@@ -18,7 +18,6 @@
 #include "tinyformat.h"
 #include "uint256.h"
 #include "util.h"
-#include "libzerocoin/Denominations.h"
 
 #include <vector>
 
@@ -229,6 +228,9 @@ public:
     //! (memory only) Sequential id assigned to distinguish order in which blocks are received.
     uint32_t nSequenceId{0};
 
+    //! (memory only) paid masternode.
+    CScript* paidPayee{nullptr};
+
     CBlockIndex() {}
     CBlockIndex(const CBlock& block);
 
@@ -258,6 +260,7 @@ public:
     void SetNewStakeModifier(const uint256& prevoutId);     // generates and sets new v2 modifier
     uint64_t GetStakeModifierV1() const;
     uint256 GetStakeModifierV2() const;
+    CScript* GetPaidPayee();
 
     //! Check whether this block index entry is valid up to the passed validity level.
     bool IsValid(enum BlockStatus nUpTo = BLOCK_VALID_TRANSACTIONS) const;
@@ -274,8 +277,7 @@ public:
 /** Used to marshal pointers into hashes for db storage. */
 
 // New serialization introduced on PIVX
-static const int DBI_OLD_SER_VERSION = 0;
-static const int DBI_SER_VERSION_NO_ZC = 0;   // removes mapZerocoinSupply, nMoneySupply
+static const int DBI_SER_VERSION_NO_MS = 0;   // removes nMoneySupply
 
 class CDiskBlockIndex : public CBlockIndex
 {
@@ -311,8 +313,8 @@ public:
         if (nStatus & BLOCK_HAVE_UNDO)
             READWRITE(VARINT(nUndoPos));
 
-        if (nSerVersion >= DBI_SER_VERSION_NO_ZC) {
-            // Serialization with CLIENT_VERSION = 4009902+
+        if (nSerVersion >= DBI_SER_VERSION_NO_MS) {
+            // Serialization with CLIENT_VERSION >= DBI_SER_VERSION_NO_MS
             READWRITE(nFlags);
             READWRITE(this->nVersion);
             READWRITE(vStakeModifier);
@@ -324,26 +326,8 @@ public:
             if(this->nVersion > 3 && this->nVersion < 7)
                 READWRITE(nAccumulatorCheckpoint);
 
-        } else if (nSerVersion > DBI_OLD_SER_VERSION && ser_action.ForRead()) {
-            // Serialization with CLIENT_VERSION = 4009901
-            std::map<libzerocoin::CoinDenomination, int64_t> mapZerocoinSupply;
-            int64_t nMoneySupply = 0;
-            READWRITE(nMoneySupply);
-            READWRITE(nFlags);
-            READWRITE(this->nVersion);
-            READWRITE(vStakeModifier);
-            READWRITE(hashPrev);
-            READWRITE(hashMerkleRoot);
-            READWRITE(nTime);
-            READWRITE(nBits);
-            READWRITE(nNonce);
-            if(this->nVersion > 3) {
-                READWRITE(mapZerocoinSupply);
-                if(this->nVersion < 7) READWRITE(nAccumulatorCheckpoint);
-            }
-
         } else if (ser_action.ForRead()) {
-            // Serialization with CLIENT_VERSION = 4009900-
+            // Serialization with CLIENT_VERSION <= DBI_SER_VERSION_NO_MS
             int64_t nMint = 0;
             uint256 hashNext{};
             int64_t nMoneySupply = 0;
@@ -373,11 +357,7 @@ public:
             READWRITE(nBits);
             READWRITE(nNonce);
             if(this->nVersion > 3) {
-                std::map<libzerocoin::CoinDenomination, int64_t> mapZerocoinSupply;
-                std::vector<libzerocoin::CoinDenomination> vMintDenominationsInBlock;
                 READWRITE(nAccumulatorCheckpoint);
-                READWRITE(mapZerocoinSupply);
-                READWRITE(vMintDenominationsInBlock);
             }
         }
     }
@@ -407,132 +387,48 @@ public:
     }
 };
 
-/** Legacy block index - used to retrieve old serializations */
-
-class CLegacyBlockIndex : public CBlockIndex
-{
-public:
-    std::map<libzerocoin::CoinDenomination, int64_t> mapZerocoinSupply{};
-    int64_t nMint = 0;
-    uint256 hashNext{};
-    uint256 hashPrev{};
-    uint64_t nStakeModifier = 0;
-    uint256 nStakeModifierV2{};
-    COutPoint prevoutStake{};
-    unsigned int nStakeTime = 0;
-    std::vector<libzerocoin::CoinDenomination> vMintDenominationsInBlock;
-    int64_t nMoneySupply = 0;
-
-
-    ADD_SERIALIZE_METHODS;
-
-    template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action)
-    {
-        int nSerVersion = s.GetVersion();
-        if (!(s.GetType() & SER_GETHASH))
-            READWRITE(VARINT(nSerVersion));
-
-        if (nSerVersion >= DBI_SER_VERSION_NO_ZC) {
-            // no extra serialized field
-            return;
-        }
-
-        if (!ser_action.ForRead()) {
-            // legacy block index shouldn't be used to write
-            return;
-        }
-
-        READWRITE(VARINT(nHeight));
-        READWRITE(VARINT(nStatus));
-        READWRITE(VARINT(nTx));
-        if (nStatus & (BLOCK_HAVE_DATA | BLOCK_HAVE_UNDO))
-            READWRITE(VARINT(nFile));
-        if (nStatus & BLOCK_HAVE_DATA)
-            READWRITE(VARINT(nDataPos));
-        if (nStatus & BLOCK_HAVE_UNDO)
-            READWRITE(VARINT(nUndoPos));
-
-        if (nSerVersion > DBI_OLD_SER_VERSION) {
-            // Serialization with CLIENT_VERSION = 4009901
-            READWRITE(nMoneySupply);
-            READWRITE(nFlags);
-            READWRITE(this->nVersion);
-            READWRITE(vStakeModifier);
-            READWRITE(hashPrev);
-            READWRITE(hashMerkleRoot);
-            READWRITE(nTime);
-            READWRITE(nBits);
-            READWRITE(nNonce);
-            if(this->nVersion > 3) {
-                READWRITE(mapZerocoinSupply);
-                if(this->nVersion < 7) READWRITE(nAccumulatorCheckpoint);
-            }
-
-        } else {
-            // Serialization with CLIENT_VERSION = 4009900-
-            READWRITE(nMint);
-            READWRITE(nMoneySupply);
-            READWRITE(nFlags);
-            if (!Params().GetConsensus().NetworkUpgradeActive(nHeight, Consensus::UPGRADE_STAKE_MODIFIER_V2)) {
-                READWRITE(nStakeModifier);
-            } else {
-                READWRITE(nStakeModifierV2);
-            }
-            if (IsProofOfStake()) {
-                READWRITE(prevoutStake);
-                READWRITE(nStakeTime);
-            }
-            READWRITE(this->nVersion);
-            READWRITE(hashPrev);
-            READWRITE(hashNext);
-            READWRITE(hashMerkleRoot);
-            READWRITE(nTime);
-            READWRITE(nBits);
-            READWRITE(nNonce);
-            if(this->nVersion > 3) {
-                READWRITE(nAccumulatorCheckpoint);
-                READWRITE(mapZerocoinSupply);
-                READWRITE(vMintDenominationsInBlock);
-            }
-        }
-    }
-};
-
 /** An in-memory indexed chain of blocks. */
 class CChain
 {
 private:
+    mutable RecursiveMutex cs;
     std::vector<CBlockIndex*> vChain;
 
 public:
     /** Returns the index entry for the genesis block of this chain, or NULL if none. */
     CBlockIndex* Genesis() const
     {
-        return vChain.size() > 0 ? vChain[0] : NULL;
+        return WITH_LOCK(cs, return vChain.size() > 0 ? vChain[0] : NULL);
     }
 
     /** Returns the index entry for the tip of this chain, or NULL if none. */
     CBlockIndex* Tip(bool fProofOfStake = false) const
     {
-        if (vChain.size() < 1)
-            return NULL;
+        LOCK(cs);
 
-        CBlockIndex* pindex = vChain[vChain.size() - 1];
+        auto s = vChain.size();
+        if (s < 1) return nullptr;
+        return vChain[s - 1];
+    }
 
-        if (fProofOfStake) {
-            while (pindex && pindex->pprev && !pindex->IsProofOfStake())
-                pindex = pindex->pprev;
-        }
-        return pindex;
+    inline uint256 TipHash() 
+    {
+        const auto tip = WITH_LOCK(cs, return Tip());
+        if(tip) return Tip()->GetBlockHash();
+        return UINT256_ZERO;
+    }
+
+    inline uint64_t TipTime()
+    {
+        const auto tip = WITH_LOCK(cs, return Tip());
+        if(tip) return Tip()->GetBlockTime();
+        return 0;
     }
 
     /** Returns the index entry at a particular height in this chain, or NULL if no such height exists. */
     CBlockIndex* operator[](int nHeight) const
     {
-        if (nHeight < 0 || nHeight >= (int)vChain.size())
-            return NULL;
-        return vChain[nHeight];
+        return WITH_LOCK(cs, return nHeight < 0 || nHeight >= (int)vChain.size() ? nullptr : vChain[nHeight]);
     }
 
     /** Compare two chains efficiently. */
@@ -545,22 +441,19 @@ public:
     /** Efficiently check whether a block is present in this chain. */
     bool Contains(const CBlockIndex* pindex) const
     {
-        return (*this)[pindex->nHeight] == pindex;
+        return WITH_LOCK(cs, return (*this)[pindex->nHeight] == pindex);
     }
 
     /** Find the successor of a block in this chain, or NULL if the given index is not found or is the tip. */
     CBlockIndex* Next(const CBlockIndex* pindex) const
     {
-        if (Contains(pindex))
-            return (*this)[pindex->nHeight + 1];
-        else
-            return NULL;
+        return WITH_LOCK(cs, return Contains(pindex) ? (*this)[pindex->nHeight + 1] : nullptr);
     }
 
     /** Return the maximal height in the chain. Is equal to chain.Tip() ? chain.Tip()->nHeight : -1. */
     int Height() const
     {
-        return vChain.size() - 1;
+        return WITH_LOCK(cs, return vChain.size() - 1);
     }
 
     /** Set/initialize a chain with a given tip. */
@@ -572,5 +465,8 @@ public:
     /** Find the last common block between this chain and a block index entry. */
     const CBlockIndex* FindFork(const CBlockIndex* pindex) const;
 };
+
+/** The currently-connected chain of blocks (protected by cs_main). */
+extern CChain chainActive;
 
 #endif // BITCOIN_CHAIN_H

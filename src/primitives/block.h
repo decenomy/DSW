@@ -49,7 +49,7 @@ public:
         READWRITE(nBits);
         READWRITE(nNonce);
 
-        //zerocoin active, header changes to include accumulator checksum
+        // Header changes to include accumulator checksum
         if(nVersion > 3 && nVersion < 7)
             READWRITE(nAccumulatorCheckpoint);
     }
@@ -143,6 +143,8 @@ public:
     {
         return !IsProofOfStake();
     }
+
+    CScript GetPaidPayee(CAmount nAmount) const;
 
     std::string ToString() const;
     void print() const;
