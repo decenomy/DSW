@@ -8,7 +8,6 @@
 #define BITCOIN_CONSENSUS_PARAMS_H
 
 #include "amount.h"
-#include "libzerocoin/Params.h"
 #include "optional.h"
 #include "uint256.h"
 #include <map>
@@ -28,10 +27,7 @@ enum UpgradeIndex : uint32_t {
     BASE_NETWORK,
     UPGRADE_POS,
     UPGRADE_POS_V2,
-    UPGRADE_ZC,
-    UPGRADE_ZC_V2,
     UPGRADE_BIP65,
-    UPGRADE_ZC_PUBLIC,
     UPGRADE_STAKE_MODIFIER_V2,
     UPGRADE_TIME_PROTOCOL_V2,
     UPGRADE_P2PKH_BLOCK_SIGNATURES,
@@ -93,14 +89,11 @@ struct Params {
     uint256 powLimit;
     uint256 posLimitV1;
     uint256 posLimitV2;
-    int nBudgetCycleBlocks;
-    int nBudgetFeeConfirmations;
     int nCoinbaseMaturity;
     int nFutureTimeDriftPoW;
     int nFutureTimeDriftPoS;
     CAmount nMaxMoneyOut;
     int nPoolMaxTransactions;
-    int64_t nProposalEstablishmentTime;
     int nStakeMinAge;
     int nStakeMinDepth;
     int nStakeMinDepthV2;
@@ -118,21 +111,15 @@ struct Params {
     int64_t nTime_EnforceNewSporkKey;
     int64_t nTime_RejectOldSporkKey;
 
-    // height-based activations
-    int height_last_ZC_AccumCheckpoint;
-    int height_last_ZC_WrappedSerials;
-    int height_start_InvalidUTXOsCheck;
-    int height_start_ZC_InvalidSerials;
-    int height_start_ZC_SerialRangeCheck;
-    int height_ZC_RecalcAccumulators;
-
     // Map with network updates
     NetworkUpgrade vUpgrades[MAX_NETWORK_UPGRADES];
 
+    int64_t TargetTimespan(const int nHeight) const { return IsTimeProtocolV2(nHeight) ? nTargetTimespanV2 : nTargetTimespan; }
     int64_t TargetTimespan(const bool fV2 = true) const { return fV2 ? nTargetTimespanV2 : nTargetTimespan; }
     uint256 ProofOfStakeLimit(const bool fV2) const { return fV2 ? posLimitV2 : posLimitV1; }
     bool MoneyRange(const CAmount& nValue) const { return (nValue >= 0 && nValue <= nMaxMoneyOut); }
     bool IsTimeProtocolV2(const int nHeight) const { return NetworkUpgradeActive(nHeight, UPGRADE_TIME_PROTOCOL_V2); }
+    int TimeSlotLength(const int nHeight) const { return IsTimeProtocolV2(nHeight) ? nTimeSlotLength : 1; }
 
     int FutureBlockTimeDrift(const int nHeight) const
     {
@@ -170,29 +157,6 @@ struct Params {
         return 
             mBurnAddresses.find(strAddress) != mBurnAddresses.end() &&
             mBurnAddresses[strAddress] < nHeight;
-    }
-
-    /*
-     * (Legacy) Zerocoin consensus params
-     */
-    std::string ZC_Modulus;  // parsed in Zerocoin_Params (either as hex or dec string)
-    int ZC_MaxPublicSpendsPerTx;
-    int ZC_MaxSpendsPerTx;
-    int ZC_MinMintConfirmations;
-    CAmount ZC_MinMintFee;
-    int ZC_MinStakeDepth;
-    int ZC_TimeStart;
-    CAmount ZC_WrappedSerialsSupply;
-
-    libzerocoin::ZerocoinParams* Zerocoin_Params(bool useModulusV1) const
-    {
-        static CBigNum bnHexModulus = 0;
-        if (!bnHexModulus) bnHexModulus.SetHex(ZC_Modulus);
-        static libzerocoin::ZerocoinParams ZCParamsHex = libzerocoin::ZerocoinParams(bnHexModulus);
-        static CBigNum bnDecModulus = 0;
-        if (!bnDecModulus) bnDecModulus.SetDec(ZC_Modulus);
-        static libzerocoin::ZerocoinParams ZCParamsDec = libzerocoin::ZerocoinParams(bnDecModulus);
-        return (useModulusV1 ? &ZCParamsHex : &ZCParamsDec);
     }
 
     /**

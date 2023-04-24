@@ -468,7 +468,7 @@ bool static Socks5(std::string strDest, int port, const ProxyCredentials *auth, 
     return true;
 }
 
-bool static ConnectSocketDirectly(const CService& addrConnect, SOCKET& hSocketRet, int nTimeout)
+bool static ConnectSocketDirectly(const CService& addrConnect, SOCKET& hSocketRet, int nTimeout, CService fromAddr)
 {
     hSocketRet = INVALID_SOCKET;
 
@@ -492,6 +492,14 @@ bool static ConnectSocketDirectly(const CService& addrConnect, SOCKET& hSocketRe
     // Set to non-blocking
     if (!SetSocketNonBlocking(hSocket, true))
         return error("ConnectSocketDirectly: Setting socket to non-blocking failed, error %s\n", NetworkErrorString(WSAGetLastError()));
+
+    struct sockaddr_storage from_sockaddr;
+    socklen_t from_len = sizeof(sockaddr);
+    if(fromAddr.IsValid() && fromAddr.GetSockAddr((struct sockaddr*)&from_sockaddr, &from_len)) {
+        if (::bind(hSocket, (struct sockaddr *)&from_sockaddr, sizeof(struct sockaddr)) == SOCKET_ERROR) {
+            LogPrint(BCLog::NET, "bind hostip %s failed: %s\n", fromAddr.ToStringIP(), NetworkErrorString(WSAGetLastError()));
+        }
+    }
 
     if (connect(hSocket, (struct sockaddr*)&sockaddr, len) == SOCKET_ERROR) {
         int nErr = WSAGetLastError();
@@ -599,11 +607,11 @@ bool IsProxy(const CNetAddr& addr)
     return false;
 }
 
-static bool ConnectThroughProxy(const proxyType &proxy, const std::string strDest, int port, SOCKET& hSocketRet, int nTimeout, bool *outProxyConnectionFailed)
+static bool ConnectThroughProxy(const proxyType &proxy, const std::string strDest, int port, SOCKET& hSocketRet, int nTimeout, bool *outProxyConnectionFailed, CService fromAddr)
 {
     SOCKET hSocket = INVALID_SOCKET;
     // first connect to proxy server
-    if (!ConnectSocketDirectly(proxy.proxy, hSocket, nTimeout)) {
+    if (!ConnectSocketDirectly(proxy.proxy, hSocket, nTimeout, fromAddr)) {
         if (outProxyConnectionFailed)
             *outProxyConnectionFailed = true;
         return false;
@@ -624,19 +632,19 @@ static bool ConnectThroughProxy(const proxyType &proxy, const std::string strDes
     return true;
 }
 
-bool ConnectSocket(const CService &addrDest, SOCKET& hSocketRet, int nTimeout, bool *outProxyConnectionFailed)
+bool ConnectSocket(const CService &addrDest, SOCKET& hSocketRet, int nTimeout, bool *outProxyConnectionFailed, CService fromAddr)
 {
     proxyType proxy;
     if (outProxyConnectionFailed)
         *outProxyConnectionFailed = false;
 
     if (GetProxy(addrDest.GetNetwork(), proxy))
-        return ConnectThroughProxy(proxy, addrDest.ToStringIP(), addrDest.GetPort(), hSocketRet, nTimeout, outProxyConnectionFailed);
+        return ConnectThroughProxy(proxy, addrDest.ToStringIP(), addrDest.GetPort(), hSocketRet, nTimeout, outProxyConnectionFailed, fromAddr);
     else // no proxy needed (none set for target network)
-        return ConnectSocketDirectly(addrDest, hSocketRet, nTimeout);
+        return ConnectSocketDirectly(addrDest, hSocketRet, nTimeout, fromAddr);
 }
 
-bool ConnectSocketByName(CService& addr, SOCKET& hSocketRet, const char* pszDest, int portDefault, int nTimeout, bool* outProxyConnectionFailed)
+bool ConnectSocketByName(CService& addr, SOCKET& hSocketRet, const char* pszDest, int portDefault, int nTimeout, bool* outProxyConnectionFailed, CService fromAddr)
 {
     std::string strDest;
     int port = portDefault;
@@ -653,7 +661,7 @@ bool ConnectSocketByName(CService& addr, SOCKET& hSocketRet, const char* pszDest
     if (Lookup(strDest.c_str(), addrResolved, port, fNameLookup && !HaveNameProxy(), 256)) {
         if (addrResolved.size() > 0) {
             addr = addrResolved[GetRand(addrResolved.size())];
-            return ConnectSocket(addr, hSocketRet, nTimeout);
+            return ConnectSocket(addr, hSocketRet, nTimeout, outProxyConnectionFailed, fromAddr);
         }
     }
 
@@ -661,7 +669,7 @@ bool ConnectSocketByName(CService& addr, SOCKET& hSocketRet, const char* pszDest
 
     if (!HaveNameProxy())
         return false;
-    return ConnectThroughProxy(proxy, strDest, port, hSocketRet, nTimeout, outProxyConnectionFailed);
+    return ConnectThroughProxy(proxy, strDest, port, hSocketRet, nTimeout, outProxyConnectionFailed, fromAddr);
 }
 
 bool LookupSubNet(const char* pszName, CSubNet& ret)
