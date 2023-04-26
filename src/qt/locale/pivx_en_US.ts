@@ -1626,36 +1626,8 @@ NODES</translation>
         <translation>Map port using &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of UCR units to zUCR</source>
-        <translation>Enable automatic minting of UCR units to zUCR</translation>
-    </message>
-    <message>
-        <source>Enable zUCR Automint</source>
-        <translation>Enable zUCR Automint</translation>
-    </message>
-    <message>
-        <source>Enable automatic zUCR minting from specific addresses</source>
-        <translation>Enable automatic zUCR minting from specific addresses</translation>
-    </message>
-    <message>
         <source>Enable Automint Addresses</source>
         <translation>Enable Automint Addresses</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming UCR which get automatically converted to zUCR via Zerocoin Protocol (min: 10%)</source>
-        <translation>Percentage of incoming UCR which get automatically converted to zUCR via Zerocoin Protocol (min: 10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted zUCR</source>
-        <translation>Percentage of autominted zUCR</translation>
-    </message>
-    <message>
-        <source>Wait with automatic conversion to Zerocoin until enough UCR for this denomination is available</source>
-        <translation>Wait with automatic conversion to Zerocoin until enough UCR for this denomination is available</translation>
-    </message>
-    <message>
-        <source>Preferred Automint zUCR Denomination</source>
-        <translation>Preferred Automint zUCR Denomination</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
@@ -2419,10 +2391,6 @@ Address: %4
     <message>
         <source>Custom Backup Path:</source>
         <translation>Custom Backup Path:</translation>
-    </message>
-    <message>
-        <source>Custom zUCR Backup Path:</source>
-        <translation>Custom zUCR Backup Path:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -3536,13 +3504,12 @@ There was an error trying to save the address list to %1. Please try again.</tra
                            UCR is a form of digital online money using blockchain technology
                            that can be easily transferred globally, instantly, and with near
                            zero fees.  UCR incorporates market leading security &amp;
-                           privacy and is also the first PoS (Proof of Stake) Cryptocurrency
-                           to implement ZeroCoin(zUCR) and Zerocoin staking.
+                           privacy.
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            UCR utilizes a Proof of Stake (PoS) consensus system algorithm,
                            allowing all owners of UCR to participate in earning block rewards
                            while securing the network with full node wallets, as well as to
-                           run Masternodes to create and vote on proposals.
+                           run Masternodes to earn additional income regularly.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
@@ -3550,13 +3517,12 @@ There was an error trying to save the address list to %1. Please try again.</tra
                            UCR is a form of digital online money using blockchain technology
                            that can be easily transferred globally, instantly, and with near
                            zero fees.  UCR incorporates market leading security &amp;
-                           privacy and is also the first PoS (Proof of Stake) Cryptocurrency
-                           to implement ZeroCoin(zUCR) and Zerocoin staking.
+                           privacy.
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            UCR utilizes a Proof of Stake (PoS) consensus system algorithm,
                            allowing all owners of UCR to participate in earning block rewards
                            while securing the network with full node wallets, as well as to
-                           run Masternodes to create and vote on proposals.
+                           run Masternodes to earn additional income regularly.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </translation>
     </message>
@@ -3654,8 +3620,6 @@ There was an error trying to save the address list to %1. Please try again.</tra
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
-                           &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
                            &lt;li&gt;Act as an additional full node in the network&lt;/li&gt;
                            &lt;/ul&gt;
@@ -3695,8 +3659,6 @@ There was an error trying to save the address list to %1. Please try again.</tra
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
-                           &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
                            &lt;li&gt;Act as an additional full node in the network&lt;/li&gt;
                            &lt;/ul&gt;
@@ -4617,8 +4579,8 @@ Are you sure?
         <translation>Staking active</translation>
     </message>
     <message>
-        <source>Staking not active</source>
-        <translation>Staking not active</translation>
+        <source>Staking inactive</source>
+        <translation>Staking inactive</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s)</source>
@@ -5156,10 +5118,6 @@ UltraClear Wallet</translation>
         <translation>Cannot obtain a lock on data directory %s. UltraClear is probably already running.</translation>
     </message>
     <message>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</translation>
-    </message>
-    <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
         <translation>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</translation>
     </message>
@@ -5170,10 +5128,6 @@ UltraClear Wallet</translation>
     <message>
         <source>Delete all wallet transactions and only recover those parts of the blockchain through -rescan on startup</source>
         <translation>Delete all wallet transactions and only recover those parts of the blockchain through -rescan on startup</translation>
-    </message>
-    <message>
-        <source>Delete all zerocoin spends and mints that have been recorded to the blockchain database and reindex them (0-1, default: %u)</source>
-        <translation>Delete all zerocoin spends and mints that have been recorded to the blockchain database and reindex them (0-1, default: %u)</translation>
     </message>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
@@ -5468,10 +5422,6 @@ UltraClear Wallet</translation>
         <translation>Error reading from database, shutting down.</translation>
     </message>
     <message>
-        <source>Error writing zerocoinDB to disk</source>
-        <translation>Error writing zerocoinDB to disk</translation>
-    </message>
-    <message>
         <source>Error</source>
         <translation>Error</translation>
     </message>
@@ -5572,14 +5522,6 @@ UltraClear Wallet</translation>
         <translation>Recalculating UCR supply...</translation>
     </message>
     <message>
-        <source>Reindexing zerocoin database...</source>
-        <translation>Reindexing zerocoin database...</translation>
-    </message>
-    <message>
-        <source>Reindexing zerocoin failed</source>
-        <translation>Reindexing zerocoin failed</translation>
-    </message>
-    <message>
         <source>Selected coins value is less than payment target</source>
         <translation>Selected coins value is less than payment target</translation>
     </message>
@@ -5596,8 +5538,8 @@ UltraClear Wallet</translation>
         <translation>This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!</translation>
     </message>
     <message>
-        <source>Disable all UCR specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
-        <translation>Disable all UCR specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</translation>
+        <source>Disable all UCR specific functionality (Masternodes) (0-1, default: %u)</source>
+        <translation>Disable all UCR specific functionality (Masternodes) (0-1, default: %u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -5692,14 +5634,6 @@ UltraClear Wallet</translation>
         <translation>Failed to parse public spend</translation>
     </message>
     <message>
-        <source>Failed to select a zerocoin</source>
-        <translation>Failed to select a zerocoin</translation>
-    </message>
-    <message>
-        <source>Failed to wipe zerocoinDB</source>
-        <translation>Failed to wipe zerocoinDB</translation>
-    </message>
-    <message>
         <source>Failed to write coin serial number into wallet</source>
         <translation>Failed to write coin serial number into wallet</translation>
     </message>
@@ -5734,10 +5668,6 @@ UltraClear Wallet</translation>
     <message>
         <source>Loading block index...</source>
         <translation>Loading block index...</translation>
-    </message>
-    <message>
-        <source>Loading budget cache...</source>
-        <translation>Loading budget cache...</translation>
     </message>
     <message>
         <source>Loading masternode cache...</source>
@@ -5964,10 +5894,6 @@ UltraClear Wallet</translation>
 </translation>
     </message>
     <message>
-        <source>Failed to find Zerocoins in wallet database</source>
-        <translation>Failed to find Zerocoins in wallet database</translation>
-    </message>
-    <message>
         <source>Fee (in %s/kB) to add to transactions you send (default: %s)</source>
         <translation>Fee (in %s/kB) to add to transactions you send (default: %s)</translation>
     </message>
@@ -6176,10 +6102,6 @@ UltraClear Wallet</translation>
         <translation>Synchronization finished</translation>
     </message>
     <message>
-        <source>Synchronizing budgets...</source>
-        <translation>Synchronizing budgets...</translation>
-    </message>
-    <message>
         <source>Synchronizing masternode winners...</source>
         <translation>Synchronizing masternode winners...</translation>
     </message>
@@ -6190,10 +6112,6 @@ UltraClear Wallet</translation>
     <message>
         <source>Synchronizing sporks...</source>
         <translation>Synchronizing sporks...</translation>
-    </message>
-    <message>
-        <source>Syncing zUCR wallet...</source>
-        <translation>Syncing zUCR wallet...</translation>
     </message>
     <message>
         <source>The threshold value cannot be less than %s</source>
@@ -6316,10 +6234,6 @@ UltraClear Wallet</translation>
         <translation>Username for JSON-RPC connections</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of zUCR</source>
-        <translation>Value is below the smallest available denomination (= 1) of zUCR</translation>
-    </message>
-    <message>
         <source>Verifying blocks...</source>
         <translation>Verifying blocks...</translation>
     </message>
@@ -6364,10 +6278,6 @@ UltraClear Wallet</translation>
         <translation>Warning: Unsupported argument -debugnet ignored, use -debug=net.</translation>
     </message>
     <message>
-        <source>You don't have enough Zerocoins in your wallet</source>
-        <translation>You don't have enough Zerocoins in your wallet</translation>
-    </message>
-    <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
         <translation>You need to rebuild the database using -reindex to change -txindex</translation>
     </message>
@@ -6378,14 +6288,6 @@ UltraClear Wallet</translation>
     <message>
         <source>ZeroMQ notification options:</source>
         <translation>ZeroMQ notification options:</translation>
-    </message>
-    <message>
-        <source>Zerocoin minting available only on regtest</source>
-        <translation>Zerocoin minting available only on regtest</translation>
-    </message>
-    <message>
-        <source>Zerocoin options:</source>
-        <translation>Zerocoin options:</translation>
     </message>
     <message>
         <source>on startup</source>

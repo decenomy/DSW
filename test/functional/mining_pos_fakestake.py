@@ -208,10 +208,10 @@ class FakeStakeTest(PivxTestFramework):
                 prevBlockHash = bHash
                 prevModifier = get_prev_modifier(prevBlockHash)
 
-            stakeInputs = self.get_prevouts(1, staking_utxo_list, False, nHeight - 1)
+            stakeInputs = self.get_prevouts(1, staking_utxo_list, nHeight - 1)
             # Update stake inputs for second block sent on forked chain (must stake the same input)
             if not isMainChain and i == 1:
-                stakeInputs = self.get_prevouts(1, [stakedUtxo], False, nHeight-1)
+                stakeInputs = self.get_prevouts(1, [stakedUtxo], nHeight-1)
 
             # Make spam txes sending the inputs to DUMMY_KEY in order to test double spends
             if fDoubleSpend:

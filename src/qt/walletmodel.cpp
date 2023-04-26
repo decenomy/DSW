@@ -398,7 +398,7 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(WalletModelTransaction& tran
 
     // Double check tx before do anything
     CValidationState state;
-    if (!CheckTransaction(*transaction.getTransaction(), true, true, state, true)) {
+    if (!CheckTransaction(*transaction.getTransaction(), state)) {
         return TransactionCheckFailed;
     }
 

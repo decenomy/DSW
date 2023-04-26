@@ -15,8 +15,6 @@
 #include "policy/policy.h"
 #include "stakeinput.h"
 #include "utilmoneystr.h"
-#include "zpivchain.h"
-#include "zpiv/zpos.h"
 
 #include <boost/assign/list_of.hpp>
 
@@ -108,9 +106,7 @@ bool LoadStakeInput(const CBlock& block, const CBlockIndex* pindexPrev, std::uni
 
     // Construct the stakeinput object
     const CTxIn& txin = block.vtx[1].vin[0];
-    stake = txin.IsZerocoinSpend() ?
-            std::unique_ptr<CStakeInput>(new CLegacyZPivStake()) :
-            std::unique_ptr<CStakeInput>(new CPivStake());
+    stake = std::unique_ptr<CStakeInput>(new CPivStake());
 
     return stake->InitFromTxIn(txin);
 }
@@ -192,9 +188,6 @@ bool CheckProofOfStake(const CBlock& block, std::string& strError, const CBlockI
         strError = "kernel hash check fails";
         return false;
     }
-
-    // zPoS disabled (ContextCheck) before blocks V7, and the tx input signature is in CoinSpend
-    if (stakeInput->IsZPIV()) return true;
 
     // Verify tx input signature
     CTxOut stakePrevout;

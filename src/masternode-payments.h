@@ -10,6 +10,7 @@
 #include "key.h"
 #include "main.h"
 #include "masternode.h"
+#include "masternodeman.h"
 
 
 extern RecursiveMutex cs_vecPayments;
@@ -24,6 +25,9 @@ extern CMasternodePayments masternodePayments;
 
 #define MNPAYMENTS_SIGNATURES_REQUIRED 6
 #define MNPAYMENTS_SIGNATURES_TOTAL 10
+
+extern uint64_t reconsiderWindowMin;
+extern uint64_t reconsiderWindowTime;
 
 void ProcessMessageMasternodePayments(CNode* pfrom, std::string& strCommand, CDataStream& vRecv);
 bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight);
@@ -88,6 +92,9 @@ public:
 // Keep track of votes for payees from masternodes
 class CMasternodeBlockPayees
 {
+    private:
+    bool IsTransactionValidV1(const CTransaction& txNew, int nBlockHeight);
+    bool IsTransactionValidV2(const CTransaction& txNew, int nBlockHeight);
 public:
     int nBlockHeight;
     std::vector<CMasternodePayee> vecPayments;
@@ -232,6 +239,8 @@ class CMasternodePayments
 private:
     int nLastBlockHeight;
 
+    bool GetBlockPayeeV1(int nBlockHeight, CScript& payee);
+    bool GetBlockPayeeV2(int nBlockHeight, CScript& payee);
 public:
     std::map<uint256, CMasternodePaymentWinner> mapMasternodePayeeVotes;
     std::map<int, CMasternodeBlockPayees> mapMasternodeBlocks;
@@ -250,7 +259,7 @@ public:
     }
 
     bool AddWinningMasternode(CMasternodePaymentWinner& winner);
-    bool ProcessBlock(int nBlockHeight);
+    void ProcessBlock(int nBlockHeight);
 
     void Sync(CNode* node, int nCountNeeded);
     void CleanPaymentList();

@@ -6,6 +6,8 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "chain.h"
+#include "masternode.h"
+#include "masternodeman.h"
 #include "legacy/stakemodifier.h"  // for ComputeNextStakeModifier
 
 
@@ -14,6 +16,8 @@
  */
 void CChain::SetTip(CBlockIndex* pindex)
 {
+    LOCK(cs);
+
     if (pindex == NULL) {
         vChain.clear();
         return;
@@ -240,6 +244,29 @@ uint256 CBlockIndex::GetStakeModifierV2() const
     return nStakeModifier;
 }
 
+bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex);
+
+CScript* CBlockIndex::GetPaidPayee()
+{
+    if(paidPayee == nullptr || paidPayee->empty()) {
+        CBlock block;
+        if (nHeight <= chainActive.Height() && ReadBlockFromDisk(block, this)) {
+            auto amount = CMasternode::GetMasternodePayment(nHeight);
+            auto mnpayee = block.GetPaidPayee( amount);
+            
+            if(!mnpayee.empty()) {
+                paidPayee = new CScript(mnpayee);
+                auto pmn = mnodeman.Find(mnpayee);
+                if(pmn && (pmn->lastPaid == INT64_MAX || pmn->lastPaid == 0)) {
+                    pmn->lastPaid = GetBlockTime();
+                }
+            }
+        }
+    }
+
+    return paidPayee;
+}
+
 //! Check whether this block index entry is valid up to the passed validity level.
 bool CBlockIndex::IsValid(enum BlockStatus nUpTo) const
 {
@@ -263,8 +290,5 @@ bool CBlockIndex::RaiseValidity(enum BlockStatus nUpTo)
     return false;
 }
 
-/*
- * CBlockIndex - Legacy Zerocoin
- */
 
 

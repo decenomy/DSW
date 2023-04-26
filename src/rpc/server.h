@@ -9,7 +9,6 @@
 #define BITCOIN_RPCSERVER_H
 
 #include "amount.h"
-#include "zpiv/zerocoin.h"
 #include "rpc/protocol.h"
 #include "uint256.h"
 
@@ -189,7 +188,6 @@ extern std::string HelpExampleRpc(std::string methodname, std::string args);
 extern void EnsureWalletIsUnlocked(bool fAllowAnonOnly = false);
 // Ensure the wallet's existence.
 extern void EnsureWallet();
-extern UniValue DoZpivSpend(const CAmount nAmount, std::vector<CZerocoinMint>& vMintsSelected, std::string address_str);
 
 extern UniValue getconnectioncount(const JSONRPCRequest& request); // in rpc/net.cpp
 extern UniValue getpeerinfo(const JSONRPCRequest& request);
@@ -201,6 +199,7 @@ extern UniValue getnettotals(const JSONRPCRequest& request);
 extern UniValue setban(const JSONRPCRequest& request);
 extern UniValue listbanned(const JSONRPCRequest& request);
 extern UniValue clearbanned(const JSONRPCRequest& request);
+extern UniValue checkconnection(const JSONRPCRequest& request);
 
 extern UniValue bip38encrypt(const JSONRPCRequest& request);
 extern UniValue bip38decrypt(const JSONRPCRequest& request);
@@ -220,26 +219,6 @@ extern UniValue getaddressinfo(const JSONRPCRequest& request);
 extern UniValue getblockchaininfo(const JSONRPCRequest& request);
 extern UniValue getnetworkinfo(const JSONRPCRequest& request);
 extern UniValue multisend(const JSONRPCRequest& request);
-extern UniValue getzerocoinbalance(const JSONRPCRequest& request);
-extern UniValue listmintedzerocoins(const JSONRPCRequest& request);
-extern UniValue listspentzerocoins(const JSONRPCRequest& request);
-extern UniValue listzerocoinamounts(const JSONRPCRequest& request);
-extern UniValue mintzerocoin(const JSONRPCRequest& request);
-extern UniValue spendzerocoin(const JSONRPCRequest& request);
-extern UniValue spendrawzerocoin(const JSONRPCRequest& request);
-extern UniValue spendzerocoinmints(const JSONRPCRequest& request);
-extern UniValue resetmintzerocoin(const JSONRPCRequest& request);
-extern UniValue resetspentzerocoin(const JSONRPCRequest& request);
-extern UniValue getarchivedzerocoin(const JSONRPCRequest& request);
-extern UniValue importzerocoins(const JSONRPCRequest& request);
-extern UniValue exportzerocoins(const JSONRPCRequest& request);
-extern UniValue reconsiderzerocoins(const JSONRPCRequest& request);
-extern UniValue getspentzerocoinamount(const JSONRPCRequest& request);
-extern UniValue setzpivseed(const JSONRPCRequest& request);
-extern UniValue getzpivseed(const JSONRPCRequest& request);
-extern UniValue generatemintlist(const JSONRPCRequest& request);
-extern UniValue searchdzpiv(const JSONRPCRequest& request);
-extern UniValue dzpivstate(const JSONRPCRequest& request);
 
 extern UniValue getrawtransaction(const JSONRPCRequest& request); // in rpc/rawtransaction.cpp
 extern UniValue createrawtransaction(const JSONRPCRequest& request);
@@ -248,9 +227,7 @@ extern UniValue decodescript(const JSONRPCRequest& request);
 extern UniValue fundrawtransaction(const JSONRPCRequest& request);
 extern UniValue signrawtransaction(const JSONRPCRequest& request);
 extern UniValue sendrawtransaction(const JSONRPCRequest& request);
-extern UniValue createrawzerocoinspend(const JSONRPCRequest& request);
 
-extern UniValue findserial(const JSONRPCRequest& request); // in rpc/blockchain.cpp
 extern UniValue getblockcount(const JSONRPCRequest& request);
 extern UniValue getbestblockhash(const JSONRPCRequest& request);
 extern UniValue waitfornewblock(const JSONRPCRequest& request);
@@ -270,7 +247,6 @@ extern UniValue getchaintips(const JSONRPCRequest& request);
 extern UniValue invalidateblock(const JSONRPCRequest& request);
 extern UniValue reconsiderblock(const JSONRPCRequest& request);
 extern UniValue getblockindexstats(const JSONRPCRequest& request);
-extern UniValue getserials(const JSONRPCRequest& request);
 extern UniValue getburnaddresses(const JSONRPCRequest& request);
 extern void validaterange(const UniValue& params, int& heightStart, int& heightEnd, int minHeightStart=1);
 
@@ -281,24 +257,16 @@ extern UniValue createmasternodebroadcast(const JSONRPCRequest& request);
 extern UniValue decodemasternodebroadcast(const JSONRPCRequest& request);
 extern UniValue relaymasternodebroadcast(const JSONRPCRequest& request);
 extern UniValue masternodecurrent(const JSONRPCRequest& request);
+extern UniValue reloadmasternodeconfig(const JSONRPCRequest& request);
 extern UniValue startmasternode(const JSONRPCRequest& request);
 extern UniValue createmasternodekey(const JSONRPCRequest& request);
 extern UniValue getmasternodeoutputs(const JSONRPCRequest& request);
 extern UniValue listmasternodeconf(const JSONRPCRequest& request);
+extern UniValue getactivemasternodecount(const JSONRPCRequest& request);
 extern UniValue getmasternodestatus(const JSONRPCRequest& request);
 extern UniValue getmasternodewinners(const JSONRPCRequest& request);
 extern UniValue getmasternodescores(const JSONRPCRequest& request);
-
-extern UniValue preparebudget(const JSONRPCRequest& request); // in rpc/budget.cpp
-extern UniValue submitbudget(const JSONRPCRequest& request);
-extern UniValue mnbudgetvote(const JSONRPCRequest& request);
-extern UniValue getbudgetvotes(const JSONRPCRequest& request);
-extern UniValue getnextsuperblock(const JSONRPCRequest& request);
-extern UniValue getbudgetprojection(const JSONRPCRequest& request);
-extern UniValue getbudgetinfo(const JSONRPCRequest& request);
-extern UniValue mnbudgetrawvote(const JSONRPCRequest& request);
-extern UniValue mnfinalbudget(const JSONRPCRequest& request);
-extern UniValue checkbudgets(const JSONRPCRequest& request);
+extern UniValue mnping(const JSONRPCRequest& request);
 
 extern UniValue getinfo(const JSONRPCRequest& request); // in rpc/misc.cpp
 extern UniValue logging(const JSONRPCRequest& request);
