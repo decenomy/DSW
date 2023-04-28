@@ -1563,6 +1563,9 @@ bool AppInit2()
                             strLoadError = _("Unable to rewind the blockchain. You will need to redownload the blockchain");
                             break;
                         }
+
+                        // Clear the banned adresses to aid the recovery of a possible fork
+                        g_connman->ClearBanned();
                     }
 
                     // Flag sent to validation code to let it know it can skip certain checks
