@@ -16,19 +16,18 @@
 #include "init.h"
 
 #include "activemasternode.h"
+#include "activemasternodeman.h"
+#include "activemasternodeconfig.h"
 #include "addrman.h"
 #include "amount.h"
 #include "checkpoints.h"
 #include "compat/sanity.h"
 #include "consensus/upgrades.h"
-#include "consensus/zerocoin_verify.h"
 #include "fs.h"
 #include "httpserver.h"
 #include "httprpc.h"
-#include "invalid.h"
 #include "key.h"
 #include "main.h"
-#include "masternode-budget.h"
 #include "masternode-payments.h"
 #include "masternodeconfig.h"
 #include "masternodeman.h"
@@ -50,7 +49,6 @@
 #include "utilmoneystr.h"
 #include "util/threadnames.h"
 #include "validationinterface.h"
-#include "zpivchain.h"
 
 #ifdef ENABLE_WALLET
 #include "wallet/db.h"
@@ -88,12 +86,6 @@ int nWalletBackups = 10;
 #endif
 volatile bool fFeeEstimatesInitialized = false;
 volatile bool fRestartRequested = false; // true: restart false: shutdown
-static const bool DEFAULT_PROXYRANDOMIZE = true;
-static const bool DEFAULT_REST_ENABLE = false;
-static const bool DEFAULT_DISABLE_SAFEMODE = false;
-static const bool DEFAULT_STOPAFTERBLOCKIMPORT = false;
-static const bool DEFAULT_MASTERNODE  = false;
-static const bool DEFAULT_MNCONFLOCK = true;
 
 std::unique_ptr<CConnman> g_connman;
 
@@ -226,7 +218,6 @@ void PrepareShutdown()
     g_connman.reset();
 
     DumpMasternodes();
-    DumpBudgets();
     DumpMasternodePayments();
     UnregisterNodeSignals(GetNodeSignals());
 
@@ -261,8 +252,6 @@ void PrepareShutdown()
         pcoinsdbview = NULL;
         delete pblocktree;
         pblocktree = NULL;
-        delete zerocoinDB;
-        zerocoinDB = NULL;
         delete pSporkDB;
         pSporkDB = NULL;
     }
@@ -395,7 +384,6 @@ std::string HelpMessage(HelpMessageMode mode)
 #endif
     }
     strUsage += HelpMessageOpt("-datadir=<dir>", _("Specify data directory"));
-    strUsage += HelpMessageOpt("-paramsdir=<dir>", strprintf(_("Specify zk params directory (default: %s)"), ZC_GetParamsDir().string()));
     strUsage += HelpMessageOpt("-debuglogfile=<file>", strprintf(_("Specify location of debug log file: this can be an absolute path or a path relative to the data directory (default: %s)"), DEFAULT_DEBUGLOGFILE));
     strUsage += HelpMessageOpt("-disablesystemnotifications", strprintf(_("Disable OS notifications for incoming transactions (default: %u)"), 0));
     strUsage += HelpMessageOpt("-dbcache=<n>", strprintf(_("Set database cache size in megabytes (%d to %d, default: %d)"), nMinDbCache, nMaxDbCache, nDefaultDbCache));
@@ -411,6 +399,7 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-reindex", _("Rebuild block chain index from current blk000??.dat files") + " " + _("on startup"));
     strUsage += HelpMessageOpt("-reindexmoneysupply", strprintf(_("Reindex the %s and z%s money supply statistics"), CURRENCY_UNIT, CURRENCY_UNIT) + " " + _("on startup"));
     strUsage += HelpMessageOpt("-resync", _("Delete blockchain folders and resync from scratch") + " " + _("on startup"));
+    strUsage += HelpMessageOpt("-rewindblockindex[=<n or hash>]", _("When used without a value, rewinds blockchain to last checkpoint. When passing a number, rolls back the chain by the given number of blocks. When passing a block hash (as a hex string), rewind up to (not including) the block with the matching hash."));
 #if !defined(WIN32)
     strUsage += HelpMessageOpt("-sysperms", _("Create new files with system default permissions, instead of umask 077 (only effective with disabled wallet functionality)"));
 #endif
@@ -428,6 +417,7 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-dnsseed", _("Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect/-noconnect)"));
     strUsage += HelpMessageOpt("-externalip=<ip>", _("Specify your own public address"));
     strUsage += HelpMessageOpt("-forcednsseed", strprintf(_("Always query for peer addresses via DNS lookup (default: %u)"), DEFAULT_FORCEDNSSEED));
+    strUsage += HelpMessageOpt("-hostip=<ip>", _("Specify default host IP for outbound connections"));
     strUsage += HelpMessageOpt("-listen", strprintf(_("Accept connections from outside (default: %u if no -proxy or -connect/-noconnect)"), DEFAULT_LISTEN));
     strUsage += HelpMessageOpt("-listenonion", strprintf(_("Automatically create Tor hidden service (default: %d)"), DEFAULT_LISTEN_ONION));
     strUsage += HelpMessageOpt("-maxconnections=<n>", strprintf(_("Maintain at most <n> connections to peers (default: %u)"), DEFAULT_MAX_PEER_CONNECTIONS));
@@ -510,18 +500,13 @@ std::string HelpMessage(HelpMessageMode mode)
     }
     strUsage += HelpMessageOpt("-shrinkdebugfile", _("Shrink debug.log file on client startup (default: 1 when no -debug)"));
     strUsage += HelpMessageOpt("-testnet", _("Use the test network"));
-    strUsage += HelpMessageOpt("-litemode=<n>", strprintf(_("Disable all SUV specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)"), 0));
+    strUsage += HelpMessageOpt("-litemode=<n>", strprintf(_("Disable all SUV specific functionality (Masternodes) (0-1, default: %u)"), 0));
 
     strUsage += HelpMessageGroup(_("Masternode options:"));
     strUsage += HelpMessageOpt("-masternode=<n>", strprintf(_("Enable the client to act as a masternode (0-1, default: %u)"), DEFAULT_MASTERNODE));
     strUsage += HelpMessageOpt("-mnconf=<file>", strprintf(_("Specify masternode configuration file (default: %s)"), PIVX_MASTERNODE_CONF_FILENAME));
     strUsage += HelpMessageOpt("-mnconflock=<n>", strprintf(_("Lock masternodes from masternode configuration file (default: %u)"), DEFAULT_MNCONFLOCK));
     strUsage += HelpMessageOpt("-masternodeprivkey=<n>", _("Set the masternode private key"));
-    strUsage += HelpMessageOpt("-masternodeaddr=<n>", strprintf(_("Set external address:port to get to this masternode (example: %s)"), "128.127.106.235:18976"));
-    strUsage += HelpMessageOpt("-budgetvotemode=<mode>", _("Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)"));
-
-    strUsage += HelpMessageGroup(_("Zerocoin options:"));
-    strUsage += HelpMessageOpt("-reindexzerocoin=<n>", strprintf(_("Delete all zerocoin spends and mints that have been recorded to the blockchain database and reindex them (0-1, default: %u)"), 0));
 
     strUsage += HelpMessageGroup(_("Node relay options:"));
     strUsage += HelpMessageOpt("-datacarrier", strprintf(_("Relay and mine data carrier transactions (default: %u)"), DEFAULT_ACCEPT_DATACARRIER));
@@ -986,7 +971,7 @@ bool AppInit2()
     // Check for -tor - as this is a privacy risk to continue, exit here
     if (GetBoolArg("-tor", false))
         return UIError(_("Error: Unsupported argument -tor found, use -onion."));
-    // Check level must be 4 for zerocoin checks
+    // Check level
     if (mapArgs.count("-checklevel"))
         return UIError(_("Error: Unsupported argument -checklevel found. Checklevel must be level 4."));
     // Exit early if -masternode=1 and -listen=0
@@ -1226,9 +1211,8 @@ bool AppInit2()
             fs::path blocksDir = GetDataDir() / "blocks";
             fs::path chainstateDir = GetDataDir() / "chainstate";
             fs::path sporksDir = GetDataDir() / "sporks";
-            fs::path zerocoinDir = GetDataDir() / "zerocoin";
 
-            LogPrintf("Deleting blockchain folders blocks, chainstate, sporks and zerocoin\n");
+            LogPrintf("Deleting blockchain folders blocks, chainstate, and sporks\n");
             // We delete in 4 individual steps in case one of the folder is missing already
             try {
                 if (fs::exists(blocksDir)){
@@ -1244,11 +1228,6 @@ bool AppInit2()
                 if (fs::exists(sporksDir)){
                     fs::remove_all(sporksDir);
                     LogPrintf("-resync: folder deleted: %s\n", sporksDir.string().c_str());
-                }
-
-                if (fs::exists(zerocoinDir)){
-                    fs::remove_all(zerocoinDir);
-                    LogPrintf("-resync: folder deleted: %s\n", zerocoinDir.string().c_str());
                 }
             } catch (const fs::filesystem_error& error) {
                 LogPrintf("Failed to delete blockchain folders %s\n", error.what());
@@ -1358,6 +1337,18 @@ bool AppInit2()
     fListen = GetBoolArg("-listen", DEFAULT_LISTEN);
     fDiscover = GetBoolArg("-discover", true);
 
+    if (mapArgs.count("-hostip")) {
+        std::string hostipArg = GetArg("-hostip", "");
+
+        std::string strHost;
+        int port = 0;
+        SplitHostPort(hostipArg, port, strHost);
+
+        if (!Lookup(strHost.c_str(), sHostIp, 0, false)) {
+            return UIError(strprintf(_("HostIP: invalid hostip address %s\n"), hostipArg));
+        }
+    }
+
     bool fBound = false;
     if (fListen) {
         if (mapArgs.count("-bind") || mapArgs.count("-whitebind")) {
@@ -1429,6 +1420,8 @@ bool AppInit2()
     LogPrintf("* Using %.1fMiB for chain state database\n", nCoinDBCache * (1.0 / 1024 / 1024));
     LogPrintf("* Using %.1fMiB for in-memory UTXO set\n", nCoinCacheUsage * (1.0 / 1024 / 1024));
 
+    const CChainParams& chainparams = Params();
+
     bool fLoaded = false;
     while (!fLoaded && !ShutdownRequested()) {
         bool fReset = fReindex;
@@ -1443,13 +1436,10 @@ bool AppInit2()
                 delete pcoinsdbview;
                 delete pcoinscatcher;
                 delete pblocktree;
-                delete zerocoinDB;
                 delete pSporkDB;
 
-                //Suvereno specific: zerocoin and spork DB's
-                zerocoinDB = new CZerocoinDB(0, false, fReindex);
+                //Suvereno specific: spork DB's
                 pSporkDB = new CSporkDB(0, false, false);
-
                 pblocktree = new CBlockTreeDB(nBlockTreeDBCache, false, fReindex);
                 pcoinsdbview = new CCoinsViewDB(nCoinDBCache, false, fReindex);
                 pcoinscatcher = new CCoinsViewErrorCatcher(pcoinsdbview);
@@ -1501,80 +1491,89 @@ bool AppInit2()
                     break;
                 }
 
-                // Populate list of invalid/fraudulent outpoints that are banned from the chain
-                invalid_out::LoadOutpoints();
-                invalid_out::LoadSerials();
-
-                bool fReindexZerocoin = GetBoolArg("-reindexzerocoin", false);
-                bool fReindexMoneySupply = GetBoolArg("-reindexmoneysupply", false);
-
-                int chainHeight;
                 {
                     LOCK(cs_main);
-                    chainHeight = chainActive.Height();
-
-                    // initialize SUV and zSUV supply to 0
-                    mapZerocoinSupply.clear();
-                    for (auto& denom : libzerocoin::zerocoinDenomList) mapZerocoinSupply.insert(std::make_pair(denom, 0));
                     nMoneySupply = 0;
 
-                    // Load SUV and zSUV supply from DB
-                    if (chainHeight >= 0) {
-                        const uint256& tipHash = chainActive[chainHeight]->GetBlockHash();
-                        CLegacyBlockIndex bi;
+                    std::unique_ptr<CCoinsViewCursor> pcursor(pcoinsTip->Cursor());
 
-                        // Load zSUV supply map
-                        if (!fReindexZerocoin && consensus.NetworkUpgradeActive(chainHeight, Consensus::UPGRADE_ZC) &&
-                                !zerocoinDB->ReadZCSupply(mapZerocoinSupply)) {
-                            // try first reading legacy block index from DB
-                            if (pblocktree->ReadLegacyBlockIndex(tipHash, bi) && !bi.mapZerocoinSupply.empty()) {
-                                mapZerocoinSupply = bi.mapZerocoinSupply;
-                            } else {
-                                // reindex from disk
-                                fReindexZerocoin = true;
+                    while (pcursor->Valid()) {
+                        boost::this_thread::interruption_point();
+                        COutPoint key;
+                        Coin coin;
+                        if (pcursor->GetKey(key) && pcursor->GetValue(coin)) {
+                            // ----------- burn address scanning -----------
+                            CTxDestination source;
+                            if (ExtractDestination(coin.out.scriptPubKey, source)) {
+                                const std::string addr = EncodeDestination(source);
+                                if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
+                                    consensus.mBurnAddresses.at(addr) < chainActive.Height()) 
+                                {
+                                    pcursor->Next();
+                                    continue;
+                                }
                             }
+                            nMoneySupply += coin.out.nValue;
                         }
-
-                        // Load SUV supply amount
-                        if (!fReindexMoneySupply && !pblocktree->ReadMoneySupply(nMoneySupply)) {
-                            // try first reading legacy block index from DB
-                            if (pblocktree->ReadLegacyBlockIndex(tipHash, bi)) {
-                                nMoneySupply = bi.nMoneySupply;
-                            } else {
-                                // reindex from disk
-                                fReindexMoneySupply = true;
-                            }
-                        }
+                        pcursor->Next();
                     }
-                }
-
-                // Drop all information from the zerocoinDB and repopulate
-                if (fReindexZerocoin && consensus.NetworkUpgradeActive(chainHeight, Consensus::UPGRADE_ZC)) {
-                    LOCK(cs_main);
-                    uiInterface.InitMessage(_("Reindexing zerocoin database..."));
-                    std::string strError = ReindexZerocoinDB();
-                    if (strError != "") {
-                        strLoadError = strError;
-                        break;
-                    }
-                }
-
-                // Recalculate money supply
-                if (fReindexMoneySupply) {
-                    LOCK(cs_main);
-                    // Skip zSUV if already reindexed
-                    RecalculatePIVSupply(1, fReindexZerocoin);
                 }
 
                 if (!fReindex) {
                     uiInterface.InitMessage(_("Verifying blocks..."));
+
+                    // If the active chain has blocks and -rewindblockindex option is enabled.
+                    if (chainActive.Tip() != NULL && !SoftSetBoolArg("-rewindblockindex", false)) {
+
+                        // Figure out whether we got a parameter with -rewindblockindex, what type it is,
+                        // and how many blocks to rewind.
+                        std::string targetBlockHashStr = GetArg("-rewindblockindex", "");
+
+                        // Determining the default value (up to last checkpoint).
+                        int nHeight = chainActive.Height();
+                        const CBlockIndex* prevCheckPoint;
+                        {
+                            LOCK(cs_main);
+                            prevCheckPoint = GetLastCheckpoint();
+                        }
+                        const int checkPointHeight = prevCheckPoint ? prevCheckPoint->nHeight : 0;
+                        int blocksToRollBack = nHeight - checkPointHeight;
+
+                        // 256 bit hash has length 256/4=64 when represented as hex.
+                        if (targetBlockHashStr.length() == 64) {
+                            const uint256 hash(uint256S(targetBlockHashStr));
+                            if (!IsBlockHashInChain(hash)) {
+                                strLoadError = _("Block not found. Unable to rewind the blockchain to the given block.");
+                                break;
+                            }
+
+                            CBlockIndex* block = LookupBlockIndex(hash);
+
+                            blocksToRollBack = nHeight - block->nHeight;
+                        } else if (!targetBlockHashStr.empty()) {
+                            blocksToRollBack = GetArg("-rewindblockindex", 0);
+                            if (nHeight < blocksToRollBack || blocksToRollBack < 1) {
+                                strLoadError = _("Invalid value. Unable to rewind the blockchain by the given number of blocks.");
+                                break;
+                            }
+                        }
+
+                        uiInterface.InitMessage(_("Rewinding blocks..."));
+                        if (!RewindBlockIndex(blocksToRollBack)) {
+                            strLoadError = _("Unable to rewind the blockchain. You will need to redownload the blockchain");
+                            break;
+                        }
+
+                        // Clear the banned adresses to aid the recovery of a possible fork
+                        g_connman->ClearBanned();
+                    }
 
                     // Flag sent to validation code to let it know it can skip certain checks
                     fVerifyingBlocks = true;
 
                     {
                         LOCK(cs_main);
-                        CBlockIndex *tip = chainActive[chainHeight];
+                        CBlockIndex *tip = chainActive.Tip();
                         RPCNotifyBlockChange(true, tip);
                         if (tip && tip->nTime > GetAdjustedTime() + 2 * 60 * 60) {
                             strLoadError = _("The block database contains a block which appears to be from the future. "
@@ -1584,7 +1583,6 @@ bool AppInit2()
                         }
                     }
 
-                    // Zerocoin must check at level 4
                     if (!CVerifyDB().VerifyDB(pcoinsdbview, 4, GetArg("-checkblocks", DEFAULT_CHECKBLOCKS))) {
                         strLoadError = _("Corrupted block database detected");
                         fVerifyingBlocks = false;
@@ -1709,30 +1707,6 @@ bool AppInit2()
             LogPrintf("file format is unknown or invalid, please fix it manually\n");
     }
 
-    uiInterface.InitMessage(_("Loading budget cache..."));
-
-    CBudgetDB budgetdb;
-    int nChainHeight = WITH_LOCK(cs_main, return chainActive.Height(); );
-    const bool fDryRun = (nChainHeight <= 0);
-    CBudgetDB::ReadResult readResult2 = budgetdb.Read(budget, fDryRun);
-    if (nChainHeight > 0)
-        budget.SetBestHeight(nChainHeight);
-
-    if (readResult2 == CBudgetDB::FileError)
-        LogPrintf("Missing budget cache - budget.dat, will try to recreate\n");
-    else if (readResult2 != CBudgetDB::Ok) {
-        LogPrintf("Error reading budget.dat: ");
-        if (readResult2 == CBudgetDB::IncorrectFormat)
-            LogPrintf("magic is ok but data has invalid format, will try to recreate\n");
-        else
-            LogPrintf("file format is unknown or invalid, please fix it manually\n");
-    }
-
-    //flag our cached items so we send them to our peers
-    budget.ResetSync();
-    budget.ClearSeen();
-
-
     uiInterface.InitMessage(_("Loading masternode payment cache..."));
 
     CMasternodePaymentDB mnpayments;
@@ -1757,49 +1731,19 @@ bool AppInit2()
 
     if (fMasterNode) {
         LogPrintf("IS MASTER NODE\n");
-        strMasterNodeAddr = GetArg("-masternodeaddr", "");
 
-        LogPrintf(" addr %s\n", strMasterNodeAddr.c_str());
-
-        if (!strMasterNodeAddr.empty()) {
-            int nPort;
-            int nDefaultPort = Params().GetDefaultPort();
-            std::string strHost;
-            SplitHostPort(strMasterNodeAddr, nPort, strHost);
-
-            // Allow for the port number to be omitted here and just double check
-            // that if a port is supplied, it matches the required default port.
-            if (nPort == 0) nPort = nDefaultPort;
-            if (nPort != nDefaultPort) {
-                return UIError(strprintf(_("Invalid -masternodeaddr port %d, only %d is supported on %s-net."),
-                    nPort, nDefaultPort, Params().NetworkIDString()));
-            }
-            CService addrTest(LookupNumeric(strHost.c_str(), nPort));
-            if (!addrTest.IsValid()) {
-                return UIError(strprintf(_("Invalid -masternodeaddr address: %s"), strMasterNodeAddr));
-            }
+        std::string strErr;
+        if (!amnodeman.Load(strErr)) {
+            return UIError(strprintf(_("Error reading active masternode configuration file: %s"), strErr));
         }
 
-        strMasterNodePrivKey = GetArg("-masternodeprivkey", "");
-        if (!strMasterNodePrivKey.empty()) {
-            std::string errorMessage;
-
-            CKey key;
-            CPubKey pubkey;
-
-            if (!CMessageSigner::GetKeysFromSecret(strMasterNodePrivKey, key, pubkey)) {
-                return UIError(_("Invalid masternodeprivkey. Please see documenation."));
+        // legacy
+        if (amnodeman.Count() == 0 && !GetArg("-masternodeprivkey", "").empty()) {
+            if (!amnodeman.Add("legacy", GetArg("-masternodeprivkey", ""), strErr)) {
+                return UIError(strprintf(_("Error reading masternodeprivkey: %s"), strErr));
             }
-
-            activeMasternode.pubKeyMasternode = pubkey;
-
-        } else {
-            return UIError(_("You must specify a masternodeprivkey in the configuration. Please see documentation for help."));
         }
     }
-
-    //get the mode of budget voting for this masternode
-    strBudgetMode = GetArg("-budgetvotemode", "auto");
 
     if (GetBoolArg("-mnconflock", DEFAULT_MNCONFLOCK) && pwalletMain) {
         LOCK(pwalletMain->cs_wallet);
@@ -1820,7 +1764,6 @@ bool AppInit2()
     }
 
     LogPrintf("fLiteMode %d\n", fLiteMode);
-    LogPrintf("Budget Mode %s\n", strBudgetMode.c_str());
 
     threadGroup.create_thread(boost::bind(&ThreadCheckMasternodes));
 
@@ -1886,8 +1829,9 @@ bool AppInit2()
     if (pwalletMain) {
         pwalletMain->postInitProcess(threadGroup);
 
+        fStaking = GetBoolArg("-staking", !Params().IsRegTestNet() && DEFAULT_STAKING);
         // StakeMiner thread disabled by default on regtest
-        if (GetBoolArg("-staking", !Params().IsRegTestNet() && DEFAULT_STAKING)) {
+        if (fStaking) {
             threadGroup.create_thread(boost::bind(&ThreadStakeMinter));
         }
     }

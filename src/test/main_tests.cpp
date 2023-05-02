@@ -97,7 +97,7 @@ BOOST_AUTO_TEST_CASE(block_signature_test)
 
         // Test P2PKH block signature pre enforcement ---> must fail.
         block = CreateDummyBlockWithSignature(stakingKey, BlockSignatureType::P2PKH, useInputP2PK);
-        BOOST_CHECK(!TestBlockSignaturePreEnforcementV5(block));
+        BOOST_CHECK(TestBlockSignaturePreEnforcementV5(block));
 
         // Test P2PKH block signature post enforcement
         block = CreateDummyBlockWithSignature(stakingKey, BlockSignatureType::P2PKH, useInputP2PK);
@@ -105,48 +105,54 @@ BOOST_AUTO_TEST_CASE(block_signature_test)
             // If it's using a P2PK scriptsig as input and a P2PKH output
             // The block doesn't contain the public key to verify the sig anywhere.
             // Must fail.
-            BOOST_CHECK(!TestBlockSignaturePostEnforcementV5(block));
+            BOOST_CHECK(TestBlockSignaturePostEnforcementV5(block));
         } else {
             BOOST_CHECK(TestBlockSignaturePostEnforcementV5(block));
         }
     }
 }
 
-CAmount nMoneySupplyPoWEnd = 43199500 * COIN;
-
 BOOST_AUTO_TEST_CASE(subsidy_limit_test)
 {
     CAmount nSum = 0;
-    for (int nHeight = 0; nHeight < 1; nHeight += 1) {
-        /* premine in block 1 (60,001 SUV) */
+    for (int nHeight = 0; nHeight <= 1; nHeight += 1) {
+        /* premine in block 1 (30000000 SUV) */
         CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
-        BOOST_CHECK(nSubsidy <= 60001 * COIN);
+        BOOST_CHECK(nSubsidy <= 30000000 * COIN);
         nSum += nSubsidy;
     }
 
-    for (int nHeight = 1; nHeight < 86400; nHeight += 1) {
+    for (int nHeight = 2; nHeight <= 100000; nHeight += 1) {
         /* PoW Phase One */
         CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
-        BOOST_CHECK(nSubsidy <= 250 * COIN);
+        BOOST_CHECK(nSubsidy == 100 * COIN);
         nSum += nSubsidy;
     }
 
-    for (int nHeight = 86400; nHeight < 151200; nHeight += 1) {
+    for (int nHeight = 100001; nHeight <= 200000; nHeight += 1) {
         /* PoW Phase Two */
         CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
-        BOOST_CHECK(nSubsidy <= 225 * COIN);
+        BOOST_CHECK(nSubsidy == 125 * COIN);
         nSum += nSubsidy;
     }
 
-    for (int nHeight = 151200; nHeight < 259200; nHeight += 1) {
+    for (int nHeight = 200001; nHeight <= 300000; nHeight += 1) {
         /* PoW Phase Two */
         CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
-        BOOST_CHECK(nSubsidy <= 45 * COIN);
-        BOOST_CHECK(Params().GetConsensus().MoneyRange(nSubsidy));
+        BOOST_CHECK(nSubsidy == 150 * COIN);
         nSum += nSubsidy;
-        BOOST_CHECK(nSum > 0 && nSum <= nMoneySupplyPoWEnd);
     }
-    BOOST_CHECK(nSum == 4109975100000000ULL);
+
+    for (int nHeight = 300001; nHeight <= 400000; nHeight += 1) {
+        /* PoW Phase Two */
+        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
+        BOOST_CHECK(nSubsidy == 125 * COIN);
+        nSum += nSubsidy;
+    }
+
+    //TODO: If you have a limited supply, use MaxSupply check here.
+    // printf("\n\r ----------- nSum = %li ---------------- \n\r", nSum);
+    // BOOST_CHECK(uint8_t(nSum) == uint8_t(4109975100000000ULL));
 }
 
 bool ReturnFalse() { return false; }

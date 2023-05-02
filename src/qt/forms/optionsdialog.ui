@@ -130,111 +130,6 @@
          </property>
         </spacer>
        </item>
-       <item>
-        <widget class="QWidget" name="verticalZpivOptionsWidget" native="true">
-         <layout class="QVBoxLayout" name="verticalZpivOptionsLayout">
-          <property name="margin">
-           <number>0</number>
-          </property>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalAutomintingLayout">
-            <item>
-             <widget class="QCheckBox" name="checkBoxZeromintEnable">
-              <property name="toolTip">
-               <string>Enable automatic minting of SUV units to zSUV</string>
-              </property>
-              <property name="layoutDirection">
-               <enum>Qt::LeftToRight</enum>
-              </property>
-              <property name="text">
-               <string>Enable zSUV Automint</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBoxZeromintAddresses">
-              <property name="toolTip">
-               <string>Enable automatic zSUV minting from specific addresses</string>
-              </property>
-              <property name="layoutDirection">
-               <enum>Qt::LeftToRight</enum>
-              </property>
-              <property name="text">
-               <string>Enable Automint Addresses</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalZmintPercentageLayout">
-            <item>
-             <widget class="QLabel" name="percentage_label">
-              <property name="toolTip">
-               <string>Percentage of incoming SUV which get automatically converted to zSUV via Zerocoin Protocol (min: 10%)</string>
-              </property>
-              <property name="text">
-               <string>Percentage of autominted zSUV</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSpinBox" name="zeromintPercentage">
-              <property name="minimum">
-               <number>1</number>
-              </property>
-              <property name="maximum">
-               <number>100</number>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0">
-            <property name="sizeConstraint">
-             <enum>QLayout::SetFixedSize</enum>
-            </property>
-            <item>
-             <widget class="QLabel" name="labelPreferredDenom">
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="toolTip">
-               <string>Wait with automatic conversion to Zerocoin until enough SUV for this denomination is available</string>
-              </property>
-              <property name="text">
-               <string>Preferred Automint zSUV Denomination</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="preferredDenom">
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>27</height>
-               </size>
-              </property>
-              <property name="toolTip">
-               <string>Wait with automatic conversion to Zerocoin until enough SUV for this denomination is available</string>
-              </property>
-              <property name="maxVisibleItems">
-               <number>9</number>
-              </property>
-              <property name="maxCount">
-               <number>9</number>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="tabWallet">
@@ -561,8 +456,8 @@ https://discord.gg/fbAazeVX5P</string>
         </layout>
        </item>
        <item>
-        <widget class="QWidget" name="verticalZpivDisplayWidget" native="true">
-         <layout class="QVBoxLayout" name="verticalZpivDisplayLayout">
+        <widget class="QWidget" name="verticalDisplayWidget" native="true">
+         <layout class="QVBoxLayout" name="verticalDisplayLayout">
           <property name="margin">
            <number>0</number>
           </property>

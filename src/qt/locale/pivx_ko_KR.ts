@@ -700,8 +700,8 @@ for staking</source>
         <translation>Filter by</translation>
     </message>
     <message>
-        <source>Amount of SUV and zSUV staked.</source>
-        <translation>스테이킹 된 SUV와 zSUV 양</translation>
+        <source>Amount of SUV staked.</source>
+        <translation>스테이킹 된 SUV양</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -1500,36 +1500,8 @@ Are you sure?</source>
         <translation>&amp;UPnp를 사용하여 포트 매핑</translation>
     </message>
     <message>
-        <source>Enable automatic minting of SUV units to zSUV</source>
-        <translation>보상받은 SUV를 zSUV로 자동변환 활성화</translation>
-    </message>
-    <message>
-        <source>Enable zSUV Automint</source>
-        <translation>zSUV 자동생성 활성화</translation>
-    </message>
-    <message>
-        <source>Enable automatic zSUV minting from specific addresses</source>
-        <translation>특정 주소들로부터 자동으로 zSUV 민트되는 것을 허용</translation>
-    </message>
-    <message>
         <source>Enable Automint Addresses</source>
         <translation>Automint 주소 사용</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming SUV which get automatically converted to zSUV via Zerocoin Protocol (min: 10%)</source>
-        <translation>SUV수신시 자동변환 zSUV 비율 (최소값:10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted zSUV</source>
-        <translation>자동 변환되는 zSUV 비율</translation>
-    </message>
-    <message>
-        <source>Wait with automatic conversion to Zerocoin until enough SUV for this denomination is available</source>
-        <translation>이 디노미네이션의 SUV가 충분해질 때까지 Zerocoin으로 자동전환은 보류됩니다.</translation>
-    </message>
-    <message>
-        <source>Preferred Automint zSUV Denomination</source>
-        <translation>선호하는 자동생성 zSUV 디노미네이션 </translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
@@ -2209,10 +2181,6 @@ Address: %4
     <message>
         <source>Custom Backup Path:</source>
         <translation>맞춤 백업 경로 :</translation>
-    </message>
-    <message>
-        <source>Custom zSUV Backup Path:</source>
-        <translation>맞춤 zSUV 백업 경로 :</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -3910,7 +3878,7 @@ Are you sure?
         <translation>스테이킹 활성화</translation>
     </message>
     <message>
-        <source>Staking not active</source>
+        <source>Staking inactive</source>
         <translation>스테이킹 비활성화</translation>
     </message>
     <message>
@@ -4315,10 +4283,6 @@ Suvereno Wallet</translation>
         <translation>        &lt;translation&gt;잠겨진 데이터 디렉토리 %s 를 가져올 수 없습니다. Suvereno는 이미 실행 중입니다.</translation>
     </message>
     <message>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation>최종 budget 투표 자동 작동 값을 변경합니다. mode=auto: 오직 내가 생성한 budget과 최종 budget이 정확히 일치할때 투표합니다. (string, 기본값: 자동)</translation>
-    </message>
-    <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
         <translation>연속적인 무료 트랜잭션을 분당 &lt;n&gt;*1000 bytes로 제한합니다. (기본값:%u)</translation>
     </message>
@@ -4329,10 +4293,6 @@ Suvereno Wallet</translation>
     <message>
         <source>Delete all wallet transactions and only recover those parts of the blockchain through -rescan on startup</source>
         <translation>지갑의 모든 트랜잭션들을 삭제하고 오직 블록체인을 통한 트랜잭션 부분들만 복구합니다 -시작 시 다시 스캔</translation>
-    </message>
-    <message>
-        <source>Delete all zerocoin spends and mints that have been recorded to the blockchain database and reindex them (0-1, default: %u)</source>
-        <translation>Delete all zerocoin spends and mints that have been recorded to the blockchain database and reindex them (0-1, default: %u)</translation>
     </message>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
@@ -4603,10 +4563,6 @@ Suvereno Wallet</translation>
         <translation>데이터베이스에서서 읽어오는 중 오류가 발생했습니다. 종료합니다.</translation>
     </message>
     <message>
-        <source>Error writing zerocoinDB to disk</source>
-        <translation>디스크에 zerocoinDB 쓰기 오류</translation>
-    </message>
-    <message>
         <source>Error</source>
         <translation>에러</translation>
     </message>
@@ -4707,14 +4663,6 @@ Suvereno Wallet</translation>
         <translation>SUV 공급 재계산중...</translation>
     </message>
     <message>
-        <source>Reindexing zerocoin database...</source>
-        <translation>제로코인 데이타베이스 재색인</translation>
-    </message>
-    <message>
-        <source>Reindexing zerocoin failed</source>
-        <translation>제로코인 재 인덱싱 실패</translation>
-    </message>
-    <message>
         <source>Selected coins value is less than payment target</source>
         <translation>지불대상보다 적은 코인 선택됨</translation>
     </message>
@@ -4723,8 +4671,8 @@ Suvereno Wallet</translation>
         <translation>이것은 사전 릴리스 테스트 빌드입니다 - 사용상 책임은 귀하에게 있습니다. - staking이나 상업적인 용도로는 절대 사용하지 마십시오!</translation>
     </message>
     <message>
-        <source>Disable all SUV specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
-        <translation>SUV의 모든 특정 기능들을 비활성화합니다(마스터노드, 난독화, Budgeting) (0-1, 기본값: %u)</translation>
+        <source>Disable all SUV specific functionality (Masternodes) (0-1, default: %u)</source>
+        <translation>SUV의 모든 특정 기능들을 비활성화합니다(마스터노드) (0-1, 기본값: %u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -4791,14 +4739,6 @@ Suvereno Wallet</translation>
         <translation>Error: 유효하지 않는 utxo!</translation>
     </message>
     <message>
-        <source>Failed to select a zerocoin</source>
-        <translation>제로코인 선택 실패</translation>
-    </message>
-    <message>
-        <source>Failed to wipe zerocoinDB</source>
-        <translation>제로코인 DB 삭제 실패</translation>
-    </message>
-    <message>
         <source>Failed to write coin serial number into wallet</source>
         <translation>지갑에 코인 시리얼 번호 작성 실패</translation>
     </message>
@@ -4833,10 +4773,6 @@ Suvereno Wallet</translation>
     <message>
         <source>Loading block index...</source>
         <translation>블록 인덱스를 불러오는 중...</translation>
-    </message>
-    <message>
-        <source>Loading budget cache...</source>
-        <translation>budget 캐시를 불러오는 중...</translation>
     </message>
     <message>
         <source>Loading masternode cache...</source>
@@ -5099,10 +5035,6 @@ Suvereno Wallet</translation>
         <translation>동기화 완료</translation>
     </message>
     <message>
-        <source>Synchronizing budgets...</source>
-        <translation>budgets 동기화 중입니다...</translation>
-    </message>
-    <message>
         <source>Synchronizing masternode winners...</source>
         <translation>마스터노드 승자를 동기화 중입니다...</translation>
     </message>
@@ -5113,10 +5045,6 @@ Suvereno Wallet</translation>
     <message>
         <source>Synchronizing sporks...</source>
         <translation>sporks와 동기화 중입니다...</translation>
-    </message>
-    <message>
-        <source>Syncing zSUV wallet...</source>
-        <translation>zSUV 지갑 동기화중...</translation>
     </message>
     <message>
         <source>This help message</source>
@@ -5211,10 +5139,6 @@ Suvereno Wallet</translation>
         <translation>JSON-RPC 연결 사용자 이름</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of zSUV</source>
-        <translation>Value is below the smallest available denomination (= 1) of zSUV</translation>
-    </message>
-    <message>
         <source>Verifying blocks...</source>
         <translation>블록 인증 중...</translation>
     </message>
@@ -5255,10 +5179,6 @@ Suvereno Wallet</translation>
         <translation>경고 : 지원하지 않는 인수 -debugnet 무시됨 -debug=net를 사용하십시오.</translation>
     </message>
     <message>
-        <source>You don't have enough Zerocoins in your wallet</source>
-        <translation>지갑에 zSUV 가 부족합니다.</translation>
-    </message>
-    <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
         <translation>-treindex를 변경하려면 -reindex를 사용하여 데이터베이스를 다시 빌드해야합니다.</translation>
     </message>
@@ -5269,10 +5189,6 @@ Suvereno Wallet</translation>
     <message>
         <source>ZeroMQ notification options:</source>
         <translation>ZeroMQ 알림 옵션:</translation>
-    </message>
-    <message>
-        <source>Zerocoin options:</source>
-        <translation>제로코인 옵션:</translation>
     </message>
     <message>
         <source>on startup</source>

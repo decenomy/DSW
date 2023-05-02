@@ -8,14 +8,10 @@
 #include "chain.h"
 #include "main.h"
 #include "txdb.h"
-#include "zpiv/deterministicmint.h"
 #include "wallet/wallet.h"
 
 bool CPivStake::InitFromTxIn(const CTxIn& txin)
 {
-    if (txin.IsZerocoinSpend())
-        return error("%s: unable to initialize CSUVStake from zerocoin spend", __func__);
-
     // Find the previous transaction in database
     uint256 hashBlock;
     CTransaction txPrev;

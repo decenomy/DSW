@@ -221,10 +221,6 @@ class CInv():
         6: "MSG_SPORK",
         7: "MSG_MASTERNODE_WINNER",
         8: "MSG_MASTERNODE_SCANNING_ERROR",
-        9: "MSG_BUDGET_VOTE",
-        10: "MSG_BUDGET_PROPOSAL",
-        11: "MSG_BUDGET_FINALIZED",
-        12: "MSG_BUDGET_FINALIZED_VOTE",
         13: "MSG_MASTERNODE_QUORUM",
         14: "MSG_MASTERNODE_QUORUM",
         15: "MSG_MASTERNODE_ANNOUNCE",
@@ -331,9 +327,6 @@ class CTxIn():
             % (repr(self.prevout), bytes_to_hex_str(self.scriptSig),
                self.nSequence)
 
-    def is_zerocoinspend(self):
-        return bytes_to_hex_str(self.scriptSig)[:2] == "c2"
-
 
 class CTxOut():
     def __init__(self, nValue=0, scriptPubKey=b""):
@@ -425,8 +418,7 @@ class CTransaction():
     def is_coinbase(self):
         return (
                 len(self.vin) == 1 and
-                self.vin[0].prevout == NullOutPoint and
-                (not self.vin[0].is_zerocoinspend())
+                self.vin[0].prevout == NullOutPoint 
         )
 
     def is_coinstake(self):

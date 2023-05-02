@@ -98,7 +98,7 @@ Rebuild block chain index from current blk000??.dat files on startup
 .HP
 \fB\-reindexmoneysupply\fR
 .IP
-Reindex the PIV and zPIV money supply statistics on startup
+Reindex the PIV money supply statistics on startup
 .HP
 \fB\-resync\fR
 .IP
@@ -434,7 +434,7 @@ Use the test network
 .HP
 \fB\-litemode=\fR<n>
 .IP
-Disable all PIVX specific functionality (Masternodes, Zerocoin,
+Disable all PIVX specific functionality (Masternodes, 
 Budgeting) (0\-1, default: 0)
 .PP
 Masternode options:
@@ -455,23 +455,11 @@ Lock masternodes from masternode configuration file (default: 1)
 .IP
 Set the masternode private key
 .HP
-\fB\-masternodeaddr=\fR<n>
-.IP
-Set external address:port to get to this masternode (example:
-128.127.106.235:18976)
-.HP
 \fB\-budgetvotemode=\fR<mode>
 .IP
 Change automatic finalized budget voting behavior. mode=auto: Vote for
 only exact finalized budget match to my generated budget. (string,
 default: auto)
-.PP
-Zerocoin options:
-.HP
-\fB\-reindexzerocoin=\fR<n>
-.IP
-Delete all zerocoin spends and mints that have been recorded to the
-blockchain database and reindex them (0\-1, default: 0)
 .PP
 Node relay options:
 .HP

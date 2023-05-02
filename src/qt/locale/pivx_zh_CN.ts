@@ -703,8 +703,8 @@ for staking</source>
         <translation>过滤</translation>
     </message>
     <message>
-        <source>Amount of SUV and zSUV staked.</source>
-        <translation>已加注的SUV 和 zSUV 金额</translation>
+        <source>Amount of SUV staked.</source>
+        <translation>已加注的SUV 金额</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -1506,36 +1506,8 @@ Are you sure?</source>
         <translation>端口使用&amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of SUV units to zSUV</source>
-        <translation>启动自动铸造SUV到zSUV</translation>
-    </message>
-    <message>
-        <source>Enable zSUV Automint</source>
-        <translation>启动自动铸造zSUV</translation>
-    </message>
-    <message>
-        <source>Enable automatic zSUV minting from specific addresses</source>
-        <translation>启用从特定地址自动生成zSUV</translation>
-    </message>
-    <message>
         <source>Enable Automint Addresses</source>
         <translation>启动自动铸造地址</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming SUV which get automatically converted to zSUV via Zerocoin Protocol (min: 10%)</source>
-        <translation>通过零币协议自动转换为zSUV的传入SUV的百分比(最小:10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted zSUV</source>
-        <translation>自动铸造的zSUV百分比</translation>
-    </message>
-    <message>
-        <source>Wait with automatic conversion to Zerocoin until enough SUV for this denomination is available</source>
-        <translation>等待自动转换为零币，直到足够的SUV为这种面额可用</translation>
-    </message>
-    <message>
-        <source>Preferred Automint zSUV Denomination</source>
-        <translation>首选自动铸造zSUV面额</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
@@ -2243,10 +2215,6 @@ Address: %4
     <message>
         <source>Custom Backup Path:</source>
         <translation>自定义备份路径:</translation>
-    </message>
-    <message>
-        <source>Custom zSUV Backup Path:</source>
-        <translation>自定义zSUV备份路径:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -3254,27 +3222,25 @@ There was an error trying to save the address list to %1. Please try again.</sou
                            SUV is a form of digital online money using blockchain technology
                            that can be easily transferred globally, instantly, and with near
                            zero fees.  SUV incorporates market leading security &amp;
-                           privacy and is also the first PoS (Proof of Stake) Cryptocurrency
-                           to implement ZeroCoin(zSUV) and Zerocoin staking.
+                           privacy.
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            SUV utilizes a Proof of Stake (PoS) consensus system algorithm,
                            allowing all owners of SUV to participate in earning block rewards
                            while securing the network with full node wallets, as well as to
-                           run Masternodes to create and vote on proposals.
+                           run Masternodes to earn additional income regularly.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-SUV是一种使用区块链技术的数字在线货币
-全球范围内快捷交易，即时，基本为
-零的交易费用。SUV是市场上领先的安全和
-隐私加密货币，也是第一个PoS(股权证明)加密货币
-实现零币(zSUV)和零币加注。
+SUV is a form of digital online money using blockchain technology
+that can be easily transferred globally, instantly, and with near
+zero fees.  SUV incorporates market leading security &amp;
+privacy.
 &lt;/p&gt;&lt;p align="justify"&gt;
-SUV使用了一个股权证明(PoS)一致系统算法，
-允许所有SUV的所有者参与赚取区块奖励
-同时保护网络与完整的节点钱包，以及
-运行主节点创建和投票来进行提案。</translation>
+SUV utilizes a Proof of Stake (PoS) consensus system algorithm,
+allowing all owners of SUV to participate in earning block rewards
+while securing the network with full node wallets, as well as to
+run Masternodes to create and vote on proposals</translation>
     </message>
     <message>
         <source>2</source>
@@ -3346,8 +3312,6 @@ SUV使用了一个股权证明(PoS)一致系统算法，
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
-                           &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
                            &lt;li&gt;Act as an additional full node in the network&lt;/li&gt;
                            &lt;/ul&gt;
@@ -3388,8 +3352,6 @@ SUV使用了一个股权证明(PoS)一致系统算法，
 &lt;/p&gt;&lt;p align="justify"&gt;
 
 &lt;ul&gt;
-&lt;li&gt;去中心化治理(提案投票)&lt;/li&gt;
-&lt;li&gt;去中心化预算系统(国库)&lt;/li&gt;
 &lt;li&gt;验证每个区块交易&lt;/li&gt;
 &lt;li&gt;充当网络中的另一个完整节点&lt;/li&gt;
 &lt;/ul&gt;
@@ -4234,7 +4196,7 @@ Are you sure?
         <translation>加注激活</translation>
     </message>
     <message>
-        <source>Staking not active</source>
+        <source>Staking inactive</source>
         <translation>加注没激活</translation>
     </message>
     <message>
@@ -4657,10 +4619,6 @@ Suvereno心钱包</translation>
         <translation>无法获取数据目录%s锁。Suvereno心可能已经在运行了。</translation>
     </message>
     <message>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation>改变自动完成的预算投票行为。模式=自动:只对与生成的预算完全匹配的最终预算进行投票。(字符串,默认:汽车)</translation>
-    </message>
-    <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
         <translation>连续速率限制免费交易可达&lt;n&gt;每分钟*1000字节(默认:%u)</translation>
     </message>
@@ -4671,10 +4629,6 @@ Suvereno心钱包</translation>
     <message>
         <source>Delete all wallet transactions and only recover those parts of the blockchain through -rescan on startup</source>
         <translation>删除所有钱包交易，只恢复那些部分的区块链-通过启动时进行重新扫描</translation>
-    </message>
-    <message>
-        <source>Delete all zerocoin spends and mints that have been recorded to the blockchain database and reindex them (0-1, default: %u)</source>
-        <translation>删除所有已记录到区块链数据库的零币花费和铸造，并重新索引它们(0-1，默认值:%u)</translation>
     </message>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
@@ -4969,10 +4923,6 @@ Suvereno心钱包</translation>
         <translation>数据库读取出错，正在关闭。</translation>
     </message>
     <message>
-        <source>Error writing zerocoinDB to disk</source>
-        <translation>零币编码写入磁盘出错</translation>
-    </message>
-    <message>
         <source>Error</source>
         <translation>出错</translation>
     </message>
@@ -5073,14 +5023,6 @@ Suvereno心钱包</translation>
         <translation>重新计算SUV供应量……</translation>
     </message>
     <message>
-        <source>Reindexing zerocoin database...</source>
-        <translation>重新索引零币数据库。</translation>
-    </message>
-    <message>
-        <source>Reindexing zerocoin failed</source>
-        <translation>重建索引零币失败</translation>
-    </message>
-    <message>
         <source>Selected coins value is less than payment target</source>
         <translation>所选择币价值低于支付目标金额</translation>
     </message>
@@ -5089,8 +5031,8 @@ Suvereno心钱包</translation>
         <translation>这是一个预发行测试版本 - 您自己承担风险 - 不要用于商业应用！</translation>
     </message>
     <message>
-        <source>Disable all SUV specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
-        <translation>禁用所有SUV特定功能(主节点, 零币, budget)(0-1，默认值:%u)</translation>
+        <source>Disable all SUV specific functionality (Masternodes) (0-1, default: %u)</source>
+        <translation>禁用所有SUV特定功能(主节点)(0-1，默认值:%u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -5165,14 +5107,6 @@ Suvereno心钱包</translation>
         <translation>解析公共花费失败</translation>
     </message>
     <message>
-        <source>Failed to select a zerocoin</source>
-        <translation>选择零币失败</translation>
-    </message>
-    <message>
-        <source>Failed to wipe zerocoinDB</source>
-        <translation>擦写零币DB失败</translation>
-    </message>
-    <message>
         <source>Failed to write coin serial number into wallet</source>
         <translation>硬币序列号写入钱包失败</translation>
     </message>
@@ -5207,10 +5141,6 @@ Suvereno心钱包</translation>
     <message>
         <source>Loading block index...</source>
         <translation>正在下载区块索引...</translation>
-    </message>
-    <message>
-        <source>Loading budget cache...</source>
-        <translation>正在下载加载预算…</translation>
     </message>
     <message>
         <source>Loading masternode cache...</source>
@@ -5493,10 +5423,6 @@ Suvereno心钱包</translation>
         <translation>同步已完成</translation>
     </message>
     <message>
-        <source>Synchronizing budgets...</source>
-        <translation>正在同步预算...</translation>
-    </message>
-    <message>
         <source>Synchronizing masternode winners...</source>
         <translation>正在同步主节点赢家...</translation>
     </message>
@@ -5507,10 +5433,6 @@ Suvereno心钱包</translation>
     <message>
         <source>Synchronizing sporks...</source>
         <translation>正在同步分叉...</translation>
-    </message>
-    <message>
-        <source>Syncing zSUV wallet...</source>
-        <translation>正在同步zSUV钱包……</translation>
     </message>
     <message>
         <source>This help message</source>
@@ -5613,10 +5535,6 @@ Suvereno心钱包</translation>
         <translation>JSON-RPC连接的用户名</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of zSUV</source>
-        <translation>值小于zSUV的最小可用面额(= 1)</translation>
-    </message>
-    <message>
         <source>Verifying blocks...</source>
         <translation>正在验证区块……</translation>
     </message>
@@ -5657,10 +5575,6 @@ Suvereno心钱包</translation>
         <translation>警告:不支持的参数-debugnet被忽略，使用-debug=net。</translation>
     </message>
     <message>
-        <source>You don't have enough Zerocoins in your wallet</source>
-        <translation>你的钱包里没有足够的零币</translation>
-    </message>
-    <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
         <translation>您需要使用-reindex来更改-txindex来重新构建数据库</translation>
     </message>
@@ -5671,14 +5585,6 @@ Suvereno心钱包</translation>
     <message>
         <source>ZeroMQ notification options:</source>
         <translation>ZeroMQ通知选项:</translation>
-    </message>
-    <message>
-        <source>Zerocoin minting available only on regtest</source>
-        <translation>零币铸造只能在regtest可用</translation>
-    </message>
-    <message>
-        <source>Zerocoin options:</source>
-        <translation>零币选项：</translation>
     </message>
     <message>
         <source>on startup</source>

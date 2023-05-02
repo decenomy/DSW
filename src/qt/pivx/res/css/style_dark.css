@@ -418,6 +418,31 @@ QPushButton[cssClass="btn-check-hd-upgrade"]:checked {
 
 /** End btn HD Upgrade */
 
+QPushButton[cssClass="btn-check-privacy"] {
+  qproperty-icon: url("://ic-check-privacy");
+  qproperty-iconSize: 24px 24px;
+  background-color: #4b1452;
+  color: #ffffff;
+  padding-right: 6px;
+  padding-left: 6px;
+  border-radius: 2px;
+}
+
+QPushButton[cssClass="btn-check-privacy-inactive"] {
+  qproperty-icon: url("://ic-check-privacy-off");
+  qproperty-iconSize: 24px 24px;
+  background-color: #4b1452;
+  color: #ffffff;
+  padding-right: 6px;
+  padding-left: 6px;
+  border-radius: 2px;
+}
+
+QPushButton[cssClass="btn-check-privacy"]:checked {
+  background-color: #4b1452;
+  border-radius: 2px;
+}
+
 QPushButton[cssClass="btn-check-faq"] {
   qproperty-icon: url("://ic-check-faq");
   qproperty-iconSize: 24px 24px;
@@ -2292,15 +2317,6 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
   border-radius: 12px;
 }
 
-*[cssClass="coin-icon-zpiv"] {
-  qproperty-icon: url("://ic-coin-zpiv") off, url("://ic-coin-zpiv") on;
-  qproperty-iconSize: 24px 24px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: #ffffff;
-  border: 2px solid #0F0608;
-  border-radius: 12px;
-}
 
 /*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 HH      Dialog

@@ -746,8 +746,8 @@ for staking</source>
         <translation>Filtern nach</translation>
     </message>
     <message>
-        <source>Amount of SUV and zSUV staked.</source>
-        <translation>Wieviele SUV und z SUV am Staken sind.</translation>
+        <source>Amount of SUV staked.</source>
+        <translation>Wieviele SUV am Staken sind.</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -1624,36 +1624,8 @@ NODES</translation>
         <translation>Port mit &amp;UPnP mappen</translation>
     </message>
     <message>
-        <source>Enable automatic minting of SUV units to zSUV</source>
-        <translation>Aktivieren Sie die automatische Prägung von SUV-Einheiten zu zSUV</translation>
-    </message>
-    <message>
-        <source>Enable zSUV Automint</source>
-        <translation>Aktivieren Sie zSUV Automint</translation>
-    </message>
-    <message>
-        <source>Enable automatic zSUV minting from specific addresses</source>
-        <translation>Automatisches zSUV Minting von spezifischen Adressen erlauben</translation>
-    </message>
-    <message>
         <source>Enable Automint Addresses</source>
         <translation>Automint Adressen aktivieren</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming SUV which get automatically converted to zSUV via Zerocoin Protocol (min: 10%)</source>
-        <translation>Anteil des eingehenden SUV, welcher automatisch zu zSUV via Zerocoin Protokoll konvertiert wird (min: 10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted zSUV</source>
-        <translation>Prozentsatz der automatisierten zSUV</translation>
-    </message>
-    <message>
-        <source>Wait with automatic conversion to Zerocoin until enough SUV for this denomination is available</source>
-        <translation>Warte mit automatischer Konvertierung zu Zerocoin, bis genügend SUV für diese Stückelung verfügbar ist</translation>
-    </message>
-    <message>
-        <source>Preferred Automint zSUV Denomination</source>
-        <translation>Bevorzugte automatisierte zSUV Stückelung </translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
@@ -2413,10 +2385,6 @@ Adresse: %4
     <message>
         <source>Custom Backup Path:</source>
         <translation>Benutzerdefinierter Sicherungspfad:</translation>
-    </message>
-    <message>
-        <source>Custom zSUV Backup Path:</source>
-        <translation>Benutzerdefinierter zSUV Sicherungspfad:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -3528,18 +3496,18 @@ Es gab ein Problem bei dem Versuch die Adressen unter %1 zu speichern. Bitte ver
                            SUV is a form of digital online money using blockchain technology
                            that can be easily transferred globally, instantly, and with near
                            zero fees.  SUV incorporates market leading security &amp;
-                           privacy and is also the first PoS (Proof of Stake) Cryptocurrency
-                           to implement ZeroCoin(zSUV) and Zerocoin staking.
+                           privacy.
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            SUV utilizes a Proof of Stake (PoS) consensus system algorithm,
                            allowing all owners of SUV to participate in earning block rewards
                            while securing the network with full node wallets, as well as to
-                           run Masternodes to create and vote on proposals.
+                           run Masternodes to earn additional income regularly.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
-        <translation>SUV ist eine Form von digitalem Onlinegeld, das die Blockchaintechnologie verwendet und
-einfach, global, sofort und nahezu kostenlos versendet werden kann. SUV enthält marktführende Sicherheits- und Privatsphäretechnologien und ist auch die erste PoS (Proof of Stake) Kryptowährung, die ZeroCoin (zSUV) und Zerocoin Staking verwendet.
-SUV nutzt einen PoS Konsensalgorithmus, der es den Besitzern von SUV erlaubt, an der Vergabe der Block Rewards teilzuhaben, während das Netzwerk durch Fullnode Wallets abgesichert ist. Darüber hinaus können Masternode Proposals einreichen und darüber abstimmen.</translation>
+        <translation>SUV ist eine Form von digitalem Online-Geld mit Blockchain-Technologie, das einfach weltweit, sofort und nahezu gebührenfrei überwiesen werden kann. SUV beinhaltet marktführende Datenschutzsicherheit.
+        SUV verwendet einen Proof of Stake (PoS) Konsensus-Systemalgorithmus,
+        Allen Besitzern von SUV die Teilnahme am Sammeln von Blockbelohnungen zu ermöglichen
+        während das Netzwerk mit Full-Node-Wallets gesichert wird, sowie um Masternodes zu betreiben, um Vorschläge zu erstellen und darüber abzustimmen.</translation>
     </message>
     <message>
         <source>2</source>
@@ -3627,8 +3595,6 @@ Wir haben Support-Kanäle in den meisten unserer offiziellen Chatgruppen, z.B.
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
-                           &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
                            &lt;li&gt;Act as an additional full node in the network&lt;/li&gt;
                            &lt;/ul&gt;
@@ -3661,7 +3627,7 @@ Wir haben Support-Kanäle in den meisten unserer offiziellen Chatgruppen, z.B.
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-Ein Masternode ist ein Computer, auf dem ein SUV-Wallet als Node ausgeführt wird. Für das Betreiben eines Masternodes sind 10.000 SUV als Sicherheiten erforderlich, um zusätzliche Dienste für das Netzwerk bereitzustellen und im Gegenzug regelmäßig einen Teil der Blockbelohnung zu erhalten. Diese Dienstleistungen umfassen: &lt;/p&gt;&lt;p align="justify"&gt; &lt;ul&gt; &lt;li&gt; Eine dezentrale Verwaltung (Proposal Voting)&lt;/li&gt; &lt;li&gt; Ein dezentrales Budgetierungssystem (Treasury)&lt;/li&gt; &lt;li&gt; Validierung von Transaktionen innerhalb jedes Blocks&lt;/li&gt; &lt;li&gt; Dient als zusätzlicher vollständiger Node im Netzwerk&lt;/li&gt; &lt;/ul&gt; &lt;/p&gt;&lt;p align="justify"&gt; Für die Bereitstellung solcher Dienste erhalten Masternodes auch einen bestimmten Teil der Belohnung für jeden Block. Dies kann den Eigentümern des Masterknotens als passives Einkommen abzüglich ihrer laufenden Kosten dienen. &lt;/p&gt;&lt;p align="justify"&gt; Masternode Vorteile: &lt;/p&gt;&lt;p align="justify"&gt; &lt;ul&gt; &lt;li&gt; Nehme an der SUV Verwaltung teil&lt;/li&gt; &lt;li&gt;&lt;/li&gt; &lt;li&gt;Verdiene Masternode Vergütungen&lt;/li&gt; &lt;li&gt;Warenoption für zukünftigen Verkauf&lt;/li&gt; &lt;li&gt;Helfe das SUV Netzwerk zu stabilisieren&lt;/li&gt; &lt;/ul&gt; &lt;/p&gt;&lt;p align="justify"&gt; Voraussetzungen: &lt;/p&gt;&lt;p align="justify"&gt; &lt;ul&gt; &lt;li&gt;10.000 SUV pro einzelne Masternode-Instanz&lt;/li&gt; &lt;li&gt;Muss in einem Core-Wallet aufbewahrt werden&lt;/li&gt; &lt;li&gt; Benötigt eine dedizierte IP-Adresse&lt;/li&gt; &lt;li&gt;Masternode bleibt 24h online&lt;/li&gt; &lt;/ul&gt; &lt;/p&gt;&lt;/body&gt;&lt;/html&gt; </translation>
+Ein Masternode ist ein Computer, auf dem ein SUV-Wallet als Node ausgeführt wird. Für das Betreiben eines Masternodes sind 10.000 SUV als Sicherheiten erforderlich, um zusätzliche Dienste für das Netzwerk bereitzustellen und im Gegenzug regelmäßig einen Teil der Blockbelohnung zu erhalten. Diese Dienstleistungen umfassen: &lt;/p&gt;&lt;p align="justify"&gt; &lt;ul&gt; &lt;li&gt; Validierung von Transaktionen innerhalb jedes Blocks&lt;/li&gt; &lt;li&gt; Dient als zusätzlicher vollständiger Node im Netzwerk&lt;/li&gt; &lt;/ul&gt; &lt;/p&gt;&lt;p align="justify"&gt; Für die Bereitstellung solcher Dienste erhalten Masternodes auch einen bestimmten Teil der Belohnung für jeden Block. Dies kann den Eigentümern des Masterknotens als passives Einkommen abzüglich ihrer laufenden Kosten dienen. &lt;/p&gt;&lt;p align="justify"&gt; Masternode Vorteile: &lt;/p&gt;&lt;p align="justify"&gt; &lt;ul&gt; &lt;li&gt; Nehme an der SUV Verwaltung teil&lt;/li&gt; &lt;li&gt;&lt;/li&gt; &lt;li&gt;Verdiene Masternode Vergütungen&lt;/li&gt; &lt;li&gt;Warenoption für zukünftigen Verkauf&lt;/li&gt; &lt;li&gt;Helfe das SUV Netzwerk zu stabilisieren&lt;/li&gt; &lt;/ul&gt; &lt;/p&gt;&lt;p align="justify"&gt; Voraussetzungen: &lt;/p&gt;&lt;p align="justify"&gt; &lt;ul&gt; &lt;li&gt;10.000 SUV pro einzelne Masternode-Instanz&lt;/li&gt; &lt;li&gt;Muss in einem Core-Wallet aufbewahrt werden&lt;/li&gt; &lt;li&gt; Benötigt eine dedizierte IP-Adresse&lt;/li&gt; &lt;li&gt;Masternode bleibt 24h online&lt;/li&gt; &lt;/ul&gt; &lt;/p&gt;&lt;/body&gt;&lt;/html&gt; </translation>
     </message>
     <message>
         <source>Frequently Asked Questions</source>
@@ -4550,8 +4516,8 @@ Sind Sie sicher?</translation>
         <translation>Staking aktiv</translation>
     </message>
     <message>
-        <source>Staking not active</source>
-        <translation>Staking nicht aktiv</translation>
+        <source>Staking inactive</source>
+        <translation>Staking inaktiv</translation>
     </message>
     <message>
         <source>Synchronized - Block: %1</source>
@@ -5054,10 +5020,6 @@ Suvereno Wallet</source>
         <translation>Kann keine Sperre für das Datenverzeichnis %s erhalten. Suvereno läuft wahrscheinlich bereits.</translation>
     </message>
     <message>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation>Ändere das automatische, finale Budget Stimmverhalten. Modus=auto: Stimme nur für exakt finale Budgets, welche meinem generierten Budget entsprechen. (string, Standard:auto)</translation>
-    </message>
-    <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
         <translation>Begrenze freie Transaktionen Permanent auf &lt;n&gt;*1000 Bytes pro Minute (Standard:%u)</translation>
     </message>
@@ -5068,10 +5030,6 @@ Suvereno Wallet</source>
     <message>
         <source>Delete all wallet transactions and only recover those parts of the blockchain through -rescan on startup</source>
         <translation>Lösche alle Wallet-Transaktionen und stelle nur diese Teile der Blockchain  beim Start durch -neuscan wieder her</translation>
-    </message>
-    <message>
-        <source>Delete all zerocoin spends and mints that have been recorded to the blockchain database and reindex them (0-1, default: %u)</source>
-        <translation>Lösche alle Zerocoin Überweisungen und Prägungen die in der Blockchain-Datenbank gespeichert wurden und reindiziere diese (0-1, Standard: %u)</translation>
     </message>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
@@ -5366,10 +5324,6 @@ Suvereno Wallet</source>
         <translation>Fehler beim Lesen der Datenbank, wird heruntergefahren.</translation>
     </message>
     <message>
-        <source>Error writing zerocoinDB to disk</source>
-        <translation>Fehler beim Schreiben von zerocoinDB auf die Festplatte</translation>
-    </message>
-    <message>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
@@ -5470,14 +5424,6 @@ Suvereno Wallet</source>
         <translation>Bestimme SUV Bestand erneut...</translation>
     </message>
     <message>
-        <source>Reindexing zerocoin database...</source>
-        <translation>Reindiziere Zerocoin Datenbank...</translation>
-    </message>
-    <message>
-        <source>Reindexing zerocoin failed</source>
-        <translation>Zerocoin Reindizierung fehlgeschlagen</translation>
-    </message>
-    <message>
         <source>Selected coins value is less than payment target</source>
         <translation>Ausgewählter Coinwert ist geringer als der Zielbetrag</translation>
     </message>
@@ -5486,8 +5432,8 @@ Suvereno Wallet</source>
         <translation>Dies ist ein Pre-Release-Testbuild - Nutzung auf eigene Gefahr - Nutzen Sie diese Version nicht für Staking oder Handelsanwendungen.</translation>
     </message>
     <message>
-        <source>Disable all SUV specific functionality (Masternodes, Zerocoin, Budgeting) (0-1, default: %u)</source>
-        <translation>Deaktivieren Sie alle SUV-spezifischen Funktionen (Masternodes, Zerocoin, Budgetierung) (0-1, Standard: %u)</translation>
+        <source>Disable all SUV specific functionality (Masternodes) (0-1, default: %u)</source>
+        <translation>Deaktivieren Sie alle SUV-spezifischen Funktionen (Masternodes) (0-1, Standard: %u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -5562,14 +5508,6 @@ Suvereno Wallet</source>
         <translation>Parsen des Public Spend gescheitert</translation>
     </message>
     <message>
-        <source>Failed to select a zerocoin</source>
-        <translation>Fehler beim Auswählen einer Nullstelle</translation>
-    </message>
-    <message>
-        <source>Failed to wipe zerocoinDB</source>
-        <translation>Zerocoin Datenbank konnte nicht gelöscht werden</translation>
-    </message>
-    <message>
         <source>Failed to write coin serial number into wallet</source>
         <translation>Fehler beim Schreiben der Seriennummer der Münze in die Brieftasche</translation>
     </message>
@@ -5604,10 +5542,6 @@ Suvereno Wallet</source>
     <message>
         <source>Loading block index...</source>
         <translation>Lade Block-Index...</translation>
-    </message>
-    <message>
-        <source>Loading budget cache...</source>
-        <translation>Lade Budget Puffer...</translation>
     </message>
     <message>
         <source>Loading masternode cache...</source>
@@ -5739,8 +5673,8 @@ Suvereno Wallet</source>
     </message>
     <message>
         <source>Do not accept transactions whose size with all in-mempool ancestors exceeds &lt;n&gt; kilobytes (default: %u)</source>
-        <translation> 
- 
+        <translation>
+
 Akzeptiere keine Transaktion, deren vorherige Größe mit &lt;n&gt; im Mempool überschritten wird (Standard: %u)</translation>
     </message>
     <message>
@@ -5801,7 +5735,7 @@ Akzeptiere keine Transaktion, deren vorherige Größe mit &lt;n&gt; im Mempool �
     </message>
     <message>
         <source>Error: -listen must be true if -masternode is set.</source>
-        <translation> 
+        <translation>
 Fehler: -listen muss true sein, wenn -masternode gesetzt ist</translation>
     </message>
     <message>
@@ -5839,8 +5773,8 @@ Fehler: -listen muss true sein, wenn -masternode gesetzt ist</translation>
     </message>
     <message>
         <source>Keep the transaction memory pool below &lt;n&gt; megabytes (default: %u)</source>
-        <translation> 
- 
+        <translation>
+
 Halte den Transaktionsspeicherpool unter &lt;n&gt;  Megabyte (Standard: %u)</translation>
     </message>
     <message>
@@ -6020,10 +5954,6 @@ Halte den Transaktionsspeicherpool unter &lt;n&gt;  Megabyte (Standard: %u)</tra
         <translation>Synchronisierung erfolgreich beendet</translation>
     </message>
     <message>
-        <source>Synchronizing budgets...</source>
-        <translation>Synchronisiere Budgets....</translation>
-    </message>
-    <message>
         <source>Synchronizing masternode winners...</source>
         <translation>Synchronisiere ausgewählte Masternodes....</translation>
     </message>
@@ -6036,12 +5966,8 @@ Halte den Transaktionsspeicherpool unter &lt;n&gt;  Megabyte (Standard: %u)</tra
         <translation>Synchronisiere Sporks....</translation>
     </message>
     <message>
-        <source>Syncing zSUV wallet...</source>
-        <translation>Synchronisiere zSUV Wallet... </translation>
-    </message>
-    <message>
         <source>The threshold value cannot be less than %s</source>
-        <translation> 
+        <translation>
 Der Schwellenwert darf nicht kleiner sein als %s</translation>
     </message>
     <message>
@@ -6157,10 +6083,6 @@ Der Schwellenwert darf nicht kleiner sein als %s</translation>
         <translation>Benutzername für JSON-RPC-Verbindungen</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of zSUV</source>
-        <translation>Der Betrag ist unterhalb des kleinsten Wertes (=1) an zSUV</translation>
-    </message>
-    <message>
         <source>Verifying blocks...</source>
         <translation>Verifiziere Blöcke...</translation>
     </message>
@@ -6201,10 +6123,6 @@ Der Schwellenwert darf nicht kleiner sein als %s</translation>
         <translation>Warnung: Nicht unterstütztes Argument -debugnet wurde ignoriert, nutze stattdessen -debug=net.</translation>
     </message>
     <message>
-        <source>You don't have enough Zerocoins in your wallet</source>
-        <translation>Du hast nicht genug Zerocoins in deiner Brieftasche</translation>
-    </message>
-    <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
         <translation>Sie müssen die Datenbank mithilfe von -reindex neu erstellen, um -txindex zu ändern</translation>
     </message>
@@ -6215,14 +6133,6 @@ Der Schwellenwert darf nicht kleiner sein als %s</translation>
     <message>
         <source>ZeroMQ notification options:</source>
         <translation>ZeroMQ Benachrichtigungsoptionen:</translation>
-    </message>
-    <message>
-        <source>Zerocoin minting available only on regtest</source>
-        <translation>Zerocoin Prägung nur in regtest verfügbar</translation>
-    </message>
-    <message>
-        <source>Zerocoin options:</source>
-        <translation>Zerocoin Optionen:</translation>
     </message>
     <message>
         <source>on startup</source>
