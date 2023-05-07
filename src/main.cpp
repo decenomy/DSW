@@ -3233,7 +3233,7 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
     //If this is a reorg, check that it is not too deep
     int nMaxReorgDepth = GetArg("-maxreorg", DEFAULT_MAX_REORG_DEPTH);
     if (chainHeight - nHeight >= nMaxReorgDepth)
-        return state.DoS(1, error("%s: forked chain older than max reorganization depth (height %d)", __func__, chainHeight - nHeight));
+        return state.DoS(100, error("%s: forked chain older than max reorganization depth (height %d)", __func__, chainHeight - nHeight));
 
     // Check blocktime (past limit, future limit and mask)
     if (!CheckBlockTime(block, state, pindexPrev))
