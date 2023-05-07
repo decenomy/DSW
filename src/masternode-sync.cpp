@@ -282,8 +282,12 @@ bool CMasternodeSync::SyncWithNode(CNode* pnode, bool isRegTestNet)
     if (pnode->nVersion >= ActiveProtocol()) {
         if (RequestedMasternodeAssets == MASTERNODE_SYNC_LIST) {
 
+            // With SPORK_114_MN_PAYMENT_V2 there is more time to sync the mn list
+            // due to the fact that the MASTERNODE_SYNC_MNW phase is skipped
+            auto syncFactor = sporkManager.IsSporkActive(SPORK_114_MN_PAYMENT_V2) ? 4 : 2;
+
             LogPrint(BCLog::MASTERNODE, "CMasternodeSync::Process() - lastMasternodeList %lld (GetTime() - MASTERNODE_SYNC_TIMEOUT) %lld\n", lastMasternodeList, GetTime() - MASTERNODE_SYNC_TIMEOUT);
-            if (lastMasternodeList > 0 && lastMasternodeList < GetTime() - MASTERNODE_SYNC_TIMEOUT && RequestedMasternodeAttempt >= MASTERNODE_SYNC_THRESHOLD) { //hasn't received a new item in the last five seconds, so we'll move to the
+            if (lastMasternodeList > 0 && lastMasternodeList < GetTime() - MASTERNODE_SYNC_TIMEOUT * syncFactor && RequestedMasternodeAttempt >= MASTERNODE_SYNC_THRESHOLD) { //hasn't received a new item in the last five seconds, so we'll move to the
                 GetNextAsset();
                 return false;
             }
