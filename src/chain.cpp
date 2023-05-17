@@ -252,7 +252,7 @@ CScript* CBlockIndex::GetPaidPayee()
         CBlock block;
         if (nHeight <= chainActive.Height() && ReadBlockFromDisk(block, this)) {
             auto amount = CMasternode::GetMasternodePayment(nHeight);
-            auto mnpayee = block.GetPaidPayee( amount);
+            auto mnpayee = block.GetPaidPayee(amount);
             
             if(!mnpayee.empty()) {
                 paidPayee = new CScript(mnpayee);
