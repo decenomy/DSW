@@ -402,7 +402,7 @@ public:
     }
 
     /** Returns the index entry for the tip of this chain, or NULL if none. */
-    CBlockIndex* Tip(bool fProofOfStake = false) const
+    CBlockIndex* Tip() const
     {
         LOCK(cs);
 
