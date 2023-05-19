@@ -29,6 +29,7 @@
 #include <mutex>
 #include <numeric>
 #include <condition_variable>
+#include <regex>
 
 #include <boost/thread/thread.hpp> // boost::thread::interrupt
 
@@ -1433,3 +1434,55 @@ UniValue getblockindexstats(const JSONRPCRequest& request) {
 
 }
 
+UniValue rewindblockindex(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() > 1)
+        throw std::runtime_error(
+            "rewindblockindex \"hash|nblocks\"\n"
+            "\nRewinds blockchain to a previous state.\n"
+            "If used without an argument, rewinds to the last checkpoint.\n"
+
+            "\nArguments:\n"
+            "1. hash|nblocks   (string, optional) the hash of the block to rewind to or the number of blocks to rewind\n"
+
+            "\nExamples:\n" +
+            HelpExampleCli("rewindblockindex", "\"blockhash\"") + HelpExampleRpc("rewindblockindex", "\"blockhash\""));
+
+    int blocksToRollBack = 0;
+    int nHeight = chainActive.Height();
+    if (request.params.size() == 0) {
+        const CBlockIndex* prevCheckPoint;
+        {
+            LOCK(cs_main);
+            prevCheckPoint = GetLastCheckpoint();
+        }
+        const int checkPointHeight = prevCheckPoint ? prevCheckPoint->nHeight : 0;
+        blocksToRollBack = nHeight - checkPointHeight;
+    } else if (request.params.size() == 1) {
+        std::string param = request.params[0].get_str();
+
+        if (std::regex_match(param, std::regex("^[0-9a-fA-F]{64}$"))) {
+            const uint256 hash(uint256S(param));
+            if (!IsBlockHashInChain(hash)) {
+                throw std::runtime_error("Block not found. Unable to rewind the blockchain to the given block.\n");
+            }
+
+            CBlockIndex* block;
+            {
+                LOCK(cs_main);
+                block = LookupBlockIndex(hash);
+            }
+
+            blocksToRollBack = nHeight - block->nHeight;
+        } else if (std::regex_match(param, std::regex("^[0-9]+$"))) {
+            blocksToRollBack = stoi(param);
+            if (nHeight < blocksToRollBack || blocksToRollBack < 1) {
+                throw std::runtime_error("Invalid value. Unable to rewind the blockchain by the given number of blocks.\n");
+            }
+        }
+    }
+
+    RewindBlockIndex(blocksToRollBack);
+
+    return NullUniValue;
+}
