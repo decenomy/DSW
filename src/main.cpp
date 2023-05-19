@@ -2074,7 +2074,6 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     CAmount nValueIn = 0;
     unsigned int nMaxBlockSigOps = MAX_BLOCK_SIGOPS_CURRENT;
     std::vector<uint256> vSpendsInBlock;
-    uint256 hashBlock = block.GetHash();
 
     std::vector<PrecomputedTransactionData> precomTxData;
     precomTxData.reserve(block.vtx.size()); // Required so that pointers to individual precomTxData don't get invalidated
@@ -3117,14 +3116,16 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
         // but issue an initial reject message.
         // The case also exists that the sending peer could not have enough data to see
         // that this block is invalid, so don't issue an outright ban.
-        if (nHeight != 0 && !IsInitialBlockDownload()) {
+        if (nHeight != 0 && !IsInitialBlockDownload() && 
+            GetAdjustedTime() - block.GetBlockTime() < DEFAULT_BLOCK_PAYEE_VERIFICATION_TIMEOUT) 
+        {
             // check masternode payment
             if (!IsBlockPayeeValid(block, nHeight)) {
                 mapRejectedBlocks.insert(std::make_pair(block.GetHash(), GetTime()));
                 return state.DoS(0, false, REJECT_INVALID, "bad-cb-payee", false, "Couldn't find masternode payment");
             }
         } else {
-            LogPrintf("%s: Masternode payment checks skipped on sync\n", __func__);
+            LogPrintf("%s: Masternode payment checks skipped on sync and second layer verification timeout\n", __func__);
         }
     }
 
@@ -3484,7 +3485,6 @@ bool AcceptBlock(const CBlock& block, CValidationState& state, CBlockIndex** ppi
     }
 
     int nHeight = pindex->nHeight;
-    int splitHeight = -1;
 
     if (isPoS) {
         LOCK(cs_main);
@@ -3565,9 +3565,6 @@ bool AcceptBlock(const CBlock& block, CValidationState& state, CBlockIndex** ppi
                     return error("%s: previous block %s not on disk", __func__, prev->GetBlockHash().GetHex());
 
             }
-
-            // Split height
-            splitHeight = prev->nHeight;
         }
 
         // If the stake is not a zPoS then let's check if the inputs were spent on the main chain
