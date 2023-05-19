@@ -256,10 +256,6 @@ CScript* CBlockIndex::GetPaidPayee()
             
             if(!mnpayee.empty()) {
                 paidPayee = new CScript(mnpayee);
-                auto pmn = mnodeman.Find(mnpayee);
-                if(pmn && (pmn->lastPaid == INT64_MAX || pmn->lastPaid == 0)) {
-                    pmn->lastPaid = GetBlockTime();
-                }
             }
         }
     }
