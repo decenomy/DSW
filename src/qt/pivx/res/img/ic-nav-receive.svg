@@ -29,24 +29,8 @@
      id="title2">Dashboard</title>
   <desc
      id="desc4">Created with Sketch.</desc>
-  <g
-     id="g61"
-     transform="translate(1,11)">
-    <path
-       id="path2"
-       d="M 0,0 H 24 V 24 H 0 Z"
-       style="fill:none" />
-    <g
-       id="g862"
-       transform="translate(-0.04761939,0.56462597)">
-      <path
-         fill="none"
-         d="M 0,0 H 24 V 24 H 0 Z"
-         id="path848" />
-      <path
-         d="m 13,10 h 5 l -6,6 -6,-6 h 5 V 3 h 2 z m -9,9 h 16 v -7 h 2 v 8 a 1,1 0 0 1 -1,1 H 3 A 1,1 0 0 1 2,20 v -8 h 2 z"
-         id="path850"
-         style="fill:#ffffff;fill-opacity:1" />
-    </g>
-  </g>
+  <path
+     d="m 20.115647,21.986394 v 7 H 6.1156462 v -7 h -2 v 7 c 0,1.1 0.9,2 2,2 H 20.115647 c 1.1,0 2,-0.9 2,-2 v -7 z m -6,0.67 2.59,-2.579999 1.41,1.409999 -5,5 -5.0000008,-5 1.41,-1.409999 2.5900008,2.579999 v -9.669999 h 2 z"
+     id="path4-5"
+     style="fill:#ffffff;fill-opacity:1" />
 </svg>
