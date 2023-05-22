@@ -12,6 +12,7 @@
 #include "consensus/upgrades.h"
 #include "kernel.h"
 #include "main.h"
+#include "masternode-sync.h"
 #include "policy/policy.h"
 #include "rpc/server.h"
 #include "sync.h"
@@ -1447,10 +1448,18 @@ UniValue rewindblockindex(const JSONRPCRequest& request)
             "\nExamples:\n" +
             HelpExampleCli("rewindblockindex", "\"blockhash\"") + HelpExampleRpc("rewindblockindex", "\"blockhash\""));
 
-    if (request.params.size() == 1) {
-        RewindBlockIndex(request.params[0].get_str());
-    } else {
-        RewindBlockIndex();
+    {
+        LOCK(cs_main);
+
+        if (request.params.size() == 1) {
+            RewindBlockIndex(request.params[0].get_str());
+        } else {
+            RewindBlockIndex();
+        }
+
+        g_connman->DisconnectAll();
+        g_connman->ClearBanned();
+        masternodeSync.Reset();
     }
 
     return NullUniValue;
