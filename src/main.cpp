@@ -51,6 +51,7 @@
 #include <boost/foreach.hpp>
 #include <atomic>
 #include <queue>
+#include <regex>
 
 
 #if defined(NDEBUG)
@@ -1653,7 +1654,7 @@ int GetSpendHeight(const CCoinsViewCache& inputs)
 namespace Consensus {
 bool CheckTxInputs(const CTransaction& tx, CValidationState& state, const CCoinsViewCache& inputs, int nSpendHeight)
 {
-    // if we have already a checkpoint newer than this block 
+    // if we have already a checkpoint newer than this block
     // then it is OK
     if (nSpendHeight <= Checkpoints::GetTotalBlocksEstimate())
         return true;
@@ -2199,7 +2200,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     int64_t nTime4 = GetTimeMicros();
     nTimeCallbacks += nTime4 - nTime3;
     LogPrint(BCLog::BENCH, "    - Callbacks: %.2fms [%.2fs]\n", 0.001 * (nTime4 - nTime3), nTimeCallbacks * 0.000001);
-    
+
     // Fill lastPaid
     auto amount = CMasternode::GetMasternodePayment(pindex->nHeight);
     auto paidPayee = block.GetPaidPayee(amount);
@@ -3116,8 +3117,8 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
         // but issue an initial reject message.
         // The case also exists that the sending peer could not have enough data to see
         // that this block is invalid, so don't issue an outright ban.
-        if (nHeight != 0 && !IsInitialBlockDownload() && 
-            GetAdjustedTime() - block.GetBlockTime() < DEFAULT_BLOCK_PAYEE_VERIFICATION_TIMEOUT) 
+        if (nHeight != 0 && !IsInitialBlockDownload() &&
+            GetAdjustedTime() - block.GetBlockTime() < DEFAULT_BLOCK_PAYEE_VERIFICATION_TIMEOUT)
         {
             // check masternode payment
             if (!IsBlockPayeeValid(block, nHeight)) {
@@ -3335,7 +3336,7 @@ bool ContextualCheckBlock(const CBlock& block, CValidationState& state, CBlockIn
     // Size limits
     if (nHeight != 0 && !IsInitialBlockDownload()) {
         unsigned int nMaxBlockSize = std::max(
-            (unsigned int)1000, 
+            (unsigned int)1000,
             std::min(
                 (unsigned int)sporkManager.GetSporkValue(SPORK_105_MAX_BLOCK_SIZE),
                 MAX_BLOCK_SIZE_CURRENT
@@ -3391,7 +3392,7 @@ bool AcceptBlockHeader(const CBlock& block, CValidationState& state, CBlockIndex
                     return true;
                 }
             }
-            
+
             int level = 100;
 
             if(mapRejectedBlocks.find(block.hashPrevBlock) != mapRejectedBlocks.end()) {
@@ -3500,7 +3501,7 @@ bool AcceptBlock(const CBlock& block, CValidationState& state, CBlockIndex** ppi
         std::vector<CTxIn> pivInputs;
 
         for (const CTxIn& stakeIn : stakeTxIn.vin) {
-            pivInputs.push_back(stakeIn);            
+            pivInputs.push_back(stakeIn);
         }
         const bool hasPIVInputs = !pivInputs.empty();
 
@@ -4038,19 +4039,51 @@ bool CVerifyDB::VerifyDB(CCoinsView* coinsview, int nCheckLevel, int nCheckDepth
     return true;
 }
 
-bool RewindBlockIndex(int blocksToRollBack)
+bool RewindBlockIndex(std::string param)
 {
     LOCK(cs_main);
 
-    CValidationState state;
     int nHeight = chainActive.Height();
+    int targetHeight = nHeight;
+    int blocksToRollBack = 0;
+    if (param.size() == 0) {
+        const CBlockIndex* prevCheckPoint;
+        prevCheckPoint = GetLastCheckpoint();
+        const int checkPointHeight = prevCheckPoint ? prevCheckPoint->nHeight : 0;
+        targetHeight = checkPointHeight;
+    } else {
+        // Match a hex number that is 64 digits long.
+        if (std::regex_match(param, std::regex("^[0-9a-fA-F]{64}$"))) {
+            const uint256 hash(uint256S(param));
+            if (!IsBlockHashInChain(hash)) {
+                throw std::runtime_error("Block not found. Unable to rewind the blockchain to the given block.\n");
+                return false;
+            }
 
-    if (blocksToRollBack > nHeight) {
+            CBlockIndex* block;
+            block = LookupBlockIndex(hash);
+
+            targetHeight = block->nHeight;
+        } else if (std::regex_match(param, std::regex("^[0-9]+$"))) {
+            blocksToRollBack = stoi(param);
+            targetHeight = nHeight - blocksToRollBack;
+            if (nHeight < blocksToRollBack || blocksToRollBack < 1) {
+                throw std::runtime_error("Invalid value. Unable to rewind the blockchain by the given number of blocks.\n");
+                return false;
+            }
+        } else {
+            throw std::runtime_error("Incorrect parameter format. Enter a block hash as a 64 char hex string or a decimal number.\n");
+            return false;
+        }
+    }
+
+    CValidationState state;
+
+    if (targetHeight > nHeight) {
         return false;
     }
 
-    int targetHeight = nHeight - blocksToRollBack;
-
+    blocksToRollBack = nHeight - targetHeight;
     double blocksRolledBack = 0;
     // Iterate to start removing blocks
     while (nHeight > targetHeight) {
@@ -4861,9 +4894,9 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
 
         shortFromName.erase(
             std::remove_if(
-                shortFromName.begin(), 
-                shortFromName.end(), 
-                []( char const& c ) -> bool { return !std::isalnum(c); }), 
+                shortFromName.begin(),
+                shortFromName.end(),
+                []( char const& c ) -> bool { return !std::isalnum(c); }),
             shortFromName.end()
         );
 
