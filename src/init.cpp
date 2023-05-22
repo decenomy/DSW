@@ -397,7 +397,6 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-pid=<file>", strprintf(_("Specify pid file (default: %s)"), PIVX_PID_FILENAME));
 #endif
     strUsage += HelpMessageOpt("-reindex", _("Rebuild block chain index from current blk000??.dat files") + " " + _("on startup"));
-    strUsage += HelpMessageOpt("-reindexmoneysupply", strprintf(_("Reindex the %s and z%s money supply statistics"), CURRENCY_UNIT, CURRENCY_UNIT) + " " + _("on startup"));
     strUsage += HelpMessageOpt("-resync", _("Delete blockchain folders and resync from scratch") + " " + _("on startup"));
     strUsage += HelpMessageOpt("-rewindblockindex[=<n or hash>]", _("When used without a value, rewinds blockchain to last checkpoint. When passing a number, rolls back the chain by the given number of blocks. When passing a block hash (as a hex string), rewind up to (not including) the block with the matching hash."));
 #if !defined(WIN32)
