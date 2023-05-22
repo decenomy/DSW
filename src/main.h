@@ -397,8 +397,9 @@ public:
     bool VerifyDB(CCoinsView* coinsview, int nCheckLevel, int nCheckDepth);
 };
 
-/** Rewind chain by the given number of blocks */
-bool RewindBlockIndex(int blocksToRollBack);
+/** Rewind chain.
+ *  param can contain a number of blocks to rewind or a block hash to rewind to */
+bool RewindBlockIndex(std::string param = "");
 
 const CBlockIndex* GetLastCheckpoint() EXCLUSIVE_LOCKS_REQUIRED(cs_main);
 

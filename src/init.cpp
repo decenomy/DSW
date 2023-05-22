@@ -1507,7 +1507,7 @@ bool AppInit2()
                             if (ExtractDestination(coin.out.scriptPubKey, source)) {
                                 const std::string addr = EncodeDestination(source);
                                 if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
-                                    consensus.mBurnAddresses.at(addr) < chainActive.Height()) 
+                                    consensus.mBurnAddresses.at(addr) < chainActive.Height())
                                 {
                                     pcursor->Next();
                                     continue;
@@ -1529,37 +1529,9 @@ bool AppInit2()
                         // and how many blocks to rewind.
                         std::string targetBlockHashStr = GetArg("-rewindblockindex", "");
 
-                        // Determining the default value (up to last checkpoint).
-                        int nHeight = chainActive.Height();
-                        const CBlockIndex* prevCheckPoint;
-                        {
-                            LOCK(cs_main);
-                            prevCheckPoint = GetLastCheckpoint();
-                        }
-                        const int checkPointHeight = prevCheckPoint ? prevCheckPoint->nHeight : 0;
-                        int blocksToRollBack = nHeight - checkPointHeight;
-
-                        // 256 bit hash has length 256/4=64 when represented as hex.
-                        if (targetBlockHashStr.length() == 64) {
-                            const uint256 hash(uint256S(targetBlockHashStr));
-                            if (!IsBlockHashInChain(hash)) {
-                                strLoadError = _("Block not found. Unable to rewind the blockchain to the given block.");
-                                break;
-                            }
-
-                            CBlockIndex* block = LookupBlockIndex(hash);
-
-                            blocksToRollBack = nHeight - block->nHeight;
-                        } else if (!targetBlockHashStr.empty()) {
-                            blocksToRollBack = GetArg("-rewindblockindex", 0);
-                            if (nHeight < blocksToRollBack || blocksToRollBack < 1) {
-                                strLoadError = _("Invalid value. Unable to rewind the blockchain by the given number of blocks.");
-                                break;
-                            }
-                        }
-
                         uiInterface.InitMessage(_("Rewinding blocks..."));
-                        if (!RewindBlockIndex(blocksToRollBack)) {
+
+                        if (!RewindBlockIndex(targetBlockHashStr)) {
                             strLoadError = _("Unable to rewind the blockchain. You will need to redownload the blockchain");
                             break;
                         }

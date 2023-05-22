@@ -648,7 +648,7 @@ static bool GetUTXOStats(CCoinsView *view, CCoinsStats &stats)
             if (ExtractDestination(coin.out.scriptPubKey, source)) {
                 const std::string addr = EncodeDestination(source);
                 if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
-                    consensus.mBurnAddresses.at(addr) < stats.nHeight) 
+                    consensus.mBurnAddresses.at(addr) < stats.nHeight)
                 {
                     pcursor->Next();
                     continue;
@@ -878,7 +878,7 @@ UniValue getburnaddresses(const JSONRPCRequest& request)
         obj.push_back(Pair("amount", ValueFromAmount(nSum)));
         ret.push_back(obj);
     }
-    
+
     return ret;
 }
 
@@ -1025,13 +1025,13 @@ UniValue getblockchaininfo(const JSONRPCRequest& request)
     obj.push_back(Pair("verificationprogress", Checkpoints::GuessVerificationProgress(pChainTip)));
     obj.push_back(Pair("chainwork", pChainTip ? pChainTip->nChainWork.GetHex() : ""));
     UniValue upgrades(UniValue::VOBJ);
-    
+
     if(nTipHeight >= 0) {
         for (int i = Consensus::BASE_NETWORK + 1; i < (int) Consensus::MAX_NETWORK_UPGRADES; i++) {
             NetworkUpgradeDescPushBack(upgrades, consensusParams, Consensus::UpgradeIndex(i), nTipHeight);
         }
     }
-    
+
     obj.push_back(Pair("upgrades", upgrades));
 
     return obj;
@@ -1448,41 +1448,11 @@ UniValue rewindblockindex(const JSONRPCRequest& request)
             "\nExamples:\n" +
             HelpExampleCli("rewindblockindex", "\"blockhash\"") + HelpExampleRpc("rewindblockindex", "\"blockhash\""));
 
-    int blocksToRollBack = 0;
-    int nHeight = chainActive.Height();
-    if (request.params.size() == 0) {
-        const CBlockIndex* prevCheckPoint;
-        {
-            LOCK(cs_main);
-            prevCheckPoint = GetLastCheckpoint();
-        }
-        const int checkPointHeight = prevCheckPoint ? prevCheckPoint->nHeight : 0;
-        blocksToRollBack = nHeight - checkPointHeight;
-    } else if (request.params.size() == 1) {
-        std::string param = request.params[0].get_str();
-
-        if (std::regex_match(param, std::regex("^[0-9a-fA-F]{64}$"))) {
-            const uint256 hash(uint256S(param));
-            if (!IsBlockHashInChain(hash)) {
-                throw std::runtime_error("Block not found. Unable to rewind the blockchain to the given block.\n");
-            }
-
-            CBlockIndex* block;
-            {
-                LOCK(cs_main);
-                block = LookupBlockIndex(hash);
-            }
-
-            blocksToRollBack = nHeight - block->nHeight;
-        } else if (std::regex_match(param, std::regex("^[0-9]+$"))) {
-            blocksToRollBack = stoi(param);
-            if (nHeight < blocksToRollBack || blocksToRollBack < 1) {
-                throw std::runtime_error("Invalid value. Unable to rewind the blockchain by the given number of blocks.\n");
-            }
-        }
+    if (request.params.size() == 1) {
+        RewindBlockIndex(request.params[0].get_str());
+    } else {
+        RewindBlockIndex();
     }
-
-    RewindBlockIndex(blocksToRollBack);
 
     return NullUniValue;
 }
