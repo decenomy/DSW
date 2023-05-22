@@ -29,7 +29,6 @@
 #include <mutex>
 #include <numeric>
 #include <condition_variable>
-#include <regex>
 
 #include <boost/thread/thread.hpp> // boost::thread::interrupt
 
