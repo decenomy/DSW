@@ -2073,6 +2073,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     blockundo.vtxundo.reserve(block.vtx.size() - 1);
     CAmount nValueOut = 0;
     CAmount nValueIn = 0;
+    CAmount nUnspendableValue = 0;
     unsigned int nMaxBlockSigOps = MAX_BLOCK_SIGOPS_CURRENT;
     std::vector<uint256> vSpendsInBlock;
 
@@ -2119,6 +2120,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
             control.Add(vChecks);
         }
         nValueOut += tx.GetValueOut();
+        nUnspendableValue += tx.GetUnspendableValueOut();
 
         CTxUndo undoDummy;
         if (i > 0) {
@@ -2186,7 +2188,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     view.SetBestBlock(pindex->GetBlockHash());
 
     // Update __DSW__ money supply
-    nMoneySupply += (nValueOut - nValueIn);
+    nMoneySupply += (nValueOut - nValueIn - nUnspendableValue);
 
     int64_t nTime3 = GetTimeMicros();
     nTimeIndex += nTime3 - nTime2;
