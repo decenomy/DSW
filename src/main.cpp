@@ -2476,6 +2476,10 @@ bool static ConnectTip(CValidationState& state, CBlockIndex* pindexNew, const CB
 
     // Remove conflicting transactions from the mempool.
     mempool.removeForBlock(pblock->vtx, pindexNew->nHeight, txConflicted, !IsInitialBlockDownload());
+
+    // Updates money supply
+    pindexNew->nMoneySupply = nMoneySupply;
+
     // Update chainActive & related variables.
     UpdateTip(pindexNew);
 
