@@ -335,7 +335,7 @@ public:
             }
 
             if (this->nVersion >= 7 &&nSerVersion >= DBI_SER_VERSION_MS) {
-                READWRITE(this->nMoneySupply);
+                READWRITE(nMoneySupply);
             }
 
         } else if (ser_action.ForRead()) {
