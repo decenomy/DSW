@@ -2409,7 +2409,7 @@ bool static DisconnectTip(CValidationState& state)
     mempool.UpdateTransactionsFromBlock(vHashUpdate);
 
     // Updates money supply
-    pindexNew->nMoneySupply = nMoneySupply;
+    pindexDelete->pprev->nMoneySupply = nMoneySupply;
 
     // Update chainActive and related variables.
     UpdateTip(pindexDelete->pprev);
