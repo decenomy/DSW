@@ -1489,7 +1489,7 @@ bool AppInit2()
                     break;
                 }
 
-                {
+                if(!chainActive.Tip()->nMoneySupply) {
                     LOCK(cs_main);
                     nMoneySupply = 0;
 
@@ -1515,6 +1515,8 @@ bool AppInit2()
                         }
                         pcursor->Next();
                     }
+
+                    chainActive.Tip()->nMoneySupply = nMoneySupply;
                 }
 
                 if (!fReindex) {

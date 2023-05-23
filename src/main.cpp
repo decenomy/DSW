@@ -1895,6 +1895,8 @@ DisconnectResult DisconnectBlock(CBlock& block, CBlockIndex* pindex, CCoinsViewC
     CBlockUndo blockUndo;
     CAmount nValueOut = 0;
     CAmount nValueIn = 0;
+    CAmount nUnspendableValue = 0;
+
     CDiskBlockPos pos = pindex->GetUndoPos();
     if (pos.IsNull()) {
         error("%s: no undo data available", __func__);
@@ -1915,8 +1917,8 @@ DisconnectResult DisconnectBlock(CBlock& block, CBlockIndex* pindex, CCoinsViewC
         const CTransaction& tx = block.vtx[i];
 
         nValueOut += tx.GetValueOut();
+        nUnspendableValue += tx.GetUnspendableValueOut();
         uint256 hash = tx.GetHash();
-
 
         // Check that all outputs are available and match the outputs in the block itself
         // exactly.
@@ -1955,7 +1957,7 @@ DisconnectResult DisconnectBlock(CBlock& block, CBlockIndex* pindex, CCoinsViewC
     }
 
     // track money
-    nMoneySupply -= (nValueOut - nValueIn);
+    nMoneySupply -= (nValueOut - nValueIn - nUnspendableValue);
 
     // move best block pointer to prevout block
     view.SetBestBlock(pindex->pprev->GetBlockHash());
@@ -2073,6 +2075,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     blockundo.vtxundo.reserve(block.vtx.size() - 1);
     CAmount nValueOut = 0;
     CAmount nValueIn = 0;
+    CAmount nUnspendableValue = 0;
     unsigned int nMaxBlockSigOps = MAX_BLOCK_SIGOPS_CURRENT;
     std::vector<uint256> vSpendsInBlock;
 
@@ -2119,6 +2122,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
             control.Add(vChecks);
         }
         nValueOut += tx.GetValueOut();
+        nUnspendableValue += tx.GetUnspendableValueOut();
 
         CTxUndo undoDummy;
         if (i > 0) {
@@ -2186,7 +2190,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     view.SetBestBlock(pindex->GetBlockHash());
 
     // Update KYAN money supply
-    nMoneySupply += (nValueOut - nValueIn);
+    nMoneySupply += (nValueOut - nValueIn - nUnspendableValue);
 
     int64_t nTime3 = GetTimeMicros();
     nTimeIndex += nTime3 - nTime2;
@@ -2403,6 +2407,10 @@ bool static DisconnectTip(CValidationState& state)
     // UpdateTransactionsFromBlock finds descendants of any transactions in this
     // block that were added back and cleans up the mempool state.
     mempool.UpdateTransactionsFromBlock(vHashUpdate);
+
+    // Updates money supply
+    pindexNew->nMoneySupply = nMoneySupply;
+
     // Update chainActive and related variables.
     UpdateTip(pindexDelete->pprev);
     // Let wallets know transactions went from 1-confirmed to
@@ -2474,6 +2482,10 @@ bool static ConnectTip(CValidationState& state, CBlockIndex* pindexNew, const CB
 
     // Remove conflicting transactions from the mempool.
     mempool.removeForBlock(pblock->vtx, pindexNew->nHeight, txConflicted, !IsInitialBlockDownload());
+
+    // Updates money supply
+    pindexNew->nMoneySupply = nMoneySupply;
+
     // Update chainActive & related variables.
     UpdateTip(pindexNew);
 
