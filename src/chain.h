@@ -342,7 +342,6 @@ public:
             // Serialization with CLIENT_VERSION <= DBI_SER_VERSION_NO_MS
             int64_t nMint = 0;
             uint256 hashNext{};
-            int64_t nMoneySupply = 0;
             READWRITE(nMint);
             READWRITE(nMoneySupply);
             READWRITE(nFlags);
