@@ -1517,6 +1517,8 @@ bool AppInit2()
                     }
 
                     chainActive.Tip()->nMoneySupply = nMoneySupply;
+                } else {
+                    nMoneySupply = chainActive.Tip()->nMoneySupply.get();
                 }
 
                 if (!fReindex) {
