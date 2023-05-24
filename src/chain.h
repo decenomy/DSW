@@ -334,7 +334,7 @@ public:
                 READWRITE(nAccumulatorCheckpoint);
             }
 
-            if (this->nVersion >= 7 &&nSerVersion >= DBI_SER_VERSION_MS) {
+            if (this->nVersion >= 7 && nSerVersion >= DBI_SER_VERSION_MS) {
                 READWRITE(nMoneySupply);
             }
 
