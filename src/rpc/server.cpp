@@ -298,6 +298,7 @@ static const CRPCCommand vRPCCommands[] =
         {"network", "setban", &setban, true },
         {"network", "listbanned", &listbanned, true },
         {"network", "clearbanned", &clearbanned, true },
+        {"network", "checkconnection", &checkconnection, true },
 
         /* Block chain and UTXO */
         {"blockchain", "getblockindexstats", &getblockindexstats, true },
@@ -318,6 +319,7 @@ static const CRPCCommand vRPCCommands[] =
         {"blockchain", "reconsiderblock", &reconsiderblock, true },
         {"blockchain", "verifychain", &verifychain, true },
         {"blockchain", "getburnaddresses", &getburnaddresses, true },
+        {"blockchain", "rewindblockindex", &rewindblockindex, true },
 
         /* Mining */
         {"mining", "getblocktemplate", &getblocktemplate, true },
@@ -367,6 +369,7 @@ static const CRPCCommand vRPCCommands[] =
         {"cryptoflow", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
         {"cryptoflow", "masternodecurrent", &masternodecurrent, true },
         {"cryptoflow", "startmasternode", &startmasternode, true },
+        {"cryptoflow", "reloadmasternodeconfig", &reloadmasternodeconfig, true },
         {"cryptoflow", "createmasternodekey", &createmasternodekey, true },
         {"cryptoflow", "getmasternodeoutputs", &getmasternodeoutputs, true },
         {"cryptoflow", "listmasternodeconf", &listmasternodeconf, true },
@@ -376,6 +379,7 @@ static const CRPCCommand vRPCCommands[] =
         {"cryptoflow", "getmasternodescores", &getmasternodescores, true },
         {"cryptoflow", "mnsync", &mnsync, true },
         {"cryptoflow", "spork", &spork, true },
+        {"cryptoflow", "mnping", &mnping, true },
 
 #ifdef ENABLE_WALLET
         /* Wallet */

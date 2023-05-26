@@ -183,7 +183,7 @@ class ReorgStakeTest(PivxTestFramework):
         assert (not res or not utxo["spendable"])
 
         # Verify that CFL supplies were properly updated after the spends and reorgs
-        self.log.info("Check __DSW__ supply...")
+        self.log.info("Check CFL supply...")
         expected_money_supply += 250.0 * (self.nodes[1].getblockcount() - 330)
         self.check_money_supply(expected_money_supply)
         self.log.info("Supply checks out.")
