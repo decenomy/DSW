@@ -298,6 +298,7 @@ static const CRPCCommand vRPCCommands[] =
         {"network", "setban", &setban, true },
         {"network", "listbanned", &listbanned, true },
         {"network", "clearbanned", &clearbanned, true },
+        {"network", "checkconnection", &checkconnection, true },
 
         /* Block chain and UTXO */
         {"blockchain", "getblockindexstats", &getblockindexstats, true },
@@ -318,6 +319,7 @@ static const CRPCCommand vRPCCommands[] =
         {"blockchain", "reconsiderblock", &reconsiderblock, true },
         {"blockchain", "verifychain", &verifychain, true },
         {"blockchain", "getburnaddresses", &getburnaddresses, true },
+        {"blockchain", "rewindblockindex", &rewindblockindex, true },
 
         /* Mining */
         {"mining", "getblocktemplate", &getblocktemplate, true },
@@ -367,6 +369,7 @@ static const CRPCCommand vRPCCommands[] =
         {"dashdiamond", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
         {"dashdiamond", "masternodecurrent", &masternodecurrent, true },
         {"dashdiamond", "startmasternode", &startmasternode, true },
+        {"dashdiamond", "reloadmasternodeconfig", &reloadmasternodeconfig, true },
         {"dashdiamond", "createmasternodekey", &createmasternodekey, true },
         {"dashdiamond", "getmasternodeoutputs", &getmasternodeoutputs, true },
         {"dashdiamond", "listmasternodeconf", &listmasternodeconf, true },
@@ -376,6 +379,7 @@ static const CRPCCommand vRPCCommands[] =
         {"dashdiamond", "getmasternodescores", &getmasternodescores, true },
         {"dashdiamond", "mnsync", &mnsync, true },
         {"dashdiamond", "spork", &spork, true },
+        {"dashdiamond", "mnping", &mnping, true },
 
 #ifdef ENABLE_WALLET
         /* Wallet */

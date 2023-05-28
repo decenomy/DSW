@@ -258,6 +258,7 @@ public:
     void GetNodeStats(std::vector<CNodeStats>& vstats);
     bool DisconnectNode(const std::string& node);
     bool DisconnectNode(NodeId id);
+    void DisconnectAll();
 
     unsigned int GetSendBufferSize() const;
 

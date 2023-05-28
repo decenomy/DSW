@@ -35,6 +35,7 @@ enum UpgradeIndex : uint32_t {
     UPGRADE_STAKE_MIN_DEPTH_V2,
     UPGRADE_MASTERNODE_RANK_V2,
     UPGRADE_COINBASE_MATURITY_V2,
+    UPGRADE_DYNAMIC_COLLATERAL,
     // NOTE: Also add new upgrades to NetworkUpgradeInfo in upgrades.cpp
     UPGRADE_TESTDUMMY,
     MAX_NETWORK_UPGRADES,
@@ -150,16 +151,16 @@ struct Params {
             return (utxoFromBlockTime + nStakeMinAge <= contextTime);
         // with stake modifier V2+, we require the utxo to be nStakeMinDepth deep in the chain
         return (
-            contextHeight - utxoFromBlockHeight 
-                >= 
-            NetworkUpgradeActive(contextHeight, Consensus::UPGRADE_STAKE_MIN_DEPTH_V2) ? 
+            contextHeight - utxoFromBlockHeight
+                >=
+            NetworkUpgradeActive(contextHeight, Consensus::UPGRADE_STAKE_MIN_DEPTH_V2) ?
                 nStakeMinDepthV2 : nStakeMinDepth
         );
     }
 
-    bool IsBurnAddress(const std::string strAddress, const int nHeight) 
+    bool IsBurnAddress(const std::string strAddress, const int nHeight)
     {
-        return 
+        return
             mBurnAddresses.find(strAddress) != mBurnAddresses.end() &&
             mBurnAddresses[strAddress].first < nHeight &&
             mBurnAddresses[strAddress].second > nHeight;
