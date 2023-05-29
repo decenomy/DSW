@@ -110,6 +110,15 @@ public:
             for(uint64_t i = 0; i < size; i++) {
                 auto mn = new CMasternode();
                 READWRITE(*mn);
+
+                auto mnScript = Find(GetScriptForDestination(mn->pubKeyCollateralAddress.GetID()));
+                if(mnScript) {
+                    auto it = std::find(vMasternodes.begin(), vMasternodes.end(), mnScript);
+                    if(it != vMasternodes.end()) vMasternodes.erase(it);
+
+                    break;
+                }
+
                 vMasternodes.push_back(mn);
                 {
                     LOCK(cs_script);

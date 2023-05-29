@@ -216,7 +216,18 @@ bool CMasternodeMan::Add(CMasternode& mn)
     CMasternode* pmn = Find(mn.vin);
     CMasternode* pmnByAddr = Find(mn.addr);
     bool masternodeRankV2 = Params().GetConsensus().NetworkUpgradeActive(chainActive.Height(), Consensus::UPGRADE_MASTERNODE_RANK_V2);
-    if (pmn == NULL && (sporkManager.IsSporkActive(SPORK_111_ALLOW_DUPLICATE_MN_IPS) || !masternodeRankV2 || pmnByAddr == NULL)) {
+
+    auto mnScript = Find(GetScriptForDestination(mn.pubKeyCollateralAddress.GetID()));
+    if(mnScript) {
+        auto it = std::find(vMasternodes.begin(), vMasternodes.end(), mnScript);
+        if(it != vMasternodes.end()) vMasternodes.erase(it);
+
+        return false;
+    }
+
+    if (pmn == NULL && 
+        (sporkManager.IsSporkActive(SPORK_111_ALLOW_DUPLICATE_MN_IPS) || !masternodeRankV2 || pmnByAddr == NULL) 
+    ) {
         LogPrint(BCLog::MASTERNODE, "CMasternodeMan: Adding new Masternode %s - count %i now\n", mn.vin.prevout.ToStringShort(), size() + 1);
         auto m = new CMasternode(mn);
         vMasternodes.push_back(m);
