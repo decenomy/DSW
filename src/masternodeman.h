@@ -84,7 +84,8 @@ private:
     CMasternode* GetNextMasternodeInQueueForPayment(
         int nBlockHeight, bool fFilterSigTime, 
         int& nCount, std::vector<CTxIn>& vecEligibleTxIns,
-        bool fJustCount = false);
+        bool fJustCount = false,
+        bool fCleanLastPaid = true);
 
 public:
     // Keep track of all broadcasts I've seen
