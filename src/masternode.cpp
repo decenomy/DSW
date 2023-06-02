@@ -256,7 +256,7 @@ int64_t CMasternode::SecondsSincePayment(CBlockIndex* pblockindex)
     auto lp = GetLastPaid(pblockindex);
 
     if(sporkManager.IsSporkActive(SPORK_114_MN_PAYMENT_V2) && lp == 0) {
-        return sigTime;
+        lp = sigTime;
     }
 
     int64_t sec = (GetAdjustedTime() - lp);
