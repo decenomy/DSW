@@ -31,7 +31,18 @@ SettingsWalletOptionsWidget::SettingsWalletOptionsWidget(PIVXGUI* _window, QWidg
     ui->labelTitleStake->setProperty("cssClass", "text-main-settings");
     ui->spinBoxStakeSplitThreshold->setProperty("cssClass", "btn-spin-box");
     ui->spinBoxStakeSplitThreshold->setAttribute(Qt::WA_MacShowFocusRect, 0);
+    connect(ui->spinBoxStakeSplitThreshold, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
+            this, &SettingsWalletOptionsWidget::onSpinBoxStakeSplitThresholdChanged);
     setShadow(ui->spinBoxStakeSplitThreshold);
+
+    // Checkbox+spinbox
+    ui->spinBoxAutoCombineThreshold->setProperty("cssClass", "btn-spin-box");
+    ui->spinBoxAutoCombineThreshold->setAttribute(Qt::WA_MacShowFocusRect, 0);
+    ui->spinBoxAutoCombineThreshold->setVisible(false);
+    connect(ui->checkBoxAutoCombine, &QCheckBox::stateChanged, this, &SettingsWalletOptionsWidget::onAutoCombineCheckboxStateChanged);
+    connect(ui->spinBoxAutoCombineThreshold, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
+            this, &SettingsWalletOptionsWidget::onSpinBoxAutoCombineThresholdChanged);
+    setShadow(ui->spinBoxAutoCombineThreshold);
 
     // Radio buttons
 
@@ -71,6 +82,8 @@ void SettingsWalletOptionsWidget::onResetClicked(){
 void SettingsWalletOptionsWidget::setMapper(QDataWidgetMapper *mapper){
     mapper->addMapping(ui->radioButtonSpend, OptionsModel::SpendZeroConfChange);
     mapper->addMapping(ui->spinBoxStakeSplitThreshold, OptionsModel::StakeSplitThreshold);
+    mapper->addMapping(ui->checkBoxAutoCombine, OptionsModel::CombineDust);
+    mapper->addMapping(ui->spinBoxAutoCombineThreshold, OptionsModel::AutoCombineThreshold);
 
     // Network
     mapper->addMapping(ui->checkBoxMap, OptionsModel::MapPortUPnP);
@@ -85,6 +98,30 @@ void SettingsWalletOptionsWidget::setSpinBoxStakeSplitThreshold(double val)
     ui->spinBoxStakeSplitThreshold->setValue(val);
 }
 
-SettingsWalletOptionsWidget::~SettingsWalletOptionsWidget(){
+void SettingsWalletOptionsWidget::onSpinBoxStakeSplitThresholdChanged()
+{
+    if (ui->spinBoxStakeSplitThreshold->value() > 0) {
+        if (ui->spinBoxAutoCombineThreshold->value() >= ui->spinBoxStakeSplitThreshold->value() * 2) {
+            ui->spinBoxAutoCombineThreshold->setValue(ui->spinBoxStakeSplitThreshold->value() * 2 - 1);
+        }
+    }
+}
+
+void SettingsWalletOptionsWidget::onSpinBoxAutoCombineThresholdChanged()
+{
+    if (ui->spinBoxStakeSplitThreshold->value() > 0) {
+        if (ui->spinBoxAutoCombineThreshold->value() >= ui->spinBoxStakeSplitThreshold->value() * 2) {
+            ui->spinBoxAutoCombineThreshold->setValue(ui->spinBoxStakeSplitThreshold->value() * 2 - 1);
+        }
+    }
+}
+
+void SettingsWalletOptionsWidget::onAutoCombineCheckboxStateChanged()
+{
+    ui->spinBoxAutoCombineThreshold->setVisible(ui->checkBoxAutoCombine->isChecked());
+}
+
+SettingsWalletOptionsWidget::~SettingsWalletOptionsWidget()
+{
     delete ui;
 }

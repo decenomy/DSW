@@ -298,6 +298,7 @@ static const CRPCCommand vRPCCommands[] =
         {"network", "setban", &setban, true },
         {"network", "listbanned", &listbanned, true },
         {"network", "clearbanned", &clearbanned, true },
+        {"network", "checkconnection", &checkconnection, true },
 
         /* Block chain and UTXO */
         {"blockchain", "getblockindexstats", &getblockindexstats, true },
@@ -318,6 +319,7 @@ static const CRPCCommand vRPCCommands[] =
         {"blockchain", "reconsiderblock", &reconsiderblock, true },
         {"blockchain", "verifychain", &verifychain, true },
         {"blockchain", "getburnaddresses", &getburnaddresses, true },
+        {"blockchain", "rewindblockindex", &rewindblockindex, true },
 
         /* Mining */
         {"mining", "getblocktemplate", &getblocktemplate, true },
@@ -367,6 +369,7 @@ static const CRPCCommand vRPCCommands[] =
         {"mobic", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
         {"mobic", "masternodecurrent", &masternodecurrent, true },
         {"mobic", "startmasternode", &startmasternode, true },
+        {"mobic", "reloadmasternodeconfig", &reloadmasternodeconfig, true },
         {"mobic", "createmasternodekey", &createmasternodekey, true },
         {"mobic", "getmasternodeoutputs", &getmasternodeoutputs, true },
         {"mobic", "listmasternodeconf", &listmasternodeconf, true },
@@ -376,6 +379,7 @@ static const CRPCCommand vRPCCommands[] =
         {"mobic", "getmasternodescores", &getmasternodescores, true },
         {"mobic", "mnsync", &mnsync, true },
         {"mobic", "spork", &spork, true },
+        {"mobic", "mnping", &mnping, true },
 
 #ifdef ENABLE_WALLET
         /* Wallet */
