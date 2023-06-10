@@ -233,7 +233,7 @@ void CMasternode::Check(bool forceCheck)
                 return;
             }
         }
-        
+
         // ----------- burn address scanning -----------
         if (!consensus.mBurnAddresses.empty()) {
 
@@ -251,10 +251,15 @@ void CMasternode::Check(bool forceCheck)
     activeState = MASTERNODE_ENABLED; // OK
 }
 
-int64_t CMasternode::SecondsSincePayment()
+int64_t CMasternode::SecondsSincePayment(CBlockIndex* pblockindex)
 {
+    auto lp = GetLastPaid(pblockindex);
 
-    int64_t sec = (GetAdjustedTime() - GetLastPaid());
+    if(sporkManager.IsSporkActive(SPORK_114_MN_PAYMENT_V2) && lp == 0) {
+        lp = sigTime;
+    }
+
+    int64_t sec = (GetAdjustedTime() - lp);
     int64_t month = MONTH_IN_SECONDS;
     if (sec < month) return sec; //if it's less than 30 days, give seconds
 
@@ -278,7 +283,7 @@ int64_t CMasternode::GetLastPaidV1(CBlockIndex* pblockindex, const CScript& mnpa
     int64_t nOffset = hash.GetCompact(false) % 150;
 
     int max_depth = mnodeman.CountEnabled() * 1.25;
-    for (int n = 0; n < max_depth; n++) { 
+    for (int n = 0; n < max_depth; n++) {
         {
             LOCK(cs_mapMasternodeBlocks);
 
@@ -291,7 +296,7 @@ int64_t CMasternode::GetLastPaidV1(CBlockIndex* pblockindex, const CScript& mnpa
                 }
             }
         }
-        
+
         pblockindex = pblockindex->pprev;
 
         if (pblockindex == nullptr || pblockindex->nHeight <= 0) {
@@ -306,30 +311,33 @@ int64_t CMasternode::GetLastPaidV2(CBlockIndex* pblockindex, const CScript& mnpa
 {
     if(lastPaid != INT64_MAX) return lastPaid;
 
-    int max_depth = mnodeman.CountEnabled() * 2; // go a little bit further than V1
+    int max_depth = mnodeman.CountEnabled() * 2;
+    int n = 0;
 
-    for (int n = 0; n < max_depth; n++) { 
-
+    do
+    {
         auto paidpayee = pblockindex->GetPaidPayee();
         if(paidpayee && mnpayee == *paidpayee) {
             lastPaid = pblockindex->nTime;
             return lastPaid;
         }
-        
+
         pblockindex = pblockindex->pprev;
 
         if (pblockindex == nullptr || pblockindex->nHeight <= 0) {
             break;
         }
+
+        n++;
     }
+    while(pblockindex->GetBlockTime() > sigTime && n <= max_depth);
 
     lastPaid = 0;
     return lastPaid;
 }
 
-int64_t CMasternode::GetLastPaid()
+int64_t CMasternode::GetLastPaid(CBlockIndex* pblockindex)
 {
-    CBlockIndex* pblockindex = GetChainTip();
     if (pblockindex == nullptr) return false;
 
     const CScript& mnpayee = GetScriptForDestination(pubKeyCollateralAddress.GetID());
@@ -356,21 +364,21 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
     CTransaction txVin;
     uint256 hash;
     if(GetTransaction(vin.prevout.hash, txVin, hash, true) &&
-       vin.prevout.n < txVin.vout.size() && 
+       vin.prevout.n < txVin.vout.size() &&
        CMasternode::CheckMasternodeCollateral(txVin.vout[vin.prevout.n].nValue) &&
        txVin.vout[vin.prevout.n].scriptPubKey == payee) return true;
 
     return false;
 }
 
-CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight) 
+CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
 {
     if (nHeight >  400000)  return    100000 * COIN;
     if (nHeight >  300000)  return     70000 * COIN;
     if (nHeight >  200000)  return     50000 * COIN;
     if (nHeight >  100000)  return     30000 * COIN;
     if (nHeight >       0)  return     20000 * COIN;
-         
+
     return 0;
 }
 
@@ -399,11 +407,11 @@ CAmount CMasternode::GetMasternodePayment(int nHeight)
 }
 
 void CMasternode::InitMasternodeCollateralList() {
-    CAmount prev = -1; 
+    CAmount prev = -1;
     for(int i = 0; i < 9999999; i++) {
         CAmount c = GetMasternodeNodeCollateral(i);
         if(prev != c) {
-            LogPrint(BCLog::MASTERNODE, "%s: Found collateral %d at block %d\n", __func__, c / COIN, i); 
+            LogPrint(BCLog::MASTERNODE, "%s: Found collateral %d at block %d\n", __func__, c / COIN, i);
             prev = c;
             vecCollaterals.push_back(std::make_pair(i, c));
         }
@@ -437,7 +445,7 @@ CMasternodeBroadcast::CMasternodeBroadcast(const CMasternode& mn) :
         CMasternode(mn)
 { }
 
-bool CMasternodeBroadcast::Create(std::string strService, std::string strKeyMasternode, std::string strTxHash, std::string strOutputIndex, std::string& strErrorRet, CMasternodeBroadcast& mnbRet, bool fOffline)
+bool CMasternodeBroadcast::Create(std::string strService, std::string strKeyMasternode, std::string strTxHash, std::string strOutputIndex, std::string& strErrorRet, CMasternodeBroadcast& mnbRet, bool fOffline, std::string privkey)
 {
     CTxIn txin;
     CPubKey pubKeyCollateralAddressNew;
@@ -458,11 +466,20 @@ bool CMasternodeBroadcast::Create(std::string strService, std::string strKeyMast
         return false;
     }
 
-    std::string strError;
-    if (!pwalletMain->GetMasternodeVinAndKeys(txin, pubKeyCollateralAddressNew, keyCollateralAddressNew, strTxHash, strOutputIndex, strError)) {
-        strErrorRet = strError; // GetMasternodeVinAndKeys logs this error. Only returned for GUI error notification.
-        LogPrint(BCLog::MASTERNODE,"CMasternodeBroadcast::Create -- %s\n", strprintf("Could not allocate txin %s:%s for masternode %s", strTxHash, strOutputIndex, strService));
-        return false;
+    if(privkey == "") { // in-wallet transaction
+        std::string strError;
+        if (!pwalletMain->GetMasternodeVinAndKeys(txin, pubKeyCollateralAddressNew, keyCollateralAddressNew, strTxHash, strOutputIndex, strError)) {
+            strErrorRet = strError; // GetMasternodeVinAndKeys logs this error. Only returned for GUI error notification.
+            LogPrint(BCLog::MASTERNODE,"CMasternodeBroadcast::Create -- %s\n", strprintf("Could not allocate txin %s:%s for masternode %s", strTxHash, strOutputIndex, strService));
+            return false;
+        }
+    } else { // external collateral transaction
+        txin = CTxIn(uint256(strTxHash), std::stoi(strOutputIndex.c_str()));
+        if (!CMessageSigner::GetKeysFromSecret(privkey, keyCollateralAddressNew, pubKeyCollateralAddressNew)) {
+            strErrorRet = strprintf("Invalid collateral key %s", privkey);
+            LogPrint(BCLog::MASTERNODE,"CMasternodeBroadcast::Create -- %s\n", strErrorRet);
+            return false;
+        }
     }
 
     int nPort;
@@ -654,8 +671,8 @@ bool CMasternodeBroadcast::CheckAndUpdate(int& nDos)
 
     if(addr.GetPort() != Params().GetDefaultPort()) {
         return error(
-            "%s : Invalid port %u for masternode %s, only %d is supported on %s-net.", 
-            __func__, addr.GetPort(), addr.ToString(), Params().GetDefaultPort(), 
+            "%s : Invalid port %u for masternode %s, only %d is supported on %s-net.",
+            __func__, addr.GetPort(), addr.ToString(), Params().GetDefaultPort(),
             Params().NetworkIDString());
     }
 
@@ -696,9 +713,9 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
     // we are a masternode with the same vin (i.e. already activated) and this mnb is ours (matches our Masternode privkey)
     // so nothing to do here for us
     for (auto& activeMasternode : amnodeman.GetActiveMasternodes()) {
-        if (fMasterNode && 
+        if (fMasterNode &&
             activeMasternode.vin != nullopt &&
-            vin.prevout == activeMasternode.vin->prevout && 
+            vin.prevout == activeMasternode.vin->prevout &&
             pubKeyMasternode == activeMasternode.pubKeyMasternode) return true;
     }
 
@@ -760,26 +777,26 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
     GetTransaction(vin.prevout.hash, tx2, hashBlock, true);
     BlockMap::iterator mi = mapBlockIndex.find(hashBlock);
     if (mi != mapBlockIndex.end() && (*mi).second) {
-        CBlockIndex* pMNIndex = (*mi).second;                                                        
-        int nConfHeight = pMNIndex->nHeight + MASTERNODE_MIN_CONFIRMATIONS - 1; // block for 1000 PNY tx -> 1 confirmation
+        CBlockIndex* pMNIndex = (*mi).second;                                   // block for 1000 PNY tx -> 1 confirmation
+        int nConfHeight = pMNIndex->nHeight + MASTERNODE_MIN_CONFIRMATIONS - 1;
         CBlockIndex* pConfIndex = chainActive[nConfHeight];                     // block where tx got MASTERNODE_MIN_CONFIRMATIONS
         if (pConfIndex->GetBlockTime() > sigTime) {
             LogPrint(BCLog::MASTERNODE,"mnb - Bad sigTime %d for Masternode %s (%i conf block is at %d)\n",
                 sigTime, vin.prevout.hash.ToString(), MASTERNODE_MIN_CONFIRMATIONS, pConfIndex->GetBlockTime());
             return false;
         }
-        
+
         auto week_in_blocks = WEEK_IN_SECONDS / Params().GetConsensus().nTargetSpacing;
 
-        if (GetMasternodeNodeCollateral(nConfHeight) != GetMasternodeNodeCollateral(chainActive.Height()) && 
-            GetMasternodeNodeCollateral(nConfHeight + week_in_blocks) != GetMasternodeNodeCollateral(chainActive.Height())) 
+        if (GetMasternodeNodeCollateral(nConfHeight) != GetMasternodeNodeCollateral(chainActive.Height()) &&
+            GetMasternodeNodeCollateral(nConfHeight + week_in_blocks) != GetMasternodeNodeCollateral(chainActive.Height()))
         {
             LogPrint(BCLog::MASTERNODE,"mnb - Wrong collateral transaction value of %d for Masternode %s (%i conf block is at %d)\n",
                 GetMasternodeNodeCollateral(nConfHeight) / COIN, vin.prevout.hash.ToString(), MASTERNODE_MIN_CONFIRMATIONS, pConfIndex->GetBlockTime());
             return false;
         }
     }
-    
+
     LogPrint(BCLog::MASTERNODE, "mnb - Got NEW Masternode entry - %s - %lli \n", vin.prevout.ToStringShort(), sigTime);
     CMasternode mn(*this);
     mnodeman.Add(mn);

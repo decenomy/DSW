@@ -626,7 +626,7 @@ class PivxTestFramework():
                 for j in range(20):
                     # Stake block
                     block_time = self.generate_pos(peer, block_time)
-                    nBlocks += 1     
+                    nBlocks += 1
                 # Must sync before next peer starts generating blocks
                 sync_blocks(self.nodes)
                 time.sleep(1)
@@ -683,7 +683,7 @@ class PivxTestFramework():
         # 62 pow + 20 pos (26 immature)
         # - Nodes 3 gets 84 blocks:
         # 64 pow + 20 pos (34 immature)
-        
+
         # check at least 1 node and at most 5
         num_nodes = min(5, len(self.nodes))
         assert_greater_than(num_nodes, 0)
@@ -766,7 +766,7 @@ class PivxTestFramework():
         rpc_conn = self.nodes[node_id]
         block_txes = []
         for uniqueness in spendingPrevOuts:
-            # spend __DSW__
+            # spend PNY
             value_out = int(spendingPrevOuts[uniqueness][0] - DEFAULT_FEE * COIN)
             scriptPubKey = CScript([to_pubKey, OP_CHECKSIG])
             prevout = COutPoint()
@@ -845,7 +845,7 @@ class PivxTestFramework():
                 # Use pk of the input. Ask sk from rpc_conn
                 rawtx = rpc_conn.getrawtransaction('{:064x}'.format(prevout.hash), True)
                 privKeyWIF = rpc_conn.dumpprivkey(rawtx["vout"][prevout.n]["scriptPubKey"]["addresses"][0])
-            # Use the provided privKeyWIF 
+            # Use the provided privKeyWIF
             # export the corresponding private key to sign block
             privKey, compressed = wif_to_privkey(privKeyWIF)
             block_sig_key.set_compressed(compressed)
@@ -864,7 +864,7 @@ class PivxTestFramework():
         # Don't add tx doublespending the coinstake input, unless fDoubleSpend=True
         for tx in vtx:
             if not fDoubleSpend:
-                # assume txes don't double spend z__DSW__ inputs when fDoubleSpend is false. It needs to
+                # assume txes don't double spend zPNY inputs when fDoubleSpend is false. It needs to
                 # be checked outside until a convenient tx.spends is added to the framework.
                 if tx.spends(prevout):
                     continue

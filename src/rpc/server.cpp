@@ -298,6 +298,7 @@ static const CRPCCommand vRPCCommands[] =
         {"network", "setban", &setban, true },
         {"network", "listbanned", &listbanned, true },
         {"network", "clearbanned", &clearbanned, true },
+        {"network", "checkconnection", &checkconnection, true },
 
         /* Block chain and UTXO */
         {"blockchain", "getblockindexstats", &getblockindexstats, true },
@@ -318,6 +319,7 @@ static const CRPCCommand vRPCCommands[] =
         {"blockchain", "reconsiderblock", &reconsiderblock, true },
         {"blockchain", "verifychain", &verifychain, true },
         {"blockchain", "getburnaddresses", &getburnaddresses, true },
+        {"blockchain", "rewindblockindex", &rewindblockindex, true },
 
         /* Mining */
         {"mining", "getblocktemplate", &getblocktemplate, true },
@@ -367,6 +369,7 @@ static const CRPCCommand vRPCCommands[] =
         {"peony", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
         {"peony", "masternodecurrent", &masternodecurrent, true },
         {"peony", "startmasternode", &startmasternode, true },
+        {"peony", "reloadmasternodeconfig", &reloadmasternodeconfig, true },
         {"peony", "createmasternodekey", &createmasternodekey, true },
         {"peony", "getmasternodeoutputs", &getmasternodeoutputs, true },
         {"peony", "listmasternodeconf", &listmasternodeconf, true },
@@ -376,6 +379,7 @@ static const CRPCCommand vRPCCommands[] =
         {"peony", "getmasternodescores", &getmasternodescores, true },
         {"peony", "mnsync", &mnsync, true },
         {"peony", "spork", &spork, true },
+        {"peony", "mnping", &mnping, true },
 
 #ifdef ENABLE_WALLET
         /* Wallet */
