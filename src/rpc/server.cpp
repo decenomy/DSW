@@ -298,6 +298,7 @@ static const CRPCCommand vRPCCommands[] =
         {"network", "setban", &setban, true },
         {"network", "listbanned", &listbanned, true },
         {"network", "clearbanned", &clearbanned, true },
+        {"network", "checkconnection", &checkconnection, true },
 
         /* Block chain and UTXO */
         {"blockchain", "getblockindexstats", &getblockindexstats, true },
@@ -318,6 +319,7 @@ static const CRPCCommand vRPCCommands[] =
         {"blockchain", "reconsiderblock", &reconsiderblock, true },
         {"blockchain", "verifychain", &verifychain, true },
         {"blockchain", "getburnaddresses", &getburnaddresses, true },
+        {"blockchain", "rewindblockindex", &rewindblockindex, true },
 
         /* Mining */
         {"mining", "getblocktemplate", &getblocktemplate, true },
@@ -367,6 +369,7 @@ static const CRPCCommand vRPCCommands[] =
         {"sapphire", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
         {"sapphire", "masternodecurrent", &masternodecurrent, true },
         {"sapphire", "startmasternode", &startmasternode, true },
+        {"sapphire", "reloadmasternodeconfig", &reloadmasternodeconfig, true },
         {"sapphire", "createmasternodekey", &createmasternodekey, true },
         {"sapphire", "getmasternodeoutputs", &getmasternodeoutputs, true },
         {"sapphire", "listmasternodeconf", &listmasternodeconf, true },
@@ -376,6 +379,7 @@ static const CRPCCommand vRPCCommands[] =
         {"sapphire", "getmasternodescores", &getmasternodescores, true },
         {"sapphire", "mnsync", &mnsync, true },
         {"sapphire", "spork", &spork, true },
+        {"sapphire", "mnping", &mnping, true },
 
 #ifdef ENABLE_WALLET
         /* Wallet */
