@@ -138,9 +138,14 @@ void SettingsWalletRepairWidget::walletWeekRewind()
     }
 
     auto numBlocks = WEEK_IN_SECONDS / Params().GetConsensus().nTargetSpacing;
+    std::string param = "";
+
+    if (numBlocks <= chainActive.Height()) {
+        param = std::to_string(numBlocks);
+    }
 
     // Restart and rewind
-    buildParameterlist(tr((REWIND.toStdString() + std::to_string(numBlocks)).c_str()));
+    buildParameterlist(tr((REWIND.toStdString() + param).c_str()));
 }
 
 /** Build command-line parameter list for restart */
