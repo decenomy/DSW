@@ -135,6 +135,8 @@ static const unsigned int DEFAULT_BLOCK_SPAM_FILTER_MAX_SIZE = 100;
 static const unsigned int DEFAULT_BLOCK_SPAM_FILTER_MAX_AVG = 10;
 /** Identifier of the old client */
 static const char OLD_CLIENT_NAME[] = "BirakeCoin";
+/** Default for block payee verification timeout */
+static const unsigned int DEFAULT_BLOCK_PAYEE_VERIFICATION_TIMEOUT = 5 * MINUTE_IN_SECONDS;
 
 struct BlockHasher {
     size_t operator()(const uint256& hash) const { return hash.GetCheapHash(); }
@@ -396,6 +398,19 @@ public:
     ~CVerifyDB();
     bool VerifyDB(CCoinsView* coinsview, int nCheckLevel, int nCheckDepth);
 };
+
+/** Rewind chain.
+ *  param can contain a number of blocks to rewind or a block hash to rewind to */
+bool RewindBlockIndex(std::string param = "");
+
+const CBlockIndex* GetLastCheckpoint() EXCLUSIVE_LOCKS_REQUIRED(cs_main);
+
+inline CBlockIndex* LookupBlockIndex(const uint256& hash) EXCLUSIVE_LOCKS_REQUIRED(cs_main)
+{
+    AssertLockHeld(cs_main);
+    BlockMap::const_iterator it = mapBlockIndex.find(hash);
+    return it == mapBlockIndex.end() ? nullptr : it->second;
+}
 
 /** Find the last common block between the parameter chain and a locator. */
 CBlockIndex* FindForkInGlobalIndex(const CChain& chain, const CBlockLocator& locator);

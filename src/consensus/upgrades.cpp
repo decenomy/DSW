@@ -61,6 +61,10 @@ const struct NUInfo NetworkUpgradeInfo[Consensus::MAX_NETWORK_UPGRADES] = {
                 /*.strInfo =*/ "new coinbase maturity back to the regular 100 confirmations",
         },
         {
+                /*.strName =*/ "dynamic_collateral_v2",
+                /*.strInfo =*/ "new dynamic collateral system",
+        },
+        {
                 /*.strName =*/ "Test_dummy",
                 /*.strInfo =*/ "Test dummy info",
         },

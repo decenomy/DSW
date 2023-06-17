@@ -298,6 +298,7 @@ static const CRPCCommand vRPCCommands[] =
         {"network", "setban", &setban, true },
         {"network", "listbanned", &listbanned, true },
         {"network", "clearbanned", &clearbanned, true },
+        {"network", "checkconnection", &checkconnection, true },
 
         /* Block chain and UTXO */
         {"blockchain", "getblockindexstats", &getblockindexstats, true },
@@ -318,6 +319,7 @@ static const CRPCCommand vRPCCommands[] =
         {"blockchain", "reconsiderblock", &reconsiderblock, true },
         {"blockchain", "verifychain", &verifychain, true },
         {"blockchain", "getburnaddresses", &getburnaddresses, true },
+        {"blockchain", "rewindblockindex", &rewindblockindex, true },
 
         /* Mining */
         {"mining", "getblocktemplate", &getblocktemplate, true },
@@ -367,6 +369,7 @@ static const CRPCCommand vRPCCommands[] =
         {"birake", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
         {"birake", "masternodecurrent", &masternodecurrent, true },
         {"birake", "startmasternode", &startmasternode, true },
+        {"birake", "reloadmasternodeconfig", &reloadmasternodeconfig, true },
         {"birake", "createmasternodekey", &createmasternodekey, true },
         {"birake", "getmasternodeoutputs", &getmasternodeoutputs, true },
         {"birake", "listmasternodeconf", &listmasternodeconf, true },
@@ -376,6 +379,7 @@ static const CRPCCommand vRPCCommands[] =
         {"birake", "getmasternodescores", &getmasternodescores, true },
         {"birake", "mnsync", &mnsync, true },
         {"birake", "spork", &spork, true },
+        {"birake", "mnping", &mnping, true },
 
 #ifdef ENABLE_WALLET
         /* Wallet */

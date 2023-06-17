@@ -251,10 +251,15 @@ void CMasternode::Check(bool forceCheck)
     activeState = MASTERNODE_ENABLED; // OK
 }
 
-int64_t CMasternode::SecondsSincePayment()
+int64_t CMasternode::SecondsSincePayment(CBlockIndex* pblockindex)
 {
+    auto lp = GetLastPaid(pblockindex);
 
-    int64_t sec = (GetAdjustedTime() - GetLastPaid());
+    if(sporkManager.IsSporkActive(SPORK_114_MN_PAYMENT_V2) && lp == 0) {
+        lp = sigTime;
+    }
+
+    int64_t sec = (GetAdjustedTime() - lp);
     int64_t month = MONTH_IN_SECONDS;
     if (sec < month) return sec; //if it's less than 30 days, give seconds
 
@@ -306,10 +311,11 @@ int64_t CMasternode::GetLastPaidV2(CBlockIndex* pblockindex, const CScript& mnpa
 {
     if(lastPaid != INT64_MAX) return lastPaid;
 
-    int max_depth = mnodeman.CountEnabled() * 2; // go a little bit further than V1
+    int max_depth = mnodeman.CountEnabled() * 2;
+    int n = 0;
 
-    for (int n = 0; n < max_depth; n++) {
-
+    do
+    {
         auto paidpayee = pblockindex->GetPaidPayee();
         if(paidpayee && mnpayee == *paidpayee) {
             lastPaid = pblockindex->nTime;
@@ -321,15 +327,17 @@ int64_t CMasternode::GetLastPaidV2(CBlockIndex* pblockindex, const CScript& mnpa
         if (pblockindex == nullptr || pblockindex->nHeight <= 0) {
             break;
         }
+
+        n++;
     }
+    while(pblockindex->GetBlockTime() > sigTime && n <= max_depth);
 
     lastPaid = 0;
     return lastPaid;
 }
 
-int64_t CMasternode::GetLastPaid()
+int64_t CMasternode::GetLastPaid(CBlockIndex* pblockindex)
 {
-    CBlockIndex* pblockindex = GetChainTip();
     if (pblockindex == nullptr) return false;
 
     const CScript& mnpayee = GetScriptForDestination(pubKeyCollateralAddress.GetID());
@@ -522,7 +530,7 @@ CMasternodeBroadcast::CMasternodeBroadcast(const CMasternode& mn) :
         CMasternode(mn)
 { }
 
-bool CMasternodeBroadcast::Create(std::string strService, std::string strKeyMasternode, std::string strTxHash, std::string strOutputIndex, std::string& strErrorRet, CMasternodeBroadcast& mnbRet, bool fOffline)
+bool CMasternodeBroadcast::Create(std::string strService, std::string strKeyMasternode, std::string strTxHash, std::string strOutputIndex, std::string& strErrorRet, CMasternodeBroadcast& mnbRet, bool fOffline, std::string privkey)
 {
     CTxIn txin;
     CPubKey pubKeyCollateralAddressNew;
@@ -543,13 +551,22 @@ bool CMasternodeBroadcast::Create(std::string strService, std::string strKeyMast
         return false;
     }
 
-    std::string strError;
-    if (!pwalletMain->GetMasternodeVinAndKeys(txin, pubKeyCollateralAddressNew, keyCollateralAddressNew, strTxHash, strOutputIndex, strError)) {
-        strErrorRet = strError; // GetMasternodeVinAndKeys logs this error. Only returned for GUI error notification.
-        LogPrint(BCLog::MASTERNODE,"CMasternodeBroadcast::Create -- %s\n", strprintf("Could not allocate txin %s:%s for masternode %s", strTxHash, strOutputIndex, strService));
-        return false;
+    if(privkey == "") { // in-wallet transaction
+        std::string strError;
+        if (!pwalletMain->GetMasternodeVinAndKeys(txin, pubKeyCollateralAddressNew, keyCollateralAddressNew, strTxHash, strOutputIndex, strError)) {
+            strErrorRet = strError; // GetMasternodeVinAndKeys logs this error. Only returned for GUI error notification.
+            LogPrint(BCLog::MASTERNODE,"CMasternodeBroadcast::Create -- %s\n", strprintf("Could not allocate txin %s:%s for masternode %s", strTxHash, strOutputIndex, strService));
+            return false;
+        }
+    } else { // external collateral transaction
+        txin = CTxIn(uint256(strTxHash), std::stoi(strOutputIndex.c_str()));
+        if (!CMessageSigner::GetKeysFromSecret(privkey, keyCollateralAddressNew, pubKeyCollateralAddressNew)) {
+            strErrorRet = strprintf("Invalid collateral key %s", privkey);
+            LogPrint(BCLog::MASTERNODE,"CMasternodeBroadcast::Create -- %s\n", strErrorRet);
+            return false;
+        }
     }
-
+    
     int nPort;
     int nDefaultPort = Params().GetDefaultPort();
     std::string strHost;
