@@ -12,6 +12,7 @@
 #include "consensus/upgrades.h"
 #include "kernel.h"
 #include "main.h"
+#include "masternode-sync.h"
 #include "policy/policy.h"
 #include "rpc/server.h"
 #include "sync.h"
@@ -1433,3 +1434,33 @@ UniValue getblockindexstats(const JSONRPCRequest& request) {
 
 }
 
+UniValue rewindblockindex(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() > 1)
+        throw std::runtime_error(
+            "rewindblockindex \"hash|nblocks\"\n"
+            "\nRewinds blockchain to a previous state.\n"
+            "If used without an argument, rewinds to the last checkpoint.\n"
+
+            "\nArguments:\n"
+            "1. hash|nblocks   (string, optional) the hash of the block to rewind to or the number of blocks to rewind\n"
+
+            "\nExamples:\n" +
+            HelpExampleCli("rewindblockindex", "\"blockhash\"") + HelpExampleRpc("rewindblockindex", "\"blockhash\""));
+
+    {
+        LOCK(cs_main);
+
+        if (request.params.size() == 1) {
+            RewindBlockIndex(request.params[0].get_str());
+        } else {
+            RewindBlockIndex();
+        }
+
+        g_connman->DisconnectAll();
+        g_connman->ClearBanned();
+        masternodeSync.Reset();
+    }
+
+    return NullUniValue;
+}
