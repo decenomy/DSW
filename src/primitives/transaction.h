@@ -63,6 +63,12 @@ public:
 
 };
 
+struct COutPointCheapHasher {
+    int operator()(const COutPoint& vout) const {
+        return ((int)vout.hash.GetCheapHash()) ^ vout.n;
+    }
+};
+
 /** An input of a transaction.  It contains the location of the previous
  * transaction's output that it claims and a signature that matches the
  * output's public key.
@@ -97,9 +103,6 @@ public:
         return (nSequence == std::numeric_limits<uint32_t>::max());
     }
 
-    bool IsZerocoinSpend() const;
-    bool IsZerocoinPublicSpend() const;
-
     friend bool operator==(const CTxIn& a, const CTxIn& b)
     {
         return (a.prevout   == b.prevout &&
@@ -115,6 +118,16 @@ public:
     std::string ToString() const;
 
     size_t DynamicMemoryUsage() const { return scriptSig.DynamicMemoryUsage(); }
+};
+
+struct CTxInCheapHasher {
+    int operator()(const CTxIn& txin) const {
+        return 
+            COutPointCheapHasher{}(txin.prevout) ^
+            CScriptCheapHasher{}(txin.scriptSig) ^
+            txin.nSequence ^
+            CScriptCheapHasher{}(txin.prevPubKey);
+    }
 };
 
 /** An output of a transaction.  It contains the public key that the next input
@@ -190,8 +203,6 @@ public:
         return (nValue < GetDustThreshold(minRelayTxFee));
     }
 
-    bool IsZerocoinMint() const;
-
     friend bool operator==(const CTxOut& a, const CTxOut& b)
     {
         return (a.nValue       == b.nValue &&
@@ -265,6 +276,10 @@ public:
 
     // Return sum of txouts.
     CAmount GetValueOut() const;
+
+    // Return the sum of spendable txouts.
+    CAmount GetUnspendableValueOut() const;
+
     // GetValueIn() is a method on CCoinsViewCache, because
     // inputs must be known to compute value in.
 
@@ -274,21 +289,9 @@ public:
     // Compute modified tx size for priority calculation (optionally given tx size)
     unsigned int CalculateModifiedSize(unsigned int nTxSize=0) const;
 
-    bool HasZerocoinSpendInputs() const;
-    bool HasZerocoinPublicSpendInputs() const;
-
-    bool HasZerocoinMintOutputs() const;
-
-    bool ContainsZerocoins() const
-    {
-        return HasZerocoinSpendInputs() || HasZerocoinMintOutputs();
-    }
-
-    CAmount GetZerocoinSpent() const;
-
     bool IsCoinBase() const
     {
-        return (vin.size() == 1 && vin[0].prevout.IsNull() && !ContainsZerocoins());
+        return (vin.size() == 1 && vin[0].prevout.IsNull());
     }
 
     bool IsCoinStake() const;

@@ -22,8 +22,7 @@
 #include <vector>
 
 #include "compat/endian.h"
-#include "libzerocoin/Denominations.h"
-#include "libzerocoin/SpendType.h"
+#include "optional.h"
 #include "prevector.h"
 #include "sporkid.h"
 
@@ -217,36 +216,6 @@ template<typename Stream> inline void Unserialize(Stream& s, double& a  ) { a = 
 
 template<typename Stream> inline void Serialize(Stream& s, bool a)    { char f=a; ser_writedata8(s, f); }
 template<typename Stream> inline void Unserialize(Stream& s, bool& a) { char f=ser_readdata8(s); a=f; }
-
-// Serializatin for libzerocoin::CoinDenomination
-template <typename Stream>
-inline void Serialize(Stream& s, libzerocoin::CoinDenomination a)
-{
-    int f = libzerocoin::ZerocoinDenominationToInt(a);
-    ser_writedata32(s, f);
-}
-
-template <typename Stream>
-inline void Unserialize(Stream& s, libzerocoin::CoinDenomination& a)
-{
-    int f = ser_readdata32(s);
-    a = libzerocoin::IntToZerocoinDenomination(f);
-}
-
-// Serialization for libzerocoin::SpendType
-template <typename Stream>
-inline void Serialize(Stream& s, libzerocoin::SpendType a)
-{
-    uint8_t f = static_cast<uint8_t>(a);
-    ser_writedata8(s, f);
-}
-
-template <typename Stream>
-inline void Unserialize(Stream& s, libzerocoin::SpendType & a)
-{
-    uint8_t f = ser_readdata8(s);
-    a = static_cast<libzerocoin::SpendType>(f);
-}
 
 // Serialization for SporkId
 template <typename Stream>
@@ -483,6 +452,8 @@ public:
     void Unserialize(Stream& s) {
         n = ReadCompactSize<Stream>(s);
     }
+
+    operator uint64_t() { return n; }
 };
 
 template <size_t Limit>
@@ -561,6 +532,13 @@ template<typename Stream, typename T, std::size_t N> void Serialize(Stream& os, 
 template<typename Stream, typename T, std::size_t N> void Unserialize(Stream& is, std::array<T, N>& item);
 
 /**
+ * optional
+ */
+template<typename T> unsigned int GetSerializeSize(const Optional<T> &item);
+template<typename Stream, typename T> void Serialize(Stream& os, const Optional<T>& item);
+template<typename Stream, typename T> void Unserialize(Stream& is, Optional<T>& item);
+
+/**
  * array
  */
 template<typename T, std::size_t N>
@@ -571,6 +549,36 @@ unsigned int GetSerializeSize(const std::array<T, N> &item)
         size += GetSerializeSize(item[0]);
     }
     return size;
+}
+
+template<typename Stream, typename T>
+void Serialize(Stream& os, const Optional<T>& item)
+{
+    // If the value is there, put 0x01 and then serialize the value.
+    // If it's not, put 0x00.
+    if (item) {
+        unsigned char discriminant = 0x01;
+        Serialize(os, discriminant);
+        Serialize(os, *item);
+    } else {
+        unsigned char discriminant = 0x00;
+        Serialize(os, discriminant);
+    }
+}
+
+template<typename Stream, typename T>
+void Unserialize(Stream& is, Optional<T>& item)
+{
+    unsigned char discriminant = 0x00;
+    Unserialize(is, discriminant);
+
+    if (discriminant == 0x00) {
+        item = boost::none;
+    } else {
+        T object;
+        Unserialize(is, object);
+        item = object;
+    }
 }
 
 template<typename Stream, typename T, std::size_t N>

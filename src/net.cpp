@@ -79,6 +79,7 @@ static const uint64_t RANDOMIZER_ID_LOCALHOSTNONCE = 0xd93e69e2bbfa5735ULL; // S
 //
 bool fDiscover = true;
 bool fListen = true;
+CService sHostIp;
 RecursiveMutex cs_mapLocalHost;
 std::map<CNetAddr, LocalServiceInfo> mapLocalHost;
 static bool vfLimited[NET_MAX] = {};
@@ -414,10 +415,11 @@ CNode* CConnman::ConnectNode(CAddress addrConnect, const char* pszDest, bool fCo
         pszDest ? 0.0 : (double)(GetAdjustedTime() - addrConnect.nTime) / 3600.0);
 
     // Connect
-    SOCKET hSocket = INVALID_SOCKET;;
+    SOCKET hSocket = INVALID_SOCKET;
+
     bool proxyConnectionFailed = false;
-    if (pszDest ? ConnectSocketByName(addrConnect, hSocket, pszDest, Params().GetDefaultPort(), nConnectTimeout, &proxyConnectionFailed) :
-                  ConnectSocket(addrConnect, hSocket, nConnectTimeout, &proxyConnectionFailed)) {
+    if (pszDest ? ConnectSocketByName(addrConnect, hSocket, pszDest, Params().GetDefaultPort(), nConnectTimeout, &proxyConnectionFailed, sHostIp) :
+                  ConnectSocket(addrConnect, hSocket, nConnectTimeout, &proxyConnectionFailed, sHostIp)) {
         if (!IsSelectableSocket(hSocket)) {
             LogPrintf("Cannot create connection: non-selectable socket created (fd >= FD_SETSIZE ?)\n");
             CloseSocket(hSocket);
@@ -1067,6 +1069,32 @@ void CConnman::AcceptConnection(const ListenSocket& hListenSocket) {
     int nMaxInbound = nMaxConnections - (nMaxOutbound + nMaxFeeler);
     assert(nMaxInbound > 0);
 
+    // close lagging nodes' connection
+    {
+        LOCK(cs_vNodes);
+        for (CNode* pnode : vNodes) {
+            int64_t nPingUsecWait = 0;
+            if ((pnode->nPingNonceSent != 0) && (pnode->nPingUsecStart != 0)) {
+                nPingUsecWait = GetTimeMicros() - pnode->nPingUsecStart;
+            }
+            if (pnode->nPingUsecTime > 5 * 1e6 || nPingUsecWait > 5 * 1e6) {
+                pnode->fDisconnect = true;
+                pnode->CloseSocketDisconnect();
+            }
+        }
+    }
+
+    // close obsolete nodes' connection
+    {
+        LOCK(cs_vNodes);
+        for (CNode* pnode : vNodes) {
+            if (pnode->nVersion > 0 && pnode->nVersion < ActiveProtocol()) {
+                pnode->fDisconnect = true;
+                pnode->CloseSocketDisconnect();
+            }
+        }
+    }
+
     if (hSocket != INVALID_SOCKET)
         if (!addr.SetSockAddr((const struct sockaddr*)&sockaddr))
             LogPrintf("Warning: Unknown socket family\n");
@@ -1075,7 +1103,7 @@ void CConnman::AcceptConnection(const ListenSocket& hListenSocket) {
     {
         LOCK(cs_vNodes);
         for (CNode* pnode : vNodes)
-            if (pnode->fInbound)
+            if (pnode->fInbound && !pnode->fDisconnect)
                 nInbound++;
     }
 
@@ -1094,6 +1122,14 @@ void CConnman::AcceptConnection(const ListenSocket& hListenSocket) {
 
     if (IsBanned(addr) && !whitelisted) {
         LogPrintf("connection from %s dropped (banned)\n", addr.ToString());
+        CloseSocket(hSocket);
+        return;
+    }
+
+    CNode* dupnode = FindNode((CNetAddr)addr);
+    if (dupnode && !whitelisted) {
+        // drop nodes already connected
+        LogPrint(BCLog::NET, "dropped, %s already connected\n",addr.ToStringIP());
         CloseSocket(hSocket);
         return;
     }
@@ -1140,6 +1176,21 @@ void CConnman::ThreadSocketHandler()
         //
         {
             LOCK(cs_vNodes);
+
+            // close lagging nodes' connection
+            {
+                LOCK(cs_vNodes);
+                for (CNode* pnode : vNodes) {
+                    int64_t nPingUsecWait = 0;
+                    if ((pnode->nPingNonceSent != 0) && (pnode->nPingUsecStart != 0)) {
+                        nPingUsecWait = GetTimeMicros() - pnode->nPingUsecStart;
+                    }
+                    if (pnode->nPingUsecTime > 5 * 1e6 || nPingUsecWait > 5 * 1e6) {
+                        pnode->fDisconnect = true;
+                    }
+                }
+            }
+
             // Disconnect unused nodes
             std::vector<CNode*> vNodesCopy = vNodes;
             for (CNode* pnode : vNodesCopy) {
@@ -2416,6 +2467,14 @@ bool CConnman::DisconnectNode(NodeId id)
         }
     }
     return false;
+}
+
+void CConnman::DisconnectAll()
+{
+    LOCK(cs_vNodes);
+    for(CNode* pnode : vNodes) {
+        pnode->fDisconnect = true;
+    }
 }
 
 void CConnman::RelayInv(CInv& inv)

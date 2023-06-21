@@ -176,16 +176,15 @@ enum opcodetype
     OP_NOP9 = 0xb8,
     OP_NOP10 = 0xb9,
 
-    // zerocoin
-    OP_ZEROCOINMINT = 0xc1,
-    OP_ZEROCOINSPEND = 0xc2,
-    OP_ZEROCOINPUBLICSPEND = 0xc3,
-
     // cold staking
     OP_CHECKCOLDSTAKEVERIFY_LEGACY = 0xd1,
 
     OP_INVALIDOPCODE = 0xff,
 };
+
+// Maximum value that an opcode can be
+static const unsigned int MAX_OPCODE = OP_NOP10;
+
 
 const char* GetOpName(opcodetype opcode);
 
@@ -624,9 +623,6 @@ public:
     bool IsPayToScriptHash() const;
     bool IsPayToColdStakingLegacy() const;
     bool StartsWithOpcode(const opcodetype opcode) const;
-    bool IsZerocoinMint() const;
-    bool IsZerocoinSpend() const;
-    bool IsZerocoinPublicSpend() const;
 
     /** Called by IsStandardTx and P2SH/BIP62 VerifyScript (which makes it consensus-critical). */
     bool IsPushOnly(const_iterator pc) const;
@@ -650,6 +646,16 @@ public:
     }
 
     size_t DynamicMemoryUsage() const;
+};
+
+struct CScriptCheapHasher {
+    int operator()(const CScript& script) const {
+        int hash = script.size();
+        for(auto &i : script) {
+            hash ^= i + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+        }
+        return hash;
+    }
 };
 
 #endif // BITCOIN_SCRIPT_SCRIPT_H
