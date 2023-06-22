@@ -217,6 +217,10 @@ public:
     std::vector<unsigned char> vStakeModifier{};
     unsigned int nFlags{0};
 
+    //! (memory only) MoneySupply for this block.
+    //! Will be nullopt if there was no calculations made into it.
+    Optional<CAmount> nMoneySupply{nullopt};
+
     //! block header
     int nVersion{0};
     uint256 hashMerkleRoot{};
@@ -277,7 +281,9 @@ public:
 /** Used to marshal pointers into hashes for db storage. */
 
 // New serialization introduced on PIVX
-static const int DBI_SER_VERSION_NO_MS = 0;   // removes nMoneySupply
+static const int DBI_SER_VERSION_NO_MS = 0;   // removes nMoneySupply from persisted block index
+// New serialization introduced on DSW
+static const int DBI_SER_VERSION_MS = INT32_MAX;   // reintroduces the nMoneySupply to the persisted block index
 
 class CDiskBlockIndex : public CBlockIndex
 {
@@ -323,14 +329,19 @@ public:
             READWRITE(nTime);
             READWRITE(nBits);
             READWRITE(nNonce);
-            if(this->nVersion > 3 && this->nVersion < 7)
+
+            if(this->nVersion > 3 && this->nVersion < 7) {
                 READWRITE(nAccumulatorCheckpoint);
+            }
+
+            if (this->nVersion >= 7 && nSerVersion >= DBI_SER_VERSION_MS) {
+                READWRITE(nMoneySupply);
+            }
 
         } else if (ser_action.ForRead()) {
             // Serialization with CLIENT_VERSION <= DBI_SER_VERSION_NO_MS
             int64_t nMint = 0;
             uint256 hashNext{};
-            int64_t nMoneySupply = 0;
             READWRITE(nMint);
             READWRITE(nMoneySupply);
             READWRITE(nFlags);
@@ -402,7 +413,7 @@ public:
     }
 
     /** Returns the index entry for the tip of this chain, or NULL if none. */
-    CBlockIndex* Tip(bool fProofOfStake = false) const
+    CBlockIndex* Tip() const
     {
         LOCK(cs);
 
