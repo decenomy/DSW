@@ -55,7 +55,7 @@
 
 
 #if defined(NDEBUG)
-#error "__Decenomy__ cannot be compiled without assertions."
+#error "Sapphire cannot be compiled without assertions."
 #endif
 
 /**
@@ -96,7 +96,7 @@ size_t nCoinCacheUsage = 5000 * 300;
 /* If the tip is older than this (in seconds), the node is considered to be in initial block download. */
 int64_t nMaxTipAge = DEFAULT_MAX_TIP_AGE;
 
-/** Fees smaller than this (in u__DSW__) are considered zero fee (for relaying, mining and transaction creation)
+/** Fees smaller than this (in uSAPP) are considered zero fee (for relaying, mining and transaction creation)
  * We are ~100 times smaller then bitcoin now (2015-06-23), set minRelayTxFee only 10 times higher
  * so it's still 10 times lower comparing to bitcoin.
  */
@@ -2181,7 +2181,6 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         setDirtyBlockIndex.insert(pindex);
     }
 
-
     if (fTxIndex)
         if (!pblocktree->WriteTxIndex(vPos))
             return AbortNode(state, "Failed to write transaction index");
@@ -2189,7 +2188,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     // add this block to the view's block chain
     view.SetBestBlock(pindex->GetBlockHash());
 
-    // Update __DSW__ money supply
+    // Update SAPP money supply
     nMoneySupply += (nValueOut - nValueIn - nUnspendableValue);
 
     int64_t nTime3 = GetTimeMicros();
@@ -3123,7 +3122,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
             }
         }
 
-        // __Decenomy__
+        // Sapphire
         // It is entirely possible that we don't have enough data and this could fail
         // (i.e. the block could indeed be valid). Store the block for later consideration
         // but issue an initial reject message.
@@ -3174,12 +3173,14 @@ bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
     if (pindexPrev == NULL)
         return error("%s : null pindexPrev for block %s", __func__, block.GetHash().GetHex());
 
-    unsigned int nBitsRequired = GetNextWorkRequired(pindexPrev, &block);
+    if(Params().GetConsensus().NetworkUpgradeActive(pindexPrev->nHeight + 1, Consensus::UPGRADE_CHECK_WORK_V2)) {
+        unsigned int nBitsRequired = GetNextWorkRequired(pindexPrev, &block);
 
-    if (block.nBits != nBitsRequired) {
-        return error("%s : incorrect proof of work at %d", __func__, pindexPrev->nHeight + 1);
+        if (block.nBits != nBitsRequired) {
+            return error("%s : incorrect proof of work at %d", __func__, pindexPrev->nHeight + 1);
+        }
     }
-
+    
     return true;
 }
 
@@ -4967,7 +4968,9 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
             pfrom->nStartingHeight, addrMe.ToString(), pfrom->id,
             remoteAddr);
 
-        int64_t nTimeOffset = nTime - GetTime();
+// receive queue time offset fix
+//        int64_t nTimeOffset = nTime - GetTime();
+        int64_t nTimeOffset = nTime - (nTimeReceived/1000000);
         pfrom->nTimeOffset = nTimeOffset;
         const int nTimeSlotLength = Params().GetConsensus().nTimeSlotLength;
         if (abs64(nTimeOffset) < 2 * nTimeSlotLength) {
@@ -4985,7 +4988,7 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
             pfrom->fDisconnect = true;
         }
 
-        // __Decenomy__: We use certain sporks during IBD, so check to see if they are
+        // Sapphire: We use certain sporks during IBD, so check to see if they are
         // available. If not, ask the first peer connected for them.
         // TODO: Move this to an instant broadcast of the sporks.
         bool fMissingSporks = !pSporkDB->SporkExists(SPORK_14_MIN_PROTOCOL_ACCEPTED);

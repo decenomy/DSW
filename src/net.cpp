@@ -728,7 +728,7 @@ void CNode::copyStats(CNodeStats& stats)
         nPingUsecWait = GetTimeMicros() - nPingUsecStart;
     }
 
-    // Raw ping time is in microseconds, but show it to user as whole seconds (__Decenomy__ users should be well used to small numbers with many decimal places by now :)
+    // Raw ping time is in microseconds, but show it to user as whole seconds (Sapphire users should be well used to small numbers with many decimal places by now :)
     stats.dPingTime = (((double)nPingUsecTime) / 1e6);
     stats.dPingWait = (((double)nPingUsecWait) / 1e6);
 
@@ -861,13 +861,82 @@ int CNetMessage::readData(const char* pch, unsigned int nBytes)
     return nCopy;
 }
 
+/*	format of VERSION message in std::deque, not necessarily contiguous
+    (4)	    message start
+    (12)    command = version
+    (4)	    size
+    (4)	    checksum
+------- end header -------
+    (4)	    nVersion
+    (8)	    nServiceInt
+    (8)	    nTime
+    (x)	    CAddress	addrMe
+    (x)	    CAddress	addrFrom
+    (8)	    nNonce
+    ........ and so on...
+*/
 
 // requires LOCK(cs_vSend)
 size_t CConnman::SocketSendData(CNode* pnode)
 {
     auto it = pnode->vSendMsg.begin();
     size_t nSentSize = 0;
+/*  Begin queue send delay time offset fix
+    The Sendtime is not the time this message was put in the queue,
+    it is Now(). Observed queue delays of 30 seconds or more are introduced
+    on hosts with restricted resources during "tip" folloowing and chain
+    re-org operations. This delay corrupts AdjustedTime on the receiving host
 
+    format of VERSION message in std::deque, not contiguous
+    (4)     message start
+    (12)    command = version
+    (4)     size
+    (4)     checksum
+------- chunk 2 -------
+    (4)     nVersion
+    (8)     nServiceInt
+    (8)     nTime
+    (x)     CAddress    addrMe
+    (x)     CAddress    addrFrom
+    (8)     nNonce
+    ........ and so on...
+*/
+    union uS
+    {
+        uint64_t ui64_tm;
+        u_char uchr_tm[8];
+    };
+    union uS uSendbuff;
+    const int bigint = 1;
+    auto& sh = *it;
+// at front of deque, hdrbuf is first
+    CMessageHeader * shdr = reinterpret_cast<CMessageHeader*>(sh.data());
+    std::string strCommand = shdr->GetCommand();
+    if (strCommand == NetMsgType::VERSION) {
+/*  do not increment "it", it corrupts deque
+    header and message are in 2 sequential non-contiguious chunks in the deque, see:
+    void CConnman::PushMessage(CNode* pnode, CSerializedNetMsg&& msg)
+    ...
+        pnode->vSendMsg.push_back(std::move(serializedHeader));
+        if (nMessageSize)
+            pnode->vSendMsg.push_back(std::move(msg.data));
+*/
+        auto& sd = *(std::next(it, 1)); // point to next data chunk
+        memcpy(uSendbuff.uchr_tm, reinterpret_cast<unsigned char*>(sd.data() + 12), 8);
+        int64_t nSendtime = uSendbuff.ui64_tm;
+        int64_t nNow = (pnode->fInbound) ? GetAdjustedTime() : GetTime();
+        int64_t nNewSendtime = nNow;
+        if (! *(char *)&bigint) {       // if bigendian
+            nSendtime = bswap_64(uSendbuff.ui64_tm);
+            nNewSendtime = bswap_64(nNow);
+        }
+//        LogPrintf("HACK %s size %d %" PRId64 " %" PRId64 "\n", strCommand.c_str(), shdr->nMessageSize, nSendtime, nNow);
+        if (nSendtime != nNow) {
+             uSendbuff.ui64_tm = nNewSendtime;
+             memcpy(reinterpret_cast<unsigned char*>(sd.data() + 12), uSendbuff.uchr_tm, 8);
+        }
+    }
+// end time offset fix
     while (it != pnode->vSendMsg.end()) {
         const auto& data = *it;
         assert(data.size() > pnode->nSendOffset);
@@ -934,7 +1003,7 @@ void CheckOffsetDisconnectedPeers(const CNetAddr& ip)
         setOffsetDisconnectedPeers.clear();
         // Trigger the warning
         std::string strWarn1 = _("Peers are being disconnected due time differences.");
-        std::string strWarn2 = _("Please check that your computer's date and time are correct! If your clock is wrong __Decenomy__ will not work properly.");
+        std::string strWarn2 = _("Please check that your computer's date and time are correct! If your clock is wrong Sapphire will not work properly.");
 
         LogPrintf("*** Warning: %s %s\n", strWarn1, strWarn2);
 
@@ -1503,7 +1572,7 @@ void ThreadMapPort()
             }
         }
 
-        std::string strDesc = "__Decenomy__ " + FormatFullVersion();
+        std::string strDesc = "Sapphire " + FormatFullVersion();
 
         try {
             while (true) {
@@ -2066,7 +2135,7 @@ bool CConnman::BindListenPort(const CService& addrBind, std::string& strError, b
     if (::bind(hListenSocket, (struct sockaddr*)&sockaddr, len) == SOCKET_ERROR) {
         int nErr = WSAGetLastError();
         if (nErr == WSAEADDRINUSE)
-            strError = strprintf(_("Unable to bind to %s on this computer. __Decenomy__ is probably already running."), addrBind.ToString());
+            strError = strprintf(_("Unable to bind to %s on this computer. Sapphire is probably already running."), addrBind.ToString());
         else
             strError = strprintf(_("Unable to bind to %s on this computer (bind returned error %s)"), addrBind.ToString(), NetworkErrorString(nErr));
         LogPrintf("%s\n", strError);
