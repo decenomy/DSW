@@ -66,6 +66,12 @@ public:
         return *this;
     }
 
+    CHash256& Write(FILE* fileData, const size_t fileSize)
+    {
+        sha.Write(fileData, fileSize);
+        return *this;
+    }
+
     CHash256& Reset()
     {
         sha.Reset();
