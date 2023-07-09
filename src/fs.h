@@ -21,7 +21,10 @@ namespace fs = boost::filesystem;
 /** Bridge operations to C stdio */
 namespace fsbridge {
     FILE *fopen(const fs::path& p, const char *mode);
+    FILE *fopen(const fs::path& p, const char *mode, size_t *fileSize);
     FILE *freopen(const fs::path& p, const char *mode, FILE *stream);
+    size_t fread(void *buffer, size_t size, size_t count, FILE *stream);
+    int fclose(FILE *stream);
 };
 
 #endif

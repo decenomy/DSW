@@ -15,9 +15,27 @@ FILE *fopen(const fs::path& p, const char *mode)
     return ::fopen(p.string().c_str(), mode);
 }
 
+FILE *fopen(const fs::path& p, const char *mode, size_t *fileSize)
+{
+    if (fileSize != nullptr) {
+        *fileSize = fs::file_size(p);
+    }
+    return ::fopen(p.string().c_str(), mode);
+}
+
 FILE *freopen(const fs::path& p, const char *mode, FILE *stream)
 {
     return ::freopen(p.string().c_str(), mode, stream);
+}
+
+size_t fread(void *buffer, size_t size, size_t count, FILE *stream)
+{
+    return ::fread(buffer, size, count, stream);
+}
+
+int fclose(FILE *stream)
+{
+    return ::fclose(stream);
 }
 
 } // fsbridge
