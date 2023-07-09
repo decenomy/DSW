@@ -22,6 +22,7 @@ public:
 
     CSHA256();
     CSHA256& Write(const unsigned char* data, size_t len);
+    CSHA256& Write(FILE* fileData, const size_t fileSize);
     void Finalize(unsigned char hash[OUTPUT_SIZE]);
     void FinalizeNoPadding(unsigned char hash[OUTPUT_SIZE], bool enforce_compression = true);
     CSHA256& Reset();

@@ -166,6 +166,43 @@ CSHA256& CSHA256::Write(const unsigned char* data, size_t len)
     return *this;
 }
 
+CSHA256& CSHA256::Write(FILE* fileData, const size_t fileSize)
+{
+    size_t remainingBytes = fileSize;
+    size_t bufsize = bytes % 64;
+    if (bufsize && bufsize + fileSize >= 64) {
+        size_t bytesRead = fread(buf + bufsize, 1, 64 - bufsize, fileData);
+        if (bytesRead != 64 - bufsize) {
+            // IO error
+            throw std::runtime_error("Read an unexpected number of bytes");
+        }
+        bytes += 64 - bufsize;
+        remainingBytes -= 64 - bufsize;
+        sha256::Transform(s, buf);
+        bufsize = 0;
+    }
+    while (remainingBytes >= 64) {
+        unsigned char buf2[64];
+        size_t bytesRead = fread(buf2, 1, 64, fileData);
+        if (bytesRead != 64) {
+            // IO error
+            throw std::runtime_error("Read an unexpected number of bytes");
+        }
+        sha256::Transform(s, buf2);
+        bytes += 64;
+        remainingBytes -= 64;
+    }
+    if (remainingBytes > 0) {
+        size_t bytesRead = fread(buf + bufsize, 1, remainingBytes, fileData);
+        if (bytesRead != remainingBytes) {
+            // IO error
+            throw std::runtime_error("Read an unexpected number of bytes");
+        }
+        bytes += remainingBytes;
+    }
+    return *this;
+}
+
 void CSHA256::Finalize(unsigned char hash[OUTPUT_SIZE])
 {
     static const unsigned char pad[64] = {0x80};
