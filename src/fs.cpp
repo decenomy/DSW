@@ -8,6 +8,8 @@
 
 #include <boost/filesystem.hpp>
 
+#include <regex>
+
 namespace fsbridge {
 
 FILE *fopen(const fs::path& p, const char *mode)
@@ -17,10 +19,19 @@ FILE *fopen(const fs::path& p, const char *mode)
 
 FILE *fopen(const fs::path& p, const char *mode, size_t *fileSize)
 {
-    if (fileSize != nullptr) {
-        *fileSize = fs::file_size(p);
+    const char* home = getenv("HOME");
+    std::string pathStr = p.string();
+    if (p.string()[0] == '~' && home != nullptr) {
+        pathStr = std::regex_replace(pathStr, std::regex("~"), home, std::regex_constants::format_first_only);
     }
-    return ::fopen(p.string().c_str(), mode);
+
+    fs::path absolutePath = fs::canonical(pathStr);
+
+    if (fileSize != nullptr) {
+        *fileSize = fs::file_size(absolutePath);
+    }
+
+    return ::fopen(absolutePath.string().c_str(), mode);
 }
 
 FILE *freopen(const fs::path& p, const char *mode, FILE *stream)
