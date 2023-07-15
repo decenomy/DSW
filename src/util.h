@@ -21,6 +21,7 @@
 #include "logging.h"
 #include "compat.h"
 #include "tinyformat.h"
+#include "uint256.h"
 #include "utiltime.h"
 #include "util/threadnames.h"
 
@@ -92,6 +93,7 @@ void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet, std::map
 fs::path GetSpecialFolderPath(int nFolder, bool fCreate = true);
 #endif
 fs::path GetTempPath();
+bool FileHash(const fs::path path, uint256 *hash);
 
 void runCommand(std::string strCommand);
 

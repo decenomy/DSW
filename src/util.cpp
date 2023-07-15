@@ -14,6 +14,7 @@
 
 #include "allocators.h"
 #include "chainparamsbase.h"
+#include "hash.h"
 #include "random.h"
 #include "sync.h"
 #include "utilstrencodings.h"
@@ -570,6 +571,23 @@ fs::path GetTempPath()
     return fs::temp_directory_path();
 }
 
+bool FileHash(const fs::path path, uint256 *hash)
+{
+    size_t fileSize = 0;
+    FILE *fileData = fsbridge::fopen(path, "r", &fileSize);
+
+    // Failed to read file.
+    if(fileData == nullptr){
+        return false;
+    }
+
+    CHash256().Write(fileData, fileSize).Finalize((*hash).begin());
+
+    fsbridge::fclose(fileData);
+
+    return true;
+}
+
 double double_safe_addition(double fValue, double fIncrement)
 {
     double fLimit = std::numeric_limits<double>::max() - fValue;
@@ -646,7 +664,7 @@ int GetNumCores()
     return std::thread::hardware_concurrency();
 }
 
-std::string GetReadableHashRate(uint64_t hashrate) 
+std::string GetReadableHashRate(uint64_t hashrate)
 {
     // Determine the suffix and readable value
     std::string suffix;
