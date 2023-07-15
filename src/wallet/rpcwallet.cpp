@@ -2406,10 +2406,11 @@ UniValue walletlock(const JSONRPCRequest& request)
 
 UniValue encryptwallet(const JSONRPCRequest& request)
 {
-    if (!pwalletMain->IsCrypted() && (request.fHelp || request.params.size() != 1))
+    if (!pwalletMain->IsCrypted() && (request.fHelp || request.params.size() < 1 || request.params.size() > 2))
         throw std::runtime_error(
-            "encryptwallet \"passphrase\"\n"
-            "\nEncrypts the wallet with 'passphrase'. This is for first time encryption.\n"
+            "encryptwallet \"passphrase\" [seed file]\n"
+            "\nEncrypts the wallet with 'passphrase'. If a path to a seed file is given, both will be used for encryption.\n"
+            "This is for first time encryption.\n"
             "After this, any calls that interact with private keys such as sending or signing \n"
             "will require the passphrase to be set prior the making these calls.\n"
             "Use the walletpassphrase call for this, and then walletlock call.\n"
@@ -2418,6 +2419,7 @@ UniValue encryptwallet(const JSONRPCRequest& request)
 
             "\nArguments:\n"
             "1. \"passphrase\"    (string) The pass phrase to encrypt the wallet with. It must be at least 1 character, but should be long.\n"
+            "2. \"seed file\"     (string, optional) The seed file to be used for 2 factor authentication.\n"
 
             "\nExamples:\n"
             "\nEncrypt you wallet\n" +
@@ -2448,6 +2450,18 @@ UniValue encryptwallet(const JSONRPCRequest& request)
         throw std::runtime_error(
             "encryptwallet <passphrase>\n"
             "Encrypts the wallet with <passphrase>.");
+
+    if (request.params.size() == 2) {
+        uint256 fileHash;
+
+        if(!FileHash(request.params[1].get_str(), &fileHash)){
+            throw JSONRPCError(RPC_WALLET_ENCRYPTION_FAILED, "Error: Could not read seed file.");
+        }
+
+        for(const unsigned char *byte = fileHash.begin(); byte < fileHash.end(); ++byte){
+            strWalletPass.push_back(*byte);
+        }
+    }
 
     if (!pwalletMain->EncryptWallet(strWalletPass))
         throw JSONRPCError(RPC_WALLET_ENCRYPTION_FAILED, "Error: Failed to encrypt the wallet.");
