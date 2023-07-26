@@ -290,5 +290,5 @@ DECENOMY Standard wallet repository
   <td class=xl6617252>5</td>
   <td class=xl6717252 align=right>380</td>
   <td class=xl6817252 align=right>20</td>
- </tr> 
+ </tr>
  </table>
