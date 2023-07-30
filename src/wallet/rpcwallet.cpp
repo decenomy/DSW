@@ -2248,22 +2248,26 @@ static void LockWallet(CWallet* pWallet)
     fStakingActive = false;
 }
 
-UniValue walletpassphrase(const JSONRPCRequest& request)
+
+UniValue walletpassphrase2fa(const JSONRPCRequest& request)
 {
-    if (pwalletMain->IsCrypted() && (request.fHelp || request.params.size() < 2 || request.params.size() > 3))
+    if (pwalletMain->IsCrypted() && (request.fHelp || request.params.size() < 3 || request.params.size() > 4))
         throw std::runtime_error(
             "walletpassphrase \"passphrase\" timeout ( stakingonly )\n"
+            "walletpassphrase2fa \"passphrase\" \"seed file\" timeout ( stakingonly )\n"
             "\nStores the wallet decryption key in memory for 'timeout' seconds.\n"
             "This is needed prior to performing transactions related to private keys such as sending __DSW__s\n"
 
             "\nArguments:\n"
             "1. \"passphrase\"     (string, required) The wallet passphrase\n"
-            "2. timeout            (numeric, required) The time to keep the decryption key in seconds.\n"
-            "3. stakingonly        (boolean, optional, default=false) If is true sending functions are disabled."
+            "2. \"seed file\"      (string, required if 2fa is used) The path to the seed file\n"
+            "3. timeout            (numeric, required) The time to keep the decryption key in seconds.\n"
+            "4. stakingonly        (boolean, optional, default=false) If is true sending functions are disabled."
 
             "\nNote:\n"
-            "Issuing the walletpassphrase command while the wallet is already unlocked will set a new unlock\n"
-            "time that overrides the old one. A timeout of \"0\" unlocks until the wallet is closed.\n"
+            "Issuing the walletpassphrase or walletpassphrase2fa command while the wallet is already\n"
+            "unlocked will set a new unlock time that overrides the old one.\n"
+            "A timeout of \"0\" unlocks until the wallet is closed.\n"
 
             "\nExamples:\n"
             "\nUnlock the wallet for 60 seconds\n" +
@@ -2289,15 +2293,27 @@ UniValue walletpassphrase(const JSONRPCRequest& request)
     // Alternately, find a way to make request.params[0] mlock()'d to begin with.
     strWalletPass = request.params[0].get_str().c_str();
 
+    if (request.params[1].get_str() != "") {
+        uint256 fileHash;
+
+        if(!FileHash(request.params[1].get_str(), &fileHash)){
+            throw JSONRPCError(RPC_WALLET_ERROR, "Error: Could not read seed file.");
+        }
+
+        for(const unsigned char *byte = fileHash.begin(); byte < fileHash.end(); ++byte){
+            strWalletPass.push_back(*byte);
+        }
+    }
+
     bool stakingOnly = false;
-    if (request.params.size() == 3)
-        stakingOnly = request.params[2].get_bool();
+    if (request.params.size() == 4)
+        stakingOnly = request.params[3].get_bool();
 
     if (!pwalletMain->IsLocked() && pwalletMain->fWalletUnlockStaking && stakingOnly)
         throw JSONRPCError(RPC_WALLET_ALREADY_UNLOCKED, "Error: Wallet is already unlocked.");
 
     // Get the timeout
-    int64_t nSleepTime = request.params[1].get_int64();
+    int64_t nSleepTime = request.params[2].get_int64();
     // Timeout cannot be negative, otherwise it will relock immediately
     if (nSleepTime < 0) {
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Timeout cannot be negative.");
@@ -2321,6 +2337,31 @@ UniValue walletpassphrase(const JSONRPCRequest& request)
     }
 
     return NullUniValue;
+}
+
+
+UniValue walletpassphrase(const JSONRPCRequest& request)
+{
+    // No parameters given, letting walletpassphrase2fa throw the error.
+    if (request.params.size() == 0) {
+        return walletpassphrase2fa(request);
+    }
+
+    JSONRPCRequest newRequest(request);
+    newRequest.params = UniValue(UniValue::VType::VARR);
+
+    // Copy the password.
+    newRequest.params.push_back(request.params[0]);
+
+    // 2fa is not used, so set the path to the seed file to "".
+    newRequest.params.push_back("");
+
+    // Copy remaining parameters.
+    for (int i = 1; i < request.params.size(); ++i) {
+        newRequest.params.push_back(request.params[i]);
+    }
+
+    return walletpassphrase2fa(newRequest);
 }
 
 
@@ -3316,6 +3357,7 @@ const CRPCCommand vWalletRPCCommands[] =
         { "wallet",             "walletlock",               &walletlock,               true  },
         { "wallet",             "walletpassphrasechange",   &walletpassphrasechange,   true  },
         { "wallet",             "walletpassphrase",         &walletpassphrase,         true  },
+        { "wallet",             "walletpassphrase2fa",      &walletpassphrase2fa,      true  },
 
         /** Account functions (deprecated) */
         { "wallet",             "getaccountaddress",        &getaccountaddress,        true  },
