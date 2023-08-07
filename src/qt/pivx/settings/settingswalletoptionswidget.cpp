@@ -104,6 +104,8 @@ void SettingsWalletOptionsWidget::onSpinBoxStakeSplitThresholdChanged()
         if (ui->spinBoxAutoCombineThreshold->value() >= ui->spinBoxStakeSplitThreshold->value() * 2 - 1) {
             ui->spinBoxAutoCombineThreshold->setValue(floor(ui->spinBoxStakeSplitThreshold->value() * 2 - 1));
         }
+    } else {
+        ui->spinBoxAutoCombineThreshold->setValue(1);
     }
 }
 
@@ -113,6 +115,8 @@ void SettingsWalletOptionsWidget::onSpinBoxAutoCombineThresholdChanged()
         if (ui->spinBoxAutoCombineThreshold->value() >= ui->spinBoxStakeSplitThreshold->value() * 2 - 1) {
             ui->spinBoxAutoCombineThreshold->setValue(floor(ui->spinBoxStakeSplitThreshold->value() * 2 - 1));
         }
+    } else {
+        ui->spinBoxAutoCombineThreshold->setValue(1);
     }
 
     // Enforce only integers.
