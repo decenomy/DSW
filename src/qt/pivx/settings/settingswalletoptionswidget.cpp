@@ -100,20 +100,23 @@ void SettingsWalletOptionsWidget::setSpinBoxStakeSplitThreshold(double val)
 
 void SettingsWalletOptionsWidget::onSpinBoxStakeSplitThresholdChanged()
 {
-    if (ui->spinBoxStakeSplitThreshold->value() > 0) {
-        if (ui->spinBoxAutoCombineThreshold->value() >= ui->spinBoxStakeSplitThreshold->value() * 2) {
-            ui->spinBoxAutoCombineThreshold->setValue(ui->spinBoxStakeSplitThreshold->value() * 2 - 1);
+    if (ui->spinBoxStakeSplitThreshold->value() > 1) {
+        if (ui->spinBoxAutoCombineThreshold->value() >= ui->spinBoxStakeSplitThreshold->value() * 2 - 1) {
+            ui->spinBoxAutoCombineThreshold->setValue(floor(ui->spinBoxStakeSplitThreshold->value() * 2 - 1));
         }
     }
 }
 
 void SettingsWalletOptionsWidget::onSpinBoxAutoCombineThresholdChanged()
 {
-    if (ui->spinBoxStakeSplitThreshold->value() > 0) {
-        if (ui->spinBoxAutoCombineThreshold->value() >= ui->spinBoxStakeSplitThreshold->value() * 2) {
-            ui->spinBoxAutoCombineThreshold->setValue(ui->spinBoxStakeSplitThreshold->value() * 2 - 1);
+    if (ui->spinBoxStakeSplitThreshold->value() > 1) {
+        if (ui->spinBoxAutoCombineThreshold->value() >= ui->spinBoxStakeSplitThreshold->value() * 2 - 1) {
+            ui->spinBoxAutoCombineThreshold->setValue(floor(ui->spinBoxStakeSplitThreshold->value() * 2 - 1));
         }
     }
+
+    // Enforce only integers.
+    ui->spinBoxAutoCombineThreshold->setValue(floor(ui->spinBoxAutoCombineThreshold->value()));
 }
 
 void SettingsWalletOptionsWidget::onAutoCombineCheckboxStateChanged()
