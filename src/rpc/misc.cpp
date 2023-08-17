@@ -132,6 +132,9 @@ UniValue getinfo(const JSONRPCRequest& request)
     }
 
     obj.push_back(Pair("moneysupply",ValueFromAmount(nMoneySupply)));
+    obj.push_back(Pair("circulatingsupply3",ValueFromAmount(nCirculatingSupply)));
+    obj.push_back(Pair("circulatingsupply6",ValueFromAmount(nCirculatingSupply6)));
+    obj.push_back(Pair("circulatingsupply9",ValueFromAmount(nCirculatingSupply9)));
 
 #ifdef ENABLE_WALLET
     if (pwalletMain) {

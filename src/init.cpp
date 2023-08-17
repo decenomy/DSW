@@ -1489,10 +1489,16 @@ bool AppInit2()
                     break;
                 }
 
+                std::unordered_map<std::string, std::pair<int, CAmount>> m;
+
                 if (chainActive.Tip() != nullptr) {
-                    if (!chainActive.Tip()->nMoneySupply) {
+                    //if (!chainActive.Tip()->nMoneySupply) {
                         LOCK(cs_main);
                         nMoneySupply = 0;
+                        nCirculatingSupply = 0;
+                        nCirculatingSupply6 = 0;
+                        nCirculatingSupply9 = 0;
+                        auto nHeight = chainActive.Tip()->nHeight;
 
                         std::unique_ptr<CCoinsViewCursor> pcursor(pcoinsTip->Cursor());
 
@@ -1510,6 +1516,16 @@ bool AppInit2()
                                         pcursor->Next();
                                         continue;
                                     }
+
+                                    if(m.find(addr) == m.end()) {
+                                        std::pair<int, CAmount> p;
+                                        p.first = coin.nHeight;
+                                        p.second = coin.out.nValue;
+                                        m[addr] = p;
+                                    } else {
+                                        m[addr].first = std::max(m[addr].first, (int)coin.nHeight);
+                                        m[addr].second += coin.out.nValue;
+                                    }
                                 }
                                 nMoneySupply += coin.out.nValue;
                             }
@@ -1517,9 +1533,24 @@ bool AppInit2()
                         }
 
                         chainActive.Tip()->nMoneySupply = nMoneySupply;
-                    } else {
-                        nMoneySupply = chainActive.Tip()->nMoneySupply.get();
-                    }
+
+                        for (auto i = m.begin(); 
+                            i != m.end(); i++) 
+                        {
+                            if(nHeight - i->second.first <= 3 * MONTH_IN_SECONDS / consensus.nTargetSpacing) {
+                                nCirculatingSupply += i->second.second;
+                            }
+                            if(nHeight - i->second.first <= 6 * MONTH_IN_SECONDS / consensus.nTargetSpacing) {
+                                nCirculatingSupply6 += i->second.second;
+                            }
+                            if(nHeight - i->second.first <= 9 * MONTH_IN_SECONDS / consensus.nTargetSpacing) {
+                                nCirculatingSupply9 += i->second.second;
+                            }
+                        }
+
+                    //} else {
+                    //    nMoneySupply = chainActive.Tip()->nMoneySupply.get();
+                    //}
                 }
 
                 if (!fReindex) {

@@ -80,6 +80,9 @@ CChain chainActive;
 CBlockIndex* pindexBestHeader = NULL;
 int64_t nTimeBestReceived = 0;
 CAmount nMoneySupply;
+CAmount nCirculatingSupply;
+CAmount nCirculatingSupply6;
+CAmount nCirculatingSupply9;
 // Best block section
 Mutex g_best_block_mutex;
 std::condition_variable g_best_block_cv;
