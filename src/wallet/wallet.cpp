@@ -3242,12 +3242,17 @@ void CWallet::AutoCombineDust(CConnman* connman)
         return;
     }
 
-    std::map<CTxDestination, std::vector<COutput> > mapCoinsByAddress = AvailableCoinsByAddress(true, nAutoCombineThreshold * COIN);
+    // Make sure we don't break the settings saved in the old wallets where the autocombine threshold was saved incorrectly.
+    CAmount adjustedAutoCombineThreshold = nAutoCombineThreshold;
+    if (nAutoCombineThreshold < COIN) {
+        adjustedAutoCombineThreshold = nAutoCombineThreshold * COIN;
+    }
+
+    std::map<CTxDestination, std::vector<COutput> > mapCoinsByAddress = AvailableCoinsByAddress(true, adjustedAutoCombineThreshold);
 
     //coins are sectioned by address. This combination code only wants to combine inputs that belong to the same address
     for (std::map<CTxDestination, std::vector<COutput> >::iterator it = mapCoinsByAddress.begin(); it != mapCoinsByAddress.end(); it++) {
         std::vector<COutput> vCoins, vRewardCoins;
-        bool maxSize = false;
         vCoins = it->second;
 
         // We don't want the tx to be refused for being too large
@@ -3270,13 +3275,12 @@ void CWallet::AutoCombineDust(CConnman* connman)
             nTotalRewardsValue += out.Value();
 
             // Combine to the threshold and not way above
-            if (nTotalRewardsValue > nAutoCombineThreshold * COIN)
+            if (nTotalRewardsValue > adjustedAutoCombineThreshold)
                 break;
 
             // Around 180 bytes per input. We use 190 to be certain
             txSizeEstimate += 190;
             if (txSizeEstimate >= MAX_STANDARD_TX_SIZE - 200) {
-                maxSize = true;
                 break;
             }
         }
@@ -3317,7 +3321,7 @@ void CWallet::AutoCombineDust(CConnman* connman)
         }
 
         //we don't combine below the threshold unless the fees are 0 to avoid paying fees over fees over fees
-        if (!maxSize && nTotalRewardsValue < nAutoCombineThreshold * COIN && nFeeRet > 0)
+        if (nTotalRewardsValue < adjustedAutoCombineThreshold && nFeeRet > 0)
             continue;
 
         const CWallet::CommitResult& res = CommitTransaction(wtx, keyChange, connman);
