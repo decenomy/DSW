@@ -2967,7 +2967,7 @@ UniValue setautocombinethreshold(const JSONRPCRequest& request)
             "}\n"
 
             "\nExamples:\n" +
-            HelpExampleCli("setautocombinethreshold", "true 500.12") + HelpExampleRpc("setautocombinethreshold", "true, 500.12"));
+            HelpExampleCli("setautocombinethreshold", "true 500") + HelpExampleRpc("setautocombinethreshold", "true, 500"));
 
     RPCTypeCheck(request.params, {UniValue::VBOOL, UniValue::VNUM});
 
@@ -2981,6 +2981,8 @@ UniValue setautocombinethreshold(const JSONRPCRequest& request)
         nThreshold = AmountFromValue(request.params[1]);
         if (nThreshold < COIN)
             throw JSONRPCError(RPC_INVALID_PARAMETER, strprintf("The threshold value cannot be less than %s", FormatMoney(COIN)));
+        if (nThreshold % COIN != 0)
+            throw JSONRPCError(RPC_INVALID_PARAMETER, strprintf("The threshold value must be an integer"));
     }
 
     CWalletDB walletdb(pwalletMain->strWalletFile);
