@@ -2365,19 +2365,27 @@ UniValue walletpassphrase(const JSONRPCRequest& request)
 }
 
 
-UniValue walletpassphrasechange(const JSONRPCRequest& request)
+UniValue walletpassphrasechange2fa(const JSONRPCRequest& request)
 {
-    if (pwalletMain->IsCrypted() && (request.fHelp || request.params.size() != 2))
+    if (pwalletMain->IsCrypted() && (request.fHelp || request.params.size() != 4))
         throw std::runtime_error(
             "walletpassphrasechange \"oldpassphrase\" \"newpassphrase\"\n"
-            "\nChanges the wallet passphrase from 'oldpassphrase' to 'newpassphrase'.\n"
+            "walletpassphrasechange2fa \"oldpassphrase\" \"oldseedfile\" \"newpassphrase\" \"newseedfile\"\n"
+            "\nChanges the wallet passphrase from 'oldpassphrase' with 'oldseedfile' to 'newpassphrase' with 'newseedfile'.\n"
+            "If either the new or old encryption does not use a seed file, use an empty string in its place.\n"
 
             "\nArguments:\n"
             "1. \"oldpassphrase\"      (string) The current passphrase\n"
-            "2. \"newpassphrase\"      (string) The new passphrase\n"
+            "2. \"oldseedfile\"        (string) Path to the old seed file\n"
+            "3. \"newpassphrase\"      (string) The new passphrase\n"
+            "4. \"newseedfile\"        (string) Path to the new seed file\n"
 
-            "\nExamples:\n" +
-            HelpExampleCli("walletpassphrasechange", "\"old one\" \"new one\"") + HelpExampleRpc("walletpassphrasechange", "\"old one\", \"new one\""));
+            "\nExamples:\n"
+            "\nChange password without using 2fa\n" +
+            HelpExampleCli("walletpassphrasechange", "\"old one\" \"new one\"") +
+            "\nChange password and add 2fa\n" +
+            HelpExampleCli("walletpassphrasechange2fa", "\"old one\" \"\" \"new one\" \"~/new_file\"") +
+            HelpExampleRpc("walletpassphrasechange", "\"old one\", \"new one\""));
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
@@ -2394,17 +2402,67 @@ UniValue walletpassphrasechange(const JSONRPCRequest& request)
 
     SecureString strNewWalletPass;
     strNewWalletPass.reserve(100);
-    strNewWalletPass = request.params[1].get_str().c_str();
+    strNewWalletPass = request.params[2].get_str().c_str();
 
     if (strOldWalletPass.length() < 1 || strNewWalletPass.length() < 1)
         throw std::runtime_error(
             "walletpassphrasechange <oldpassphrase> <newpassphrase>\n"
             "Changes the wallet passphrase from <oldpassphrase> to <newpassphrase>.");
 
+    if (request.params[1].get_str() != "") {
+        uint256 fileHash;
+
+        if(!FileHash(request.params[1].get_str(), &fileHash)){
+            throw JSONRPCError(RPC_WALLET_ERROR, "Error: Could not read old seed file.");
+        }
+
+        for(const unsigned char *byte = fileHash.begin(); byte < fileHash.end(); ++byte){
+            strOldWalletPass.push_back(*byte);
+        }
+    }
+
+    if (request.params[3].get_str() != "") {
+        uint256 fileHash;
+
+        if(!FileHash(request.params[3].get_str(), &fileHash)){
+            throw JSONRPCError(RPC_WALLET_ERROR, "Error: Could not read new seed file.");
+        }
+
+        for(const unsigned char *byte = fileHash.begin(); byte < fileHash.end(); ++byte){
+            strNewWalletPass.push_back(*byte);
+        }
+    }
+
     if (!pwalletMain->ChangeWalletPassphrase(strOldWalletPass, strNewWalletPass))
         throw JSONRPCError(RPC_WALLET_PASSPHRASE_INCORRECT, "Error: The wallet passphrase entered was incorrect.");
 
     return NullUniValue;
+}
+
+
+UniValue walletpassphrasechange(const JSONRPCRequest& request)
+{
+    // No parameters given, letting walletpassphrasechange2fa throw the error.
+    if (request.params.size() == 0) {
+        return walletpassphrasechange2fa(request);
+    }
+
+    JSONRPCRequest newRequest(request);
+    newRequest.params = UniValue(UniValue::VType::VARR);
+
+    // Copy the old password.
+    newRequest.params.push_back(request.params[0]);
+
+    // 2fa is not used, so set the path to the old seed file to "".
+    newRequest.params.push_back("");
+
+    // Copy the new password.
+    newRequest.params.push_back(request.params[1]);
+
+    // 2fa is not used, so set the path to the new seed file to "".
+    newRequest.params.push_back("");
+
+    return walletpassphrasechange2fa(newRequest);
 }
 
 
@@ -3356,6 +3414,7 @@ const CRPCCommand vWalletRPCCommands[] =
         { "wallet",             "signmessage",              &signmessage,              true  },
         { "wallet",             "walletlock",               &walletlock,               true  },
         { "wallet",             "walletpassphrasechange",   &walletpassphrasechange,   true  },
+        { "wallet",             "walletpassphrasechange2fa",&walletpassphrasechange2fa,true  },
         { "wallet",             "walletpassphrase",         &walletpassphrase,         true  },
         { "wallet",             "walletpassphrase2fa",      &walletpassphrase2fa,      true  },
 
