@@ -13,11 +13,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Extract Files from Docker Container
+      - name: Build and Extract Files from Docker Container
         run: |
           # Build the Docker image from the Dockerfile in the repository
           docker build \
-            --build-arg CPU_CORES=nproc \
+            --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=777 \
             --build-arg NAME=Jackpot \
             --build-arg BASE_NAME=jackpot \
