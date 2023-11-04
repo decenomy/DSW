@@ -33,7 +33,7 @@ jobs:
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp jackpot-linux-x64-build-container:/__DSW__/deploy/linux-x64 release_files/
+          docker cp jackpot-linux-x64-build-container:/777/deploy/linux-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v3
