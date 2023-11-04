@@ -1,4 +1,5 @@
 # Use a base image (Ubuntu 20.04)
+# FROM ubuntu:20.04
 FROM ubuntu@sha256:218bb51abbd1864df8be26166f847547b3851a89999ca7bfceb85ca9b5d2e95d
 
 # Set environment variables
@@ -43,7 +44,7 @@ WORKDIR /
 ENTRYPOINT ["bash"]
 
 # Build it with:
-# docker build --build-arg CPU_CORES=16 -t decenomy/dsw-linux-x64-builder .
+# docker build --build-arg CPU_CORES=<num_cores> -t decenomy/dsw-linux-x64-builder -f Dockerfile.dsw-linux-x64-builder .
 # Publish with:
 # docker login
 # docker push decenomy/dsw-linux-x64-builder:latest
