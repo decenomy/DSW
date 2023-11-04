@@ -1,0 +1,50 @@
+# Use a base image (Ubuntu 20.04)
+# FROM ubuntu:20.04
+FROM ubuntu@sha256:218bb51abbd1864df8be26166f847547b3851a89999ca7bfceb85ca9b5d2e95d
+
+# Set environment variables
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Etc/UTC
+
+# Update and install necessary packages
+RUN apt-get update && \
+    apt-get install -y \
+        faketime \
+        curl \ 
+        git \
+        zip=3.0-11build1 \
+        unzip \
+        build-essential=12.8ubuntu1.1 \ 
+        libtool=2.4.6-14 \
+        bsdmainutils=11.1.2ubuntu3 \
+        autotools-dev=20180224.1 \ 
+        autoconf=2.69-11.1 \
+        pkg-config=0.29.1-0ubuntu4 \
+        automake=1:1.16.1-4ubuntu6 \
+        python3 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+    
+# Clone the repository
+RUN git clone https://github.com/decenomy/DSW.git
+
+# Switch to the repository directory
+WORKDIR /DSW/depends
+
+# ARG for specifying the number of cores
+ARG CPU_CORES=1
+
+# Compile the depends folder
+RUN make -j$(echo $CPU_CORES) HOST=x86_64-pc-linux-gnu
+
+#Set the work dir to the root folder
+WORKDIR /
+
+# Set the entry point if you want to interact within the container
+ENTRYPOINT ["bash"]
+
+# Build it with:
+# docker build --build-arg CPU_CORES=<num_cores> -t decenomy/dsw-linux-x64-builder -f Dockerfile.dsw-linux-x64-builder .
+# Publish with:
+# docker login
+# docker push decenomy/dsw-linux-x64-builder:latest
