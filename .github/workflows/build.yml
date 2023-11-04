@@ -23,17 +23,17 @@ jobs:
             --build-arg NAME=Sapphire \
             --build-arg BASE_NAME=sapphire \
             --build-arg TARGET=master \
-            -t SAPP-linux-x64-build \
+            -t sapphire-linux-x64-build \
             -f contrib/docker/Dockerfile.dsw-linux-x64-wallet .
 
           # Start the container (if it's not already running)
-          docker run -d --name SAPP-linux-x64-build-container SAPP-linux-x64-build
+          docker run -d --name sapphire-linux-x64-build-container sapphire-linux-x64-build
 
           # Create a temporary directory to hold the extracted files
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp SAPP-linux-x64-build-container:/SAPP/deploy/linux-x64 release_files/
+          docker cp sapphire-linux-x64-build-container:/__DSW__/deploy/linux-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v3
