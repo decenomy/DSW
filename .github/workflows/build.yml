@@ -33,7 +33,7 @@ jobs:
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp sapphire-linux-x64-build-container:/__DSW__/deploy/linux-x64 release_files/
+          docker cp sapphire-linux-x64-build-container:/SAPP/deploy/linux-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v3
