@@ -23,17 +23,17 @@ jobs:
             --build-arg NAME=__Decenomy__ \
             --build-arg BASE_NAME=__decenomy__ \
             --build-arg TARGET=master \
-            -t __DSW__-linux-x64-build \
+            -t __decenomy__-linux-x64-build \
             -f contrib/docker/Dockerfile.dsw-linux-x64-wallet .
 
           # Start the container (if it's not already running)
-          docker run -d --name __DSW__-linux-x64-build-container __DSW__-linux-x64-build
+          docker run -d --name __decenomy__-linux-x64-build-container __decenomy__-linux-x64-build
 
           # Create a temporary directory to hold the extracted files
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp __DSW__-linux-x64-build-container:/__DSW__/deploy/linux-x64 release_files/
+          docker cp __decenomy__-linux-x64-build-container:/__DSW__/deploy/linux-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v3
