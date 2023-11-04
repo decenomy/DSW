@@ -1,0 +1,41 @@
+name: Extract Files from Docker Container
+
+on:
+  push:
+    branches:
+      - 777-develop
+
+jobs:
+  extract-files:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Extract Files from Docker Container
+        run: |
+          # Build the Docker image from the Dockerfile in the repository
+          docker build \
+            --build-arg CPU_CORES=nproc \
+            --build-arg TICKER=777 \
+            --build-arg NAME=Jackpot \
+            --build-arg BASE_NAME=jackpot \
+            --build-arg TARGET=master \
+            -t 777-linux-x64-build \
+            -f contrib/docker/Dockerfile.dsw-linux-x64-wallet .
+
+          # Start the container (if it's not already running)
+          docker run -d --name 777-linux-x64-build-container 777-linux-x64-build
+
+          # Create a temporary directory to hold the extracted files
+          mkdir release_files
+
+          # Copy files from the Docker container to the local filesystem
+          docker cp 777-linux-x64-build-container:/777/deploy/linux-x64 release_files/
+
+      - name: Archive and Upload Extracted Files
+        uses: actions/upload-artifact@v2
+        with:
+          name: release-artifacts
+          path: release_files
