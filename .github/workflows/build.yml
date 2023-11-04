@@ -3,7 +3,7 @@ name: Build and Extract Files from Docker Container
 on:
   push:
     branches:
-      - 777-develop
+      - master
 
 jobs:
   build-and-extract-files:
