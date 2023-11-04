@@ -5,9 +5,9 @@ FROM decenomy/dsw-linux-x64-builder@sha256:5bb85128e715b449aa6b08cddc6c98fddb056
 ARG CPU_CORES=1
 
 # ARG for specifying the coin parameters
-ARG TICKER=__DSW__
-ARG NAME=__Decenomy__
-ARG BASE_NAME=__decenomy__
+ARG TICKER=SAPP
+ARG NAME=Sapphire
+ARG BASE_NAME=sapphire
 ARG TARGET=master
 
 # Makes the QT build deterministic
