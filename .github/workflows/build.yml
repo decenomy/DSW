@@ -1,4 +1,4 @@
-name: Extract Files from Docker Container
+name: Build and Extract Files from Docker Container
 
 on:
   push:
@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Build and Extract Files from Docker Container
         run: |
@@ -35,7 +35,7 @@ jobs:
           docker cp 777-linux-x64-build-container:/777/deploy/linux-x64 release_files/
 
       - name: Archive and Upload Extracted Files
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: release-artifacts
           path: release_files
