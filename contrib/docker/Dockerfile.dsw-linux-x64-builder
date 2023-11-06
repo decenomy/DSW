@@ -9,7 +9,6 @@ ENV TZ=Etc/UTC
 # Update and install necessary packages
 RUN apt-get update && \
     apt-get install -y \
-        faketime \
         curl \ 
         git \
         zip=3.0-11build1 \
