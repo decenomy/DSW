@@ -20,7 +20,13 @@ RUN apt-get update && \
         autoconf=2.69-11.1 \
         pkg-config=0.29.1-0ubuntu4 \
         automake=1:1.16.1-4ubuntu6 \
-        python3 && \
+        python3 \
+        g++-aarch64-linux-gnu=4:9.3.0-1ubuntu2 \
+        g++-8-aarch64-linux-gnu=8.4.0-3ubuntu1cross1 \
+        gcc-8-aarch64-linux-gnu=8.4.0-3ubuntu1cross1 \
+        binutils-aarch64-linux-gnu=2.34-6ubuntu1.6 \
+        g++-8-multilib=8.4.0-3ubuntu2 \
+        gcc-8-multilib=8.4.0-3ubuntu2 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
     
@@ -34,7 +40,7 @@ WORKDIR /DSW/depends
 ARG CPU_CORES=1
 
 # Compile the depends folder
-RUN make -j$(echo $CPU_CORES) HOST=x86_64-pc-linux-gnu
+RUN make -j$(echo $CPU_CORES) HOST=aarch64-linux-gnu
 
 #Set the work dir to the root folder
 WORKDIR /
@@ -43,7 +49,7 @@ WORKDIR /
 ENTRYPOINT ["bash"]
 
 # Build it with:
-# docker build --build-arg CPU_CORES=<num_cores> -t decenomy/dsw-linux-x64-builder -f Dockerfile.dsw-linux-x64-builder .
+# docker build --build-arg CPU_CORES=<num_cores> -t decenomy/dsw-linux-arm64-builder -f Dockerfile.dsw-linux-arm64-builder .
 # Publish with:
 # docker login
-# docker push decenomy/dsw-linux-x64-builder:latest
+# docker push decenomy/dsw-linux-arm64-builder:latest
