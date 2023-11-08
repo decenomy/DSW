@@ -73,7 +73,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: release-artifacts
-          path: release_files1
+          path: release_files
   build-and-extract-files-windows-x64:
     runs-on: ubuntu-latest
     if: ${{ false }}  # Set condition to false to make the workflow inactive
