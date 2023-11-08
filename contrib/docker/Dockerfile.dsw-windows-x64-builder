@@ -1,0 +1,111 @@
+# Use a base image (Ubuntu 20.04)
+# FROM ubuntu:20.04
+FROM ubuntu@sha256:218bb51abbd1864df8be26166f847547b3851a89999ca7bfceb85ca9b5d2e95d
+
+# Set arguments
+ARG CPU_CORES=1
+
+# Set environment variables
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=UTC
+ENV QT_RCC_TEST=1
+ENV QT_RCC_SOURCE_DATE_OVERRIDE=1
+ENV WRAP_DIR=/wrapped
+
+# Update and install necessary packages
+RUN dpkg --add-architecture i386 && \
+    apt-get update && \
+    apt-get install -y \
+        curl \ 
+        git \
+        zip=3.0-11build1 \
+        unzip \
+        faketime=0.9.7-3ubuntu1 \
+        build-essential=12.8ubuntu1.1 \ 
+        libtool=2.4.6-14 \
+        bsdmainutils=11.1.2ubuntu3 \
+        autotools-dev=20180224.1 \ 
+        autoconf=2.69-11.1 \
+        pkg-config=0.29.1-0ubuntu4 \
+        automake=1:1.16.1-4ubuntu6 \
+        python3 \
+        mingw-w64=7.0.0-2 \
+        g++-mingw-w64=9.3.0-7ubuntu1+22~exp1ubuntu4 \
+        xvfb=2:1.20.13-1ubuntu1~20.04.9 \
+        wine=5.0-3ubuntu1 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Set POSIX for x86_64-w64-mingw32-g++ alternatives config 
+RUN echo "1" | update-alternatives --config x86_64-w64-mingw32-g++
+
+# Clone the repository
+RUN git clone https://github.com/decenomy/DSW.git
+
+# Set the Inno Setup compiler
+WORKDIR /DSW/contrib/innosetup
+
+ENV DISPLAY=:99
+RUN Xvfb :99 -screen 0 1024x768x16 -nolisten tcp &
+
+RUN Xvfb :99 -screen 0 1024x768x16 -nolisten tcp & \
+    wine innosetup-6.1.2.exe /VERYSILENT /NORESTART /ALLUSERS /SUPPRESSMSGBOXES /SP /LOG=setup.log && \
+    wine idpsetup-1.5.1.exe /VERYSILENT /NORESTART /ALLUSERS /SUPPRESSMSGBOXES /SP /LOG=setup.log
+
+RUN rm /tmp/.X99-lock
+
+# Switch to the repository directory
+WORKDIR /DSW/depends
+
+# extract the date from the last commit
+RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y-%m-%d %H:%M:%S" > /git_timestamp
+
+# Compile the depends folder using a deterministic timestamp
+RUN mkdir -p ${WRAP_DIR}
+
+RUN echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1 FAKETIME=\"\$(cat /git_timestamp)\" /usr/bin/date \"\$@\"" > ${WRAP_DIR}/date
+RUN chmod +x ${WRAP_DIR}/date
+
+RUN echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1 FAKETIME=\"\$(cat /git_timestamp)\" /usr/bin/ar \"\$@\"" > ${WRAP_DIR}/ar
+RUN chmod +x ${WRAP_DIR}/ar
+
+RUN echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1 FAKETIME=\"\$(cat /git_timestamp)\" /usr/bin/ranlib \"\$@\"" > ${WRAP_DIR}/ranlib
+RUN chmod +x ${WRAP_DIR}/ranlib
+
+RUN echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1 FAKETIME=\"\$(cat /git_timestamp)\" /usr/bin/nm \"\$@\"" > ${WRAP_DIR}/nm
+RUN chmod +x ${WRAP_DIR}/nm
+
+RUN echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1 FAKETIME=\"\$(cat /git_timestamp)\" /usr/bin/strip \"\$@\"" > ${WRAP_DIR}/strip
+RUN chmod +x ${WRAP_DIR}/strip
+
+RUN echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1 FAKETIME=\"\$(cat /git_timestamp)\" /usr/bin/objcopy \"\$@\"" > ${WRAP_DIR}/objcopy
+RUN chmod +x ${WRAP_DIR}/objcopy
+
+RUN echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1 FAKETIME=\"\$(cat /git_timestamp)\" /usr/bin/zip \"\$@\"" > ${WRAP_DIR}/zip
+RUN chmod +x ${WRAP_DIR}/zip
+
+RUN echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1 FAKETIME=\"\$(cat /git_timestamp)\" /usr/bin/x86_64-w64-mingw32-gcc \"\$@\"" > ${WRAP_DIR}/x86_64-w64-mingw32-gcc
+RUN chmod +x ${WRAP_DIR}/x86_64-w64-mingw32-gcc
+
+RUN echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1 FAKETIME=\"\$(cat /git_timestamp)\" /usr/bin/x86_64-w64-mingw32-g++ \"\$@\"" > ${WRAP_DIR}/x86_64-w64-mingw32-g++
+RUN chmod +x ${WRAP_DIR}/x86_64-w64-mingw32-g++
+
+RUN echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1 FAKETIME=\"\$(cat /git_timestamp)\" /usr/bin/wine \"\$@\"" > ${WRAP_DIR}/wine
+RUN chmod +x ${WRAP_DIR}/wine
+
+RUN echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1 FAKETIME=\"\$(cat /git_timestamp)\" /usr/bin/wine64 \"\$@\"" > ${WRAP_DIR}/wine64
+RUN chmod +x ${WRAP_DIR}/wine64
+
+RUN PATH=${WRAP_DIR}:${PATH} make -j$(echo $CPU_CORES) HOST=x86_64-w64-mingw32
+
+# Set the work dir to the root folder
+WORKDIR /
+
+# Set the entry point if you want to interact within the container
+ENTRYPOINT ["bash"]
+
+# Build it with:
+# docker build --build-arg CPU_CORES=<num_cores> -t decenomy/dsw-windows-x64-builder -f Dockerfile.dsw-windows-x64-builder .
+# Publish with:
+# docker login
+# docker push decenomy/dsw-windows-x64-builder:latest
