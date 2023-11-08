@@ -36,7 +36,7 @@ ARG CPU_CORES=1
 # Compile the depends folder
 RUN make -j$(echo $CPU_CORES) HOST=x86_64-pc-linux-gnu
 
-#Set the work dir to the root folder
+# Set the work dir to the root folder
 WORKDIR /
 
 # Set the entry point if you want to interact within the container
