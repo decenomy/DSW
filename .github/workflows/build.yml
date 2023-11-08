@@ -87,21 +87,21 @@ jobs:
           # Build the Docker image from the Dockerfile in the repository
           docker build \
             --build-arg CPU_CORES=$(nproc) \
-            --build-arg TICKER=__DSW__ \
-            --build-arg NAME=__Decenomy__ \
-            --build-arg BASE_NAME=__decenomy__ \
+            --build-arg TICKER=SAPP \
+            --build-arg NAME=Sapphire \
+            --build-arg BASE_NAME=sapphire \
             --build-arg TARGET=master \
-            -t __decenomy__-windows-x64-build \
+            -t sapphire-windows-x64-build \
             -f contrib/docker/Dockerfile.dsw-windows-x64-wallet .
 
           # Start the container (if it's not already running)
-          docker run -d --name __decenomy__-windows-x64-build-container __decenomy__-windows-x64-build
+          docker run -d --name sapphire-windows-x64-build-container sapphire-windows-x64-build
 
           # Create a temporary directory to hold the extracted files
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp __decenomy__-windows-x64-build-container:/__DSW__/deploy/windows-x64 release_files/
+          docker cp sapphire-windows-x64-build-container:/SAPP/deploy/windows-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v3
