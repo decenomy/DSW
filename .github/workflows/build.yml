@@ -73,4 +73,38 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: release-artifacts
+          path: release_files1
+  build-and-extract-files-windows-x64:
+    runs-on: ubuntu-latest
+    if: ${{ false }}  # Set condition to false to make the workflow inactive
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build and Extract Files from Docker Container
+        run: |
+          # Build the Docker image from the Dockerfile in the repository
+          docker build \
+            --build-arg CPU_CORES=$(nproc) \
+            --build-arg TICKER=__DSW__ \
+            --build-arg NAME=__Decenomy__ \
+            --build-arg BASE_NAME=__decenomy__ \
+            --build-arg TARGET=master \
+            -t __decenomy__-windows-x64-build \
+            -f contrib/docker/Dockerfile.dsw-windows-x64-wallet .
+
+          # Start the container (if it's not already running)
+          docker run -d --name __decenomy__-windows-x64-build-container __decenomy__-windows-x64-build
+
+          # Create a temporary directory to hold the extracted files
+          mkdir release_files
+
+          # Copy files from the Docker container to the local filesystem
+          docker cp __decenomy__-windows-x64-build-container:/__DSW__/deploy/windows-x64 release_files/
+
+      - name: Archive and Upload Extracted Files
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-artifacts
           path: release_files
