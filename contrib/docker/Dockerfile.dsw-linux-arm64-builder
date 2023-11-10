@@ -2,9 +2,15 @@
 # FROM ubuntu:20.04
 FROM ubuntu@sha256:218bb51abbd1864df8be26166f847547b3851a89999ca7bfceb85ca9b5d2e95d
 
+# Set arguments
+ARG CPU_CORES=1
+
 # Set environment variables
-ARG DEBIAN_FRONTEND=noninteractive
-ENV TZ=Etc/UTC
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=UTC
+ENV QT_RCC_TEST=1
+ENV QT_RCC_SOURCE_DATE_OVERRIDE=1
+ENV WRAP_DIR=/wrapped
 
 # Update and install necessary packages
 RUN apt-get update && \
@@ -13,6 +19,7 @@ RUN apt-get update && \
         git \
         zip=3.0-11build1 \
         unzip \
+        faketime=0.9.7-3ubuntu1 \
         build-essential=12.8ubuntu1.1 \ 
         libtool=2.4.6-14 \
         bsdmainutils=11.1.2ubuntu3 \
@@ -36,11 +43,37 @@ RUN git clone https://github.com/decenomy/DSW.git
 # Switch to the repository directory
 WORKDIR /DSW/depends
 
-# ARG for specifying the number of cores
-ARG CPU_CORES=1
+# extract the date from the last commit
+RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y-%m-%d %H:%M:%S" > /git_timestamp
 
-# Compile the depends folder
-RUN make -j$(echo $CPU_CORES) HOST=aarch64-linux-gnu
+# Compile the depends folder using a deterministic timestamp
+RUN mkdir -p ${WRAP_DIR}
+
+RUN echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1 FAKETIME=\"\$(cat /git_timestamp)\" /usr/bin/date \"\$@\"" > ${WRAP_DIR}/date
+RUN chmod +x ${WRAP_DIR}/date
+
+RUN echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1 FAKETIME=\"\$(cat /git_timestamp)\" /usr/bin/ar \"\$@\"" > ${WRAP_DIR}/ar
+RUN chmod +x ${WRAP_DIR}/ar
+
+RUN echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1 FAKETIME=\"\$(cat /git_timestamp)\" /usr/bin/ranlib \"\$@\"" > ${WRAP_DIR}/ranlib
+RUN chmod +x ${WRAP_DIR}/ranlib
+
+RUN echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1 FAKETIME=\"\$(cat /git_timestamp)\" /usr/bin/nm \"\$@\"" > ${WRAP_DIR}/nm
+RUN chmod +x ${WRAP_DIR}/nm
+
+RUN echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1 FAKETIME=\"\$(cat /git_timestamp)\" /usr/bin/aarch64-linux-gnu-objcopy \"\$@\"" > ${WRAP_DIR}/aarch64-linux-gnu-objcopy
+RUN chmod +x ${WRAP_DIR}/aarch64-linux-gnu-objcopy
+
+RUN echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1 FAKETIME=\"\$(cat /git_timestamp)\" /usr/bin/zip \"\$@\"" > ${WRAP_DIR}/zip
+RUN chmod +x ${WRAP_DIR}/zip
+
+RUN echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1 FAKETIME=\"\$(cat /git_timestamp)\" /usr/bin/aarch64-linux-gnu-gcc \"\$@\"" > ${WRAP_DIR}/aarch64-linux-gnu-gcc
+RUN chmod +x ${WRAP_DIR}/aarch64-linux-gnu-gcc
+
+RUN echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1 FAKETIME=\"\$(cat /git_timestamp)\" /usr/bin/aarch64-linux-gnu-g++ \"\$@\"" > ${WRAP_DIR}/aarch64-linux-gnu-g++
+RUN chmod +x ${WRAP_DIR}/aarch64-linux-gnu-g++
+
+RUN PATH=${WRAP_DIR}:${PATH} make -j$(echo $CPU_CORES) HOST=aarch64-linux-gnu
 
 # Set the work dir to the root folder
 WORKDIR /
