@@ -37,26 +37,8 @@ RUN dpkg --add-architecture i386 && \
 # Set POSIX for x86_64-w64-mingw32-g++ alternatives config 
 RUN echo "1" | update-alternatives --config x86_64-w64-mingw32-g++
 
-# Clone the repository
-RUN git clone https://github.com/decenomy/DSW.git
-
-# Set the Inno Setup compiler
-WORKDIR /DSW/contrib/innosetup
-
-ENV DISPLAY=:99
-RUN Xvfb :99 -screen 0 1024x768x16 -nolisten tcp &
-
-RUN Xvfb :99 -screen 0 1024x768x16 -nolisten tcp & \
-    wine innosetup-6.1.2.exe /VERYSILENT /NORESTART /ALLUSERS /SUPPRESSMSGBOXES /SP /LOG=setup.log && \
-    wine idpsetup-1.5.1.exe /VERYSILENT /NORESTART /ALLUSERS /SUPPRESSMSGBOXES /SP /LOG=setup.log
-
-RUN rm /tmp/.X99-lock
-
-# Switch to the repository directory
-WORKDIR /DSW/depends
-
-# extract the date from the last commit
-RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y-%m-%d %H:%M:%S" > /git_timestamp
+# use a fixed date
+RUN echo -n "2000-01-01 12:00:00" > /git_timestamp
 
 # Compile the depends folder using a deterministic timestamp
 ENV WRAP_DIR=/wrapped
@@ -87,6 +69,25 @@ RUN for host in $HOSTS; \
         done \
     done
 
+# Clone the repository
+RUN git clone https://github.com/decenomy/DSW.git
+
+# Set the Inno Setup compiler
+WORKDIR /DSW/contrib/innosetup
+
+ENV DISPLAY=:99
+RUN Xvfb :99 -screen 0 1024x768x16 -nolisten tcp &
+
+RUN Xvfb :99 -screen 0 1024x768x16 -nolisten tcp & \
+    wine innosetup-6.1.2.exe /VERYSILENT /NORESTART /ALLUSERS /SUPPRESSMSGBOXES /SP /LOG=setup.log && \
+    wine idpsetup-1.5.1.exe /VERYSILENT /NORESTART /ALLUSERS /SUPPRESSMSGBOXES /SP /LOG=setup.log
+
+RUN rm /tmp/.X99-lock
+
+# Switch to the repository directory
+WORKDIR /DSW/depends
+
+# Builds the dependencies in the depends folder
 RUN PATH=${WRAP_DIR}:${PATH} make -j$(echo $CPU_CORES) HOST=x86_64-w64-mingw32
 
 # Set the work dir to the root folder
