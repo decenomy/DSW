@@ -1,5 +1,5 @@
 # FROM decenomy/dsw-linux-x64-builder:latest
-FROM decenomy/dsw-linux-x64-builder@sha256:fb87426d821443f555fe10797b294ec443395cece86c8b7cf709aae04b2f3ec5
+FROM decenomy/dsw-linux-x64-builder@sha256:65add7faa7b4885fb11941c4076efb4849aabe3b87b9a452045652dd0ec0ea39
 
 # ARG for specifying the number of cores
 ARG CPU_CORES=1
@@ -9,9 +9,6 @@ ARG TICKER=__DSW__
 ARG NAME=__Decenomy__
 ARG BASE_NAME=__decenomy__
 ARG TARGET=master
-
-# Makes the QT build deterministic
-ENV QT_RCC_SOURCE_DATE_OVERRIDE=1
 
 # Clone the repository
 RUN git clone https://github.com/decenomy/$TICKER
