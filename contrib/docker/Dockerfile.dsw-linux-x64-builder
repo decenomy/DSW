@@ -67,9 +67,6 @@ RUN for host in $HOSTS; \
         done \
     done
 
-# Switch to the repository directory
-WORKDIR /DSW/depends
-
 RUN PATH=${WRAP_DIR}:${PATH} make -j$(echo $CPU_CORES) HOST=x86_64-pc-linux-gnu
 
 # Set the work dir to the root folder
