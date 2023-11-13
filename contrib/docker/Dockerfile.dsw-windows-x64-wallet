@@ -1,5 +1,5 @@
 #FROM decenomy/dsw-windows-x64-builder:latest
-FROM decenomy/dsw-windows-x64-builder@sha256:da6ef1646a4c2efa4d1ab217468a6750bdabf5f3ce8562a4e80c3e779e061137
+FROM decenomy/dsw-windows-x64-builder@sha256:849a5356779276649044bc6bdb52fd272a54ec8bb9ce0cf827dd78cf5d32b343
 
 # ARG for specifying the number of cores
 ARG CPU_CORES=1
@@ -23,7 +23,6 @@ RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y-%m-%d %H:%M:%S" > /g
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y%m%d%H%M.%S" > /git_timestamp_touch
 
 # Run the configuration script
-RUN echo start build
 RUN PATH=${WRAP_DIR}:${PATH} ./autogen.sh && \
     PATH=${WRAP_DIR}:${PATH} ./configure \
         --prefix=/DSW/depends/x86_64-w64-mingw32 \
@@ -53,7 +52,7 @@ RUN grep "define(_CLIENT_VERSION_BUILD" configure.ac | awk -F"[ ,)]" '{print $3}
 
 # Create deploy files
 RUN mkdir -p deploy/windows-x64
-RUN PATH=${WRAP_DIR}:${PATH} strip -s \
+RUN PATH=${WRAP_DIR}:${PATH} x86_64-w64-mingw32-strip -s \
     src/$(echo $BASE_NAME)d.exe \
     src/$(echo $BASE_NAME)-cli.exe \
     src/$(echo $BASE_NAME)-tx.exe \
@@ -82,11 +81,10 @@ RUN sha256sum $TICKER-$(cat /wallet_version)-Windows-x64.zip >> SHA256SUMS-Windo
 # Set the Inno Setup compiler
 RUN mkdir -p /$TICKER/contrib/innosetup/package
 RUN cp $(echo $BASE_NAME)* /$TICKER/contrib/innosetup/package/
+RUN find /$TICKER/contrib/innosetup/ -type f -exec touch -t $(cat /git_timestamp_touch) {} +
 RUN find /$TICKER/contrib/innosetup/package/ -type f -exec touch -t $(cat /git_timestamp_touch) {} +
 
 WORKDIR /$TICKER/contrib/innosetup
-
-RUN touch -t $(cat /git_timestamp_touch) setup.iss
 
 RUN PATH=${WRAP_DIR}:${PATH} wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Inno\ Setup\ 6/ISCC.exe setup.iss
 RUN mv output/$(echo $NAME)Setup.exe /$TICKER/deploy/windows-x64/$(echo $NAME)-$(cat /wallet_version)-Setup.exe

@@ -1,13 +1,13 @@
-# FROM decenomy/dsw-linux-x64-builder:latest
-FROM decenomy/dsw-linux-x64-builder@sha256:5ea66af7cd196a294d3222c5013a3f2a1ac343238c603234f06f4d6b9725ff13
+#FROM decenomy/dsw-macos-x64-builder:latest
+FROM decenomy/dsw-macos-x64-builder@sha256:f939a1629656448566f303eff6ad0dfd79ae8bb136e937888063e8b3c90e0bc5
 
 # ARG for specifying the number of cores
 ARG CPU_CORES=1
 
 # ARG for specifying the coin parameters
-ARG TICKER=SAPP
-ARG NAME=Sapphire
-ARG BASE_NAME=sapphire
+ARG TICKER=__DSW__
+ARG NAME=__Decenomy__
+ARG BASE_NAME=__decenomy__
 ARG TARGET=master
 
 # Clone the repository
@@ -19,27 +19,29 @@ WORKDIR /$TICKER
 # Check out a specific version if needed
 RUN git checkout $TARGET
 
-# Run Git commands to extract the timestamps
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y-%m-%d %H:%M:%S" > /git_timestamp
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y%m%d%H%M.%S" > /git_timestamp_touch
 
 # Run the configuration script
 RUN PATH=${WRAP_DIR}:${PATH} ./autogen.sh && \
     PATH=${WRAP_DIR}:${PATH} ./configure \
-        --prefix=/DSW/depends/x86_64-pc-linux-gnu \
+        --prefix=/DSW/depends/x86_64-apple-darwin14 \
+        --enable-cxx \
+        --enable-static \
+        --disable-shared \
         --disable-debug \
         --disable-bench \
         --disable-tests \
         --disable-man \
         --enable-zmq \
-        --enable-static \
         --with-gui \
-        --enable-glibc-back-compat \
         --enable-upnp-default \
-        LDFLAGS="-static-libstdc++"
+        --enable-reduce-exports \
+        --disable-gui-tests \
+        GENISOIMAGE=$WRAP_DIR/genisoimage
 
 # Compile the binaries
-RUN PATH=${WRAP_DIR}:${PATH} make -j$CPU_CORES HOST=x86_64-pc-linux-gnu
+RUN PATH=${WRAP_DIR}:${PATH} make -j$CPU_CORES HOST=x86_64-apple-darwin14
 
 # Extract the wallet version
 RUN grep "define(_CLIENT_VERSION_MAJOR" configure.ac | awk -F"[ ,)]" '{print $3}' | tr -d '\n' > /wallet_version
@@ -50,18 +52,22 @@ RUN grep "define(_CLIENT_VERSION_REVISION" configure.ac | awk -F"[ ,)]" '{print 
 RUN echo -n "." >> /wallet_version
 RUN grep "define(_CLIENT_VERSION_BUILD" configure.ac | awk -F"[ ,)]" '{print $3}' | tr -d '\n' >> /wallet_version
 
+# Make the dmg file
+RUN PATH=${WRAP_DIR}:/DSW/depends/x86_64-apple-darwin14/native/bin/:${PATH} \
+    make deploy HOST=x86_64-apple-darwin14
+
 # Create deploy files
-RUN mkdir -p deploy/linux-x64
-RUN PATH=${WRAP_DIR}:${PATH} strip -s src/$(echo $BASE_NAME)d src/$(echo $BASE_NAME)-cli src/$(echo $BASE_NAME)-tx src/qt/$(echo $BASE_NAME)-qt
-RUN cp src/$(echo $BASE_NAME)d src/$(echo $BASE_NAME)-cli src/$(echo $BASE_NAME)-tx src/qt/$(echo $BASE_NAME)-qt /$TICKER/deploy/linux-x64
-RUN find /$TICKER/deploy/linux-x64 -type f -exec touch -t $(cat /git_timestamp_touch) {} +
-WORKDIR /$TICKER/deploy/linux-x64
-RUN PATH=${WRAP_DIR}:${PATH} zip -X $TICKER-$(cat /wallet_version)-Linux-x64.zip $(echo $BASE_NAME)d $(echo $BASE_NAME)-cli $(echo $BASE_NAME)-tx $(echo $BASE_NAME)-qt
-RUN sha256sum $(echo $BASE_NAME)d >> SHA256SUMS-Linux-x64.ASC
-RUN sha256sum $(echo $BASE_NAME)-cli >> SHA256SUMS-Linux-x64.ASC
-RUN sha256sum $(echo $BASE_NAME)-tx >> SHA256SUMS-Linux-x64.ASC
-RUN sha256sum $(echo $BASE_NAME)-qt >> SHA256SUMS-Linux-x64.ASC
-RUN sha256sum $TICKER-$(cat /wallet_version)-Linux-x64.zip >> SHA256SUMS-Linux-x64.ASC
+RUN mkdir -p deploy/macos-x64
+RUN cp src/$(echo $BASE_NAME)d src/$(echo $BASE_NAME)-cli src/$(echo $BASE_NAME)-tx src/qt/$(echo $BASE_NAME)-qt $(echo $NAME)-Core.dmg /$TICKER/deploy/macos-x64
+RUN find /$TICKER/deploy/macos-x64 -type f -exec touch -t $(cat /git_timestamp_touch) {} +
+WORKDIR /$TICKER/deploy/macos-x64
+RUN PATH=${WRAP_DIR}:${PATH} zip -X $TICKER-$(cat /wallet_version)-MacOS-x64.zip $(echo $BASE_NAME)d $(echo $BASE_NAME)-cli $(echo $BASE_NAME)-tx $(echo $BASE_NAME)-qt $(echo $NAME)-Core.dmg
+RUN sha256sum $(echo $BASE_NAME)d >> SHA256SUMS-MacOS-x64.ASC
+RUN sha256sum $(echo $BASE_NAME)-cli >> SHA256SUMS-MacOS-x64.ASC
+RUN sha256sum $(echo $BASE_NAME)-tx >> SHA256SUMS-MacOS-x64.ASC
+RUN sha256sum $(echo $BASE_NAME)-qt >> SHA256SUMS-MacOS-x64.ASC
+RUN sha256sum $(echo $NAME)-Core.dmg >> SHA256SUMS-MacOS-x64.ASC
+RUN sha256sum $TICKER-$(cat /wallet_version)-MacOS-x64.zip >> SHA256SUMS-MacOS-x64.ASC
 
 # To compile and build the container execute docker in this way: 
 # docker build \
@@ -70,7 +76,7 @@ RUN sha256sum $TICKER-$(cat /wallet_version)-Linux-x64.zip >> SHA256SUMS-Linux-x
 #   --build-arg NAME=<coin_name> \
 #   --build-arg BASE_NAME=<base_name> \
 #   --build-arg TARGET=<branch|commit|tag> \
-#   -f Dockerfile.dsw-linux-x64-wallet .
+#   -f Dockerfile.dsw-macos-x64-wallet .
 
 # To run the container use:
 # docker run -it <image_id>

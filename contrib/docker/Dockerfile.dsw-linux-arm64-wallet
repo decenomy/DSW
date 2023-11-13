@@ -1,5 +1,5 @@
 # FROM decenomy/dsw-linux-arm64-builder:latest
-FROM decenomy/dsw-linux-arm64-builder@sha256:8cb48477a258dc5f98a002f46e41c888b07a0f93e63110f8c1e9eb452ec6a529
+FROM decenomy/dsw-linux-arm64-builder@sha256:7e0c655c60175684cff89993cada14ce85544c636e25d75121a8ac8a3c169c19
 
 # ARG for specifying the number of cores
 ARG CPU_CORES=1
@@ -10,9 +10,6 @@ ARG NAME=Sapphire
 ARG BASE_NAME=sapphire
 ARG TARGET=master
 
-# Makes the QT build deterministic
-ENV QT_RCC_SOURCE_DATE_OVERRIDE=1
-
 # Clone the repository
 RUN git clone https://github.com/decenomy/$TICKER
 
@@ -22,9 +19,13 @@ WORKDIR /$TICKER
 # Check out a specific version if needed
 RUN git checkout $TARGET
 
+# Run Git commands to extract the timestamps
+RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y-%m-%d %H:%M:%S" > /git_timestamp
+RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y%m%d%H%M.%S" > /git_timestamp_touch
+
 # Run the configuration script
-RUN ./autogen.sh && \
-    ./configure \
+RUN PATH=${WRAP_DIR}:${PATH} ./autogen.sh && \
+    PATH=${WRAP_DIR}:${PATH} ./configure \
         --prefix=/DSW/depends/aarch64-linux-gnu \
         --disable-debug \
         --disable-bench \
@@ -38,10 +39,7 @@ RUN ./autogen.sh && \
         LDFLAGS="-static-libstdc++"
 
 # Compile the binaries
-RUN make -j$CPU_CORES HOST=aarch64-linux-gnu
-
-# Run Git commands to extract the timestamp
-RUN git log -1 --format="%at" | xargs -I{} date -d @{} +%Y%m%d%H%M.%S > /git_timestamp
+RUN PATH=${WRAP_DIR}:${PATH} make -j$CPU_CORES HOST=aarch64-linux-gnu
 
 # Extract the wallet version
 RUN grep "define(_CLIENT_VERSION_MAJOR" configure.ac | awk -F"[ ,)]" '{print $3}' | tr -d '\n' > /wallet_version
@@ -54,14 +52,14 @@ RUN grep "define(_CLIENT_VERSION_BUILD" configure.ac | awk -F"[ ,)]" '{print $3}
 
 # Create deploy files
 RUN mkdir -p deploy/linux-arm64
-RUN aarch64-linux-gnu-objcopy --strip-all src/$(echo $BASE_NAME)d
-RUN aarch64-linux-gnu-objcopy --strip-all src/$(echo $BASE_NAME)-cli
-RUN aarch64-linux-gnu-objcopy --strip-all src/$(echo $BASE_NAME)-tx
-RUN aarch64-linux-gnu-objcopy --strip-all src/qt/$(echo $BASE_NAME)-qt
+RUN PATH=${WRAP_DIR}:${PATH} aarch64-linux-gnu-objcopy --strip-all src/$(echo $BASE_NAME)d
+RUN PATH=${WRAP_DIR}:${PATH} aarch64-linux-gnu-objcopy --strip-all src/$(echo $BASE_NAME)-cli
+RUN PATH=${WRAP_DIR}:${PATH} aarch64-linux-gnu-objcopy --strip-all src/$(echo $BASE_NAME)-tx
+RUN PATH=${WRAP_DIR}:${PATH} aarch64-linux-gnu-objcopy --strip-all src/qt/$(echo $BASE_NAME)-qt
 RUN cp src/$(echo $BASE_NAME)d src/$(echo $BASE_NAME)-cli src/$(echo $BASE_NAME)-tx src/qt/$(echo $BASE_NAME)-qt /$TICKER/deploy/linux-arm64
-RUN find /$TICKER/deploy/linux-arm64 -type f -exec touch -t $(cat /git_timestamp) {} +
+RUN find /$TICKER/deploy/linux-arm64 -type f -exec touch -t $(cat /git_timestamp_touch) {} +
 WORKDIR /$TICKER/deploy/linux-arm64
-RUN zip -X $TICKER-$(cat /wallet_version)-Linux-arm64.zip $(echo $BASE_NAME)d $(echo $BASE_NAME)-cli $(echo $BASE_NAME)-tx $(echo $BASE_NAME)-qt
+RUN PATH=${WRAP_DIR}:${PATH} zip -X $TICKER-$(cat /wallet_version)-Linux-arm64.zip $(echo $BASE_NAME)d $(echo $BASE_NAME)-cli $(echo $BASE_NAME)-tx $(echo $BASE_NAME)-qt
 RUN sha256sum $(echo $BASE_NAME)d >> SHA256SUMS-Linux-arm64.ASC
 RUN sha256sum $(echo $BASE_NAME)-cli >> SHA256SUMS-Linux-arm64.ASC
 RUN sha256sum $(echo $BASE_NAME)-tx >> SHA256SUMS-Linux-arm64.ASC

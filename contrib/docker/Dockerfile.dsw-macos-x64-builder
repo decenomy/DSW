@@ -10,33 +10,44 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=UTC
 ENV QT_RCC_TEST=1
 ENV QT_RCC_SOURCE_DATE_OVERRIDE=1
+ENV WRAP_DIR=/wrapped
+ENV ZERO_AR_DATE=1
 
 # Update and install necessary packages
 RUN apt-get update && \
     apt-get install -y \
-        curl=7.58.0-2ubuntu3.24 \ 
+        curl=7.58.0-2ubuntu3.24 \
         git=1:2.17.1-1ubuntu0.18 \
-        zip=3.0-11build1 \
-        faketime=0.9.7-2 \
-        build-essential=12.4ubuntu1 \ 
-        libtool=2.4.6-2 \
-        bsdmainutils=11.1.2ubuntu1 \
-        autotools-dev=20180224.1 \ 
-        autoconf=2.69-11 \
         pkg-config=0.29.1-0ubuntu2 \
+        autoconf=2.69-11 \
+        librsvg2-bin=2.40.20-2ubuntu0.2 \
+        libtiff-tools=4.0.9-5ubuntu0.10 \
+        libtool=2.4.6-2 \
         automake=1:1.15.1-3ubuntu2 \
-        python3=3.6.7-1~18.04 && \
+        faketime=0.9.7-2 \
+        bsdmainutils=11.1.2ubuntu1 \
+        cmake=3.10.2-1ubuntu2.18.04.2 \
+        imagemagick=8:6.9.7.4+dfsg-16ubuntu6.15 \
+        libcap-dev=1:2.25-1.2 \
+        libz-dev \
+        libbz2-dev=1.0.6-8.1ubuntu0.2 \
+        python3=3.6.7-1~18.04 \
+        python3-dev=3.6.7-1~18.04 \
+        python3-setuptools=39.0.1-2ubuntu0.1 \
+        fonts-tuffy=20120614-2 \
+        zip=3.0-11build1 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # use a fixed date
 RUN echo -n "2000-01-01 12:00:00" > /git_timestamp
+RUN echo -n "200001011200.00" > /git_timestamp_touch
 
 # Compile the depends folder using a deterministic timestamp
 ENV WRAP_DIR=/wrapped
-ENV HOSTS="x86_64-linux-gnu"
+ENV HOSTS="x86_64-apple-darwin14"
 ENV FAKETIME_HOST_PROGS="ar ranlib nm strip objcopy gcc g++"
-ENV FAKETIME_PROGS="ar ranlib nm strip objcopy gcc g++ date zip"
+ENV FAKETIME_PROGS="ar ranlib nm strip objcopy gcc g++ date zip dmg genisoimage tar"
 
 RUN mkdir -p ${WRAP_DIR}
 
@@ -64,11 +75,19 @@ RUN for host in $HOSTS; \
 # Clone the repository
 RUN git clone https://github.com/decenomy/DSW.git
 
+# Install the MacOS SDK
+RUN mkdir -p /DSW/depends/SDKs
+WORKDIR /DSW/depends/SDKs
+
+RUN curl -LO https://github.com/decenomy/depends/raw/main/SDKs/MacOSX10.11.sdk.tar.xz
+RUN touch -t $(cat /git_timestamp_touch) /DSW/depends/SDKs/MacOSX10.11.sdk.tar.xz
+RUN PATH=${WRAP_DIR}:${PATH} tar -C /DSW/depends/SDKs -xf /DSW/depends/SDKs/MacOSX10.11.sdk.tar.xz
+RUN rm /DSW/depends/SDKs/MacOSX10.11.sdk.tar.xz
+
 # Switch to the repository directory
 WORKDIR /DSW/depends
 
-# Builds the dependencies in the depends folder
-RUN PATH=${WRAP_DIR}:${PATH} make -j$(echo $CPU_CORES) HOST=x86_64-pc-linux-gnu
+RUN PATH=${WRAP_DIR}:${PATH} make -j$(echo $CPU_CORES) HOST=x86_64-apple-darwin14
 
 # Set the work dir to the root folder
 WORKDIR /
@@ -77,7 +96,7 @@ WORKDIR /
 ENTRYPOINT ["bash"]
 
 # Build it with:
-# docker build --build-arg CPU_CORES=<num_cores> -t decenomy/dsw-linux-x64-builder -f Dockerfile.dsw-linux-x64-builder .
+# docker build --build-arg CPU_CORES=<num_cores> -t decenomy/dsw-macos-x64-builder -f Dockerfile.dsw-macos-x64-builder .
 # Publish with:
 # docker login
-# docker push decenomy/dsw-linux-x64-builder:latest
+# docker push decenomy/dsw-macos-x64-builder:latest
