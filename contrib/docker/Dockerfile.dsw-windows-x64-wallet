@@ -1,5 +1,5 @@
 #FROM decenomy/dsw-windows-x64-builder:latest
-FROM decenomy/dsw-windows-x64-builder@sha256:bea2343fab3eaa7777488ab571143030333da12f4e941bcb0bfc1991009974b1
+FROM decenomy/dsw-windows-x64-builder@sha256:849a5356779276649044bc6bdb52fd272a54ec8bb9ce0cf827dd78cf5d32b343
 
 # ARG for specifying the number of cores
 ARG CPU_CORES=1
