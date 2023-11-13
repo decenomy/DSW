@@ -109,36 +109,36 @@ jobs:
           name: release-artifacts
           path: release_files
   build-and-extract-files-macos-x64:
-            runs-on: ubuntu-22.04
-            if: ${{ false }}  # Set condition to false to make the workflow inactive
-        
-            steps:
-              - name: Checkout Repository
-                uses: actions/checkout@v4
-        
-              - name: Build and Extract Files from Docker Container
-                run: |
-                  # Build the Docker image from the Dockerfile in the repository
-                  docker build \
-                    --build-arg CPU_CORES=$(nproc) \
-                    --build-arg TICKER=777 \
-                    --build-arg NAME=Jackpot \
-                    --build-arg BASE_NAME=jackpot \
-                    --build-arg TARGET=master \
-                    -t jackpot-macos-x64-build \
-                    -f contrib/docker/Dockerfile.dsw-macos-x64-wallet .
-        
-                  # Start the container (if it's not already running)
-                  docker run -d --name jackpot-macos-x64-build-container jackpot-macos-x64-build
-        
-                  # Create a temporary directory to hold the extracted files
-                  mkdir release_files
-        
-                  # Copy files from the Docker container to the local filesystem
-                  docker cp jackpot-macos-x64-build-container:/777/deploy/macos-x64 release_files/
-        
-              - name: Archive and Upload Extracted Files
-                uses: actions/upload-artifact@v3
-                with:
-                  name: release-artifacts
-                  path: release_files
+    runs-on: ubuntu-22.04
+    if: ${{ false }}  # Set condition to false to make the workflow inactive
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build and Extract Files from Docker Container
+        run: |
+          # Build the Docker image from the Dockerfile in the repository
+          docker build \
+            --build-arg CPU_CORES=$(nproc) \
+            --build-arg TICKER=777 \
+            --build-arg NAME=Jackpot \
+            --build-arg BASE_NAME=jackpot \
+            --build-arg TARGET=master \
+            -t jackpot-macos-x64-build \
+            -f contrib/docker/Dockerfile.dsw-macos-x64-wallet .
+
+          # Start the container (if it's not already running)
+          docker run -d --name jackpot-macos-x64-build-container jackpot-macos-x64-build
+
+          # Create a temporary directory to hold the extracted files
+          mkdir release_files
+
+          # Copy files from the Docker container to the local filesystem
+          docker cp jackpot-macos-x64-build-container:/777/deploy/macos-x64 release_files/
+
+      - name: Archive and Upload Extracted Files
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-artifacts
+          path: release_files
