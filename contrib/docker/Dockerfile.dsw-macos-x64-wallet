@@ -5,9 +5,9 @@ FROM decenomy/dsw-macos-x64-builder@sha256:f939a1629656448566f303eff6ad0dfd79ae8
 ARG CPU_CORES=1
 
 # ARG for specifying the coin parameters
-ARG TICKER=__DSW__
-ARG NAME=__Decenomy__
-ARG BASE_NAME=__decenomy__
+ARG TICKER=SAPP
+ARG NAME=Sapphire
+ARG BASE_NAME=sapphire
 ARG TARGET=master
 
 # Clone the repository
