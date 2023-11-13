@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  build-and-extract-files-linux-x64:
+  build-files-linux-x64:
     runs-on: ubuntu-22.04
     if: ${{ false }}  # Set condition to false to make the workflow inactive
 
@@ -40,7 +40,7 @@ jobs:
         with:
           name: release-artifacts
           path: release_files
-  build-and-extract-files-linux-arm64:
+  build-files-linux-arm64:
     runs-on: ubuntu-22.04
     if: ${{ false }}  # Set condition to false to make the workflow inactive
 
@@ -74,7 +74,7 @@ jobs:
         with:
           name: release-artifacts
           path: release_files
-  build-and-extract-files-windows-x64:
+  build-windows-x64:
     runs-on: ubuntu-22.04
     if: ${{ false }}  # Set condition to false to make the workflow inactive
 
@@ -108,7 +108,7 @@ jobs:
         with:
           name: release-artifacts
           path: release_files
-  build-and-extract-files-macos-x64:
+  build-macos-x64:
     runs-on: ubuntu-22.04
     if: ${{ false }}  # Set condition to false to make the workflow inactive
 
