@@ -90,7 +90,6 @@ RUN PATH=${WRAP_DIR}:${PATH} wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Inno\ 
 RUN mv output/$(echo $NAME)Setup.exe /$TICKER/deploy/windows-x64/$(echo $NAME)-$(cat /wallet_version)-Setup.exe
 
 WORKDIR /$TICKER/deploy/windows-x64
-RUN PATH=${WRAP_DIR}:${PATH} strip -s $(echo $NAME)-$(cat /wallet_version)-Setup.exe
 RUN touch -t $(cat /git_timestamp_touch) $(echo $NAME)-$(cat /wallet_version)-Setup.exe
 RUN PATH=${WRAP_DIR}:${PATH} zip -X $TICKER-$(cat /wallet_version)-WindowsSetup-x64.zip \
     $(echo $NAME)-$(cat /wallet_version)-Setup.exe
