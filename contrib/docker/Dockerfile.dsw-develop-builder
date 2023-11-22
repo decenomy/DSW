@@ -132,7 +132,7 @@ WORKDIR /
 ENTRYPOINT ["bash"]
 
 # Build it with:
-# docker build --build-arg CPU_CORES=2 -t decenomy/dsw-develop-builder -f Dockerfile.dsw-develop-builder .
+# docker build --build-arg CPU_CORES=<num_cores> -t decenomy/dsw-develop-builder -f Dockerfile.dsw-develop-builder .
 # Publish with:
 # docker login
 # docker push decenomy/dsw-develop-builder:latest
