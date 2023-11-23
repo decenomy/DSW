@@ -5,13 +5,15 @@ FROM decenomy/dsw-windows-x64-builder@sha256:849a5356779276649044bc6bdb52fd272a5
 ARG CPU_CORES=1
 
 # ARG for specifying the coin parameters
-ARG TICKER=__DSW__
+ARG TICKER=DSW
 ARG NAME=__Decenomy__
 ARG BASE_NAME=__decenomy__
-ARG TARGET=master
+ARG TARGET=develop
 
 # Clone the repository
-RUN git clone https://github.com/decenomy/$TICKER
+RUN if [ ! -d $TICKER ]; then \
+  git clone https://github.com/decenomy/$TICKER; \
+fi
 
 # Switch to the repository directory
 WORKDIR /$TICKER
@@ -43,9 +45,9 @@ RUN PATH=${WRAP_DIR}:${PATH} make -j$CPU_CORES HOST=x86_64-w64-mingw32
 
 # Extract the wallet version
 RUN grep "define(_CLIENT_VERSION_MAJOR" configure.ac | awk -F"[ ,)]" '{print $3}' | tr -d '\n' > /wallet_version
-RUN echo -n "." >> /wallet_version 
+RUN echo -n "." >> /wallet_version
 RUN grep "define(_CLIENT_VERSION_MINOR" configure.ac | awk -F"[ ,)]" '{print $3}' | tr -d '\n' >> /wallet_version
-RUN echo -n "." >> /wallet_version 
+RUN echo -n "." >> /wallet_version
 RUN grep "define(_CLIENT_VERSION_REVISION" configure.ac | awk -F"[ ,)]" '{print $3}' | tr -d '\n' >> /wallet_version
 RUN echo -n "." >> /wallet_version
 RUN grep "define(_CLIENT_VERSION_BUILD" configure.ac | awk -F"[ ,)]" '{print $3}' | tr -d '\n' >> /wallet_version
@@ -60,7 +62,7 @@ RUN PATH=${WRAP_DIR}:${PATH} x86_64-w64-mingw32-strip -s \
 RUN cp \
     src/$(echo $BASE_NAME)d.exe \
     src/$(echo $BASE_NAME)-cli.exe \
-    src/$(echo $BASE_NAME)-tx.exe \ 
+    src/$(echo $BASE_NAME)-tx.exe \
     src/qt/$(echo $BASE_NAME)-qt.exe \
     /$TICKER/deploy/windows-x64
 RUN find /$TICKER/deploy/windows-x64 -type f -exec touch -t $(cat /git_timestamp_touch) {} +
@@ -77,7 +79,7 @@ RUN sha256sum $(echo $BASE_NAME)-cli.exe >> SHA256SUMS-Windows-x64.ASC
 RUN sha256sum $(echo $BASE_NAME)-tx.exe >> SHA256SUMS-Windows-x64.ASC
 RUN sha256sum $(echo $BASE_NAME)-qt.exe >> SHA256SUMS-Windows-x64.ASC
 RUN sha256sum $TICKER-$(cat /wallet_version)-Windows-x64.zip >> SHA256SUMS-Windows-x64.ASC
- 
+
 # Set the Inno Setup compiler
 RUN mkdir -p /$TICKER/contrib/innosetup/package
 RUN cp $(echo $BASE_NAME)* /$TICKER/contrib/innosetup/package/
@@ -97,7 +99,7 @@ RUN PATH=${WRAP_DIR}:${PATH} zip -X $TICKER-$(cat /wallet_version)-WindowsSetup-
 RUN sha256sum $(echo $NAME)-$(cat /wallet_version)-Setup.exe >> SHA256SUMS-Windows-x64.ASC
 RUN sha256sum $TICKER-$(cat /wallet_version)-WindowsSetup-x64.zip >> SHA256SUMS-Windows-x64.ASC
 
-# To compile and build the container execute docker in this way: 
+# To compile and build the container execute docker in this way:
 # docker build \
 #   --build-arg CPU_CORES=<num_cores> \
 #   --build-arg TICKER=<ticker> \
