@@ -1251,7 +1251,7 @@ bool AppInit2()
                               LogPrintf("-bootstrap: Error moving folder: %s\n",e.what());
                           }
                       } else {
-                          LogPrintf("-bootstrap: Error extracting zip file")
+                          LogPrintf("-bootstrap: Error extracting zip file");
                       }
 
                   } else {
