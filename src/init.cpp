@@ -1229,7 +1229,7 @@ bool AppInit2()
                 }
 
                 if (GetBoolArg("-bootstrap", false)) {
-                  const std::string url = "https://explorer.decenomy.net/bootstraps/"+std::string(COIN)+"/bootstrap.zip";
+                  const std::string url = "https://explorer.decenomy.net/bootstraps/"+std::string(TICKER)+"/bootstrap.zip";
                   const std::string outputFileName = "bootstrap.zip";
                   const std::string extractPath = "bootstrap_";
 

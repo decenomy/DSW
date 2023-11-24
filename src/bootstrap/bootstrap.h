@@ -13,8 +13,8 @@
 
 #include "minizip/unzip.h"
 
-#ifndef COIN
-#define COIN "__DSW__"
+#ifndef TICKER
+#define TICKER "__DSW__"
 #endif
 
 class BOOTSTRAP{
