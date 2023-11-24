@@ -9,7 +9,14 @@ define $(package)_set_vars
   $(package)_config_opts=--prefix=$($(package)_staging_dir)
 endef
 
+define $(package)_config_cmds
+  $($(package)_autoconf)
+endef
+
 define $(package)_build_cmds
   $(MAKE)
+endef
+
+define $(package)_stage_cmds
   $(MAKE) install
 endef
