@@ -7,7 +7,7 @@ $(package)_sha256_hash=816e41809c043ff285e8c0f06a75a1fa250211bbfb2dc0a037eeef39f
 $(package)_dependencies=openssl
 
 define $(package)_set_vars
-  $(package)_config_opts=--prefix=$($(package)_staging_dir) --with-openssl
+  $(package)_config_opts=--with-openssl
 endef
 
 define $(package)_config_cmds
@@ -19,5 +19,5 @@ define $(package)_build_cmds
 endef
 
 define $(package)_stage_cmds
-  $(MAKE) install
+  $(MAKE) DESTDIR=$($(package)_staging_dir) install
 endef
