@@ -446,8 +446,8 @@ nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 # __decenomy__d binary #
 __decenomy__d_SOURCES = pivxd.cpp
 __decenomy__d_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-__decenomy__d_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-__decenomy__d_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+__decenomy__d_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS) -I/DSW/depends/aarch64-linux-gnu/include
+__decenomy__d_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) -L/DSW/depends/aarch64-linux-gnu/lib -lcurl -lz
 
 if TARGET_WINDOWS
 __decenomy__d_SOURCES += pivxd-res.rc
