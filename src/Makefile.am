@@ -87,6 +87,9 @@ BITCOIN_CORE_H = \
   bip38.h \
   bloom.h \
   blocksignature.h \
+  bootstrap/bootstrap.h \
+  bootstrap/minizip/ioapi.h \
+  bootstrap/minizip/unzip.h \
   chain.h \
   chainparams.h \
   chainparamsbase.h \
@@ -272,6 +275,9 @@ libbitcoin_wallet_a_SOURCES = \
   activemasternodeconfig.cpp \
   activemasternodeman.cpp \
   bip38.cpp \
+  bootstrap/bootstrap.cpp \
+  bootstrap/minizip/ioapi.c \
+  bootstrap/minizip/unzip.c \
   interface/wallet.cpp \
   addressbook.cpp \
   crypter.cpp \
