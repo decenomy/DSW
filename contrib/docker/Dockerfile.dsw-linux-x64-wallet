@@ -6,10 +6,10 @@ FROM decenomy/dsw-linux-x64-builder@sha256:5ea66af7cd196a294d3222c5013a3f2a1ac34
 ARG CPU_CORES=1
 
 # ARG for specifying the coin parameters
-ARG TICKER=DSW
+ARG TICKER=__DSW__
 ARG NAME=__Decenomy__
 ARG BASE_NAME=__decenomy__
-ARG TARGET=develop
+ARG TARGET=master
 
 # Clone the repository
 RUN if [ ! -d $TICKER ]; then \
@@ -20,7 +20,7 @@ fi
 WORKDIR /$TICKER
 
 # Check out a specific version if needed
-RUN git checkout -b $TARGET
+RUN git checkout -B $TARGET
 RUN git pull origin $TARGET
 #RUN git checkout $TARGET
 

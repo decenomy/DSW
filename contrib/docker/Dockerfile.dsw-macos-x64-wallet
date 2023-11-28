@@ -5,10 +5,10 @@ FROM decenomy/dsw-macos-x64-builder@sha256:f939a1629656448566f303eff6ad0dfd79ae8
 ARG CPU_CORES=1
 
 # ARG for specifying the coin parameters
-ARG TICKER=DSW
+ARG TICKER=__DSW__
 ARG NAME=__Decenomy__
 ARG BASE_NAME=__decenomy__
-ARG TARGET=develop
+ARG TARGET=master
 
 # Clone the repository
 RUN if [ ! -d $TICKER ]; then \
@@ -19,7 +19,9 @@ fi
 WORKDIR /$TICKER
 
 # Check out a specific version if needed
-RUN git checkout $TARGET
+RUN git checkout -B $TARGET
+RUN git pull origin $TARGET
+#RUN git checkout $TARGET
 
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y-%m-%d %H:%M:%S" > /git_timestamp
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y%m%d%H%M.%S" > /git_timestamp_touch
@@ -85,3 +87,11 @@ RUN sha256sum $TICKER-$(cat /wallet_version)-MacOS-x64.zip >> SHA256SUMS-MacOS-x
 
 # Set the entry point if you want to interact within the container
 ENTRYPOINT ["bash"]
+
+docker build \
+ --build-arg CPU_CORES=4 \
+ --build-arg TICKER= \
+ --build-arg NAME=<coin_name> \
+ --build-arg BASE_NAME=<base_name> \
+ --build-arg TARGET=<branch|commit|tag> \
+ -f Dockerfile.dsw-macos-x64-wallet .

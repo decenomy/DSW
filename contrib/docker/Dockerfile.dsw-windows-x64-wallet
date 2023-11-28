@@ -5,10 +5,10 @@ FROM decenomy/dsw-windows-x64-builder@sha256:849a5356779276649044bc6bdb52fd272a5
 ARG CPU_CORES=1
 
 # ARG for specifying the coin parameters
-ARG TICKER=DSW
+ARG TICKER=__DSW__
 ARG NAME=__Decenomy__
 ARG BASE_NAME=__decenomy__
-ARG TARGET=develop
+ARG TARGET=master
 
 # Clone the repository
 RUN if [ ! -d $TICKER ]; then \
@@ -19,7 +19,9 @@ fi
 WORKDIR /$TICKER
 
 # Check out a specific version if needed
-RUN git checkout $TARGET
+RUN git checkout -B $TARGET
+RUN git pull origin $TARGET
+#RUN git checkout $TARGET
 
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y-%m-%d %H:%M:%S" > /git_timestamp
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y%m%d%H%M.%S" > /git_timestamp_touch
@@ -102,7 +104,7 @@ RUN sha256sum $TICKER-$(cat /wallet_version)-WindowsSetup-x64.zip >> SHA256SUMS-
 # To compile and build the container execute docker in this way:
 # docker build \
 #   --build-arg CPU_CORES=<num_cores> \
-#   --build-arg TICKER=<ticker> \
+#   --build-arg TICKER=> \
 #   --build-arg NAME=<coin_name> \
 #   --build-arg BASE_NAME=<base_name> \
 #   --build-arg TARGET=<branch|commit|tag> \
