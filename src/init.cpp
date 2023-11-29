@@ -1245,7 +1245,7 @@ bool AppInit2()
                           LogPrintf("-bootstrap: Zip file extracted successfully \n");
                           try {
                               fs::rename(extractPath+"/blocks", blocksDir);
-                              fs::rename(extractPath+"/blocks", chainstateDir);
+                              fs::rename(extractPath+"/chainstate", chainstateDir);
                               LogPrintf("-bootstrap: Folders moved successfully \n");
                           } catch (const std::exception& e) {
                               LogPrintf("-bootstrap: Error moving folder: %s\n",e.what());
@@ -1253,7 +1253,7 @@ bool AppInit2()
                       } else {
                           LogPrintf("-bootstrap: Error extracting zip file");
                       }
-
+                      
                   } else {
                       LogPrintf("-bootstrap: Error downloading file");
                   }
