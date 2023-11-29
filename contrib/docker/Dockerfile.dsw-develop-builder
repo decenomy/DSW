@@ -95,7 +95,7 @@ RUN git clone https://github.com/decenomy/DSW.git
 WORKDIR /DSW
 
 # Check out a specific version if needed
-RUN git checkout -b $TARGET
+RUN git checkout -B $TARGET
 RUN git pull origin $TARGET
 
 # --- macos ---
@@ -139,7 +139,7 @@ WORKDIR /
 ENTRYPOINT ["bash"]
 
 # Build it with:
-# docker build --build-arg CPU_CORES=<num_cores> -t decenomy/dsw-develop-builder -f Dockerfile.dsw-develop-builder .
+# docker build --build-arg CPU_CORES=<num_cores> --build-arg TARGET=<branch> -t decenomy/dsw-develop-builder -f Dockerfile.dsw-develop-builder .
 # Publish with:
 # docker login
 # docker push decenomy/dsw-develop-builder:latest
