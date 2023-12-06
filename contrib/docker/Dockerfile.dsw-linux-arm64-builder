@@ -14,14 +14,14 @@ ENV QT_RCC_SOURCE_DATE_OVERRIDE=1
 # Update and install necessary packages
 RUN apt-get update && \
     apt-get install -y \
-        curl=7.58.0-2ubuntu3.24 \ 
+        curl=7.58.0-2ubuntu3.24 \
         git=1:2.17.1-1ubuntu0.18 \
         zip=3.0-11build1 \
         faketime=0.9.7-2 \
-        build-essential=12.4ubuntu1 \ 
+        build-essential=12.4ubuntu1 \
         libtool=2.4.6-2 \
         bsdmainutils=11.1.2ubuntu1 \
-        autotools-dev=20180224.1 \ 
+        autotools-dev=20180224.1 \
         autoconf=2.69-11 \
         pkg-config=0.29.1-0ubuntu2 \
         automake=1:1.15.1-3ubuntu2 \
@@ -93,3 +93,9 @@ ENTRYPOINT ["bash"]
 # Publish with:
 # docker login
 # docker push decenomy/dsw-linux-arm64-builder:latest
+
+docker build \
+ --build-arg CPU_CORES=4 \
+ --build-arg TICKER=DSW \
+ --build-arg TARGET=bootstrap \
+ -f Dockerfile.dsw-linux-arm64-wallet .

@@ -1056,6 +1056,8 @@ if test x$use_pkgconfig = xyes; then
       PKG_CHECK_MODULES([SSL], [libssl],, [AC_MSG_ERROR(openssl  not found.)])
       PKG_CHECK_MODULES([CRYPTO], [libcrypto],,[AC_MSG_ERROR(libcrypto  not found.)])
       BITCOIN_QT_CHECK([PKG_CHECK_MODULES([PROTOBUF], [protobuf], [have_protobuf=yes], [BITCOIN_QT_FAIL(libprotobuf not found)])])
+      PKG_CHECK_MODULES([CURL], [libcurl],, [AC_MSG_ERROR(curl  not found.)])
+      PKG_CHECK_MODULES([zlib], [zlib],, [AC_MSG_ERROR(zlib  not found.)])
       BITCOIN_QT_CHECK([PKG_CHECK_MODULES([QR], [libqrencode],,[BITCOIN_QT_FAIL(libqrencode not found)])])
       if test x$use_qtcharts != xno; then
         BITCOIN_QT_CHECK([PKG_CHECK_MODULES([CHARTS], [Qt5Charts],[have_qtcharts=yes], [have_qtcharts=no])])
@@ -1077,6 +1079,7 @@ if test x$use_pkgconfig = xyes; then
       else
           AC_DEFINE_UNQUOTED([ENABLE_ZMQ],[0],[Define to 1 to enable ZMQ functions])
       fi
+
     ]
   )
 else
@@ -1118,6 +1121,11 @@ else
   fi
 
   BITCOIN_QT_CHECK(AC_CHECK_LIB([protobuf] ,[main],[PROTOBUF_LIBS=-lprotobuf], BITCOIN_QT_FAIL(libprotobuf not found)))
+
+  AC_CHECK_HEADER([curl/curl.h],, AC_MSG_ERROR(curl headers missing),)
+  AC_CHECK_LIB([curl] ,[main],[CURL_LIBS=-lcurl], AC_MSG_ERROR(curl not found))
+  AC_CHECK_HEADER([zlib.h],, AC_MSG_ERROR(zlib headers missing),)
+  AC_CHECK_LIB([z] ,[main],[ZLIB_LIBS=-lz], AC_MSG_ERROR(zlib not found))
 
   BITCOIN_QT_CHECK([AC_CHECK_LIB([qrencode], [main],[QR_LIBS=-lqrencode], BITCOIN_QT_FAIL(libqrencode not found))])
   BITCOIN_QT_CHECK([AC_CHECK_HEADER([qrencode.h],, BITCOIN_QT_FAIL(libqrencode not found))])
@@ -1391,6 +1399,8 @@ AC_SUBST(EVENT_LIBS)
 AC_SUBST(EVENT_PTHREADS_LIBS)
 AC_SUBST(ZMQ_LIBS)
 AC_SUBST(PROTOBUF_LIBS)
+AC_SUBST(CURL_LIBS)
+AC_SUBST(ZLIB_LIBS)
 AC_SUBST(QR_LIBS)
 AC_SUBST(USE_NUM_GMP)
 AC_SUBST(USE_NUM_OPENSSL)
