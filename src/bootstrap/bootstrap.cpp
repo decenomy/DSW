@@ -79,7 +79,7 @@ bool BOOTSTRAP::extractZip(const std::string& zipFilePath, const std::string& ou
     }
 
     // Create the output folder if it doesn't exist
-    if (mkdir(outputFolderPath.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) != 0) {
+    if (mkdir(outputFolderPath.c_str()) != 0) {
         //std::cerr << "Error creating output folder: " << outputFolderPath << std::endl;
         unzClose(zipFile);
         return false;
