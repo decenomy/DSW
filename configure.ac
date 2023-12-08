@@ -1123,7 +1123,16 @@ else
   BITCOIN_QT_CHECK(AC_CHECK_LIB([protobuf] ,[main],[PROTOBUF_LIBS=-lprotobuf], BITCOIN_QT_FAIL(libprotobuf not found)))
 
   AC_CHECK_HEADER([curl/curl.h],, AC_MSG_ERROR(curl headers missing),)
-  AC_CHECK_LIB([curl] ,[main],[CURL_LIBS=-lcurl], AC_MSG_ERROR(curl not found))
+  #AC_CHECK_LIB([curl] ,[main],[CURL_LIBS=-lcurl], AC_MSG_ERROR(curl not found))
+  # Check for libcurl
+  AC_CHECK_LIB([curl] ,[main],[CURL_LIBS=-lcurl]
+    [
+      # Additional checks or actions specific to libcurl, if needed
+      AC_SUBST([CURL_LIBS], [`curl-config --libs --static-libs`])
+      AC_SUBST([CURL_CFLAGS], [`curl-config --cflags`])
+    ],
+    [AC_MSG_ERROR([libcurl not found])])
+
   AC_CHECK_HEADER([zlib.h],, AC_MSG_ERROR(zlib headers missing),)
   AC_CHECK_LIB([z] ,[main],[ZLIB_LIBS=-lz], AC_MSG_ERROR(zlib not found))
 
