@@ -465,7 +465,7 @@ __decenomy__d_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-__decenomy__d_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) $(CURL_LIBS) $(zlib_LIBS)
+__decenomy__d_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) $(CURL_LIBS) $(ZLIB_LIBS)
 
 # __decenomy__-cli binary #
 __decenomy___cli_SOURCES = pivx-cli.cpp

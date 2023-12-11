@@ -1203,7 +1203,8 @@ bool AppInit2()
             }
         }
 
-        if (GetBoolArg("-resync", false) || GetBoolArg("-bootstrap", false)) {
+        if (GetBoolArg("-resync", false) || GetBoolArg("-bootstrap", false) ) {
+
             uiInterface.InitMessage(_("Preparing for resync..."));
             // Delete the local blockchain folders to force a resync from scratch to get a consitent blockchain-state
             fs::path blocksDir = GetDataDir() / "blocks";
@@ -1227,7 +1228,7 @@ bool AppInit2()
                     fs::remove_all(sporksDir);
                     LogPrintf("-resync: folder deleted: %s\n", sporksDir.string().c_str());
                 }
-
+                #ifdef ENABLE_BOOTSTRAP
                 if (GetBoolArg("-bootstrap", false)) {
                   const std::string url = "https://explorer.decenomy.net/bootstraps/"+std::string(TICKER)+"/bootstrap.zip";
                   const std::string outputFileName = "bootstrap.zip";
@@ -1253,12 +1254,14 @@ bool AppInit2()
                       } else {
                           LogPrintf("-bootstrap: Error extracting zip file");
                       }
-                      
+
                   } else {
                       LogPrintf("-bootstrap: Error downloading file");
                   }
                 }
-
+                #else
+                LogPrintf("-boostrap: not enabled\n");
+                #endif
             } catch (const fs::filesystem_error& error) {
                 LogPrintf("Failed to delete blockchain folders %s\n", error.what());
             }
