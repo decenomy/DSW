@@ -1230,7 +1230,7 @@ bool AppInit2()
                 }
                 #ifdef ENABLE_BOOTSTRAP
                 if (GetBoolArg("-bootstrap", false)) {
-                  const std::string url = "https://explorer.decenomy.net/bootstraps/"+std::string(TICKER)+"/bootstrap.zip";
+                  const std::string url = std::string(BOOTSTRAP_URL)+std::string(TICKER)+"/bootstrap.zip";
                   const std::string outputFileName = "bootstrap.zip";
                   const std::string extractPath = "bootstrap_";
 
@@ -1248,6 +1248,7 @@ bool AppInit2()
                               fs::rename(extractPath+"/blocks", blocksDir);
                               fs::rename(extractPath+"/chainstate", chainstateDir);
                               LogPrintf("-bootstrap: Folders moved successfully \n");
+                              fs::remove(extractPath);
                           } catch (const std::exception& e) {
                               LogPrintf("-bootstrap: Error moving folder: %s\n",e.what());
                           }
@@ -1255,12 +1256,13 @@ bool AppInit2()
                           LogPrintf("-bootstrap: Error extracting zip file");
                       }
 
+                      fs::remove(outputFileName);
                   } else {
                       LogPrintf("-bootstrap: Error downloading file");
                   }
                 }
                 #else
-                LogPrintf("-boostrap: not enabled\n");
+                LogPrintf("-bootstrap: not enabled\n");
                 #endif
             } catch (const fs::filesystem_error& error) {
                 LogPrintf("Failed to delete blockchain folders %s\n", error.what());

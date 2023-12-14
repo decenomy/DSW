@@ -18,6 +18,8 @@ BITCOIN_GUI_NAME=__decenomy__-qt
 BITCOIN_CLI_NAME=__decenomy__-cli
 BITCOIN_TX_NAME=__decenomy__-tx
 
+BOOTSTRAP_URL_DEFAULT=https://bootstraps.decenomy.net/
+
 dnl Unless the user specified ARFLAGS, force it to be cr
 AC_ARG_VAR(ARFLAGS, [Flags for the archiver, defaults to <cr> if not set])
 if test "x${ARFLAGS+set}" != "xset"; then
@@ -112,6 +114,13 @@ AC_ARG_WITH([params-dir],
   fi
   ],
   [params_path=""])
+
+# Allow the user to specify a different value for BOOTSTRAP_URL
+AC_ARG_WITH([bootstrap-url],
+  [AS_HELP_STRING([--with-bootstrap-url=URL],
+    [URL for bootstrap data])],
+  [BOOTSTRAP_URL="$withval"],
+  [BOOTSTRAP_URL="$BOOTSTRAP_URL_DEFAULT"])
 
 # Enable wallet
 AC_ARG_ENABLE([wallet],
@@ -1070,7 +1079,7 @@ if test x$use_pkgconfig = xyes; then
       PKG_CHECK_MODULES([CRYPTO], [libcrypto],,[AC_MSG_ERROR(libcrypto  not found.)])
       BITCOIN_QT_CHECK([PKG_CHECK_MODULES([PROTOBUF], [protobuf], [have_protobuf=yes], [BITCOIN_QT_FAIL(libprotobuf not found)])])
       PKG_CHECK_MODULES([CURL], [libcurl],, [AC_MSG_ERROR(curl  not found.)])
-      PKG_CHECK_MODULES([zlib], [zlib],, [AC_MSG_ERROR(zlib  not found.)])
+      PKG_CHECK_MODULES([ZLIB], [zlib],, [AC_MSG_ERROR(zlib  not found.)])
       BITCOIN_QT_CHECK([PKG_CHECK_MODULES([QR], [libqrencode],,[BITCOIN_QT_FAIL(libqrencode not found)])])
       if test x$use_qtcharts != xno; then
         BITCOIN_QT_CHECK([PKG_CHECK_MODULES([CHARTS], [Qt5Charts],[have_qtcharts=yes], [have_qtcharts=no])])
@@ -1258,6 +1267,16 @@ else
   AC_MSG_RESULT(no)
 fi
 
+dnl enable bootstrap
+AC_MSG_CHECKING([if bootstrap should be enabled])
+if test x$enable_bootstrap != xno; then
+  AC_MSG_RESULT(yes)
+  AC_DEFINE_UNQUOTED([ENABLE_BOOTSTRAP],[1],[Define to 1 to enable bootstrap functions])
+
+else
+  AC_MSG_RESULT(no)
+fi
+
 dnl enable upnp support
 AC_MSG_CHECKING([whether to build with support for UPnP])
 if test x$have_miniupnpc = xno; then
@@ -1377,6 +1396,7 @@ AC_DEFINE(CLIENT_VERSION_BUILD, _CLIENT_VERSION_BUILD, [Version Build])
 AC_DEFINE(CLIENT_VERSION_IS_RELEASE, _CLIENT_VERSION_IS_RELEASE, [Version is release])
 AC_DEFINE(COPYRIGHT_YEAR, _COPYRIGHT_YEAR, [Version is release])
 AC_DEFINE_UNQUOTED(PARAMS_DIR, ["$params_path"], [Path to the zk params dir during unit tests on windows])
+AC_DEFINE_UNQUOTED([BOOTSTRAP_URL], ["$BOOTSTRAP_URL"], [URL for bootstrap data])
 AC_SUBST(CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MAJOR)
 AC_SUBST(CLIENT_VERSION_MINOR, _CLIENT_VERSION_MINOR)
 AC_SUBST(CLIENT_VERSION_REVISION, _CLIENT_VERSION_REVISION)
@@ -1497,6 +1517,7 @@ echo
 echo "Options used to compile and link:"
 echo "  with wallet    = $enable_wallet"
 echo "  with bootstrap = $enable_bootstrap"
+echo "  bootstrap url  = $BOOTSTRAP_URL"
 echo "  with gui / qt  = $bitcoin_enable_qt"
 if test x$bitcoin_enable_qt != xno; then
     echo "    with qtcharts     = $use_qtcharts"
