@@ -53,6 +53,7 @@ bool BOOTSTRAP::DownloadFile(const std::string& url, const std::string& outputFi
     }
 
     curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L); // Do not verify the peer's SSL certificate
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &outputFile);
 
