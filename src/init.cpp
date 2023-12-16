@@ -1205,9 +1205,9 @@ bool AppInit2()
 
         if (GetBoolArg("-resync", false) || GetBoolArg("-bootstrap", false) ) {
 
-            if (GetBoolArg("-resync", false)
+            if (GetBoolArg("-resync", false))
               uiInterface.InitMessage(_("Preparing for resync..."));
-            else if (GetBoolArg("-bootstrap", false)
+            else if (GetBoolArg("-bootstrap", false))
               uiInterface.InitMessage(_("Preparing for bootstrap..."));
 
             // Delete the local blockchain folders to force a resync from scratch to get a consitent blockchain-state

@@ -27,7 +27,8 @@ SettingsWalletRepairWidget::SettingsWalletRepairWidget(PIVXGUI* _window, QWidget
     // Labels
     setCssProperty({ui->labelMessageSalvage, ui->labelMessageRescan, ui->labelMessageRecover1,
                     ui->labelMessageRecover2, ui->labelMessageUpgrade, ui->labelMessageRebuild,
-                    ui->labelMessageDelete, ui->labelMessageRewind, ui->labelMessageWeekRewind}, "text-main-settings");
+                    ui->labelMessageDelete, ui->labelMessageRewind, ui->labelMessageWeekRewind,
+                    ui->labelMessageBootstrap}, "text-main-settings");
 
     // Buttons
     setCssProperty({ui->pushButtonSalvage, ui->pushButtonRescan, ui->pushButtonRecover1,

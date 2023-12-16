@@ -784,12 +784,6 @@
             </item>
             <item>
              <widget class="QLabel" name="labelMessageBootstrap">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>0</height>
-               </size>
-              </property>
               <property name="text">
                <string>Deletes all local blockchain folders and loads entire blockchain from source</string>
               </property>
