@@ -1,7 +1,7 @@
 package=curl
 $(package)_version=8.4.0
-$(package)_download_path=https://github.com/curl/curl/releases/download/curl-8_4_0/
-#$(package)_download_path=https://github.com/decenomy/depends/raw/main/
+#$(package)_download_path=https://github.com/curl/curl/releases/download/curl-8_4_0/
+$(package)_download_path=https://github.com/decenomy/depends/raw/main/
 $(package)_file_name=$(package)-$($(package)_version).tar.gz
 $(package)_sha256_hash=816e41809c043ff285e8c0f06a75a1fa250211bbfb2dc0a037eeef39f1a9e427
 $(package)_dependencies=openssl
