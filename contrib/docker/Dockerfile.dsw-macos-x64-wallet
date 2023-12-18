@@ -87,11 +87,3 @@ RUN sha256sum $TICKER-$(cat /wallet_version)-MacOS-x64.zip >> SHA256SUMS-MacOS-x
 
 # Set the entry point if you want to interact within the container
 ENTRYPOINT ["bash"]
-
-docker build \
- --build-arg CPU_CORES=4 \
- --build-arg TICKER= \
- --build-arg NAME=<coin_name> \
- --build-arg BASE_NAME=<base_name> \
- --build-arg TARGET=<branch|commit|tag> \
- -f Dockerfile.dsw-macos-x64-wallet .

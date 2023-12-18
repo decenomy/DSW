@@ -93,9 +93,3 @@ ENTRYPOINT ["bash"]
 # Publish with:
 # docker login
 # docker push decenomy/dsw-linux-arm64-builder:latest
-
-docker build \
- --build-arg CPU_CORES=4 \
- --build-arg TICKER=DSW \
- --build-arg TARGET=bootstrap \
- -f Dockerfile.dsw-linux-arm64-wallet .
