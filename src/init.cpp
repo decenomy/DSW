@@ -80,6 +80,8 @@
 #include "zmq/zmqnotificationinterface.h"
 #endif
 
+#include "ebf/jackpot/dice.h"
+#include "core_io.h"
 
 #ifdef ENABLE_WALLET
 int nWalletBackups = 10;
@@ -916,6 +918,28 @@ void InitLogging()
  */
 bool AppInit2()
 {
+    CDiceEBFBet bet(DiceBetType::UnderSeven, 10 * COIN, CKeyID());
+
+    auto txout = bet.ToTxOut();
+    
+    std::cout << txout.nValue << std::endl;
+    for(uint8_t byte : txout.scriptPubKey) {
+        std::cout << std::setw(2) << std::setfill('0') << std::hex << (int)byte << std::dec;
+    }
+    std::cout << std::endl;
+
+    CDiceEBFBet bet2(txout);
+
+    auto txout2 = bet2.ToTxOut();
+
+    std::cout << txout2.nValue << std::endl;
+    for(uint8_t byte : txout2.scriptPubKey) {
+        std::cout << std::setw(2) << std::setfill('0') << std::hex << (int)byte << std::dec;
+    }
+    std::cout << std::endl;
+
+    exit(0);
+
     // ********************************************************* Step 0: masternode collateral init
     CMasternode::InitMasternodeCollateralList();
 

@@ -109,14 +109,14 @@ CScript CDiceEBFBet::GeneratePayoutScript() {
     return CScript() << OP_DUP << OP_HASH160 << ToByteVector(payee) << OP_EQUALVERIFY << OP_CHECKSIG;
 }
 
-CDiceEBFBet::CDiceEBFBet(DiceBetType betType, CAmount amount, CKeyID payee) : CEBFAction(amount, DICE_CONTRACT), betType(betType), payee(payee) {
+CDiceEBFBet::CDiceEBFBet(DiceBetType betType, CAmount amount, CKeyID payee) : CEBFMessage(amount, DICE_CONTRACT), betType(betType), payee(payee) {
     CValidationState state;
     if(!CheckTxOut(ToTxOut(), state)) {
         throw std::runtime_error(state.GetRejectReason());
     }
 }
 
-CDiceEBFBet::CDiceEBFBet(CTxOut& txout) : CEBFAction(txout.nValue, DICE_CONTRACT)
+CDiceEBFBet::CDiceEBFBet(CTxOut& txout) : CEBFMessage(txout.nValue, DICE_CONTRACT)
 {
     CValidationState state;
     if(!CheckTxOut(txout, state)) {

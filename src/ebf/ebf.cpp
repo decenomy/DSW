@@ -60,7 +60,9 @@ bool CEBFPlatform::Run(const CBlock& block, CValidationState& state, CMutableTra
 
     // TODO Group similar CTxOut
 
-    // TODO Add CTxOut to the transaction
+    for(auto& txout : vout) {
+        coinstake.vout.push_back(txout);
+    }
 
     return true;
 }

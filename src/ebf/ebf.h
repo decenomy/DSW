@@ -33,33 +33,6 @@ enum EBFContracts { // 0-7 (8 Slots per platform in one byte, more are possible 
     LOTTERY_CONTRACT        = EBFPlatforms::JACKPOT         + (0X02 << 5),
 };
 
-class CEBFAction {
-protected:
-    CAmount amount = 0;
-    uint8_t version = 0x01;
-    EBFContracts contract;
-
-    CEBFAction(CAmount amount, EBFContracts contract, uint8_t version = 0x01) : amount(amount), contract(contract), version(version) {}
-
-    template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action)
-    {
-        uint8_t op                  = static_cast<uint8_t>(OP_RETURN);
-        uint8_t firstFragment       = EBF_MESSAGE_FIRST_FRAGMENT;
-        uint8_t secondFragment      = EBF_MESSAGE_SECOND_FRAGMENT;
-        uint8_t contract            = static_cast<uint8_t>(this->contract);
-
-        READWRITE(op);
-        READWRITE(firstFragment);
-        READWRITE(secondFragment);
-        READWRITE(contract);
-        if (ser_action.ForRead()) {
-            this->contract = static_cast<EBFContracts>(contract);
-        }
-        READWRITE(version);
-    }
-};
-
 class CEBF {
 protected:
     const CBlock& block;

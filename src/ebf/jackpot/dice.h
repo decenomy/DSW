@@ -6,6 +6,7 @@
 #define DECENOMY_EBF_JACKPOT_DICE_H
 
 #include "ebf/jackpot/jackpot.h"
+#include "ebf/ebfmessage.h"
 
 #define DICE_EBF_SCRIPT_SIZE    26
 #define DICE_EBF_MIN_AMOUNT     COIN
@@ -52,7 +53,7 @@ enum DiceBetType {
     OddSum      = 0x1B, // Odd Sum
 };
 
-class CDiceEBFBet : public CEBFAction {
+class CDiceEBFBet : public CEBFMessage {
 private:
     DiceBetType betType; 
     CKeyID payee;
@@ -65,7 +66,7 @@ public:
     template <typename Stream, typename Operation>
     inline void SerializationOp(Stream& s, Operation ser_action)
     {
-        CEBFAction::SerializationOp(s, ser_action);
+        CEBFMessage::SerializationOp(s, ser_action);
 
         uint8_t betType = static_cast<uint8_t>(this->betType);
         READWRITE(betType);
