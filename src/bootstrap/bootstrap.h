@@ -14,7 +14,7 @@
 #include "minizip/unzip.h"
 
 #ifndef TICKER
-#define TICKER "__DSW__"
+#define TICKER "KYAN"
 #endif
 
 class BOOTSTRAP{

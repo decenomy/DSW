@@ -5,9 +5,9 @@ FROM decenomy/dsw-linux-arm64-builder@sha256:7e0c655c60175684cff89993cada14ce855
 ARG CPU_CORES=1
 
 # ARG for specifying the coin parameters
-ARG TICKER=__DSW__
-ARG NAME=__Decenomy__
-ARG BASE_NAME=__decenomy__
+ARG TICKER=KYAN
+ARG NAME=Kyanite
+ARG BASE_NAME=kyanite
 ARG TARGET=master
 
 # Clone the repository
