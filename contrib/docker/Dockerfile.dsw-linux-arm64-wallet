@@ -1,5 +1,5 @@
 # FROM decenomy/dsw-linux-arm64-builder:latest
-FROM decenomy/dsw-linux-arm64-builder@sha256:7e0c655c60175684cff89993cada14ce85544c636e25d75121a8ac8a3c169c19
+FROM decenomy/dsw-linux-arm64-builder@sha256:e687b911b160c600716dbd1d481f82e3d22c1fbe9cb035097552fe0504d1b78d
 
 # ARG for specifying the number of cores
 ARG CPU_CORES=1
@@ -21,7 +21,6 @@ WORKDIR /$TICKER
 # Check out a specific version if needed
 RUN git checkout -B $TARGET
 RUN git pull origin $TARGET
-#RUN git checkout $TARGET
 
 # Run Git commands to extract the timestamps
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y-%m-%d %H:%M:%S" > /git_timestamp

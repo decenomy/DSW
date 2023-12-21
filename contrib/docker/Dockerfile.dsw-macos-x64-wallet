@@ -1,5 +1,5 @@
 #FROM decenomy/dsw-macos-x64-builder:latest
-FROM decenomy/dsw-macos-x64-builder@sha256:f939a1629656448566f303eff6ad0dfd79ae8bb136e937888063e8b3c90e0bc5
+FROM decenomy/dsw-macos-x64-builder@sha256:bdef2e446c09c7f601cc490841711e8f4ca47e4f81ba4306a8d2ace0b58012db
 
 # ARG for specifying the number of cores
 ARG CPU_CORES=1
@@ -21,7 +21,6 @@ WORKDIR /$TICKER
 # Check out a specific version if needed
 RUN git checkout -B $TARGET
 RUN git pull origin $TARGET
-#RUN git checkout $TARGET
 
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y-%m-%d %H:%M:%S" > /git_timestamp
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y%m%d%H%M.%S" > /git_timestamp_touch
