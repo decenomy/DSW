@@ -1,56 +1,12 @@
-Source: __decenomy__
-Section: utils
+Source: decenomy
+Section: misc
 Priority: optional
-Maintainer: Fuzzbawls <fuzzbawls@gmail.com>
-Uploaders: Fuzzbawls <fuzzbawls@gmail.com>
-Build-Depends: debhelper,
- devscripts,
- automake,
- libtool,
- bash-completion,
- libdb4.8++-dev,
- libssl1.0-dev | libssl-dev,
- pkg-config,
- libevent-dev,
- libgmp-dev,
- libboost-system1.48-dev | libboost-system-dev (>> 1.47),
- libboost-filesystem1.48-dev | libboost-filesystem-dev (>> 1.47),
- libboost-program-options1.48-dev | libboost-program-options-dev (>> 1.47),
- libboost-thread1.48-dev | libboost-thread-dev (>> 1.47),
- libboost-test1.48-dev | libboost-test-dev (>> 1.47),
- libboost-chrono1.48-dev | libboost-chrono-dev (>> 1.47),
- libminiupnpc8-dev | libminiupnpc-dev,
- xvfb,
- qtbase5-dev, qttools5-dev-tools, qttools5-dev,
- libqrencode-dev,
- libprotobuf-dev, protobuf-compiler,
- python,
- libzmq3-dev,
- dh-systemd
-Standards-Version: 3.9.2
-Homepage: __decenomy_website_link__
-Vcs-Git: git://__decenomy_github_link__.git
-Vcs-Browser: https://__decenomy_github_link__
+Maintainer: Zimbora <dsw@decenomy.com>
+Build-Depends: debhelper (>= 9)
 
-Package: __decenomy__d
+Package: decenomy
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: peer-to-peer network based digital currency - daemon
- __Decenomy__ is a free, open source peer-to-peer electronic cash system that
- is completely decentralized, without the need for a central server or
- trusted parties.  Users hold the crypto keys to their own money and
- transact directly with each other, with the help of a P2P network to
- check for double-spending.
- .
- Full transaction history is stored locally at each client.  This
- requires 18.5+ GB of space, slowly growing.
- .
- This package provides the daemon, __decenomy__d, and the CLI tool
- __decenomy__-cli to interact with the daemon.
-
-Package: __decenomy__-qt
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends:
 Description: peer-to-peer network based digital currency - Qt GUI
  __Decenomy__ is a free, open source peer-to-peer electronic cash system that
  is completely decentralized, without the need for a central server or
@@ -62,3 +18,4 @@ Description: peer-to-peer network based digital currency - Qt GUI
  requires 18.5+ GB of space, slowly growing.
  .
  This package provides __Decenomy__-Qt, a GUI for __Decenomy__ based on Qt.
+Homepage: https://explorer.decenomy.net/

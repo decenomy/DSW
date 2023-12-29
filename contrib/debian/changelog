@@ -1,5 +1,5 @@
-pivx (3.2.0-trusty1) trusty; urgency=medium
+dsw (1.0.0) trusty; urgency=medium
 
-  * PIVX Core v3.2.0 (trusty).
+  * Initial release.
 
- -- Fuzzbawls  Fri, 12 Apr 2019 12:01:00 -0700
+ -- zimbora <dsw@decenomy.com>  Tue, 28 Dec 2023 17:23:00 +0000

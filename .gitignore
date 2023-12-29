@@ -345,3 +345,7 @@ __decenomy__d-new-gui.*
 
 .vscode/*
 null.d
+
+contrib/debian-old/*
+contrib/debian/decenomy.*
+contrib/debian/files

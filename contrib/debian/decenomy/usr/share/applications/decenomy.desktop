@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=dsw
+Exec=/usr/bin/dsw
+Icon=/usr/share/applications/bitcoin.png
+Type=Application
+Categories=Finance;
