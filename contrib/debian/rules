@@ -7,7 +7,7 @@ build:
 	@# Do nothing
 
 binary:
-	mkdir -p debian/decenomy/usr/bin
-	cp __decenomy__-qt debian/decenomy/usr/bin/
+	mkdir -p debian/dsw/usr/bin
+	cp __decenomy__-qt debian/dsw/usr/bin/
 	dh_gencontrol
 	dh_builddeb

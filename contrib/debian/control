@@ -1,10 +1,10 @@
-Source: decenomy
+Source: dsw
 Section: misc
 Priority: optional
 Maintainer: Zimbora <dsw@decenomy.com>
 Build-Depends: debhelper (>= 9)
 
-Package: decenomy
+Package: dsw
 Architecture: any
 Depends:
 Description: peer-to-peer network based digital currency - Qt GUI

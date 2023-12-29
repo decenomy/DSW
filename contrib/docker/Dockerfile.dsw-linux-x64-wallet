@@ -68,7 +68,7 @@ RUN sha256sum $(echo $BASE_NAME)-qt >> SHA256SUMS-Linux-x64.ASC
 RUN sha256sum $TICKER-$(cat /wallet_version)-Linux-x64.zip >> SHA256SUMS-Linux-x64.ASC
 
 # Create deb package
-RUN cp /$TICKER/contrib/debian .
+RUN cp -r /$TICKER/contrib/debian .
 RUN dpkg-buildpackage -us -uc -b
 
 # To compile and build the container execute docker in this way:
@@ -86,8 +86,8 @@ RUN dpkg-buildpackage -us -uc -b
 # Set the entry point if you want to interact within the container
 ENTRYPOINT ["bash"]
 
-docker build \
-  --build-arg CPU_CORES=4 \
-  --build-arg TICKER=DSW \
-  --build-arg TARGET=develop \
-  -f Dockerfile.dsw-linux-x64-wallet .
+#docker build \
+#  --build-arg CPU_CORES=4 \
+#  --build-arg TICKER=DSW \
+#  --build-arg TARGET=deb-package \
+#  -f Dockerfile.dsw-linux-x64-wallet .
