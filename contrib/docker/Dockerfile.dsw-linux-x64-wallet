@@ -77,7 +77,7 @@ RUN cp $(echo $BASE_NAME)-qt ./package
 RUN cp /$TICKER/src/qt/res/icons/bitcoin.png ./package
 WORKDIR /$TICKER/deploy/linux-x64/package/
 RUN chmod +x deb_build.sh
-RUN ./deb_build.sh --ticker $TICKER --package $PACKAGE --version $(cat /wallet_version) --notes "new release"
+RUN ./deb_build.sh --timestamp $(cat /git_timestamp_touch) --ticker $TICKER --package $PACKAGE --version $(cat /wallet_version) --notes "new release"
 
 WORKDIR /$TICKER/deploy/linux-x64
 RUN mv ${PACKAGE}_$(cat /wallet_version)_amd64.deb ${TICKER}_$(cat /wallet_version)_amd64.deb
@@ -98,8 +98,4 @@ RUN sha256sum ${TICKER}_$(cat /wallet_version)_amd64.deb >> SHA256SUMS-Linux-x64
 # Set the entry point if you want to interact within the container
 ENTRYPOINT ["bash"]
 
-#docker build \
-#  --build-arg CPU_CORES=4 \
-#  --build-arg TICKER=DSW \
-#  --build-arg TARGET=deb-package \
-#  -f Dockerfile.dsw-linux-x64-wallet .
+#docker build --build-arg CPU_CORES=4 --build-arg TICKER=DSW --build-arg TARGET=deb-package -f Dockerfile.dsw-linux-x64-wallet .

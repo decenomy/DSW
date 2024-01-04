@@ -347,5 +347,6 @@ __decenomy__d-new-gui.*
 null.d
 
 contrib/debian-old/*
-contrib/debian/decenomy.*
-contrib/debian/files
+contrib/debian/debian/*
+contrib/debian/bitcoin.png
+contrib/wallet_*

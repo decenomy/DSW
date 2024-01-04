@@ -11,8 +11,8 @@
 ## Build
 
 ### Build (no args)
->> ./build.sh
+>> ./deb_build.sh
 ### Build (request help)
->> ./build.sh --help
+>> ./deb_build.sh --help
 ### Build (example)
->> ./build.sh --ticker 777 --package wallet --version 3.0.0.1 --notes "amazing app"
+>> ./deb_build.sh --timestamp "2024-01-04 01:07:23" --ticker 777 --package wallet --version 3.0.0.1 --notes "amazing app"

@@ -8,8 +8,7 @@ NOTES="New release."
 
 name="zimbora"
 email="lucas.ua.eet@gmail.com"
-LC_TIME=en_US.UTF-8
-formatted_date=$(date -u "+%a, %d %b %Y %H:%M:%S +0000")
+input_date="2024-01-04 01:07:23"
 
 # Function to check if a version is in the format x.y.z.u
 is_valid_version() {
@@ -35,6 +34,15 @@ while [[ "$#" -gt 0 ]]; do
       ;;
     --ticker)
       TICKER="$2"
+      shift 2
+      ;;
+    --timestamp)
+      input_date="$2"
+      if echo "$input_date" | grep -E '^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$' >/dev/null; then
+        echo "The date is in the correct format."
+      else
+        echo "Invalid date format."
+      fi
       shift 2
       ;;
     --package)
@@ -66,9 +74,12 @@ while [[ "$#" -gt 0 ]]; do
   esac
 done
 
+formatted_date=$(echo "$input_date" | env LC_TIME=en_US.UTF-8 date "+%a, %d %b %Y %H:%M:%S +0000" --date="$(cat)")
+#formatted_date=$(date -u "+%a, %d %b %Y %H:%M:%S +0000")
 echo "ticker: $TICKER"
 echo "package: $PACKAGE"
 echo "version: $VERSION"
+echo "date: $formatted_date"
 
 #make dirs
 rm -r debian
@@ -123,9 +134,6 @@ binary:
 	dh_gencontrol
 	dh_builddeb
 " >> debian/rules
-
-# add changelog
-
 
 #build package
 dpkg-buildpackage -us -uc -b
