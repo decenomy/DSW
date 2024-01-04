@@ -71,6 +71,7 @@ RUN sha256sum $TICKER-$(cat /wallet_version)-Linux-x64.zip >> SHA256SUMS-Linux-x
 RUN mkdir package
 RUN cp -r /$TICKER/contrib/debian ./package
 RUN cp $(echo $BASE_NAME)-qt ./package
+RUN cp -r /$TICKER/src/qt/res/icons/bitcoin.png ./package
 WORKDIR /$TICKER/deploy/linux-x64/package
 RUN dpkg-buildpackage -us -uc -b
 
