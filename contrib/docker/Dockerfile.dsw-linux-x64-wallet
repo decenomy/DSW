@@ -11,6 +11,9 @@ ARG NAME=__Decenomy__
 ARG BASE_NAME=__decenomy__
 ARG TARGET=master
 
+# ARGS for deb package build
+ARG PACKAGE=wallet
+
 # Clone the repository
 RUN if [ ! -d $TICKER ]; then \
   git clone https://github.com/decenomy/$TICKER; \
@@ -69,14 +72,16 @@ RUN sha256sum $TICKER-$(cat /wallet_version)-Linux-x64.zip >> SHA256SUMS-Linux-x
 
 # Create deb package
 RUN mkdir package
-RUN cp -r /$TICKER/contrib/debian ./package
+RUN cp /$TICKER/contrib/debian/deb_build.sh ./package/
 RUN cp $(echo $BASE_NAME)-qt ./package
-RUN cp -r /$TICKER/src/qt/res/icons/bitcoin.png ./package
-WORKDIR /$TICKER/deploy/linux-x64/package
-RUN dpkg-buildpackage -us -uc -b
+RUN cp /$TICKER/src/qt/res/icons/bitcoin.png ./package
+WORKDIR /$TICKER/deploy/linux-x64/package/
+RUN chmod +x deb_build.sh
+RUN ./deb_build.sh --ticker $TICKER --package $PACKAGE --version $(cat /wallet_version) --notes "new release"
 
 WORKDIR /$TICKER/deploy/linux-x64
-RUN sha256sum $(echo $TICKER | tr '[:upper:]' '[:lower:]')_$(cat /wallet_version)_amd64.deb >> SHA256SUMS-Linux-x64.ASC
+RUN mv ${PACKAGE}_$(cat /wallet_version)_amd64.deb ${TICKER}_$(cat /wallet_version)_amd64.deb
+RUN sha256sum ${TICKER}_$(cat /wallet_version)_amd64.deb >> SHA256SUMS-Linux-x64.ASC
 
 # To compile and build the container execute docker in this way:
 # docker build \
