@@ -29,6 +29,7 @@ while [[ "$#" -gt 0 ]]; do
         --package: package name
         --version: set version
         --notes: set changelog notes
+        --timestamp: set build timestamp (last commit)
       "
       exit 1
       ;;
@@ -42,6 +43,7 @@ while [[ "$#" -gt 0 ]]; do
         echo "The date is in the correct format."
       else
         echo "Invalid date format."
+        exit 1
       fi
       shift 2
       ;;
