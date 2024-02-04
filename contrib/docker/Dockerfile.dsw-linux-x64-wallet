@@ -6,26 +6,32 @@ FROM decenomy/dsw-linux-x64-builder@sha256:c1d14e04ce8f0ab32ed23d4c961faf0b7f3c3
 ARG CPU_CORES=1
 
 # ARG for specifying the coin parameters
-ARG TICKER=__DSW__
-ARG NAME=__Decenomy__
-ARG BASE_NAME=__decenomy__
+ARG TICKER=PNY
+ARG NAME=Peony
+ARG BASE_NAME=peony
 ARG TARGET=master
+ARG SOURCE=local
 
-# Clone the repository
-RUN if [ ! -d $TICKER ]; then \
-  git clone https://github.com/decenomy/$TICKER; \
-fi
+# Check if the /$TICKER directory exists and delete it if present
+RUN if [ -d "/$TICKER" ]; then \
+        rm -rf "/$TICKER"; \
+    fi
+
+COPY . /$TICKER
+
 
 # Switch to the repository directory
 WORKDIR /$TICKER
 
 # Check out a specific version if needed
-RUN git checkout -B $TARGET
-RUN git pull origin $TARGET
+#RUN git checkout -B $TARGET
+#RUN git pull origin $TARGET
 
 # Run Git commands to extract the timestamps
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y-%m-%d %H:%M:%S" > /git_timestamp
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y%m%d%H%M.%S" > /git_timestamp_touch
+
+ENV LD_LIBRARY_PATH=/DSW/depends/x86_64-pc-linux-gnu
 
 # Run the configuration script
 RUN PATH=${WRAP_DIR}:${PATH} ./autogen.sh && \

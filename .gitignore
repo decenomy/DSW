@@ -8,13 +8,13 @@ reset-files.bash
 configure~
 
 # DSW
-src/__decenomy__
-src/__decenomy__d
-src/__decenomy__-cli
-src/__decenomy__-tx
-src/bench/bench___decenomy__
-src/test/test___decenomy__
-src/qt/test/test___decenomy__-qt
+src/peony
+src/peonyd
+src/peony-cli
+src/peony-tx
+src/bench/bench_peony
+src/test/test_peony
+src/qt/test/test_peony-qt
 
 # Peony
 src/bench/bench_peony
@@ -265,7 +265,7 @@ src/qt/test/moc*.cpp
 *.o-*
 *.patch
 .pivx
-.__decenomy__
+.peony
 *.a
 *.pb.cc
 *.pb.h
@@ -285,7 +285,7 @@ src/qt/test/moc*.cpp
 *.qm
 Makefile
 pivx-qt
-__decenomy__-qt
+peony-qt
 Jackpot-Qt.app
 background.tiff*
 
@@ -297,7 +297,7 @@ target/
 # Unit-tests
 Makefile.test
 pivx-qt_test
-__decenomy__-qt_test
+peony-qt_test
 src/test/buildenv.py
 
 # Resources cpp
@@ -314,7 +314,7 @@ build
 *.gcno
 /*.info
 test_pivx.coverage/
-test___decenomy__.coverage/
+test_peony.coverage/
 total.coverage/
 coverage_percent.txt
 
@@ -346,9 +346,9 @@ moc_*
 ui_*
 build*
 pivxd.*
-__decenomy__d.*
+peonyd.*
 pivxd-new-gui.*
-__decenomy__d-new-gui.*
+peonyd-new-gui.*
 
 # for Visual Studio Code
 
