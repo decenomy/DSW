@@ -1087,6 +1087,7 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState &state, const C
 bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState &state, const CTransaction &tx, bool fLimitFree,
                         bool* pfMissingInputs, bool fOverrideMempoolLimit, bool fRejectAbsurdFee, bool fIgnoreFees)
 {
+    LOCK(cs_main);
     std::vector<COutPoint> coins_to_uncache;
     bool res = AcceptToMemoryPoolWorker(pool, state, tx, fLimitFree, pfMissingInputs, fOverrideMempoolLimit, fRejectAbsurdFee, fIgnoreFees, coins_to_uncache);
     if (!res) {
@@ -3378,7 +3379,7 @@ bool AcceptBlockHeader(const CBlock& block, CValidationState& state, CBlockIndex
         pindex = miSelf->second;
         if (ppindex)
             *ppindex = pindex;
-        if (pindex->nStatus & BLOCK_FAILED_MASK)
+        if (pindex->nStatus & BLOCK_FAILED_MASK && mapRejectedBlocks.find(hash) == mapRejectedBlocks.end())
             return state.Invalid(error("%s : block is marked invalid", __func__), 0, "duplicate");
         return true;
     }
