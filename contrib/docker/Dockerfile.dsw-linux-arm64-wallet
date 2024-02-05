@@ -5,9 +5,9 @@ FROM decenomy/dsw-linux-arm64-builder@sha256:e687b911b160c600716dbd1d481f82e3d22
 ARG CPU_CORES=1
 
 # ARG for specifying the coin parameters
-ARG TICKER=__DSW__
-ARG NAME=__Decenomy__
-ARG BASE_NAME=__decenomy__
+ARG TICKER=DASHD
+ARG NAME=DashDiamond
+ARG BASE_NAME=dashdiamond
 ARG TARGET=master
 
 # Clone the repository
