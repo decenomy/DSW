@@ -10,6 +10,8 @@
 
 #include <string>
 
+#include "bootstrap/bootstrap.h"
+
 const bool DEFAULT_PROXYRANDOMIZE = true;
 const bool DEFAULT_REST_ENABLE = false;
 const bool DEFAULT_DISABLE_SAFEMODE = false;
