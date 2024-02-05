@@ -5,9 +5,9 @@ FROM decenomy/dsw-windows-x64-builder@sha256:6ff1eeff59b4bd279cb056163a573294241
 ARG CPU_CORES=1
 
 # ARG for specifying the coin parameters
-ARG TICKER=__DSW__
-ARG NAME=__Decenomy__
-ARG BASE_NAME=__decenomy__
+ARG TICKER=AZR
+ARG NAME=Azzure
+ARG BASE_NAME=azzure
 ARG TARGET=master
 
 # Clone the repository
