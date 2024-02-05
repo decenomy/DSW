@@ -5,9 +5,9 @@ FROM decenomy/dsw-macos-x64-builder@sha256:bdef2e446c09c7f601cc490841711e8f4ca47
 ARG CPU_CORES=1
 
 # ARG for specifying the coin parameters
-ARG TICKER=__DSW__
-ARG NAME=__Decenomy__
-ARG BASE_NAME=__decenomy__
+ARG TICKER=SUV
+ARG NAME=Suvereno
+ARG BASE_NAME=suvereno
 ARG TARGET=master
 
 # Clone the repository

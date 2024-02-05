@@ -14,7 +14,7 @@
 #include "minizip/unzip.h"
 
 #ifndef TICKER
-#define TICKER "__DSW__"
+#define TICKER "SUV"
 #endif
 
 class BOOTSTRAP{
