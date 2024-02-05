@@ -110,11 +110,11 @@ bool AppInit(int argc, char* argv[])
         // Command-line RPC
         bool fCommandLine = false;
         for (int i = 1; i < argc; i++)
-            if (!IsSwitchChar(argv[i][0]) && !boost::algorithm::istarts_with(argv[i], "__decenomy__:"))
+            if (!IsSwitchChar(argv[i][0]) && !boost::algorithm::istarts_with(argv[i], "eskacoin:"))
                 fCommandLine = true;
 
         if (fCommandLine) {
-            fprintf(stderr, "Error: There is no RPC client functionality in eskacoind anymore. Use the __decenomy__-cli utility instead.\n");
+            fprintf(stderr, "Error: There is no RPC client functionality in eskacoind anymore. Use the eskacoin-cli utility instead.\n");
             exit(1);
         }
 #ifndef WIN32
