@@ -55,6 +55,7 @@ const QString UPGRADEWALLET("-upgradewallet");
 const QString REINDEX("-reindex");
 const QString RESYNC("-resync");
 const QString REWIND("-rewindblockindex");
+const QString BOOTSTRAP("-bootstrap");
 
 const struct {
     const char* url;
@@ -283,6 +284,7 @@ RPCConsole::RPCConsole(QWidget* parent) : QDialog(parent, Qt::WindowSystemMenuHi
     connect(ui->btn_upgradewallet, &QPushButton::clicked, this, &RPCConsole::walletUpgrade);
     connect(ui->btn_reindex, &QPushButton::clicked, this, &RPCConsole::walletReindex);
     connect(ui->btn_resync, &QPushButton::clicked, this, &RPCConsole::walletResync);
+    connect(ui->btn_bootstrap, &QPushButton::clicked, this, &RPCConsole::walletBootstrap);
 
     // set library version labels
 #ifdef ENABLE_WALLET
@@ -567,6 +569,27 @@ void RPCConsole::walletResync()
     buildParameterlist(RESYNC);
 }
 
+/** Restart wallet with "-bootstrap" */
+void RPCConsole::walletBootstrap()
+{
+    QString bootstrapWarning = tr("This will delete your local blockchain folders and the wallet will load blockchain from source.<br /><br />");
+        bootstrapWarning +=   tr("This needs a few minutes to download all data.<br /><br />");
+        bootstrapWarning +=   tr("Your transactions and funds will be visible again after the download has completed.<br /><br />");
+        bootstrapWarning +=   tr("Do you want to continue?.<br />");
+    QMessageBox::StandardButton retval = QMessageBox::question(this, tr("Confirm bootstrap Blockchain"),
+        bootstrapWarning,
+        QMessageBox::Yes | QMessageBox::Cancel,
+        QMessageBox::Cancel);
+
+    if (retval != QMessageBox::Yes) {
+        // Resync canceled
+        return;
+    }
+
+    // Restart and bootstrap
+    buildParameterlist(BOOTSTRAP);
+}
+
 /** Build command-line parameter list for restart */
 void RPCConsole::buildParameterlist(QString arg)
 {
@@ -583,6 +606,7 @@ void RPCConsole::buildParameterlist(QString arg)
     args.removeAll(REINDEX);
     args.removeAll(RESYNC);
     args.removeAll(REWIND);
+    args.removeAll(BOOTSTRAP);
 
     // Append repair parameter to command line.
     args.append(arg);
@@ -1055,4 +1079,3 @@ void RPCConsole::showOrHideBanTableIfRequired()
     ui->banlistWidget->setVisible(visible);
     ui->banHeading->setVisible(visible);
 }
-

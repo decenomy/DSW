@@ -21,9 +21,6 @@
 /** Object for who's going to get paid on which blocks */
 CMasternodePayments masternodePayments;
 
-uint64_t reconsiderWindowMin    = 0;
-uint64_t reconsiderWindowTime   = 0;
-
 RecursiveMutex cs_vecPayments;
 RecursiveMutex cs_mapMasternodeBlocks;
 RecursiveMutex cs_mapMasternodePayeeVotes;
@@ -253,43 +250,21 @@ bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
     const bool isPoSActive = Params().GetConsensus().NetworkUpgradeActive(nBlockHeight, Consensus::UPGRADE_POS);
     const CTransaction& txNew = (isPoSActive ? block.vtx[1] : block.vtx[0]);
 
-    auto t = GetTime();
-
-    if((t - reconsiderWindowTime) > HOUR_IN_SECONDS) {  // shift the reconsider window at each hour 
-        reconsiderWindowMin = GetRand() % 10;           // choose randomly from minute 0 to minute 9
-        reconsiderWindowTime = t;
-
-        for (auto it = mapRejectedBlocks.cbegin(); it != mapRejectedBlocks.cend();) { // clean up old entries
-            it = (GetAdjustedTime() - (*it).second) > DAY_IN_SECONDS ? mapRejectedBlocks.erase(it) : std::next(it);
-        }
-    }
-
     //check for masternode payee
     if (masternodePayments.IsTransactionValid(txNew, nBlockHeight))
         return true;
+
     LogPrint(BCLog::MASTERNODE,"Invalid mn payment detected %s\n", txNew.ToString().c_str());
 
     // fails if spork 8 is enabled and
     // spork 113 is disabled or current time is outside the reconsider window
     if (sporkManager.IsSporkActive(SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT)) {
-        if (!sporkManager.IsSporkActive(SPORK_113_RECONSIDER_WINDOW_ENFORCEMENT)) 
-        {
-            return false;
-        }
-
-        if ((t / MINUTE_IN_SECONDS) % 10 != reconsiderWindowMin) 
-        {
-            return false;
-        }
-
-        LogPrint(BCLog::MASTERNODE,"Masternode payment enforcement reconsidered, accepting block\n");
+        return false;
+    } else {
+        LogPrint(BCLog::MASTERNODE,"Masternode payment enforcement is disabled, accepting block\n");
         return true;
     }
-
-    LogPrint(BCLog::MASTERNODE,"Masternode payment enforcement is disabled, accepting block\n");
-    return true;
 }
-
 
 void FillBlockPayee(CMutableTransaction& txNew, const CBlockIndex* pindexPrev, bool fProofOfStake)
 {
