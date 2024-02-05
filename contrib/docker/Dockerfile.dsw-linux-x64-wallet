@@ -6,9 +6,9 @@ FROM decenomy/dsw-linux-x64-builder@sha256:c1d14e04ce8f0ab32ed23d4c961faf0b7f3c3
 ARG CPU_CORES=1
 
 # ARG for specifying the coin parameters
-ARG TICKER=__DSW__
-ARG NAME=__Decenomy__
-ARG BASE_NAME=__decenomy__
+ARG TICKER=BECN
+ARG NAME=Beacon
+ARG BASE_NAME=beacon
 ARG TARGET=master
 
 # Clone the repository
