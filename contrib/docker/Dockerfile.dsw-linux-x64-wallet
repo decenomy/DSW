@@ -10,7 +10,11 @@ ARG TICKER=PNY
 ARG NAME=Peony
 ARG BASE_NAME=peony
 ARG TARGET=master
-ARG SOURCE=local
+
+# Clone the repository
+RUN if [ ! -d $TICKER ]; then \
+  git clone https://github.com/decenomy/$TICKER; \
+fi
 
 # Switch to the repository directory
 WORKDIR /$TICKER
