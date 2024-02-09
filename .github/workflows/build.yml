@@ -19,21 +19,21 @@ jobs:
           # Build the Docker image from the Dockerfile in the repository
           docker build \
             --build-arg CPU_CORES=$(nproc) \
-            --build-arg TICKER=__DSW__ \
-            --build-arg NAME=__Decenomy__ \
-            --build-arg BASE_NAME=__decenomy__ \
+            --build-arg TICKER=MONK \
+            --build-arg NAME=Monk \
+            --build-arg BASE_NAME=monk \
             --build-arg TARGET=master \
-            -t __decenomy__-linux-x64-build \
+            -t monk-linux-x64-build \
             -f contrib/docker/Dockerfile.dsw-linux-x64-wallet .
 
           # Start the container (if it's not already running)
-          docker run -d --name __decenomy__-linux-x64-build-container __decenomy__-linux-x64-build
+          docker run -d --name monk-linux-x64-build-container monk-linux-x64-build
 
           # Create a temporary directory to hold the extracted files
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp __decenomy__-linux-x64-build-container:/__DSW__/deploy/linux-x64 release_files/
+          docker cp monk-linux-x64-build-container:/MONK/deploy/linux-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v3
@@ -53,21 +53,21 @@ jobs:
           # Build the Docker image from the Dockerfile in the repository
           docker build \
             --build-arg CPU_CORES=$(nproc) \
-            --build-arg TICKER=__DSW__ \
-            --build-arg NAME=__Decenomy__ \
-            --build-arg BASE_NAME=__decenomy__ \
+            --build-arg TICKER=MONK \
+            --build-arg NAME=Monk \
+            --build-arg BASE_NAME=monk \
             --build-arg TARGET=master \
-            -t __decenomy__-linux-arm64-build \
+            -t monk-linux-arm64-build \
             -f contrib/docker/Dockerfile.dsw-linux-arm64-wallet .
 
           # Start the container (if it's not already running)
-          docker run -d --name __decenomy__-linux-arm64-build-container __decenomy__-linux-arm64-build
+          docker run -d --name monk-linux-arm64-build-container monk-linux-arm64-build
 
           # Create a temporary directory to hold the extracted files
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp __decenomy__-linux-arm64-build-container:/__DSW__/deploy/linux-arm64 release_files/
+          docker cp monk-linux-arm64-build-container:/MONK/deploy/linux-arm64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v3
@@ -87,21 +87,21 @@ jobs:
           # Build the Docker image from the Dockerfile in the repository
           docker build \
             --build-arg CPU_CORES=$(nproc) \
-            --build-arg TICKER=__DSW__ \
-            --build-arg NAME=__Decenomy__ \
-            --build-arg BASE_NAME=__decenomy__ \
+            --build-arg TICKER=MONK \
+            --build-arg NAME=Monk \
+            --build-arg BASE_NAME=monk \
             --build-arg TARGET=master \
-            -t __decenomy__-windows-x64-build \
+            -t monk-windows-x64-build \
             -f contrib/docker/Dockerfile.dsw-windows-x64-wallet .
 
           # Start the container (if it's not already running)
-          docker run -d --name __decenomy__-windows-x64-build-container __decenomy__-windows-x64-build
+          docker run -d --name monk-windows-x64-build-container monk-windows-x64-build
 
           # Create a temporary directory to hold the extracted files
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp __decenomy__-windows-x64-build-container:/__DSW__/deploy/windows-x64 release_files/
+          docker cp monk-windows-x64-build-container:/MONK/deploy/windows-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v3
@@ -121,21 +121,21 @@ jobs:
           # Build the Docker image from the Dockerfile in the repository
           docker build \
             --build-arg CPU_CORES=$(nproc) \
-            --build-arg TICKER=__DSW__ \
-            --build-arg NAME=__Decenomy__ \
-            --build-arg BASE_NAME=__decenomy__ \
+            --build-arg TICKER=MONK \
+            --build-arg NAME=Monk \
+            --build-arg BASE_NAME=monk \
             --build-arg TARGET=master \
-            -t __decenomy__-macos-x64-build \
+            -t monk-macos-x64-build \
             -f contrib/docker/Dockerfile.dsw-macos-x64-wallet .
 
           # Start the container (if it's not already running)
-          docker run -d --name __decenomy__-macos-x64-build-container __decenomy__-macos-x64-build
+          docker run -d --name monk-macos-x64-build-container monk-macos-x64-build
 
           # Create a temporary directory to hold the extracted files
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp __decenomy__-macos-x64-build-container:/__DSW__/deploy/macos-x64 release_files/
+          docker cp monk-macos-x64-build-container:/MONK/deploy/macos-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v3
