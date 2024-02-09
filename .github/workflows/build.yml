@@ -19,21 +19,21 @@ jobs:
           # Build the Docker image from the Dockerfile in the repository
           docker build \
             --build-arg CPU_CORES=$(nproc) \
-            --build-arg TICKER=__DSW__ \
-            --build-arg NAME=__Decenomy__ \
-            --build-arg BASE_NAME=__decenomy__ \
+            --build-arg TICKER=DASHD \
+            --build-arg NAME=DashDiamond \
+            --build-arg BASE_NAME=dashdiamond \
             --build-arg TARGET=master \
-            -t __decenomy__-linux-x64-build \
+            -t dashdiamond-linux-x64-build \
             -f contrib/docker/Dockerfile.dsw-linux-x64-wallet .
 
           # Start the container (if it's not already running)
-          docker run -d --name __decenomy__-linux-x64-build-container __decenomy__-linux-x64-build
+          docker run -d --name dashdiamond-linux-x64-build-container dashdiamond-linux-x64-build
 
           # Create a temporary directory to hold the extracted files
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp __decenomy__-linux-x64-build-container:/__DSW__/deploy/linux-x64 release_files/
+          docker cp dashdiamond-linux-x64-build-container:/DASHD/deploy/linux-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v3
@@ -53,21 +53,21 @@ jobs:
           # Build the Docker image from the Dockerfile in the repository
           docker build \
             --build-arg CPU_CORES=$(nproc) \
-            --build-arg TICKER=__DSW__ \
-            --build-arg NAME=__Decenomy__ \
-            --build-arg BASE_NAME=__decenomy__ \
+            --build-arg TICKER=DASHD \
+            --build-arg NAME=DashDiamond \
+            --build-arg BASE_NAME=dashdiamond \
             --build-arg TARGET=master \
-            -t __decenomy__-linux-arm64-build \
+            -t dashdiamond-linux-arm64-build \
             -f contrib/docker/Dockerfile.dsw-linux-arm64-wallet .
 
           # Start the container (if it's not already running)
-          docker run -d --name __decenomy__-linux-arm64-build-container __decenomy__-linux-arm64-build
+          docker run -d --name dashdiamond-linux-arm64-build-container dashdiamond-linux-arm64-build
 
           # Create a temporary directory to hold the extracted files
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp __decenomy__-linux-arm64-build-container:/__DSW__/deploy/linux-arm64 release_files/
+          docker cp dashdiamond-linux-arm64-build-container:/DASHD/deploy/linux-arm64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v3
@@ -87,21 +87,21 @@ jobs:
           # Build the Docker image from the Dockerfile in the repository
           docker build \
             --build-arg CPU_CORES=$(nproc) \
-            --build-arg TICKER=__DSW__ \
-            --build-arg NAME=__Decenomy__ \
-            --build-arg BASE_NAME=__decenomy__ \
+            --build-arg TICKER=DASHD \
+            --build-arg NAME=DashDiamond \
+            --build-arg BASE_NAME=dashdiamond \
             --build-arg TARGET=master \
-            -t __decenomy__-windows-x64-build \
+            -t dashdiamond-windows-x64-build \
             -f contrib/docker/Dockerfile.dsw-windows-x64-wallet .
 
           # Start the container (if it's not already running)
-          docker run -d --name __decenomy__-windows-x64-build-container __decenomy__-windows-x64-build
+          docker run -d --name dashdiamond-windows-x64-build-container dashdiamond-windows-x64-build
 
           # Create a temporary directory to hold the extracted files
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp __decenomy__-windows-x64-build-container:/__DSW__/deploy/windows-x64 release_files/
+          docker cp dashdiamond-windows-x64-build-container:/DASHD/deploy/windows-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v3
@@ -121,21 +121,21 @@ jobs:
           # Build the Docker image from the Dockerfile in the repository
           docker build \
             --build-arg CPU_CORES=$(nproc) \
-            --build-arg TICKER=__DSW__ \
-            --build-arg NAME=__Decenomy__ \
-            --build-arg BASE_NAME=__decenomy__ \
+            --build-arg TICKER=DASHD \
+            --build-arg NAME=DashDiamond \
+            --build-arg BASE_NAME=dashdiamond \
             --build-arg TARGET=master \
-            -t __decenomy__-macos-x64-build \
+            -t dashdiamond-macos-x64-build \
             -f contrib/docker/Dockerfile.dsw-macos-x64-wallet .
 
           # Start the container (if it's not already running)
-          docker run -d --name __decenomy__-macos-x64-build-container __decenomy__-macos-x64-build
+          docker run -d --name dashdiamond-macos-x64-build-container dashdiamond-macos-x64-build
 
           # Create a temporary directory to hold the extracted files
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp __decenomy__-macos-x64-build-container:/__DSW__/deploy/macos-x64 release_files/
+          docker cp dashdiamond-macos-x64-build-container:/DASHD/deploy/macos-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v3
