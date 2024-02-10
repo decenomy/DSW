@@ -1,5 +1,6 @@
 # FROM decenomy/dsw-linux-x64-builder:latest
-FROM decenomy/dsw-linux-x64-builder@sha256:5ea66af7cd196a294d3222c5013a3f2a1ac343238c603234f06f4d6b9725ff13
+FROM decenomy/dsw-linux-x64-builder@sha256:c1d14e04ce8f0ab32ed23d4c961faf0b7f3c3059d17fad895bccc6ce571d82e4
+
 
 # ARG for specifying the number of cores
 ARG CPU_CORES=1
@@ -11,13 +12,16 @@ ARG BASE_NAME=sapphire
 ARG TARGET=master
 
 # Clone the repository
-RUN git clone https://github.com/decenomy/$TICKER
+RUN if [ ! -d $TICKER ]; then \
+  git clone https://github.com/decenomy/$TICKER; \
+fi
 
 # Switch to the repository directory
 WORKDIR /$TICKER
 
 # Check out a specific version if needed
-RUN git checkout $TARGET
+RUN git checkout -B $TARGET
+RUN git pull origin $TARGET
 
 # Run Git commands to extract the timestamps
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y-%m-%d %H:%M:%S" > /git_timestamp
@@ -43,9 +47,9 @@ RUN PATH=${WRAP_DIR}:${PATH} make -j$CPU_CORES HOST=x86_64-pc-linux-gnu
 
 # Extract the wallet version
 RUN grep "define(_CLIENT_VERSION_MAJOR" configure.ac | awk -F"[ ,)]" '{print $3}' | tr -d '\n' > /wallet_version
-RUN echo -n "." >> /wallet_version 
+RUN echo -n "." >> /wallet_version
 RUN grep "define(_CLIENT_VERSION_MINOR" configure.ac | awk -F"[ ,)]" '{print $3}' | tr -d '\n' >> /wallet_version
-RUN echo -n "." >> /wallet_version 
+RUN echo -n "." >> /wallet_version
 RUN grep "define(_CLIENT_VERSION_REVISION" configure.ac | awk -F"[ ,)]" '{print $3}' | tr -d '\n' >> /wallet_version
 RUN echo -n "." >> /wallet_version
 RUN grep "define(_CLIENT_VERSION_BUILD" configure.ac | awk -F"[ ,)]" '{print $3}' | tr -d '\n' >> /wallet_version
@@ -63,7 +67,7 @@ RUN sha256sum $(echo $BASE_NAME)-tx >> SHA256SUMS-Linux-x64.ASC
 RUN sha256sum $(echo $BASE_NAME)-qt >> SHA256SUMS-Linux-x64.ASC
 RUN sha256sum $TICKER-$(cat /wallet_version)-Linux-x64.zip >> SHA256SUMS-Linux-x64.ASC
 
-# To compile and build the container execute docker in this way: 
+# To compile and build the container execute docker in this way:
 # docker build \
 #   --build-arg CPU_CORES=<num_cores> \
 #   --build-arg TICKER=<ticker> \

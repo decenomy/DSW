@@ -1,5 +1,5 @@
 #FROM decenomy/dsw-macos-x64-builder:latest
-FROM decenomy/dsw-macos-x64-builder@sha256:f939a1629656448566f303eff6ad0dfd79ae8bb136e937888063e8b3c90e0bc5
+FROM decenomy/dsw-macos-x64-builder@sha256:bdef2e446c09c7f601cc490841711e8f4ca47e4f81ba4306a8d2ace0b58012db
 
 # ARG for specifying the number of cores
 ARG CPU_CORES=1
@@ -11,13 +11,16 @@ ARG BASE_NAME=sapphire
 ARG TARGET=master
 
 # Clone the repository
-RUN git clone https://github.com/decenomy/$TICKER
+RUN if [ ! -d $TICKER ]; then \
+  git clone https://github.com/decenomy/$TICKER; \
+fi
 
 # Switch to the repository directory
 WORKDIR /$TICKER
 
 # Check out a specific version if needed
-RUN git checkout $TARGET
+RUN git checkout -B $TARGET
+RUN git pull origin $TARGET
 
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y-%m-%d %H:%M:%S" > /git_timestamp
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y%m%d%H%M.%S" > /git_timestamp_touch
@@ -45,9 +48,9 @@ RUN PATH=${WRAP_DIR}:${PATH} make -j$CPU_CORES HOST=x86_64-apple-darwin14
 
 # Extract the wallet version
 RUN grep "define(_CLIENT_VERSION_MAJOR" configure.ac | awk -F"[ ,)]" '{print $3}' | tr -d '\n' > /wallet_version
-RUN echo -n "." >> /wallet_version 
+RUN echo -n "." >> /wallet_version
 RUN grep "define(_CLIENT_VERSION_MINOR" configure.ac | awk -F"[ ,)]" '{print $3}' | tr -d '\n' >> /wallet_version
-RUN echo -n "." >> /wallet_version 
+RUN echo -n "." >> /wallet_version
 RUN grep "define(_CLIENT_VERSION_REVISION" configure.ac | awk -F"[ ,)]" '{print $3}' | tr -d '\n' >> /wallet_version
 RUN echo -n "." >> /wallet_version
 RUN grep "define(_CLIENT_VERSION_BUILD" configure.ac | awk -F"[ ,)]" '{print $3}' | tr -d '\n' >> /wallet_version
@@ -69,7 +72,7 @@ RUN sha256sum $(echo $BASE_NAME)-qt >> SHA256SUMS-MacOS-x64.ASC
 RUN sha256sum $(echo $NAME)-Core.dmg >> SHA256SUMS-MacOS-x64.ASC
 RUN sha256sum $TICKER-$(cat /wallet_version)-MacOS-x64.zip >> SHA256SUMS-MacOS-x64.ASC
 
-# To compile and build the container execute docker in this way: 
+# To compile and build the container execute docker in this way:
 # docker build \
 #   --build-arg CPU_CORES=<num_cores> \
 #   --build-arg TICKER=<ticker> \

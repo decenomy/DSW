@@ -4,15 +4,23 @@ FROM ubuntu@sha256:dca176c9663a7ba4c1f0e710986f5a25e672842963d95b960191e2d9f7185
 
 # Set arguments
 ARG CPU_CORES=1
+ARG TARGET=develop
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=UTC
 ENV QT_RCC_TEST=1
 ENV QT_RCC_SOURCE_DATE_OVERRIDE=1
+ENV ZERO_AR_DATE=1
+ENV WRAP_DIR=/wrapped
+ENV HOSTS="x86_64-linux-gnu aarch64-linux-gnu x86_64-apple-darwin14 x86_64-w64-mingw32"
+ENV FAKETIME_HOST_PROGS="ar ranlib nm windres strip objcopy gcc g++"
+ENV FAKETIME_PROGS="ar ranlib nm strip objcopy gcc g++ date zip wine wine64 dmg genisoimage tar"
+
 
 # Update and install necessary packages
-RUN apt-get update && \
+RUN dpkg --add-architecture i386 && \
+    apt-get update && \
     apt-get install -y \
         curl=7.58.0-2ubuntu3.24 \
         git=1:2.17.1-1ubuntu0.18 \
@@ -31,18 +39,32 @@ RUN apt-get update && \
         gcc-8-aarch64-linux-gnu=8.4.0-1ubuntu1~18.04cross2 \
         binutils-aarch64-linux-gnu=2.30-21ubuntu1~18.04.9 \
         g++-8-multilib=8.4.0-1ubuntu1~18.04 \
-        gcc-8-multilib=8.4.0-1ubuntu1~18.04 && \
+        gcc-8-multilib=8.4.0-1ubuntu1~18.04 \
+        python3-dev=3.6.7-1~18.04 \
+        python3-setuptools=39.0.1-2ubuntu0.1 \
+        fonts-tuffy=20120614-2 \
+        libcap-dev=1:2.25-1.2 \
+        libz-dev \
+        libbz2-dev=1.0.6-8.1ubuntu0.2 \
+        imagemagick=8:6.9.7.4+dfsg-16ubuntu6.15 \
+        cmake=3.10.2-1ubuntu2.18.04.2 \
+        librsvg2-bin=2.40.20-2ubuntu0.2 \
+        libtiff-tools=4.0.9-5ubuntu0.10 \
+        mingw-w64=5.0.3-1 \
+        xvfb=2:1.19.6-1ubuntu4.15 \
+        wine32=3.0-1ubuntu1 \
+        wine64=3.0-1ubuntu1 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+# Set POSIX for x86_64-w64-mingw32-g++ alternatives config
+RUN echo "1" | update-alternatives --config x86_64-w64-mingw32-g++
+
 # use a fixed date
 RUN echo -n "2000-01-01 12:00:00" > /git_timestamp
+RUN echo -n "200001011200.00" > /git_timestamp_touch
 
 # Compile the depends folder using a deterministic timestamp
-ENV WRAP_DIR=/wrapped
-ENV HOSTS="aarch64-linux-gnu"
-ENV FAKETIME_HOST_PROGS="ar ranlib nm strip objcopy gcc g++"
-ENV FAKETIME_PROGS="ar ranlib nm strip objcopy gcc g++ date zip"
 
 RUN mkdir -p ${WRAP_DIR}
 
@@ -63,12 +85,6 @@ RUN for host in $HOSTS; \
             echo -n "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1 " >> ${WRAP_DIR}/${host}-${prog}; \
             echo -n "FAKETIME=\"\$(cat /git_timestamp)\" " >> ${WRAP_DIR}/${host}-${prog}; \
             echo "\$(which -a ${host}-${prog} | grep -v ${WRAP_DIR}/${host}-${prog} | head -n 1) \"\$@\"" >> ${WRAP_DIR}/${host}-${prog}; \
-            if which ${host}-${prog}-8; then \
-                echo '#!/usr/bin/env bash' > ${WRAP_DIR}/${host}-${prog}; \
-                echo -n "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1 " >> ${WRAP_DIR}/${host}-${prog}; \
-                echo -n "FAKETIME=\"\$(cat /git_timestamp)\" " >> ${WRAP_DIR}/${host}-${prog}; \
-                echo "\$(which -a ${host}-${prog}-8 | grep -v ${WRAP_DIR}/${host}-${prog} | head -n 1) \"\$@\"" >> ${WRAP_DIR}/${host}-${prog}; \
-            fi; \
             chmod +x ${WRAP_DIR}/${host}-${prog}; \
         done \
     done
@@ -76,11 +92,45 @@ RUN for host in $HOSTS; \
 # Clone the repository
 RUN git clone https://github.com/decenomy/DSW.git
 
+WORKDIR /DSW
+
+# Check out a specific version if needed
+RUN git checkout -B $TARGET
+RUN git pull origin $TARGET
+
+# --- macos ---
+# Install the MacOS SDK
+RUN mkdir -p /DSW/depends/SDKs
+WORKDIR /DSW/depends/SDKs
+
+RUN curl -LO https://github.com/decenomy/depends/raw/main/SDKs/MacOSX10.11.sdk.tar.xz
+RUN touch -t $(cat /git_timestamp_touch) /DSW/depends/SDKs/MacOSX10.11.sdk.tar.xz
+RUN PATH=${WRAP_DIR}:${PATH} tar -C /DSW/depends/SDKs -xf /DSW/depends/SDKs/MacOSX10.11.sdk.tar.xz
+RUN rm /DSW/depends/SDKs/MacOSX10.11.sdk.tar.xz
+# --- --- ---
+
+# --- windows ---
+# Set the Inno Setup compiler
+WORKDIR /DSW/contrib/innosetup
+
+ENV DISPLAY=:99
+RUN Xvfb :99 -screen 0 1024x768x16 -nolisten tcp &
+
+RUN Xvfb :99 -screen 0 1024x768x16 -nolisten tcp & \
+    wine innosetup-6.1.2.exe /VERYSILENT /NORESTART /ALLUSERS /SUPPRESSMSGBOXES /SP /LOG=setup.log && \
+    wine idpsetup-1.5.1.exe /VERYSILENT /NORESTART /ALLUSERS /SUPPRESSMSGBOXES /SP /LOG=setup.log
+
+RUN rm /tmp/.X99-lock
+# --- --- ---
+
 # Switch to the repository directory
 WORKDIR /DSW/depends
 
 # Builds the dependencies in the depends folder
-RUN PATH=${WRAP_DIR}:${PATH} make -j$(echo $CPU_CORES) HOST=aarch64-linux-gnu
+RUN for host in $HOSTS; \
+    do \
+        PATH=${WRAP_DIR}:${PATH} make -j$(echo $CPU_CORES) HOST=${host}; \
+    done
 
 # Set the work dir to the root folder
 WORKDIR /
@@ -89,7 +139,7 @@ WORKDIR /
 ENTRYPOINT ["bash"]
 
 # Build it with:
-# docker build --build-arg CPU_CORES=<num_cores> -t decenomy/dsw-linux-arm64-builder -f Dockerfile.dsw-linux-arm64-builder .
+# docker build --build-arg CPU_CORES=<num_cores> --build-arg TARGET=<branch> -t decenomy/dsw-develop-builder -f Dockerfile.dsw-develop-builder .
 # Publish with:
 # docker login
-# docker push decenomy/dsw-linux-arm64-builder:latest
+# docker push decenomy/dsw-develop-builder:latest
