@@ -19,21 +19,21 @@ jobs:
           # Build the Docker image from the Dockerfile in the repository
           docker build \
             --build-arg CPU_CORES=$(nproc) \
-            --build-arg TICKER=__DSW__ \
-            --build-arg NAME=__Decenomy__ \
-            --build-arg BASE_NAME=__decenomy__ \
+            --build-arg TICKER=SUV \
+            --build-arg NAME=Suvereno \
+            --build-arg BASE_NAME=suvereno \
             --build-arg TARGET=master \
-            -t __decenomy__-linux-x64-build \
+            -t suvereno-linux-x64-build \
             -f contrib/docker/Dockerfile.dsw-linux-x64-wallet .
 
           # Start the container (if it's not already running)
-          docker run -d --name __decenomy__-linux-x64-build-container __decenomy__-linux-x64-build
+          docker run -d --name suvereno-linux-x64-build-container suvereno-linux-x64-build
 
           # Create a temporary directory to hold the extracted files
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp __decenomy__-linux-x64-build-container:/__DSW__/deploy/linux-x64 release_files/
+          docker cp suvereno-linux-x64-build-container:/SUV/deploy/linux-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v3
@@ -53,21 +53,21 @@ jobs:
           # Build the Docker image from the Dockerfile in the repository
           docker build \
             --build-arg CPU_CORES=$(nproc) \
-            --build-arg TICKER=__DSW__ \
-            --build-arg NAME=__Decenomy__ \
-            --build-arg BASE_NAME=__decenomy__ \
+            --build-arg TICKER=SUV \
+            --build-arg NAME=Suvereno \
+            --build-arg BASE_NAME=suvereno \
             --build-arg TARGET=master \
-            -t __decenomy__-linux-arm64-build \
+            -t suvereno-linux-arm64-build \
             -f contrib/docker/Dockerfile.dsw-linux-arm64-wallet .
 
           # Start the container (if it's not already running)
-          docker run -d --name __decenomy__-linux-arm64-build-container __decenomy__-linux-arm64-build
+          docker run -d --name suvereno-linux-arm64-build-container suvereno-linux-arm64-build
 
           # Create a temporary directory to hold the extracted files
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp __decenomy__-linux-arm64-build-container:/__DSW__/deploy/linux-arm64 release_files/
+          docker cp suvereno-linux-arm64-build-container:/SUV/deploy/linux-arm64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v3
@@ -87,21 +87,21 @@ jobs:
           # Build the Docker image from the Dockerfile in the repository
           docker build \
             --build-arg CPU_CORES=$(nproc) \
-            --build-arg TICKER=__DSW__ \
-            --build-arg NAME=__Decenomy__ \
-            --build-arg BASE_NAME=__decenomy__ \
+            --build-arg TICKER=SUV \
+            --build-arg NAME=Suvereno \
+            --build-arg BASE_NAME=suvereno \
             --build-arg TARGET=master \
-            -t __decenomy__-windows-x64-build \
+            -t suvereno-windows-x64-build \
             -f contrib/docker/Dockerfile.dsw-windows-x64-wallet .
 
           # Start the container (if it's not already running)
-          docker run -d --name __decenomy__-windows-x64-build-container __decenomy__-windows-x64-build
+          docker run -d --name suvereno-windows-x64-build-container suvereno-windows-x64-build
 
           # Create a temporary directory to hold the extracted files
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp __decenomy__-windows-x64-build-container:/__DSW__/deploy/windows-x64 release_files/
+          docker cp suvereno-windows-x64-build-container:/SUV/deploy/windows-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v3
@@ -121,21 +121,21 @@ jobs:
           # Build the Docker image from the Dockerfile in the repository
           docker build \
             --build-arg CPU_CORES=$(nproc) \
-            --build-arg TICKER=__DSW__ \
-            --build-arg NAME=__Decenomy__ \
-            --build-arg BASE_NAME=__decenomy__ \
+            --build-arg TICKER=SUV \
+            --build-arg NAME=Suvereno \
+            --build-arg BASE_NAME=suvereno \
             --build-arg TARGET=master \
-            -t __decenomy__-macos-x64-build \
+            -t suvereno-macos-x64-build \
             -f contrib/docker/Dockerfile.dsw-macos-x64-wallet .
 
           # Start the container (if it's not already running)
-          docker run -d --name __decenomy__-macos-x64-build-container __decenomy__-macos-x64-build
+          docker run -d --name suvereno-macos-x64-build-container suvereno-macos-x64-build
 
           # Create a temporary directory to hold the extracted files
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp __decenomy__-macos-x64-build-container:/__DSW__/deploy/macos-x64 release_files/
+          docker cp suvereno-macos-x64-build-container:/SUV/deploy/macos-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v3
