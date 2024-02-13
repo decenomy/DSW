@@ -21,9 +21,6 @@
 /** Object for who's going to get paid on which blocks */
 CMasternodePayments masternodePayments;
 
-uint64_t reconsiderWindowMin    = 0;
-uint64_t reconsiderWindowTime   = 0;
-
 RecursiveMutex cs_vecPayments;
 RecursiveMutex cs_mapMasternodeBlocks;
 RecursiveMutex cs_mapMasternodePayeeVotes;
@@ -313,17 +310,6 @@ bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
     // fails if spork 8 is enabled and
     // spork 113 is disabled or current time is outside the reconsider window
     if (sporkManager.IsSporkActive(SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT)) {
-        if (!sporkManager.IsSporkActive(SPORK_113_RECONSIDER_WINDOW_ENFORCEMENT)) 
-        {
-            return false;
-        }
-
-        if ((t / MINUTE_IN_SECONDS) % 10 != reconsiderWindowMin) 
-        {
-            return false;
-        }
-
-        LogPrint(BCLog::MASTERNODE,"Masternode payment enforcement reconsidered, accepting block\n");
         return false;
     } else {
         LogPrint(BCLog::MASTERNODE,"Masternode payment enforcement is disabled, accepting block\n");
