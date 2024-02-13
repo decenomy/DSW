@@ -329,6 +329,9 @@ bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
         LogPrint(BCLog::MASTERNODE,"Masternode payment enforcement is disabled, accepting block\n");
         return true;
     }
+
+    LogPrint(BCLog::MASTERNODE,"Masternode payment enforcement is disabled, accepting block\n");
+    return true;
 }
 
 void FillBlockPayee(CMutableTransaction& txNew, const CBlockIndex* pindexPrev, bool fProofOfStake)
