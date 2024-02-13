@@ -21,9 +21,6 @@
 /** Object for who's going to get paid on which blocks */
 CMasternodePayments masternodePayments;
 
-uint64_t reconsiderWindowMin    = 0;
-uint64_t reconsiderWindowTime   = 0;
-
 RecursiveMutex cs_vecPayments;
 RecursiveMutex cs_mapMasternodeBlocks;
 RecursiveMutex cs_mapMasternodePayeeVotes;
@@ -307,9 +304,6 @@ bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
         LogPrint(BCLog::MASTERNODE,"Masternode payment enforcement reconsidered, accepting block\n");
         return true;
     }
-
-    LogPrint(BCLog::MASTERNODE,"Masternode payment enforcement is disabled, accepting block\n");
-    return true;
 }
 
 void FillBlockPayee(CMutableTransaction& txNew, const CBlockIndex* pindexPrev, bool fProofOfStake)
