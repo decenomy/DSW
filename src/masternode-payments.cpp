@@ -21,6 +21,9 @@
 /** Object for who's going to get paid on which blocks */
 CMasternodePayments masternodePayments;
 
+uint64_t reconsiderWindowMin    = 0;
+uint64_t reconsiderWindowTime   = 0;
+
 RecursiveMutex cs_vecPayments;
 RecursiveMutex cs_mapMasternodeBlocks;
 RecursiveMutex cs_mapMasternodePayeeVotes;
