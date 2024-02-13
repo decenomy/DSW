@@ -20,7 +20,7 @@ jobs:
           docker build \
             --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=UCR \
-            --build-arg NAME=Ultraclear \
+            --build-arg NAME=UltraClear \
             --build-arg BASE_NAME=ultraclear \
             --build-arg TARGET=master \
             -t ultraclear-linux-x64-build \
@@ -54,7 +54,7 @@ jobs:
           docker build \
             --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=UCR \
-            --build-arg NAME=Ultraclear \
+            --build-arg NAME=UltraClear \
             --build-arg BASE_NAME=ultraclear \
             --build-arg TARGET=master \
             -t ultraclear-linux-arm64-build \
@@ -88,7 +88,7 @@ jobs:
           docker build \
             --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=UCR \
-            --build-arg NAME=Ultraclear \
+            --build-arg NAME=UltraClear \
             --build-arg BASE_NAME=ultraclear \
             --build-arg TARGET=master \
             -t ultraclear-windows-x64-build \
@@ -122,7 +122,7 @@ jobs:
           docker build \
             --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=UCR \
-            --build-arg NAME=Ultraclear \
+            --build-arg NAME=UltraClear \
             --build-arg BASE_NAME=ultraclear \
             --build-arg TARGET=master \
             -t ultraclear-macos-x64-build \
