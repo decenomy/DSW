@@ -252,17 +252,6 @@ bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
     const bool isPoSActive = Params().GetConsensus().NetworkUpgradeActive(nBlockHeight, Consensus::UPGRADE_POS);
     const CTransaction& txNew = (isPoSActive ? block.vtx[1] : block.vtx[0]);
 
-    auto t = GetTime();
-
-    if((t - reconsiderWindowTime) > HOUR_IN_SECONDS) {  // shift the reconsider window at each hour 
-        reconsiderWindowMin = GetRand() % 10;           // choose randomly from minute 0 to minute 9
-        reconsiderWindowTime = t;
-
-        for (auto it = mapRejectedBlocks.cbegin(); it != mapRejectedBlocks.cend();) { // clean up old entries
-            it = (GetAdjustedTime() - (*it).second) > DAY_IN_SECONDS ? mapRejectedBlocks.erase(it) : std::next(it);
-        }
-    }
-
     // if it's the mint block then verify if exists an output with the right amount and address
     if (consensus.nMintHeight == nBlockHeight) {
         LogPrint(BCLog::MASTERNODE, "masternode", "IsBlockPayeeValid: Check mint reward\n");
