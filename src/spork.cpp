@@ -30,7 +30,6 @@ std::vector<CSporkDef> sporkDefs = {
     MAKE_SPORK_DEF(SPORK_110_FORCE_ENABLED_MASTERNODE_PAYMENT,              1), // ON
     MAKE_SPORK_DEF(SPORK_111_ALLOW_DUPLICATE_MN_IPS,                        1), // ON
     MAKE_SPORK_DEF(SPORK_112_MASTERNODE_LAST_PAID_V2,                       1), // ON
-    MAKE_SPORK_DEF(SPORK_113_RECONSIDER_WINDOW_ENFORCEMENT,                 1), // ON
     MAKE_SPORK_DEF(SPORK_114_MN_PAYMENT_V2,                                 1), // ON
     MAKE_SPORK_DEF(SPORK_115_MN_COLLATERAL_WINDOW,                          1), // ON
 
