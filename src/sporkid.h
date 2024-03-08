@@ -32,6 +32,8 @@ enum SporkId : int32_t {
     SPORK_115_MN_COLLATERAL_WINDOW              = 10114,
     SPORK_116_TOT_SPLY_TRGT_EMISSION            = 10115,
     SPORK_117_CIRC_SPLY_TRGT_EMISSION           = 10116,
+    SPORK_118_MIN_BASE_FEE                      = 10117,
+    SPORK_119_MIN_ECON_FEE                      = 10118,
 
     SPORK_2_NOOP                                = 10001,
     SPORK_3_NOOP                                = 10002,
