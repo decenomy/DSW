@@ -36,7 +36,7 @@ jobs:
           docker cp sapphire-linux-x64-build-container:/SAPP/deploy/linux-x64 release_files/
 
       - name: Archive and Upload Extracted Files
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: release-artifacts
           path: release_files
@@ -70,7 +70,7 @@ jobs:
           docker cp sapphire-linux-arm64-build-container:/SAPP/deploy/linux-arm64 release_files/
 
       - name: Archive and Upload Extracted Files
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: release-artifacts
           path: release_files
@@ -104,7 +104,7 @@ jobs:
           docker cp sapphire-windows-x64-build-container:/SAPP/deploy/windows-x64 release_files/
 
       - name: Archive and Upload Extracted Files
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: release-artifacts
           path: release_files
@@ -138,7 +138,7 @@ jobs:
           docker cp sapphire-macos-x64-build-container:/SAPP/deploy/macos-x64 release_files/
 
       - name: Archive and Upload Extracted Files
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: release-artifacts
           path: release_files
