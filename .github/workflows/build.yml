@@ -36,9 +36,9 @@ jobs:
           docker cp __decenomy__-linux-x64-build-container:/__DSW__/deploy/linux-x64 release_files/
 
       - name: Archive and Upload Extracted Files
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: release-artifacts
+          name: release-artifacts-linux-x64
           path: release_files
   build-files-linux-arm64:
     runs-on: ubuntu-22.04
@@ -70,9 +70,9 @@ jobs:
           docker cp __decenomy__-linux-arm64-build-container:/__DSW__/deploy/linux-arm64 release_files/
 
       - name: Archive and Upload Extracted Files
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: release-artifacts
+          name: release-artifacts-linux-arm64
           path: release_files
   build-windows-x64:
     runs-on: ubuntu-22.04
@@ -104,9 +104,9 @@ jobs:
           docker cp __decenomy__-windows-x64-build-container:/__DSW__/deploy/windows-x64 release_files/
 
       - name: Archive and Upload Extracted Files
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: release-artifacts
+          name: release-artifacts-windows-x64
           path: release_files
   build-macos-x64:
     runs-on: ubuntu-22.04
@@ -138,7 +138,7 @@ jobs:
           docker cp __decenomy__-macos-x64-build-container:/__DSW__/deploy/macos-x64 release_files/
 
       - name: Archive and Upload Extracted Files
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: release-artifacts
+          name: release-artifacts-macos-x64
           path: release_files

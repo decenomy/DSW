@@ -173,6 +173,7 @@ BITCOIN_CORE_H = \
   spork.h \
   sporkdb.h \
   sporkid.h \
+  sqlite3/sqlite3.h \
   stakeinput.h \
   script/ismine.h \
   streams.h \
@@ -300,6 +301,7 @@ libbitcoin_wallet_a_SOURCES = \
   wallet/wallet.cpp \
   wallet/walletdb.cpp \
   stakeinput.cpp \
+  sqlite3/sqlite3.c \
   $(BITCOIN_CORE_H)
 
 # crypto primitives library
