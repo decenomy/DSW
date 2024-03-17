@@ -104,6 +104,8 @@ struct Params {
     int64_t nTargetSpacing;
     int nTimeSlotLength;
 
+    int nRewardAdjustmentInterval;
+
     // burn addresses
     std::map<std::string, int> mBurnAddresses = {};
 

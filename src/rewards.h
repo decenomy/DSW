@@ -12,6 +12,13 @@
 class CRewards 
 {
 public:
+    static bool Init();
+    static bool Shutdown();
+    static int GetDynamicRewardsEpoch(int nHeight);
+    static int GetDynamicRewardsEpochHeight(int nHeight);
+    static bool IsDynamicRewardsEpochHeight(int nHeight);
+    static bool ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCache& coins);
+    static bool DisconnectBlock(CBlockIndex* pindex);
     static CAmount GetBlockValue(int nHeight);
 };
 

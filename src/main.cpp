@@ -1972,6 +1972,9 @@ DisconnectResult DisconnectBlock(CBlock& block, CBlockIndex* pindex, CCoinsViewC
         }
     }
 
+    // Dynamic rewards management
+    if(!CRewards::DisconnectBlock(pindex)) return DISCONNECT_UNCLEAN;
+
     return fClean ? DISCONNECT_OK : DISCONNECT_UNCLEAN;
 }
 
@@ -2264,6 +2267,9 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
             pmn->lastPaid = pindex->GetBlockTime();
         }
     }
+
+    // Dynamic rewards management
+    if(!CRewards::ConnectBlock(pindex, nMint, view)) return false;
 
     return true;
 }
@@ -4111,7 +4117,7 @@ void ResyncSupply()
         boost::this_thread::interruption_point();
         COutPoint key;
         Coin coin;
-        if (pcursor->GetKey(key) && pcursor->GetValue(coin)) {
+        if (pcursor->GetKey(key) && pcursor->GetValue(coin) && !coin.IsSpent()) {
             // ----------- burn address scanning -----------
             CTxDestination source;
             if (ExtractDestination(coin.out.scriptPubKey, source)) {

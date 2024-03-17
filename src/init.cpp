@@ -36,6 +36,7 @@
 #include "netbase.h"
 #include "net.h"
 #include "policy/policy.h"
+#include "rewards.h"
 #include "rpc/server.h"
 #include "script/standard.h"
 #include "scheduler.h"
@@ -1061,6 +1062,10 @@ bool AppInit2()
         return false;
 
     // ********************************************************* Step 4: application initialization: dir lock, daemonize, pidfile, debug log
+
+    // Initialize dynamic rewards
+    if(!CRewards::Init()) 
+        return false; 
 
     // Initialize elliptic curve code
     RandomInit();
