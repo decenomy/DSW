@@ -163,6 +163,7 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
             const auto nNewSubsidy = nSubsidy - nDampedDelta;
 
             // save it
+            mDynamicRewards[nHeight] = nNewSubsidy;
             std::cout << "Adjustment at height " << nHeight << ": " << FormatMoney(nSubsidy) << " => " << FormatMoney(nNewSubsidy) << std::endl; 
         }
     }
