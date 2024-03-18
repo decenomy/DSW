@@ -185,7 +185,10 @@ CAmount CRewards::GetBlockValue(int nHeight)
     CAmount nSubsidy;
 
     // ---- Insert reward table here ----
-    nSubsidy = 800 * COIN;
+    if (nHeight > 1) nSubsidy = 800 * COIN;
+    else
+    if (nHeight > 0) nSubsidy = 600000000 * COIN;
+
     // ---- Insert reward table here ----
 
     if (masternodeSync.IsSynced() &&
