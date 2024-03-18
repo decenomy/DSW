@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - dynamic-rewards-KYAN
 
 jobs:
   build-files-linux-x64:
