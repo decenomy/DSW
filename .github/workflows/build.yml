@@ -8,7 +8,7 @@ on:
 jobs:
   build-files-linux-x64:
     runs-on: ubuntu-22.04
-    if: ${{ false }}  # Set condition to false to make the workflow inactive
+    # if: ${{ false }}  # Set condition to false to make the workflow inactive
 
     steps:
       - name: Checkout Repository
@@ -42,7 +42,7 @@ jobs:
           path: release_files
   build-files-linux-arm64:
     runs-on: ubuntu-22.04
-    if: ${{ false }}  # Set condition to false to make the workflow inactive
+    # if: ${{ false }}  # Set condition to false to make the workflow inactive
 
     steps:
       - name: Checkout Repository
@@ -76,7 +76,7 @@ jobs:
           path: release_files
   build-windows-x64:
     runs-on: ubuntu-22.04
-    if: ${{ false }}  # Set condition to false to make the workflow inactive
+    # if: ${{ false }}  # Set condition to false to make the workflow inactive
 
     steps:
       - name: Checkout Repository
@@ -110,7 +110,7 @@ jobs:
           path: release_files
   build-macos-x64:
     runs-on: ubuntu-22.04
-    if: ${{ false }}  # Set condition to false to make the workflow inactive
+    # if: ${{ false }}  # Set condition to false to make the workflow inactive
 
     steps:
       - name: Checkout Repository

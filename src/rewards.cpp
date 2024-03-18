@@ -110,8 +110,9 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
                     }
 
                     // ----------- masternode collaterals scanning ----------- 
-                    if(coin.out.nValue == nCollateralAmount || 
-                    coin.out.nValue == nNextWeekCollateralAmount
+                    if(
+                        coin.out.nValue == nCollateralAmount || 
+                        coin.out.nValue == nNextWeekCollateralAmount
                     ) {
                         pcursor->Next(); // Skip
                         continue;
