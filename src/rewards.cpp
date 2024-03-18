@@ -10,6 +10,7 @@
 #include "masternode-sync.h"
 #include "sqlite3/sqlite3.h"
 #include "timedata.h"
+#include "utilmoneystr.h"
 
 #include <unordered_map>
 
@@ -82,6 +83,7 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
 
             // get total money supply
             const auto nMoneySupply = pindex->nMoneySupply.get();
+            std::cout << "nMoneySupply: " << FormatMoney(nMoneySupply) << std::endl;
 
             // get the current masternode collateral, and the next week collateral
             auto nCollateralAmount = CMasternode::GetMasternodeNodeCollateral(nHeight);
@@ -134,27 +136,33 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
 
                 pcursor->Next();
             }
+            std::cout << "nCirculatingSupply: " << FormatMoney(nCirculatingSupply) << std::endl;
 
             // calculate target emissions
             const auto nRewardAdjustmentInterval = consensus.nRewardAdjustmentInterval;
             const auto nTotalEmissionRate = sporkManager.GetSporkValue(SPORK_116_TOT_SPLY_TRGT_EMISSION);
             const auto nCirculatingEmissionRate = sporkManager.GetSporkValue(SPORK_117_CIRC_SPLY_TRGT_EMISSION);
             const auto nActualEmission = nSubsidy * nRewardAdjustmentInterval;
+            std::cout << "nActualEmission: " << FormatMoney(nActualEmission) << std::endl;
             const auto nSupplyTargetEmission = ((nMoneySupply / (365L * nBlocksPerDay)) / 1000000) * nTotalEmissionRate * nRewardAdjustmentInterval;
+            std::cout << "nSupplyTargetEmission: " << FormatMoney(nSupplyTargetEmission) << std::endl;
             const auto nCirculatingTargetEmission = ((nCirculatingSupply / (365L * nBlocksPerDay)) / 1000000) * nCirculatingEmissionRate * nRewardAdjustmentInterval;
+            std::cout << "nCirculatingTargetEmission: " << FormatMoney(nCirculatingTargetEmission) << std::endl;
 
             // calculate required delta values
-            const auto delta = (nActualEmission - std::max(nSupplyTargetEmission, nCirculatingTargetEmission)) / nRewardAdjustmentInterval;
+            const auto nDelta = (nActualEmission - std::max(nSupplyTargetEmission, nCirculatingTargetEmission)) / nRewardAdjustmentInterval;
+            std::cout << "nDelta: " << FormatMoney(nDelta) << std::endl;
 
-            CAmount deltaEffective;
-            const auto ratio = (delta * 100) / nSubsidy;
-            const auto dampedDelta = delta * ((-ratio / 10) + 10) / 100; 
+            const auto nRatio = (nDelta * 100) / nSubsidy;
+            std::cout << "nRatio: " << nRatio << std::endl;
+            const auto nDampedDelta = nDelta * ((-nRatio / 10) + 10) / 100;
+            std::cout << "nDampedDelta: " << FormatMoney(nDampedDelta) << std::endl; 
 
             // adjust the reward for this epoch
-            const auto nNewSubsidy = nSubsidy - dampedDelta;
+            const auto nNewSubsidy = nSubsidy - nDampedDelta;
 
             // save it
-            std::cout << "Adjustment at height " << nHeight << ": " << nSubsidy << " => " << nNewSubsidy << std::endl; 
+            std::cout << "Adjustment at height " << nHeight << ": " << FormatMoney(nSubsidy) << " => " << FormatMoney(nNewSubsidy) << std::endl; 
         }
     }
 
