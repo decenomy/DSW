@@ -36,6 +36,7 @@
 #include "netbase.h"
 #include "net.h"
 #include "policy/policy.h"
+#include "rewards.h"
 #include "rpc/server.h"
 #include "script/standard.h"
 #include "scheduler.h"
@@ -1062,6 +1063,10 @@ bool AppInit2()
 
     // ********************************************************* Step 4: application initialization: dir lock, daemonize, pidfile, debug log
 
+    // Initialize dynamic rewards
+    if(!CRewards::Init()) 
+        return false; 
+
     // Initialize elliptic curve code
     RandomInit();
     ECC_Start();
@@ -1528,39 +1533,6 @@ bool AppInit2()
                 if (fTxIndex != GetBoolArg("-txindex", DEFAULT_TXINDEX)) {
                     strLoadError = _("You need to rebuild the database using -reindex to change -txindex");
                     break;
-                }
-
-                if (chainActive.Tip() != nullptr) {
-                    if (!chainActive.Tip()->nMoneySupply) {
-                        LOCK(cs_main);
-                        nMoneySupply = 0;
-
-                        std::unique_ptr<CCoinsViewCursor> pcursor(pcoinsTip->Cursor());
-
-                        while (pcursor->Valid()) {
-                            boost::this_thread::interruption_point();
-                            COutPoint key;
-                            Coin coin;
-                            if (pcursor->GetKey(key) && pcursor->GetValue(coin)) {
-                                // ----------- burn address scanning -----------
-                                CTxDestination source;
-                                if (ExtractDestination(coin.out.scriptPubKey, source)) {
-                                    const std::string addr = EncodeDestination(source);
-                                    if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
-                                        consensus.mBurnAddresses.at(addr) < chainActive.Height()) {
-                                        pcursor->Next();
-                                        continue;
-                                    }
-                                }
-                                nMoneySupply += coin.out.nValue;
-                            }
-                            pcursor->Next();
-                        }
-
-                        chainActive.Tip()->nMoneySupply = nMoneySupply;
-                    } else {
-                        nMoneySupply = chainActive.Tip()->nMoneySupply.get();
-                    }
                 }
 
                 if (!fReindex) {

@@ -32,6 +32,10 @@ std::vector<CSporkDef> sporkDefs = {
     MAKE_SPORK_DEF(SPORK_112_MASTERNODE_LAST_PAID_V2,           4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_114_MN_PAYMENT_V2,                     4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_115_MN_COLLATERAL_WINDOW,              4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_116_TOT_SPLY_TRGT_EMISSION,                 50000ULL), //  5%
+    MAKE_SPORK_DEF(SPORK_117_CIRC_SPLY_TRGT_EMISSION,               100000ULL), // 10%
+    MAKE_SPORK_DEF(SPORK_118_MIN_BASE_FEE,                               0ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_119_MIN_ECON_FEE,                               0ULL), // OFF
 
     MAKE_SPORK_DEF(SPORK_2_NOOP,                                4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_3_NOOP,                                4070908800ULL), // OFF
