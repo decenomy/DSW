@@ -205,20 +205,20 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
                     }
 
                     // ----------- UTXOs age related scanning -----------
-                    auto nBlocksDiff = nHeight - coin.nHeight;
+                    auto nBlocksDiff = static_cast<int64_t>(nHeight - coin.nHeight);
+                    const auto nMultiplier = 100000000L;
 
-                    if(nBlocksDiff < 3 * nBlocksPerMonth) {                 // for less than 3 months fully account it
-                        nCirculatingSupply += coin.out.nValue;
-                    } else
-                    if(nBlocksDiff < 6 * nBlocksPerMonth) {                 // for 3 to 6 months account it at 50%
-                        nCirculatingSupply += coin.out.nValue * 50 / 100;
-                    } else
-                    if(nBlocksDiff < 9 * nBlocksPerMonth) {                 // for 6 to 9 months account it at 25%
-                        nCirculatingSupply += coin.out.nValue * 25 / 100;
-                    } else
-                    if(nBlocksDiff < 12 * nBlocksPerMonth) {                // for 9 to 12 months account it at 10%
-                        nCirculatingSupply += coin.out.nValue * 10 / 100;
-                    }                                                       // do not account it when there is more than 1 year
+                    // y = mx + b 
+                    // 3 months old or less => 100%
+                    // 12 months old or greater => 0%
+                    auto nSupplyWeightRatio = 
+                        std::min(
+                            std::max(
+                                (100L * nMultiplier - (((100L * nMultiplier)/(9L * nBlocksPerMonth)) * (nBlocksDiff - 3L * nBlocksPerMonth))) / nMultiplier, 
+                            0L), 
+                        100L);
+
+                    nCirculatingSupply += coin.out.nValue * nSupplyWeightRatio / 100L;
                 }
 
                 pcursor->Next();
@@ -243,8 +243,12 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
             const auto nDelta = (nActualEmission - std::max(nSupplyTargetEmission, nCirculatingTargetEmission)) / nRewardAdjustmentInterval;
             oss << __func__ << " nDelta: " << FormatMoney(nDelta) << std::endl;
 
-            const auto nRatio = (nDelta * 100) / nSubsidy;
+            const auto nRatio = (nDelta * 100) / nSubsidy; // percentage of the difference on emissions and the current reward 
             oss << __func__ << " nRatio: " << nRatio << std::endl;
+            
+            // y = mx + b
+            // 0% ratio => 10%
+            // 100% ration => 0% 
             const auto nDampedDelta = nDelta * ((-nRatio / 10) + 10) / 100;
             oss << __func__ << " nDampedDelta: " << FormatMoney(nDampedDelta) << std::endl; 
 
@@ -325,12 +329,11 @@ CAmount CRewards::GetBlockValue(int nHeight)
 
     CAmount nSubsidy;
 
-    // ---- Insert reward table here ----
+    // ---- Static reward table ----
     if (nHeight > 1) nSubsidy = 800 * COIN;
     else
     if (nHeight > 0) nSubsidy = 600000000 * COIN;
-
-    // ---- Insert reward table here ----
+    // ---- Static reward table ----
 
     if (masternodeSync.IsSynced() &&
         consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_DYNAMIC_REWARDS)
