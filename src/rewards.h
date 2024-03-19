@@ -12,8 +12,8 @@
 class CRewards 
 {
 public:
-    static bool Init();
-    static bool Shutdown();
+    static bool Init(bool fReindex);
+    static void Shutdown();
     static int GetDynamicRewardsEpoch(int nHeight);
     static int GetDynamicRewardsEpochHeight(int nHeight);
     static bool IsDynamicRewardsEpochHeight(int nHeight);
