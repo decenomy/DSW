@@ -31,7 +31,7 @@ bool CRewards::Init(bool fReindex)
 
     try
     {
-        const auto& filename = (GetDataDir() / "chainstate" / "rewards.db").c_str();
+        const char* filename = (GetDataDir() / "chainstate" / "rewards.db").c_str();
 
         // Delete the database file if it exists when reindexing
         if(fReindex) 
@@ -215,9 +215,9 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
                     auto nSupplyWeightRatio = 
                         std::min(
                             std::max(
-                                (100L * nMultiplier - (((100L * nMultiplier)/(9L * nBlocksPerMonth)) * (nBlocksDiff - 3L * nBlocksPerMonth))) / nMultiplier, 
-                            0L), 
-                        100L);
+                                (100LL * nMultiplier - (((100LL * nMultiplier)/(9LL * nBlocksPerMonth)) * (nBlocksDiff - 3L * nBlocksPerMonth))) / nMultiplier, 
+                            0LL), 
+                        100LL);
 
                     nCirculatingSupply += coin.out.nValue * nSupplyWeightRatio / 100L;
                 }
