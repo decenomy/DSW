@@ -291,7 +291,7 @@ bool CRewards::DisconnectBlock(CBlockIndex* pindex)
     auto& consensus = Params().GetConsensus();
     const auto nHeight = pindex->nHeight;
     std::ostringstream oss;
-    auto ok = false;
+    auto ok = true;
     
     try
     {
