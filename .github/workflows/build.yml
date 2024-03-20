@@ -2,8 +2,7 @@ name: Build and Extract Files from Docker Container
 
 on:
   push:
-    branches:
-      - master
+    branches: []
 
 jobs:
   build-files-linux-x64:
