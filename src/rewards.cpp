@@ -31,7 +31,7 @@ bool CRewards::Init(bool fReindex)
 
     try
     {
-        const char* filename = (GetDataDir() / "chainstate" / "rewards.db").c_str();
+        const char* filename = (GetDataDir() / "chainstate" / "rewards.db").string().c_str();
 
         // Delete the database file if it exists when reindexing
         if(fReindex) 
