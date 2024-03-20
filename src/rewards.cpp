@@ -13,6 +13,7 @@
 #include "timedata.h"
 #include "utilmoneystr.h"
 
+#include <algorithm>
 #include <cstdio>
 #include <sstream>
 #include <unordered_map>
