@@ -49,7 +49,7 @@ bool CRewards::Init(bool fReindex)
 
         if(ok) { // Create and/or open the database
             oss << __func__ << " Opening database: " << filename << std::endl;
-            int rc = sqlite3_open(filename, &db);
+            auto rc = sqlite3_open(filename, &db);
 
             if (rc) 
             {
@@ -61,7 +61,7 @@ bool CRewards::Init(bool fReindex)
         if(ok) { // database is open and working
             // Create the rewards table if not exists
             const auto create_table_query = "CREATE TABLE IF NOT EXISTS rewards (height INT PRIMARY KEY, amount INTEGER)";
-            rc = sqlite3_exec(db, create_table_query, NULL, NULL, NULL);
+            auto rc = sqlite3_exec(db, create_table_query, NULL, NULL, NULL);
 
             if (rc != SQLITE_OK) {
                 oss << __func__ << " SQL error: " << sqlite3_errmsg(db) << std::endl;
@@ -71,7 +71,7 @@ bool CRewards::Init(bool fReindex)
 
         if(ok) { // Create insert statement
             const std::string insertSql = "INSERT INTO rewards (height, amount) VALUES (?, ?)";
-            rc = sqlite3_prepare_v2(db, insertSql.c_str(), insertSql.length(), &insertStmt, nullptr);
+            auto rc = sqlite3_prepare_v2(db, insertSql.c_str(), insertSql.length(), &insertStmt, nullptr);
             if (rc != SQLITE_OK) {
                 oss << __func__ << " SQL error: " << sqlite3_errmsg(db) << std::endl;
                 ok = false;
@@ -80,7 +80,7 @@ bool CRewards::Init(bool fReindex)
 
         if(ok) { // Create delete statement
             const std::string deleteSql = "DELETE FROM rewards WHERE height = ?";
-            rc = sqlite3_prepare_v2(db, deleteSql.c_str(), deleteSql.length(), &deleteStmt, nullptr);
+            auto rc = sqlite3_prepare_v2(db, deleteSql.c_str(), deleteSql.length(), &deleteStmt, nullptr);
             if (rc != SQLITE_OK) {
                 oss << __func__ << " SQL error: " << sqlite3_errmsg(db) << std::endl;
                 ok = false;
@@ -89,7 +89,7 @@ bool CRewards::Init(bool fReindex)
 
         if(ok) { // Loads the database into the in-memory map
             const char* sql = "SELECT height, amount FROM rewards";
-            rc = sqlite3_exec(db, sql, [](void* data, int argc, char** argv, char** /* azColName */) -> int {
+            auto rc = sqlite3_exec(db, sql, [](void* data, int argc, char** argv, char** /* azColName */) -> int {
                 int height = std::stoi(argv[0]);
                 CAmount amount = std::stol(argv[1]);
                 mDynamicRewards[height] = amount;
