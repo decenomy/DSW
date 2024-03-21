@@ -71,7 +71,7 @@ bool CRewards::Init(bool fReindex)
         }
 
         if(ok) { // Create insert statement
-            const std::string insertSql = "INSERT INTO rewards (height, amount) VALUES (?, ?)";
+            const std::string insertSql = "INSERT OR REPLACE INTO rewards (height, amount) VALUES (?, ?)";
             auto rc = sqlite3_prepare_v2(db, insertSql.c_str(), insertSql.length(), &insertStmt, nullptr);
             if (rc != SQLITE_OK) {
                 oss << "CRewards::" << __func__ << " SQL error: " << sqlite3_errmsg(db) << std::endl;
@@ -80,7 +80,7 @@ bool CRewards::Init(bool fReindex)
         }
 
         if(ok) { // Create delete statement
-            const std::string deleteSql = "DELETE FROM rewards WHERE height = ?";
+            const std::string deleteSql = "DELETE FROM rewards WHERE height >= ?";
             auto rc = sqlite3_prepare_v2(db, deleteSql.c_str(), deleteSql.length(), &deleteStmt, nullptr);
             if (rc != SQLITE_OK) {
                 oss << "CRewards::" << __func__ << " SQL error: " << sqlite3_errmsg(db) << std::endl;
@@ -116,7 +116,7 @@ bool CRewards::Init(bool fReindex)
         ok = false;
     }
 
-    if (!oss.str().empty()) LogPrintf("%s", oss.str());
+    if (!oss.str().empty()) LogPrintf("%s: %s", __func__, oss.str());
     
     return ok;
 }
@@ -281,7 +281,7 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
         }
     }
 
-    if (!oss.str().empty()) LogPrintf("%s", oss.str());
+    if (!oss.str().empty()) LogPrintf("%s: %s", __func__, oss.str());
 
     return ok;
 }
@@ -319,7 +319,7 @@ bool CRewards::DisconnectBlock(CBlockIndex* pindex)
         ok = false;
     }
 
-    if (!oss.str().empty()) LogPrintf("%s", oss.str());
+    if (!oss.str().empty()) LogPrintf("%s: %s", __func__, oss.str());
     
     return ok;
 }
