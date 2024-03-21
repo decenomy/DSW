@@ -249,7 +249,7 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
             
             // y = mx + b
             // 0% ratio => 10%
-            // 100% ration => 0% 
+            // 100% ratio => 0% 
             const auto nDampedDelta = nDelta * ((-nRatio / 10) + 10) / 100;
             oss << "CRewards::" << __func__ << " nDampedDelta: " << FormatMoney(nDampedDelta) << std::endl; 
 
