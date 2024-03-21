@@ -116,7 +116,7 @@ bool CRewards::Init(bool fReindex)
         ok = false;
     }
 
-    if (!oss.str().empty()) LogPrintf("%s: %s", __func__, oss.str());
+    if (!oss.str().empty()) LogPrintf("%s", oss.str());
     
     return ok;
 }
@@ -281,7 +281,7 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
         }
     }
 
-    if (!oss.str().empty()) LogPrintf("%s: %s", __func__, oss.str());
+    if (!oss.str().empty()) LogPrintf("%s", oss.str());
 
     return ok;
 }
@@ -319,7 +319,7 @@ bool CRewards::DisconnectBlock(CBlockIndex* pindex)
         ok = false;
     }
 
-    if (!oss.str().empty()) LogPrintf("%s: %s", __func__, oss.str());
+    if (!oss.str().empty()) LogPrintf("%s", oss.str());
     
     return ok;
 }
