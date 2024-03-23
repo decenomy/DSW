@@ -403,7 +403,7 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-sysperms", _("Create new files with system default permissions, instead of umask 077 (only effective with disabled wallet functionality)"));
 #endif
     strUsage += HelpMessageOpt("-txindex", strprintf(_("Maintain a full transaction index, used by the getrawtransaction rpc call (default: %u)"), DEFAULT_TXINDEX));
-    
+
     strUsage += HelpMessageGroup(_("Connection options:"));
     strUsage += HelpMessageOpt("-addnode=<ip>", _("Add a node to connect to and attempt to keep the connection open"));
     strUsage += HelpMessageOpt("-banscore=<n>", strprintf(_("Threshold for disconnecting misbehaving peers (default: %u)"), DEFAULT_BANSCORE_THRESHOLD));
@@ -1203,8 +1203,13 @@ bool AppInit2()
             }
         }
 
-        if (GetBoolArg("-resync", false)) {
-            uiInterface.InitMessage(_("Preparing for resync..."));
+        if (GetBoolArg("-resync", false) || GetBoolArg("-bootstrap", false) ) {
+
+            if (GetBoolArg("-resync", false))
+              uiInterface.InitMessage(_("Preparing for resync..."));
+            else if (GetBoolArg("-bootstrap", false))
+              uiInterface.InitMessage(_("Preparing for bootstrap..."));
+
             // Delete the local blockchain folders to force a resync from scratch to get a consitent blockchain-state
             fs::path blocksDir = GetDataDir() / "blocks";
             fs::path chainstateDir = GetDataDir() / "chainstate";
@@ -1227,6 +1232,42 @@ bool AppInit2()
                     fs::remove_all(sporksDir);
                     LogPrintf("-resync: folder deleted: %s\n", sporksDir.string().c_str());
                 }
+                #ifdef ENABLE_BOOTSTRAP
+                if (GetBoolArg("-bootstrap", false)) {
+                  const std::string url = std::string(BOOTSTRAP_URL)+std::string(TICKER)+"/bootstrap.zip";
+                  const std::string outputFileName = "bootstrap.zip";
+                  const std::string extractPath = "bootstrap_";
+
+                  LogPrintf("-bootstrap: Download: %s\n", url.c_str());
+
+                  if(BOOTSTRAP::isDirectory(extractPath))
+                      BOOTSTRAP::rmDirectory(extractPath);
+
+                  if (BOOTSTRAP::DownloadFile(url, outputFileName)) {
+                      LogPrintf("-bootstrap: File downloaded successfully \n");
+
+                      if (BOOTSTRAP::extractZip(outputFileName, extractPath)) {
+                          LogPrintf("-bootstrap: Zip file extracted successfully \n");
+                          try {
+                              fs::rename(extractPath+"/blocks", blocksDir);
+                              fs::rename(extractPath+"/chainstate", chainstateDir);
+                              LogPrintf("-bootstrap: Folders moved successfully \n");
+                              fs::remove(extractPath);
+                          } catch (const std::exception& e) {
+                              LogPrintf("-bootstrap: Error moving folder: %s\n",e.what());
+                          }
+                      } else {
+                          LogPrintf("-bootstrap: Error extracting zip file");
+                      }
+
+                      fs::remove(outputFileName);
+                  } else {
+                      LogPrintf("-bootstrap: Error downloading file");
+                  }
+                }
+                #else
+                LogPrintf("-bootstrap: not enabled\n");
+                #endif
             } catch (const fs::filesystem_error& error) {
                 LogPrintf("Failed to delete blockchain folders %s\n", error.what());
             }
@@ -1487,39 +1528,6 @@ bool AppInit2()
                 if (fTxIndex != GetBoolArg("-txindex", DEFAULT_TXINDEX)) {
                     strLoadError = _("You need to rebuild the database using -reindex to change -txindex");
                     break;
-                }
-
-                if (chainActive.Tip() != nullptr) {
-                    if (!chainActive.Tip()->nMoneySupply) {
-                        LOCK(cs_main);
-                        nMoneySupply = 0;
-
-                        std::unique_ptr<CCoinsViewCursor> pcursor(pcoinsTip->Cursor());
-
-                        while (pcursor->Valid()) {
-                            boost::this_thread::interruption_point();
-                            COutPoint key;
-                            Coin coin;
-                            if (pcursor->GetKey(key) && pcursor->GetValue(coin)) {
-                                // ----------- burn address scanning -----------
-                                CTxDestination source;
-                                if (ExtractDestination(coin.out.scriptPubKey, source)) {
-                                    const std::string addr = EncodeDestination(source);
-                                    if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
-                                        consensus.mBurnAddresses.at(addr) < chainActive.Height()) {
-                                        pcursor->Next();
-                                        continue;
-                                    }
-                                }
-                                nMoneySupply += coin.out.nValue;
-                            }
-                            pcursor->Next();
-                        }
-
-                        chainActive.Tip()->nMoneySupply = nMoneySupply;
-                    } else {
-                        nMoneySupply = chainActive.Tip()->nMoneySupply.get();
-                    }
                 }
 
                 if (!fReindex) {
