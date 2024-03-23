@@ -1,0 +1,144 @@
+name: Build and Extract Files from Docker Container
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-files-linux-x64:
+    runs-on: ubuntu-22.04
+    if: ${{ false }}  # Set condition to false to make the workflow inactive
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build and Extract Files from Docker Container
+        run: |
+          # Build the Docker image from the Dockerfile in the repository
+          docker build \
+            --build-arg CPU_CORES=$(nproc) \
+            --build-arg TICKER=SAPP \
+            --build-arg NAME=Sapphire \
+            --build-arg BASE_NAME=sapphire \
+            --build-arg TARGET=master \
+            -t sapphire-linux-x64-build \
+            -f contrib/docker/Dockerfile.dsw-linux-x64-wallet .
+
+          # Start the container (if it's not already running)
+          docker run -d --name sapphire-linux-x64-build-container sapphire-linux-x64-build
+
+          # Create a temporary directory to hold the extracted files
+          mkdir release_files
+
+          # Copy files from the Docker container to the local filesystem
+          docker cp sapphire-linux-x64-build-container:/SAPP/deploy/linux-x64 release_files/
+
+      - name: Archive and Upload Extracted Files
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-artifacts-linux-x64
+          path: release_files
+  build-files-linux-arm64:
+    runs-on: ubuntu-22.04
+    if: ${{ false }}  # Set condition to false to make the workflow inactive
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build and Extract Files from Docker Container
+        run: |
+          # Build the Docker image from the Dockerfile in the repository
+          docker build \
+            --build-arg CPU_CORES=$(nproc) \
+            --build-arg TICKER=SAPP \
+            --build-arg NAME=Sapphire \
+            --build-arg BASE_NAME=sapphire \
+            --build-arg TARGET=master \
+            -t sapphire-linux-arm64-build \
+            -f contrib/docker/Dockerfile.dsw-linux-arm64-wallet .
+
+          # Start the container (if it's not already running)
+          docker run -d --name sapphire-linux-arm64-build-container sapphire-linux-arm64-build
+
+          # Create a temporary directory to hold the extracted files
+          mkdir release_files
+
+          # Copy files from the Docker container to the local filesystem
+          docker cp sapphire-linux-arm64-build-container:/SAPP/deploy/linux-arm64 release_files/
+
+      - name: Archive and Upload Extracted Files
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-artifacts-linux-arm64
+          path: release_files
+  build-windows-x64:
+    runs-on: ubuntu-22.04
+    if: ${{ false }}  # Set condition to false to make the workflow inactive
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build and Extract Files from Docker Container
+        run: |
+          # Build the Docker image from the Dockerfile in the repository
+          docker build \
+            --build-arg CPU_CORES=$(nproc) \
+            --build-arg TICKER=SAPP \
+            --build-arg NAME=Sapphire \
+            --build-arg BASE_NAME=sapphire \
+            --build-arg TARGET=master \
+            -t sapphire-windows-x64-build \
+            -f contrib/docker/Dockerfile.dsw-windows-x64-wallet .
+
+          # Start the container (if it's not already running)
+          docker run -d --name sapphire-windows-x64-build-container sapphire-windows-x64-build
+
+          # Create a temporary directory to hold the extracted files
+          mkdir release_files
+
+          # Copy files from the Docker container to the local filesystem
+          docker cp sapphire-windows-x64-build-container:/SAPP/deploy/windows-x64 release_files/
+
+      - name: Archive and Upload Extracted Files
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-artifacts-windows-x64
+          path: release_files
+  build-macos-x64:
+    runs-on: ubuntu-22.04
+    if: ${{ false }}  # Set condition to false to make the workflow inactive
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build and Extract Files from Docker Container
+        run: |
+          # Build the Docker image from the Dockerfile in the repository
+          docker build \
+            --build-arg CPU_CORES=$(nproc) \
+            --build-arg TICKER=SAPP \
+            --build-arg NAME=Sapphire \
+            --build-arg BASE_NAME=sapphire \
+            --build-arg TARGET=master \
+            -t sapphire-macos-x64-build \
+            -f contrib/docker/Dockerfile.dsw-macos-x64-wallet .
+
+          # Start the container (if it's not already running)
+          docker run -d --name sapphire-macos-x64-build-container sapphire-macos-x64-build
+
+          # Create a temporary directory to hold the extracted files
+          mkdir release_files
+
+          # Copy files from the Docker container to the local filesystem
+          docker cp sapphire-macos-x64-build-container:/SAPP/deploy/macos-x64 release_files/
+
+      - name: Archive and Upload Extracted Files
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-artifacts-macos-x64
+          path: release_files
