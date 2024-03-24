@@ -31,10 +31,22 @@ bool CRewards::Init(bool fReindex)
 
     try
     {
+        const std::string dirname = (GetDataDir() / "chainstate").string();
         const std::string filename = (GetDataDir() / "chainstate" / "rewards.db").string();
 
+        // Create the chainstate directory if it doesn't exist
+        if (!fs::exists(dirname.c_str())) {
+            // Directory doesn't exist, create it
+            if (fs::create_directory(dirname.c_str())) {
+                oss << "CRewards::" << __func__ << " Created directory: " << dirname << std::endl;
+            } else {
+                oss << "CRewards::" << __func__ << " Failed to create directory: " << dirname << std::endl;
+                ok = false;
+            }
+        }
+
         // Delete the database file if it exists when reindexing
-        if(fReindex) 
+        if(ok && fReindex) 
         {
             if (auto file = std::fopen(filename.c_str(), "r")) {
                 std::fclose(file);
