@@ -165,6 +165,7 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
 {
     auto& consensus = Params().GetConsensus();
     const auto nHeight = pindex->nHeight;
+    const auto nEpochHeight = GetDynamicRewardsEpochHeight(nHeight);
     std::ostringstream oss;
     auto ok = true;
 
@@ -271,15 +272,15 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
             oss << "CRewards::" << __func__ << " Adjustment at height " << nHeight << ": " << FormatMoney(nSubsidy) << " => " << FormatMoney(nNewSubsidy) << std::endl;
         }
 
-        if ( // if the wallet is syncing get the reward value from the first block of the epoch
+        if ( // if the wallet is syncing get the reward value from the blocks of the epoch
             !masternodeSync.IsSynced() &&
-            IsDynamicRewardsEpochHeight(nHeight - 1)  
+            nHeight != nEpochHeight && 
+            mDynamicRewards.find(nEpochHeight) == mDynamicRewards.end()
         ) {
             nNewSubsidy = nSubsidy;
         }
 
         if(ok && nNewSubsidy > 0) { // store it
-            auto nEpochHeight = GetDynamicRewardsEpochHeight(nHeight);
             mDynamicRewards[nEpochHeight] = nNewSubsidy; // on the in-memory map
 
             sqlite3_bind_int(insertStmt, 1, nEpochHeight); // on the file database
