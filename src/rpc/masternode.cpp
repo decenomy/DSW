@@ -17,7 +17,7 @@
 #include "rpc/server.h"
 #include "spork.h"
 #include "utilmoneystr.h"
-
+#include "simpleroi.h"
 #include <univalue.h>
 
 #include <boost/tokenizer.hpp>
@@ -1143,3 +1143,38 @@ UniValue relaymasternodebroadcast(const JSONRPCRequest& request)
 
     return strprintf("Masternode broadcast sent (service %s, vin %s)", mnb.addr.ToString(), mnb.vin.ToString());
 }
+
+#ifdef ENABLE_WALLET
+UniValue getroi(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() > 0) {
+        int nRoiMinutes = Params().GetConsensus().nTargetTimespan;	// defalut if no Tip()
+        CSimpRoiArgs csra;
+        CBlockIndex * pb = chainActive.Tip();
+        if (pb && pb->nHeight) {
+            nRoiMinutes = Params().GetConsensus().TargetTimespan(pb->nHeight);
+        }
+        std::string sTopline = strprintf("  \"%d hour avg ROI: nnnn.n%%\",           smoothed staking ROI\n", csra.nStakeRoiHrs);
+        std::string sLine2   = strprintf("  \"%2d min stk ROI: nnnn.n%%\",           real time staking ROI\n", nRoiMinutes / 60);
+            throw std::runtime_error(
+                "getroi\n" +
+                sTopline +
+                sLine2 +
+                "  \"tot stake coin: nnnnnnnn\",          estimate of total staked coins\n"
+                "\n"
+                "  \"masternode ROI: nnnn.n%\",           masternode ROI\n"
+                "  \"tot collateral: nnnnnnnn\",          total collateral for enabled masternodes\n"
+                "  \"enabled  nodes: nnnn\",              number of enabled masternodes\n"
+                "  \"blocks per day: nnnn.n\",            number of blocks per day\n"
+                "\n"
+            );
+    }
+    CSimpleRoi csimproi;
+    UniValue roi(UniValue::VOBJ);
+    std::string sGerror;
+
+    if (csimproi.generateROI(roi, sGerror)) return roi;
+    throw std::runtime_error(sGerror);
+}
+
+#endif // ENABLE_WALLET

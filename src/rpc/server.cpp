@@ -14,6 +14,7 @@
 #include "main.h"
 #include "random.h"
 #include "sync.h"
+#include "simpleroi.h"
 #include "guiinterface.h"
 #include "util.h"
 #include "utilstrencodings.h"
@@ -386,6 +387,7 @@ static const CRPCCommand vRPCCommands[] =
         {"wallet", "bip38encrypt", &bip38encrypt, true },
         {"wallet", "bip38decrypt", &bip38decrypt, true },
         {"wallet", "getaddressinfo", &getaddressinfo, true },
+        {"wallet", "getroi", &getroi, false },
         {"wallet", "getstakingstatus", &getstakingstatus, false },
         {"wallet", "multisend", &multisend, false },
 
