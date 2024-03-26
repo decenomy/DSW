@@ -36,6 +36,7 @@
 #include "netbase.h"
 #include "net.h"
 #include "policy/policy.h"
+#include "rewards.h"
 #include "rpc/server.h"
 #include "script/standard.h"
 #include "scheduler.h"
@@ -238,6 +239,9 @@ void PrepareShutdown()
 
     {
         LOCK(cs_main);
+
+        CRewards::Shutdown();
+
         if (pcoinsTip != NULL) {
             FlushStateToDisk();
 
@@ -498,7 +502,7 @@ std::string HelpMessage(HelpMessageMode mode)
     }
     strUsage += HelpMessageOpt("-shrinkdebugfile", _("Shrink debug.log file on client startup (default: 1 when no -debug)"));
     strUsage += HelpMessageOpt("-testnet", _("Use the test network"));
-    strUsage += HelpMessageOpt("-litemode=<n>", strprintf(_("Disable all __DSW__ specific functionality (Masternodes) (0-1, default: %u)"), 0));
+    strUsage += HelpMessageOpt("-litemode=<n>", strprintf(_("Disable all KYAN specific functionality (Masternodes) (0-1, default: %u)"), 0));
 
     strUsage += HelpMessageGroup(_("Masternode options:"));
     strUsage += HelpMessageOpt("-masternode=<n>", strprintf(_("Enable the client to act as a masternode (0-1, default: %u)"), DEFAULT_MASTERNODE));
@@ -676,7 +680,7 @@ void ThreadImport(std::vector<fs::path> vImportFiles)
 }
 
 /** Sanity checks
- *  Ensure that __Decenomy__ is running in a usable environment with all
+ *  Ensure that Kyanite is running in a usable environment with all
  *  necessary library support.
  */
 bool InitSanityCheck(void)
@@ -907,10 +911,10 @@ void InitLogging()
 #else
     version_string += " (release build)";
 #endif
-    LogPrintf("__Decenomy__ version %s (%s)\n", version_string, CLIENT_DATE);
+    LogPrintf("Kyanite version %s (%s)\n", version_string, CLIENT_DATE);
 }
 
-/** Initialize __decenomy__.
+/** Initialize kyanite.
  *  @pre Parameters should be parsed and config file should be read.
  */
 bool AppInit2()
@@ -1062,6 +1066,12 @@ bool AppInit2()
 
     // ********************************************************* Step 4: application initialization: dir lock, daemonize, pidfile, debug log
 
+    fReindex = GetBoolArg("-reindex", false);
+
+    // Initialize dynamic rewards
+    if(!CRewards::Init(fReindex)) 
+        return false; 
+
     // Initialize elliptic curve code
     RandomInit();
     ECC_Start();
@@ -1069,11 +1079,11 @@ bool AppInit2()
 
     // Sanity check
     if (!InitSanityCheck())
-        return UIError(_("Initialization sanity check failed. __Decenomy__ is shutting down."));
+        return UIError(_("Initialization sanity check failed. Kyanite is shutting down."));
 
     std::string strDataDir = GetDataDir().string();
 
-    // Make sure only a single __Decenomy__ process is using the data directory.
+    // Make sure only a single Kyanite process is using the data directory.
     fs::path pathLockFile = GetDataDir() / ".lock";
     FILE* file = fsbridge::fopen(pathLockFile, "a"); // empty lock file; created if it doesn't exist.
     if (file) fclose(file);
@@ -1081,7 +1091,7 @@ bool AppInit2()
 
     // Wait maximum 10 seconds if an old wallet is still running. Avoids lockup during restart
     if (!lock.timed_lock(boost::get_system_time() + boost::posix_time::seconds(10)))
-        return UIError(strprintf(_("Cannot obtain a lock on data directory %s. __Decenomy__ is probably already running."), strDataDir));
+        return UIError(strprintf(_("Cannot obtain a lock on data directory %s. Kyanite is probably already running."), strDataDir));
 
 #ifndef WIN32
     CreatePidFile(GetPidFile(), getpid());
@@ -1438,8 +1448,6 @@ bool AppInit2()
 
     // ********************************************************* Step 7: load block chain
 
-    fReindex = GetBoolArg("-reindex", false);
-
     // Create blocks directory if it doesn't already exist
     fs::create_directories(GetDataDir() / "blocks");
 
@@ -1477,7 +1485,7 @@ bool AppInit2()
                 delete pblocktree;
                 delete pSporkDB;
 
-                //__Decenomy__ specific: spork DB's
+                //Kyanite specific: spork DB's
                 pSporkDB = new CSporkDB(0, false, false);
                 pblocktree = new CBlockTreeDB(nBlockTreeDBCache, false, fReindex);
                 pcoinsdbview = new CCoinsViewDB(nCoinDBCache, false, fReindex);
@@ -1498,7 +1506,7 @@ bool AppInit2()
                 // End loop if shutdown was requested
                 if (ShutdownRequested()) break;
 
-                // __Decenomy__: load previous sessions sporks if we have them.
+                // Kyanite: load previous sessions sporks if we have them.
                 uiInterface.InitMessage(_("Loading sporks..."));
                 sporkManager.LoadSporksFromDB();
 

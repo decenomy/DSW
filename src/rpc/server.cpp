@@ -14,6 +14,7 @@
 #include "main.h"
 #include "random.h"
 #include "sync.h"
+#include "simpleroi.h"
 #include "guiinterface.h"
 #include "util.h"
 #include "utilstrencodings.h"
@@ -266,11 +267,11 @@ UniValue stop(const JSONRPCRequest& jsonRequest)
     if (jsonRequest.fHelp || jsonRequest.params.size() > 1)
         throw std::runtime_error(
             "stop\n"
-            "\nStop __Decenomy__ server.");
+            "\nStop Kyanite server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "__Decenomy__ server stopping";
+    return "Kyanite server stopping";
 }
 
 
@@ -361,31 +362,32 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblock",           &waitforblock,           true },
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true },
 
-        /* __DSW__ features */
-        {"__decenomy__", "listmasternodes", &listmasternodes, true },
-        {"__decenomy__", "getmasternodecount", &getmasternodecount, true },
-        {"__decenomy__", "createmasternodebroadcast", &createmasternodebroadcast, true },
-        {"__decenomy__", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
-        {"__decenomy__", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
-        {"__decenomy__", "masternodecurrent", &masternodecurrent, true },
-        {"__decenomy__", "startmasternode", &startmasternode, true },
-        {"__decenomy__", "reloadmasternodeconfig", &reloadmasternodeconfig, true },
-        {"__decenomy__", "createmasternodekey", &createmasternodekey, true },
-        {"__decenomy__", "getmasternodeoutputs", &getmasternodeoutputs, true },
-        {"__decenomy__", "listmasternodeconf", &listmasternodeconf, true },
-        {"__decenomy__", "getactivemasternodecount", &getactivemasternodecount, true },
-        {"__decenomy__", "getmasternodestatus", &getmasternodestatus, true },
-        {"__decenomy__", "getmasternodewinners", &getmasternodewinners, true },
-        {"__decenomy__", "getmasternodescores", &getmasternodescores, true },
-        {"__decenomy__", "mnsync", &mnsync, true },
-        {"__decenomy__", "spork", &spork, true },
-        {"__decenomy__", "mnping", &mnping, true },
+        /* KYAN features */
+        {"kyanite", "listmasternodes", &listmasternodes, true },
+        {"kyanite", "getmasternodecount", &getmasternodecount, true },
+        {"kyanite", "createmasternodebroadcast", &createmasternodebroadcast, true },
+        {"kyanite", "decodemasternodebroadcast", &decodemasternodebroadcast, true },
+        {"kyanite", "relaymasternodebroadcast", &relaymasternodebroadcast, true },
+        {"kyanite", "masternodecurrent", &masternodecurrent, true },
+        {"kyanite", "startmasternode", &startmasternode, true },
+        {"kyanite", "reloadmasternodeconfig", &reloadmasternodeconfig, true },
+        {"kyanite", "createmasternodekey", &createmasternodekey, true },
+        {"kyanite", "getmasternodeoutputs", &getmasternodeoutputs, true },
+        {"kyanite", "listmasternodeconf", &listmasternodeconf, true },
+        {"kyanite", "getactivemasternodecount", &getactivemasternodecount, true },
+        {"kyanite", "getmasternodestatus", &getmasternodestatus, true },
+        {"kyanite", "getmasternodewinners", &getmasternodewinners, true },
+        {"kyanite", "getmasternodescores", &getmasternodescores, true },
+        {"kyanite", "mnsync", &mnsync, true },
+        {"kyanite", "spork", &spork, true },
+        {"kyanite", "mnping", &mnping, true },
 
 #ifdef ENABLE_WALLET
         /* Wallet */
         {"wallet", "bip38encrypt", &bip38encrypt, true },
         {"wallet", "bip38decrypt", &bip38decrypt, true },
         {"wallet", "getaddressinfo", &getaddressinfo, true },
+        {"wallet", "getroi", &getroi, false },
         {"wallet", "getstakingstatus", &getstakingstatus, false },
         {"wallet", "multisend", &multisend, false },
 
@@ -577,14 +579,14 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(std::string methodname, std::string args)
 {
-    return "> __decenomy__-cli " + methodname + " " + args + "\n";
+    return "> kyanite-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(std::string methodname, std::string args)
 {
     return "> curl --user myusername --data-binary '{\"jsonrpc\": \"1.0\", \"id\":\"curltest\", "
            "\"method\": \"" +
-           methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:__RPCPORT_MAINNET__/\n";
+           methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:7758/\n";
 }
 
 void RPCSetTimerInterfaceIfUnset(RPCTimerInterface *iface)

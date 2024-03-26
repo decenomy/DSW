@@ -12,6 +12,7 @@
 #include "masternode-sync.h"
 #include "masternodeman.h"
 #include "netbase.h"
+#include "rewards.h"
 #include "spork.h"
 #include "sync.h"
 #include "util.h"
@@ -373,42 +374,14 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
 {
-    if (nHeight <= 100000) {
-        return 15000 * COIN;
-    } else if (nHeight <= 200000 && nHeight > 100000) {
-        return 17500 * COIN;
-    } else if (nHeight > 200000) {
-        return 20000 * COIN;
-    }
-    return 0;
-}
-
-CAmount CMasternode::GetBlockValue(int nHeight)
-{
-    CAmount nSubsidy;
-
-    if (nHeight == 1) {
-        nSubsidy = 30000000 * COIN; // __DSW__ coin supply (30M)
-    } else if (nHeight <= 100000) {
-        nSubsidy = 100 * COIN;
-    } else if (nHeight > 100000 && nHeight <= 200000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 200000 && nHeight <= 300000) {
-        nSubsidy = 150 * COIN;
-    } else if (nHeight > 300000 && nHeight <= 400000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 400000) {
-        nSubsidy = 100 * COIN;
-    }
-
-    return nSubsidy;
+    return 200000 * COIN;
 }
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    if(nHeight <= 5000) return 0;
+    if (nHeight > 3000) return CRewards::GetBlockValue(nHeight) * 65 / 100;
 
-    return CMasternode::GetBlockValue(nHeight) * 95 / 100;
+    return 0;
 }
 
 void CMasternode::InitMasternodeCollateralList() {
@@ -424,7 +397,7 @@ void CMasternode::InitMasternodeCollateralList() {
 }
 
 std::pair<int, CAmount> CMasternode::GetNextMasternodeCollateral(int nHeight) {
-    for(auto p : vecCollaterals) {
+    for (auto p : vecCollaterals) {
         if(p.first > nHeight) {
             return std::make_pair(p.first - nHeight, p.second);
         }
@@ -776,13 +749,13 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
     }
 
     // verify that sig time is legit in past
-    // should be at least not earlier than block when 1000 __DSW__ tx got MASTERNODE_MIN_CONFIRMATIONS
+    // should be at least not earlier than block when 1000 KYAN tx got MASTERNODE_MIN_CONFIRMATIONS
     uint256 hashBlock = UINT256_ZERO;
     CTransaction tx2;
     GetTransaction(vin.prevout.hash, tx2, hashBlock, true);
     BlockMap::iterator mi = mapBlockIndex.find(hashBlock);
     if (mi != mapBlockIndex.end() && (*mi).second) {
-        CBlockIndex* pMNIndex = (*mi).second;                                   // block for 1000 __DSW__ tx -> 1 confirmation
+        CBlockIndex* pMNIndex = (*mi).second;                                   // block for 1000 KYAN tx -> 1 confirmation
         int nConfHeight = pMNIndex->nHeight + MASTERNODE_MIN_CONFIRMATIONS - 1;
         CBlockIndex* pConfIndex = chainActive[nConfHeight];                     // block where tx got MASTERNODE_MIN_CONFIRMATIONS
         if (pConfIndex->GetBlockTime() > sigTime) {

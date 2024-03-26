@@ -1,6 +1,6 @@
 [Protocol]
-exec=__decenomy__-qt '%u'
-protocol=__decenomy__
+exec=kyanite-qt '%u'
+protocol=kyanite
 input=none
 output=none
 helper=true

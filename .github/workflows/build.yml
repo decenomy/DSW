@@ -21,8 +21,8 @@ jobs:
           docker build \
             --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=$REPO_NAME \
-            --build-arg NAME=__Decenomy__ \
-            --build-arg BASE_NAME=__decenomy__ \
+            --build-arg NAME=Kyanite \
+            --build-arg BASE_NAME=kyanite \
             --build-arg TARGET=${{ github.ref }} \
             -t linux-x64-build-img \
             -f contrib/docker/Dockerfile.dsw-linux-x64-wallet .
@@ -56,8 +56,8 @@ jobs:
           docker build \
             --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=$REPO_NAME \
-            --build-arg NAME=__Decenomy__ \
-            --build-arg BASE_NAME=__decenomy__ \
+            --build-arg NAME=Kyanite \
+            --build-arg BASE_NAME=kyanite \
             --build-arg TARGET=${{ github.ref }} \
             -t linux-arm64-build-img \
             -f contrib/docker/Dockerfile.dsw-linux-arm64-wallet .
@@ -91,8 +91,8 @@ jobs:
           docker build \
             --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=$REPO_NAME \
-            --build-arg NAME=__Decenomy__ \
-            --build-arg BASE_NAME=__decenomy__ \
+            --build-arg NAME=Kyanite \
+            --build-arg BASE_NAME=kyanite \
             --build-arg TARGET=${{ github.ref }} \
             -t windows-x64-build-img \
             -f contrib/docker/Dockerfile.dsw-windows-x64-wallet .
@@ -126,8 +126,8 @@ jobs:
           docker build \
             --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=$REPO_NAME \
-            --build-arg NAME=__Decenomy__ \
-            --build-arg BASE_NAME=__decenomy__ \
+            --build-arg NAME=Kyanite \
+            --build-arg BASE_NAME=kyanite \
             --build-arg TARGET=${{ github.ref }} \
             -t macos-x64-build-img \
             -f contrib/docker/Dockerfile.dsw-macos-x64-wallet .

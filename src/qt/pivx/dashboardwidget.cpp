@@ -54,7 +54,7 @@ DashboardWidget::DashboardWidget(PIVXGUI* parent) :
     setCssSubtitleScreen(ui->labelSubtitle);
 
     // Staking Information
-    ui->labelMessage->setText(tr("Amount of __DSW__ earned via Staking & Masternodes"));
+    ui->labelMessage->setText(tr("Amount of KYAN earned via Staking & Masternodes"));
     setCssSubtitleScreen(ui->labelMessage);
     setCssProperty(ui->labelSquarePiv, "square-chart-piv");
     setCssProperty(ui->labelPiv, "text-chart-piv");
@@ -69,7 +69,7 @@ DashboardWidget::DashboardWidget(PIVXGUI* parent) :
 
     setCssProperty(ui->labelChart, "legend-chart");
     setCssProperty(ui->labelAmountPiv, "text-stake-piv-disable");
-	ui->labelAmountMNRewards->setText("0 __DSW__");
+	ui->labelAmountMNRewards->setText("0 KYAN");
 	setCssProperty(ui->labelAmountMNRewards, "text-stake-mnrewards-disable");
 
 
@@ -228,7 +228,7 @@ void DashboardWidget::loadWalletModel()
         connect(walletModel->getOptionsModel(), &OptionsModel::hideChartsChanged, this, &DashboardWidget::onHideChartsChanged);
 #endif
     }
-    // update the display unit, to not use the default ("__DSW__")
+    // update the display unit, to not use the default ("KYAN")
     updateDisplayUnit();
 }
 
@@ -521,7 +521,7 @@ void DashboardWidget::updateStakeFilter()
     }
 }
 
-// pair __DSW__
+// pair KYAN
 const QMap<int, QMap<QString, qint64>> DashboardWidget::getAmountBy()
 {
     updateStakeFilter();
@@ -582,7 +582,7 @@ bool DashboardWidget::loadChartData(bool withMonthNames)
     }
 
     chartData = new ChartData();
-    chartData->amountsByCache = getAmountBy(); // pair __DSW__
+    chartData->amountsByCache = getAmountBy(); // pair KYAN
 
     std::pair<int,int> range = getChartRange(chartData->amountsByCache);
     if (range.first == 0 && range.second == 0) {
@@ -669,8 +669,8 @@ void DashboardWidget::onChartRefreshed()
     // init sets
     set0 = new QBarSet(CURRENCY_UNIT.c_str());
 	set1 = new QBarSet("MN_" + QString(CURRENCY_UNIT.c_str()));
-    set0->setColor(QColor(221,139,20));
-	set1->setColor(QColor(192,100,22));
+    set0->setColor(QColor(255, 213, 153));
+	set1->setColor(QColor(139, 247, 244));
 
     if (!series) {
         series = new QBarSeries();

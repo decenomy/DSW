@@ -34,6 +34,7 @@
 #include "policy/policy.h"
 #include "pow.h"
 #include "reverse_iterate.h"
+#include "rewards.h"
 #include "spork.h"
 #include "sporkdb.h"
 #include "txdb.h"
@@ -55,7 +56,7 @@
 
 
 #if defined(NDEBUG)
-#error "__Decenomy__ cannot be compiled without assertions."
+#error "Kyanite cannot be compiled without assertions."
 #endif
 
 /**
@@ -96,7 +97,7 @@ size_t nCoinCacheUsage = 5000 * 300;
 /* If the tip is older than this (in seconds), the node is considered to be in initial block download. */
 int64_t nMaxTipAge = DEFAULT_MAX_TIP_AGE;
 
-/** Fees smaller than this (in u__DSW__) are considered zero fee (for relaying, mining and transaction creation)
+/** Fees smaller than this (in uKYAN) are considered zero fee (for relaying, mining and transaction creation)
  * We are ~100 times smaller then bitcoin now (2015-06-23), set minRelayTxFee only 10 times higher
  * so it's still 10 times lower comparing to bitcoin.
  */
@@ -1971,6 +1972,9 @@ DisconnectResult DisconnectBlock(CBlock& block, CBlockIndex* pindex, CCoinsViewC
         }
     }
 
+    // Dynamic rewards management
+    if(!CRewards::DisconnectBlock(pindex)) return DISCONNECT_UNCLEAN;
+
     return fClean ? DISCONNECT_OK : DISCONNECT_UNCLEAN;
 }
 
@@ -2163,7 +2167,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     LogPrint(BCLog::BENCH, "      - Connect %u transactions: %.2fms (%.3fms/tx, %.3fms/txin) [%.2fs]\n", (unsigned)block.vtx.size(), 0.001 * (nTime1 - nTimeStart), 0.001 * (nTime1 - nTimeStart) / block.vtx.size(), nInputs <= 1 ? 0 : 0.001 * (nTime1 - nTimeStart) / (nInputs - 1), nTimeConnect * 0.000001);
 
     //PoW phase redistributed fees to miner. PoS stage destroys fees.
-    CAmount nExpectedMint = CMasternode::GetBlockValue(pindex->pprev->nHeight + 1);
+    CAmount nExpectedMint = CRewards::GetBlockValue(pindex->pprev->nHeight + 1);
     if (block.IsProofOfWork())
         nExpectedMint += nFees;
 
@@ -2237,7 +2241,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         }
     }
 
-    // Update __DSW__ money supply
+    // Update KYAN money supply
     pindex->nMoneySupply = pindex->pprev->nMoneySupply.get() + (nValueOut - nValueIn - nUnspendableValue);
 
     int64_t nTime3 = GetTimeMicros();
@@ -2263,6 +2267,9 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
             pmn->lastPaid = pindex->GetBlockTime();
         }
     }
+
+    // Dynamic rewards management
+    if(!CRewards::ConnectBlock(pindex, nMint, view)) return false;
 
     return true;
 }
@@ -3165,7 +3172,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
             }
         }
 
-        // __Decenomy__
+        // Kyanite
         // It is entirely possible that we don't have enough data and this could fail
         // (i.e. the block could indeed be valid). Store the block for later consideration
         // but issue an initial reject message.
@@ -4110,7 +4117,7 @@ void ResyncSupply()
         boost::this_thread::interruption_point();
         COutPoint key;
         Coin coin;
-        if (pcursor->GetKey(key) && pcursor->GetValue(coin)) {
+        if (pcursor->GetKey(key) && pcursor->GetValue(coin) && !coin.IsSpent()) {
             // ----------- burn address scanning -----------
             CTxDestination source;
             if (ExtractDestination(coin.out.scriptPubKey, source)) {
@@ -5066,7 +5073,7 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
             pfrom->fDisconnect = true;
         }
 
-        // __Decenomy__: We use certain sporks during IBD, so check to see if they are
+        // Kyanite: We use certain sporks during IBD, so check to see if they are
         // available. If not, ask the first peer connected for them.
         // TODO: Move this to an instant broadcast of the sporks.
         bool fMissingSporks = !pSporkDB->SporkExists(SPORK_14_MIN_PROTOCOL_ACCEPTED);

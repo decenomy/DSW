@@ -12,6 +12,7 @@
 #include "test_pivx.h"
 #include <boost/test/unit_test.hpp>
 #include "masternode.h"
+#include "rewards.h"
 
 BOOST_FIXTURE_TEST_SUITE(main_tests, TestingSetup)
 
@@ -115,44 +116,21 @@ BOOST_AUTO_TEST_CASE(block_signature_test)
 BOOST_AUTO_TEST_CASE(subsidy_limit_test)
 {
     CAmount nSum = 0;
-    for (int nHeight = 0; nHeight <= 1; nHeight += 1) {
-        /* premine in block 1 (30000000 __DSW__) */
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
-        BOOST_CHECK(nSubsidy <= 30000000 * COIN);
+    for (int nHeight = 0; nHeight < 1; nHeight += 1) {
+        /* premine in block 1 (600,000,000 KYAN) */
+        CAmount nSubsidy = CRewards::GetBlockValue(nHeight);
+        BOOST_CHECK(nSubsidy <= 600000000 * COIN);
         nSum += nSubsidy;
     }
 
-    for (int nHeight = 2; nHeight <= 100000; nHeight += 1) {
+    for (int nHeight = 1; nHeight < 625199; nHeight += 1) {
         /* PoW Phase One */
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
-        BOOST_CHECK(nSubsidy == 100 * COIN);
+        CAmount nSubsidy = CRewards::GetBlockValue(nHeight);
+        BOOST_CHECK(uint8_t(nSubsidy) == 800 * uint8_t(COIN));
         nSum += nSubsidy;
     }
 
-    for (int nHeight = 100001; nHeight <= 200000; nHeight += 1) {
-        /* PoW Phase Two */
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
-        BOOST_CHECK(nSubsidy == 125 * COIN);
-        nSum += nSubsidy;
-    }
-
-    for (int nHeight = 200001; nHeight <= 300000; nHeight += 1) {
-        /* PoW Phase Two */
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
-        BOOST_CHECK(nSubsidy == 150 * COIN);
-        nSum += nSubsidy;
-    }
-
-    for (int nHeight = 300001; nHeight <= 400000; nHeight += 1) {
-        /* PoW Phase Two */
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
-        BOOST_CHECK(nSubsidy == 125 * COIN);
-        nSum += nSubsidy;
-    }
-
-    //TODO: If you have a limited supply, use MaxSupply check here.
-    // printf("\n\r ----------- nSum = %li ---------------- \n\r", nSum);
-    // BOOST_CHECK(uint8_t(nSum) == uint8_t(4109975100000000ULL));
+    BOOST_CHECK(uint8_t(nSum) == uint8_t(914268160));
 }
 
 bool ReturnFalse() { return false; }

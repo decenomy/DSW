@@ -15,6 +15,7 @@
 #include "masternode-payments.h"
 #include "masternodeconfig.h"
 #include "policy/policy.h"
+#include "rewards.h"
 #include "script/sign.h"
 #include "spork.h"
 #include "util.h"
@@ -38,7 +39,7 @@ bool bSpendZeroConfChange = DEFAULT_SPEND_ZEROCONF_CHANGE;
 const char * DEFAULT_WALLET_DAT = "wallet.dat";
 
 /**
- * Fees smaller than this (in u__DSW__) are considered zero fee (for transaction creation)
+ * Fees smaller than this (in uKYAN) are considered zero fee (for transaction creation)
  * We are ~100 times smaller then bitcoin now (2015-06-23), set minTxFee 10 times higher
  * so it's still 10 times lower comparing to bitcoin.
  * Override with -mintxfee
@@ -2296,7 +2297,7 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend,
                 if (nChange > 0) {
                     // Fill a vout to ourself
                     // TODO: pass in scriptChange instead of reservekey so
-                    // change transaction isn't always pay-to-__DSW__-address
+                    // change transaction isn't always pay-to-KYAN-address
                     bool combineChange = false;
 
                     // coin control: send change to custom address
@@ -2521,7 +2522,7 @@ bool CWallet::CreateCoinStake(
         nCredit += stakeInput.GetValue();
 
         // Add block reward to the credit
-        nCredit += CMasternode::GetBlockValue(pindexPrev->nHeight + 1);
+        nCredit += CRewards::GetBlockValue(pindexPrev->nHeight + 1);
         CAmount nMasternodeCredit = CMasternode::GetMasternodePayment(pindexPrev->nHeight + 1);
 
         // Create the output transaction(s)
@@ -3483,7 +3484,7 @@ std::string CWallet::GetWalletHelpString(bool showDebug)
     strUsage += HelpMessageGroup(_("Mining/Staking options:"));
     strUsage += HelpMessageOpt("-gen", strprintf(_("Generate coins (default: %u)"), DEFAULT_GENERATE));
     strUsage += HelpMessageOpt("-genproclimit=<n>", strprintf(_("Set the number of threads for coin generation if enabled (-1 = all cores, default: %d)"), DEFAULT_GENERATE_PROCLIMIT));
-    strUsage += HelpMessageOpt("-minstakesplit=<amt>", strprintf(_("Minimum positive amount (in __DSW__) allowed by GUI and RPC for the stake split threshold (default: %s)"), FormatMoney(DEFAULT_MIN_STAKE_SPLIT_THRESHOLD)));
+    strUsage += HelpMessageOpt("-minstakesplit=<amt>", strprintf(_("Minimum positive amount (in KYAN) allowed by GUI and RPC for the stake split threshold (default: %s)"), FormatMoney(DEFAULT_MIN_STAKE_SPLIT_THRESHOLD)));
     strUsage += HelpMessageOpt("-staking=<n>", strprintf(_("Enable staking functionality (0-1, default: %u)"), DEFAULT_STAKING));
     if (showDebug) {
         strUsage += HelpMessageGroup(_("Wallet debugging/testing options:"));
@@ -3531,10 +3532,10 @@ CWallet* CWallet::CreateWalletFromFile(const std::string walletFile)
             UIWarning(strprintf(_("Warning: error reading %s! All keys read correctly, but transaction data"
                          " or address book entries might be missing or incorrect."), walletFile));
         } else if (nLoadWalletRet == DB_TOO_NEW) {
-            UIError(strprintf(_("Error loading %s: Wallet requires newer version of __Decenomy__"), walletFile));
+            UIError(strprintf(_("Error loading %s: Wallet requires newer version of Kyanite"), walletFile));
             return nullptr;
         } else if (nLoadWalletRet == DB_NEED_REWRITE) {
-            UIError(_("Wallet needed to be rewritten: restart __Decenomy__ to complete"));
+            UIError(_("Wallet needed to be rewritten: restart Kyanite to complete"));
             return nullptr;
         } else {
             UIError(strprintf(_("Error loading %s\n"), walletFile));
@@ -3845,7 +3846,7 @@ void CWallet::SetNull()
     // Stake split threshold
     nStakeSplitThreshold = DEFAULT_STAKE_SPLIT_THRESHOLD;
 
-    // User-defined fee __DSW__/kb
+    // User-defined fee KYAN/kb
     fUseCustomFee = false;
     nCustomFee = CWallet::minTxFee.GetFeePerK();
 

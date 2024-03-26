@@ -119,7 +119,7 @@
               <item>
                <widget class="PrivateQLabel" name="labelAmountPiv">
                 <property name="text">
-                 <string notr="true">-- __DSW__</string>
+                 <string notr="true">-- KYAN</string>
                 </property>
                </widget>
               </item>
@@ -162,7 +162,7 @@
                  <string notr="true">padding:0px;margin:0px;</string>
                 </property>
                 <property name="text">
-                 <string notr="true">-- __DSW__</string>
+                 <string notr="true">-- KYAN</string>
                 </property>
                </widget>
               </item>
@@ -472,7 +472,7 @@
                  <item>
                   <widget class="PrivateQLabel" name="labelAvailablePiv">
                    <property name="text">
-                    <string>-- __DSW__</string>
+                    <string>-- KYAN</string>
                    </property>
                   </widget>
                  </item>
@@ -486,7 +486,7 @@
                  <item>
                   <widget class="PrivateQLabel" name="labelImmaturePiv">
                    <property name="text">
-                    <string notr="true">- __DSW__</string>
+                    <string notr="true">- KYAN</string>
                    </property>
                   </widget>
                  </item>
@@ -507,7 +507,7 @@
                  <item>
                   <widget class="PrivateQLabel" name="labelLockedPiv">
                    <property name="text">
-                    <string>- __DSW__</string>
+                    <string>- KYAN</string>
                    </property>
                   </widget>
                  </item>
@@ -521,7 +521,7 @@
                  <item>
                   <widget class="PrivateQLabel" name="labelPendingPiv">
                    <property name="text">
-                    <string notr="true">-- __DSW__</string>
+                    <string notr="true">-- KYAN</string>
                    </property>
                   </widget>
                  </item>
@@ -669,7 +669,7 @@
               <item>
                <widget class="QLabel" name="labelCollateralValue">
                 <property name="text">
-                 <string notr="true">-- __DSW__</string>
+                 <string notr="true">-- KYAN</string>
                 </property>
                </widget>
               </item>
@@ -707,7 +707,13 @@
               <item>
                <widget class="QLabel" name="labelNextCollateralValue">
                 <property name="text">
-                 <string>-- __DSW__</string>
+                 <string>-- KYAN</string>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::AutoText</enum>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                 </property>
                 <property name="textFormat">
                  <enum>Qt::AutoText</enum>

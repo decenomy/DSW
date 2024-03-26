@@ -17,54 +17,54 @@ void URITests::uriTests()
     QUrl uri;
 
     //TODO: Fix and uncomment below tests
-    // uri.setUrl(QString("__decenomy__:79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU?req-dontexist="));
+    // uri.setUrl(QString("kyanite:79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU?req-dontexist="));
     // QVERIFY(!GUIUtil::parseBitcoinURI(uri, &rv));
 
-    // uri.setUrl(QString("__decenomy__:79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU?dontexist="));
+    // uri.setUrl(QString("kyanite:79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU?dontexist="));
     // QVERIFY(GUIUtil::parseBitcoinURI(uri, &rv));
     // QVERIFY(rv.address == QString("79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU"));
     // QVERIFY(rv.label == QString());
     // QVERIFY(rv.amount == 0);
 
-    // uri.setUrl(QString("__decenomy__:79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU?label=Some Example Address"));
+    // uri.setUrl(QString("kyanite:79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU?label=Some Example Address"));
     // QVERIFY(GUIUtil::parseBitcoinURI(uri, &rv));
     // QVERIFY(rv.address == QString("79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU"));
     // QVERIFY(rv.label == QString("Some Example Address"));
     // QVERIFY(rv.amount == 0);
 
-    // uri.setUrl(QString("__decenomy__:79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU?amount=0.001"));
+    // uri.setUrl(QString("kyanite:79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU?amount=0.001"));
     // QVERIFY(GUIUtil::parseBitcoinURI(uri, &rv));
     // QVERIFY(rv.address == QString("79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU"));
     // QVERIFY(rv.label == QString());
     // QVERIFY(rv.amount == 100000);
 
-    // uri.setUrl(QString("__decenomy__:79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU?amount=1.001"));
+    // uri.setUrl(QString("kyanite:79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU?amount=1.001"));
     // QVERIFY(GUIUtil::parseBitcoinURI(uri, &rv));
     // QVERIFY(rv.address == QString("79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU"));
     // QVERIFY(rv.label == QString());
     // QVERIFY(rv.amount == 100100000);
 
-    // uri.setUrl(QString("__decenomy__:79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU?amount=100&label=Some Example"));
+    // uri.setUrl(QString("kyanite:79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU?amount=100&label=Some Example"));
     // QVERIFY(GUIUtil::parseBitcoinURI(uri, &rv));
     // QVERIFY(rv.address == QString("79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU"));
     // QVERIFY(rv.amount == 10000000000LL);
     // QVERIFY(rv.label == QString("Some Example"));
 
-    // uri.setUrl(QString("__decenomy__:79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU?message=Some Example Address"));
+    // uri.setUrl(QString("kyanite:79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU?message=Some Example Address"));
     // QVERIFY(GUIUtil::parseBitcoinURI(uri, &rv));
     // QVERIFY(rv.address == QString("79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU"));
     // QVERIFY(rv.label == QString());
 
-    // QVERIFY(GUIUtil::parseBitcoinURI("__decenomy__://79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU?message=Some Example Address", &rv));
+    // QVERIFY(GUIUtil::parseBitcoinURI("kyanite://79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU?message=Some Example Address", &rv));
     // QVERIFY(rv.address == QString("79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU"));
     // QVERIFY(rv.label == QString());
 
-    // uri.setUrl(QString("__decenomy__:79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU?req-message=Some Example Address"));
+    // uri.setUrl(QString("kyanite:79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU?req-message=Some Example Address"));
     // QVERIFY(GUIUtil::parseBitcoinURI(uri, &rv));
 
-    // uri.setUrl(QString("__decenomy__:79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU?amount=1,000&label=Some Example"));
+    // uri.setUrl(QString("kyanite:79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU?amount=1,000&label=Some Example"));
     // QVERIFY(GUIUtil::parseBitcoinURI(uri, &rv));
 
-    // uri.setUrl(QString("__decenomy__:79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU?amount=1,000.0&label=Some Example"));
+    // uri.setUrl(QString("kyanite:79xmgc7SzcCSmVBigS6HCa9oS35K2QJAvU?amount=1,000.0&label=Some Example"));
     // QVERIFY(!GUIUtil::parseBitcoinURI(uri, &rv));
 }
