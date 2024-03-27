@@ -487,7 +487,6 @@ SOURCES += src/activemasternode.cpp \
            src/qt/optionsmodel.cpp \
            src/qt/overviewpage.cpp \
            src/qt/paymentrequest.pb.cc \
-           src/qt/paymentrequestplus.cpp \
            src/qt/paymentserver.cpp \
            src/qt/peertablemodel.cpp \
            src/qt/qvalidatedlineedit.cpp \
