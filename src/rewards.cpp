@@ -104,7 +104,7 @@ bool CRewards::Init(bool fReindex)
             const char* sql = "SELECT height, amount FROM rewards";
             auto rc = sqlite3_exec(db, sql, [](void* data, int argc, char** argv, char** /* azColName */) -> int {
                 int height = std::stoi(argv[0]);
-                CAmount amount = std::stol(argv[1]);
+                CAmount amount = std::stoll(argv[1]);
                 mDynamicRewards[height] = amount;
                 return 0;
             }, nullptr, nullptr);
