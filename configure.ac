@@ -1079,18 +1079,17 @@ if test x$use_pkgconfig = xyes; then
       PKG_CHECK_MODULES([CRYPTO], [libcrypto],,[AC_MSG_ERROR(libcrypto  not found.)])
       BITCOIN_QT_CHECK([PKG_CHECK_MODULES([PROTOBUF], [protobuf], [have_protobuf=yes], [BITCOIN_QT_FAIL(libprotobuf not found)])])
 
-            echo $prefix
+      echo $prefix
       # Check for curl-config
-     AC_PATH_PROG([CURL_CONFIG], [curl-config], none, [$prefix/bin])
-     if test x$CURL_CONFIG = xnone; then
-       AC_MSG_ERROR("curl-config not found")
-     fi
+      AC_PATH_PROG([CURL_CONFIG], [curl-config], none, [$prefix/bin])
+      if test x$CURL_CONFIG = xnone; then
+        AC_MSG_ERROR("curl-config not found")
+      fi
 
-     PKG_CONFIG_PATH={$prefix}/lib/pkgconfig:$PKG_CONFIG_PATH
+      PKG_CONFIG_PATH={$prefix}/lib/pkgconfig:$PKG_CONFIG_PATH
       PKG_CHECK_MODULES([CURL], [libcurl],, [AC_MSG_ERROR(curl not found.)])
       
-      AC_MSG_CHECKING([curl version])
-      CURL_VERSION=$(curl --version)
+      CURL_VERSION=$($CURL_CONFIG --version)
       AC_MSG_RESULT([curl version: $CURL_VERSION])
 
       PKG_CHECK_MODULES([ZLIB], [zlib],, [AC_MSG_ERROR(zlib  not found.)])
