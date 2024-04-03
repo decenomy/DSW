@@ -225,7 +225,7 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
                     // y = mx + b 
                     // 3 months old or less => 100%
                     // 12 months old or greater => 0%
-                    auto nSupplyWeightRatio = 
+                    const auto nSupplyWeightRatio = 
                         std::min(
                             std::max(
                                 (100LL * nMultiplier - (((100LL * nMultiplier)/(9LL * nBlocksPerMonth)) * (nBlocksDiff - 3LL * nBlocksPerMonth))) / nMultiplier, 
@@ -256,15 +256,34 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
             // calculate required delta values
             const auto nDelta = (nActualEmission - std::max(nSupplyTargetEmission, nCirculatingTargetEmission)) / nRewardAdjustmentInterval;
             oss << "CRewards::" << __func__ << " nDelta: " << FormatMoney(nDelta) << std::endl;
-
-            const auto nRatio = (nDelta * 100) / nSubsidy; // percentage of the difference on emissions and the current reward 
-            oss << "CRewards::" << __func__ << " nRatio: " << nRatio << std::endl;
             
-            // y = mx + b
-            // 0% ratio => 10%
-            // 100% ratio => 0% 
-            const auto nDampedDelta = nDelta * ((-nRatio / 10) + 10) / 100;
-            oss << "CRewards::" << __func__ << " nDampedDelta: " << FormatMoney(nDampedDelta) << std::endl; 
+            CAmount nDampedDelta; 
+
+            if(nHeight >= 1253000) {
+                // y = mx + b
+                // <= 0% |ratio| => 1%
+                // >= 100% |ratio| => 10%
+
+                const auto nRatio = std::llabs((nDelta * 100) / nSubsidy); // percentage of the difference on emissions and the current reward 
+                oss << "CRewards::" << __func__ << " nRatio: " << nRatio << std::endl;
+
+                const auto nWeightRatio = ((std::min(nRatio, 100LL) * 9LL) / 100LL) + 1LL;
+
+                nDampedDelta = nDelta * nWeightRatio / 100LL;
+                oss << "CRewards::" << __func__ << " nDampedDelta: " << FormatMoney(nDampedDelta) << std::endl;
+            } else {
+                // y = mx + b
+                // 0% ratio => 10%
+                // 100% ratio => 0%
+
+                // BUG: the nRatio value must be absolute
+                const auto nRatio = (nDelta * 100) / nSubsidy; // percentage of the difference on emissions and the current reward 
+                oss << "CRewards::" << __func__ << " nRatio: " << nRatio << std::endl;
+
+                // BUG: the calculations must be limited on nRatio of 0 to 100%
+                nDampedDelta = nDelta * ((-nRatio / 10) + 10) / 100;
+                oss << "CRewards::" << __func__ << " nDampedDelta: " << FormatMoney(nDampedDelta) << std::endl;
+            }
 
             // adjust the reward for this epoch
             nNewSubsidy = nSubsidy - nDampedDelta;
