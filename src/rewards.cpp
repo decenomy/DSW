@@ -257,33 +257,17 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
             const auto nDelta = (nActualEmission - std::max(nSupplyTargetEmission, nCirculatingTargetEmission)) / nRewardAdjustmentInterval;
             oss << "CRewards::" << __func__ << " nDelta: " << FormatMoney(nDelta) << std::endl;
             
-            CAmount nDampedDelta; 
+            // y = mx + b
+            // <= 0% |ratio| => 1%
+            // >= 100% |ratio| => 10%
+            
+            const auto nRatio = std::llabs((nDelta * 100) / nSubsidy); // percentage of the difference on emissions and the current reward 
+            oss << "CRewards::" << __func__ << " nRatio: " << nRatio << std::endl;
 
-            if(nHeight >= 1253000) {
-                // y = mx + b
-                // <= 0% |ratio| => 1%
-                // >= 100% |ratio| => 10%
+            const auto nWeightRatio = ((std::min(nRatio, 100LL) * 9LL) / 100LL) + 1LL;
 
-                const auto nRatio = std::llabs((nDelta * 100) / nSubsidy); // percentage of the difference on emissions and the current reward 
-                oss << "CRewards::" << __func__ << " nRatio: " << nRatio << std::endl;
-
-                const auto nWeightRatio = ((std::min(nRatio, 100LL) * 9LL) / 100LL) + 1LL;
-
-                nDampedDelta = nDelta * nWeightRatio / 100LL;
-                oss << "CRewards::" << __func__ << " nDampedDelta: " << FormatMoney(nDampedDelta) << std::endl;
-            } else {
-                // y = mx + b
-                // 0% ratio => 10%
-                // 100% ratio => 0%
-
-                // BUG: the nRatio value must be absolute
-                const auto nRatio = (nDelta * 100) / nSubsidy; // percentage of the difference on emissions and the current reward 
-                oss << "CRewards::" << __func__ << " nRatio: " << nRatio << std::endl;
-
-                // BUG: the calculations must be limited on nRatio of 0 to 100%
-                nDampedDelta = nDelta * ((-nRatio / 10) + 10) / 100;
-                oss << "CRewards::" << __func__ << " nDampedDelta: " << FormatMoney(nDampedDelta) << std::endl;
-            }
+            const auto nDampedDelta = nDelta * nWeightRatio / 100LL;
+            oss << "CRewards::" << __func__ << " nDampedDelta: " << FormatMoney(nDampedDelta) << std::endl;
 
             // adjust the reward for this epoch
             nNewSubsidy = nSubsidy - nDampedDelta;
