@@ -65,7 +65,6 @@ $(package)_config_opts += -no-xinput2
 $(package)_config_opts += -nomake examples
 $(package)_config_opts += -nomake tests
 $(package)_config_opts += -opensource
-#$(package)_config_opts += -openssl-linked
 $(package)_config_opts += -no-openssl
 $(package)_config_opts += -optimized-qmake
 $(package)_config_opts += -pkg-config
