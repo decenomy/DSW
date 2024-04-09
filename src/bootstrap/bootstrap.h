@@ -20,7 +20,7 @@
 #define TICKER "__DSW__"
 #endif
 
-#define APPLE_CA_PATH "/System/Library/Keychains/SystemRootCertificates.keychain"
+#define APPLE_CA_PATH "/etc/ssl/cert.pem"
 #define LINUX_CA_PATH "/etc/ssl/certs/ca-certificates.crt"
 #define WIN_CA_PATH ""
 
