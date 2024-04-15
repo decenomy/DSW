@@ -48,12 +48,12 @@ docker_linux_test:
 	-lcurl -pthread -lz -lssl -lcrypto -ldl -lboost_system-mt-x64 -lboost_filesystem-mt-x64 
 
 docker_windows_test:
-	/usr/bin/x86_64-w64-mingw32-g++ \
+	/usr/bin/x86_64-w64-mingw32-g++ -static \
 	-I/DSW/depends/x86_64-w64-mingw32/include \
 	-L/DSW/depends/x86_64-w64-mingw32/lib \
 	-L/DSW/depends/x86_64-w64-mingw32/lib64 \
-	-o test test.cpp bootstrap.h bootstrap.cpp minizip/unzip.h minizip/unzip.c minizip/ioapi.h minizip/ioapi.c \
+	-o test.exe test.cpp bootstrap.h bootstrap.cpp minizip/unzip.h minizip/unzip.c minizip/ioapi.h minizip/ioapi.c \
 	-lcurl -DCURL_STATICLIB `/DSW/depends/x86_64-w64-mingw32/bin/curl-config --cflags --static-libs` -pthread -lz -lssl -lcrypto -lboost_system-mt-s-x64 -lboost_filesystem-mt-s-x64 
 
 clean:
-	rm test curl_test bootstrap.zip
+	rm test test.exe curl_test bootstrap.zip
