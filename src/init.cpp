@@ -884,6 +884,28 @@ static std::string ResolveErrMsg(const char * const optname, const std::string& 
     return strprintf(_("Cannot resolve -%s address: '%s'"), optname, strBind);
 }
 
+// Define the progress callback function
+static int DownloadProgressCallback(void *clientp, double dltotal, double dlnow, double ultotal, double ulnow) {
+
+    // Calculate progress percentage
+    double progress = (dlnow > 0) ? (dlnow / dltotal) * 100.0 : 0.0;
+
+    auto now = std::chrono::steady_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::seconds>(now.time_since_epoch());
+    static bool log_flag = false; // Declare log_flag as static
+    if (!log_flag && duration.count() % 2 == 0) {
+        log_flag = true;
+        //std::printf("-Bootstrap: Download: %d%%\n", (uint8_t)progress);
+        LogPrintf("-Bootstrap: Download: %d%%\n", (uint8_t)progress);
+        uiInterface.ShowProgress(_("Download: "), (uint8_t)progress);    
+    } else if (duration.count() % 2 != 0) {
+        log_flag = false;
+    }
+
+    return 0;
+}
+
+
 void InitLogging()
 {
     //g_logger->m_print_to_file = !IsArgNegated("-debuglogfile");
@@ -1240,13 +1262,13 @@ bool AppInit2()
 
                   LogPrintf("-bootstrap: Download: %s\n", url.c_str());
 
-                  if(BOOTSTRAP::isDirectory(extractPath))
-                      BOOTSTRAP::rmDirectory(extractPath);
+                  if(Bootstrap::isDirectory(extractPath))
+                      Bootstrap::rmDirectory(extractPath);
 
-                  if (BOOTSTRAP::DownloadFile(url, outputFileName)) {
+                  if (Bootstrap::DownloadFile(url, outputFileName, DownloadProgressCallback)) {
                       LogPrintf("-bootstrap: File downloaded successfully \n");
 
-                      if (BOOTSTRAP::extractZip(outputFileName, extractPath)) {
+                      if (Bootstrap::extractZip(outputFileName, extractPath)) {
                           LogPrintf("-bootstrap: Zip file extracted successfully \n");
                           try {
                               fs::rename(extractPath+"/blocks", blocksDir);
@@ -1528,39 +1550,6 @@ bool AppInit2()
                 if (fTxIndex != GetBoolArg("-txindex", DEFAULT_TXINDEX)) {
                     strLoadError = _("You need to rebuild the database using -reindex to change -txindex");
                     break;
-                }
-
-                if (chainActive.Tip() != nullptr) {
-                    if (!chainActive.Tip()->nMoneySupply) {
-                        LOCK(cs_main);
-                        nMoneySupply = 0;
-
-                        std::unique_ptr<CCoinsViewCursor> pcursor(pcoinsTip->Cursor());
-
-                        while (pcursor->Valid()) {
-                            boost::this_thread::interruption_point();
-                            COutPoint key;
-                            Coin coin;
-                            if (pcursor->GetKey(key) && pcursor->GetValue(coin)) {
-                                // ----------- burn address scanning -----------
-                                CTxDestination source;
-                                if (ExtractDestination(coin.out.scriptPubKey, source)) {
-                                    const std::string addr = EncodeDestination(source);
-                                    if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
-                                        consensus.mBurnAddresses.at(addr) < chainActive.Height()) {
-                                        pcursor->Next();
-                                        continue;
-                                    }
-                                }
-                                nMoneySupply += coin.out.nValue;
-                            }
-                            pcursor->Next();
-                        }
-
-                        chainActive.Tip()->nMoneySupply = nMoneySupply;
-                    } else {
-                        nMoneySupply = chainActive.Tip()->nMoneySupply.get();
-                    }
                 }
 
                 if (!fReindex) {
