@@ -22,7 +22,7 @@ jobs:
           docker build \
             --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=$REPO_NAME \
-            --build-arg NAME=BECN \
+            --build-arg NAME=Beacon \
             --build-arg BASE_NAME=beacon \
             --build-arg TARGET=${{ github.ref }} \
             -t linux-x64-build-img \
@@ -58,7 +58,7 @@ jobs:
           docker build \
             --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=$REPO_NAME \
-            --build-arg NAME=BECN \
+            --build-arg NAME=Beacon \
             --build-arg BASE_NAME=beacon \
             --build-arg TARGET=${{ github.ref }} \
             -t linux-arm64-build-img \
@@ -94,7 +94,7 @@ jobs:
           docker build \
             --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=$REPO_NAME \
-            --build-arg NAME=BECN \
+            --build-arg NAME=Beacon \
             --build-arg BASE_NAME=beacon \
             --build-arg TARGET=${{ github.ref }} \
             -t windows-x64-build-img \
