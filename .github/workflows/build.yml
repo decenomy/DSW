@@ -22,7 +22,7 @@ jobs:
           docker build \
             --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=$REPO_NAME \
-            --build-arg NAME=BIR \
+            --build-arg NAME=Birake \
             --build-arg BASE_NAME=birake \
             --build-arg TARGET=${{ github.ref }} \
             -t linux-x64-build-img \
@@ -58,8 +58,8 @@ jobs:
           docker build \
             --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=$REPO_NAME \
-            --build-arg NAME=__Decenomy__ \
-            --build-arg BASE_NAME=__decenomy__ \
+            --build-arg NAME=Birake \
+            --build-arg BASE_NAME=birake \
             --build-arg TARGET=${{ github.ref }} \
             -t linux-arm64-build-img \
             -f contrib/docker/Dockerfile.dsw-linux-arm64-wallet .
