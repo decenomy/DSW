@@ -384,7 +384,7 @@ CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
 
 CAmount CMasternode::GetBlockValue(int nHeight)
 {
-<<<<<<< HEAD
+
     if (nHeight > 700000) return       600 * COIN; // Approximately Old blockchain after block 2000000 - Approximately 50% increase in the rewards
     if (nHeight > 600000) return       680 * COIN; // Approximately Old blockchain after block 1900000 - Approximately 50% increase in the rewards
     if (nHeight > 500000) return       760 * COIN; // Approximately Old blockchain after block 1800000 - Approximately 50% increase in the rewards
@@ -397,25 +397,6 @@ CAmount CMasternode::GetBlockValue(int nHeight)
     if (nHeight >      0) return 610000000 * COIN; //! Premine for sending coins to the coin holders. Final circulating supply is 607,146,002.03072373 CFL so we will emit 610M.
 
     return 0;
-=======
-    CAmount nSubsidy;
-
-    if (nHeight == 1) {
-        nSubsidy = 30000000 * COIN; // __DSW__ coin supply (30M)
-    } else if (nHeight <= 100000) {
-        nSubsidy = 100 * COIN;
-    } else if (nHeight > 100000 && nHeight <= 200000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 200000 && nHeight <= 300000) {
-        nSubsidy = 150 * COIN;
-    } else if (nHeight > 300000 && nHeight <= 400000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 400000) {
-        nSubsidy = 100 * COIN;
-    }
-
-    return nSubsidy;
->>>>>>> 0f248079639d4dea9954c95cbc3b5d56339afb9f
 }
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)
