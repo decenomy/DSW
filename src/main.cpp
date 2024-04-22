@@ -1965,8 +1965,10 @@ DisconnectResult DisconnectBlock(CBlock& block, CBlockIndex* pindex, CCoinsViewC
     // move best block pointer to prevout block
     view.SetBestBlock(pindex->pprev->GetBlockHash());
 
+    view.SetBestBlock(pindex->pprev->GetBlockHash());
+
     // Clean lastPaid
-    at].paidPayee = uto amount = CMasternode::GetMasternodePayment(pindex->nHeight);
+    auto amount = CMasternode::GetMasternodePayment(pindex->nHeight);
     auto paidPayee = block.GetPaidPayee(amount);
     if(!paidPayee.empty()) {
         auto pmn = mnodeman.Find(paidPayee);
