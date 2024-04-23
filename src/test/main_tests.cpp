@@ -12,6 +12,7 @@
 #include "test_pivx.h"
 #include <boost/test/unit_test.hpp>
 #include "masternode.h"
+#include "rewards.h"
 
 BOOST_FIXTURE_TEST_SUITE(main_tests, TestingSetup)
 
@@ -117,14 +118,14 @@ BOOST_AUTO_TEST_CASE(subsidy_limit_test)
     CAmount nSum = 0;
     for (int nHeight = 0; nHeight < 1; nHeight += 1) {
         /* premine in block 1 (600,000,000 KYAN) */
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
+        CAmount nSubsidy = CRewards::GetBlockValue(nHeight);
         BOOST_CHECK(nSubsidy <= 600000000 * COIN);
         nSum += nSubsidy;
     }
 
     for (int nHeight = 1; nHeight < 625199; nHeight += 1) {
         /* PoW Phase One */
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
+        CAmount nSubsidy = CRewards::GetBlockValue(nHeight);
         BOOST_CHECK(uint8_t(nSubsidy) == 800 * uint8_t(COIN));
         nSum += nSubsidy;
     }
