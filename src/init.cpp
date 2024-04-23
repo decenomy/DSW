@@ -36,6 +36,7 @@
 #include "netbase.h"
 #include "net.h"
 #include "policy/policy.h"
+#include "rewards.h"
 #include "rpc/server.h"
 #include "script/standard.h"
 #include "scheduler.h"
@@ -238,6 +239,9 @@ void PrepareShutdown()
 
     {
         LOCK(cs_main);
+
+        CRewards::Shutdown();
+
         if (pcoinsTip != NULL) {
             FlushStateToDisk();
 
@@ -1084,6 +1088,12 @@ bool AppInit2()
 
     // ********************************************************* Step 4: application initialization: dir lock, daemonize, pidfile, debug log
 
+    fReindex = GetBoolArg("-reindex", false);
+
+    // Initialize dynamic rewards
+    if(!CRewards::Init(fReindex)) 
+        return false;
+
     // Initialize elliptic curve code
     RandomInit();
     ECC_Start();
@@ -1459,8 +1469,6 @@ bool AppInit2()
 #endif
 
     // ********************************************************* Step 7: load block chain
-
-    fReindex = GetBoolArg("-reindex", false);
 
     // Create blocks directory if it doesn't already exist
     fs::create_directories(GetDataDir() / "blocks");
