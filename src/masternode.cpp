@@ -12,6 +12,7 @@
 #include "masternode-sync.h"
 #include "masternodeman.h"
 #include "netbase.h"
+#include "rewards.h"
 #include "spork.h"
 #include "sync.h"
 #include "util.h"
@@ -374,14 +375,6 @@ bool CMasternode::IsInputAssociatedWithPubkey() const
 CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
 {
     return 200000 * COIN;
-}
-
-CAmount CMasternode::GetBlockValue(int nHeight)
-{
-    if (nHeight > 1) return       800 * COIN;
-    if (nHeight > 0) return 600000000 * COIN;
-
-    return 0;
 }
 
 CAmount CMasternode::GetMasternodePayment(int nHeight)

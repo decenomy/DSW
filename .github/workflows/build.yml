@@ -3,12 +3,11 @@ name: Build and Extract Files from Docker Container
 on:
   push:
     branches:
-      - master
+      - '*'
 
 jobs:
   build-files-linux-x64:
     runs-on: ubuntu-22.04
-    if: ${{ false }}  # Set condition to false to make the workflow inactive
 
     steps:
       - name: Checkout Repository
@@ -16,24 +15,26 @@ jobs:
 
       - name: Build and Extract Files from Docker Container
         run: |
+          # Extract the name of the repository and use it as the ticker value
+          REPO_NAME="${GITHUB_REPOSITORY##*/}"
           # Build the Docker image from the Dockerfile in the repository
           docker build \
             --build-arg CPU_CORES=$(nproc) \
-            --build-arg TICKER=KYAN \
+            --build-arg TICKER=$REPO_NAME \
             --build-arg NAME=Kyanite \
             --build-arg BASE_NAME=kyanite \
-            --build-arg TARGET=master \
-            -t kyanite-linux-x64-build \
+            --build-arg TARGET=${{ github.ref }} \
+            -t linux-x64-build-img \
             -f contrib/docker/Dockerfile.dsw-linux-x64-wallet .
 
           # Start the container (if it's not already running)
-          docker run -d --name kyanite-linux-x64-build-container kyanite-linux-x64-build
+          docker run -d --name linux-x64-build-ctn linux-x64-build-img
 
           # Create a temporary directory to hold the extracted files
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp kyanite-linux-x64-build-container:/KYAN/deploy/linux-x64 release_files/
+          docker cp linux-x64-build-ctn:/$REPO_NAME/deploy/linux-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v4
@@ -42,7 +43,6 @@ jobs:
           path: release_files
   build-files-linux-arm64:
     runs-on: ubuntu-22.04
-    if: ${{ false }}  # Set condition to false to make the workflow inactive
 
     steps:
       - name: Checkout Repository
@@ -50,24 +50,26 @@ jobs:
 
       - name: Build and Extract Files from Docker Container
         run: |
+          # Extract the name of the repository and use it as the ticker value
+          REPO_NAME="${GITHUB_REPOSITORY##*/}"
           # Build the Docker image from the Dockerfile in the repository
           docker build \
             --build-arg CPU_CORES=$(nproc) \
-            --build-arg TICKER=KYAN \
+            --build-arg TICKER=$REPO_NAME \
             --build-arg NAME=Kyanite \
             --build-arg BASE_NAME=kyanite \
-            --build-arg TARGET=master \
-            -t kyanite-linux-arm64-build \
+            --build-arg TARGET=${{ github.ref }} \
+            -t linux-arm64-build-img \
             -f contrib/docker/Dockerfile.dsw-linux-arm64-wallet .
 
           # Start the container (if it's not already running)
-          docker run -d --name kyanite-linux-arm64-build-container kyanite-linux-arm64-build
+          docker run -d --name linux-arm64-build-ctn linux-arm64-build-img
 
           # Create a temporary directory to hold the extracted files
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp kyanite-linux-arm64-build-container:/KYAN/deploy/linux-arm64 release_files/
+          docker cp linux-arm64-build-ctn:/$REPO_NAME/deploy/linux-arm64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v4
@@ -76,7 +78,6 @@ jobs:
           path: release_files
   build-windows-x64:
     runs-on: ubuntu-22.04
-    if: ${{ false }}  # Set condition to false to make the workflow inactive
 
     steps:
       - name: Checkout Repository
@@ -84,24 +85,26 @@ jobs:
 
       - name: Build and Extract Files from Docker Container
         run: |
+          # Extract the name of the repository and use it as the ticker value
+          REPO_NAME="${GITHUB_REPOSITORY##*/}"
           # Build the Docker image from the Dockerfile in the repository
           docker build \
             --build-arg CPU_CORES=$(nproc) \
-            --build-arg TICKER=KYAN \
+            --build-arg TICKER=$REPO_NAME \
             --build-arg NAME=Kyanite \
             --build-arg BASE_NAME=kyanite \
-            --build-arg TARGET=master \
-            -t kyanite-windows-x64-build \
+            --build-arg TARGET=${{ github.ref }} \
+            -t windows-x64-build-img \
             -f contrib/docker/Dockerfile.dsw-windows-x64-wallet .
 
           # Start the container (if it's not already running)
-          docker run -d --name kyanite-windows-x64-build-container kyanite-windows-x64-build
+          docker run -d --name windows-x64-build-ctn windows-x64-build-img
 
           # Create a temporary directory to hold the extracted files
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp kyanite-windows-x64-build-container:/KYAN/deploy/windows-x64 release_files/
+          docker cp windows-x64-build-ctn:/$REPO_NAME/deploy/windows-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v4
@@ -110,7 +113,6 @@ jobs:
           path: release_files
   build-macos-x64:
     runs-on: ubuntu-22.04
-    if: ${{ false }}  # Set condition to false to make the workflow inactive
 
     steps:
       - name: Checkout Repository
@@ -118,24 +120,26 @@ jobs:
 
       - name: Build and Extract Files from Docker Container
         run: |
+          # Extract the name of the repository and use it as the ticker value
+          REPO_NAME="${GITHUB_REPOSITORY##*/}"
           # Build the Docker image from the Dockerfile in the repository
           docker build \
             --build-arg CPU_CORES=$(nproc) \
-            --build-arg TICKER=KYAN \
+            --build-arg TICKER=$REPO_NAME \
             --build-arg NAME=Kyanite \
             --build-arg BASE_NAME=kyanite \
-            --build-arg TARGET=master \
-            -t kyanite-macos-x64-build \
+            --build-arg TARGET=${{ github.ref }} \
+            -t macos-x64-build-img \
             -f contrib/docker/Dockerfile.dsw-macos-x64-wallet .
 
           # Start the container (if it's not already running)
-          docker run -d --name kyanite-macos-x64-build-container kyanite-macos-x64-build
+          docker run -d --name macos-x64-build-ctn macos-x64-build-img
 
           # Create a temporary directory to hold the extracted files
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp kyanite-macos-x64-build-container:/KYAN/deploy/macos-x64 release_files/
+          docker cp macos-x64-build-ctn:/$REPO_NAME/deploy/macos-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v4
