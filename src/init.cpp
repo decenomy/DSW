@@ -1262,8 +1262,7 @@ bool AppInit2()
 
                   LogPrintf("-bootstrap: Download: %s\n", url.c_str());
 
-                  if(Bootstrap::isDirectory(extractPath))
-                      Bootstrap::rmDirectory(extractPath);
+                  Bootstrap::rmDirectory(extractPath);
 
                   if (Bootstrap::DownloadFile(url, outputFileName, DownloadProgressCallback)) {
                       LogPrintf("-bootstrap: File downloaded successfully \n");
@@ -1274,18 +1273,22 @@ bool AppInit2()
                               fs::rename(extractPath+"/blocks", blocksDir);
                               fs::rename(extractPath+"/chainstate", chainstateDir);
                               LogPrintf("-bootstrap: Folders moved successfully \n");
-                              fs::remove(extractPath);
                           } catch (const std::exception& e) {
                               LogPrintf("-bootstrap: Error moving folder: %s\n",e.what());
                           }
+
                       } else {
                           LogPrintf("-bootstrap: Error extracting zip file");
                       }
 
-                      fs::remove(outputFileName);
+                      Bootstrap::rmDirectory(extractPath);
+                      
                   } else {
                       LogPrintf("-bootstrap: Error downloading file");
                   }
+
+                  if(fs::exists(outputFileName))
+                  		fs::remove(outputFileName);
                 }
                 #else
                 LogPrintf("-bootstrap: not enabled\n");
