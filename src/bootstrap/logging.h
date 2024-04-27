@@ -1,5 +1,5 @@
-#ifndef LOGGING_H
-#define LOGGING_H
+#ifndef BITCOIN_LOGGING_H
+#define BITCOIN_LOGGING_H
 
 #include "tinyformat.h"
 #include <cerrno>  // For perror
