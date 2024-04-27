@@ -78,7 +78,7 @@ int main() {
         }
 
         if(Bootstrap::isDirectory(extractPath))
-        Bootstrap::rmDirectory(extractPath);
+            Bootstrap::rmDirectory(extractPath);
     
     } else {
         std::cerr << "Error downloading file." << std::endl;
