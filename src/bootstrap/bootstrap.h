@@ -15,6 +15,7 @@
 #include <boost/filesystem/fstream.hpp>
 
 #include "minizip/unzip.h"
+#include "logging.h"
 
 #ifndef TICKER
 #define TICKER "__DSW__"
