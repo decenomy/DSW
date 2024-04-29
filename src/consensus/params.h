@@ -35,7 +35,8 @@ enum UpgradeIndex : uint32_t {
     UPGRADE_STAKE_MIN_DEPTH_V2,
     UPGRADE_CHECK_WORK_V2,
     UPGRADE_MASTERNODE_RANK_V2,
-    UPGRADE_DYNAMIC_COLLATERAL,
+    UPGRADE_DYNAMIC_REWARDS,
+    UPGRADE_DYNAMIC_COLLATERALS,
     // NOTE: Also add new upgrades to NetworkUpgradeInfo in upgrades.cpp
     UPGRADE_TESTDUMMY,
     MAX_NETWORK_UPGRADES,
@@ -104,6 +105,8 @@ struct Params {
     int64_t nTargetTimespanV2;
     int64_t nTargetSpacing;
     int nTimeSlotLength;
+
+    int nRewardAdjustmentInterval;
 
     // burn addresses
     std::map<std::string, int> mBurnAddresses = {};
