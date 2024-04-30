@@ -270,7 +270,11 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
             oss << "CRewards::" << __func__ << " nDampedDelta: " << FormatMoney(nDampedDelta) << std::endl;
 
             // adjust the reward for this epoch
-            nNewSubsidy = ((nSubsidy - nDampedDelta) / COIN) * COIN;
+            if (nHeight > 1300000) {
+                nNewSubsidy = ((nSubsidy - nDampedDelta) / COIN) * COIN;
+            } else {
+                nNewSubsidy = nSubsidy - nDampedDelta;
+            }
 
             oss << "CRewards::" << __func__ << " Adjustment at height " << nHeight << ": " << FormatMoney(nSubsidy) << " => " << FormatMoney(nNewSubsidy) << std::endl;
         }
