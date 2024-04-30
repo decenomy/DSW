@@ -12,6 +12,7 @@
 #include "masternode-sync.h"
 #include "masternodeman.h"
 #include "netbase.h"
+#include "rewards.h"
 #include "spork.h"
 #include "sync.h"
 #include "util.h"
@@ -379,41 +380,11 @@ CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
     return 15000 * COIN;
 }
 
-CAmount CMasternode::GetBlockValue(int nHeight)
-{
-    const Consensus::Params& consensus = Params().GetConsensus();
-
-    // Mint for distribution
-    if (nHeight == consensus.nMintHeight) return consensus.nMintValue + GetBlockValue(nHeight + 1);
-    if (nHeight == consensus.nMintHeight2) return consensus.nMintValue2 + GetBlockValue(nHeight + 1);
-
-    if(nHeight > 900000) return      200 * COIN;
-    if(nHeight > 700000) return      300 * COIN;
-    if(nHeight > 550000) return      400 * COIN;
-
-    if(nHeight > 400000) return      200 * COIN;
-    if(nHeight > 300000) return      260 * COIN;
-    if(nHeight > 240000) return      300 * COIN;
-    if(nHeight > 200000) return      150 * COIN;
-    if(nHeight > 100000) return      125 * COIN;
-    if(nHeight >      1) return      100 * COIN;
-    if(nHeight >      0) return 30000000 * COIN;
-
-    return 0;
-}
-
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
     const Consensus::Params& consensus = Params().GetConsensus();
 
-    // Mint for distribution
-    if (nHeight == consensus.nMintHeight) return GetMasternodePayment(nHeight + 1);
-    if (nHeight == consensus.nMintHeight2) return GetMasternodePayment(nHeight + 1);
-
-    if(nHeight > 240000) return GetBlockValue(nHeight) * 65 / 100;
-    if(nHeight >   5000) return GetBlockValue(nHeight) * 95 / 100;
-
-    return 0;
+    return CRewards::GetBlockValue(nHeight) * 95 / 100;
 }
 
 void CMasternode::InitMasternodeCollateralList() {

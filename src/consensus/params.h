@@ -33,7 +33,8 @@ enum UpgradeIndex : uint32_t {
     UPGRADE_P2PKH_BLOCK_SIGNATURES,
     UPGRADE_STAKE_MIN_DEPTH_V2,
     UPGRADE_MASTERNODE_RANK_V2,
-    UPGRADE_DYNAMIC_COLLATERAL,
+    UPGRADE_DYNAMIC_REWARDS,
+    UPGRADE_DYNAMIC_COLLATERALS,
     // NOTE: Also add new upgrades to NetworkUpgradeInfo in upgrades.cpp
     UPGRADE_TESTDUMMY,
     MAX_NETWORK_UPGRADES,
@@ -103,15 +104,7 @@ struct Params {
     int64_t nTargetSpacing;
     int nTimeSlotLength;
 
-    // ESBC extra mint
-    int nMintHeight = -1;
-    CAmount nMintValue = 0;
-    std::string sMintAddress;
-
-    // PWRB extra mint
-    int nMintHeight2 = -1;
-    CAmount nMintValue2 = 0;
-    std::string sMintAddress2;
+    int nRewardAdjustmentInterval;
 
     // burn addresses
     std::map<std::string, int> mBurnAddresses = {};
