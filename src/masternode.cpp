@@ -12,6 +12,7 @@
 #include "masternode-sync.h"
 #include "masternodeman.h"
 #include "netbase.h"
+#include "rewards.h"
 #include "spork.h"
 #include "sync.h"
 #include "util.h"
@@ -396,49 +397,11 @@ CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
     return 0;
 }
 
-CAmount CMasternode::GetBlockValue(int nHeight)
-{
-    // Exceptions made to force a fork
-    if (nHeight == 574010 || nHeight == 585330 || nHeight == 586594) return 801 * COIN;
-
-    if(nHeight > 1200000) return    800 * COIN;
-    if(nHeight > 1000000) return    400 * COIN;
-    if(nHeight >  950000) return    450 * COIN;
-    if(nHeight >  900000) return    500 * COIN;
-    if(nHeight >  850000) return    600 * COIN;
-    if(nHeight >  800000) return    700 * COIN;
-    if(nHeight >  750000) return    800 * COIN;
-    if(nHeight >  700000) return    900 * COIN;
-    if(nHeight >  650000) return   1000 * COIN;
-    if(nHeight >  600000) return    900 * COIN;
-    if(nHeight >  550000) return    800 * COIN;
-    if(nHeight >  500000) return    700 * COIN;
-    if(nHeight >  450000) return    600 * COIN;
-    if(nHeight >  400000) return    500 * COIN;
-    if(nHeight >  300000) return    400 * COIN;
-    if(nHeight >  250000) return    450 * COIN;
-    if(nHeight >  200000) return    500 * COIN;
-    if(nHeight >  175000) return    400 * COIN;
-    if(nHeight >  150000) return    250 * COIN;
-    if(nHeight >  130000) return    150 * COIN;
-    if(nHeight >  100000) return    100 * COIN;
-    if(nHeight >   60000) return     50 * COIN;
-    if(nHeight >   50000) return     25 * COIN;
-    if(nHeight >   40000) return     20 * COIN;
-    if(nHeight >   30000) return     15 * COIN;
-    if(nHeight >   20000) return     10 * COIN;
-    if(nHeight >    2000) return      2 * COIN;
-    if(nHeight >       1) return      1 * COIN;
-    if(nHeight >       0) return 300000 * COIN;
-
-    return 0;
-}
-
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    if(nHeight > 1200000) return GetBlockValue(nHeight) * 65 / 100;
+    if(nHeight > 1200000) return CRewards::GetBlockValue(nHeight) * 65 / 100;
 
-    return GetBlockValue(nHeight) * 95 / 100;
+    return CRewards::GetBlockValue(nHeight) * 95 / 100;
 }
 
 void CMasternode::InitMasternodeCollateralList() {
