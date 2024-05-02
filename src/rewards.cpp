@@ -347,19 +347,48 @@ CAmount CRewards::GetBlockValue(int nHeight)
     CAmount nSubsidy;
 
     // ---- Static reward table ----
-    if (nHeight == 1) {
-        nSubsidy = 30000000 * COIN; // __DSW__ coin supply (30M)
-    } else if (nHeight <= 100000) {
-        nSubsidy = 100 * COIN;
-    } else if (nHeight > 100000 && nHeight <= 200000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 200000 && nHeight <= 300000) {
-        nSubsidy = 150 * COIN;
-    } else if (nHeight > 300000 && nHeight <= 400000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 400000) {
-        nSubsidy = 100 * COIN;
-    }
+    if (nHeight > 1700000) 
+        nSubsidy = 80.00 * COIN;
+    else if (nHeight > 1600000) 
+        nSubsidy = 120.00 * COIN;
+    else if (nHeight > 1500000) 
+        nSubsidy = 140.00 * COIN;
+    else if (nHeight > 1400000) 
+        nSubsidy = 220.00 * COIN;
+    else if (nHeight > 1300000) 
+        nSubsidy = 300.00 * COIN;
+    else if (nHeight > 1200000) 
+        nSubsidy = 380.00 * COIN;
+    else if (nHeight > 1100000) 
+        nSubsidy = 440.00 * COIN;
+    else if (nHeight > 1000000) 
+        nSubsidy = 600.00 * COIN;
+    else if (nHeight >  900000) 
+        nSubsidy = 700.00 * COIN;
+    else if (nHeight >  800000) 
+        nSubsidy = 440.00 * COIN;
+    else if (nHeight >  700000) 
+        nSubsidy = 300.00 * COIN;
+    else if (nHeight >  600000) 
+        nSubsidy = 140.00 * COIN;
+    else if (nHeight >  525000) 
+        nSubsidy = 80.00 * COIN;
+    else if (nHeight >  500000) 
+        nSubsidy = 60.00 * COIN;
+    else if (nHeight >  350000) 
+        nSubsidy = 25.00 * COIN;
+    else if (nHeight >  292500) 
+        nSubsidy = 4.50 * COIN;
+    else if (nHeight >  292000) 
+        nSubsidy = 005.50 * COIN; // +1001 LiquiMining
+    else if (nHeight >  210241) 
+        nSubsidy = 4.50 * COIN;
+    else if (nHeight >       1) 
+        nSubsidy = 5.00 * COIN;
+    else if (nHeight >       0) 
+        nSubsidy = 180000.00 * COIN;
+    else
+        nSubsidy = 1 * COIN;
     // ---- Static reward table ----
 
     if (masternodeSync.IsSynced() &&
