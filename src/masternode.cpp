@@ -12,6 +12,7 @@
 #include "masternode-sync.h"
 #include "masternodeman.h"
 #include "netbase.h"
+#include "rewards.h"
 #include "spork.h"
 #include "sync.h"
 #include "util.h"
@@ -398,47 +399,6 @@ CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
     return 0;
 }
 
-CAmount CMasternode::GetBlockValue(int nHeight)
-{
-    const Consensus::Params& consensus = Params().GetConsensus();
-
-    // AZZR coin supply for distribution
-    if (nHeight == consensus.nAZZRCoinSupplyMintHeight) return consensus.nAZZRCoinSupply + GetBlockValue(nHeight + 1);
-
-    if (nHeight > 1100000) return    800 * COIN;
-    if (nHeight > 1000000) return    600 * COIN;
-    if (nHeight >  900000) return    400 * COIN;
-    if (nHeight >  800000) return    200 * COIN;
-    if (nHeight >  750000) return    100 * COIN;
-    if (nHeight >  700000) return    110 * COIN;
-    if (nHeight >  650000) return    120 * COIN;
-    if (nHeight >  600000) return    130 * COIN;
-    if (nHeight >  550000) return    140 * COIN;
-    if (nHeight >  500000) return    150 * COIN;
-    if (nHeight >  450000) return    140 * COIN;
-    if (nHeight >  400000) return    120 * COIN;
-    if (nHeight >  350000) return    130 * COIN;
-    if (nHeight >  300000) return    140 * COIN;
-    if (nHeight >  200000) return    150 * COIN;
-    if (nHeight >  180000) return    135 * COIN;
-    if (nHeight >  160000) return    120 * COIN;
-    if (nHeight >  140000) return    105 * COIN;
-    if (nHeight >  130000) return     90 * COIN;
-    if (nHeight >  120000) return     75 * COIN;
-    if (nHeight >  110000) return     60 * COIN;
-    if (nHeight >  100000) return     45 * COIN;
-    if (nHeight >   55000) return     10 * COIN;
-    if (nHeight >   35000) return      7 * COIN;
-    if (nHeight >   25000) return      5 * COIN;
-    if (nHeight >   15000) return      3 * COIN;
-    if (nHeight >    5000) return   2.50 * COIN;
-    if (nHeight >     250) return      2 * COIN;
-    if (nHeight >       1) return      1 * COIN;
-    if (nHeight >       0) return 250000 * COIN;
-
-    return 50 * COIN; // Genesis
-}
-
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
     const Consensus::Params& consensus = Params().GetConsensus();
@@ -446,9 +406,9 @@ CAmount CMasternode::GetMasternodePayment(int nHeight)
     // AZZR coin supply for distribution
     if (nHeight == consensus.nAZZRCoinSupplyMintHeight) return GetMasternodePayment(nHeight + 1);
 
-    if (nHeight > 800000) return GetBlockValue(nHeight) * 65 / 100;
-    if (nHeight > 450000) return GetBlockValue(nHeight) - (10 * COIN);
-    if (nHeight >    250) return GetBlockValue(nHeight) * 90 / 100;
+    if (nHeight > 800000) return CRewards::GetBlockValue(nHeight) * 65 / 100;
+    if (nHeight > 450000) return CRewards::GetBlockValue(nHeight) - (10 * COIN);
+    if (nHeight >    250) return CRewards::GetBlockValue(nHeight) * 90 / 100;
     
     return 0;
 }
