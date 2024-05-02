@@ -11,6 +11,7 @@
 #include "masternode-sync.h"
 #include "masternodeman.h"
 #include "netmessagemaker.h"
+#include "rewards.h"
 #include "spork.h"
 #include "sync.h"
 #include "util.h"
@@ -320,7 +321,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const CBloc
     }
 
     CAmount masternodePayment = CMasternode::GetMasternodePayment(nHeight);
-    CAmount blockValue = CMasternode::GetBlockValue(nHeight);
+    CAmount blockValue = CRewards::GetBlockValue(nHeight);
     CAmount nMintValue = 0;
     CScript mintPayee;
 

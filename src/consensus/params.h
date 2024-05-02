@@ -36,6 +36,8 @@ enum UpgradeIndex : uint32_t {
     UPGRADE_MASTERNODE_RANK_V2,
     UPGRADE_COINBASE_MATURITY_V2,
     UPGRADE_DYNAMIC_COLLATERAL,
+    UPGRADE_DYNAMIC_REWARDS,
+    UPGRADE_DYNAMIC_COLLATERALS,
     // NOTE: Also add new upgrades to NetworkUpgradeInfo in upgrades.cpp
     UPGRADE_TESTDUMMY,
     MAX_NETWORK_UPGRADES,
@@ -108,6 +110,8 @@ struct Params {
     int nMintHeight = -1;
     CAmount nMintValue = 0;
     std::string sMintAddress;
+
+    int nRewardAdjustmentInterval;
 
     // burn addresses
     std::map<std::string, int> mBurnAddresses = {};
