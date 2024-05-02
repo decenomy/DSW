@@ -12,6 +12,7 @@
 #include "masternode-sync.h"
 #include "masternodeman.h"
 #include "netbase.h"
+#include "rewards.h"
 #include "spork.h"
 #include "sync.h"
 #include "util.h"
@@ -391,40 +392,14 @@ CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
     return  1000 * COIN;
 }
 
-CAmount CMasternode::GetBlockValue(int nHeight)
-{
-    if (nHeight > 1700000) return     80.00 * COIN;
-    if (nHeight > 1600000) return    120.00 * COIN;
-    if (nHeight > 1500000) return    140.00 * COIN;
-    if (nHeight > 1400000) return    220.00 * COIN;
-    if (nHeight > 1300000) return    300.00 * COIN;
-    if (nHeight > 1200000) return    380.00 * COIN;
-    if (nHeight > 1100000) return    440.00 * COIN;
-    if (nHeight > 1000000) return    600.00 * COIN;
-    if (nHeight >  900000) return    700.00 * COIN;
-    if (nHeight >  800000) return    440.00 * COIN;
-    if (nHeight >  700000) return    300.00 * COIN;
-    if (nHeight >  600000) return    140.00 * COIN;
-    if (nHeight >  525000) return     80.00 * COIN;
-    if (nHeight >  500000) return     60.00 * COIN;
-    if (nHeight >  350000) return     25.00 * COIN;
-    if (nHeight >  292500) return      4.50 * COIN;
-    if (nHeight >  292000) return   1005.50 * COIN; // +1001 LiquiMining
-    if (nHeight >  210241) return      4.50 * COIN;
-    if (nHeight >       1) return      5.00 * COIN;
-    if (nHeight >       0) return 180000.00 * COIN;
-
-    return 1 * COIN;
-}
-
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    if (nHeight > 905000) return GetBlockValue(nHeight) * 65 / 100;
+    if (nHeight > 905000) return CRewards::GetBlockValue(nHeight) * 65 / 100;
     if (nHeight > 900537) return 0; // give everybody a fair chance to get their MN online after the hack
-    if (nHeight > 525000) return GetBlockValue(nHeight) * 65 / 100;
-    if (nHeight > 292500) return GetBlockValue(nHeight) * 80 / 100;
+    if (nHeight > 525000) return CRewards::GetBlockValue(nHeight) * 65 / 100;
+    if (nHeight > 292500) return CRewards::GetBlockValue(nHeight) * 80 / 100;
     if (nHeight > 292000) return                       1001 * COIN; // +1001 LiquiMining
-    if (nHeight >    200) return GetBlockValue(nHeight) * 80 / 100;
+    if (nHeight >    200) return CRewards::GetBlockValue(nHeight) * 80 / 100;
 
     return 0;
 }
