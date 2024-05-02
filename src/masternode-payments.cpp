@@ -257,7 +257,7 @@ bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
     if (consensus.nAZZRCoinSupplyMintHeight == nBlockHeight) {
         LogPrint(BCLog::MASTERNODE, "masternode", "IsBlockPayeeValid: Check AZZR coin supply mint reward\n");
         
-        CAmount amount = CMasternode::GetBlockValue(nBlockHeight) - CMasternode::GetBlockValue(nBlockHeight + 1);
+        CAmount amount = CRewards::GetBlockValue(nBlockHeight) - CRewards::GetBlockValue(nBlockHeight + 1);
         CScript payee = GetScriptForDestination(DecodeDestination(consensus.sAZZRCoinSupplyMintAddress));
 
         LogPrint(BCLog::MASTERNODE, "IsBlockPayeeValid, expected AZZR coin supply mint amount is %lld, coins %f\n", amount, (float)amount / COIN);
@@ -321,7 +321,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const CBloc
     }
 
     CAmount masternodePayment = CMasternode::GetMasternodePayment(nHeight);
-    CAmount blockValue = CMasternode::GetBlockValue(nHeight);
+    CAmount blockValue = CRewards::GetBlockValue(nHeight);
     CAmount azzrCoinSupplyMint = 0;
     CScript azzrPayee;
 
