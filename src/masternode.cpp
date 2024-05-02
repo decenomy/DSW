@@ -12,6 +12,7 @@
 #include "masternode-sync.h"
 #include "masternodeman.h"
 #include "netbase.h"
+#include "rewards.h"
 #include "spork.h"
 #include "sync.h"
 #include "util.h"
@@ -381,26 +382,10 @@ CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
     return 2000 * COIN;
 }
 
-CAmount CMasternode::GetBlockValue(int nHeight)
-{
-    if (nHeight >    700000) return       20 * COIN;
-    if (nHeight >    600000) return       40 * COIN;
-    if (nHeight >    500000) return       60 * COIN;
-    if (nHeight >    400000) return       80 * COIN;
-    if (nHeight >    300000) return       60 * COIN;
-    if (nHeight >    200000) return       40 * COIN;
-    if (nHeight >    115000) return       20 * COIN;
-    if (nHeight >    100000) return       10 * COIN;
-    if (nHeight >         1) return        5 * COIN;
-    if (nHeight >         0) return  1700000 * COIN;
-
-    return 20 * COIN;
-}
-
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    if (nHeight > 115000) return GetBlockValue(nHeight) * 65 / 100;
-    if (nHeight >   3000) return GetBlockValue(nHeight) * 80 / 100;
+    if (nHeight > 115000) return CRewards::GetBlockValue(nHeight) * 65 / 100;
+    if (nHeight >   3000) return CRewards::GetBlockValue(nHeight) * 80 / 100;
 
     return 0;
 }
