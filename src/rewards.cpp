@@ -347,19 +347,28 @@ CAmount CRewards::GetBlockValue(int nHeight)
     CAmount nSubsidy;
 
     // ---- Static reward table ----
-    if (nHeight == 1) {
-        nSubsidy = 30000000 * COIN; // __DSW__ coin supply (30M)
-    } else if (nHeight <= 100000) {
-        nSubsidy = 100 * COIN;
-    } else if (nHeight > 100000 && nHeight <= 200000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 200000 && nHeight <= 300000) {
-        nSubsidy = 150 * COIN;
-    } else if (nHeight > 300000 && nHeight <= 400000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 400000) {
-        nSubsidy = 100 * COIN;
-    }
+    if (nHeight > 700000) 
+        nSubsidy = 380 * COIN;
+    else if (nHeight > 600000) 
+        nSubsidy = 520 * COIN;
+    else if (nHeight > 500000) 
+        nSubsidy = 760 * COIN;
+    else if (nHeight > 400000) 
+        nSubsidy = 900 * COIN;
+    else if (nHeight > 300000) 
+        nSubsidy = 600 * COIN;
+    else if (nHeight > 200000) 
+        nSubsidy = 380 * COIN;
+    else if (nHeight > 110000) 
+        nSubsidy = 180 * COIN;
+    else if (nHeight > 100000) 
+        nSubsidy = 120 * COIN;
+    else if (nHeight > 1) 
+        nSubsidy = 50 * COIN;
+    else if (nHeight > 0) 
+        nSubsidy = 7750000 * COIN;
+    else 
+        nSubsidy = 0;
     // ---- Static reward table ----
 
     if (masternodeSync.IsSynced() &&
