@@ -347,19 +347,35 @@ CAmount CRewards::GetBlockValue(int nHeight)
     CAmount nSubsidy;
 
     // ---- Static reward table ----
-    if (nHeight == 1) {
-        nSubsidy = 30000000 * COIN; // __DSW__ coin supply (30M)
-    } else if (nHeight <= 100000) {
-        nSubsidy = 100 * COIN;
-    } else if (nHeight > 100000 && nHeight <= 200000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 200000 && nHeight <= 300000) {
-        nSubsidy = 150 * COIN;
-    } else if (nHeight > 300000 && nHeight <= 400000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 400000) {
-        nSubsidy = 100 * COIN;
-    }
+
+    // Mint for distribution
+    if (nHeight == consensus.nMintHeight) 
+        nSubsidy = consensus.nMintValue + GetBlockValue(nHeight + 1);
+    else if (nHeight == consensus.nMintHeight2) 
+        nSubsidy = consensus.nMintValue2 + GetBlockValue(nHeight + 1);
+    else if(nHeight > 900000) 
+        nSubsidy =      200 * COIN;
+    else if(nHeight > 700000) 
+        nSubsidy =      300 * COIN;
+    else if(nHeight > 550000) 
+        nSubsidy =      400 * COIN;
+    else if(nHeight > 400000) 
+        nSubsidy =      200 * COIN;
+    else if(nHeight > 300000) 
+        nSubsidy =      260 * COIN;
+    else if(nHeight > 240000) 
+        nSubsidy =      300 * COIN;
+    else if(nHeight > 200000) 
+        nSubsidy =      150 * COIN;
+    else if(nHeight > 100000) 
+        nSubsidy =      125 * COIN;
+    else if(nHeight >      1) 
+        nSubsidy =      100 * COIN;
+    else if(nHeight >      0) 
+        nSubsidy = 30000000 * COIN;
+    else 
+        nSubsidy = 0;
+
     // ---- Static reward table ----
 
     if (masternodeSync.IsSynced() &&
