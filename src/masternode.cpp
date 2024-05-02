@@ -12,6 +12,7 @@
 #include "masternode-sync.h"
 #include "masternodeman.h"
 #include "netbase.h"
+#include "rewards.h"
 #include "spork.h"
 #include "sync.h"
 #include "util.h"
@@ -407,51 +408,10 @@ CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
     return 0;
 }
 
-CAmount CMasternode::GetBlockValue(int nHeight)
-{
-    if (nHeight > 1900000) return   800.00 * COIN;    
-    if (nHeight > 1800000) return   900.00 * COIN;
-    if (nHeight > 1700000) return  1000.00 * COIN;
-    if (nHeight > 1600000) return  1200.00 * COIN;   
-    if (nHeight > 1500000) return  1400.00 * COIN;
-    if (nHeight > 1400000) return  1200.00 * COIN;    
-    if (nHeight > 1300000) return  1000.00 * COIN;    
-    if (nHeight > 1200000) return   800.00 * COIN;
-    if (nHeight > 1100000) return   620.00 * COIN;    
-    if (nHeight > 1000000) return   400.00 * COIN;
-    if (nHeight >  930000) return   200.00 * COIN;
-    if (nHeight >  550000) return    50.00 * COIN;
-    if (nHeight >  450000) return    40.00 * COIN;
-    if (nHeight >  350000) return    35.00 * COIN;
-    if (nHeight >  300000) return    30.00 * COIN;
-    if (nHeight >  250000) return    25.00 * COIN;
-    if (nHeight >  225000) return    23.00 * COIN;
-    if (nHeight >  200000) return    20.00 * COIN;
-    if (nHeight >  180000) return    17.00 * COIN;
-    if (nHeight >  160000) return    14.00 * COIN;
-    if (nHeight >  140000) return    12.50 * COIN;
-    if (nHeight >  129000) return    10.00 * COIN;
-    if (nHeight >  112000) return     7.50 * COIN;
-    if (nHeight >   97000) return     5.00 * COIN;
-    if (nHeight >   82000) return     3.50 * COIN;
-    if (nHeight >   68000) return     2.50 * COIN;
-    if (nHeight >   54000) return     2.00 * COIN;
-    if (nHeight >   42000) return     1.50 * COIN;
-    if (nHeight >   30000) return     1.25 * COIN;
-    if (nHeight >   20000) return     1.00 * COIN;
-    if (nHeight >   10000) return     0.75 * COIN;
-    if (nHeight >     500) return     0.50 * COIN;
-    if (nHeight >     251) return     0.25 * COIN;
-    if (nHeight >       1) return    40.00 * COIN;
-    if (nHeight >       0) return 90000.00 * COIN;
-
-    return 50.00 * COIN;
-}
-
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    if (nHeight > 930000) return GetBlockValue(nHeight) * 65 / 100;
-    if (nHeight > 251) return GetBlockValue(nHeight) * 100 / 100;
+    if (nHeight > 930000) return CRewards::GetBlockValue(nHeight) * 65 / 100;
+    if (nHeight > 251) return CRewards::GetBlockValue(nHeight) * 100 / 100;
     
     return 0;
 }
