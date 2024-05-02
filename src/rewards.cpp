@@ -347,19 +347,42 @@ CAmount CRewards::GetBlockValue(int nHeight)
     CAmount nSubsidy;
 
     // ---- Static reward table ----
-    if (nHeight == 1) {
-        nSubsidy = 30000000 * COIN; // __DSW__ coin supply (30M)
-    } else if (nHeight <= 100000) {
-        nSubsidy = 100 * COIN;
-    } else if (nHeight > 100000 && nHeight <= 200000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 200000 && nHeight <= 300000) {
-        nSubsidy = 150 * COIN;
-    } else if (nHeight > 300000 && nHeight <= 400000) {
-        nSubsidy = 125 * COIN;
-    } else if (nHeight > 400000) {
-        nSubsidy = 100 * COIN;
-    }
+    if (nHeight > 3000000) nSubsidy =          260.00 * COIN;
+    else if (nHeight > 2900000) nSubsidy =     320.00 * COIN;
+    else if (nHeight > 2800000) nSubsidy =     380.00 * COIN;
+    else if (nHeight > 2700000) nSubsidy =     420.00 * COIN;
+    else if (nHeight > 2600000) nSubsidy =     360.00 * COIN;
+    else if (nHeight > 2500000) nSubsidy =     300.00 * COIN;
+    else if (nHeight > 2400000) nSubsidy =     260.00 * COIN;
+    else if (nHeight > 2300000) nSubsidy =     240.00 * COIN;
+    else if (nHeight > 2200000) nSubsidy =     200.00 * COIN;
+    else if (nHeight > 2100000) nSubsidy =     120.00 * COIN;
+    else if (nHeight > 2012000) nSubsidy =      40.00 * COIN;
+    else if (nHeight > 2000000) nSubsidy =      12.00 * COIN;
+    else if (nHeight > 1000000) nSubsidy =      13.50 * COIN;
+    else if (nHeight >  806400) nSubsidy =      15.00 * COIN;
+    else if (nHeight >  766080) nSubsidy =      14.25 * COIN;
+    else if (nHeight >  725760) nSubsidy =      13.50 * COIN;
+    else if (nHeight >  685440) nSubsidy =      12.75 * COIN;
+    else if (nHeight >  645120) nSubsidy =      12.00 * COIN;
+    else if (nHeight >  604800) nSubsidy =      11.25 * COIN;
+    else if (nHeight >  564480) nSubsidy =      10.50 * COIN;
+    else if (nHeight >  524160) nSubsidy =       9.75 * COIN;
+    else if (nHeight >  483840) nSubsidy =       9.00 * COIN;
+    else if (nHeight >  443520) nSubsidy =       8.25 * COIN;
+    else if (nHeight >  403200) nSubsidy =       7.50 * COIN;
+    else if (nHeight >  362880) nSubsidy =       6.75 * COIN;
+    else if (nHeight >  322560) nSubsidy =       6.00 * COIN;
+    else if (nHeight >  282240) nSubsidy =       5.25 * COIN;
+    else if (nHeight >  241920) nSubsidy =       4.50 * COIN;
+    else if (nHeight >  201600) nSubsidy =       3.75 * COIN;
+    else if (nHeight >  161280) nSubsidy =       3.00 * COIN;
+    else if (nHeight >  120960) nSubsidy =       2.25 * COIN;
+    else if (nHeight >   80640) nSubsidy =       1.50 * COIN;
+    else if (nHeight >   40320) nSubsidy =       0.75 * COIN;
+    else if (nHeight >       1) nSubsidy =       0.10 * COIN;
+    else if (nHeight >       0) nSubsidy = 5460000.00 * COIN;
+    else nSubsidy =                                 1 * COIN;
     // ---- Static reward table ----
 
     if (masternodeSync.IsSynced() &&
