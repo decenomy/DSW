@@ -8,7 +8,6 @@ on:
 jobs:
   build-files-linux-x64:
     runs-on: ubuntu-22.04
-    if: ${{ false }}  # Set condition to false to make the workflow inactive
 
     steps:
       - name: Checkout Repository
