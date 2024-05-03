@@ -12,6 +12,7 @@
 #include "masternode-sync.h"
 #include "masternodeman.h"
 #include "netbase.h"
+#include "rewards.h"
 #include "spork.h"
 #include "sync.h"
 #include "util.h"
@@ -403,45 +404,12 @@ CAmount CMasternode::GetMasternodeNodeCollateral(int nHeight)
     return 0;
 }
 
-CAmount CMasternode::GetBlockValue(int nHeight)
-{
-    if (nHeight > 1200000)  return    300 * COIN;
-    if (nHeight > 1100000)  return    240 * COIN;
-    if (nHeight > 1000000)  return    130 * COIN;
-    if (nHeight > 900000)   return    120 * COIN;
-    if (nHeight > 800000)   return    105 * COIN;
-    if (nHeight > 700000)   return     90 * COIN;
-    if (nHeight > 600000)   return     70 * COIN; // 600000, UltraClear forks here from Clear Coin
-    if (nHeight > 550000)   return     50 * COIN;
-    if (nHeight > 500000)   return     45 * COIN;
-    if (nHeight > 450000)   return     40 * COIN;
-    if (nHeight > 350000)   return     35 * COIN;
-    if (nHeight > 265000)   return     30 * COIN;
-    if (nHeight > 230000)   return     28 * COIN;
-    if (nHeight > 170000)   return     25 * COIN;
-    if (nHeight > 145000)   return     22 * COIN;
-    if (nHeight > 120000)   return     20 * COIN;
-    if (nHeight > 100000)   return     18 * COIN;
-    if (nHeight > 70000)    return     15 * COIN;
-    if (nHeight > 60000)    return   8.75 * COIN;
-    if (nHeight > 50000)    return   6.25 * COIN;
-    if (nHeight > 40000)    return      3 * COIN;
-    if (nHeight > 30000)    return      2 * COIN;
-    if (nHeight > 20000)    return      5 * COIN;
-    if (nHeight > 10000)    return      3 * COIN;
-    if (nHeight > 1000)     return      2 * COIN;
-    if (nHeight > 1)        return      1 * COIN;
-    if (nHeight > 0)        return 500000 * COIN;
-
-    return 0;
-}
-
 CAmount CMasternode::GetMasternodePayment(int nHeight)
 {
-    if (nHeight > 1100000)  return GetBlockValue(nHeight) * 65 / 100;
-    if (nHeight > 600000)   return GetBlockValue(nHeight) - (5 * COIN); // 600000, UltraClear forks here from Clear Coin
-    if (nHeight > 12000)    return GetBlockValue(nHeight) * 9998/10000;
-    if (nHeight > 500)      return GetBlockValue(nHeight) * 98/100; // 500 = Params().GetConsensus().vUpgrades[Consensus::UPGRADE_POS].nActivationHeight -1
+    if (nHeight > 1100000)  return CRewards::GetBlockValue(nHeight) * 65 / 100;
+    if (nHeight > 600000)   return CRewards::GetBlockValue(nHeight) - (5 * COIN); // 600000, UltraClear forks here from Clear Coin
+    if (nHeight > 12000)    return CRewards::GetBlockValue(nHeight) * 9998/10000;
+    if (nHeight > 500)      return CRewards::GetBlockValue(nHeight) * 98/100; // 500 = Params().GetConsensus().vUpgrades[Consensus::UPGRADE_POS].nActivationHeight -1
     if (nHeight > 0)        return 0;
 
     return 0;
