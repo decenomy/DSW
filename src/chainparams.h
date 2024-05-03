@@ -72,6 +72,7 @@ public:
     virtual const Checkpoints::CCheckpointData& Checkpoints() const = 0;
 
     CBaseChainParams::Network NetworkID() const { return networkID; }
+    bool IsTestNet() const { return NetworkID() == CBaseChainParams::TESTNET; }
     bool IsRegTestNet() const { return NetworkID() == CBaseChainParams::REGTEST; }
 
 
