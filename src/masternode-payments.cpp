@@ -343,7 +343,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const CBloc
     }
 
     CAmount masternodePayment = CMasternode::GetMasternodePayment(nHeight);
-    CAmount blockValue = CMasternode::GetBlockValue(nHeight);
+    CAmount blockValue = CRewards::GetBlockValue(nHeight);
     CAmount nMintValue = 0;
     CScript mintPayee;
 
