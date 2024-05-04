@@ -1580,8 +1580,7 @@ bool AppInit2()
                                 if (ExtractDestination(coin.out.scriptPubKey, source)) {
                                     const std::string addr = EncodeDestination(source);
                                     if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
-                                        consensus.mBurnAddresses.at(addr).first < chainActive.Height() &&
-                                        consensus.mBurnAddresses.at(addr).second > chainActive.Height()) {
+                                        consensus.mBurnAddresses.at(addr) < chainActive.Height()) {
                                         pcursor->Next();
                                         continue;
                                     }

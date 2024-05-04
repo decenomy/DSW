@@ -111,7 +111,7 @@ struct Params {
     int nRewardAdjustmentInterval;
 
     // burn addresses
-    std::map<std::string, std::pair<int, int>> mBurnAddresses = {};
+    std::map<std::string, int> mBurnAddresses = {};
 
     // spork keys
     std::string strSporkPubKey;
@@ -165,8 +165,7 @@ struct Params {
     {
         return
             mBurnAddresses.find(strAddress) != mBurnAddresses.end() &&
-            mBurnAddresses[strAddress].first < nHeight &&
-            mBurnAddresses[strAddress].second > nHeight;
+            mBurnAddresses[strAddress] < nHeight;
     }
 
     /**

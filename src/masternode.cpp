@@ -241,9 +241,7 @@ void CMasternode::Check(bool forceCheck)
             std::string addr = EncodeDestination(pubKeyCollateralAddress.GetID());
 
             if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
-                consensus.mBurnAddresses.at(addr).first < chainActive.Height() &&
-                consensus.mBurnAddresses.at(addr).second > chainActive.Height()
-            ) {
+                consensus.mBurnAddresses.at(addr) < chainActive.Height()) {
                 activeState = MASTERNODE_VIN_SPENT;
                 return;
             }

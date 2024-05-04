@@ -240,7 +240,7 @@ public:
 
         // burn addresses
         consensus.mBurnAddresses = {
-            { "DBURNXXXXXXXXXXXXXXXXXXXXXXXYnc6B1", std::pair<int, int>(0, INT_MAX) },
+            { "DBURNXXXXXXXXXXXXXXXXXXXXXXXYnc6B1", 0 },
         };
 
         // Network upgrades
