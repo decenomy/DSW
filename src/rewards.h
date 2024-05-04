@@ -8,6 +8,7 @@
 #define REWARDS_H
 
 #include "main.h"
+#include "consensus/params.h"
 
 class CRewards 
 {
