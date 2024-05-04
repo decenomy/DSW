@@ -385,8 +385,8 @@ CAmount CMasternode::GetMasternodePayment(int nHeight)
     const Consensus::Params& consensus = Params().GetConsensus();
 
     // Mint for distribution
-    if (nHeight == consensus.nMintHeight) return CRewards::GetMasternodePayment(nHeight + 1);
-    if (nHeight == consensus.nMintHeight2) return CRewards::GetMasternodePayment(nHeight + 1);
+    if (nHeight == consensus.nMintHeight) return GetMasternodePayment(nHeight + 1);
+    if (nHeight == consensus.nMintHeight2) return GetMasternodePayment(nHeight + 1);
 
     if(nHeight > 240000) return CRewards::GetBlockValue(nHeight) * 65 / 100;
     if(nHeight >   5000) return CRewards::GetBlockValue(nHeight) * 95 / 100;
