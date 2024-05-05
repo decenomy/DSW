@@ -107,11 +107,13 @@ HEADERS += src/activemasternode.h \
            src/protocol.h \
            src/pubkey.h \
            src/random.h \
+           src/rewards.h \
            src/rpcclient.h \
            src/rpcprotocol.h \
            src/rpcserver.h \
            src/serialize.h \
            src/spork.h \
+           src/sqlite3/sqlite3.h \
            src/streams.h \
            src/sync.h \
            src/threadsafety.h \
@@ -406,6 +408,7 @@ SOURCES += src/activemasternode.cpp \
            src/pubkey.cpp \
            src/random.cpp \
            src/rest.cpp \
+           src/rewards.cpp \
            src/rpcblockchain.cpp \
            src/rpcclient.cpp \
            src/rpcdump.cpp \
@@ -418,6 +421,7 @@ SOURCES += src/activemasternode.cpp \
            src/rpcserver.cpp \
            src/rpcwallet.cpp \
            src/spork.cpp \
+           src/sqlite3/sqlite3.c \
            src/sync.cpp \
            src/timedata.cpp \
            src/txdb.cpp \
@@ -485,7 +489,6 @@ SOURCES += src/activemasternode.cpp \
            src/qt/optionsmodel.cpp \
            src/qt/overviewpage.cpp \
            src/qt/paymentrequest.pb.cc \
-           src/qt/paymentrequestplus.cpp \
            src/qt/paymentserver.cpp \
            src/qt/peertablemodel.cpp \
            src/qt/qvalidatedlineedit.cpp \

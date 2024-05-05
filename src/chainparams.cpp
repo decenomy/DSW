@@ -70,111 +70,114 @@ static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
     (0, uint256S("00000eef0583695d6da23a78bab1c39939bbb54cf9bd5f0d4881c8eef364cd26"))
-    (21712, uint256S("630b3d784c4841c0dcdaa4655a43a844fbf1eb84aab67047f7a84571482f55f6"))
-    (43425, uint256S("55ddbb04330928fbf14cfac211e7d0787113861c8959b476e0c81cc17ba8bec9"))
-    (65138, uint256S("6d7e4f08153455c9c5f8bdab320620bf185068ecbb232e209c7a60dd13b18e7d"))
-    (86851, uint256S("76a49d467cbfee7b10459fd67828eb053c819dc164f5912f701c06b4adee0497"))
-    (108564, uint256S("2f9ef44b7a5ccefda2d93c0db6bf0da8fce60a84d5f66ac6e13111d73229bf87"))
-    (130277, uint256S("7191b1ebcf060253e0ab57f90c6eb271d74529ee4ea6761197befda44f1f86bb"))
-    (151990, uint256S("39936657295f14b7a2dcc225381cc749468c2116f9e87ad2a4015f6843042916"))
-    (173703, uint256S("fae222b881bf250530a0a63ba80a88c7638f0aae5bf8831f49f636264dfb16a4"))
-    (195416, uint256S("3d6610255a1503dfec531a1ebe27e2c05eb5b215e6c0c865ea965afca2fb9e59"))
-    (217129, uint256S("b1737468501710f9ab71be67733becededfb19b5599aaa54874b1b091bba6c6d"))
-    (238842, uint256S("a7b0be49a0fe911e51b3343b4961fc46d9a14cc9ab85adc7cb35acdef82f5016"))
-    (260555, uint256S("ba80ebcb50b48559856454f46678388ea4bb72657fdeccee686df802d9844527"))
-    (282268, uint256S("33fc1368d1ebcc77146b1d3b61e490dd6831676a3524635c9f53c51a86dccd63"))
-    (303981, uint256S("6b8bdfd6ff1da73f84e04ba8272ab72b08404d29ca2e5ecd90ca36b9c27ee18f"))
-    (325694, uint256S("3a9b872e9ddc68505db2d08c4cf6d502bfb822bc27c6197333022322f044478d"))
-    (347407, uint256S("6f5de8a02e55527d96312463df4c9b7bd57cd8c486befbdecbef57e5de1f9649"))
-    (369120, uint256S("7788898cec7c04b1819524f398704768b316c7ab3010cac6e3a911731609644a"))
-    (390833, uint256S("0e32f101932465c26379f09133ea6286cb988ca48c211a2e85a038aaa43af828"))
-    (412546, uint256S("bd885dea4aef284eef5c8dfa0925a5a030f8c4544e1474bb4a55edef540c02ce"))
-    (434259, uint256S("718bde81e7cca152001ff4e892f1ab1bd9d3bf8a1f4d2eecd8ab37ba34c40cae"))
-    (455972, uint256S("05718c082dda73412e995a80ae8809c7a38d65055ccb60c38b1cff4a89c8bd43"))
-    (477685, uint256S("ab2104f53949bb08ca70d85bcfb04d5295d7f9449875ef354bdbf27e57f0bffc"))
-    (499398, uint256S("a817c4e6498aecb5d3ee0e60360360d98a4197588c1849192879425c292ea17f"))
-    (521111, uint256S("b5f209c68067ab64a81a120e59d459ba51d469eafa86df8168d3838f4a6a2183"))
-    (542824, uint256S("02f793564f7bd5cd22937e5862d1d9e3e40684d98635721d54fe41cee4e1b523"))
-    (564537, uint256S("a1978c4079e9c9ae25d6562046834084409436b9763516eab948aca423a947b7"))
-    (586250, uint256S("207bdca86f02f36624cb099bd8d6499c9c5e085fc52c630ba5a6a55172d8a41c"))
-    (607963, uint256S("2a29001b070372dbdcef93efeb7ca7059b420ed66c709153218c9847526a4e0a"))
-    (629676, uint256S("ab5173a9f4502b6aeb7918b8722ce32755d18d28e0059523015facf5847e8ece"))
-    (651389, uint256S("d8a98780f6134a1bfe8ce924987ab5b94d999cd60a92ebddbc74ecb4021ba5b2"))
-    (673102, uint256S("8e0d28d133f79590d823aa02bdda4d07a33a97d9a6e3600136f845aaf5690e3e"))
-    (694815, uint256S("2ae7af05b082962a3846c30c920521f00c92fc0a0b198d7db9c7edb9b6c1aa99"))
-    (716528, uint256S("816dfd5df1d0e0d8bb708f15689aa557b708304477a921f23b3b9ad49f917470"))
-    (738241, uint256S("b130f9a43cb6e1a7c96e157ab8010ed8fb6ef168872ae178a069db4ecd44fc15"))
-    (759954, uint256S("f9f94ac1477a0ee34530020d1b09d5dd9012021f03a3311b77d256413e148f5d"))
-    (781667, uint256S("d9a0161d28c19188fdafed6f88061755ea78ada3172f186188ac7f3d70a4867e"))
-    (803380, uint256S("7a015cd22d25cf5a9b5eb089df548f2f46c5a915d2e7f3d321f19ad082a5fb0e"))
-    (825093, uint256S("87e05a59b407b21d69765f39d3fe116364f877a35d9b126950ca67db42fb44bb"))
-    (846806, uint256S("9e04e0fab1748325429177edbd6744bf46e6ace95875a3ed1c299b017ad720cd"))
-    (868519, uint256S("edca62240629ffb7c0ce6bed2c660acb8de1eb63507fca1fe8cc63531ca6b7b2"))
-    (890232, uint256S("eb57ccba19d9419adb9e2113fe150b3affc261c4c52d3fb9bf4d835631c33e93"))
-    (911945, uint256S("997ed95150d5c57c89e107ff96e1cad05dece93dbec2e7a42c8fd39ab8bc974b"))
-    (933658, uint256S("93d5e523c9addd4f116ae52d091beaedee6d2a094d7b480d3a73ddb9c33d8316"))
-    (955371, uint256S("a49e59b5bd3934a7f91e9a5be213bcf4fd42ae941a125314045ed1faa3420d78"))
-    (977084, uint256S("8fed4bcca5b9dff137d8bd4302df5e9e7913adbda4b175bf41377c6e46358a95"))
-    (1000167, uint256S("87ff147390e1855158631ee657881fe1a05d91a6258946a0e3106040fa96af9f"))
-    (1022726, uint256S("1e536f9a07fde9e2790e2a9602b0c3a168b5811c266802bd78b0fbc139d5b982"))
-    (1045948, uint256S("4fd8b304cd5dfb591bbe074596bd0270bbff6aa4d236cd5c2d6f80d919a92556"))
-    (1068561, uint256S("6cb78ae8586bbd0539809407066bfed8fd333d1333749f14366bc0b3b2545dae"))
-    (1090952, uint256S("1220eaa6198ce6409011f9c312f909f0b830162dcc800e7ddc962ba59b9f70fa"))
-    (1113206, uint256S("239266e05ba6a4ff8f1c4b9cb6bbc2605a8440681829c810be395d40ca76d2a0"))
-    (1135637, uint256S("15cb2d2f3f6a3cc0e5b3b2e9d9c24e13839c22c050b6510937f59c5823814421"))
-    (1158594, uint256S("a18a2068bc43bb75d4e486e419e0b0d73f1ac45e2051be1704c3ca92598a47b6"))
-    (1180889, uint256S("73964ecc37ff505fee56ebc891645f9511d02860990741dfb20c16712ad978a7"))
-    (1205016, uint256S("06314087a92103d1669274bbe7dea3e80f0077ddd96a2bcf2824d0ac4367f1c5"))
-    (1227260, uint256S("b26e98a25f3a2f39e625670d73401988a01ee9cddd94d0a907983b330eae6e60"))
-    (1249406, uint256S("2852d514919d7217b54df411893fde892a7d5806eb7d115d109261c1653d0a01"))
-    (1271554, uint256S("822c7372f56d6fba3c721c65c80ea1a8672ac3da64ea355cafe3c819603c3cbb"))
-    (1293740, uint256S("808c099d3ddf8b68987401f96a81f6a6cc5b30f42f06d5fadad0d57eeb0dc06b"))
-    (1315947, uint256S("36b31f0d2b68b68f05b37b494f38eedf0019bf6d8b1a162f2ec7a283bc51aa9d"))
-    (1338037, uint256S("6542b337e962a6d44f4d78a0b238afdd1c6d52ccc0de83e223207fc17be9c49e"))
-    (1360076, uint256S("f598264a789976e16a7a238ab0afe9dd48ab84832f74773bf630152ea6c005b7"))
-    (1382157, uint256S("5aaafce1444586d09772d3f353cfd4220e2e364f096727844c598a9a045f7720"))
-    (1404498, uint256S("a0a0ce4a703aa237259e2f5729c6de3ad3a410c5c252646d2d2c4628692d0799"))
-    (1426934, uint256S("f1654573b1e6be7a40b8561b0d65026838e2c9df17cef7ea1d0599cde3d203c6"))
-    (1449288, uint256S("655c549834f173d488b8cca2af6fbb7be2127317a6d28340c405b6974244516f"))
-    (1471547, uint256S("a2610615c33e00240fdc25be5a55394712aa1c972c357482264ce1966c1b2c8c"))
-    (1493852, uint256S("7de7fc56d280929b2c408162f8ecc780d20c74f75b22ae810dfd546ffc195f51"))
-    (1516289, uint256S("7dd921dddc4a4c75bbf2be3d913b73266191392adfa07fe26cbb5cecac0c0466"))
-    (1538671, uint256S("56adc034480ab2a827e88b094f07904df6ee372edbc2a5e53a591f63dd7cb537"))
-    (1561088, uint256S("8cb102e4ef27c24281a3bc89ece806f7e2240f0bf12d5ada72992bd140ca49bc"))
-    (1583417, uint256S("84fe63fa688b0e3490c6fbf565b94c8dc1948f127443dbb97b5530696aa1d54d"))
-    (1605971, uint256S("890999dd81242640d55a74b5646e78adefcb7e138041cb6018c814dfc1e78a80"))
-    (1628345, uint256S("e738e7836c27db38f3c0e28299f21b9dabd61a3369cff40fc6eaa09eb34e7546"))
-    (1651067, uint256S("26343258d6326cb25e1a06dd8611aacf9613c20ae2fd5847aba02796e93a7957"))
-    (1673608, uint256S("c8b21ed33f67171da5e1acfcd520807a066c026646c89fd13b040759b4b3368e"))
-    (1695912, uint256S("c2cfe3ab14918db6298ce93dd5fd4b882d3ebebe448f9abcc81a594eb6bddf1b"))
-    (1718396, uint256S("941a343e4dee75925e7a3c0c3c4943cbeb5f1fcd52deaad9c5108517ea7dc95a"))
-    (1740916, uint256S("20d30d4fc7a8878ac21b132f07e94a2cc7da2387dc24f4559042a76ef9593f75"))
-    (1763186, uint256S("83a685ee109180d83c6eaca01a6eabbddefe7d3d154a83659ddd904dc5c2b58c"))
-    (1784899, uint256S("2dd309fe34cb8f954aad3cf097a847448949486982cae1e3f5da18d810eb1277"))
-    (1806612, uint256S("c2e17e765ca693227c351a2420649301280245c0d49c4aa2bf126e769ed6b9eb"))
-    (1828325, uint256S("c7f3e041dbd8bea5df99ecc686e6abef5bae670292e85a22c62977c45fbf6ca1"))
-    (1850038, uint256S("db67f1214d5021d8f107a1d8f08bd2ce6eb73ac75aecdf5f06a6d48091c855d9"))
-    (1871751, uint256S("2b75fe33c1d5a22aec552424dba1bcc14f71ada14729a6407561719b4cb96fd1"))
-    (1893464, uint256S("61941c68b00b0250d25bc71f40bcc4f29fe1b5b95f3c51d7f35bf2341c7a8b5e"))
-    (1915177, uint256S("72865302d2b0e9b95716bad0ce022eda6f2b407e03f9f62574878542e23864e4"))
-    (1936980, uint256S("e253812b5dae36e09b80ce56da2ab0a28a2ab6fe3063f592a82811c71d46c464"))
-    (1958693, uint256S("4b0ef48a7e7e7b8e61aa400f9ad1aadcbd71100dd1ef55ee2c499da41a29dbae"))
-    (1980406, uint256S("5e5744a0df99341725fde6c5f459ab92ce73b437edac4c7bbd8517de66581a12"))
-    (2002119, uint256S("858735820907bead46f38109d8b6f5790f7047a649b17b348acf31a7b9a80d69"))
-    (2023832, uint256S("511137ce40584bc06989f7e3d0fae9a8518d6acfa433e7d8ff0342856e375b97"))
-    (2045545, uint256S("12de56037f6a5cfdc2c81ce17e8fd2b3fe93889e6925df3fa4d3e786d53a1d27"))
-    (2067258, uint256S("e2d14af00598568e6e395bda33d422607625fdfa136242e169e5bff2cd379313"))
-    (2088971, uint256S("933d8b6beb8e8c8ebb26528f9bdb0aef434762cf19e68994687f78ee8b54afaf"))
-    (2110684, uint256S("4494be4048890e3a2801753682df0dcc976742c91e4390c74b1283272089e926"))
-    (2132397, uint256S("72e2390c2f0c23532995cf7e27a196db9b3cca1b8e6a9a60b02b8b91e117d0f4"))
+    (24882, uint256S("61215442f0720eb79ed5f21c2360230e5dcde9b5e6982b03c192ad6eb1bcc5da"))
+    (49765, uint256S("95c439538d8347278256927d2f573cf3b013056cde386562dbf888c2f87cf779"))
+    (74648, uint256S("23b3ac5d554c3a791f5e9648905aaa3e6d845cf92ad750a8f0e6b519bec0fe98"))
+    (99531, uint256S("a7496853377c31a35a926353bd0a5db1fb622cdad3bdc6fe062553fcbc3f0096"))
+    (124414, uint256S("299848eb2beb5fcd6fef29006d26d737858c5f956df6950b2a956e175a24497b"))
+    (149297, uint256S("92451235a09e2f6cca62ddd58dec9e9f9fb766f087cd1cc8dbe185dba26c8513"))
+    (174180, uint256S("067ed2af16b8fbb585b6d18107904a9b09755c6eff12f5bc7ab8de6d1358cacc"))
+    (199063, uint256S("ec4df288536ab1ec8f0751dae5e379abf49c8f5b2dece4c9347941bf26b366f1"))
+    (223946, uint256S("fc11ad667d14b52b7aecb4743653bcca4f1b6f5d32e6483f6a0fe25d8adbc40c"))
+    (248829, uint256S("f341c8035886b3c672650a59af8737021efe8533fc85552dd380886640c4c250"))
+    (273712, uint256S("86e7d60c2db87df0cedbb7d63558a09cedfe4b36722674131d92828f03dd01ed"))
+    (298595, uint256S("a8016cc7913301b5b4ab8e10cad6db275579e4890e8e56c815e3eeec0b0683cb"))
+    (323478, uint256S("0f68e7d6b31dd628add4306f8b28b84558a3dd5bf478292a43fc164892d05b6e"))
+    (348361, uint256S("72343aa00a7dc009b7d789394b5cba4b9731701e798dd1debae66314432e2282"))
+    (373244, uint256S("03ac7b4edb87f09ea0e24db7aac43d66e087ec6faff0ef46929c04e9dd69b4a9"))
+    (398127, uint256S("1f4529c3c6dd1ef6c0d4bfb1f1440d9f93d82b1f797e1a51bdbb91fee680c0b4"))
+    (423010, uint256S("a27f42dbe7b8317d0bb39ea63539caf7683028c7d489141ea98558e50048c07b"))
+    (447893, uint256S("53887360dbdaf9b171c1e5349b7046159ea36761824587508d41fc88347e56f7"))
+    (472776, uint256S("6351d8ef1ebf72744ff8e5515f38581e02a4f931003b3c80c9638bb899db63f8"))
+    (497659, uint256S("8c1cc089016f62bffd935ad753f692f5e85f1f2650f2b75dcce0742c7c8639f9"))
+    (522542, uint256S("77878b246544e098875e229ad121dea49ba03a7586ebfb0a9d6fd24ad1b7357f"))
+    (547425, uint256S("b8eeaa71e5458ed617534d423515a0e75a41fbf420a08c703ba2a3c8f04839e9"))
+    (572308, uint256S("ba59ee5da9115502dc55d258714a8213ce7b37fbac4ce1e22acc5cc117b2441d"))
+    (597191, uint256S("bb8a2da858d218e3f919b776a0d560ce09c23dfa92cddbce904ce4b1631c082c"))
+    (622074, uint256S("e1051b8ba77a5d94441f2eacd62af8664d27aba74e9257612af187fccb159984"))
+    (646957, uint256S("4b9ecb4f32e9d8e1776a71392e4789ade00f855ea60fe8960df93d2cf1de6713"))
+    (671840, uint256S("dd8aa489e28a8983a8c712eff9734ae0d4871292f932373d1d058dbd7f545f76"))
+    (696723, uint256S("ec014c9fd658d5427a40ee4d7101854972acb2da7c91bb3f169eec5aea71a281"))
+    (721606, uint256S("8f0f0ba82780a70830d54c43861ec9456474e40120b75baf54d5b1c428f371fb"))
+    (746489, uint256S("bf616037bb78d4f812171457d7126d1e3be0fba1eb897c80cb13bfe7e8c007e2"))
+    (771372, uint256S("8ea1f62b7c8bfb97b07b5fea3404ea024b1590cc5f4ccf9be4dc70c8b203d4a0"))
+    (796255, uint256S("4b1b6c0d9ea49f0feebe7d95e2873da871368cdedd0b1cd929f0cf3647805ce8"))
+    (821138, uint256S("0cc25b5004765af5855a6d526f906a955d041c152484937b95aab6ae18cdf926"))
+    (846021, uint256S("1df49da4b5889585395c77cee0bcfb9692e659e6fb1a2e68bc764b978da3d4a5"))
+    (870904, uint256S("c88d3513cd0da9f286b2ae50787b592989191c8c681c27889d8d1c26499bed66"))
+    (895787, uint256S("c4e4d8c3f3ea6cab63aae4df2eb15f17195cab62d6d24ba76896bab4f17ba16c"))
+    (920670, uint256S("7c109e938fded96816c5c9f774806f720898b9492f4672ba0e7568f534e0bd12"))
+    (945553, uint256S("30f2b4375af4a7dbf3452252ebe4f2fb49b308312ed3252b4ec1de7da5a0920f"))
+    (970436, uint256S("e4a1d04c0f0769ea18b26743207f83424b35b5cea7b14217224257b1d4356de3"))
+    (995319, uint256S("4f5a181d67c7559ac62bf2dd515fa60edc9ddc5b0a6e6d17662bb136ce4be87a"))
+    (1020202, uint256S("e7cc7799d46200c9556a236dc5eef6232228f6d167cf5c4d3f3d1bb1cc64bcfe"))
+    (1045085, uint256S("d72465e93bc8cdaebcf462f18d3a1a4ac6ffb9a60bf037ed0180ee388647c906"))
+    (1069968, uint256S("d3c5b36547bb2757865d04866e29470fc3b9061c74bc477cd6f7d0eb1ca8c100"))
+    (1094851, uint256S("ced97db3bc3c9ed2e07a9a30bc9e0b130a539f9ca544ed570e5293eb62c85074"))
+    (1119734, uint256S("397433b6326ba3ac013b10d3d64e8fb90408db554136f031eae3b78e27444731"))
+    (1144617, uint256S("3b65cbd9c273490c469a192efe935e9836f34e96048de8afa1e98dd02d8262f0"))
+    (1169500, uint256S("9f527238c454398d345264d2d7c78159df65345026c6ab7938d0daba414a5343"))
+    (1194383, uint256S("7492d57bf68b0fbb4a4198f0af890b85a6beb092e2cb9700607c8a8367de8eea"))
+    (1219266, uint256S("2494dccca87970b1816df41cfdc1069f523ae8c8d579cf02dde15780c7db1b5e"))
+    (1244149, uint256S("f639372c405623aa84c641c9099cfaf1db18f7a25ae73b9c360d356f0c7c51d8"))
+    (1269032, uint256S("956c84a051944a356bc3665a66cbb4047077a1e185eda3b3b23a7a58f0919fda"))
+    (1293915, uint256S("de5f48f96e11d11129dbcce797f78de34aabd3b18aee79b9b2462ed9d14c5e3a"))
+    (1318798, uint256S("236b4b6650f5b17471872d9a350c257248f56133645ae73d01dc16dfb0155e61"))
+    (1343681, uint256S("45ea7d8e04df6bbca842924d5c5e402dae8bab60fe42cce8f6361252e9e765f5"))
+    (1368564, uint256S("f8bd27a1baaf7c61b0146b4c42d39cd36f6e03069144ae05e7f2caa381910d1c"))
+    (1393447, uint256S("7a2dd339b2f6495ad3190ffdb96a7c3608198ece73e304c4e78e55b64e4603b2"))
+    (1418330, uint256S("d630a10d00c320d9830c55cb0e2c3f820f12fb75235b7da299f784effcebb55f"))
+    (1443213, uint256S("f6c43780dbc93e1616b123d748bb0dd7b5b3a8f0b8e7545bd815d89bb9084724"))
+    (1468096, uint256S("5418b96783ac90b53cab1bdf149b0d386df4613c296b37bb05f787124e7ccb3d"))
+    (1492979, uint256S("69451041e6e8e64a53fd7233685854d9ac982fa65b42f6d9a032cac382e4c9c2"))
+    (1517862, uint256S("eb4c33221df4332121588013435b15ed816189a8f87485c5ca0af29d1abf38d6"))
+    (1542745, uint256S("f417006853c8c4d154a33e46745fb47a5183857d52fc7ace5ff73c514d6813fc"))
+    (1567628, uint256S("3d97e068e3312fe7a2586fbc2ea1cf10afc59e91b27007e46960acddb1d388a8"))
+    (1592511, uint256S("a8ed6f4726b51f793035a465ccc3d997a26052c3141c5e2c9ff4504395c32039"))
+    (1617394, uint256S("ced9fc0ba15b108ea1dda6dccbdc4ea3f46a7d80df81df52d7f1dfefc696e989"))
+    (1642277, uint256S("518b8ea321cc7e006ba81c13d2508984b9d4051e4161728885db1fe04c0db330"))
+    (1667160, uint256S("f596e8bf9df4dc80dd669cd1766db2c05d3361fa407b40429386fb68f5cf34b1"))
+    (1692043, uint256S("92d09ec8e19cc88d48c740516a0fc0199fd879adca98ba0f7346ebfb05acde6f"))
+    (1716926, uint256S("f9dc9ce12c40f229ad8b62caad94c8e8f52f3ecba27442fe61fb6b00de7f8d72"))
+    (1741809, uint256S("9499d6336856273c9acc97fc4b6d1b64ed24df2fc4d09bd6ebfcef3547cf9a39"))
+    (1766692, uint256S("c638dfad21cf788fac7ffbb8d5468c0e4fe31197e2c4de9ecad9d6191468ffa0"))
+    (1791575, uint256S("e1b801aa6442b0f4eaa52d9af04f7b491252417f4773ac7e65c85a510e0d7102"))
+    (1816458, uint256S("6785ef4c1ab842e1b1c0d0023a16917b4408d99d3416ed6df66526ec832c716d"))
+    (1841341, uint256S("d9d5c44845ce50bf381aff2e85f0d1610458788efef0114593606699d722758e"))
+    (1866224, uint256S("23bb2cffa9ff54ce5eb853ef3bf691906bce699941c4341834db30b9d466bbb9"))
+    (1891107, uint256S("4694447ba08b001ddf3f97571d50254783ba92a947f9746b279d227d8e571e76"))
+    (1915990, uint256S("6ccabc40c513cf10c06f3376946b213258ac57ecc163c3901dc6276399ec0fc2"))
+    (1940873, uint256S("b0faaa4c0c39e017df91038205f87b21eb6f1b3c66a9bf8d57dbf3f6870fb6e2"))
+    (1965756, uint256S("ca83403f5dddbc87eb8ea95025c1a09228864ef9f4c55a010b29122447e97072"))
+    (1990639, uint256S("7fcd362260bf2a563fe8ddc516bb55ca24bf62f7c976039d2c96800a140cafe2"))
+    (2015522, uint256S("ef32201dc917c21041316b0ae5163f1265294ceb91152463caac541af79ec6db"))
+    (2040405, uint256S("51df1a884e26673ee008b9e21f4cc1c6ce3acb20fd8400b4a70a1535957bc2e9"))
+    (2065288, uint256S("23ece291174b75fe520ee7b7fef3d85b042c8bee7bdb2dd4845395b3ad2f83de"))
+    (2090171, uint256S("fb994705eca24e41224001f7f3aa3e0d02330cd308516e0ed83098e5167871b1"))
+    (2115054, uint256S("32b8626743bb23a3559d0ebec94f5ecb45e181c04f53093c98351f98d016bda5"))
+    (2139937, uint256S("dab8bc013303c5719276c4ee300a2d2b577ab69719edbfc7dfc42b7c8db25028"))
+    (2164820, uint256S("ecc257aaafc8c7c4ea8248088770db6b346519e515789ed9f0001b4c6bcb6b1c"))
+    (2189703, uint256S("e9f14371ccf4e261aa66340b7ba01362d2b36bd22621aa00922866543ec84bcf"))
+    (2214586, uint256S("17eaa0330f8fc4f4bb48d2185591d5b738522f8a36195f620a7325bc45d97b26"))
+    (2239469, uint256S("044856a8819e9c01528f01c47da0b0e1366fff85255c4155953d2f47f64e7a97"))
+    (2264352, uint256S("72f994845c8a3aae371c36c8eb39f3c572942b49532550c274bd08ab6889cc9d"))
+    (2289235, uint256S("3dfbfe253060306cfa763d8ef4e70cf8809042c710d697baf2b8f19f1faaf906"))
+    (2314118, uint256S("a7fb145c83d275a81dde4448b579c1e1025dfd43fe62353d34fbae608ca99706"))
+    (2339001, uint256S("b7497e6c541eb49a50ec5825d78733296c61365f4cc5655c0a480fd847d18cb7"))
+    (2363884, uint256S("d9ab5a860580fd45c7dbdc1717d79100e1169fe34c4fc3fa9cedd00374c227a4"))
+    (2388767, uint256S("1c1fbe0664fe8f327945fdf403939c59d832094a8d5b4f8791493e8a6d69f42f"))
+    (2413650, uint256S("201ca7c8bd8e85a6cf0b66e2a9f2da4d797bfa551773ebaf64d85a84d42d29c4"))
+    (2438533, uint256S("8514a64e448e0838a2028ad43ed50b77485f8e059f43dc8e43b6eeab26260b70"))
+    (2463416, uint256S("6c701b3c38564ce670eb056fc619fc0277eb4e3085fb1a26eba58d25f1be5372"))
+    (2488299, uint256S("30afd1a54a3567777cc72351a30cb6ea3f3208435db2cf950be400ce96ba789f"))
 ;
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1685958480, // * UNIX timestamp of last checkpoint block
-    14050728,   // * total number of transactions between genesis and last checkpoint
+    1707814170, // * UNIX timestamp of last checkpoint block
+    14786459,   // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the UpdateTip debug.log lines)
-    2820        // * estimated number of transactions per day after checkpoint
+    2826        // * estimated number of transactions per day after checkpoint
 };
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
@@ -271,6 +274,7 @@ public:
         consensus.nTargetTimespanV2 = 30 * 60;
         consensus.nTargetSpacing = 1 * 60;
         consensus.nTimeSlotLength = 15;
+        consensus.nRewardAdjustmentInterval = 7 * 1440;
 
         // spork keys
         consensus.strSporkPubKey = "04d45416e4a64b1b051e2a2ebd80ced5efe148cf5fbcb70e56860957675a2da1a21fd522c42c1ed18a1ec42641589a09cf3f58678d213825dc21798183a005a984";
@@ -308,6 +312,8 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].nActivationHeight     = 905501;
         consensus.vUpgrades[Consensus::UPGRADE_CHECK_WORK_V2].nActivationHeight          = 910001;
         consensus.vUpgrades[Consensus::UPGRADE_MASTERNODE_RANK_V2].nActivationHeight     = 1200001;
+        consensus.vUpgrades[Consensus::UPGRADE_DYNAMIC_REWARDS].nActivationHeight        = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_DYNAMIC_COLLATERALS].nActivationHeight    = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
 
         consensus.vUpgrades[Consensus::UPGRADE_POS].hashActivationBlock                    = uint256S("ef544e9c4181e103bdcaae6153aa90495f1f830a91368364c4b8b97a3782e579");
         consensus.vUpgrades[Consensus::UPGRADE_POS_V2].hashActivationBlock                 = uint256S("c36a49839903e01bc2d6c44f20516fd5f3d816cf2d16cd30c488986668bdf269");
@@ -319,6 +325,8 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].hashActivationBlock     = uint256S("f6326f790d1c0d01843913b301b56dc0d984e9d76e0949669cbeebda37336cf7");
         consensus.vUpgrades[Consensus::UPGRADE_CHECK_WORK_V2].hashActivationBlock          = uint256S("96dc6197a2d0cc2b9dfe5487b35f0d5b051d1dd958de19e00043897223c08ea4");
         consensus.vUpgrades[Consensus::UPGRADE_MASTERNODE_RANK_V2].hashActivationBlock     = uint256S("92330b37f9e362b521a77ebe3fb4a1dfedb8d055770bfa601eb0420c4d81b3f3");
+        consensus.vUpgrades[Consensus::UPGRADE_DYNAMIC_REWARDS].hashActivationBlock        = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_DYNAMIC_COLLATERALS].hashActivationBlock    = uint256S("0x0");
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -397,6 +405,7 @@ public:
         consensus.nTargetTimespanV2 = 30 * 60;
         consensus.nTargetSpacing = 1 * 60;
         consensus.nTimeSlotLength = 15;
+        consensus.nRewardAdjustmentInterval = 60;
 
         // spork keys
         consensus.strSporkPubKey = "04d45416e4a64b1b051e2a2ebd80ced5efe148cf5fbcb70e56860957675a2da1a21fd522c42c1ed18a1ec42641589a09cf3f58678d213825dc21798183a005a984";
@@ -414,6 +423,9 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_TIME_PROTOCOL_V2].nActivationHeight       = 1641;
         consensus.vUpgrades[Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES].nActivationHeight = 1741;
         consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].nActivationHeight     = 1841;
+        consensus.vUpgrades[Consensus::UPGRADE_CHECK_WORK_V2].nActivationHeight          = 0;
+        consensus.vUpgrades[Consensus::UPGRADE_DYNAMIC_REWARDS].nActivationHeight        = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_DYNAMIC_COLLATERALS].nActivationHeight    = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
 
         consensus.vUpgrades[Consensus::UPGRADE_POS].hashActivationBlock                     = uint256S("0x0");
         consensus.vUpgrades[Consensus::UPGRADE_POS_V2].hashActivationBlock                  = uint256S("0x0");
@@ -423,6 +435,8 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES].hashActivationBlock = uint256S("0x0");
         consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].hashActivationBlock     = uint256S("0x0");
         consensus.vUpgrades[Consensus::UPGRADE_CHECK_WORK_V2].hashActivationBlock          = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_DYNAMIC_REWARDS].hashActivationBlock        = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_DYNAMIC_COLLATERALS].hashActivationBlock    = uint256S("0x0");
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.

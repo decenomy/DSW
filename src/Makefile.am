@@ -20,7 +20,7 @@ LIBUNIVALUE = $(UNIVALUE_LIBS)
 endif
 
 BITCOIN_CONFIG_INCLUDES=-I$(builddir)/config
-BITCOIN_INCLUDES=-I$(builddir) -I$(builddir)/obj $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS) $(SSL_CFLAGS)
+BITCOIN_INCLUDES=-I$(builddir) -I$(builddir)/obj $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS) $(SSL_CFLAGS) $(CURL_CFLAGS)
 
 BITCOIN_INCLUDES += -I$(srcdir)/secp256k1/include
 BITCOIN_INCLUDES += $(UNIVALUE_CFLAGS)
@@ -87,6 +87,9 @@ BITCOIN_CORE_H = \
   bip38.h \
   bloom.h \
   blocksignature.h \
+  bootstrap/bootstrap.h \
+  bootstrap/minizip/ioapi.h \
+  bootstrap/minizip/unzip.h \
   chain.h \
   chainparams.h \
   chainparamsbase.h \
@@ -154,6 +157,7 @@ BITCOIN_CORE_H = \
   random.h \
   reverselock.h \
   reverse_iterate.h \
+  rewards.h \
   rpc/client.h \
   rpc/protocol.h \
   rpc/server.h \
@@ -169,6 +173,7 @@ BITCOIN_CORE_H = \
   spork.h \
   sporkdb.h \
   sporkid.h \
+  sqlite3/sqlite3.h \
   stakeinput.h \
   script/ismine.h \
   streams.h \
@@ -237,6 +242,7 @@ libbitcoin_server_a_SOURCES = \
   policy/policy.cpp \
   pow.cpp \
   rest.cpp \
+  rewards.cpp \
   rpc/blockchain.cpp \
   rpc/masternode.cpp \
   rpc/mining.cpp \
@@ -272,6 +278,9 @@ libbitcoin_wallet_a_SOURCES = \
   activemasternodeconfig.cpp \
   activemasternodeman.cpp \
   bip38.cpp \
+  bootstrap/bootstrap.cpp \
+  bootstrap/minizip/ioapi.c \
+  bootstrap/minizip/unzip.c \
   interface/wallet.cpp \
   addressbook.cpp \
   crypter.cpp \
@@ -292,6 +301,7 @@ libbitcoin_wallet_a_SOURCES = \
   wallet/wallet.cpp \
   wallet/walletdb.cpp \
   stakeinput.cpp \
+  sqlite3/sqlite3.c \
   $(BITCOIN_CORE_H)
 
 # crypto primitives library
@@ -459,7 +469,7 @@ sapphired_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-sapphired_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+sapphired_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) $(CURL_LIBS) $(ZLIB_LIBS)
 
 # sapphire-cli binary #
 sapphire_cli_SOURCES = pivx-cli.cpp

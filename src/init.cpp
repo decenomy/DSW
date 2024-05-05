@@ -36,6 +36,7 @@
 #include "netbase.h"
 #include "net.h"
 #include "policy/policy.h"
+#include "rewards.h"
 #include "rpc/server.h"
 #include "script/standard.h"
 #include "scheduler.h"
@@ -238,6 +239,9 @@ void PrepareShutdown()
 
     {
         LOCK(cs_main);
+
+        CRewards::Shutdown();
+
         if (pcoinsTip != NULL) {
             FlushStateToDisk();
 
@@ -403,7 +407,7 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-sysperms", _("Create new files with system default permissions, instead of umask 077 (only effective with disabled wallet functionality)"));
 #endif
     strUsage += HelpMessageOpt("-txindex", strprintf(_("Maintain a full transaction index, used by the getrawtransaction rpc call (default: %u)"), DEFAULT_TXINDEX));
-    
+
     strUsage += HelpMessageGroup(_("Connection options:"));
     strUsage += HelpMessageOpt("-addnode=<ip>", _("Add a node to connect to and attempt to keep the connection open"));
     strUsage += HelpMessageOpt("-banscore=<n>", strprintf(_("Threshold for disconnecting misbehaving peers (default: %u)"), DEFAULT_BANSCORE_THRESHOLD));
@@ -884,6 +888,28 @@ static std::string ResolveErrMsg(const char * const optname, const std::string& 
     return strprintf(_("Cannot resolve -%s address: '%s'"), optname, strBind);
 }
 
+// Define the progress callback function
+static int DownloadProgressCallback(void *clientp, double dltotal, double dlnow, double ultotal, double ulnow) {
+
+    // Calculate progress percentage
+    double progress = (dlnow > 0) ? (dlnow / dltotal) * 100.0 : 0.0;
+
+    auto now = std::chrono::steady_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::seconds>(now.time_since_epoch());
+    static bool log_flag = false; // Declare log_flag as static
+    if (!log_flag && duration.count() % 2 == 0) {
+        log_flag = true;
+        //std::printf("-Bootstrap: Download: %d%%\n", (uint8_t)progress);
+        LogPrintf("-Bootstrap: Download: %d%%\n", (uint8_t)progress);
+        uiInterface.ShowProgress(_("Download: "), (uint8_t)progress);    
+    } else if (duration.count() % 2 != 0) {
+        log_flag = false;
+    }
+
+    return 0;
+}
+
+
 void InitLogging()
 {
     //g_logger->m_print_to_file = !IsArgNegated("-debuglogfile");
@@ -1062,6 +1088,12 @@ bool AppInit2()
 
     // ********************************************************* Step 4: application initialization: dir lock, daemonize, pidfile, debug log
 
+    fReindex = GetBoolArg("-reindex", false);
+
+    // Initialize dynamic rewards
+    if(!CRewards::Init(fReindex)) 
+        return false;
+
     // Initialize elliptic curve code
     RandomInit();
     ECC_Start();
@@ -1203,8 +1235,13 @@ bool AppInit2()
             }
         }
 
-        if (GetBoolArg("-resync", false)) {
-            uiInterface.InitMessage(_("Preparing for resync..."));
+        if (GetBoolArg("-resync", false) || GetBoolArg("-bootstrap", false) ) {
+
+            if (GetBoolArg("-resync", false))
+              uiInterface.InitMessage(_("Preparing for resync..."));
+            else if (GetBoolArg("-bootstrap", false))
+              uiInterface.InitMessage(_("Preparing for bootstrap..."));
+
             // Delete the local blockchain folders to force a resync from scratch to get a consitent blockchain-state
             fs::path blocksDir = GetDataDir() / "blocks";
             fs::path chainstateDir = GetDataDir() / "chainstate";
@@ -1227,6 +1264,45 @@ bool AppInit2()
                     fs::remove_all(sporksDir);
                     LogPrintf("-resync: folder deleted: %s\n", sporksDir.string().c_str());
                 }
+                #ifdef ENABLE_BOOTSTRAP
+                if (GetBoolArg("-bootstrap", false)) {
+                  const std::string url = std::string(BOOTSTRAP_URL)+std::string(TICKER)+"/bootstrap.zip";
+                  const std::string outputFileName = "bootstrap.zip";
+                  const std::string extractPath = "bootstrap_";
+
+                  LogPrintf("-bootstrap: Download: %s\n", url.c_str());
+
+                  Bootstrap::rmDirectory(extractPath);
+
+                  if (Bootstrap::DownloadFile(url, outputFileName, DownloadProgressCallback)) {
+                      LogPrintf("-bootstrap: File downloaded successfully \n");
+
+                      if (Bootstrap::extractZip(outputFileName, extractPath)) {
+                          LogPrintf("-bootstrap: Zip file extracted successfully \n");
+                          try {
+                              fs::rename(extractPath+"/blocks", blocksDir);
+                              fs::rename(extractPath+"/chainstate", chainstateDir);
+                              LogPrintf("-bootstrap: Folders moved successfully \n");
+                          } catch (const std::exception& e) {
+                              LogPrintf("-bootstrap: Error moving folder: %s\n",e.what());
+                          }
+
+                      } else {
+                          LogPrintf("-bootstrap: Error extracting zip file");
+                      }
+
+                      Bootstrap::rmDirectory(extractPath);
+                      
+                  } else {
+                      LogPrintf("-bootstrap: Error downloading file");
+                  }
+
+                  if(fs::exists(outputFileName))
+                  		fs::remove(outputFileName);
+                }
+                #else
+                LogPrintf("-bootstrap: not enabled\n");
+                #endif
             } catch (const fs::filesystem_error& error) {
                 LogPrintf("Failed to delete blockchain folders %s\n", error.what());
             }
@@ -1397,8 +1473,6 @@ bool AppInit2()
 
     // ********************************************************* Step 7: load block chain
 
-    fReindex = GetBoolArg("-reindex", false);
-
     // Create blocks directory if it doesn't already exist
     fs::create_directories(GetDataDir() / "blocks");
 
@@ -1487,39 +1561,6 @@ bool AppInit2()
                 if (fTxIndex != GetBoolArg("-txindex", DEFAULT_TXINDEX)) {
                     strLoadError = _("You need to rebuild the database using -reindex to change -txindex");
                     break;
-                }
-
-                if (chainActive.Tip() != nullptr) {
-                    if (!chainActive.Tip()->nMoneySupply) {
-                        LOCK(cs_main);
-                        nMoneySupply = 0;
-
-                        std::unique_ptr<CCoinsViewCursor> pcursor(pcoinsTip->Cursor());
-
-                        while (pcursor->Valid()) {
-                            boost::this_thread::interruption_point();
-                            COutPoint key;
-                            Coin coin;
-                            if (pcursor->GetKey(key) && pcursor->GetValue(coin)) {
-                                // ----------- burn address scanning -----------
-                                CTxDestination source;
-                                if (ExtractDestination(coin.out.scriptPubKey, source)) {
-                                    const std::string addr = EncodeDestination(source);
-                                    if (consensus.mBurnAddresses.find(addr) != consensus.mBurnAddresses.end() &&
-                                        consensus.mBurnAddresses.at(addr) < chainActive.Height()) {
-                                        pcursor->Next();
-                                        continue;
-                                    }
-                                }
-                                nMoneySupply += coin.out.nValue;
-                            }
-                            pcursor->Next();
-                        }
-
-                        chainActive.Tip()->nMoneySupply = nMoneySupply;
-                    } else {
-                        nMoneySupply = chainActive.Tip()->nMoneySupply.get();
-                    }
                 }
 
                 if (!fReindex) {
