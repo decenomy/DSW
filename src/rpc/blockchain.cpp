@@ -679,7 +679,7 @@ static std::map<std::string, CAmount> GetBurnStats(CCoinsView* view, bool fWithV
     const Consensus::Params& consensus = Params().GetConsensus();
 
     for (const auto &p : consensus.mBurnAddresses ) {
-        if(p.second.first <= nHeight && p.second.second >= nHeight) {
+        if(p.second <= nHeight) {
             ret[p.first] = 0;
         }
     }
