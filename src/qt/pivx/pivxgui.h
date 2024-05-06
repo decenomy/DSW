@@ -10,10 +10,15 @@
 #include "config/pivx-config.h"
 #endif
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winit-list-lifetime"
+
 #include <QMainWindow>
 #include <QStackedWidget>
 #include <QSystemTrayIcon>
 #include <QLabel>
+
+#pragma GCC diagnostic pop
 
 #include "qt/pivx/navmenuwidget.h"
 #include "qt/pivx/topbar.h"
