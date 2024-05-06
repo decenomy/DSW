@@ -82,7 +82,7 @@ public:
 };
 
 struct uint256CheapHasher {
-    u_int64_t operator()(const uint256& i) const {
+    uint64_t operator()(const uint256& i) const {
         return i.GetCheapHash();
     }
 };
