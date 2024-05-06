@@ -22,7 +22,7 @@
 #include "wallet/wallet.h"
 #endif // ENABLE_WALLET
 
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <boost/iostreams/concepts.hpp>
 #include <boost/iostreams/stream.hpp>
 #include <boost/shared_ptr.hpp>
@@ -32,6 +32,7 @@
 
 #include <univalue.h>
 
+using namespace boost::placeholders;
 
 static bool fRPCRunning = false;
 static bool fRPCInWarmup = true;
