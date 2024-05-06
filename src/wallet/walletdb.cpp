@@ -387,7 +387,7 @@ DBErrors CWalletDB::ReorderTransactions(CWallet* pwallet)
     typedef std::multimap<int64_t, TxPair> TxItems;
     TxItems txByTime;
 
-    for (std::map<uint256, CWalletTx>::iterator it = pwallet->mapWallet.begin(); it != pwallet->mapWallet.end(); ++it) {
+    for (auto it = pwallet->mapWallet.begin(); it != pwallet->mapWallet.end(); ++it) {
         CWalletTx* wtx = &((*it).second);
         txByTime.insert(std::make_pair(wtx->nTimeReceived, TxPair(wtx, (CAccountingEntry*)0)));
     }

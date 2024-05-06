@@ -92,7 +92,7 @@ bool CWallet::IsHDEnabled() const
 const CWalletTx* CWallet::GetWalletTx(const uint256& hash) const
 {
     LOCK(cs_wallet);
-    std::map<uint256, CWalletTx>::const_iterator it = mapWallet.find(hash);
+    auto it = mapWallet.find(hash);
     if (it == mapWallet.end())
         return NULL;
     return &(it->second);
@@ -460,7 +460,7 @@ std::set<uint256> CWallet::GetConflicts(const uint256& txid) const
     std::set<uint256> result;
     AssertLockHeld(cs_wallet);
 
-    std::map<uint256, CWalletTx>::const_iterator it = mapWallet.find(txid);
+    auto it = mapWallet.find(txid);
     if (it == mapWallet.end())
         return result;
     const CWalletTx& wtx = it->second;
@@ -595,7 +595,7 @@ bool CWallet::IsSpent(const uint256& hash, unsigned int n) const
     range = mapTxSpends.equal_range(outpoint);
     for (TxSpends::const_iterator it = range.first; it != range.second; ++it) {
         const uint256& wtxid = it->second;
-        std::map<uint256, CWalletTx>::const_iterator mit = mapWallet.find(wtxid);
+        auto mit = mapWallet.find(wtxid);
         if (mit != mapWallet.end()) {
             bool fConflicted;
             const int nDepth = mit->second.GetDepthAndMempool(fConflicted);
@@ -764,7 +764,7 @@ int64_t CWallet::IncOrderPosNext(CWalletDB* pwalletdb)
 bool CWallet::IsKeyUsed(const CPubKey& vchPubKey) {
     if (vchPubKey.IsValid()) {
         CScript scriptPubKey = GetScriptForDestination(vchPubKey.GetID());
-        for (std::map<uint256, CWalletTx>::iterator it = mapWallet.begin();
+        for (auto it = mapWallet.begin();
              it != mapWallet.end() && vchPubKey.IsValid();
              ++it) {
             const CWalletTx& wtx = (*it).second;
@@ -821,7 +821,7 @@ bool CWallet::AddToWallet(const CWalletTx& wtxIn, bool fFlushOnClose)
     uint256 hash = wtxIn.GetHash();
 
     // Inserts only if not already there, returns tx inserted or tx found
-    std::pair<std::map<uint256, CWalletTx>::iterator, bool> ret = mapWallet.insert(std::make_pair(hash, wtxIn));
+    auto ret = mapWallet.insert(std::make_pair(hash, wtxIn));
     CWalletTx& wtx = (*ret.first).second;
     wtx.BindWallet(this);
     bool fInsertedNew = ret.second;
@@ -1099,7 +1099,7 @@ isminetype CWallet::IsMine(const CTxIn& txin) const
 {
     {
         LOCK(cs_wallet);
-        std::map<uint256, CWalletTx>::const_iterator mi = mapWallet.find(txin.prevout.hash);
+        auto mi = mapWallet.find(txin.prevout.hash);
         if (mi != mapWallet.end()) {
             const CWalletTx& prev = (*mi).second;
             if (txin.prevout.n < prev.vout.size())
@@ -1134,7 +1134,7 @@ CAmount CWallet::GetDebit(const CTxIn& txin, const isminefilter& filter) const
 {
     {
         LOCK(cs_wallet);
-        std::map<uint256, CWalletTx>::const_iterator mi = mapWallet.find(txin.prevout.hash);
+        auto mi = mapWallet.find(txin.prevout.hash);
         if (mi != mapWallet.end()) {
             const CWalletTx& prev = (*mi).second;
             if (txin.prevout.n < prev.vout.size())
@@ -1794,7 +1794,7 @@ bool CWallet::GetMasternodeVinAndKeys(CTxIn& txinRet, CPubKey& pubKeyRet, CKey& 
 
     // Find specific vin
     uint256 txHash = uint256S(strTxHash);
-    std::map<uint256, CWalletTx>::const_iterator mi = mapWallet.find(txHash);
+    auto mi = mapWallet.find(txHash);
     if (mi == mapWallet.end()) {
         strError = "collateral tx not found in the wallet";
         return error("%s: %s", __func__, strError);
@@ -1867,7 +1867,7 @@ bool CWallet::AvailableCoins(std::vector<COutput>* pCoins,      // --> populates
 
     {
         LOCK2(cs_main, cs_wallet);
-        for (std::map<uint256, CWalletTx>::const_iterator it = mapWallet.begin(); it != mapWallet.end(); ++it) {
+        for (auto it = mapWallet.begin(); it != mapWallet.end(); ++it) {
             const uint256& wtxid = it->first;
             const CWalletTx* pcoin = &(*it).second;
 
@@ -2107,7 +2107,7 @@ bool CWallet::SelectCoinsToSpend(const std::vector<COutput>& vAvailableCoins, co
     if (coinControl)
         coinControl->ListSelected(vPresetInputs);
     for (const COutPoint& outpoint : vPresetInputs) {
-        std::map<uint256, CWalletTx>::const_iterator it = mapWallet.find(outpoint.hash);
+        auto it = mapWallet.find(outpoint.hash);
         if (it != mapWallet.end()) {
             const CWalletTx* pcoin = &it->second;
             // Clearly invalid input, fail
@@ -3061,7 +3061,7 @@ bool CWallet::UpdatedTransaction(const uint256& hashTx)
     {
         LOCK(cs_wallet);
         // Only notify UI if this transaction is in this wallet
-        std::map<uint256, CWalletTx>::const_iterator mi = mapWallet.find(hashTx);
+        auto mi = mapWallet.find(hashTx);
         if (mi != mapWallet.end()) {
             NotifyTransactionChanged(this, hashTx, CT_UPDATED);
             return true;
@@ -3183,7 +3183,7 @@ void CWallet::GetKeyBirthTimes(std::map<CKeyID, int64_t>& mapKeyBirth) const
 
     // find first block that affects those keys, if there are any left
     std::vector<CKeyID> vAffected;
-    for (std::map<uint256, CWalletTx>::const_iterator it = mapWallet.begin(); it != mapWallet.end(); it++) {
+    for (auto it = mapWallet.begin(); it != mapWallet.end(); it++) {
         // iterate over all wallet transactions...
         const CWalletTx& wtx = (*it).second;
         BlockMap::const_iterator blit = mapBlockIndex.find(wtx.hashBlock);
@@ -3657,7 +3657,7 @@ CWallet* CWallet::CreateWalletFromFile(const std::string walletFile)
             CWalletDB walletdb(walletFile);
             for (const CWalletTx& wtxOld : vWtx) {
                 uint256 hash = wtxOld.GetHash();
-                std::map<uint256, CWalletTx>::iterator mi = walletInstance->mapWallet.find(hash);
+                auto mi = walletInstance->mapWallet.find(hash);
                 if (mi != walletInstance->mapWallet.end()) {
                     const CWalletTx* copyFrom = &wtxOld;
                     CWalletTx* copyTo = &mi->second;
