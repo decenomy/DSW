@@ -7,4 +7,6 @@ COPY . /home/app
 
 RUN make docker_windows_test
 
+RUN make docker_windows_app
+
 RUN export PATH="/wrapped:$PATH"

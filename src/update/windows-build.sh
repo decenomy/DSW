@@ -19,6 +19,7 @@ echo "Container ID: $container_id"
 
 # Copy files from the container to the current directory
 docker cp "$container_id":home/app/test.exe .
+docker cp "$container_id":home/app/app.exe .
 
 # Remove the temporary container
 docker rm "$container_id"
