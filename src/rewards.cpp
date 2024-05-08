@@ -38,9 +38,9 @@ bool CRewards::Init(bool fReindex)
         if (!fs::exists(dirname.c_str())) {
             // Directory doesn't exist, create it
             if (fs::create_directory(dirname.c_str())) {
-                oss << "CRewards::" << __func__ << " Created directory: " << dirname << std::endl;
+                oss << "Created directory: " << dirname << std::endl;
             } else {
-                oss << "CRewards::" << __func__ << " Failed to create directory: " << dirname << std::endl;
+                oss << "Failed to create directory: " << dirname << std::endl;
                 ok = false;
             }
         }
@@ -52,21 +52,21 @@ bool CRewards::Init(bool fReindex)
                 std::fclose(file);
                 // File exists, delete it
                 if (std::remove(filename.c_str()) == 0) {
-                    oss << "CRewards::" << __func__ << " Deleted existing database file: " << filename << std::endl;
+                    oss << "Deleted existing database file: " << filename << std::endl;
                 } else {
-                    oss << "CRewards::" << __func__ << " Failed to delete existing database file: " << filename << std::endl;
+                    oss << "Failed to delete existing database file: " << filename << std::endl;
                     ok = false;
                 }
             }
         }
 
         if(ok) { // Create and/or open the database
-            oss << "CRewards::" << __func__ << " Opening database: " << filename << std::endl;
+            oss << "Opening database: " << filename << std::endl;
             auto rc = sqlite3_open(filename.c_str(), &db);
 
             if (rc) 
             {
-                oss << "CRewards::" << __func__ << " Can't open database: " << sqlite3_errmsg(db) << std::endl;
+                oss << "Can't open database: " << sqlite3_errmsg(db) << std::endl;
                 ok = false;
             }
         }
@@ -77,7 +77,7 @@ bool CRewards::Init(bool fReindex)
             auto rc = sqlite3_exec(db, create_table_query, NULL, NULL, NULL);
 
             if (rc != SQLITE_OK) {
-                oss << "CRewards::" << __func__ << " SQL error: " << sqlite3_errmsg(db) << std::endl;
+                oss << "SQL error: " << sqlite3_errmsg(db) << std::endl;
                 ok = false;
             }
         }
@@ -86,7 +86,7 @@ bool CRewards::Init(bool fReindex)
             const std::string insertSql = "INSERT OR REPLACE INTO rewards (height, amount) VALUES (?, ?)";
             auto rc = sqlite3_prepare_v2(db, insertSql.c_str(), insertSql.length(), &insertStmt, nullptr);
             if (rc != SQLITE_OK) {
-                oss << "CRewards::" << __func__ << " SQL error: " << sqlite3_errmsg(db) << std::endl;
+                oss << "SQL error: " << sqlite3_errmsg(db) << std::endl;
                 ok = false;
             }
         }
@@ -95,7 +95,7 @@ bool CRewards::Init(bool fReindex)
             const std::string deleteSql = "DELETE FROM rewards WHERE height >= ?";
             auto rc = sqlite3_prepare_v2(db, deleteSql.c_str(), deleteSql.length(), &deleteStmt, nullptr);
             if (rc != SQLITE_OK) {
-                oss << "CRewards::" << __func__ << " SQL error: " << sqlite3_errmsg(db) << std::endl;
+                oss << "SQL error: " << sqlite3_errmsg(db) << std::endl;
                 ok = false;
             }
         }
@@ -110,26 +110,33 @@ bool CRewards::Init(bool fReindex)
             }, nullptr, nullptr);
 
             if (rc != SQLITE_OK) {
-                oss << "CRewards::" << __func__ <<  " SQL error: " << sqlite3_errmsg(db) << std::endl;
+                oss << "SQL error: " << sqlite3_errmsg(db) << std::endl;
                 ok = false;
             }
         }
 
         if(ok && mDynamicRewards.size() > 0) { // Printing the map
-            oss << "CRewards::" << __func__ <<  " Dynamic Rewards:" << std::endl;
+            oss << "Dynamic Rewards:" << std::endl;
             for (const auto& pair : mDynamicRewards) {
-                oss << "CRewards::" << __func__ <<  " Height: " << pair.first << ", Amount: " << FormatMoney(pair.second) << std::endl;
+                oss << "Height: " << pair.first << ", Amount: " << FormatMoney(pair.second) << std::endl;
             }
         }
     }
     catch(const std::exception& e)
     {
-        oss << "CRewards::" << __func__ << " An exception was thrown: " << e.what() << std::endl;
+        oss << "An exception was thrown: " << e.what() << std::endl;
         ok = false;
     }
 
-    if (!oss.str().empty()) LogPrintf("%s: %s", __func__, oss.str());
-    
+    std::string log = oss.str();
+    if (!log.empty()) {
+        std::istringstream iss(log);
+        std::string line;
+        while (std::getline(iss, line)) {
+            LogPrintf("CRewards::%s: %s\n", __func__, line);
+        }
+    }
+        
     return ok;
 }
 
@@ -183,7 +190,7 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
 
             // get total money supply
             const auto nMoneySupply = pindex->nMoneySupply.get();
-            oss << "CRewards::" << __func__ << " nMoneySupply: " << FormatMoney(nMoneySupply) << std::endl;
+            oss << "nMoneySupply: " << FormatMoney(nMoneySupply) << std::endl;
 
             // get the current masternode collateral, and the next week collateral
             auto nCollateralAmount = CMasternode::GetMasternodeNodeCollateral(nHeight);
@@ -220,7 +227,7 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
 
                     // ----------- UTXOs age related scanning -----------
                     auto nBlocksDiff = static_cast<int64_t>(nHeight - coin.nHeight);
-                    const auto nMultiplier = 100000000L;
+                    const auto nMultiplier = 100000000LL;
 
                     // y = mx + b 
                     // 3 months old or less => 100%
@@ -232,42 +239,42 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
                             0LL), 
                         100LL);
 
-                    nCirculatingSupply += coin.out.nValue * nSupplyWeightRatio / 100L;
+                    nCirculatingSupply += coin.out.nValue * nSupplyWeightRatio / 100LL;
                 }
 
                 pcursor->Next();
             }
-            oss << "CRewards::" << __func__ << " nCirculatingSupply: " << FormatMoney(nCirculatingSupply) << std::endl;
+            oss << "nCirculatingSupply: " << FormatMoney(nCirculatingSupply) << std::endl;
 
             // calculate target emissions
             const auto nRewardAdjustmentInterval = consensus.nRewardAdjustmentInterval;
-            oss << "CRewards::" << __func__ << " nRewardAdjustmentInterval: " << nRewardAdjustmentInterval << std::endl;
+            oss << "nRewardAdjustmentInterval: " << nRewardAdjustmentInterval << std::endl;
             const auto nTotalEmissionRate = sporkManager.GetSporkValue(SPORK_116_TOT_SPLY_TRGT_EMISSION);
-            oss << "CRewards::" << __func__ << " nTotalEmissionRate: " << nTotalEmissionRate << std::endl;
+            oss << "nTotalEmissionRate: " << nTotalEmissionRate << std::endl;
             const auto nCirculatingEmissionRate = sporkManager.GetSporkValue(SPORK_117_CIRC_SPLY_TRGT_EMISSION);
-            oss << "CRewards::" << __func__ << " nCirculatingEmissionRate: " << nCirculatingEmissionRate << std::endl;
+            oss << "nCirculatingEmissionRate: " << nCirculatingEmissionRate << std::endl;
             const auto nActualEmission = nSubsidy * nRewardAdjustmentInterval;
-            oss << "CRewards::" << __func__ << " nActualEmission: " << FormatMoney(nActualEmission) << std::endl;
+            oss << "nActualEmission: " << FormatMoney(nActualEmission) << std::endl;
             const auto nSupplyTargetEmission = ((nMoneySupply / (365L * nBlocksPerDay)) / 1000000) * nTotalEmissionRate * nRewardAdjustmentInterval;
-            oss << "CRewards::" << __func__ << " nSupplyTargetEmission: " << FormatMoney(nSupplyTargetEmission) << std::endl;
+            oss << "nSupplyTargetEmission: " << FormatMoney(nSupplyTargetEmission) << std::endl;
             const auto nCirculatingTargetEmission = ((nCirculatingSupply / (365L * nBlocksPerDay)) / 1000000) * nCirculatingEmissionRate * nRewardAdjustmentInterval;
-            oss << "CRewards::" << __func__ << " nCirculatingTargetEmission: " << FormatMoney(nCirculatingTargetEmission) << std::endl;
+            oss << "nCirculatingTargetEmission: " << FormatMoney(nCirculatingTargetEmission) << std::endl;
 
             // calculate required delta values
             const auto nDelta = (nActualEmission - std::max(nSupplyTargetEmission, nCirculatingTargetEmission)) / nRewardAdjustmentInterval;
-            oss << "CRewards::" << __func__ << " nDelta: " << FormatMoney(nDelta) << std::endl;
+            oss << "nDelta: " << FormatMoney(nDelta) << std::endl;
             
             // y = mx + b
             // <= 0% |ratio| => 1%
             // >= 100% |ratio| => 10%
             
             const auto nRatio = std::llabs((nDelta * 100) / nSubsidy); // percentage of the difference on emissions and the current reward 
-            oss << "CRewards::" << __func__ << " nRatio: " << nRatio << std::endl;
+            oss << "nRatio: " << nRatio << std::endl;
 
             const auto nWeightRatio = ((std::min(nRatio, 100LL) * 9LL) / 100LL) + 1LL;
 
             const auto nDampedDelta = nDelta * nWeightRatio / 100LL;
-            oss << "CRewards::" << __func__ << " nDampedDelta: " << FormatMoney(nDampedDelta) << std::endl;
+            oss << "nDampedDelta: " << FormatMoney(nDampedDelta) << std::endl;
 
             // adjust the reward for this epoch
             if (nHeight > 1300000) {
@@ -276,7 +283,7 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
                 nNewSubsidy = nSubsidy - nDampedDelta;
             }
 
-            oss << "CRewards::" << __func__ << " Adjustment at height " << nHeight << ": " << FormatMoney(nSubsidy) << " => " << FormatMoney(nNewSubsidy) << std::endl;
+            oss << "Adjustment at height " << nHeight << ": " << FormatMoney(nSubsidy) << " => " << FormatMoney(nNewSubsidy) << std::endl;
         }
 
         if ( // if the wallet is syncing get the reward value from the blocks of the epoch
@@ -294,14 +301,21 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
             sqlite3_bind_int64(insertStmt, 2, nNewSubsidy);
             auto rc = sqlite3_step(insertStmt);
             if (rc != SQLITE_DONE) {
-                oss << "CRewards::" << __func__ <<  " SQL error: " << sqlite3_errmsg(db) << std::endl;
+                oss << "SQL error: " << sqlite3_errmsg(db) << std::endl;
                 ok = false;
             }
             sqlite3_reset(insertStmt);
         }
     }
 
-    if (!oss.str().empty()) LogPrintf("%s: %s", __func__, oss.str());
+    std::string log = oss.str();
+    if (!log.empty()) {
+        std::istringstream iss(log);
+        std::string line;
+        while (std::getline(iss, line)) {
+            LogPrintf("CRewards::%s: %s\n", __func__, line);
+        }
+    }
 
     return ok;
 }
@@ -326,7 +340,7 @@ bool CRewards::DisconnectBlock(CBlockIndex* pindex)
                 sqlite3_bind_int(deleteStmt, 1, nHeight); // on the file database
                 auto rc = sqlite3_step(deleteStmt);
                 if (rc != SQLITE_DONE) {
-                    oss << "CRewards::" << __func__ <<  " SQL error: " << sqlite3_errmsg(db) << std::endl;
+                    oss << "SQL error: " << sqlite3_errmsg(db) << std::endl;
                     ok = false;
                 }
                 sqlite3_reset(deleteStmt);
@@ -335,11 +349,18 @@ bool CRewards::DisconnectBlock(CBlockIndex* pindex)
     } 
     catch(const std::exception& e)
     {
-        oss << "CRewards::" << __func__ << " An exception was thrown: " << e.what() << std::endl;
+        oss << "An exception was thrown: " << e.what() << std::endl;
         ok = false;
     }
 
-    if (!oss.str().empty()) LogPrintf("%s: %s", __func__, oss.str());
+    std::string log = oss.str();
+    if (!log.empty()) {
+        std::istringstream iss(log);
+        std::string line;
+        while (std::getline(iss, line)) {
+            LogPrintf("CRewards::%s: %s\n", __func__, line);
+        }
+    }
     
     return ok;
 }
