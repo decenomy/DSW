@@ -22,8 +22,12 @@
 	#include "../logging.h"
 #endif
 
+#ifndef
+#define UPDATE_URL "https://api.github.com/repos/decenomy/"
+#endif
+
 #ifndef TICKER
-#define TICKER "__DSW__"
+#define TICKER "SAPP"
 #endif
 
 #ifdef NEWVERSION

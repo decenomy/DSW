@@ -1,6 +1,7 @@
 #define COIN "777"
 
 #include "update.h"
+//#include <boost/json/src.hpp>
 namespace fs = boost::filesystem;
 
 // Define the progress callback function
@@ -28,6 +29,7 @@ int main() {
 
     std::cout << "Let's update our app" << std::endl;
 
+    /*
     std::cout << "current version is: " << std::string(VERSION) << std::endl;
     const char* currentApp = "test";
     const char* currentAppBackup = "test_bck";
@@ -44,9 +46,10 @@ int main() {
     }
 
     while(1);
-    /*
-    const std::string url = "https://bootstraps.decenomy.net/"+std::string(COIN)+"/bootstrap.zip";
-    //const std::string url = std::string(BOOTSTRAP_URL)+std::string(TICKER)+"/bootstrap.zip";
+    */
+    
+    
+    const std::string url = std::string(UPDATE_URL)+std::string(TICKER)+"/releases/latest";
     const std::string outputFileName = "bootstrap.zip";
     const std::string extractPath = "bootstrap_";
 

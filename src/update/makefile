@@ -65,6 +65,14 @@ docker_linux_test:
 	-o test test.cpp logging.h tinyformat.h update.h update.cpp minizip/unzip.h minizip/unzip.c minizip/ioapi.h minizip/ioapi.c \
 	-lcurl -pthread -lz -lssl -lcrypto -ldl -lboost_system-mt-x64 -lboost_filesystem-mt-x64 
 
+docker_linux_app:
+	$(CXX) -DUPDATETEST -DNEWVERSION="$(VERSION)" \
+	-I/DSW/depends/x86_64-pc-linux-gnu/include \
+	-L/DSW/depends/x86_64-pc-linux-gnu/lib \
+	-L/DSW/depends/x86_64-pc-linux-gnu/lib64 \
+	-o app test.cpp logging.h tinyformat.h update.h update.cpp minizip/unzip.h minizip/unzip.c minizip/ioapi.h minizip/ioapi.c \
+	-lcurl -pthread -lz -lssl -lcrypto -ldl -lboost_system-mt-x64 -lboost_filesystem-mt-x64 
+
 docker_windows_test:
 	/usr/bin/x86_64-w64-mingw32-g++ -DUPDATETEST -static \
 	-I/DSW/depends/x86_64-w64-mingw32/include \
