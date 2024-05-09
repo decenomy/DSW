@@ -1017,6 +1017,7 @@ AX_BOOST_FILESYSTEM
 AX_BOOST_PROGRAM_OPTIONS
 AX_BOOST_THREAD
 AX_BOOST_CHRONO
+AX_BOOST_JSON
 
 dnl Boost 1.56 through 1.62 allow using std::atomic instead of its own atomic
 dnl counter implementations. In 1.63 and later the std::atomic approach is default.
@@ -1067,7 +1068,7 @@ if test x$use_tests = xyes; then
 fi
 
 if test x$use_boost = xyes; then
-  BOOST_LIBS="$BOOST_LDFLAGS $BOOST_SYSTEM_LIB $BOOST_FILESYSTEM_LIB $BOOST_PROGRAM_OPTIONS_LIB $BOOST_THREAD_LIB $BOOST_CHRONO_LIB"
+  BOOST_LIBS="$BOOST_LDFLAGS $BOOST_SYSTEM_LIB $BOOST_FILESYSTEM_LIB $BOOST_PROGRAM_OPTIONS_LIB $BOOST_THREAD_LIB $BOOST_CHRONO_LIB $BOOST_JSON_LIB"
 fi
 
 if test x$use_pkgconfig = xyes; then
