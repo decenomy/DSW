@@ -4,6 +4,7 @@ FROM ubuntu@sha256:dca176c9663a7ba4c1f0e710986f5a25e672842963d95b960191e2d9f7185
 
 # Set arguments
 ARG CPU_CORES=1
+ARG REPO=dsw
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
@@ -73,8 +74,12 @@ RUN for host in $HOSTS; \
         done \
     done
 
-# Clone the repository
-RUN git clone https://github.com/decenomy/DSW.git
+COPY . /DSW/
+
+RUN if [ "$REPO" = "dsw" ]; then \
+        rm -rf /DSW ; \
+        git clone https://github.com/decenomy/DSW.git /DSW/ ; \
+    fi
 
 # Switch to the repository directory
 WORKDIR /DSW/depends

@@ -69,7 +69,7 @@ RUN cp \
 RUN find /$TICKER/deploy/windows-x64 -type f -exec touch -t $(cat /git_timestamp_touch) {} +
 
 WORKDIR /$TICKER/deploy/windows-x64
-RUN PATH=${WRAP_DIR}:${PATH} zip -X $TICKER-$(cat /wallet_version)-Windows-x64.zip \
+RUN PATH=${WRAP_DIR}:${PATH} zip -X $TICKER-$(cat /wallet_version)-windows-x64.zip \
     $(echo $BASE_NAME)d.exe \
     $(echo $BASE_NAME)-cli.exe \
     $(echo $BASE_NAME)-tx.exe \
@@ -79,7 +79,7 @@ RUN sha256sum $(echo $BASE_NAME)d.exe >> SHA256SUMS-Windows-x64.ASC
 RUN sha256sum $(echo $BASE_NAME)-cli.exe >> SHA256SUMS-Windows-x64.ASC
 RUN sha256sum $(echo $BASE_NAME)-tx.exe >> SHA256SUMS-Windows-x64.ASC
 RUN sha256sum $(echo $BASE_NAME)-qt.exe >> SHA256SUMS-Windows-x64.ASC
-RUN sha256sum $TICKER-$(cat /wallet_version)-Windows-x64.zip >> SHA256SUMS-Windows-x64.ASC
+RUN sha256sum $TICKER-$(cat /wallet_version)-windows-x64.zip >> SHA256SUMS-Windows-x64.ASC
 
 # Set the Inno Setup compiler
 RUN mkdir -p /$TICKER/contrib/innosetup/package
