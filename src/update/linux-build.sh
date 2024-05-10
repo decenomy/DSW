@@ -23,7 +23,6 @@ docker cp "$container_id":home/app/test ./test
 # Remove the temporary container
 docker rm "$container_id"
 
-
 # To run the container use:
 #docker run \
 #	-it \
