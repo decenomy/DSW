@@ -11,6 +11,9 @@
 
 class CRewards 
 {
+private:
+    static const int DB_OPEN_ATTEMPTS       =     3; // number of attempts
+    static const int DB_OPEN_WAITING_TIME   = 10000; // ms
 public:
     static bool Init(bool fReindex);
     static void Shutdown();

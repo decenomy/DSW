@@ -12,6 +12,7 @@
 #include "sqlite3/sqlite3.h"
 #include "timedata.h"
 #include "utilmoneystr.h"
+#include "utiltime.h"
 
 #include <algorithm>
 #include <cstdio>
@@ -29,103 +30,119 @@ bool CRewards::Init(bool fReindex)
     std::ostringstream oss;
     auto ok = true;
 
-    try
-    {
-        const std::string dirname = (GetDataDir() / "chainstate").string();
-        const std::string filename = (GetDataDir() / "chainstate" / "rewards.db").string();
-
-        // Create the chainstate directory if it doesn't exist
-        if (!fs::exists(dirname.c_str())) {
-            // Directory doesn't exist, create it
-            if (fs::create_directory(dirname.c_str())) {
-                oss << "Created directory: " << dirname << std::endl;
-            } else {
-                oss << "Failed to create directory: " << dirname << std::endl;
-                ok = false;
-            }
-        }
-
-        // Delete the database file if it exists when reindexing
-        if(ok && fReindex) 
+    if(db == nullptr) {
+        try
         {
-            if (auto file = std::fopen(filename.c_str(), "r")) {
-                std::fclose(file);
-                // File exists, delete it
-                if (std::remove(filename.c_str()) == 0) {
-                    oss << "Deleted existing database file: " << filename << std::endl;
+            const std::string dirname = (GetDataDir() / "chainstate").string();
+            const std::string filename = (GetDataDir() / "chainstate" / "rewards.db").string();
+
+            // Create the chainstate directory if it doesn't exist
+            if (!fs::exists(dirname.c_str())) {
+                // Directory doesn't exist, create it
+                if (fs::create_directory(dirname.c_str())) {
+                    oss << "Created directory: " << dirname << std::endl;
                 } else {
-                    oss << "Failed to delete existing database file: " << filename << std::endl;
+                    oss << "Failed to create directory: " << dirname << std::endl;
                     ok = false;
                 }
             }
-        }
 
-        if(ok) { // Create and/or open the database
-            oss << "Opening database: " << filename << std::endl;
-            auto rc = sqlite3_open(filename.c_str(), &db);
-
-            if (rc) 
+            // Delete the database file if it exists when reindexing
+            if(ok && fReindex) 
             {
-                oss << "Can't open database: " << sqlite3_errmsg(db) << std::endl;
-                ok = false;
+                if (auto file = std::fopen(filename.c_str(), "r")) {
+                    std::fclose(file);
+                    // File exists, delete it
+                    if (std::remove(filename.c_str()) == 0) {
+                        oss << "Deleted existing database file: " << filename << std::endl;
+                    } else {
+                        oss << "Failed to delete existing database file: " << filename << std::endl;
+                        ok = false;
+                    }
+                }
+            }
+
+            if(ok) { // Create and/or open the database
+                // the wallet sometimes restarts
+                // and the restart starts by spawnning a new wallet instance
+                // before the current instance closes
+                // so let's try to open it several times before giving up
+                for (auto attempt = 1; attempt <= DB_OPEN_ATTEMPTS; attempt++) { 
+                    oss << "Opening database: " << filename << std::endl;
+                    auto rc = sqlite3_open(filename.c_str(), &db);
+
+                    if (rc) { // NOK
+                        if(attempt < DB_OPEN_ATTEMPTS) {
+                            MilliSleep(DB_OPEN_WAITING_TIME);
+                        } else {
+                            oss << "Can't open database: " << sqlite3_errmsg(db) << std::endl;
+                            ok = false;
+                            break; // giving up
+                        }
+                    } else {
+                        break; // all good
+                    }
+                }
+            }
+
+            if(ok) { // database is open and working
+                // Create the rewards table if not exists
+                const auto create_table_query = "CREATE TABLE IF NOT EXISTS rewards (height INT PRIMARY KEY, amount INTEGER)";
+                auto rc = sqlite3_exec(db, create_table_query, NULL, NULL, NULL);
+
+                if (rc != SQLITE_OK) {
+                    oss << "SQL error: " << sqlite3_errmsg(db) << std::endl;
+                    ok = false;
+                }
+            }
+
+            if(ok) { // Create insert statement
+                const std::string insertSql = "INSERT OR REPLACE INTO rewards (height, amount) VALUES (?, ?)";
+                auto rc = sqlite3_prepare_v2(db, insertSql.c_str(), insertSql.length(), &insertStmt, nullptr);
+                if (rc != SQLITE_OK) {
+                    oss << "SQL error: " << sqlite3_errmsg(db) << std::endl;
+                    ok = false;
+                }
+            }
+
+            if(ok) { // Create delete statement
+                const std::string deleteSql = "DELETE FROM rewards WHERE height >= ?";
+                auto rc = sqlite3_prepare_v2(db, deleteSql.c_str(), deleteSql.length(), &deleteStmt, nullptr);
+                if (rc != SQLITE_OK) {
+                    oss << "SQL error: " << sqlite3_errmsg(db) << std::endl;
+                    ok = false;
+                }
+            }
+
+            if(ok) { // Loads the database into the in-memory map
+                const char* sql = "SELECT height, amount FROM rewards";
+                auto rc = sqlite3_exec(db, sql, [](void* data, int argc, char** argv, char** /* azColName */) -> int {
+                    int height = std::stoi(argv[0]);
+                    CAmount amount = std::stoll(argv[1]);
+                    mDynamicRewards[height] = amount;
+                    return 0;
+                }, nullptr, nullptr);
+
+                if (rc != SQLITE_OK) {
+                    oss << "SQL error: " << sqlite3_errmsg(db) << std::endl;
+                    ok = false;
+                }
+            }
+
+            if(ok && mDynamicRewards.size() > 0) { // Printing the map
+                oss << "Dynamic Rewards:" << std::endl;
+                for (const auto& pair : mDynamicRewards) {
+                    oss << "Height: " << pair.first << ", Amount: " << FormatMoney(pair.second) << std::endl;
+                }
             }
         }
-
-        if(ok) { // database is open and working
-            // Create the rewards table if not exists
-            const auto create_table_query = "CREATE TABLE IF NOT EXISTS rewards (height INT PRIMARY KEY, amount INTEGER)";
-            auto rc = sqlite3_exec(db, create_table_query, NULL, NULL, NULL);
-
-            if (rc != SQLITE_OK) {
-                oss << "SQL error: " << sqlite3_errmsg(db) << std::endl;
-                ok = false;
-            }
+        catch(const std::exception& e)
+        {
+            oss << "An exception was thrown: " << e.what() << std::endl;
+            ok = false;
         }
-
-        if(ok) { // Create insert statement
-            const std::string insertSql = "INSERT OR REPLACE INTO rewards (height, amount) VALUES (?, ?)";
-            auto rc = sqlite3_prepare_v2(db, insertSql.c_str(), insertSql.length(), &insertStmt, nullptr);
-            if (rc != SQLITE_OK) {
-                oss << "SQL error: " << sqlite3_errmsg(db) << std::endl;
-                ok = false;
-            }
-        }
-
-        if(ok) { // Create delete statement
-            const std::string deleteSql = "DELETE FROM rewards WHERE height >= ?";
-            auto rc = sqlite3_prepare_v2(db, deleteSql.c_str(), deleteSql.length(), &deleteStmt, nullptr);
-            if (rc != SQLITE_OK) {
-                oss << "SQL error: " << sqlite3_errmsg(db) << std::endl;
-                ok = false;
-            }
-        }
-
-        if(ok) { // Loads the database into the in-memory map
-            const char* sql = "SELECT height, amount FROM rewards";
-            auto rc = sqlite3_exec(db, sql, [](void* data, int argc, char** argv, char** /* azColName */) -> int {
-                int height = std::stoi(argv[0]);
-                CAmount amount = std::stoll(argv[1]);
-                mDynamicRewards[height] = amount;
-                return 0;
-            }, nullptr, nullptr);
-
-            if (rc != SQLITE_OK) {
-                oss << "SQL error: " << sqlite3_errmsg(db) << std::endl;
-                ok = false;
-            }
-        }
-
-        if(ok && mDynamicRewards.size() > 0) { // Printing the map
-            oss << "Dynamic Rewards:" << std::endl;
-            for (const auto& pair : mDynamicRewards) {
-                oss << "Height: " << pair.first << ", Amount: " << FormatMoney(pair.second) << std::endl;
-            }
-        }
-    }
-    catch(const std::exception& e)
-    {
-        oss << "An exception was thrown: " << e.what() << std::endl;
-        ok = false;
+    } else {
+        oss << "Already initialized" << std::endl;
     }
 
     std::string log = oss.str();

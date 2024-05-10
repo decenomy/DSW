@@ -1,5 +1,5 @@
 # FROM decenomy/dsw-linux-x64-builder:latest
-FROM decenomy/dsw-linux-x64-builder@sha256:49894f78ac27318ed1c018c80e674f99e6b45ac382c9b98a2aa0c94d8bd755a4
+FROM decenomy/dsw-linux-x64-builder@sha256:5b4550b5dc7b37e13b1b8b3a01443689dcd391578940068998fa3a137b845b58
 
 
 # ARG for specifying the number of cores
