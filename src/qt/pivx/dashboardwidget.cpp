@@ -144,7 +144,7 @@ bool hasCharts = false;
 #ifdef USE_QTCHARTS
     hasCharts = true;
     isLoading = false;
-    setChartShow(YEAR);
+    setChartShow(MONTH);
     connect(ui->pushButtonYear, &QPushButton::clicked, [this](){setChartShow(YEAR);});
     connect(ui->pushButtonMonth, &QPushButton::clicked, [this](){setChartShow(MONTH);});
     connect(ui->pushButtonAll, &QPushButton::clicked, [this](){setChartShow(ALL);});
@@ -424,6 +424,18 @@ void DashboardWidget::showHideEmptyChart(bool showEmpty, bool loading, bool forc
     ui->pushButtonAll->setEnabled(invLoading);
     ui->pushButtonYear->setEnabled(invLoading);
     ui->labelEmptyChart->setText(loading ? tr("Loading chart..") : tr("You have no staking rewards"));
+
+    switch(this->chartShow) {
+        case MONTH:
+            ui->pushButtonMonth->setChecked(true);
+            break;
+        case YEAR:
+            ui->pushButtonYear->setChecked(true);
+            break;
+        case ALL:
+            ui->pushButtonAll->setChecked(true);
+            break;
+    }
 }
 
 void DashboardWidget::initChart()
