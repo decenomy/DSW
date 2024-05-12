@@ -1,9 +1,32 @@
 #!/bin/bash
 
+# Function to display help information
+show_help() {
+    echo "Usage: $0 <ticker> <name> <base_name> <target> <version> <arch> <repo>"
+    echo "Example: $0 DSW __Decenomy__ __decenomy__ develop 3.0.0.0 Linux dsw"
+    echo "Options:"
+    echo "  --help	Display this help message"
+    echo "  --arch	Display available architectures"
+}
+
+show_architectures() {
+    echo "Available architectures:"
+    echo "  linux-arm64"
+    echo "  linux-x64"
+    echo "  macos-x64"
+    echo "  windows-x64"
+}
+
+show_repos() {
+    echo "Available repositories:"
+    echo "  dsw - to use remote repository"
+    echo "  local - to use local repository"
+}
+
 # Check if all required arguments are provided
-if [ $# -ne 6 ]; then
-    echo "Usage: $0 <TICKER> <NAME> <BASE_NAME> <TARGET> <VERSION> <ARCHITECTURE>"
-    echo "Usage: $0 DSW __Decenomy__ __decenomy__ develop 3.0.0.0 Linux"
+if [ $# -ne 7 ]; then
+    echo "Usage: $0 <ticker> <name> <base_name> <target> <version> <arch> <repo>"
+    echo "Usage: $0 DSW __Decenomy__ __decenomy__ develop 3.0.0.0 linux-x64 dsw"
     exit 1
 fi
 
@@ -27,7 +50,11 @@ BASE_NAME="$3"
 TARGET="$4"
 VERSION="$5"
 ARCHITECTURE="$6"
-ARCHITECTURE2="linux-x64"
+REPO=$7
+
+if [ "$REPO" = "local" ]; then
+    TICKER="app"
+fi
 
 # Run docker build command and capture the output
 docker build \
@@ -37,7 +64,7 @@ docker build \
 	--build-arg NAME=$NAME \
 	--build-arg BASE_NAME=$BASE_NAME \
 	--build-arg TARGET=$TARGET \
-	-f ./contrib/docker/Dockerfile.dsw-${ARCHITECTURE2}-wallet \
+	-f ./contrib/docker/Dockerfile.${REPO}-${ARCHITECTURE}-wallet \
 	-t own_build . > build_output.txt
 
 # Check if docker build was successful
@@ -60,9 +87,9 @@ docker rm "$container_id"
 if [ "$TICKER" == "DSW" ]; then
 	echo "We are in DSW dev repo.."
 	# Change directory to the second architecture
-	cd "$ARCHITECTURE2" || { echo "Error: Unable to change directory to $ARCHITECTURE2"; exit 1; }
+	cd "$ARCHITECTURE" || { echo "Error: Unable to change directory to $ARCHITECTURE"; exit 1; }
 	
-	FILENAME2="${TICKER}-${VERSION}-${ARCHITECTURE}-x64.zip"
+	FILENAME2="${TICKER}-${VERSION}-${ARCHITECTURE}.zip"
 	local_=$(sha256sum "$FILENAME2")
 	cd ..
 	echo "sha256 local: $local_"
@@ -78,7 +105,7 @@ else
 
 	# Define the filename based on the provided arguments
 	FILENAME="${TICKER}-${VERSION}-${ARCHITECTURE}.zip"
-	FILENAME2="${TICKER}-${VERSION}-${ARCHITECTURE}-x64.zip"
+	FILENAME2="${TICKER}-${VERSION}-${ARCHITECTURE}.zip"
 
 	# Check if the file already exists
 	if [ ! -e "$FILENAME" ]; then
@@ -89,7 +116,7 @@ else
 	origin=$(sha256sum "$FILENAME")
 
 	# Change directory to the second architecture
-	cd "$ARCHITECTURE2" || { echo "Error: Unable to change directory to $ARCHITECTURE2"; exit 1; }
+	cd "$ARCHITECTURE" || { echo "Error: Unable to change directory to $ARCHITECTURE"; exit 1; }
 	local_=$(sha256sum "$FILENAME2")
 	cd ..
 

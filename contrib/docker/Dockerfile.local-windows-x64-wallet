@@ -1,5 +1,5 @@
 #FROM decenomy/dsw-windows-x64-builder:latest
-FROM decenomy/dsw-windows-x64-builder@sha256:3bbdc2380c3e0c7409fe4dc54ad6f99d53fc1110d9f9a236d6e78a79e7067ccb
+FROM decenomy/dsw-windows-x64-builder@sha256:c5102edf92fba810de6596cc9593729b79ab00ca8d88656d4613a3cfa1fecf78
 
 # ARG for specifying the number of cores
 ARG CPU_CORES=1
@@ -10,17 +10,10 @@ ARG NAME=__Decenomy__
 ARG BASE_NAME=__decenomy__
 ARG TARGET=master
 
-# Clone the repository
-RUN if [ ! -d $TICKER ]; then \
-  git clone https://github.com/decenomy/$TICKER; \
-fi
+COPY . /app
 
 # Switch to the repository directory
-WORKDIR /$TICKER
-
-# Check out a specific version if needed
-RUN git checkout -B $TARGET
-RUN git pull origin $TARGET
+WORKDIR /app
 
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y-%m-%d %H:%M:%S" > /git_timestamp
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y%m%d%H%M.%S" > /git_timestamp_touch

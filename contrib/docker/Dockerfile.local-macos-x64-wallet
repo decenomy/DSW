@@ -1,5 +1,5 @@
 #FROM decenomy/dsw-macos-x64-builder:latest
-FROM decenomy/dsw-macos-x64-builder@sha256:3977226e7d631af8f65d2d1903c34bf7452f359e76a0ee14e8f72a1feb3de40c
+FROM decenomy/dsw-macos-x64-builder@sha256:395f7c9cc2ec9767674c0a226ca86855253f8558f94e367d02cfff45fa909f94
 
 # ARG for specifying the number of cores
 ARG CPU_CORES=1
@@ -10,17 +10,10 @@ ARG NAME=__Decenomy__
 ARG BASE_NAME=__decenomy__
 ARG TARGET=master
 
-# Clone the repository
-RUN if [ ! -d $TICKER ]; then \
-  git clone https://github.com/decenomy/$TICKER; \
-fi
+COPY . /app
 
 # Switch to the repository directory
-WORKDIR /$TICKER
-
-# Check out a specific version if needed
-RUN git checkout -B $TARGET
-RUN git pull origin $TARGET
+WORKDIR /app
 
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y-%m-%d %H:%M:%S" > /git_timestamp
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y%m%d%H%M.%S" > /git_timestamp_touch

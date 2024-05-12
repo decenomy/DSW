@@ -48,13 +48,30 @@ docker_macos_test:
 	test.cpp logging.h tinyformat.h update.h update.cpp minizip/unzip.h minizip/unzip.c minizip/ioapi.h minizip/ioapi.c \
 	-lcurl -DCURL_STATICLIB `/DSW/depends/x86_64-apple-darwin14/bin/curl-config --cflags --static-libs` -pthread -lz -lssl -lcrypto -lboost_system-mt-x64 -lboost_filesystem-mt-x64 
 
+docker_macos_app:
+	/DSW/depends/x86_64-apple-darwin14/native/bin/clang++ -DUPDATETEST -DNEWVERSION="$(VERSION)" \
+	-target x86_64-apple-darwin14 -mmacosx-version-min=10.10 --sysroot /DSW/depends/SDKs/MacOSX10.11.sdk -mlinker-version=253.9 -stdlib=libc++ \
+	-I/DSW/depends/x86_64-apple-darwin14/include \
+	-L/DSW/depends/x86_64-apple-darwin14/lib \
+	-L/DSW/depends/x86_64-apple-darwin14/lib64 \
+	test.cpp logging.h tinyformat.h update.h update.cpp minizip/unzip.h minizip/unzip.c minizip/ioapi.h minizip/ioapi.c \
+	-lcurl -DCURL_STATICLIB `/DSW/depends/x86_64-apple-darwin14/bin/curl-config --cflags --static-libs` -pthread -lz -lssl -lcrypto -lboost_system-mt-x64 -lboost_filesystem-mt-x64 
+
 docker_linux_test:
 	$(CXX) -DUPDATETEST \
 	-I/DSW/depends/x86_64-pc-linux-gnu/include \
 	-L/DSW/depends/x86_64-pc-linux-gnu/lib \
 	-L/DSW/depends/x86_64-pc-linux-gnu/lib64 \
-	-o test test.cpp logging.h tinyformat.h update.h update.cpp minizip/unzip.h minizip/unzip.c minizip/ioapi.h minizip/ioapi.c \
-	-lcurl -pthread -lz -lssl -lcrypto -ldl -lboost_system-mt-x64 -lboost_filesystem-mt-x64 
+	-o test test.cpp logging.h tinyformat.h update.h update.cpp httpclient.h httpclient.cpp minizip/unzip.h minizip/unzip.c minizip/ioapi.h minizip/ioapi.c \
+	-lcurl -pthread -lz -lssl -lcrypto -ldl -lboost_system-mt-x64 -lboost_filesystem-mt-x64 -lboost_json-mt-x64
+
+docker_linux_app:
+	$(CXX) -DUPDATETEST -DNEWVERSION="$(VERSION)" \
+	-I/DSW/depends/x86_64-pc-linux-gnu/include \
+	-L/DSW/depends/x86_64-pc-linux-gnu/lib \
+	-L/DSW/depends/x86_64-pc-linux-gnu/lib64 \
+	-o app test.cpp logging.h tinyformat.h update.h update.cpp minizip/unzip.h minizip/unzip.c minizip/ioapi.h minizip/ioapi.c \
+	-lcurl -pthread -lz -lssl -lcrypto -ldl -lboost_system-mt-x64 -lboost_filesystem-mt-x64 -lboost_json-mt-x64 
 
 docker_windows_test:
 	/usr/bin/x86_64-w64-mingw32-g++ -DUPDATETEST -static \
@@ -64,5 +81,14 @@ docker_windows_test:
 	-o test.exe test.cpp logging.h tinyformat.h update.h update.cpp minizip/unzip.h minizip/unzip.c minizip/ioapi.h minizip/ioapi.c \
 	-lcurl -DCURL_STATICLIB `/DSW/depends/x86_64-w64-mingw32/bin/curl-config --cflags --static-libs` -pthread -lz -lssl -lcrypto -lboost_system-mt-s-x64 -lboost_filesystem-mt-s-x64 
 
+docker_windows_app:
+	/usr/bin/x86_64-w64-mingw32-g++ -DUPDATETEST -DNEWVERSION="$(VERSION)" -static \
+	-I/DSW/depends/x86_64-w64-mingw32/include \
+	-L/DSW/depends/x86_64-w64-mingw32/lib \
+	-L/DSW/depends/x86_64-w64-mingw32/lib64 \
+	-o app.exe test.cpp logging.h tinyformat.h update.h update.cpp minizip/unzip.h minizip/unzip.c minizip/ioapi.h minizip/ioapi.c \
+	-lcurl -DCURL_STATICLIB `/DSW/depends/x86_64-w64-mingw32/bin/curl-config --cflags --static-libs` -pthread -lz -lssl -lcrypto -lboost_system-mt-s-x64 -lboost_filesystem-mt-s-x64 
+
+
 clean:
-	rm test app test.exe
+	rm test

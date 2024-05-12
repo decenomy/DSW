@@ -1,6 +1,5 @@
 # FROM decenomy/dsw-linux-x64-builder:latest
-FROM decenomy/dsw-linux-x64-builder@sha256:5b4550b5dc7b37e13b1b8b3a01443689dcd391578940068998fa3a137b845b58
-
+FROM decenomy/local-linux-x64-builder:latest
 
 # ARG for specifying the number of cores
 ARG CPU_CORES=1
@@ -11,17 +10,10 @@ ARG NAME=__Decenomy__
 ARG BASE_NAME=__decenomy__
 ARG TARGET=master
 
-# Clone the repository
-RUN if [ ! -d $TICKER ]; then \
-  git clone https://github.com/decenomy/$TICKER; \
-fi
+COPY . /app
 
 # Switch to the repository directory
-WORKDIR /$TICKER
-
-# Check out a specific version if needed
-RUN git checkout -B $TARGET
-RUN git pull origin $TARGET
+WORKDIR /app
 
 # Run Git commands to extract the timestamps
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y-%m-%d %H:%M:%S" > /git_timestamp
