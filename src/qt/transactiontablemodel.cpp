@@ -30,6 +30,8 @@
 #include <QtConcurrent/QtConcurrent>
 #include <QFuture>
 
+using namespace boost::placeholders;
+
 // Amount column is right-aligned it contains numbers
 static int column_alignments[] = {
     Qt::AlignLeft | Qt::AlignVCenter, /* status */
@@ -338,7 +340,7 @@ public:
             if (lockMain) {
                 TRY_LOCK(wallet->cs_wallet, lockWallet);
                 if (lockWallet && rec->statusUpdateNeeded()) {
-                    std::map<uint256, CWalletTx>::iterator mi = wallet->mapWallet.find(rec->hash);
+                    auto mi = wallet->mapWallet.find(rec->hash);
 
                     if (mi != wallet->mapWallet.end()) {
                         rec->updateStatus(mi->second);

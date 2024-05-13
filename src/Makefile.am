@@ -87,9 +87,9 @@ BITCOIN_CORE_H = \
   bip38.h \
   bloom.h \
   blocksignature.h \
-  bootstrap/bootstrap.h \
-  bootstrap/minizip/ioapi.h \
-  bootstrap/minizip/unzip.h \
+  bootstrap.h \
+  minizip/ioapi.h \
+  minizip/unzip.h \
   chain.h \
   chainparams.h \
   chainparamsbase.h \
@@ -129,6 +129,7 @@ BITCOIN_CORE_H = \
   key.h \
   key_io.h \
   keystore.h \
+  curl.h \
   dbwrapper.h \
   limitedmap.h \
   logging.h \
@@ -201,6 +202,7 @@ BITCOIN_CORE_H = \
   utiltime.h \
   validationinterface.h \
   version.h \
+  zip.h \
   wallet/hdchain.h \
   wallet/rpcwallet.h \
   wallet/scriptpubkeyman.h \
@@ -232,6 +234,7 @@ libbitcoin_server_a_SOURCES = \
   httprpc.cpp \
   httpserver.cpp \
   init.cpp \
+  curl.cpp \
   dbwrapper.cpp \
   main.cpp \
   merkleblock.cpp \
@@ -258,6 +261,11 @@ libbitcoin_server_a_SOURCES = \
   txdb.cpp \
   txmempool.cpp \
   validationinterface.cpp \
+  zip.cpp \
+  bootstrap.cpp \
+  minizip/ioapi.c \
+  minizip/unzip.c \
+  sqlite3/sqlite3.c \
   $(BITCOIN_CORE_H)
 
 if ENABLE_ZMQ
@@ -278,9 +286,6 @@ libbitcoin_wallet_a_SOURCES = \
   activemasternodeconfig.cpp \
   activemasternodeman.cpp \
   bip38.cpp \
-  bootstrap/bootstrap.cpp \
-  bootstrap/minizip/ioapi.c \
-  bootstrap/minizip/unzip.c \
   interface/wallet.cpp \
   addressbook.cpp \
   crypter.cpp \
@@ -301,7 +306,6 @@ libbitcoin_wallet_a_SOURCES = \
   wallet/wallet.cpp \
   wallet/walletdb.cpp \
   stakeinput.cpp \
-  sqlite3/sqlite3.c \
   $(BITCOIN_CORE_H)
 
 # crypto primitives library

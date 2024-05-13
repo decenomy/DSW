@@ -20,6 +20,7 @@
 #include "activemasternodeconfig.h"
 #include "addrman.h"
 #include "amount.h"
+#include "bootstrap.h"
 #include "checkpoints.h"
 #include "compat/sanity.h"
 #include "consensus/upgrades.h"
@@ -888,28 +889,6 @@ static std::string ResolveErrMsg(const char * const optname, const std::string& 
     return strprintf(_("Cannot resolve -%s address: '%s'"), optname, strBind);
 }
 
-// Define the progress callback function
-static int DownloadProgressCallback(void *clientp, double dltotal, double dlnow, double ultotal, double ulnow) {
-
-    // Calculate progress percentage
-    double progress = (dlnow > 0) ? (dlnow / dltotal) * 100.0 : 0.0;
-
-    auto now = std::chrono::steady_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::seconds>(now.time_since_epoch());
-    static bool log_flag = false; // Declare log_flag as static
-    if (!log_flag && duration.count() % 2 == 0) {
-        log_flag = true;
-        //std::printf("-Bootstrap: Download: %d%%\n", (uint8_t)progress);
-        LogPrintf("-Bootstrap: Download: %d%%\n", (uint8_t)progress);
-        uiInterface.ShowProgress(_("Download: "), (uint8_t)progress);    
-    } else if (duration.count() % 2 != 0) {
-        log_flag = false;
-    }
-
-    return 0;
-}
-
-
 void InitLogging()
 {
     //g_logger->m_print_to_file = !IsArgNegated("-debuglogfile");
@@ -1235,13 +1214,8 @@ bool AppInit2()
             }
         }
 
-        if (GetBoolArg("-resync", false) || GetBoolArg("-bootstrap", false) ) {
-
-            if (GetBoolArg("-resync", false))
-              uiInterface.InitMessage(_("Preparing for resync..."));
-            else if (GetBoolArg("-bootstrap", false))
-              uiInterface.InitMessage(_("Preparing for bootstrap..."));
-
+        if (GetBoolArg("-resync", false)) {
+            uiInterface.InitMessage(_("Preparing for resync..."));
             // Delete the local blockchain folders to force a resync from scratch to get a consitent blockchain-state
             fs::path blocksDir = GetDataDir() / "blocks";
             fs::path chainstateDir = GetDataDir() / "chainstate";
@@ -1264,49 +1238,28 @@ bool AppInit2()
                     fs::remove_all(sporksDir);
                     LogPrintf("-resync: folder deleted: %s\n", sporksDir.string().c_str());
                 }
-                #ifdef ENABLE_BOOTSTRAP
-                if (GetBoolArg("-bootstrap", false)) {
-                  const std::string url = std::string(BOOTSTRAP_URL)+std::string(TICKER)+"/bootstrap.zip";
-                  const std::string outputFileName = "bootstrap.zip";
-                  const std::string extractPath = "bootstrap_";
-
-                  LogPrintf("-bootstrap: Download: %s\n", url.c_str());
-
-                  Bootstrap::rmDirectory(extractPath);
-
-                  if (Bootstrap::DownloadFile(url, outputFileName, DownloadProgressCallback)) {
-                      LogPrintf("-bootstrap: File downloaded successfully \n");
-
-                      if (Bootstrap::extractZip(outputFileName, extractPath)) {
-                          LogPrintf("-bootstrap: Zip file extracted successfully \n");
-                          try {
-                              fs::rename(extractPath+"/blocks", blocksDir);
-                              fs::rename(extractPath+"/chainstate", chainstateDir);
-                              LogPrintf("-bootstrap: Folders moved successfully \n");
-                          } catch (const std::exception& e) {
-                              LogPrintf("-bootstrap: Error moving folder: %s\n",e.what());
-                          }
-
-                      } else {
-                          LogPrintf("-bootstrap: Error extracting zip file");
-                      }
-
-                      Bootstrap::rmDirectory(extractPath);
-                      
-                  } else {
-                      LogPrintf("-bootstrap: Error downloading file");
-                  }
-
-                  if(fs::exists(outputFileName))
-                  		fs::remove(outputFileName);
-                }
-                #else
-                LogPrintf("-bootstrap: not enabled\n");
-                #endif
             } catch (const fs::filesystem_error& error) {
                 LogPrintf("Failed to delete blockchain folders %s\n", error.what());
             }
         }
+
+#ifdef ENABLE_BOOTSTRAP
+        if (GetBoolArg("-bootstrap", false) ) {
+
+            uiInterface.InitMessage(_("Preparing for bootstrap..."));
+
+            try {
+                if (!CBootstrap::DownloadAndApply()) {
+                    return UIError(_("Unable to download and apply the bootstrap file. See debug log for details."));
+                }
+
+            } catch (const std::exception& e) {
+                uiInterface.ThreadSafeMessageBox(_("Error downloading and applying the bootstrap file, shutting down."), "", CClientUIInterface::MSG_ERROR);
+                LogPrintf("Error downloading and applying the bootstrap file: %s\n", e.what());
+                return false;
+            }
+        }
+#endif
 
         if (!CWallet::Verify())
             return false;

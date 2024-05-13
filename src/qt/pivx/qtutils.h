@@ -8,6 +8,9 @@
 
 #include "qt/pivx/pivxgui.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winit-list-lifetime"
+
 #include <QAbstractAnimation>
 #include <QColor>
 #include <QComboBox>
@@ -19,6 +22,8 @@
 #include <QStandardPaths>
 #include <QString>
 #include <QWidget>
+
+#pragma GCC diagnostic pop
 
 #include <initializer_list>
 

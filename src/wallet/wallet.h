@@ -39,6 +39,8 @@
 #include <utility>
 #include <vector>
 
+#include <boost/unordered_map.hpp>
+
 extern CWallet* pwalletMain;
 
 /**
@@ -333,7 +335,7 @@ public:
     bool isMultiSendEnabled();
     void setMultiSendDisabled();
 
-    std::map<uint256, CWalletTx> mapWallet;
+    boost::unordered_map<uint256, CWalletTx, uint256CheapHasher> mapWallet;
     std::list<CAccountingEntry> laccentries;
 
     typedef std::pair<CWalletTx*, CAccountingEntry*> TxPair;

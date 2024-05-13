@@ -7,9 +7,14 @@
 #ifndef BITCOIN_QT_UTILITYDIALOG_H
 #define BITCOIN_QT_UTILITYDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winit-list-lifetime"
+
 #include <QDialog>
 #include <QObject>
 #include <QMainWindow>
+
+#pragma GCC diagnostic pop
 
 class ClientModel;
 
