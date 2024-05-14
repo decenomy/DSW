@@ -153,110 +153,110 @@ BOOST_AUTO_TEST_CASE(subsidy_limit_test)
 
     for (int nHeight = 175001; nHeight <= 200000; nHeight += 1) {
         /* PoW Phase Two */
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
+        CAmount nSubsidy = CRewards::GetBlockValue(nHeight);
         BOOST_CHECK(nSubsidy == 400 * COIN);
         nSum += nSubsidy;
     }
 
     for (int nHeight = 200001; nHeight <= 250000; nHeight += 1) {
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
+        CAmount nSubsidy = CRewards::GetBlockValue(nHeight);
         BOOST_CHECK(nSubsidy == 500 * COIN);
         nSum += nSubsidy;
     }
 
     for (int nHeight = 250001; nHeight <= 300000; nHeight += 1) {
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
+        CAmount nSubsidy = CRewards::GetBlockValue(nHeight);
         BOOST_CHECK(nSubsidy == 450 * COIN);
         nSum += nSubsidy;
     }
 
     for (int nHeight = 300001; nHeight <= 400000; nHeight += 1) {
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
+        CAmount nSubsidy = CRewards::GetBlockValue(nHeight);
         BOOST_CHECK(nSubsidy == 400 * COIN);
         nSum += nSubsidy;
     }
 
     for (int nHeight = 400001; nHeight <= 450000; nHeight += 1) {
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
+        CAmount nSubsidy = CRewards::GetBlockValue(nHeight);
         BOOST_CHECK(nSubsidy == 500 * COIN);
         nSum += nSubsidy;
     }
 
     for (int nHeight = 450001; nHeight <= 500000; nHeight += 1) {
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
+        CAmount nSubsidy = CRewards::GetBlockValue(nHeight);
         BOOST_CHECK(nSubsidy == 600 * COIN);
         nSum += nSubsidy;
     }
 
     for (int nHeight = 500001; nHeight <= 550000; nHeight += 1) {
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
+        CAmount nSubsidy = CRewards::GetBlockValue(nHeight);
         BOOST_CHECK(nSubsidy == 700 * COIN);
         nSum += nSubsidy;
     }
 
     for (int nHeight = 550001; nHeight <= 600000; nHeight += 1) {
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
+        CAmount nSubsidy = CRewards::GetBlockValue(nHeight);
         if (nHeight == 574010 || nHeight == 585330 || nHeight == 586594) BOOST_CHECK(nSubsidy == 801 * COIN);
         else BOOST_CHECK(nSubsidy == 800 * COIN);
         nSum += nSubsidy;
     }
 
     for (int nHeight = 600001; nHeight <= 650000; nHeight += 1) {
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
+        CAmount nSubsidy = CRewards::GetBlockValue(nHeight);
         BOOST_CHECK(nSubsidy == 900 * COIN);
         nSum += nSubsidy;
     }
 
     for (int nHeight = 650001; nHeight <= 700000; nHeight += 1) {
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
+        CAmount nSubsidy = CRewards::GetBlockValue(nHeight);
         BOOST_CHECK(nSubsidy == 1000 * COIN);
         nSum += nSubsidy;
     }
 
     for (int nHeight = 700001; nHeight <= 750000; nHeight += 1) {
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
+        CAmount nSubsidy = CRewards::GetBlockValue(nHeight);
         BOOST_CHECK(nSubsidy == 900 * COIN);
         nSum += nSubsidy;
     }
 
     for (int nHeight = 750001; nHeight <= 800000; nHeight += 1) {
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
+        CAmount nSubsidy = CRewards::GetBlockValue(nHeight);
         BOOST_CHECK(nSubsidy == 800 * COIN);
         nSum += nSubsidy;
     }
 
     for (int nHeight = 800001; nHeight <= 850000; nHeight += 1) {
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
+        CAmount nSubsidy = CRewards::GetBlockValue(nHeight);
         BOOST_CHECK(nSubsidy == 700 * COIN);
         nSum += nSubsidy;
     }
 
     for (int nHeight = 850001; nHeight <= 900000; nHeight += 1) {
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
+        CAmount nSubsidy = CRewards::GetBlockValue(nHeight);
         BOOST_CHECK(nSubsidy == 600 * COIN);
         nSum += nSubsidy;
     }
 
     for (int nHeight = 900001; nHeight <= 950000; nHeight += 1) {
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
+        CAmount nSubsidy = CRewards::GetBlockValue(nHeight);
         BOOST_CHECK(nSubsidy == 500 * COIN);
         nSum += nSubsidy;
     }
 
     for (int nHeight = 950001; nHeight <= 1000000; nHeight += 1) {
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
+        CAmount nSubsidy = CRewards::GetBlockValue(nHeight);
         BOOST_CHECK(nSubsidy == 450 * COIN);
         nSum += nSubsidy;
     }
 
     for (int nHeight = 1000001; nHeight <= 1200000; nHeight += 1) {
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
+        CAmount nSubsidy = CRewards::GetBlockValue(nHeight);
         BOOST_CHECK(nSubsidy == 400 * COIN);
         nSum += nSubsidy;
     }
 
     for (int nHeight = 1200001; nHeight <= 42 * 100000; nHeight += 1) {
-        CAmount nSubsidy = CMasternode::GetBlockValue(nHeight);
+        CAmount nSubsidy = CRewards::GetBlockValue(nHeight);
         BOOST_CHECK(nSubsidy == 800 * COIN);
         nSum += nSubsidy;
     }
