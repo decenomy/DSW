@@ -65,7 +65,7 @@ RUN cp src/$(echo $BASE_NAME)d src/$(echo $BASE_NAME)-cli src/$(echo $BASE_NAME)
 RUN find /$TICKER/deploy/macos-x64 -type f -exec touch -t $(cat /git_timestamp_touch) {} +
 WORKDIR /$TICKER/deploy/macos-x64
 RUN PATH=${WRAP_DIR}:${PATH} zip -X $TICKER-$(cat /wallet_version)-MacOS-x64.zip $(echo $BASE_NAME)d $(echo $BASE_NAME)-cli $(echo $BASE_NAME)-tx $(echo $BASE_NAME)-qt $(echo $NAME)-Core.dmg
-RUN echo "$(git rev-parse HEAD) commit hash" >> SHA256SUMS-MacOS-x64.ASC
+RUN echo "$(git rev-parse HEAD)                          commit" >> SHA256SUMS-MacOS-x64.ASC
 RUN sha256sum $(echo $BASE_NAME)d >> SHA256SUMS-MacOS-x64.ASC
 RUN sha256sum $(echo $BASE_NAME)-cli >> SHA256SUMS-MacOS-x64.ASC
 RUN sha256sum $(echo $BASE_NAME)-tx >> SHA256SUMS-MacOS-x64.ASC
