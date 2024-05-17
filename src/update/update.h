@@ -1,16 +1,7 @@
 #ifndef BOOTSTRAP_H
 #define BOOTSTRAP_H
 
-#include <functional> 
-#include <cerrno>  // For perror
-#include <cstring>  // For strerror
-#include <iostream>
-#include <cstdio>
-#include <string>
 #include <curl/curl.h>
-#include <openssl/ssl.h>
-#include <openssl/err.h>
-#include <sys/stat.h>
 
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
@@ -49,6 +40,9 @@
 struct Latest {
 	std::string version;
 	std::string url;
+	std::string md5;
+	std::string sha256_url;
+	std::string sha256zip;
 };
 
 class Update{
@@ -62,12 +56,12 @@ public:
 	static size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp);
 	static bool DownloadFile(const std::string& url, const std::string& outputFileName, curl_progress_callback);
 	static bool ExtractZip(const std::string& inputPath, const std::string& outputPath);
+	static bool EnsureOutputFolder(const std::string& outputPath);
 	void ParseVersionRequest(boost::json::value const& jv, std::string* indent = nullptr);
 	int GetRemoteVersion();
 	int GetLatestVersion();
 private:
 
-	static bool EnsureOutputFolder(const std::string& outputPath);
 	static bool EndsWithSlash(const std::string& str);
 
 };

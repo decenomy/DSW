@@ -1,10 +1,14 @@
 #include "httpclient.h"
 
+#include <string>
+#include <iostream>
+
+
 HTTPClient::HTTPClient() {
     curl_global_init(CURL_GLOBAL_ALL);
     curl = curl_easy_init();
     if (!curl) {
-        std::cerr << "Error: Failed to initialize libcurl." << std::endl;
+        LogPrintf("-HTTPCLIENT: error: Failed to initialize libcurl.");
     }
 }
 
@@ -17,7 +21,7 @@ HTTPClient::~HTTPClient() {
 
 std::string HTTPClient::get(const std::string& url) {
 
-    std::cout << "get info from: " << url << std::endl;
+    LogPrintf("-HTTPCLIENT: get: %s",url);
     std::string response;
     if (curl) {
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
@@ -31,11 +35,13 @@ std::string HTTPClient::get(const std::string& url) {
 
         if (info) {
             curl_easy_setopt(curl, CURLOPT_USERAGENT, info->version);
+        }else{
+             curl_easy_setopt(curl, CURLOPT_USERAGENT, "curl x.xx");
         }
         
         CURLcode res = curl_easy_perform(curl);
         if (res != CURLE_OK) {
-            std::cerr << "Error: Failed to perform HTTP request: " << curl_easy_strerror(res) << std::endl;
+            LogPrintf("-HTTPCLIENT: error: Failed to perform HTTP request: %s", curl_easy_strerror(res));
         }
     }
     return response;

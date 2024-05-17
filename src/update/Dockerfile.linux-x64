@@ -7,6 +7,7 @@ WORKDIR /home/app
 COPY . /home/app
 
 RUN make clean
-RUN make docker_linux_test
+#RUN make docker_linux_test
+RUN make docker_linux_app
 
 RUN export PATH="/wrapped:$PATH"

@@ -1,10 +1,24 @@
 
 #include "update.h"
 
+#include <functional> 
+#include <cerrno>  // For perror
+#include <cstring>  // For strerror
 #include <iostream>
 #include <fstream>
+#include <iomanip>
+#include <cstdio>
 #include <string>
+#include <unordered_map>
+
+#include <openssl/ssl.h>
+#include <openssl/err.h>
 #include <openssl/md5.h>
+#include <openssl/sha.h>
+
+#include <sys/stat.h>
+
+
 
 namespace fs = boost::filesystem;
 namespace json = boost::json;
@@ -12,20 +26,11 @@ namespace json = boost::json;
 static bool log_flag = false;
 Latest latest;
 
-std::string hexToUtf8(const std::string& hex) {
-    std::string utf8;
-    for (size_t i = 0; i < hex.length(); i += 2) {
-        std::string byteString = hex.substr(i, 2);
-        unsigned char byte = static_cast<unsigned char>(std::stoi(byteString, nullptr, 16));
-        utf8.push_back(byte);
-    }
-    return utf8;
-}
 
 std::string CalculateMD5(const std::string& filePath) {
     std::ifstream file(filePath, std::ios::binary);
     if (!file) {
-        std::cerr << "Error opening file: " << filePath << std::endl;
+        LogPrintf("-MD5: Error opening file: %s\n",filePath);
         return "";
     }
 
@@ -52,7 +57,7 @@ std::string CalculateMD5(const std::string& filePath) {
 
 
 // Callback function to write received headers to a string
-size_t headerCallback(void* buffer, size_t size, size_t nmemb, std::string* headers) {
+size_t HeaderCallback(void* buffer, size_t size, size_t nmemb, std::string* headers) {
     size_t totalSize = size * nmemb;
     headers->append((char*)buffer, totalSize);
     return totalSize;
@@ -74,7 +79,6 @@ std::string RemoveQuotes(const std::string& str) {
     return result;
 }
 
-
 bool EndsWith(const std::string& fullString, const std::string& ending) {
     if (fullString.length() >= ending.length()) {
         return (fullString.compare(fullString.length() - ending.length(), ending.length(), ending) == 0);
@@ -87,16 +91,11 @@ bool EndsWith(const std::string& fullString, const std::string& ending) {
 bool Update::RemoveDirectory(const std::string& directory_path) {
 
     try {
-        // Check if the directory exists
         if (fs::exists(directory_path)) {
-            // Remove the directory and its contents
             fs::remove_all(directory_path);
-            //LogPrintf("-bootstrap: Directory removed successfully.");
-        } else {
-            //LogPrintf("-bootstrap: Directory does not exist.");
         }
     } catch (const fs::filesystem_error& ex) {
-        //LogPrintf("-bootstrap: Error removing directory: " << ex.what());
+        LogPrintf("-Update: Error removing directory: %s\n",ex.what());
         return false;
     }
 
@@ -127,7 +126,7 @@ int Update::ProgressCallback(void *clientp, double dltotal, double dlnow, double
     auto duration = std::chrono::duration_cast<std::chrono::seconds>(now.time_since_epoch());
     if(!log_flag && duration.count() % 2 == 0){
         log_flag = true;
-        LogPrintf("-bootstrap: Download: %d%%\n", (uint8_t)progress);
+        LogPrintf("-Update: Download: %d%%\n", (uint8_t)progress);
         //uiInterface.ShowProgress(_("Download: "), (uint8_t)progress);    
     }else if(duration.count() % 2 != 0) log_flag = false;
     
@@ -139,19 +138,19 @@ bool Update::DownloadFile(const std::string& url, const std::string& outputFileN
 
     CURL* curl = curl_easy_init();
     if (!curl) {
-        //LogPrintf("-bootstrap: Error initializing libcurl.");
+        LogPrintf("-Update: Error initializing libcurl.");
         return false;
     }
 
     curl_version_info_data *info = curl_version_info(CURLVERSION_NOW);
 
     if (!info) {
-        LogPrintf("-update: Failed to retrieve libcurl version information.\n");
+        LogPrintf("-Update: Failed to retrieve libcurl version information.\n");
     }
 
     std::ofstream outputFile(outputFileName, std::ios::binary);
     if (!outputFile.is_open()) {
-        LogPrintf("-bootstrap: Error opening output file.");
+        LogPrintf("-Update: Error opening output file.");
         return false;
     }
 
@@ -167,7 +166,7 @@ bool Update::DownloadFile(const std::string& url, const std::string& outputFileN
 
     // Set the callback function to receive headers
     std::string headers;
-    curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, headerCallback);
+    curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, HeaderCallback);
     curl_easy_setopt(curl, CURLOPT_HEADERDATA, &headers);
 
     // Set User-Agent header
@@ -181,32 +180,44 @@ bool Update::DownloadFile(const std::string& url, const std::string& outputFileN
         curl_easy_setopt(curl, CURLOPT_PROGRESSFUNCTION, func);
 
     #if defined(__APPLE__)
-        LogPrintf("-bootstrap: apple ca path: %s \n",(const char*)APPLE_CA_PATH);
+        LogPrintf("-Update: apple ca path: %s \n",(const char*)APPLE_CA_PATH);
         curl_easy_setopt(curl, CURLOPT_CAINFO, (const char*)APPLE_CA_PATH);
     #elif defined(__linux__)
-        //LogPrintf("-bootstrap: linux ca path: " << (const char*)LINUX_CA_PATH);
+        //LogPrintf("-Update: linux ca path: " << (const char*)LINUX_CA_PATH);
         //curl_easy_setopt(curl, CURLOPT_CAINFO, (const char*)LINUX_CA_PATH);
     #elif defined(_WIN32)
-        ///LogPrintf("-bootstrap: windows ca path: " << (const char*)WIN_CA_PATH);
+        ///LogPrintf("-Update: windows ca path: " << (const char*)WIN_CA_PATH);
         //curl_easy_setopt(curl, CURLOPT_CAINFO, (const char*)WIN_CA_PATH);
     #else
-        LogPrintf("-bootstrap: OS not recognized, CA Path not defined");
+        LogPrintf("-Update: OS not recognized, CA Path not defined");
     #endif
 
     CURLcode res = curl_easy_perform(curl);
 
     if (res != CURLE_OK) {
-        std::cerr << "Error: Failed to perform HTTP request: " << curl_easy_strerror(res) << std::endl;
+        LogPrintf("-Update: Error: Failed to perform HTTP request: %s\n", curl_easy_strerror(res));
     } else {
         // Print the received headers
-        std::cout << "Received headers:\n" << headers << std::endl;
+        // std::cout << "Received headers:\n" << headers << std::endl;
     }
 
     curl_easy_cleanup(curl);
     outputFile.close();
 
+    /* !! calculate md5hash if available
+    std::string hexMD5 = CalculateMD5(outputFileName);
+    std::cout << "calculated md5: " << hexMD5 << std::endl;
+
+    // get md5 from header
+    std::string headerMD5 = "Z+Ye9ExZ/IUfkl/Rb5piiQ==";
+    std::string decoded = "";
+    base64Decode(headerMD5,decoded);
+    std::string hex = stringToHex(decoded);
+    std::cout << "headerMD5: " << hex << std::endl;
+    */
+
     if (res != CURLE_OK) {
-        LogPrintf("-bootstrap: Error downloading file: %s \n",curl_easy_strerror(res));
+        LogPrintf("-Update: Error downloading file: %s \n",curl_easy_strerror(res));
         return false;
     }
 
@@ -218,13 +229,13 @@ bool Update::ExtractZip(const std::string& zipFilePath, const std::string& outpu
     // Open the zip file
     unzFile zipFile = unzOpen(zipFilePath.c_str());
     if (!zipFile) {
-        LogPrintf("-bootstrap: Error opening zip file: %s \n",zipFilePath);
+        LogPrintf("-Update: Error opening zip file: %s \n",zipFilePath);
         return false;
     }
 
     // Create the output folder if it doesn't exist
     if (!EnsureOutputFolder(outputFolderPath)) {
-        LogPrintf("-bootstrap: Error creating output folder: %s \n",outputFolderPath);
+        LogPrintf("-Update: Error creating output folder: %s \n",outputFolderPath);
         unzClose(zipFile);
         return false;
     }
@@ -232,7 +243,7 @@ bool Update::ExtractZip(const std::string& zipFilePath, const std::string& outpu
     // Go through each file in the zip and extract it
     unz_global_info globalInfo;
     if (unzGetGlobalInfo(zipFile, &globalInfo) != UNZ_OK) {
-        LogPrintf("-bootstrap: Error getting global info from zip file.");
+        LogPrintf("-Update: Error getting global info from zip file.");
         unzClose(zipFile);
         return false;
     }
@@ -242,26 +253,26 @@ bool Update::ExtractZip(const std::string& zipFilePath, const std::string& outpu
         unz_file_info fileInfo;
 
         if (unzGetCurrentFileInfo(zipFile, &fileInfo, fileName, sizeof(fileName), nullptr, 0, nullptr, 0) != UNZ_OK) {
-            LogPrintf("-bootstrap: Error getting file info from zip file.");
+            LogPrintf("-Update: Error getting file info from zip file.");
             unzClose(zipFile);
             return false;
         }
 
         if (unzOpenCurrentFile(zipFile) != UNZ_OK) {
-            LogPrintf("-bootstrap: Error opening current file in zip.");
+            LogPrintf("-Update: Error opening current file in zip.");
             unzClose(zipFile);
             return false;
         }
 
         std::string outputPath = std::string(outputFolderPath) + "/" + fileName;
-        LogPrintf("-bootstrap: extract file: %s \n",fileName);
+        LogPrintf("-Update: extract file: %s \n",fileName);
 
         if(EndsWithSlash(outputPath))
             EnsureOutputFolder(outputPath);
         else{
             std::ofstream outFile(outputPath, std::ios::binary);
             if (!outFile.is_open()) {
-                LogPrintf("-bootstrap: Error creating output file: %s \n",outputPath);
+                LogPrintf("-Update: Error creating output file: %s \n",outputPath);
                 unzCloseCurrentFile(zipFile);
                 unzClose(zipFile);
                 return false;
@@ -288,8 +299,6 @@ bool Update::ExtractZip(const std::string& zipFilePath, const std::string& outpu
     // Close the zip file
     unzClose(zipFile);
 
-    LogPrintf("-bootstrap: Zip extraction successful.");
-
     return true;
 
 }
@@ -301,12 +310,12 @@ bool Update::EnsureOutputFolder(const std::string& outputPath) {
             fs::create_directories(outputPath);
         } else if (!fs::is_directory(outputPath)) {
             // If it exists but is not a directory, print an error
-            LogPrintf("-bootstrap: Error: Output path %s is not a directory.", outputPath);
+            LogPrintf("-Update: Error: Output path %s is not a directory.\n", outputPath);
             return false;
         }
     } catch (const std::exception& e) {
         // Handle any exceptions that may occur during filesystem operations
-        LogPrintf("-bootstrap: Error creating output folder: %s \n",e.what());
+        LogPrintf("-Update: Error creating output folder: %s \n",e.what());
         return false;
     }
 
@@ -326,7 +335,6 @@ void Update::ParseVersionRequest(json::value const& jv, std::string* indent){
     {
         case json::kind::object:
         {
-            //std::cout << "{\n";
             indent->append(4, ' ');
             auto const& obj = jv.get_object();
             if(! obj.empty())
@@ -338,39 +346,47 @@ void Update::ParseVersionRequest(json::value const& jv, std::string* indent){
                     if( key.compare("\"tag_name\"") == 0){
                         latest.version = json::serialize(it->value().get_string());
                         latest.version = RemoveQuotes(latest.version);
-                        //std::cout << "remote version: " << latest.version << "\n";
-                        //ParseVersionNumber(version);
-                        //std::cout << "local version: " << CLIENT_VERSION << "\n";
                     }else if( key.compare("\"browser_download_url\"") == 0 ){
                         std::string url = json::serialize(it->value().get_string()); 
                         url = RemoveQuotes(url);
                         #if defined(__APPLE__)
                             if( EndsWith(url, "MacOs-x64.zip") || EndsWith(url, "macos-x64.zip") )
                                 latest.url = url;
+                            if( EndsWith(url, "SHA256SUMS-MacOs-x64.ASC") || EndsWith(url, "SHA256SUMS-macos-x64.ASC") )
+                                latest.sha256_url = url;
                         #elif defined(__linux__)
-                            if( EndsWith(url, "Linux-x64.zip") || EndsWith(url, "linux-x64.zip") )
-                                latest.url = url;
+                            #if defined(__x86_64__) || defined(_M_X64)
+                                if (EndsWith(url, "Linux-x64.zip") || EndsWith(url, "linux-x64.zip"))
+                                    latest.url = url;
+                                if (EndsWith(url, "SHA256SUMS-Linux-x64.ASC") || EndsWith(url, "SHA256SUMS-linux-x64.ASC"))
+                                    latest.sha256_url = url;
+                            #elif defined(__aarch64__) || defined(_M_ARM64)
+                                if (EndsWith(url, "Linux-arm64.zip") || EndsWith(url, "linux-arm64.zip"))
+                                    latest.url = url;
+                                if (EndsWith(url, "SHA256SUMS-Linux-arm64.ASC") || EndsWith(url, "SHA256SUMS-linux-arm64.ASC"))
+                                    latest.sha256_url = url;
+                            #else
+                                LogPrintf("Update: Platform not supported");
+                            #endif
                         #elif defined(_WIN32)
                             if( EndsWith(url, "Windows-x64.zip") || EndsWith(url, "windows-x64.zip") )
                                 latest.url = url;
+                            if( EndsWith(url, "SHA256SUMS-Windows-x64.ASC") || EndsWith(url, "SHA256SUMS-windows-x64.ASC") )
+                                latest.sha256_url = url;
                         #else
-                            std::cout << "not supported"  << "\n";
+                            LogPrintf("-Update: OS not supported");
                         #endif
                     }else
                         ParseVersionRequest(it->value(), indent);
                     if(++it == obj.end())
                         break;
-                    //std::cout << ",\n";
                 }
             }
-            //std::cout << "\n";
             indent->resize(indent->size() - 4);
-            //std::cout << *indent << "}";
             break;
         }
         case json::kind::array:
         {
-            //std::cout << "[\n";
             indent->append(4, ' ');
             auto const& arr = jv.get_array();
             if(! arr.empty())
@@ -378,16 +394,12 @@ void Update::ParseVersionRequest(json::value const& jv, std::string* indent){
                 auto it = arr.begin();
                 for(;;)
                 {
-                    //std::cout << *indent;
                     ParseVersionRequest(*it, indent);
                     if(++it == arr.end())
                         break;
-                    //std::cout << ",\n";
                 }
             }
-            //std::cout << "\n";
             indent->resize(indent->size() - 4);
-            //std::cout << *indent << "]";
             break;
         }   
     }  
@@ -397,8 +409,8 @@ int ParseVersionNumber(std::string& version){
     std::vector<int> versionNumbers;
 
     if (version.empty()){
+        LogPrintf("Update: version is empty");
         return -1;
-        std::cerr << "version is empty" << std::endl;
     } 
 
     if(version.find("-") > 0){
@@ -420,8 +432,8 @@ int ParseVersionNumber(std::string& version){
             int number = std::stoi(token);
             versionNumbers.push_back(number);
         } catch (const std::invalid_argument& ia) {
-            std::cerr << "Invalid version format: " << ia.what() << std::endl;
-            return -2;
+            LogPrintf("Invalid version format: %s\n",ia.what());
+            return -1;
         }
     }
 
@@ -431,8 +443,6 @@ int ParseVersionNumber(std::string& version){
         versionValue = versionValue * 100 + versionNumbers[i];
     }
 
-    std::cout << "Numerical value of version " << version << ": " << versionValue << std::endl;
-
     return versionValue;
 }
 
@@ -440,7 +450,7 @@ int Update::GetRemoteVersion(){
     return ParseVersionNumber(latest.version);
 }
 
-std::string base64Decode(const std::string &input, std::string &out) {
+bool base64Decode(const std::string &input, std::string &out) {
     static constexpr unsigned char kDecodingTable[] = {
         64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64,
         64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64,
@@ -461,7 +471,7 @@ std::string base64Decode(const std::string &input, std::string &out) {
 
     size_t in_len = input.size();
     if (in_len % 4 != 0)
-      return "Input data size is not a multiple of 4";
+      return false;
 
     size_t out_len = in_len / 4 * 3;
     if (in_len >= 1 && input[in_len - 1] == '=')
@@ -496,7 +506,7 @@ std::string base64Decode(const std::string &input, std::string &out) {
             out[j++] = (triple >> 0 * 8) & 0xFF;
     }
 
-    return "";
+    return true;
 }
 
 std::string stringToHex(const std::string& input) {
@@ -508,39 +518,139 @@ std::string stringToHex(const std::string& input) {
     return hex;
 }
 
+std::string sha256(const std::string& path)
+{
+  std::ifstream fp(path, std::ios::in | std::ios::binary);
+
+  if (not fp.good()) {
+    std::ostringstream os;
+    LogPrintf("-SHA256: Error: %s, Cannot open: %s\n",std::strerror(errno),path);
+    return "";
+  }
+
+  constexpr const std::size_t buffer_size { 1 << 12 };
+  char buffer[buffer_size];
+
+  unsigned char hash[SHA256_DIGEST_LENGTH] = { 0 };
+
+  SHA256_CTX ctx;
+  SHA256_Init(&ctx);
+
+  while (fp.good()) {
+    fp.read(buffer, buffer_size);
+    SHA256_Update(&ctx, buffer, fp.gcount());
+  }
+
+  SHA256_Final(hash, &ctx);
+  fp.close();
+
+  std::ostringstream os;
+  os << std::hex << std::setfill('0');
+
+  for (int i = 0; i < SHA256_DIGEST_LENGTH; ++i) {
+    os << std::setw(2) << static_cast<unsigned int>(hash[i]);
+  }
+
+  return os.str();
+}
+
 int Update::GetLatestVersion(){
     
-    const std::string outputFileName = "app.zip";
-    const std::string extractPath = "app_";
-    std::cout << "get latest version from: " << latest.url << std::endl;
+    const std::string zipFile = "app.zip";
+    const std::string appPath = "app_";
+    std::unordered_map<std::string, std::string> filehash;
+
+    LogPrintf("-Update: get latest version from: %s\n", latest.url);
 
     if(latest.url.empty()){
-        std::cerr << "No valid url to downloading new version" << std::endl;
+        LogPrintf("-Update: No valid url to downloading new version");
         return -1;
     }
-    if (DownloadFile(latest.url, outputFileName, nullptr)) {
-        std::cout << "File downloaded successfully." << std::endl;
-
-        std::string hexMD5 = CalculateMD5(outputFileName);
-        std::cout << "calculated md5: " << hexMD5 << std::endl;
-
-        // get md5 from header
-        std::string headerMD5 = "Z+Ye9ExZ/IUfkl/Rb5piiQ==";
-        std::string decoded = "";
-        base64Decode(headerMD5,decoded);
-        std::string hex = stringToHex(decoded);
-        std::cout << "headerMD5: " << hex << std::endl;
-
-        if (ExtractZip(outputFileName, extractPath)) {
-            std::cout << "Zip file extracted successfully." << std::endl;
-        } else {
-            std::cerr << "Error extracting zip file." << std::endl;
-        }
-        /*
-        if(IsDirectory(extractPath))
-            RemoveDirectory(extractPath);
-        */
-    } else {
-        std::cerr << "Error downloading file." << std::endl;
+    if (!DownloadFile(latest.url, zipFile, nullptr)) {
+        LogPrintf("-Update: Error downloading file: %s\n",latest.url);
+        if (fs::exists(zipFile))
+            fs::remove(zipFile);
+        return -1;
     }
+    
+    const std::string sha256_file = "sha256sums.txt";
+    if (DownloadFile(latest.sha256_url, sha256_file, nullptr)) {
+
+        std::ifstream file(sha256_file); // Open file
+
+        if (!file.is_open()) {
+            LogPrintf("-Update: Error opening file: %s\n",sha256_file);
+            if (fs::exists(sha256_file))
+                fs::remove(sha256_file);
+            return -1;
+        }
+
+        std::string line;
+        while (std::getline(file, line)) { // Read file line by line
+
+            std::istringstream iss(line);
+            std::string word, sha256, filename;
+            int counter = 0;
+            while (iss >> word) { // Split line into words based on spaces
+                if(counter == 0)
+                    sha256 = word;
+                else if(counter == 1)
+                    filename = word;
+                counter++;
+            }
+            if( EndsWith(filename,".zip"))
+                latest.sha256zip = sha256;
+            else
+                filehash[filename] = sha256;
+        }
+
+        file.close(); // Close file
+
+        if (fs::exists(sha256_file))
+            fs::remove(sha256_file);
+
+    } else {
+        LogPrintf("-Update: Error downloading hashes file: %s\n",latest.sha256_url);
+        if (fs::exists(sha256_file))
+            fs::remove(sha256_file);
+        return -1;
+    }
+
+
+    std::string hash = sha256(zipFile);
+    if( hash != latest.sha256zip ){
+        LogPrintf("-Update: sha256 doesn't match for file: %s\n", zipFile );
+        LogPrintf("-Update: calculated hash: %s\n", hash);
+        LogPrintf("-Update: source hash: %s\n", latest.sha256zip);
+        if (fs::exists(zipFile))
+            fs::remove(zipFile);
+        return -1;
+    }
+
+
+    if (!ExtractZip(zipFile, appPath)) {
+        LogPrintf("-Update: Error extracting zip file.");
+        if (fs::exists(zipFile))
+            fs::remove(zipFile);
+        if (fs::exists(appPath))
+            fs::remove(appPath);
+        return -1;
+    }
+
+    if (fs::exists(zipFile))
+        fs::remove(zipFile);
+
+    // Iterate over the unordered_map
+    for (const auto& pair : filehash) {
+        std::string filename = appPath+"/"+pair.first;
+        hash = sha256(filename);
+        if( hash != pair.second ){
+            LogPrintf("-Update: sha256 doesn't match for file: %s\n", filename );
+            LogPrintf("-Update: calculated hash: %s\n", hash);
+            LogPrintf("-Update: source hash: %s\n", filehash[pair.second]);
+            return -1;
+        }
+    }
+
+    return 0;
 }

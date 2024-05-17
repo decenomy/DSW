@@ -1,9 +1,13 @@
 #ifndef HTTPCLIENT_H
 #define HTTPCLIENT_H
 
-#include <string>
 #include <curl/curl.h>
-#include <iostream>
+
+#ifdef UPDATETEST
+    #include "logging.h"
+#else
+    #include "../logging.h"
+#endif
 
 class HTTPClient {
 public:

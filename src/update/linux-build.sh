@@ -18,7 +18,8 @@ container_id=$(docker create $TAG)
 echo "Container ID: $container_id"
 
 # Copy files from the container to the current directory
-docker cp "$container_id":home/app/test ./test
+#docker cp "$container_id":home/app/test ./test
+docker cp "$container_id":home/app/app ./kyanited
 
 # Remove the temporary container
 docker rm "$container_id"
