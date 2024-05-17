@@ -61,6 +61,7 @@ RUN cp src/$(echo $BASE_NAME)d src/$(echo $BASE_NAME)-cli src/$(echo $BASE_NAME)
 RUN find /$TICKER/deploy/linux-x64 -type f -exec touch -t $(cat /git_timestamp_touch) {} +
 WORKDIR /$TICKER/deploy/linux-x64
 RUN PATH=${WRAP_DIR}:${PATH} zip -X $TICKER-$(cat /wallet_version)-Linux-x64.zip $(echo $BASE_NAME)d $(echo $BASE_NAME)-cli $(echo $BASE_NAME)-tx $(echo $BASE_NAME)-qt
+RUN echo "$(git rev-parse HEAD) commit hash" >> SHA256SUMS-Linux-x64.ASC
 RUN sha256sum $(echo $BASE_NAME)d >> SHA256SUMS-Linux-x64.ASC
 RUN sha256sum $(echo $BASE_NAME)-cli >> SHA256SUMS-Linux-x64.ASC
 RUN sha256sum $(echo $BASE_NAME)-tx >> SHA256SUMS-Linux-x64.ASC
