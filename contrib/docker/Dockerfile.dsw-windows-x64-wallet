@@ -75,6 +75,7 @@ RUN PATH=${WRAP_DIR}:${PATH} zip -X $TICKER-$(cat /wallet_version)-Windows-x64.z
     $(echo $BASE_NAME)-tx.exe \
     $(echo $BASE_NAME)-qt.exe
 
+RUN echo "$(git rev-parse HEAD)                          commit" >> SHA256SUMS-Windows-x64.ASC
 RUN sha256sum $(echo $BASE_NAME)d.exe >> SHA256SUMS-Windows-x64.ASC
 RUN sha256sum $(echo $BASE_NAME)-cli.exe >> SHA256SUMS-Windows-x64.ASC
 RUN sha256sum $(echo $BASE_NAME)-tx.exe >> SHA256SUMS-Windows-x64.ASC
