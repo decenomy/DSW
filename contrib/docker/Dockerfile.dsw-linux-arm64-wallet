@@ -11,14 +11,13 @@ ARG BASE_NAME=kyanite
 ARG TARGET=master
 
 # Clone the repository
-RUN if [ ! -d $TICKER ]; then \
-  git clone https://github.com/decenomy/$TICKER; \
-fi
+RUN git clone https://github.com/decenomy/$TICKER
 
 # Switch to the repository directory
 WORKDIR /$TICKER
 
 # Check out a specific version if needed
+RUN git pull
 RUN git fetch --all
 RUN git checkout $TARGET
 
