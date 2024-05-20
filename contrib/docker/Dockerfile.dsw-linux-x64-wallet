@@ -12,7 +12,7 @@ ARG BASE_NAME=__decenomy__
 ARG TARGET=master
 
 # Clone the repository
-RUN git clone https://github.com/decenomy/$TICKER
+RUN [ ! -d /$TICKER ] || [ -z "$(ls -A /$TICKER)" ] && git clone https://github.com/decenomy/$TICKER
 
 # Switch to the repository directory
 WORKDIR /$TICKER
