@@ -12,13 +12,13 @@ CPU_CORES=${CPU_CORES:-""}
 ARCHITECTURE=${ARCHITECTURE:-""}
 
 # Sets variables needed for the build
-TICKER=${TICKER:-"__DSW__"}
-UI_NAME=${UI_NAME:-"__Decenomy__"}
-BASE_NAME=${BASE_NAME:-"__decenomy__"}
+TICKER=${TICKER:-"DSW"}
+UI_NAME=${UI_NAME:-"Kyanite"}
+BASE_NAME=${BASE_NAME:-"kyanite"}
 
 # Sets the github environment variables
 GITHUB_USER="decenomy"
-GITHUB_REPO="__DSW__"
+GITHUB_REPO="DSW"
 
 # Sets the build environment variable
 #   0: The build will use the builder image available on docker hub
