@@ -1,5 +1,5 @@
-# FROM decenomy/dsw-linux-x64-builder:latest
-FROM decenomy/local-linux-x64-builder:latest
+FROM decenomy/dsw-linux-x64-builder:latest
+#FROM decenomy/local-linux-x64-builder:latest
 
 # ARG for specifying the number of cores
 ARG CPU_CORES=1

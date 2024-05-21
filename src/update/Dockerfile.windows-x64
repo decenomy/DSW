@@ -1,4 +1,5 @@
-FROM decenomy/dsw-windows-x64-builder@sha256:c5102edf92fba810de6596cc9593729b79ab00ca8d88656d4613a3cfa1fecf78
+#FROM decenomy/dsw-windows-x64-builder@sha256:c5102edf92fba810de6596cc9593729b79ab00ca8d88656d4613a3cfa1fecf78
+FROM decenomy/local-windows-x64-builder:latest
 
 # Set up a development tools directory
 WORKDIR /home/app

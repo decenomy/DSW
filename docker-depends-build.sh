@@ -6,6 +6,7 @@ show_help() {
     echo "Options:"
     echo "  --help	Display this help message"
     echo "  --arch	Display available architectures"
+    echo "  --repo  Display available repositories"
 }
 
 show_architectures() {
@@ -18,8 +19,8 @@ show_architectures() {
 
 show_repos() {
     echo "Available repositories:"
-    echo "  dsw"
-    echo "  local"
+    echo "  dsw - to use remote repository"
+    echo "  local - to use local repository"
 }
 
 

@@ -1,11 +1,17 @@
-#ifndef BOOTSTRAP_H
-#define BOOTSTRAP_H
+#ifndef UPDATE_H
+#define UPDATE_H
+
+
+//#include "clientversion.h"
+#include "httpclient.h"
 
 #include <curl/curl.h>
 
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 #include <boost/json.hpp>
+#include <unordered_map> // Include the header for std::unordered_map
+#include <vector>
 
 #include "minizip/unzip.h"
 #ifdef UPDATETEST
@@ -36,6 +42,9 @@
 //#define LINUX_CA_PATH "/etc/ssl/certs/ca-certificates.crt"
 //#define WIN_CA_PATH ""
 
+#define UPDATE_ZIP_FOLDER "newRelease.zip"
+#define UPDATE_APP_FOLDER "newRelease"
+#define UPDATE_BCK_FOLDER "bckRelease"
 
 struct Latest {
 	std::string version;
@@ -48,22 +57,24 @@ struct Latest {
 class Update{
 
 public:
+
 	// Define the function pointer type
     //using ProgressCallbackFunc = std::function<int(void*, double, double, double, double)>;
+	
+	static bool start(std::string execName);
+
+private:
+
+	static bool MoveListOfFilesFromToFolder(const std::vector<std::string>& files, const std::string& source_folder, const std::string& destination_folder);
 	static int ProgressCallback(void *clientp, double dltotal, double dlnow, double ultotal, double ulnow);
-	static bool RemoveDirectory(const std::string& path);
-	static bool IsDirectory(const std::string& path);
 	static size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp);
 	static bool DownloadFile(const std::string& url, const std::string& outputFileName, curl_progress_callback);
 	static bool ExtractZip(const std::string& inputPath, const std::string& outputPath);
-	static bool EnsureOutputFolder(const std::string& outputPath);
-	void ParseVersionRequest(boost::json::value const& jv, std::string* indent = nullptr);
-	int GetRemoteVersion();
-	int GetLatestVersion();
-private:
-
-	static bool EndsWithSlash(const std::string& str);
-
+	static void ParseVersionRequest(boost::json::value const& jv, std::string* indent = nullptr);
+	static int GetRemoteVersion();
+	static bool Recover();
+	static int GetLatestVersion();
+    
 };
 
 #endif

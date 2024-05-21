@@ -7,6 +7,7 @@ show_help() {
     echo "Options:"
     echo "  --help	Display this help message"
     echo "  --arch	Display available architectures"
+    echo "  --repo	Display available repositories"
 }
 
 show_architectures() {
@@ -19,9 +20,27 @@ show_architectures() {
 
 show_repos() {
     echo "Available repositories:"
-    echo "  dsw - to use remote repository"
-    echo "  local - to use local repository"
+    echo "  dsw 		- to use remote repository"
+    echo "  local 	- to use local repository"
 }
+
+# Check if --help argument is provided
+if [[ "$1" == "--help" ]]; then
+    show_help
+    exit 0
+fi
+
+# Check if --arch argument is provided
+if [[ "$1" == "--arch" ]]; then
+    show_architectures
+    exit 0
+fi
+
+# Check if --arch argument is provided
+if [[ "$1" == "--repo" ]]; then
+    show_repos
+    exit 0
+fi
 
 # Check if all required arguments are provided
 if [ $# -ne 7 ]; then
@@ -50,7 +69,7 @@ BASE_NAME="$3"
 TARGET="$4"
 VERSION="$5"
 ARCHITECTURE="$6"
-REPO=$7
+REPOSITORY="$7"
 
 if [ "$REPO" = "local" ]; then
     TICKER="app"
@@ -64,7 +83,7 @@ docker build \
 	--build-arg NAME=$NAME \
 	--build-arg BASE_NAME=$BASE_NAME \
 	--build-arg TARGET=$TARGET \
-	-f ./contrib/docker/Dockerfile.${REPO}-${ARCHITECTURE}-wallet \
+	-f ./contrib/docker/Dockerfile.${REPOSITORY}-${ARCHITECTURE}-wallet \
 	-t own_build . > build_output.txt
 
 # Check if docker build was successful
