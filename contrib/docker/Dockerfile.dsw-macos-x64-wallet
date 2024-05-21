@@ -19,8 +19,9 @@ fi
 WORKDIR /$TICKER
 
 # Check out a specific version if needed
-RUN git checkout -B $TARGET
-RUN git pull origin $TARGET
+RUN git pull && \
+    git fetch --all && \
+    (git checkout $TARGET || (git checkout -B $TARGET && git pull origin $TARGET))
 
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y-%m-%d %H:%M:%S" > /git_timestamp
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y%m%d%H%M.%S" > /git_timestamp_touch
@@ -64,7 +65,8 @@ RUN mkdir -p deploy/macos-x64
 RUN cp src/$(echo $BASE_NAME)d src/$(echo $BASE_NAME)-cli src/$(echo $BASE_NAME)-tx src/qt/$(echo $BASE_NAME)-qt $(echo $NAME)-Core.dmg /$TICKER/deploy/macos-x64
 RUN find /$TICKER/deploy/macos-x64 -type f -exec touch -t $(cat /git_timestamp_touch) {} +
 WORKDIR /$TICKER/deploy/macos-x64
-RUN PATH=${WRAP_DIR}:${PATH} zip -X $TICKER-$(cat /wallet_version)-macos-x64.zip $(echo $BASE_NAME)d $(echo $BASE_NAME)-cli $(echo $BASE_NAME)-tx $(echo $BASE_NAME)-qt $(echo $NAME)-Core.dmg
+RUN PATH=${WRAP_DIR}:${PATH} zip -X $TICKER-$(cat /wallet_version)-MacOS-x64.zip $(echo $BASE_NAME)d $(echo $BASE_NAME)-cli $(echo $BASE_NAME)-tx $(echo $BASE_NAME)-qt $(echo $NAME)-Core.dmg
+RUN echo "$(git rev-parse HEAD)                          commit" >> SHA256SUMS-MacOS-x64.ASC
 RUN sha256sum $(echo $BASE_NAME)d >> SHA256SUMS-MacOS-x64.ASC
 RUN sha256sum $(echo $BASE_NAME)-cli >> SHA256SUMS-MacOS-x64.ASC
 RUN sha256sum $(echo $BASE_NAME)-tx >> SHA256SUMS-MacOS-x64.ASC
