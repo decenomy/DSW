@@ -193,6 +193,7 @@ BITCOIN_CORE_H = \
   uint512.h \
   blob_uint256.h \
   undo.h \
+  update.h \
   util/memory.h \
   util.h \
   util/macros.h \

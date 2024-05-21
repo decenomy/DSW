@@ -49,7 +49,7 @@ public:
 	// Define the function pointer type
     //using ProgressCallbackFunc = std::function<int(void*, double, double, double, double)>;
 	
-	static bool start(std::string execName);
+	static bool Start(std::string execName);
 
 private:
 

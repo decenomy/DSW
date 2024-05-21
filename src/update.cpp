@@ -317,7 +317,7 @@ int CUpdate::GetLatestVersion(){
 }
 
 // keep on update.h file
-bool CUpdate::start(std::string execName){
+bool CUpdate::Start(std::string execName){
     const std::string url = std::string(UPDATE_URL)+std::string(TICKER)+"/releases/latest";
 
     CCurlWrapper client;
