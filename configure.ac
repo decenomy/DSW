@@ -19,6 +19,7 @@ BITCOIN_CLI_NAME=__decenomy__-cli
 BITCOIN_TX_NAME=__decenomy__-tx
 
 BOOTSTRAP_URL_DEFAULT=https://bootstraps.decenomy.net/
+UPDATE_URL_DEFAULT=https://api.github.com/repos/decenomy/
 
 dnl Unless the user specified ARFLAGS, force it to be cr
 AC_ARG_VAR(ARFLAGS, [Flags for the archiver, defaults to <cr> if not set])
@@ -122,6 +123,13 @@ AC_ARG_WITH([bootstrap-url],
   [BOOTSTRAP_URL="$withval"],
   [BOOTSTRAP_URL="$BOOTSTRAP_URL_DEFAULT"])
 
+# Allow the user to specify a different value for UPDATE_URL
+AC_ARG_WITH([update-url],
+  [AS_HELP_STRING([--with-update-url=URL],
+    [URL for update data])],
+  [UPDATE_URL="$withval"],
+  [UPDATE_URL="$UPDATE_URL_DEFAULT"])
+
 # Enable wallet
 AC_ARG_ENABLE([wallet],
   [AS_HELP_STRING([--disable-wallet],
@@ -135,6 +143,13 @@ AC_ARG_ENABLE([bootstrap],
   [disable bootstrap (enabled by default)])],
   [enable_bootstrap=$enableval],
   [enable_bootstrap=yes])
+
+# Enable update
+AC_ARG_ENABLE([update],
+  [AS_HELP_STRING([--disable-update],
+  [disable update (enabled by default)])],
+  [enable_update=$enableval],
+  [enable_update=yes])
 
 AC_ARG_WITH([miniupnpc],
   [AS_HELP_STRING([--with-miniupnpc],
@@ -1291,6 +1306,16 @@ else
   AC_MSG_RESULT(no)
 fi
 
+dnl enable update
+AC_MSG_CHECKING([if update should be enabled])
+if test x$enable_update != xno; then
+  AC_MSG_RESULT(yes)
+  AC_DEFINE_UNQUOTED([ENABLE_UPDATE],[1],[Define to 1 to enable update functions])
+
+else
+  AC_MSG_RESULT(no)
+fi
+
 dnl enable upnp support
 AC_MSG_CHECKING([whether to build with support for UPnP])
 if test x$have_miniupnpc = xno; then
@@ -1386,6 +1411,7 @@ AM_CONDITIONAL([BUILD_DARWIN], [test x$BUILD_OS = xdarwin])
 AM_CONDITIONAL([TARGET_WINDOWS], [test x$TARGET_OS = xwindows])
 AM_CONDITIONAL([ENABLE_WALLET],[test x$enable_wallet = xyes])
 AM_CONDITIONAL([ENABLE_BOOTSTRAP],[test x$enable_bootstrap = xyes])
+AM_CONDITIONAL([ENABLE_UPDATE],[test x$enable_update = xyes])
 AM_CONDITIONAL([ENABLE_TESTS],[test x$BUILD_TEST = xyes])
 AM_CONDITIONAL([ENABLE_QT],[test x$bitcoin_enable_qt = xyes])
 AM_CONDITIONAL([ENABLE_QT_TESTS],[test x$BUILD_TEST_QT = xyes])
@@ -1411,6 +1437,7 @@ AC_DEFINE(CLIENT_VERSION_IS_RELEASE, _CLIENT_VERSION_IS_RELEASE, [Version is rel
 AC_DEFINE(COPYRIGHT_YEAR, _COPYRIGHT_YEAR, [Version is release])
 AC_DEFINE_UNQUOTED(PARAMS_DIR, ["$params_path"], [Path to the zk params dir during unit tests on windows])
 AC_DEFINE_UNQUOTED([BOOTSTRAP_URL], ["$BOOTSTRAP_URL"], [URL for bootstrap data])
+AC_DEFINE_UNQUOTED([UPDATE_URL], ["$UPDATE_URL"], [URL for update data])
 AC_SUBST(CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MAJOR)
 AC_SUBST(CLIENT_VERSION_MINOR, _CLIENT_VERSION_MINOR)
 AC_SUBST(CLIENT_VERSION_REVISION, _CLIENT_VERSION_REVISION)
@@ -1532,6 +1559,8 @@ echo "Options used to compile and link:"
 echo "  with wallet    = $enable_wallet"
 echo "  with bootstrap = $enable_bootstrap"
 echo "  bootstrap url  = $BOOTSTRAP_URL"
+echo "  with update = $enable_update"
+echo "  update url  = $UPDATE_URL"
 echo "  with gui / qt  = $bitcoin_enable_qt"
 if test x$bitcoin_enable_qt != xno; then
     echo "    with qtcharts     = $use_qtcharts"

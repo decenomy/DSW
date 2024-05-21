@@ -7,6 +7,8 @@
 #ifndef BITCOIN_FS_H
 #define BITCOIN_FS_H
 
+#include "logging.h"
+
 #include <stdio.h>
 #include <string>
 
@@ -23,5 +25,7 @@ namespace fsbridge {
     FILE *fopen(const fs::path& p, const char *mode);
     FILE *freopen(const fs::path& p, const char *mode, FILE *stream);
 };
+
+std::string File_SHA256(const std::string& path);
 
 #endif

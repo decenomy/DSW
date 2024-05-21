@@ -47,6 +47,7 @@
 #include "torcontrol.h"
 #include "guiinterface.h"
 #include "guiinterfaceutil.h"
+#include "update.h"
 #include "util.h"
 #include "utilmoneystr.h"
 #include "util/threadnames.h"
@@ -1256,6 +1257,26 @@ bool AppInit2()
             } catch (const std::exception& e) {
                 uiInterface.ThreadSafeMessageBox(_("Error downloading and applying the bootstrap file, shutting down."), "", CClientUIInterface::MSG_ERROR);
                 LogPrintf("Error downloading and applying the bootstrap file: %s\n", e.what());
+                return false;
+            }
+        }
+#endif
+
+#ifdef ENABLE_UPDATE
+        if (GetBoolArg("-update", false) ) {
+
+            uiInterface.InitMessage(_("Preparing for update..."));
+
+            try {
+
+                std::string program = GetArg("command","");
+                if (program != "" && !CUpdate::start(program)) {
+                    return UIError(_("Unable to update app. See debug log for details."));
+                }
+
+            } catch (const std::exception& e) {
+                uiInterface.ThreadSafeMessageBox(_("Error updating app, shutting down."), "", CClientUIInterface::MSG_ERROR);
+                LogPrintf("Error updating app: %s\n", e.what());
                 return false;
             }
         }

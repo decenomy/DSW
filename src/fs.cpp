@@ -7,17 +7,57 @@
 #include "fs.h"
 
 #include <boost/filesystem.hpp>
+#include <openssl/sha.h>
+#include <sstream>
+#include <iostream>
+#include <iomanip>
 
 namespace fsbridge {
 
-FILE *fopen(const fs::path& p, const char *mode)
-{
-    return ::fopen(p.string().c_str(), mode);
-}
+    FILE *fopen(const fs::path& p, const char *mode)
+    {
+        return ::fopen(p.string().c_str(), mode);
+    }
 
-FILE *freopen(const fs::path& p, const char *mode, FILE *stream)
-{
-    return ::freopen(p.string().c_str(), mode, stream);
-}
+    FILE *freopen(const fs::path& p, const char *mode, FILE *stream)
+    {
+        return ::freopen(p.string().c_str(), mode, stream);
+    }
 
 } // fsbridge
+
+
+std::string File_SHA256(const std::string& path)
+    {
+      std::ifstream fp(path, std::ios::in | std::ios::binary);
+
+      if (not fp.good()) {
+        LogPrintf("-SHA256::%s: Error: %s, Cannot open: %s\n",__func__, std::strerror(errno),path);
+        return "";
+      }
+
+      constexpr const std::size_t buffer_size { 1 << 12 };
+      char buffer[buffer_size];
+
+      unsigned char hash[SHA256_DIGEST_LENGTH] = { 0 };
+
+      SHA256_CTX ctx;
+      SHA256_Init(&ctx);
+
+      while (fp.good()) {
+        fp.read(buffer, buffer_size);
+        SHA256_Update(&ctx, buffer, fp.gcount());
+      }
+
+      SHA256_Final(hash, &ctx);
+      fp.close();
+
+      std::ostringstream os;
+      os << std::hex << std::setfill('0');
+
+      for (int i = 0; i < SHA256_DIGEST_LENGTH; ++i) {
+        os << std::setw(2) << static_cast<unsigned int>(hash[i]);
+      }
+
+      return os.str();
+    }
