@@ -276,9 +276,11 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
             oss << "nSupplyTargetEmission: " << FormatMoney(nSupplyTargetEmission) << std::endl;
             const auto nCirculatingTargetEmission = ((nCirculatingSupply / (365LL * nBlocksPerDay)) / 1000000) * nCirculatingEmissionRate * nRewardAdjustmentInterval;
             oss << "nCirculatingTargetEmission: " << FormatMoney(nCirculatingTargetEmission) << std::endl;
+            const auto nTargetEmission = (nSupplyTargetEmission + nCirculatingTargetEmission) / 2LL;
+            oss << "nTargetEmission: " << FormatMoney(nTargetEmission) << std::endl;
 
             // calculate required delta values
-            const auto nDelta = (nActualEmission - ((nSupplyTargetEmission + nCirculatingTargetEmission) / 2LL)) / nRewardAdjustmentInterval;
+            const auto nDelta = (nActualEmission - nTargetEmission) / nRewardAdjustmentInterval;
             oss << "nDelta: " << FormatMoney(nDelta) << std::endl;
             
             // y = mx + b
