@@ -272,13 +272,13 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
             oss << "nCirculatingEmissionRate: " << nCirculatingEmissionRate << std::endl;
             const auto nActualEmission = nSubsidy * nRewardAdjustmentInterval;
             oss << "nActualEmission: " << FormatMoney(nActualEmission) << std::endl;
-            const auto nSupplyTargetEmission = ((nMoneySupply / (365L * nBlocksPerDay)) / 1000000) * nTotalEmissionRate * nRewardAdjustmentInterval;
+            const auto nSupplyTargetEmission = ((nMoneySupply / (365LL * nBlocksPerDay)) / 1000000) * nTotalEmissionRate * nRewardAdjustmentInterval;
             oss << "nSupplyTargetEmission: " << FormatMoney(nSupplyTargetEmission) << std::endl;
-            const auto nCirculatingTargetEmission = ((nCirculatingSupply / (365L * nBlocksPerDay)) / 1000000) * nCirculatingEmissionRate * nRewardAdjustmentInterval;
+            const auto nCirculatingTargetEmission = ((nCirculatingSupply / (365LL * nBlocksPerDay)) / 1000000) * nCirculatingEmissionRate * nRewardAdjustmentInterval;
             oss << "nCirculatingTargetEmission: " << FormatMoney(nCirculatingTargetEmission) << std::endl;
 
             // calculate required delta values
-            const auto nDelta = (nActualEmission - std::max(nSupplyTargetEmission, nCirculatingTargetEmission)) / nRewardAdjustmentInterval;
+            const auto nDelta = (nActualEmission - ((nSupplyTargetEmission + nCirculatingTargetEmission) / 2LL)) / nRewardAdjustmentInterval;
             oss << "nDelta: " << FormatMoney(nDelta) << std::endl;
             
             // y = mx + b
