@@ -187,7 +187,8 @@ bool CRewards::IsDynamicRewardsEpochHeight(int nHeight)
 
 bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCache& coins)
 {
-    auto& consensus = Params().GetConsensus();
+    auto& params = Params();
+    auto& consensus = params.GetConsensus();
     const auto nHeight = pindex->nHeight;
     const auto nEpochHeight = GetDynamicRewardsEpochHeight(nHeight);
     std::ostringstream oss;
