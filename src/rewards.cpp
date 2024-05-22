@@ -296,7 +296,9 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
             oss << "nDampedDelta: " << FormatMoney(nDampedDelta) << std::endl;
 
             // adjust the reward for this epoch
-            nNewSubsidy = ((nSubsidy - nDampedDelta) / COIN) * COIN;
+            nNewSubsidy = nSubsidy - nDampedDelta;
+            // remove decimal places
+            nNewSubsidy = (nNewSubsidy / COIN) * COIN;
 
             oss << "Adjustment at height " << nHeight << ": " << FormatMoney(nSubsidy) << " => " << FormatMoney(nNewSubsidy) << std::endl;
         }
