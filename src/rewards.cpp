@@ -276,9 +276,11 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
             oss << "nSupplyTargetEmission: " << FormatMoney(nSupplyTargetEmission) << std::endl;
             const auto nCirculatingTargetEmission = ((nCirculatingSupply / (365LL * nBlocksPerDay)) / 1000000) * nCirculatingEmissionRate * nRewardAdjustmentInterval;
             oss << "nCirculatingTargetEmission: " << FormatMoney(nCirculatingTargetEmission) << std::endl;
+            const auto nTargetEmission = (nSupplyTargetEmission + nCirculatingTargetEmission) / 2LL;
+            oss << "nTargetEmission: " << FormatMoney(nTargetEmission) << std::endl;
 
             // calculate required delta values
-            const auto nDelta = (nActualEmission - ((nSupplyTargetEmission + nCirculatingTargetEmission) / 2LL)) / nRewardAdjustmentInterval;
+            const auto nDelta = (nActualEmission - nTargetEmission) / nRewardAdjustmentInterval;
             oss << "nDelta: " << FormatMoney(nDelta) << std::endl;
             
             // y = mx + b
@@ -294,11 +296,9 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
             oss << "nDampedDelta: " << FormatMoney(nDampedDelta) << std::endl;
 
             // adjust the reward for this epoch
-            if (nHeight > 1300000) {
-                nNewSubsidy = ((nSubsidy - nDampedDelta) / COIN) * COIN;
-            } else {
-                nNewSubsidy = nSubsidy - nDampedDelta;
-            }
+            nNewSubsidy = nSubsidy - nDampedDelta;
+            // removes decimal places
+            nNewSubsidy = (nNewSubsidy / COIN) * COIN;
 
             oss << "Adjustment at height " << nHeight << ": " << FormatMoney(nSubsidy) << " => " << FormatMoney(nNewSubsidy) << std::endl;
         }
