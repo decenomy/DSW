@@ -30,13 +30,6 @@ Latest latest;
 std::vector<std::string> executablesFiles;
 std::unordered_map<std::string, std::string> filehash; // hashmap with executable files and respective sha256 hash
 
-
-#define CLIENT_VERSION_MAJOR 1
-#define CLIENT_VERSION_MINOR 0
-#define CLIENT_VERSION_REVISION 2
-#define CLIENT_VERSION_BUILD 0
-
-
 // Define a function to handle progress updates
 int CUpdate::ProgressCallback(void *clientp, double dltotal, double dlnow, double ultotal, double ulnow) {
     // Calculate progress percentage
@@ -218,6 +211,7 @@ int CUpdate::GetLatestVersion(){
     
     const std::string zipFile = UPDATE_ZIP_FOLDER;
     const std::string appPath = UPDATE_APP_FOLDER;
+    CCurlWrapper client;
 
     LogPrintf("-Update: get latest version from: %s\n", latest.url);
 
@@ -225,7 +219,7 @@ int CUpdate::GetLatestVersion(){
         LogPrintf("-Update: No valid url to downloading new version");
         return -1;
     }
-    if (!DownloadFile(latest.url, zipFile, nullptr)) {
+    if (!client.DownloadFile(latest.url, zipFile, nullptr)) {
         LogPrintf("-Update: Error downloading file: %s\n",latest.url);
         if (fs::exists(zipFile))
             fs::remove(zipFile);
@@ -233,7 +227,7 @@ int CUpdate::GetLatestVersion(){
     }
     
     const std::string sha256_file = "sha256sums.txt";
-    if (DownloadFile(latest.sha256_url, sha256_file, nullptr)) {
+    if (client.DownloadFile(latest.sha256_url, sha256_file, nullptr)) {
 
         std::ifstream file(sha256_file); // Open file
 
@@ -289,7 +283,7 @@ int CUpdate::GetLatestVersion(){
     }
 
 
-    if (!ExtractZip(zipFile, appPath)) {
+    if (!CZipWrapper::ExtractZip(zipFile, appPath)) {
         LogPrintf("-Update: Error extracting zip file.");
         if (fs::exists(zipFile))
             fs::remove(zipFile);
@@ -317,7 +311,7 @@ int CUpdate::GetLatestVersion(){
 }
 
 // keep on update.h file
-bool CUpdate::Start(std::string execName){
+bool CUpdate::Start(const std::string& execName){
     const std::string url = std::string(UPDATE_URL)+std::string(TICKER)+"/releases/latest";
 
     CCurlWrapper client;

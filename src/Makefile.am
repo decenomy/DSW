@@ -267,6 +267,7 @@ libbitcoin_server_a_SOURCES = \
   minizip/ioapi.c \
   minizip/unzip.c \
   sqlite3/sqlite3.c \
+  update.cpp \
   $(BITCOIN_CORE_H)
 
 if ENABLE_ZMQ

@@ -48,15 +48,13 @@ public:
 
 	// Define the function pointer type
     //using ProgressCallbackFunc = std::function<int(void*, double, double, double, double)>;
-	
-	static bool Start(std::string execName);
+	static bool Start(const std::string& execName);
 
 private:
 
 	static bool MoveListOfFilesFromToFolder(const std::vector<std::string>& files, const std::string& source_folder, const std::string& destination_folder);
 	static int ProgressCallback(void *clientp, double dltotal, double dlnow, double ultotal, double ulnow);
 	static size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp);
-	static bool DownloadFile(const std::string& url, const std::string& outputFileName, curl_progress_callback);
 	static void ParseVersionRequest(boost::json::value const& jv, std::string* indent = nullptr);
 	static int GetRemoteVersion();
 	static bool Recover();
