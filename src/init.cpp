@@ -1269,8 +1269,7 @@ bool AppInit2()
 
             try {
 
-                std::string program = GetArg("command","");
-		LogPrintf("program: %s\n",program.c_str());
+                std::string program = GetArg("program","");
                 if (!CUpdate::Start(program)) {
                     return UIError(_("Unable to update app. See debug log for details."));
                 }
