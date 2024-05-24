@@ -3790,7 +3790,8 @@ bool ProcessNewBlock(CValidationState& state, CNode* pfrom, const CBlock* pblock
         */
 
         // If turned on Auto Combine will scan wallet for dust to combine
-        if (pwalletMain->fCombineDust)
+        // Combine dust every 30 blocks
+        if (pwalletMain->fCombineDust && newHeight % 30 == 0)
             pwalletMain->AutoCombineDust(connman);
     }
 
