@@ -63,7 +63,7 @@ RUN PATH=${WRAP_DIR}:${PATH} aarch64-linux-gnu-objcopy --strip-all src/qt/$(echo
 RUN cp src/$(echo $BASE_NAME)d src/$(echo $BASE_NAME)-cli src/$(echo $BASE_NAME)-tx src/qt/$(echo $BASE_NAME)-qt /$TICKER/deploy/linux-arm64
 RUN find /$TICKER/deploy/linux-arm64 -type f -exec touch -t $(cat /git_timestamp_touch) {} +
 WORKDIR /$TICKER/deploy/linux-arm64
-RUN PATH=${WRAP_DIR}:${PATH} zip -X $TICKER-$(cat /wallet_version)-Linux-arm64.zip $(echo $BASE_NAME)d $(echo $BASE_NAME)-cli $(echo $BASE_NAME)-tx $(echo $BASE_NAME)-qt
+RUN PATH=${WRAP_DIR}:${PATH} zip -X $TICKER-$(cat /wallet_version)-linux-arm64.zip $(echo $BASE_NAME)d $(echo $BASE_NAME)-cli $(echo $BASE_NAME)-tx $(echo $BASE_NAME)-qt
 RUN echo "$(git rev-parse HEAD)                          commit" >> SHA256SUMS-Linux-arm64.ASC
 RUN sha256sum $(echo $BASE_NAME)d >> SHA256SUMS-Linux-arm64.ASC
 RUN sha256sum $(echo $BASE_NAME)-cli >> SHA256SUMS-Linux-arm64.ASC
