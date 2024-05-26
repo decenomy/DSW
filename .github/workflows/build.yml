@@ -18,7 +18,8 @@ jobs:
           # Extract the name of the repository and use it as the ticker value
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
           # Build the Docker image from the Dockerfile in the repository
-          docker build \
+          docker buildx build \
+            --no-cache \
             --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=$REPO_NAME \
             --build-arg NAME=__Decenomy__ \
@@ -53,7 +54,8 @@ jobs:
           # Extract the name of the repository and use it as the ticker value
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
           # Build the Docker image from the Dockerfile in the repository
-          docker build \
+          docker buildx build \
+            --no-cache \
             --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=$REPO_NAME \
             --build-arg NAME=__Decenomy__ \
@@ -88,7 +90,8 @@ jobs:
           # Extract the name of the repository and use it as the ticker value
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
           # Build the Docker image from the Dockerfile in the repository
-          docker build \
+          docker buildx build \
+            --no-cache \
             --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=$REPO_NAME \
             --build-arg NAME=__Decenomy__ \
@@ -123,7 +126,8 @@ jobs:
           # Extract the name of the repository and use it as the ticker value
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
           # Build the Docker image from the Dockerfile in the repository
-          docker build \
+          docker buildx build \
+            --no-cache \
             --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=$REPO_NAME \
             --build-arg NAME=__Decenomy__ \

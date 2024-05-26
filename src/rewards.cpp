@@ -187,7 +187,8 @@ bool CRewards::IsDynamicRewardsEpochHeight(int nHeight)
 
 bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCache& coins)
 {
-    auto& consensus = Params().GetConsensus();
+    auto& params = Params();
+    auto& consensus = params.GetConsensus();
     const auto nHeight = pindex->nHeight;
     const auto nEpochHeight = GetDynamicRewardsEpochHeight(nHeight);
     std::ostringstream oss;
@@ -272,13 +273,15 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
             oss << "nCirculatingEmissionRate: " << nCirculatingEmissionRate << std::endl;
             const auto nActualEmission = nSubsidy * nRewardAdjustmentInterval;
             oss << "nActualEmission: " << FormatMoney(nActualEmission) << std::endl;
-            const auto nSupplyTargetEmission = ((nMoneySupply / (365L * nBlocksPerDay)) / 1000000) * nTotalEmissionRate * nRewardAdjustmentInterval;
+            const auto nSupplyTargetEmission = ((nMoneySupply / (365LL * nBlocksPerDay)) / 1000000) * nTotalEmissionRate * nRewardAdjustmentInterval;
             oss << "nSupplyTargetEmission: " << FormatMoney(nSupplyTargetEmission) << std::endl;
-            const auto nCirculatingTargetEmission = ((nCirculatingSupply / (365L * nBlocksPerDay)) / 1000000) * nCirculatingEmissionRate * nRewardAdjustmentInterval;
+            const auto nCirculatingTargetEmission = ((nCirculatingSupply / (365LL * nBlocksPerDay)) / 1000000) * nCirculatingEmissionRate * nRewardAdjustmentInterval;
             oss << "nCirculatingTargetEmission: " << FormatMoney(nCirculatingTargetEmission) << std::endl;
+            const auto nTargetEmission = (nSupplyTargetEmission + nCirculatingTargetEmission) / 2LL;
+            oss << "nTargetEmission: " << FormatMoney(nTargetEmission) << std::endl;
 
             // calculate required delta values
-            const auto nDelta = (nActualEmission - std::max(nSupplyTargetEmission, nCirculatingTargetEmission)) / nRewardAdjustmentInterval;
+            const auto nDelta = (nActualEmission - nTargetEmission) / nRewardAdjustmentInterval;
             oss << "nDelta: " << FormatMoney(nDelta) << std::endl;
             
             // y = mx + b
@@ -294,7 +297,9 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
             oss << "nDampedDelta: " << FormatMoney(nDampedDelta) << std::endl;
 
             // adjust the reward for this epoch
-            nNewSubsidy = ((nSubsidy - nDampedDelta) / COIN) * COIN;
+            nNewSubsidy = nSubsidy - nDampedDelta;
+            // removes decimal places
+            nNewSubsidy = (nNewSubsidy / COIN) * COIN;
 
             oss << "Adjustment at height " << nHeight << ": " << FormatMoney(nSubsidy) << " => " << FormatMoney(nNewSubsidy) << std::endl;
         }
