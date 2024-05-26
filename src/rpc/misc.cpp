@@ -11,9 +11,12 @@
 #include "httpserver.h"
 #include "init.h"
 #include "main.h"
+#include "masternode.h"
+#include "masternodeman.h"
 #include "masternode-sync.h"
 #include "net.h"
 #include "netbase.h"
+#include "rewards.h"
 #include "rpc/server.h"
 #include "spork.h"
 #include "timedata.h"
@@ -688,6 +691,8 @@ UniValue getstakingstatus(const JSONRPCRequest& request)
             "  \"stakeablecoins\": n                (numeric) number of stakeable UTXOs\n"
             "  \"stakingbalance\": d                (numeric) __DSW__ value of the stakeable coins (minus reserve balance, if any)\n"
             "  \"stakesplitthreshold\": d           (numeric) value of the current threshold for stake split\n"
+            "  \"autocombine_enabled\": true|false, (boolean) whether autocombine is enabled/disabled\n"
+            "  \"autocombinethreshold\": d          (numeric) value of the current threshold for auto combine\n"
             "  \"lastattempt_age\": n               (numeric) seconds since last stake attempt\n"
             "  \"lastattempt_depth\": n             (numeric) depth of the block on top of which the last stake attempt was made\n"
             "  \"lastattempt_hash\": xxx            (hex string) hash of the block on top of which the last stake attempt was made\n"
@@ -715,6 +720,8 @@ UniValue getstakingstatus(const JSONRPCRequest& request)
         obj.push_back(Pair("stakeablecoins", (int)vCoins.size()));
         obj.push_back(Pair("stakingbalance", ValueFromAmount(pwalletMain->GetStakingBalance())));
         obj.push_back(Pair("stakesplitthreshold", ValueFromAmount(pwalletMain->nStakeSplitThreshold)));
+        obj.push_back(Pair("autocombine_enabled", pwalletMain->fCombineDust));
+        obj.push_back(Pair("autocombinethreshold", ValueFromAmount(pwalletMain->nAutoCombineThreshold)));
         CStakerStatus* ss = pwalletMain->pStakerStatus;
         if (ss) {
             obj.push_back(Pair("lastattempt_age", (int)(GetTime() - ss->GetLastTime())));
@@ -725,7 +732,101 @@ UniValue getstakingstatus(const JSONRPCRequest& request)
         }
         return obj;
     }
+}
 
+UniValue getroi(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() != 0) {
+        throw std::runtime_error(
+            "getroi\n"
+            "\nReturns an object containing ROI information.\n"
 
+            "\nResult:\n"
+            "{\n"
+            "  \"staking_status\": true|false,      (boolean) whether the wallet is staking or not\n"
+            "  \"stakeablecoins\": n                (numeric) number of stakeable UTXOs\n"
+            "  \"stakingbalance\": d                (numeric) KYAN value of the stakeable coins (minus reserve balance, if any)\n"
+            "  \"stakesplitthreshold\": d           (numeric) value of the current threshold for stake split\n"
+            "  \"autocombine_enabled\": true|false, (boolean) whether autocombine is enabled/disabled\n"
+            "  \"autocombinethreshold\": d          (numeric) value of the current threshold for auto combine\n"
+            "}\n"
+
+            "\nExamples:\n" +
+            HelpExampleCli("getroi", "") + HelpExampleRpc("getroi", ""));
+    }
+
+    if (pwalletMain) {
+        if(!masternodeSync.IsSynced()) {
+            throw JSONRPCError(RPC_IN_WARMUP, "Try again after the chain is fully synced");
+        }
+
+        UniValue obj(UniValue::VOBJ);
+
+        // Fetch wallet details
+        {
+            LOCK(&pwalletMain->cs_wallet);
+
+            obj.push_back(Pair("staking_status", pwalletMain->pStakerStatus->IsActive()));
+            obj.push_back(Pair("stake_tries", pwalletMain->pStakerStatus->GetLastTries()));
+            obj.push_back(Pair("staked_balance", ValueFromAmount(pwalletMain->pStakerStatus->GetLastValue())));
+            obj.push_back(Pair("stakesplitthreshold", ValueFromAmount(pwalletMain->nStakeSplitThreshold)));
+            obj.push_back(Pair("autocombine_enabled", pwalletMain->fCombineDust));
+            obj.push_back(Pair("autocombinethreshold", ValueFromAmount(pwalletMain->nAutoCombineThreshold)));
+        }
+
+        const auto& params = Params();
+        const auto& consensus = params.GetConsensus();
+
+        const auto tip = chainActive.Tip();
+        const auto nHeight = tip->nHeight;
+
+        // Fetch consensus parameters
+        const auto nTargetSpacing = consensus.nTargetSpacing;
+        const auto nTargetTimespan	= consensus.TargetTimespan(nHeight);
+        const auto nTimeSlotLength = consensus.TimeSlotLength(nHeight);
+        const auto nBlocks = nTargetTimespan / nTargetSpacing;
+
+        // Fetch the network generated hashes per second
+        const auto startBlock = chainActive[nHeight - nBlocks];
+        const auto endBlock = tip;
+        const auto nTimeDiff = endBlock->GetBlockTime() - startBlock->GetBlockTime();
+        const auto nWorkDiff = endBlock->nChainWork - startBlock->nChainWork;
+        const auto nNetworkHashPS = (int64_t)(nWorkDiff.getdouble() / nTimeDiff);
+        obj.push_back(Pair("networkhashps", GetReadableHashRate(nNetworkHashPS)));
+
+        // Calculate how many coins are allocated in the entire staking algorithm 
+        const auto nStakedCoins = (CAmount) (nNetworkHashPS * nTimeSlotLength * 100LL);
+        obj.push_back(Pair("staked_coins", ValueFromAmount(nStakedCoins)));
+
+        // Fetch reward details
+        const auto nMNCollateral = CMasternode::GetMasternodeNodeCollateral(nHeight);
+        obj.push_back(Pair("masternode_collateral", ValueFromAmount(nMNCollateral)));
+        const auto nBlockValue = CRewards::GetBlockValue(nHeight);
+        obj.push_back(Pair("block_reward", ValueFromAmount(nBlockValue)));
+        const auto nMNReward = CMasternode::GetMasternodePayment(nHeight);
+        obj.push_back(Pair("masternode_reward", ValueFromAmount(nMNReward)));
+        const auto nStakeReward = nBlockValue - nMNReward;
+        obj.push_back(Pair("staking_reward", ValueFromAmount(nStakeReward)));
+
+        // Calculate all data for the current staking ROI
+        const auto nBlocksPerYear = YEAR_IN_SECONDS / nTargetSpacing;
+        obj.push_back(Pair("blocks_per_year", nBlocksPerYear));
+        const auto nYearlyStakingRewards = nStakeReward * nBlocksPerYear;
+        obj.push_back(Pair("yearly_staking_rewards", ValueFromAmount(nYearlyStakingRewards)));
+        const auto nStakingROI = (double)(((nYearlyStakingRewards / COIN) * 10000LL) / (nStakedCoins / COIN)) / 100;
+        obj.push_back(Pair("staking_roi", strprintf("%4.2f%%", nStakingROI)));
+
+        // Calculate all data for the current masternoding ROI
+        const auto nEnabled = mnodeman.CountEnabled();
+        obj.push_back(Pair("enabled_masternodes", nEnabled));
+        const auto nMNCoins = nMNCollateral * nEnabled;
+        obj.push_back(Pair("masternoded_coins", ValueFromAmount(nMNCoins)));
+        const auto nMnROI = (double)(((nMNReward / COIN) * nBlocksPerYear * 10000LL) / (nMNCoins / COIN)) / 100;
+        obj.push_back(Pair("masternoding_roi", strprintf("%4.2f%%", nMnROI)));
+
+        return obj;
+    } else {
+        throw JSONRPCError(RPC_IN_WARMUP, "Try again after the active chain is loaded");
+    }
 }
 #endif // ENABLE_WALLET
