@@ -20,7 +20,7 @@ fi
 WORKDIR /$TICKER
 
 # Check out a specific version if needed
-RUN git pull && \
+RUN git stash && \
     git fetch --all && \
     (git checkout $TARGET || (git checkout -B $TARGET && git pull origin $TARGET))
 
