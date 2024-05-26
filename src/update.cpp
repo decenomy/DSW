@@ -30,19 +30,22 @@ Latest latest;
 std::vector<std::string> executablesFiles;
 std::unordered_map<std::string, std::string> filehash; // hashmap with executable files and respective sha256 hash
 
-// Define a function to handle progress updates
-int CUpdate::ProgressCallback(void *clientp, double dltotal, double dlnow, double ultotal, double ulnow) {
-    // Calculate progress percentage
-    double progress = (dlnow > 0) ? (dlnow / dltotal) * 100.0 : 0.0;
+int CUpdate::progressCallback(
+    void* clientp, 
+    curl_off_t dltotal,
+    curl_off_t dlnow,
+    curl_off_t ultotal,
+    curl_off_t ulnow)
+{
+    static int progress = 0;
+    const auto currentProgress = dltotal > 0 ? (int)((dlnow * 100) / dltotal) : 0;
 
-    auto now = std::chrono::steady_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::seconds>(now.time_since_epoch());
-    if(!log_flag && duration.count() % 2 == 0){
-        log_flag = true;
-        LogPrintf("-Update: Download: %d%%\n", (uint8_t)progress);
-        //uiInterface.ShowProgress(_("Download: "), (uint8_t)progress);    
-    }else if(duration.count() % 2 != 0) log_flag = false;
-    
+    if (currentProgress > progress) {
+        progress = currentProgress;
+        LogPrintf("CUpdate::%s: Download: %d%%\n", __func__, progress);
+        uiInterface.ShowProgress(_("Download: "), progress);
+    }
+
     return 0;
 }
 
@@ -182,6 +185,8 @@ bool CUpdate::MoveListOfFilesFromToFolder(const std::vector<std::string>& files,
         fs::path destination_path = fs::path(destination_folder) / fs::path(file);
 
         try {
+            if (!fs::exists(source_path))
+                continue;
             fs::rename(source_path, destination_path);
             std::cout << "Moved: " << source_path << " to " << destination_path << std::endl;
         } catch (const fs::filesystem_error& e) {
@@ -209,9 +214,9 @@ bool CUpdate::Recover(){
 // keep on update.h file
 int CUpdate::GetLatestVersion(){
     
-    const std::string zipFile = UPDATE_ZIP_FOLDER;
-    const std::string appPath = UPDATE_APP_FOLDER;
     CCurlWrapper client;
+    const std::string zipFile = UPDATE_ZIP_FOLDER;
+    const std::string appPath = UPDATE_APP_FOLDER;  
 
     LogPrintf("-Update: get latest version from: %s\n", latest.url);
 
@@ -219,7 +224,7 @@ int CUpdate::GetLatestVersion(){
         LogPrintf("-Update: No valid url to downloading new version");
         return -1;
     }
-    if (!client.DownloadFile(latest.url, zipFile, nullptr)) {
+    if (!client.DownloadFile(latest.url, zipFile, CUpdate::progressCallback)) {
         LogPrintf("-Update: Error downloading file: %s\n",latest.url);
         if (fs::exists(zipFile))
             fs::remove(zipFile);
@@ -227,7 +232,7 @@ int CUpdate::GetLatestVersion(){
     }
     
     const std::string sha256_file = "sha256sums.txt";
-    if (client.DownloadFile(latest.sha256_url, sha256_file, nullptr)) {
+    if (client.DownloadFile(latest.sha256_url, sha256_file, CUpdate::progressCallback)) {
 
         std::ifstream file(sha256_file); // Open file
 
@@ -251,6 +256,8 @@ int CUpdate::GetLatestVersion(){
                     filename = word;
                 counter++;
             }
+            if( !IsValidSHA256(sha256.c_str()))
+                continue;
             if( EndsWith(filename,".zip"))
                 latest.sha256zip = sha256;
             else{
@@ -266,6 +273,8 @@ int CUpdate::GetLatestVersion(){
 
     } else {
         LogPrintf("-Update: Error downloading hashes file: %s\n",latest.sha256_url);
+        if (fs::exists(zipFile))
+            fs::remove(zipFile);
         if (fs::exists(sha256_file))
             fs::remove(sha256_file);
         return -1;
@@ -274,11 +283,13 @@ int CUpdate::GetLatestVersion(){
 
     std::string hash = File_SHA256(zipFile);
     if( hash != latest.sha256zip ){
-        LogPrintf("-Update: sha256 doesn't match for file: %s\n", zipFile );
+        LogPrintf("-Update: sha256 doesn't match file: %s\n", zipFile );
         LogPrintf("-Update: calculated hash: %s\n", hash);
         LogPrintf("-Update: source hash: %s\n", latest.sha256zip);
         if (fs::exists(zipFile))
             fs::remove(zipFile);
+        if (fs::exists(sha256_file))
+            fs::remove(sha256_file);
         return -1;
     }
 
@@ -287,6 +298,8 @@ int CUpdate::GetLatestVersion(){
         LogPrintf("-Update: Error extracting zip file.");
         if (fs::exists(zipFile))
             fs::remove(zipFile);
+        if (fs::exists(sha256_file))
+            fs::remove(sha256_file);
         if (fs::exists(appPath))
             fs::remove(appPath);
         return -1;
@@ -298,14 +311,23 @@ int CUpdate::GetLatestVersion(){
     // Iterate over the unordered_map
     for (const auto& pair : filehash) {
         std::string filename = appPath+"/"+pair.first;
-        hash = File_SHA256(filename);
-        if( hash != pair.second ){
-            LogPrintf("-Update: sha256 doesn't match for file: %s\n", filename );
-            LogPrintf("-Update: calculated hash: %s\n", hash);
-            LogPrintf("-Update: source hash: %s\n", filehash[pair.second]);
-            return -1;
+        if(IsValidSHA256(pair.second.c_str())){
+            hash = File_SHA256(filename);
+            if( hash != pair.second ){
+                LogPrintf("-Update: sha256 doesn't match file: %s\n", filename );
+                LogPrintf("-Update: calculated hash: %s\n", hash);
+                LogPrintf("-Update: source hash: %s\n", filehash[pair.second]);
+                if (fs::exists(sha256_file))
+                    fs::remove(sha256_file);
+                if (fs::exists(appPath))
+                    fs::remove(appPath);
+                return -1;
+            }
         }
     }
+
+    if (fs::exists(sha256_file))
+        fs::remove(sha256_file);
 
     return 0;
 }
@@ -313,6 +335,7 @@ int CUpdate::GetLatestVersion(){
 // keep on update.h file
 bool CUpdate::Start(const std::string& execName){
     const std::string url = std::string(UPDATE_URL)+std::string(TICKER)+"/releases/latest";
+    const std::string appPath = UPDATE_APP_FOLDER;  
 
     CCurlWrapper client;
     std::string response = client.Request(url);
@@ -323,7 +346,9 @@ bool CUpdate::Start(const std::string& execName){
 
     // !! get version from correct file
     // --- Check if current version is lower than remote version ---
-    if(version <= CLIENT_VERSION){
+    LogPrintf("-Update: current version: %d\n",CLIENT_VERSION);
+    LogPrintf("-Update: remote version: %d\n",version);
+    if(false && version <= CLIENT_VERSION){
         LogPrintf("-Update: current version is the most recent\n");
         return false;
     }
@@ -355,8 +380,10 @@ bool CUpdate::Start(const std::string& execName){
     }
     // --- ----- ---
 
-    if(!ready){
+    if(false && !ready){
         LogPrintf("-Update: Executable file not found");
+        if (fs::exists(appPath))
+            fs::remove(appPath);
         return false;
     }
 
@@ -364,8 +391,13 @@ bool CUpdate::Start(const std::string& execName){
     fs::path sourceFolder = fs::current_path();
     fs::path destinationFolder = fs::current_path() / UPDATE_BCK_FOLDER;
 
+    // --- Create backup --
     if( !MoveListOfFilesFromToFolder(executablesFiles, sourceFolder.string(), destinationFolder.string()) ){
         LogPrintf("-Update: The update process failed while creating a backup");
+        if (fs::exists(appPath))
+            fs::remove(appPath);
+        if (fs::exists(destinationFolder.string()))
+            fs::remove(destinationFolder.string());
         return false;
     }
     // --- ----- ---
@@ -374,8 +406,10 @@ bool CUpdate::Start(const std::string& execName){
     sourceFolder = fs::current_path() / UPDATE_APP_FOLDER;
     destinationFolder = fs::current_path();
     if( !MoveListOfFilesFromToFolder(executablesFiles, sourceFolder.string(), destinationFolder.string()) ){
-        LogPrintf("-Update: The update process failed while creating a backup");
-        return false;
+        LogPrintf("-Update: The update process failed while getting the new executables");
+        if (fs::exists(appPath))
+            fs::remove(appPath);
+        Recover();
     }
     fs::remove(sourceFolder.string());
     // --- ----- ---
@@ -396,12 +430,27 @@ bool CUpdate::Start(const std::string& execName){
     }
 
     // Launch new app
+    /*
+    LogPrintf("-Update: launching new version: %s\n",execName);
     #if defined (_WIN32)
         command = execName;
     #else
         command = " ./"+execName;
     #endif
+    
     status = std::system(command.c_str());
+    */
+    /*
+    char exePath[PATH_MAX];
+    ssize_t count = readlink("/proc/self/exe", exePath, PATH_MAX);
+    if (count == -1) {
+        LogPrintf("-Update: Could not obtain the link for the executable: \"%s\"",command);
+        Recover();
+    }
+    exePath[count] = '\0';  // Null-terminate the path
+    
+    std::cout << "Relaunching the program...\n";
+    execl(exePath, exePath, (char *)NULL);
     if (status == -1) {
         LogPrintf("-Update: Failed to execute command: \"%s\"",command);
         Recover();
@@ -419,6 +468,6 @@ bool CUpdate::Start(const std::string& execName){
             Recover();
         }
     #endif
-    
-    return false;
+    */
+    return true;
 }

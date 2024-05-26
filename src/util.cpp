@@ -738,3 +738,19 @@ std::string StringToHex(const std::string& input) {
     }
     return hex;
 }
+
+bool IsValidSHA256(const char *hash) {
+    // SHA-256 hashes are 64 characters long
+    if (strlen(hash) != 64) {
+        return false;
+    }
+
+    // Check if all characters are valid hexadecimal characters
+    for (int i = 0; i < 64; i++) {
+        if (!isxdigit(hash[i])) {
+            return false;
+        }
+    }
+
+    return true;
+}

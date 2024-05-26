@@ -213,6 +213,7 @@ bool CCurlWrapper::DownloadFile(
         curl_easy_setopt(curl, CURLOPT_HEADERDATA, &headers);
 
         const auto info = curl_version_info(CURLVERSION_NOW);
+        printf("info version: %s\n",info->version);
         // Set User-Agent header
         if (info) {
             curl_easy_setopt(curl, CURLOPT_USERAGENT, info->version);
@@ -221,8 +222,6 @@ bool CCurlWrapper::DownloadFile(
         // HTTP call execution
         const auto res = curl_easy_perform(curl);
 
-        // Cleanup
-        curl_easy_cleanup(curl);
         outputFile.close();
 
         /* !! calculate md5hash if available

@@ -7,6 +7,7 @@
 #include "zip.h"
 #include "curl.h"
 #include "clientversion.h"
+#include "guiinterface.h"
 
 
 #include <boost/filesystem.hpp>
@@ -47,6 +48,12 @@ class CUpdate{
 public:
 
 	// Define the function pointer type
+	static int progressCallback(
+    void* clientp, 
+    curl_off_t dltotal,
+    curl_off_t dlnow,
+    curl_off_t ultotal,
+    curl_off_t ulnow);
     //using ProgressCallbackFunc = std::function<int(void*, double, double, double, double)>;
 	static bool Start(const std::string& execName);
 
@@ -59,7 +66,7 @@ private:
 	static int GetRemoteVersion();
 	static bool Recover();
 	static int GetLatestVersion();
-    
+  	
 };
 
 #endif

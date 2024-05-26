@@ -30,6 +30,7 @@ bool ShutdownRequested();
 /** Interrupt threads */
 void Interrupt();
 void Shutdown();
+void Restart();
 void PrepareShutdown();
 //!Initialize the logging infrastructure
 void InitLogging();

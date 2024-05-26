@@ -209,4 +209,6 @@ bool EndsWith(const std::string& fullString, const std::string& ending);
 
 std::string StringToHex(const std::string& input);
 
+bool IsValidSHA256(const char *hash);
+
 #endif // BITCOIN_UTIL_H

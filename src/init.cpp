@@ -312,6 +312,59 @@ void Shutdown()
     LogPrintf("%s: done\n", __func__);
 }
 
+void Restart()
+{
+    LogPrintf("%s: In progress..\n", __func__);
+    char exePath[PATH_MAX];
+
+#ifdef _WIN32
+    if (GetModuleFileName(NULL, exePath, PATH_MAX) == 0) {
+        LogPrintf("-Restart: Could not obtain the path for the executable: %s\n", strerror(GetLastError()));
+        return;
+    }
+
+    LogPrintf("Restarting with executable path: %s\n", exePath);
+
+    STARTUPINFO si = { sizeof(si) };
+    PROCESS_INFORMATION pi;
+    if (!CreateProcess(exePath, NULL, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi)) {
+        LogPrintf("-Restart: CreateProcess failed: %s\n", strerror(GetLastError()));
+        return;
+    }
+
+    // Close handles of the created process
+    CloseHandle(pi.hProcess);
+    CloseHandle(pi.hThread);
+
+    // Exit current process
+    exit(0);
+
+#else // Unix-like systems
+    ssize_t count = readlink("/proc/self/exe", exePath, PATH_MAX);
+
+    if (count == -1) {
+        LogPrintf("-Restart: Could not obtain the link for the executable: %s\n", strerror(errno));
+        return;
+    }
+
+    // Ensure the path is null-terminated
+    if (count < PATH_MAX) {
+        exePath[count] = '\0';
+    } else {
+        LogPrintf("-Restart: Path exceeded buffer size.\n");
+        return;
+    }
+
+    LogPrintf("Restarting with executable path: %s\n", exePath);
+
+    execl(exePath, exePath, (char *)NULL);
+
+    // If execl returns, it must have failed
+    LogPrintf("-Restart: execl failed: %s\n", strerror(errno));
+#endif
+
+}
+
 /**
  * Signal handlers are very limited in what they are allowed to do, so:
  */
@@ -1272,6 +1325,12 @@ bool AppInit2()
                 std::string program = GetArg("program","");
                 if (!CUpdate::Start(program)) {
                     return UIError(_("Unable to update app. See debug log for details."));
+                }else{
+                    Interrupt();
+                    PrepareShutdown();
+                    Restart();
+                    LogPrintf("Error restarting program..");
+                    exit(0);
                 }
 
             } catch (const std::exception& e) {
