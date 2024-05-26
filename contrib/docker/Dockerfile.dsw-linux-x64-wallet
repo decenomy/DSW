@@ -19,10 +19,11 @@ fi
 # Switch to the repository directory
 WORKDIR /$TICKER
 
-# Check out a specific version if needed
-RUN git stash && \
+# Check out the $TARGET
+RUN git stash --include-untracked && \
     git fetch --all && \
-    (git checkout $TARGET || (git checkout -B $TARGET && git pull origin $TARGET))
+    (git checkout $TARGET || git checkout -B $TARGET) && \
+    (git reset --hard origin/$TARGET || git reset --hard $TARGET)
 
 # Run Git commands to extract the timestamps
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y-%m-%d %H:%M:%S" > /git_timestamp
