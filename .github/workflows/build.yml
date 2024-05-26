@@ -17,13 +17,16 @@ jobs:
         run: |
           # Extract the name of the repository and use it as the ticker value
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
+          # Get the short name of the ref (strip 'refs/heads/', 'refs/tags/', etc.)
+          SHORT_REF=${GITHUB_REF##*/}
           # Build the Docker image from the Dockerfile in the repository
-          docker build \
+          docker buildx build \
+            --no-cache \
             --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=$REPO_NAME \
             --build-arg NAME=Kyanite \
             --build-arg BASE_NAME=kyanite \
-            --build-arg TARGET=${{ github.ref }} \
+            --build-arg TARGET=$SHORT_REF \
             -t linux-x64-build-img \
             -f contrib/docker/Dockerfile.dsw-linux-x64-wallet .
 
@@ -52,13 +55,16 @@ jobs:
         run: |
           # Extract the name of the repository and use it as the ticker value
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
+          # Get the short name of the ref (strip 'refs/heads/', 'refs/tags/', etc.)
+          SHORT_REF=${GITHUB_REF##*/}
           # Build the Docker image from the Dockerfile in the repository
-          docker build \
+          docker buildx build \
+            --no-cache \
             --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=$REPO_NAME \
             --build-arg NAME=Kyanite \
             --build-arg BASE_NAME=kyanite \
-            --build-arg TARGET=${{ github.ref }} \
+            --build-arg TARGET=$SHORT_REF \
             -t linux-arm64-build-img \
             -f contrib/docker/Dockerfile.dsw-linux-arm64-wallet .
 
@@ -87,13 +93,16 @@ jobs:
         run: |
           # Extract the name of the repository and use it as the ticker value
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
+          # Get the short name of the ref (strip 'refs/heads/', 'refs/tags/', etc.)
+          SHORT_REF=${GITHUB_REF##*/}
           # Build the Docker image from the Dockerfile in the repository
-          docker build \
+          docker buildx build \
+            --no-cache \
             --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=$REPO_NAME \
             --build-arg NAME=Kyanite \
             --build-arg BASE_NAME=kyanite \
-            --build-arg TARGET=${{ github.ref }} \
+            --build-arg TARGET=$SHORT_REF \
             -t windows-x64-build-img \
             -f contrib/docker/Dockerfile.dsw-windows-x64-wallet .
 
@@ -122,13 +131,16 @@ jobs:
         run: |
           # Extract the name of the repository and use it as the ticker value
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
+          # Get the short name of the ref (strip 'refs/heads/', 'refs/tags/', etc.)
+          SHORT_REF=${GITHUB_REF##*/}
           # Build the Docker image from the Dockerfile in the repository
-          docker build \
+          docker buildx build \
+            --no-cache \
             --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=$REPO_NAME \
             --build-arg NAME=Kyanite \
             --build-arg BASE_NAME=kyanite \
-            --build-arg TARGET=${{ github.ref }} \
+            --build-arg TARGET=$SHORT_REF \
             -t macos-x64-build-img \
             -f contrib/docker/Dockerfile.dsw-macos-x64-wallet .
 

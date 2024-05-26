@@ -611,8 +611,8 @@ bool DashboardWidget::loadChartData(bool withMonthNames)
 		qreal mnrewards = 0;
         if (chartData->amountsByCache.contains(num)) {
             QMap<QString, qint64> pair = chartData->amountsByCache[num];
-            piv = (pair["piv"] != 0) ? pair["piv"] / 100000000 : 0;
-            mnrewards = (pair["mn"] != 0) ? pair["mn"] / 100000000 : 0;
+            piv = (pair["piv"] != 0) ? pair["piv"] / COIN : 0;
+            mnrewards = (pair["mn"] != 0) ? pair["mn"] / COIN : 0;
             chartData->totalPiv += pair["piv"];
             chartData->totalMNRewards += pair["mn"];
         }

@@ -9,7 +9,9 @@
 #include "qt/pivx/pivxgui.h"
 
 #pragma GCC diagnostic push
+#if defined(__GNUC__) && (__GNUC__ >= 9)
 #pragma GCC diagnostic ignored "-Winit-list-lifetime"
+#endif
 
 #include <QAbstractAnimation>
 #include <QColor>

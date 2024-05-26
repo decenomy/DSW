@@ -159,7 +159,7 @@ public:
     void AskForMN(CNode* pnode, const CTxIn& vin);
 
     /// Check all Masternodes
-    void Check();
+    void Check(bool forceCheck = false);
 
     /// Check all Masternodes and remove inactive
     void CheckAndRemove(bool forceExpiredRemoval = false);
