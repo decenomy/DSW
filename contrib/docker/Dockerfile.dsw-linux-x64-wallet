@@ -22,7 +22,7 @@ WORKDIR /$TICKER
 # Check out the $TARGET
 RUN git stash --include-untracked && \
     git fetch --all && \
-    (git checkout $TARGET || (git checkout -B $TARGET && git fetch origin)) && \
+    (git checkout $TARGET || git checkout -B $TARGET) && \
     (git reset --hard origin/$TARGET || git reset --hard $TARGET)
 
 # Run Git commands to extract the timestamps
