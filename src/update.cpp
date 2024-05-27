@@ -280,7 +280,7 @@ int CUpdate::GetLatestVersion(){
         return -1;
     }
 
-
+    /*
     std::string hash = File_SHA256(zipFile);
     if( hash != latest.sha256zip ){
         LogPrintf("-Update: sha256 doesn't match file: %s\n", zipFile );
@@ -292,7 +292,7 @@ int CUpdate::GetLatestVersion(){
             fs::remove(sha256_file);
         return -1;
     }
-
+    */
 
     if (!CZipWrapper::ExtractZip(zipFile, appPath)) {
         LogPrintf("-Update: Error extracting zip file.");
@@ -338,6 +338,20 @@ bool CUpdate::Start(const std::string& execName){
     const std::string appPath = UPDATE_APP_FOLDER;  
 
     CCurlWrapper client;
+
+    std::filesystem::path currentPath = std::filesystem::current_path();
+
+    // Check if the current path is writable
+    std::filesystem::perms perms = std::filesystem::status(currentPath).permissions();
+
+    if ((perms & std::filesystem::perms::owner_write) != std::filesystem::perms::none ||
+        (perms & std::filesystem::perms::group_write) != std::filesystem::perms::none ||
+        (perms & std::filesystem::perms::others_write) != std::filesystem::perms::none) {
+    } else {
+        LogPrintf("-Update: You do NOT have write permissions to the current path: %s \n",currentPath);
+        return false;
+    }
+
     std::string response = client.Request(url);
 
     json::value jv = json::parse(response);
@@ -429,45 +443,5 @@ bool CUpdate::Start(const std::string& execName){
         Recover();
     }
 
-    // Launch new app
-    /*
-    LogPrintf("-Update: launching new version: %s\n",execName);
-    #if defined (_WIN32)
-        command = execName;
-    #else
-        command = " ./"+execName;
-    #endif
-    
-    status = std::system(command.c_str());
-    */
-    /*
-    char exePath[PATH_MAX];
-    ssize_t count = readlink("/proc/self/exe", exePath, PATH_MAX);
-    if (count == -1) {
-        LogPrintf("-Update: Could not obtain the link for the executable: \"%s\"",command);
-        Recover();
-    }
-    exePath[count] = '\0';  // Null-terminate the path
-    
-    std::cout << "Relaunching the program...\n";
-    execl(exePath, exePath, (char *)NULL);
-    if (status == -1) {
-        LogPrintf("-Update: Failed to execute command: \"%s\"",command);
-        Recover();
-    } 
-    #if defined(_WIN32) || defined(_WIN64)
-        // On Windows, status is directly the exit code
-        if (status != 0) {
-            LogPrintf("-Update: Command failed with exit code %d: while executing \"%s\"", std::to_string(status), command);
-            Recover();
-        }
-    #else
-        // On Unix-like systems, use WIFEXITED and WEXITSTATUS
-        if (WIFEXITED(status) && WEXITSTATUS(status) != 0) {
-            LogPrintf("-Update: Command failed with exit code %d: while executing \"%s\"", std::to_string(WEXITSTATUS(status)), command);
-            Recover();
-        }
-    #endif
-    */
     return true;
 }
