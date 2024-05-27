@@ -315,10 +315,11 @@ void Shutdown()
 void Restart()
 {
     LogPrintf("%s: In progress..\n", __func__);
-    char exePath[PATH_MAX];
+    
 
 #ifdef _WIN32
-    if (GetModuleFileName(NULL, exePath, PATH_MAX) == 0) {
+    char exePath[MAX_PATH];
+    if (GetModuleFileName(NULL, exePath, MAX_PATH) == 0) {
         LogPrintf("-Restart: Could not obtain the path for the executable: %s\n", strerror(GetLastError()));
         return;
     }
@@ -340,6 +341,7 @@ void Restart()
     exit(0);
 
 #else // Unix-like systems
+    char exePath[PATH_MAX];
     ssize_t count = readlink("/proc/self/exe", exePath, PATH_MAX);
 
     if (count == -1) {

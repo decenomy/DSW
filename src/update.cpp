@@ -73,9 +73,9 @@ void CUpdate::ParseVersionRequest(json::value const& jv, std::string* indent){
                         std::string url = json::serialize(it->value().get_string()); 
                         url = RemoveQuotes(url);
                         #if defined(__APPLE__)
-                            if( EndsWith(url, "MacOs-x64.zip") || EndsWith(url, "macos-x64.zip") )
+                            if( EndsWith(url, "MacOS-x64.zip") || EndsWith(url, "macos-x64.zip") )
                                 latest.url = url;
-                            if( EndsWith(url, "SHA256SUMS-MacOs-x64.ASC") || EndsWith(url, "SHA256SUMS-macos-x64.ASC") )
+                            if( EndsWith(url, "SHA256SUMS-MacOS-x64.ASC") || EndsWith(url, "SHA256SUMS-macos-x64.ASC") )
                                 latest.sha256_url = url;
                         #elif defined(__linux__)
                             #if defined(__x86_64__) || defined(_M_X64)
@@ -314,7 +314,7 @@ int CUpdate::GetLatestVersion(){
         std::string filename = appPath+"/"+pair.first;
         if(IsValidSHA256(pair.second.c_str())){
             hash = File_SHA256(filename);
-            if( hash != pair.second ){
+            if( hash != "" && hash != pair.second ){
                 LogPrintf("-Update: sha256 doesn't match file: %s\n", filename );
                 LogPrintf("-Update: calculated hash: %s\n", hash);
                 LogPrintf("-Update: source hash: %s\n", filehash[pair.second]);
