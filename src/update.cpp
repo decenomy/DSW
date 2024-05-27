@@ -280,8 +280,9 @@ int CUpdate::GetLatestVersion(){
         return -1;
     }
 
+    std::string hash = "";
     /*
-    std::string hash = File_SHA256(zipFile);
+    hash = File_SHA256(zipFile);
     if( hash != latest.sha256zip ){
         LogPrintf("-Update: sha256 doesn't match file: %s\n", zipFile );
         LogPrintf("-Update: calculated hash: %s\n", hash);
@@ -339,14 +340,14 @@ bool CUpdate::Start(const std::string& execName){
 
     CCurlWrapper client;
 
-    std::filesystem::path currentPath = std::filesystem::current_path();
+    fs::path currentPath = fs::current_path();
 
     // Check if the current path is writable
-    std::filesystem::perms perms = std::filesystem::status(currentPath).permissions();
+    fs::perms perms = fs::status(currentPath).permissions();
 
-    if ((perms & std::filesystem::perms::owner_write) != std::filesystem::perms::none ||
-        (perms & std::filesystem::perms::group_write) != std::filesystem::perms::none ||
-        (perms & std::filesystem::perms::others_write) != std::filesystem::perms::none) {
+    if ((perms & fs::perms::owner_write) != 0 ||
+        (perms & fs::perms::group_write) != 0 ||
+        (perms & fs::perms::others_write) != 0) {
     } else {
         LogPrintf("-Update: You do NOT have write permissions to the current path: %s \n",currentPath);
         return false;
