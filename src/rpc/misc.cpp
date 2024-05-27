@@ -734,11 +734,11 @@ UniValue getstakingstatus(const JSONRPCRequest& request)
     }
 }
 
-UniValue getroi(const JSONRPCRequest& request)
+UniValue getrewardsinfo(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 0) {
         throw std::runtime_error(
-            "getroi\n"
+            "getrewardsinfo\n"
             "\nReturns an object containing ROI information.\n"
 
             "\nResult:\n"
@@ -752,7 +752,7 @@ UniValue getroi(const JSONRPCRequest& request)
             "}\n"
 
             "\nExamples:\n" +
-            HelpExampleCli("getroi", "") + HelpExampleRpc("getroi", ""));
+            HelpExampleCli("getrewardsinfo", "") + HelpExampleRpc("getrewardsinfo", ""));
     }
 
     if (pwalletMain) {
