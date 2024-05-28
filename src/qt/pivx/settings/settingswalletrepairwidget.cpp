@@ -28,13 +28,13 @@ SettingsWalletRepairWidget::SettingsWalletRepairWidget(PIVXGUI* _window, QWidget
     setCssProperty({ui->labelMessageSalvage, ui->labelMessageRescan, ui->labelMessageRecover1,
                     ui->labelMessageRecover2, ui->labelMessageUpgrade, ui->labelMessageRebuild,
                     ui->labelMessageDelete, ui->labelMessageRewind, ui->labelMessageWeekRewind,
-                    ui->labelMessageBootstrap}, "text-main-settings");
+                    ui->labelMessageBootstrap, ui->labelMessageUpdate}, "text-main-settings");
 
     // Buttons
     setCssProperty({ui->pushButtonSalvage, ui->pushButtonRescan, ui->pushButtonRecover1,
                     ui->pushButtonRecover2, ui->pushButtonUpgrade, ui->pushButtonRebuild,
                     ui->pushButtonDelete, ui->pushButtonRewind, ui->pushButtonWeekRewind,
-                  ui->pushButtonBootstrap}, "btn-primary");
+                    ui->pushButtonBootstrap, ui->pushButtonUpdate}, "btn-primary");
 
     // Wallet Repair Buttons
     connect(ui->pushButtonSalvage, &QPushButton::clicked, this, &SettingsWalletRepairWidget::walletSalvage);
@@ -47,6 +47,7 @@ SettingsWalletRepairWidget::SettingsWalletRepairWidget(PIVXGUI* _window, QWidget
     connect(ui->pushButtonRewind, &QPushButton::clicked, this, &SettingsWalletRepairWidget::walletRewind);
     connect(ui->pushButtonWeekRewind, &QPushButton::clicked, this, &SettingsWalletRepairWidget::walletWeekRewind);
     connect(ui->pushButtonBootstrap, &QPushButton::clicked, this, &SettingsWalletRepairWidget::walletBootstrap);
+    connect(ui->pushButtonUpdate, &QPushButton::clicked, this, &SettingsWalletRepairWidget::walletUpdate);
 }
 
 /** Restart wallet with "-salvagewallet" */
