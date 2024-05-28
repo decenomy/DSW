@@ -173,7 +173,7 @@ void SettingsWalletRepairWidget::walletBootstrap()
     buildParameterlist(BOOTSTRAP);
 }
 
-/** Restart wallet with "-bootstrap" */
+/** Restart wallet with "-update" */
 void SettingsWalletRepairWidget::walletUpdate()
 {
     QString updateWarning = tr("This will replace your current release for the latest release.<br /><br />");
