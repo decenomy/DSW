@@ -269,6 +269,11 @@ std::string CCurlWrapper::Request(const std::string& url) {
             curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, requestWriteCallback);
             curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
 
+#if defined(__APPLE__)
+            LogPrintf("CCurlWrapper::%s: apple ca path: %s\n", __func__, (const char*)APPLE_CA_PATH);
+            curl_easy_setopt(curl, CURLOPT_CAINFO, (const char*)APPLE_CA_PATH);
+#endif
+            
             // Set User-Agent header
             curl_version_info_data *info = curl_version_info(CURLVERSION_NOW);
 

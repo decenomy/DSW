@@ -315,10 +315,11 @@ void Shutdown()
 void Restart()
 {
     LogPrintf("%s: In progress..\n", __func__);
-    char exePath[PATH_MAX];
+    
 
 #ifdef _WIN32
-    if (GetModuleFileName(NULL, exePath, PATH_MAX) == 0) {
+    char exePath[MAX_PATH];
+    if (GetModuleFileName(NULL, exePath, MAX_PATH) == 0) {
         LogPrintf("-Restart: Could not obtain the path for the executable: %s\n", strerror(GetLastError()));
         return;
     }
@@ -340,6 +341,7 @@ void Restart()
     exit(0);
 
 #else // Unix-like systems
+    char exePath[PATH_MAX];
     ssize_t count = readlink("/proc/self/exe", exePath, PATH_MAX);
 
     if (count == -1) {
@@ -435,6 +437,7 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-alertnotify=<cmd>", _("Execute command when a relevant alert is received or we see a really long fork (%s in cmd is replaced by message)"));
     strUsage += HelpMessageOpt("-blocknotify=<cmd>", _("Execute command when the best block changes (%s in cmd is replaced by block hash)"));
     strUsage += HelpMessageOpt("-blocksizenotify=<cmd>", _("Execute command when the best block changes and its size is over (%s in cmd is replaced by block hash, %d with the block size)"));
+    strUsage += HelpMessageOpt("-bootstrap", _("Download most recent blockchain and initialize it"));
     strUsage += HelpMessageOpt("-checkblocks=<n>", strprintf(_("How many blocks to check at startup (default: %u, 0 = all)"), DEFAULT_CHECKBLOCKS));
     strUsage += HelpMessageOpt("-conf=<file>", strprintf(_("Specify configuration file (default: %s)"), PIVX_CONF_FILENAME));
     if (mode == HMM_BITCOIND) {
@@ -462,6 +465,7 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-sysperms", _("Create new files with system default permissions, instead of umask 077 (only effective with disabled wallet functionality)"));
 #endif
     strUsage += HelpMessageOpt("-txindex", strprintf(_("Maintain a full transaction index, used by the getrawtransaction rpc call (default: %u)"), DEFAULT_TXINDEX));
+    strUsage += HelpMessageOpt("-update", _("Update wallet for the latest release"));
 
     strUsage += HelpMessageGroup(_("Connection options:"));
     strUsage += HelpMessageOpt("-addnode=<ip>", _("Add a node to connect to and attempt to keep the connection open"));

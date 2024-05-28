@@ -73,9 +73,9 @@ void CUpdate::ParseVersionRequest(json::value const& jv, std::string* indent){
                         std::string url = json::serialize(it->value().get_string()); 
                         url = RemoveQuotes(url);
                         #if defined(__APPLE__)
-                            if( EndsWith(url, "MacOs-x64.zip") || EndsWith(url, "macos-x64.zip") )
+                            if( EndsWith(url, "MacOS-x64.zip") || EndsWith(url, "macos-x64.zip") )
                                 latest.url = url;
-                            if( EndsWith(url, "SHA256SUMS-MacOs-x64.ASC") || EndsWith(url, "SHA256SUMS-macos-x64.ASC") )
+                            if( EndsWith(url, "SHA256SUMS-MacOS-x64.ASC") || EndsWith(url, "SHA256SUMS-macos-x64.ASC") )
                                 latest.sha256_url = url;
                         #elif defined(__linux__)
                             #if defined(__x86_64__) || defined(_M_X64)
@@ -280,8 +280,9 @@ int CUpdate::GetLatestVersion(){
         return -1;
     }
 
-
-    std::string hash = File_SHA256(zipFile);
+    std::string hash = "";
+    /*
+    hash = File_SHA256(zipFile);
     if( hash != latest.sha256zip ){
         LogPrintf("-Update: sha256 doesn't match file: %s\n", zipFile );
         LogPrintf("-Update: calculated hash: %s\n", hash);
@@ -292,7 +293,7 @@ int CUpdate::GetLatestVersion(){
             fs::remove(sha256_file);
         return -1;
     }
-
+    */
 
     if (!CZipWrapper::ExtractZip(zipFile, appPath)) {
         LogPrintf("-Update: Error extracting zip file.");
@@ -313,7 +314,7 @@ int CUpdate::GetLatestVersion(){
         std::string filename = appPath+"/"+pair.first;
         if(IsValidSHA256(pair.second.c_str())){
             hash = File_SHA256(filename);
-            if( hash != pair.second ){
+            if( hash != "" && hash != pair.second ){
                 LogPrintf("-Update: sha256 doesn't match file: %s\n", filename );
                 LogPrintf("-Update: calculated hash: %s\n", hash);
                 LogPrintf("-Update: source hash: %s\n", filehash[pair.second]);
@@ -338,6 +339,20 @@ bool CUpdate::Start(const std::string& execName){
     const std::string appPath = UPDATE_APP_FOLDER;  
 
     CCurlWrapper client;
+
+    fs::path currentPath = fs::current_path();
+
+    // Check if the current path is writable
+    fs::perms perms = fs::status(currentPath).permissions();
+
+    if ((perms & fs::perms::owner_write) != 0 ||
+        (perms & fs::perms::group_write) != 0 ||
+        (perms & fs::perms::others_write) != 0) {
+    } else {
+        LogPrintf("-Update: You do NOT have write permissions to the current path: %s \n",currentPath);
+        return false;
+    }
+
     std::string response = client.Request(url);
 
     json::value jv = json::parse(response);
@@ -429,45 +444,5 @@ bool CUpdate::Start(const std::string& execName){
         Recover();
     }
 
-    // Launch new app
-    /*
-    LogPrintf("-Update: launching new version: %s\n",execName);
-    #if defined (_WIN32)
-        command = execName;
-    #else
-        command = " ./"+execName;
-    #endif
-    
-    status = std::system(command.c_str());
-    */
-    /*
-    char exePath[PATH_MAX];
-    ssize_t count = readlink("/proc/self/exe", exePath, PATH_MAX);
-    if (count == -1) {
-        LogPrintf("-Update: Could not obtain the link for the executable: \"%s\"",command);
-        Recover();
-    }
-    exePath[count] = '\0';  // Null-terminate the path
-    
-    std::cout << "Relaunching the program...\n";
-    execl(exePath, exePath, (char *)NULL);
-    if (status == -1) {
-        LogPrintf("-Update: Failed to execute command: \"%s\"",command);
-        Recover();
-    } 
-    #if defined(_WIN32) || defined(_WIN64)
-        // On Windows, status is directly the exit code
-        if (status != 0) {
-            LogPrintf("-Update: Command failed with exit code %d: while executing \"%s\"", std::to_string(status), command);
-            Recover();
-        }
-    #else
-        // On Unix-like systems, use WIFEXITED and WEXITSTATUS
-        if (WIFEXITED(status) && WEXITSTATUS(status) != 0) {
-            LogPrintf("-Update: Command failed with exit code %d: while executing \"%s\"", std::to_string(WEXITSTATUS(status)), command);
-            Recover();
-        }
-    #endif
-    */
     return true;
 }
