@@ -329,6 +329,7 @@ void Restart()
     if (GetModuleFileName(NULL, exePath, MAX_PATH) == 0) {
         LogPrintf("-Restart: Could not obtain the path for the executable: %s\n", strerror(GetLastError()));
         return;
+    }
 
     LogPrintf("Restarting with executable path: %s\n", exePath);
 
@@ -359,7 +360,7 @@ void Restart()
             }
         } else {
             LogPrintf("-Restart: Could not obtain the link for the executable: %s\n", strerror(errno));
-            return "";
+            return;
         }
     #else
         ssize_t count = readlink("/proc/self/exe", exePath, PATH_MAX);
