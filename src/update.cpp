@@ -350,6 +350,8 @@ bool CUpdate::Start(const std::string& execName){
         (perms & fs::perms::others_write) != 0) {
     } else {
         LogPrintf("-Update: You do NOT have write permissions to the current path: %s \n",currentPath);
+        LogPrintf("-Update: Trying to grant permissions..\n");
+        grantWritePermissions(currentPath);
         return false;
     }
 
