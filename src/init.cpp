@@ -327,16 +327,16 @@ void Restart()
 #ifdef _WIN32
     char exePath[MAX_PATH];
     if (GetModuleFileName(NULL, exePath, MAX_PATH) == 0) {
-        LogPrintf("-Restart: Could not obtain the path for the executable: %s\n", strerror(GetLastError()));
+        LogPrintf("%s: Could not obtain the path for the executable: %s\n", __func__, strerror(GetLastError()));
         return;
     }
 
-    LogPrintf("Restarting with executable path: %s\n", exePath);
+    LogPrintf("%s: restarting with executable path: %s\n", __func__, exePath);
 
     STARTUPINFO si = { sizeof(si) };
     PROCESS_INFORMATION pi;
     if (!CreateProcess(exePath, NULL, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi)) {
-        LogPrintf("-Restart: CreateProcess failed: %s\n", strerror(GetLastError()));
+        LogPrintf("%s: CreateProcess failed: %s\n", __func__, strerror(GetLastError()));
         return;
     }
 
@@ -354,19 +354,19 @@ void Restart()
         _NSGetExecutablePath(nullptr, &size); // Get the buffer size needed
         std::vector<char> buffer(size);
         if (_NSGetExecutablePath(buffer.data(), &size) == 0) {
-            if (realpath(buffer.data(), exePath) != nullptr) {
-                LogPrintf("-Restart: Error getting path for executable \n");
+            if (realpath(buffer.data(), exePath) == nullptr) {
+                LogPrintf("%s: Error getting path for executable \n");
                 return;
             }
         } else {
-            LogPrintf("-Restart: Could not obtain the link for the executable: %s\n", strerror(errno));
+            LogPrintf("%s: Could not obtain the link for the executable: %s\n", __func__, strerror(errno));
             return;
         }
     #else
         ssize_t count = readlink("/proc/self/exe", exePath, PATH_MAX);
         size = count;
         if (count == -1) {
-            LogPrintf("-Restart: Could not obtain the link for the executable: %s\n", strerror(errno));
+            LogPrintf("%s: Could not obtain the link for the executable: %s\n", __func__, strerror(errno));
             return;
         }
     #endif
@@ -375,16 +375,16 @@ void Restart()
     if (size < PATH_MAX) {
         exePath[size] = '\0';
     } else {
-        LogPrintf("-Restart: Path exceeded buffer size.\n");
+        LogPrintf("%s: Path exceeded buffer size.\n", __func__);
         return;
     }
 
-    LogPrintf("Restarting with executable path: %s\n", exePath);
+    LogPrintf("%s: restarting with executable path: %s\n", __func__, exePath);
 
     execl(exePath, exePath, (char *)NULL);
 
     // If execl returns, it must have failed
-    LogPrintf("-Restart: execl failed: %s\n", strerror(errno));
+    LogPrintf("%s: execl failed: %s\n", __func__, strerror(errno));
 #endif
 
 }
