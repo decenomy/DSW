@@ -63,7 +63,7 @@ bool grantWritePermissions(const fs::path& path) {
         LogPrintf("%s: Error granting permissions chmod: %d\n", __func__, new_mode);
     } else {
         LogPrintf("%s: write permissions granted to: %s \n", __func__, path);
-        return true
+        return true;
     }
 #endif
     return false;
