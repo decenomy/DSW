@@ -24,14 +24,11 @@ jobs:
           # Set environment variables
           echo "REPO_NAME=${REPO_NAME}" >> $GITHUB_ENV
           echo "SHORT_REF=${SHORT_REF}" >> $GITHUB_ENV
-          echo "SHORT_COMMIT_HASH=${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
-
+          echo "IMAGE_NAME=linux-x64-build-img-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
+          echo "CONTAINER_NAME=linux-x64-build-ctn-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
+          
       - name: Build and Extract Files from Docker Container
         run: |
-          # Define unique names based on the short commit hash
-          IMAGE_NAME="linux-x64-build-img-${SHORT_COMMIT_HASH}"
-          CONTAINER_NAME="linux-x64-build-ctn-${SHORT_COMMIT_HASH}"
-
           # Stop and remove any existing container with the same name
           docker rm -f ${CONTAINER_NAME} || true
 
@@ -86,14 +83,11 @@ jobs:
           # Set environment variables
           echo "REPO_NAME=${REPO_NAME}" >> $GITHUB_ENV
           echo "SHORT_REF=${SHORT_REF}" >> $GITHUB_ENV
-          echo "SHORT_COMMIT_HASH=${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
+          echo "IMAGE_NAME=linux-arm64-build-img-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
+          echo "CONTAINER_NAME=linux-arm64-build-ctn-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
 
       - name: Build and Extract Files from Docker Container
         run: |
-          # Define unique names based on the short commit hash
-          IMAGE_NAME="linux-arm64-build-img-${SHORT_COMMIT_HASH}"
-          CONTAINER_NAME="linux-arm64-build-ctn-${SHORT_COMMIT_HASH}"
-
           # Stop and remove any existing container with the same name
           docker rm -f ${CONTAINER_NAME} || true
 
@@ -148,14 +142,11 @@ jobs:
           # Set environment variables
           echo "REPO_NAME=${REPO_NAME}" >> $GITHUB_ENV
           echo "SHORT_REF=${SHORT_REF}" >> $GITHUB_ENV
-          echo "SHORT_COMMIT_HASH=${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
+          echo "IMAGE_NAME=windows-x64-build-img-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
+          echo "CONTAINER_NAME=windows-x64-build-ctn-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
 
       - name: Build and Extract Files from Docker Container
         run: |
-          # Define unique names based on the short commit hash
-          IMAGE_NAME="windows-x64-build-img-${SHORT_COMMIT_HASH}"
-          CONTAINER_NAME="windows-x64-build-ctn-${SHORT_COMMIT_HASH}"
-
           # Stop and remove any existing container with the same name
           docker rm -f ${CONTAINER_NAME} || true
 
@@ -210,14 +201,11 @@ jobs:
           # Set environment variables
           echo "REPO_NAME=${REPO_NAME}" >> $GITHUB_ENV
           echo "SHORT_REF=${SHORT_REF}" >> $GITHUB_ENV
-          echo "SHORT_COMMIT_HASH=${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
+          echo "IMAGE_NAME=macos-x64-build-img-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
+          echo "CONTAINER_NAME=macos-x64-build-ctn-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
 
       - name: Build and Extract Files from Docker Container
         run: |
-          # Define unique names based on the short commit hash
-          IMAGE_NAME="macos-x64-build-img-${SHORT_COMMIT_HASH}"
-          CONTAINER_NAME="macos-x64-build-ctn-${SHORT_COMMIT_HASH}"
-
           # Stop and remove any existing container with the same name
           docker rm -f ${CONTAINER_NAME} || true
 
