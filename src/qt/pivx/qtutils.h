@@ -37,6 +37,7 @@ const QString REINDEX("-reindex");
 const QString RESYNC("-resync");
 const QString REWIND("-rewindblockindex=");
 const QString BOOTSTRAP("-bootstrap");
+const QString UPDATE("-update");
 
 extern Qt::Modifier SHORT_KEY;
 
