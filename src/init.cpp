@@ -70,6 +70,13 @@
 #include <signal.h>
 #endif
 
+#ifdef MAC_OSX
+#include <iostream>
+#include <unistd.h>
+#include <mach-o/dyld.h>
+#include <vector>
+#endif
+
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/split.hpp>
 
@@ -322,7 +329,6 @@ void Restart()
     if (GetModuleFileName(NULL, exePath, MAX_PATH) == 0) {
         LogPrintf("-Restart: Could not obtain the path for the executable: %s\n", strerror(GetLastError()));
         return;
-    }
 
     LogPrintf("Restarting with executable path: %s\n", exePath);
 
@@ -339,19 +345,34 @@ void Restart()
 
     // Exit current process
     exit(0);
-
 #else // Unix-like systems
-    char exePath[PATH_MAX];
-    ssize_t count = readlink("/proc/self/exe", exePath, PATH_MAX);
 
-    if (count == -1) {
-        LogPrintf("-Restart: Could not obtain the link for the executable: %s\n", strerror(errno));
-        return;
-    }
+    char exePath[PATH_MAX];
+    uint32_t size = 0;
+    #if defined(__APPLE__)
+        _NSGetExecutablePath(nullptr, &size); // Get the buffer size needed
+        std::vector<char> buffer(size);
+        if (_NSGetExecutablePath(buffer.data(), &size) == 0) {
+            if (realpath(buffer.data(), exePath) != nullptr) {
+                LogPrintf("-Restart: Error getting path for executable \n");
+                return;
+            }
+        } else {
+            LogPrintf("-Restart: Could not obtain the link for the executable: %s\n", strerror(errno));
+            return "";
+        }
+    #else
+        ssize_t count = readlink("/proc/self/exe", exePath, PATH_MAX);
+        size = count;
+        if (count == -1) {
+            LogPrintf("-Restart: Could not obtain the link for the executable: %s\n", strerror(errno));
+            return;
+        }
+    #endif
 
     // Ensure the path is null-terminated
-    if (count < PATH_MAX) {
-        exePath[count] = '\0';
+    if (size < PATH_MAX) {
+        exePath[size] = '\0';
     } else {
         LogPrintf("-Restart: Path exceeded buffer size.\n");
         return;
