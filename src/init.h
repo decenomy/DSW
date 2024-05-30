@@ -30,7 +30,8 @@ bool ShutdownRequested();
 /** Interrupt threads */
 void Interrupt();
 void Shutdown();
-void Restart();
+std::string getExePath();
+void Restart(const char* exePath);
 void PrepareShutdown();
 //!Initialize the logging infrastructure
 void InitLogging();
