@@ -39,6 +39,7 @@ public Q_SLOTS:
     void walletRewind();
     void walletWeekRewind();
     void walletBootstrap();
+    void walletUpdate();
 
 private:
     Ui::SettingsWalletRepairWidget *ui;
