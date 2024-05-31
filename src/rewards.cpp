@@ -278,7 +278,7 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
             const auto nCirculatingTargetEmission = ((nCirculatingSupply / (365LL * nBlocksPerDay)) / 1000000) * nCirculatingEmissionRate * nRewardAdjustmentInterval;
             oss << "nCirculatingTargetEmission: " << FormatMoney(nCirculatingTargetEmission) << std::endl;
             const auto nTargetEmission = 
-                params.IsTestNet() && nHeight >= 1330000 ?
+                params.IsTestNet() && nHeight >= 1350000 ?
                 (nSupplyTargetEmission + nCirculatingTargetEmission) / 2LL :
                 std::max(nSupplyTargetEmission, nCirculatingTargetEmission);
             oss << "nTargetEmission: " << FormatMoney(nTargetEmission) << std::endl;
