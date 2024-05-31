@@ -358,7 +358,7 @@ std::string getExePath(){
         exePath[size] = '\0';
     } else {
         LogPrintf("%s: Path exceeded buffer size.\n", __func__);
-        return;
+        return "";
     }
 
     LogPrintf("%s: restarting with executable path: %s\n", __func__, exePath);
