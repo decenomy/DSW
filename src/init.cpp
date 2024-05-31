@@ -321,16 +321,17 @@ void Shutdown()
 
 std::string getExePath(){
 
-    char exePath[MAX_PATH];
-
+    std::string path = "";
 #ifdef _WIN32
+    char exePath[MAX_PATH];
     if (GetModuleFileName(NULL, exePath, MAX_PATH) == 0) {
         LogPrintf("%s: Could not obtain the path for the executable: %s\n", __func__, strerror(GetLastError()));
         return "";
     }
+    path = std::string(exePath);
     
 #else // Unix-like systems
-
+    char exePath[PATH_MAX];
     uint32_t size = 0;
     #if defined(__APPLE__)
         _NSGetExecutablePath(nullptr, &size); // Get the buffer size needed
@@ -362,10 +363,10 @@ std::string getExePath(){
     }
 
     LogPrintf("%s: restarting with executable path: %s\n", __func__, exePath);
-
+    path = std::string(exePath);
 #endif
 
-    return std::string(exePath);
+    return path;
 }
 
 void Restart(const char* exePath)
