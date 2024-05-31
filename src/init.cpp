@@ -319,35 +319,18 @@ void Shutdown()
     LogPrintf("%s: done\n", __func__);
 }
 
-void Restart()
-{
-    LogPrintf("%s: In progress..\n", __func__);
-    
+std::string getExePath(){
 
+    std::string path = "";
 #ifdef _WIN32
     char exePath[MAX_PATH];
     if (GetModuleFileName(NULL, exePath, MAX_PATH) == 0) {
         LogPrintf("%s: Could not obtain the path for the executable: %s\n", __func__, strerror(GetLastError()));
-        return;
+        return "";
     }
-
-    LogPrintf("%s: restarting with executable path: %s\n", __func__, exePath);
-
-    STARTUPINFO si = { sizeof(si) };
-    PROCESS_INFORMATION pi;
-    if (!CreateProcess(exePath, NULL, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi)) {
-        LogPrintf("%s: CreateProcess failed: %s\n", __func__, strerror(GetLastError()));
-        return;
-    }
-
-    // Close handles of the created process
-    CloseHandle(pi.hProcess);
-    CloseHandle(pi.hThread);
-
-    // Exit current process
-    exit(0);
+    path = std::string(exePath);
+    
 #else // Unix-like systems
-
     char exePath[PATH_MAX];
     uint32_t size = 0;
     #if defined(__APPLE__)
@@ -356,18 +339,18 @@ void Restart()
         if (_NSGetExecutablePath(buffer.data(), &size) == 0) {
             if (realpath(buffer.data(), exePath) == nullptr) {
                 LogPrintf("%s: Error getting path for executable \n");
-                return;
+                return "";
             }
         } else {
             LogPrintf("%s: Could not obtain the link for the executable: %s\n", __func__, strerror(errno));
-            return;
+            return "";
         }
     #else
         ssize_t count = readlink("/proc/self/exe", exePath, PATH_MAX);
         size = count;
         if (count == -1) {
             LogPrintf("%s: Could not obtain the link for the executable: %s\n", __func__, strerror(errno));
-            return;
+            return "";
         }
     #endif
 
@@ -376,17 +359,43 @@ void Restart()
         exePath[size] = '\0';
     } else {
         LogPrintf("%s: Path exceeded buffer size.\n", __func__);
-        return;
+        return "";
     }
 
     LogPrintf("%s: restarting with executable path: %s\n", __func__, exePath);
+    path = std::string(exePath);
+#endif
+
+    return path;
+}
+
+void Restart(const char* exePath)
+{
+    LogPrintf("%s: In progress..\n", __func__);
+    LogPrintf("%s: restarting with executable path: %s\n", __func__, exePath);
+
+#ifdef _WIN32
+        STARTUPINFO si = { sizeof(si) };
+        PROCESS_INFORMATION pi;
+        if (!CreateProcess(exePath, NULL, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi)) {
+            LogPrintf("%s: CreateProcess failed: %s\n", __func__, strerror(GetLastError()));
+            return;
+        }
+
+        // Close handles of the created process
+        CloseHandle(pi.hProcess);
+        CloseHandle(pi.hThread);
+
+        // Exit current process
+        exit(0);
+#else // Unix-like systems
 
     execl(exePath, exePath, (char *)NULL);
 
     // If execl returns, it must have failed
     LogPrintf("%s: execl failed: %s\n", __func__, strerror(errno));
-#endif
 
+#endif
 }
 
 /**
@@ -1347,14 +1356,17 @@ bool AppInit2()
             uiInterface.InitMessage(_("Preparing for update..."));
 
             try {
-
+                std::string exePath = getExePath();
+                if(exePath == ""){
+                    return UIError(_("Unable to obtain executable path. Update will be canceled !!"));
+                }
                 std::string program = GetArg("program","");
                 if (!CUpdate::Start(program)) {
                     return UIError(_("Unable to update app. See debug log for details."));
                 }else{
                     Interrupt();
                     PrepareShutdown();
-                    Restart();
+                    Restart(exePath.c_str());
                     LogPrintf("Error restarting program..");
                     exit(0);
                 }
