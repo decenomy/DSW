@@ -279,8 +279,10 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
             oss << "nStakedCoins: " << FormatMoney(nStakedCoins) << std::endl;
 
             // Remove the staked supply from circulating supply
-            nCirculatingSupply = std::max(nCirculatingSupply - nStakedCoins, CAmount(0));
-            oss << "nCirculatingSupply without staked coins: " << FormatMoney(nCirculatingSupply) << std::endl;
+            if(params.IsTestNet() && nHeight >= 1350000) {
+                nCirculatingSupply = std::max(nCirculatingSupply - nStakedCoins, CAmount(0));
+                oss << "nCirculatingSupply without staked coins: " << FormatMoney(nCirculatingSupply) << std::endl;
+            }
 
             // calculate target emissions
             const auto nTotalEmissionRate = sporkManager.GetSporkValue(SPORK_116_TOT_SPLY_TRGT_EMISSION);
