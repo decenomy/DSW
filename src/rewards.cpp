@@ -264,7 +264,7 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
             }
             oss << "nCirculatingSupply: " << FormatMoney(nCirculatingSupply) << std::endl;
 
-            // calculate the epoch's average
+            // calculate the epoch's average staking power
             const auto nRewardAdjustmentInterval = consensus.nRewardAdjustmentInterval;
             oss << "nRewardAdjustmentInterval: " << nRewardAdjustmentInterval << std::endl;
             const auto nTimeSlotLength = consensus.TimeSlotLength(nHeight);
