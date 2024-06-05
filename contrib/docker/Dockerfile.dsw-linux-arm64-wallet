@@ -1,5 +1,5 @@
 # FROM decenomy/dsw-linux-arm64-builder:latest
-FROM decenomy/dsw-linux-arm64-builder@sha256:ff64795ac415846c3576ba98526266ec0cf8c9810c695e2644f460f6070de678
+FROM decenomy/dsw-linux-arm64-builder@sha256:33f849b0d55eedd0f3d971d790a0fe008b4efa92066362f2f9eb4bed3bfb4ecb
 
 # ARG for specifying the number of cores
 ARG CPU_CORES=1
@@ -18,9 +18,11 @@ fi
 # Switch to the repository directory
 WORKDIR /$TICKER
 
-# Check out a specific version if needed
-RUN git checkout -B $TARGET
-RUN git pull origin $TARGET
+# Check out the $TARGET
+RUN git stash --include-untracked && \
+    git fetch --all && \
+    (git checkout $TARGET || git checkout -B $TARGET) && \
+    (git reset --hard origin/$TARGET || git reset --hard $TARGET)
 
 # Run Git commands to extract the timestamps
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y-%m-%d %H:%M:%S" > /git_timestamp
@@ -63,6 +65,7 @@ RUN cp src/$(echo $BASE_NAME)d src/$(echo $BASE_NAME)-cli src/$(echo $BASE_NAME)
 RUN find /$TICKER/deploy/linux-arm64 -type f -exec touch -t $(cat /git_timestamp_touch) {} +
 WORKDIR /$TICKER/deploy/linux-arm64
 RUN PATH=${WRAP_DIR}:${PATH} zip -X $TICKER-$(cat /wallet_version)-Linux-arm64.zip $(echo $BASE_NAME)d $(echo $BASE_NAME)-cli $(echo $BASE_NAME)-tx $(echo $BASE_NAME)-qt
+RUN echo "$(git rev-parse HEAD)                          commit" >> SHA256SUMS-Linux-arm64.ASC
 RUN sha256sum $(echo $BASE_NAME)d >> SHA256SUMS-Linux-arm64.ASC
 RUN sha256sum $(echo $BASE_NAME)-cli >> SHA256SUMS-Linux-arm64.ASC
 RUN sha256sum $(echo $BASE_NAME)-tx >> SHA256SUMS-Linux-arm64.ASC

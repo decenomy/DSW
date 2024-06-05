@@ -89,6 +89,7 @@ HEADERS += src/activemasternode.h \
            src/keepass.h \
            src/key.h \
            src/keystore.h \
+           src/curl.h \
            src/leveldbwrapper.h \
            src/limitedmap.h \
            src/main.h \
@@ -129,6 +130,7 @@ HEADERS += src/activemasternode.h \
            src/utilstrencodings.h \
            src/utiltime.h \
            src/version.h \
+           src/zip.h \
            src/wallet.h \
            src/wallet_ismine.h \
            src/walletdb.h \
@@ -340,7 +342,7 @@ HEADERS += src/activemasternode.h \
            src/qt/intro.moc \
            src/qt/overviewpage.moc \
            src/qt/rpcconsole.moc \
-           src/secp256k1/src/secp256k1.c
+           src/secp256k1/src/secp256k1.c 
 FORMS += src/qt/forms/addressbookpage.ui \
          src/qt/forms/askpassphrasedialog.ui \
          src/qt/forms/coincontroldialog.ui \

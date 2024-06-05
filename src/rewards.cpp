@@ -12,6 +12,7 @@
 #include "sqlite3/sqlite3.h"
 #include "timedata.h"
 #include "utilmoneystr.h"
+#include "utiltime.h"
 
 #include <algorithm>
 #include <cstdio>
@@ -29,107 +30,130 @@ bool CRewards::Init(bool fReindex)
     std::ostringstream oss;
     auto ok = true;
 
-    try
-    {
-        const std::string dirname = (GetDataDir() / "chainstate").string();
-        const std::string filename = (GetDataDir() / "chainstate" / "rewards.db").string();
-
-        // Create the chainstate directory if it doesn't exist
-        if (!fs::exists(dirname.c_str())) {
-            // Directory doesn't exist, create it
-            if (fs::create_directory(dirname.c_str())) {
-                oss << "CRewards::" << __func__ << " Created directory: " << dirname << std::endl;
-            } else {
-                oss << "CRewards::" << __func__ << " Failed to create directory: " << dirname << std::endl;
-                ok = false;
-            }
-        }
-
-        // Delete the database file if it exists when reindexing
-        if(ok && fReindex) 
+    if(db == nullptr) {
+        try
         {
-            if (auto file = std::fopen(filename.c_str(), "r")) {
-                std::fclose(file);
-                // File exists, delete it
-                if (std::remove(filename.c_str()) == 0) {
-                    oss << "CRewards::" << __func__ << " Deleted existing database file: " << filename << std::endl;
+            const std::string dirname = (GetDataDir() / "chainstate").string();
+            const std::string filename = (GetDataDir() / "chainstate" / "rewards.db").string();
+
+            // Create the chainstate directory if it doesn't exist
+            if (!fs::exists(dirname.c_str())) {
+                // Directory doesn't exist, create it
+                if (fs::create_directory(dirname.c_str())) {
+                    oss << "Created directory: " << dirname << std::endl;
                 } else {
-                    oss << "CRewards::" << __func__ << " Failed to delete existing database file: " << filename << std::endl;
+                    oss << "Failed to create directory: " << dirname << std::endl;
                     ok = false;
                 }
             }
-        }
 
-        if(ok) { // Create and/or open the database
-            oss << "CRewards::" << __func__ << " Opening database: " << filename << std::endl;
-            auto rc = sqlite3_open(filename.c_str(), &db);
-
-            if (rc) 
+            // Delete the database file if it exists when reindexing
+            if(ok && fReindex) 
             {
-                oss << "CRewards::" << __func__ << " Can't open database: " << sqlite3_errmsg(db) << std::endl;
-                ok = false;
+                if (auto file = std::fopen(filename.c_str(), "r")) {
+                    std::fclose(file);
+                    // File exists, delete it
+                    if (std::remove(filename.c_str()) == 0) {
+                        oss << "Deleted existing database file: " << filename << std::endl;
+                    } else {
+                        oss << "Failed to delete existing database file: " << filename << std::endl;
+                        ok = false;
+                    }
+                }
+            }
+
+            if(ok) { // Create and/or open the database
+                // the wallet sometimes restarts
+                // and the restart starts by spawnning a new wallet instance
+                // before the current instance closes
+                // so let's try to open it several times before giving up
+                for (auto attempt = 1; attempt <= DB_OPEN_ATTEMPTS; attempt++) { 
+                    oss << "Opening database: " << filename << std::endl;
+                    auto rc = sqlite3_open(filename.c_str(), &db);
+
+                    if (rc) { // NOK
+                        if(attempt < DB_OPEN_ATTEMPTS) {
+                            MilliSleep(DB_OPEN_WAITING_TIME);
+                        } else {
+                            oss << "Can't open database: " << sqlite3_errmsg(db) << std::endl;
+                            ok = false;
+                            break; // giving up
+                        }
+                    } else {
+                        break; // all good
+                    }
+                }
+            }
+
+            if(ok) { // database is open and working
+                // Create the rewards table if not exists
+                const auto create_table_query = "CREATE TABLE IF NOT EXISTS rewards (height INT PRIMARY KEY, amount INTEGER)";
+                auto rc = sqlite3_exec(db, create_table_query, NULL, NULL, NULL);
+
+                if (rc != SQLITE_OK) {
+                    oss << "SQL error: " << sqlite3_errmsg(db) << std::endl;
+                    ok = false;
+                }
+            }
+
+            if(ok) { // Create insert statement
+                const std::string insertSql = "INSERT OR REPLACE INTO rewards (height, amount) VALUES (?, ?)";
+                auto rc = sqlite3_prepare_v2(db, insertSql.c_str(), insertSql.length(), &insertStmt, nullptr);
+                if (rc != SQLITE_OK) {
+                    oss << "SQL error: " << sqlite3_errmsg(db) << std::endl;
+                    ok = false;
+                }
+            }
+
+            if(ok) { // Create delete statement
+                const std::string deleteSql = "DELETE FROM rewards WHERE height >= ?";
+                auto rc = sqlite3_prepare_v2(db, deleteSql.c_str(), deleteSql.length(), &deleteStmt, nullptr);
+                if (rc != SQLITE_OK) {
+                    oss << "SQL error: " << sqlite3_errmsg(db) << std::endl;
+                    ok = false;
+                }
+            }
+
+            if(ok) { // Loads the database into the in-memory map
+                const char* sql = "SELECT height, amount FROM rewards";
+                auto rc = sqlite3_exec(db, sql, [](void* data, int argc, char** argv, char** /* azColName */) -> int {
+                    int height = std::stoi(argv[0]);
+                    CAmount amount = std::stoll(argv[1]);
+                    mDynamicRewards[height] = amount;
+                    return 0;
+                }, nullptr, nullptr);
+
+                if (rc != SQLITE_OK) {
+                    oss << "SQL error: " << sqlite3_errmsg(db) << std::endl;
+                    ok = false;
+                }
+            }
+
+            if(ok && mDynamicRewards.size() > 0) { // Printing the map
+                oss << "Dynamic Rewards:" << std::endl;
+                for (const auto& pair : mDynamicRewards) {
+                    oss << "Height: " << pair.first << ", Amount: " << FormatMoney(pair.second) << std::endl;
+                }
             }
         }
-
-        if(ok) { // database is open and working
-            // Create the rewards table if not exists
-            const auto create_table_query = "CREATE TABLE IF NOT EXISTS rewards (height INT PRIMARY KEY, amount INTEGER)";
-            auto rc = sqlite3_exec(db, create_table_query, NULL, NULL, NULL);
-
-            if (rc != SQLITE_OK) {
-                oss << "CRewards::" << __func__ << " SQL error: " << sqlite3_errmsg(db) << std::endl;
-                ok = false;
-            }
+        catch(const std::exception& e)
+        {
+            oss << "An exception was thrown: " << e.what() << std::endl;
+            ok = false;
         }
+    } else {
+        oss << "Already initialized" << std::endl;
+    }
 
-        if(ok) { // Create insert statement
-            const std::string insertSql = "INSERT OR REPLACE INTO rewards (height, amount) VALUES (?, ?)";
-            auto rc = sqlite3_prepare_v2(db, insertSql.c_str(), insertSql.length(), &insertStmt, nullptr);
-            if (rc != SQLITE_OK) {
-                oss << "CRewards::" << __func__ << " SQL error: " << sqlite3_errmsg(db) << std::endl;
-                ok = false;
-            }
-        }
-
-        if(ok) { // Create delete statement
-            const std::string deleteSql = "DELETE FROM rewards WHERE height >= ?";
-            auto rc = sqlite3_prepare_v2(db, deleteSql.c_str(), deleteSql.length(), &deleteStmt, nullptr);
-            if (rc != SQLITE_OK) {
-                oss << "CRewards::" << __func__ << " SQL error: " << sqlite3_errmsg(db) << std::endl;
-                ok = false;
-            }
-        }
-
-        if(ok) { // Loads the database into the in-memory map
-            const char* sql = "SELECT height, amount FROM rewards";
-            auto rc = sqlite3_exec(db, sql, [](void* data, int argc, char** argv, char** /* azColName */) -> int {
-                int height = std::stoi(argv[0]);
-                CAmount amount = std::stoll(argv[1]);
-                mDynamicRewards[height] = amount;
-                return 0;
-            }, nullptr, nullptr);
-
-            if (rc != SQLITE_OK) {
-                oss << "CRewards::" << __func__ <<  " SQL error: " << sqlite3_errmsg(db) << std::endl;
-                ok = false;
-            }
-        }
-
-        if(ok && mDynamicRewards.size() > 0) { // Printing the map
-            oss << "CRewards::" << __func__ <<  " Dynamic Rewards:" << std::endl;
-            for (const auto& pair : mDynamicRewards) {
-                oss << "CRewards::" << __func__ <<  " Height: " << pair.first << ", Amount: " << FormatMoney(pair.second) << std::endl;
-            }
+    std::string log = oss.str();
+    if (!log.empty()) {
+        std::istringstream iss(log);
+        std::string line;
+        while (std::getline(iss, line)) {
+            LogPrintf("CRewards::%s: %s\n", __func__, line);
         }
     }
-    catch(const std::exception& e)
-    {
-        oss << "CRewards::" << __func__ << " An exception was thrown: " << e.what() << std::endl;
-        ok = false;
-    }
-
-    if (!oss.str().empty()) LogPrintf("%s: %s", __func__, oss.str());
-    
+        
     return ok;
 }
 
@@ -163,7 +187,8 @@ bool CRewards::IsDynamicRewardsEpochHeight(int nHeight)
 
 bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCache& coins)
 {
-    auto& consensus = Params().GetConsensus();
+    auto& params = Params();
+    auto& consensus = params.GetConsensus();
     const auto nHeight = pindex->nHeight;
     const auto nEpochHeight = GetDynamicRewardsEpochHeight(nHeight);
     std::ostringstream oss;
@@ -183,7 +208,7 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
 
             // get total money supply
             const auto nMoneySupply = pindex->nMoneySupply.get();
-            oss << "CRewards::" << __func__ << " nMoneySupply: " << FormatMoney(nMoneySupply) << std::endl;
+            oss << "nMoneySupply: " << FormatMoney(nMoneySupply) << std::endl;
 
             // get the current masternode collateral, and the next week collateral
             auto nCollateralAmount = CMasternode::GetMasternodeNodeCollateral(nHeight);
@@ -220,7 +245,7 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
 
                     // ----------- UTXOs age related scanning -----------
                     auto nBlocksDiff = static_cast<int64_t>(nHeight - coin.nHeight);
-                    const auto nMultiplier = 100000000L;
+                    const auto nMultiplier = 100000000LL;
 
                     // y = mx + b 
                     // 3 months old or less => 100%
@@ -232,47 +257,67 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
                             0LL), 
                         100LL);
 
-                    nCirculatingSupply += coin.out.nValue * nSupplyWeightRatio / 100L;
+                    nCirculatingSupply += coin.out.nValue * nSupplyWeightRatio / 100LL;
                 }
 
                 pcursor->Next();
             }
-            oss << "CRewards::" << __func__ << " nCirculatingSupply: " << FormatMoney(nCirculatingSupply) << std::endl;
+            oss << "nCirculatingSupply: " << FormatMoney(nCirculatingSupply) << std::endl;
+
+            // calculate the epoch's average staking power
+            const auto nRewardAdjustmentInterval = consensus.nRewardAdjustmentInterval;
+            oss << "nRewardAdjustmentInterval: " << nRewardAdjustmentInterval << std::endl;
+            const auto nTimeSlotLength = consensus.TimeSlotLength(nHeight);
+            oss << "nTimeSlotLength: " << nTimeSlotLength << std::endl;
+            const auto endBlock = chainActive.Tip();
+            const auto startBlock = chainActive[endBlock->nHeight - std::min(nRewardAdjustmentInterval, endBlock->nHeight)];
+            const auto nTimeDiff = endBlock->GetBlockTime() - startBlock->GetBlockTime();
+            const auto nWorkDiff = endBlock->nChainWork - startBlock->nChainWork;
+            const auto nNetworkHashPS = static_cast<int64_t>(nWorkDiff.getdouble() / nTimeDiff);
+            oss << "nNetworkHashPS: " << nNetworkHashPS << std::endl;
+            const auto nStakedCoins = static_cast<CAmount>(nNetworkHashPS * nTimeSlotLength * 100);
+            oss << "nStakedCoins: " << FormatMoney(nStakedCoins) << std::endl;
+
+            // Remove the staked supply from circulating supply
+            nCirculatingSupply = std::max(nCirculatingSupply - nStakedCoins, CAmount(0));
+            oss << "nCirculatingSupply without staked coins: " << FormatMoney(nCirculatingSupply) << std::endl;
 
             // calculate target emissions
-            const auto nRewardAdjustmentInterval = consensus.nRewardAdjustmentInterval;
-            oss << "CRewards::" << __func__ << " nRewardAdjustmentInterval: " << nRewardAdjustmentInterval << std::endl;
             const auto nTotalEmissionRate = sporkManager.GetSporkValue(SPORK_116_TOT_SPLY_TRGT_EMISSION);
-            oss << "CRewards::" << __func__ << " nTotalEmissionRate: " << nTotalEmissionRate << std::endl;
+            oss << "nTotalEmissionRate: " << nTotalEmissionRate << std::endl;
             const auto nCirculatingEmissionRate = sporkManager.GetSporkValue(SPORK_117_CIRC_SPLY_TRGT_EMISSION);
-            oss << "CRewards::" << __func__ << " nCirculatingEmissionRate: " << nCirculatingEmissionRate << std::endl;
+            oss << "nCirculatingEmissionRate: " << nCirculatingEmissionRate << std::endl;
             const auto nActualEmission = nSubsidy * nRewardAdjustmentInterval;
-            oss << "CRewards::" << __func__ << " nActualEmission: " << FormatMoney(nActualEmission) << std::endl;
-            const auto nSupplyTargetEmission = ((nMoneySupply / (365L * nBlocksPerDay)) / 1000000) * nTotalEmissionRate * nRewardAdjustmentInterval;
-            oss << "CRewards::" << __func__ << " nSupplyTargetEmission: " << FormatMoney(nSupplyTargetEmission) << std::endl;
-            const auto nCirculatingTargetEmission = ((nCirculatingSupply / (365L * nBlocksPerDay)) / 1000000) * nCirculatingEmissionRate * nRewardAdjustmentInterval;
-            oss << "CRewards::" << __func__ << " nCirculatingTargetEmission: " << FormatMoney(nCirculatingTargetEmission) << std::endl;
+            oss << "nActualEmission: " << FormatMoney(nActualEmission) << std::endl;
+            const auto nSupplyTargetEmission = ((nMoneySupply / (365LL * nBlocksPerDay)) / 1000000) * nTotalEmissionRate * nRewardAdjustmentInterval;
+            oss << "nSupplyTargetEmission: " << FormatMoney(nSupplyTargetEmission) << std::endl;
+            const auto nCirculatingTargetEmission = ((nCirculatingSupply / (365LL * nBlocksPerDay)) / 1000000) * nCirculatingEmissionRate * nRewardAdjustmentInterval;
+            oss << "nCirculatingTargetEmission: " << FormatMoney(nCirculatingTargetEmission) << std::endl;
+            const auto nTargetEmission = (nSupplyTargetEmission + nCirculatingTargetEmission) / 2LL;
+            oss << "nTargetEmission: " << FormatMoney(nTargetEmission) << std::endl;
 
             // calculate required delta values
-            const auto nDelta = (nActualEmission - std::max(nSupplyTargetEmission, nCirculatingTargetEmission)) / nRewardAdjustmentInterval;
-            oss << "CRewards::" << __func__ << " nDelta: " << FormatMoney(nDelta) << std::endl;
+            const auto nDelta = (nActualEmission - nTargetEmission) / nRewardAdjustmentInterval;
+            oss << "nDelta: " << FormatMoney(nDelta) << std::endl;
             
             // y = mx + b
             // <= 0% |ratio| => 1%
             // >= 100% |ratio| => 10%
             
             const auto nRatio = std::llabs((nDelta * 100) / nSubsidy); // percentage of the difference on emissions and the current reward 
-            oss << "CRewards::" << __func__ << " nRatio: " << nRatio << std::endl;
+            oss << "nRatio: " << nRatio << std::endl;
 
             const auto nWeightRatio = ((std::min(nRatio, 100LL) * 9LL) / 100LL) + 1LL;
 
             const auto nDampedDelta = nDelta * nWeightRatio / 100LL;
-            oss << "CRewards::" << __func__ << " nDampedDelta: " << FormatMoney(nDampedDelta) << std::endl;
+            oss << "nDampedDelta: " << FormatMoney(nDampedDelta) << std::endl;
 
             // adjust the reward for this epoch
-            nNewSubsidy = ((nSubsidy - nDampedDelta) / COIN) * COIN;
+            nNewSubsidy = nSubsidy - nDampedDelta;
+            // removes decimal places
+            nNewSubsidy = (nNewSubsidy / COIN) * COIN;
 
-            oss << "CRewards::" << __func__ << " Adjustment at height " << nHeight << ": " << FormatMoney(nSubsidy) << " => " << FormatMoney(nNewSubsidy) << std::endl;
+            oss << "Adjustment at height " << nHeight << ": " << FormatMoney(nSubsidy) << " => " << FormatMoney(nNewSubsidy) << std::endl;
         }
 
         if ( // if the wallet is syncing get the reward value from the blocks of the epoch
@@ -290,14 +335,21 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
             sqlite3_bind_int64(insertStmt, 2, nNewSubsidy);
             auto rc = sqlite3_step(insertStmt);
             if (rc != SQLITE_DONE) {
-                oss << "CRewards::" << __func__ <<  " SQL error: " << sqlite3_errmsg(db) << std::endl;
+                oss << "SQL error: " << sqlite3_errmsg(db) << std::endl;
                 ok = false;
             }
             sqlite3_reset(insertStmt);
         }
     }
 
-    if (!oss.str().empty()) LogPrintf("%s: %s", __func__, oss.str());
+    std::string log = oss.str();
+    if (!log.empty()) {
+        std::istringstream iss(log);
+        std::string line;
+        while (std::getline(iss, line)) {
+            LogPrintf("CRewards::%s: %s\n", __func__, line);
+        }
+    }
 
     return ok;
 }
@@ -322,7 +374,7 @@ bool CRewards::DisconnectBlock(CBlockIndex* pindex)
                 sqlite3_bind_int(deleteStmt, 1, nHeight); // on the file database
                 auto rc = sqlite3_step(deleteStmt);
                 if (rc != SQLITE_DONE) {
-                    oss << "CRewards::" << __func__ <<  " SQL error: " << sqlite3_errmsg(db) << std::endl;
+                    oss << "SQL error: " << sqlite3_errmsg(db) << std::endl;
                     ok = false;
                 }
                 sqlite3_reset(deleteStmt);
@@ -331,11 +383,18 @@ bool CRewards::DisconnectBlock(CBlockIndex* pindex)
     } 
     catch(const std::exception& e)
     {
-        oss << "CRewards::" << __func__ << " An exception was thrown: " << e.what() << std::endl;
+        oss << "An exception was thrown: " << e.what() << std::endl;
         ok = false;
     }
 
-    if (!oss.str().empty()) LogPrintf("%s: %s", __func__, oss.str());
+    std::string log = oss.str();
+    if (!log.empty()) {
+        std::istringstream iss(log);
+        std::string line;
+        while (std::getline(iss, line)) {
+            LogPrintf("CRewards::%s: %s\n", __func__, line);
+        }
+    }
     
     return ok;
 }

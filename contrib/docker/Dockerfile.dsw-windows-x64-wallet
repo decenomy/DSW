@@ -1,5 +1,5 @@
 #FROM decenomy/dsw-windows-x64-builder:latest
-FROM decenomy/dsw-windows-x64-builder@sha256:c5102edf92fba810de6596cc9593729b79ab00ca8d88656d4613a3cfa1fecf78
+FROM decenomy/dsw-windows-x64-builder@sha256:3bbdc2380c3e0c7409fe4dc54ad6f99d53fc1110d9f9a236d6e78a79e7067ccb
 
 # ARG for specifying the number of cores
 ARG CPU_CORES=1
@@ -18,9 +18,11 @@ fi
 # Switch to the repository directory
 WORKDIR /$TICKER
 
-# Check out a specific version if needed
-RUN git checkout -B $TARGET
-RUN git pull origin $TARGET
+# Check out the $TARGET
+RUN git stash --include-untracked && \
+    git fetch --all && \
+    (git checkout $TARGET || git checkout -B $TARGET) && \
+    (git reset --hard origin/$TARGET || git reset --hard $TARGET)
 
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y-%m-%d %H:%M:%S" > /git_timestamp
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y%m%d%H%M.%S" > /git_timestamp_touch
@@ -75,6 +77,7 @@ RUN PATH=${WRAP_DIR}:${PATH} zip -X $TICKER-$(cat /wallet_version)-Windows-x64.z
     $(echo $BASE_NAME)-tx.exe \
     $(echo $BASE_NAME)-qt.exe
 
+RUN echo "$(git rev-parse HEAD)                          commit" >> SHA256SUMS-Windows-x64.ASC
 RUN sha256sum $(echo $BASE_NAME)d.exe >> SHA256SUMS-Windows-x64.ASC
 RUN sha256sum $(echo $BASE_NAME)-cli.exe >> SHA256SUMS-Windows-x64.ASC
 RUN sha256sum $(echo $BASE_NAME)-tx.exe >> SHA256SUMS-Windows-x64.ASC

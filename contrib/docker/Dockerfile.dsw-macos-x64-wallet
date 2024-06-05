@@ -1,5 +1,5 @@
 #FROM decenomy/dsw-macos-x64-builder:latest
-FROM decenomy/dsw-macos-x64-builder@sha256:395f7c9cc2ec9767674c0a226ca86855253f8558f94e367d02cfff45fa909f94
+FROM decenomy/dsw-macos-x64-builder@sha256:3977226e7d631af8f65d2d1903c34bf7452f359e76a0ee14e8f72a1feb3de40c
 
 # ARG for specifying the number of cores
 ARG CPU_CORES=1
@@ -18,9 +18,11 @@ fi
 # Switch to the repository directory
 WORKDIR /$TICKER
 
-# Check out a specific version if needed
-RUN git checkout -B $TARGET
-RUN git pull origin $TARGET
+# Check out the $TARGET
+RUN git stash --include-untracked && \
+    git fetch --all && \
+    (git checkout $TARGET || git checkout -B $TARGET) && \
+    (git reset --hard origin/$TARGET || git reset --hard $TARGET)
 
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y-%m-%d %H:%M:%S" > /git_timestamp
 RUN git log -1 --format="%at" | xargs -I{} date -d @{} "+%Y%m%d%H%M.%S" > /git_timestamp_touch
@@ -65,6 +67,7 @@ RUN cp src/$(echo $BASE_NAME)d src/$(echo $BASE_NAME)-cli src/$(echo $BASE_NAME)
 RUN find /$TICKER/deploy/macos-x64 -type f -exec touch -t $(cat /git_timestamp_touch) {} +
 WORKDIR /$TICKER/deploy/macos-x64
 RUN PATH=${WRAP_DIR}:${PATH} zip -X $TICKER-$(cat /wallet_version)-MacOS-x64.zip $(echo $BASE_NAME)d $(echo $BASE_NAME)-cli $(echo $BASE_NAME)-tx $(echo $BASE_NAME)-qt $(echo $NAME)-Core.dmg
+RUN echo "$(git rev-parse HEAD)                          commit" >> SHA256SUMS-MacOS-x64.ASC
 RUN sha256sum $(echo $BASE_NAME)d >> SHA256SUMS-MacOS-x64.ASC
 RUN sha256sum $(echo $BASE_NAME)-cli >> SHA256SUMS-MacOS-x64.ASC
 RUN sha256sum $(echo $BASE_NAME)-tx >> SHA256SUMS-MacOS-x64.ASC

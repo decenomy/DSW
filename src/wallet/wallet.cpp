@@ -3238,7 +3238,7 @@ bool CWallet::LoadDestData(const CTxDestination& dest, const std::string& key, c
 void CWallet::AutoCombineDust(CConnman* connman)
 {
     LOCK2(cs_main, cs_wallet);
-    const CBlockIndex* tip = chainActive.Tip();
+    const auto tip = chainActive.Tip();
     if (tip->nTime < (GetAdjustedTime() - 300) || IsLocked()) {
         return;
     }
@@ -3252,7 +3252,7 @@ void CWallet::AutoCombineDust(CConnman* connman)
     std::map<CTxDestination, std::vector<COutput> > mapCoinsByAddress = AvailableCoinsByAddress(true, adjustedAutoCombineThreshold);
 
     //coins are sectioned by address. This combination code only wants to combine inputs that belong to the same address
-    for (std::map<CTxDestination, std::vector<COutput> >::iterator it = mapCoinsByAddress.begin(); it != mapCoinsByAddress.end(); it++) {
+    for (auto it = mapCoinsByAddress.begin(); it != mapCoinsByAddress.end(); it++) {
         std::vector<COutput> vCoins, vRewardCoins;
         vCoins = it->second;
 

@@ -209,8 +209,11 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
     // Collect memory pool transactions into the block
     CAmount nFees = 0;
 
+    LOCK(cs_main);
+
     {
-        LOCK2(cs_main, mempool.cs);
+        LOCK(mempool.cs);
+
         CCoinsViewCache view(pcoinsTip);
 
         // Priority order to process transactions
@@ -408,13 +411,13 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
                 return nullptr;
             }
         }
+    }
 
-        CValidationState state;
-        if (!TestBlockValidity(state, *pblock, pindexPrev, false, false)) {
-            LogPrintf("CreateNewBlock() : TestBlockValidity failed\n");
-            mempool.clear();
-            return nullptr;
-        }
+    CValidationState state;
+    if (!TestBlockValidity(state, *pblock, pindexPrev, false, false)) {
+        LogPrintf("CreateNewBlock() : TestBlockValidity failed\n");
+        mempool.clear();
+        return nullptr;
     }
 
     return pblocktemplate.release();
