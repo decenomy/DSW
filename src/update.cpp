@@ -351,7 +351,7 @@ bool CUpdate::Start(const std::string& execName){
     } else {
         LogPrintf("-Update: You do NOT have write permissions to the current path: %s \n",currentPath);
         LogPrintf("-Update: Trying to grant permissions..\n");
-        uiInterface.InitMessage(_("User doesn't have permissions for current folder: %s \n",path));
+        uiInterface.InitMessage(_("User doesn't have permissions for current folder"));
         if(!grantWritePermissions(currentPath)){    
             uiInterface.InitMessage(_("Couldn't grant permissions for current folder"));
             return false;
