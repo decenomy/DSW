@@ -11,6 +11,8 @@ ARG NAME=Kyanite
 ARG BASE_NAME=kyanite
 ARG TARGET=master
 
+RUN sleep 30
+
 # Clone the repository
 RUN if [ ! -d $TICKER ]; then \
   git clone https://github.com/decenomy/$TICKER; \
