@@ -353,7 +353,7 @@ bool CUpdate::Start(const std::string& execName){
         LogPrintf("-Update: Trying to grant permissions..\n");
         uiInterface.InitMessage(_("User doesn't have permissions for current folder: %s \n",path));
         if(!grantWritePermissions(currentPath)){    
-            UIError(_("Couldn't grant permissions for current folder: %s \n",currentPath));
+            uiInterface.InitMessage(_("Couldn't grant permissions for current folder"));
             return false;
         }
     }
@@ -370,7 +370,7 @@ bool CUpdate::Start(const std::string& execName){
     LogPrintf("-Update: remote version: %d\n",version);
     if(false && version <= CLIENT_VERSION){
         LogPrintf("-Update: current version is the most recent\n");
-        uiInterface.InitMessage(_("Current version is the most recent",path));
+        uiInterface.InitMessage(_("Current version is the most recent"));
         return false;
     }
     // --- ----- ---
@@ -448,7 +448,7 @@ bool CUpdate::Start(const std::string& execName){
     int status = std::system(command.c_str());
     if (status != 0) {
         LogPrintf("-Update: Failed to change file permission: %s\n",execName);
-        uiInterface.InitMessage(_("Failed to change file permission: %s \n",execName));
+        uiInterface.InitMessage(_("Failed to change file permission"));
         Recover();
     }
 
