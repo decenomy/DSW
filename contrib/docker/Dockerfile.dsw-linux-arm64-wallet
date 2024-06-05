@@ -10,6 +10,8 @@ ARG NAME=__Decenomy__
 ARG BASE_NAME=__decenomy__
 ARG TARGET=master
 
+RUN sleep 30
+
 # Clone the repository
 RUN if [ ! -d $TICKER ]; then \
   git clone https://github.com/decenomy/$TICKER; \
