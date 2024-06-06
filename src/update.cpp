@@ -215,13 +215,14 @@ bool CUpdate::Recover(){
 int CUpdate::GetLatestVersion(){
     
     CCurlWrapper client;
-    const std::string zipFile = UPDATE_ZIP_FOLDER;
-    const std::string appPath = UPDATE_APP_FOLDER;  
+    fs::path currPath = fs::current_path();
+    const std::string zipFile = currPath.string() + "/" + UPDATE_ZIP_FOLDER;
+    const std::string appPath = currPath.string() + "/" + UPDATE_APP_FOLDER;  
 
     LogPrintf("-Update: get latest version from: %s\n", latest.url);
 
     if(latest.url.empty()){
-        LogPrintf("-Update: No valid url to downloading new version");
+        LogPrintf("-Update: No valid url to download new version");
         return -1;
     }
     if (!client.DownloadFile(latest.url, zipFile, CUpdate::progressCallback)) {
@@ -342,6 +343,7 @@ bool CUpdate::Start(const std::string& execName){
 
     fs::path currentPath = fs::current_path();
 
+
     // Check if the current path is writable
     fs::perms perms = fs::status(currentPath).permissions();
 
@@ -376,7 +378,7 @@ bool CUpdate::Start(const std::string& execName){
     // --- ----- ---
 
     // --- Get latest version ---
-    LogPrintf("-Update: updating app to version.. \n");
+    LogPrintf("-Update: updating app to version.. %s \n",version);
     if(GetLatestVersion()<0){
         LogPrintf("-Update: couldn't update for the new app\n");
         uiInterface.InitMessage(_("Couldn't get the latest version"));
