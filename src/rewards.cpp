@@ -264,9 +264,25 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
             }
             oss << "nCirculatingSupply: " << FormatMoney(nCirculatingSupply) << std::endl;
 
-            // calculate target emissions
+            // calculate the epoch's average staking power
             const auto nRewardAdjustmentInterval = consensus.nRewardAdjustmentInterval;
             oss << "nRewardAdjustmentInterval: " << nRewardAdjustmentInterval << std::endl;
+            const auto nTimeSlotLength = consensus.TimeSlotLength(nHeight);
+            oss << "nTimeSlotLength: " << nTimeSlotLength << std::endl;
+            const auto endBlock = chainActive.Tip();
+            const auto startBlock = chainActive[endBlock->nHeight - std::min(nRewardAdjustmentInterval, endBlock->nHeight)];
+            const auto nTimeDiff = endBlock->GetBlockTime() - startBlock->GetBlockTime();
+            const auto nWorkDiff = endBlock->nChainWork - startBlock->nChainWork;
+            const auto nNetworkHashPS = static_cast<int64_t>(nWorkDiff.getdouble() / nTimeDiff);
+            oss << "nNetworkHashPS: " << nNetworkHashPS << std::endl;
+            const auto nStakedCoins = static_cast<CAmount>(nNetworkHashPS * nTimeSlotLength * 100);
+            oss << "nStakedCoins: " << FormatMoney(nStakedCoins) << std::endl;
+
+            // Remove the staked supply from circulating supply
+            nCirculatingSupply = std::max(nCirculatingSupply - nStakedCoins, CAmount(0));
+            oss << "nCirculatingSupply without staked coins: " << FormatMoney(nCirculatingSupply) << std::endl;
+
+            // calculate target emissions
             const auto nTotalEmissionRate = sporkManager.GetSporkValue(SPORK_116_TOT_SPLY_TRGT_EMISSION);
             oss << "nTotalEmissionRate: " << nTotalEmissionRate << std::endl;
             const auto nCirculatingEmissionRate = sporkManager.GetSporkValue(SPORK_117_CIRC_SPLY_TRGT_EMISSION);

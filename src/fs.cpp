@@ -29,7 +29,7 @@ namespace fsbridge {
 
 } // fsbridge
 
-bool grantWritePermissions(const fs::path& path) {
+bool GrantWritePermissions(const fs::path& path) {
 
 #ifdef _WIN32
     try {

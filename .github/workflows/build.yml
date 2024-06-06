@@ -19,6 +19,19 @@ jobs:
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
           # Get the short name of the ref (strip 'refs/heads/', 'refs/tags/', etc.)
           SHORT_REF=${GITHUB_REF##*/}
+          # Get the short commit hash
+          SHORT_COMMIT_HASH=$(git rev-parse --short HEAD)
+          # Set environment variables
+          echo "REPO_NAME=${REPO_NAME}" >> $GITHUB_ENV
+          echo "SHORT_REF=${SHORT_REF}" >> $GITHUB_ENV
+          echo "IMAGE_NAME=linux-x64-build-img-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
+          echo "CONTAINER_NAME=linux-x64-build-ctn-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
+          
+      - name: Build and Extract Files from Docker Container
+        run: |
+          # Stop and remove any existing container with the same name
+          docker rm -f ${CONTAINER_NAME} || true
+
           # Build the Docker image from the Dockerfile in the repository
           docker buildx build \
             --no-cache \
@@ -27,7 +40,7 @@ jobs:
             --build-arg NAME=Kyanite \
             --build-arg BASE_NAME=kyanite \
             --build-arg TARGET=$SHORT_REF \
-            -t linux-x64-build-img \
+            -t ${IMAGE_NAME} \
             -f contrib/docker/Dockerfile.dsw-linux-x64-wallet .
 
           # Start the container (if it's not already running)
@@ -57,6 +70,19 @@ jobs:
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
           # Get the short name of the ref (strip 'refs/heads/', 'refs/tags/', etc.)
           SHORT_REF=${GITHUB_REF##*/}
+          # Get the short commit hash
+          SHORT_COMMIT_HASH=$(git rev-parse --short HEAD)
+          # Set environment variables
+          echo "REPO_NAME=${REPO_NAME}" >> $GITHUB_ENV
+          echo "SHORT_REF=${SHORT_REF}" >> $GITHUB_ENV
+          echo "IMAGE_NAME=linux-arm64-build-img-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
+          echo "CONTAINER_NAME=linux-arm64-build-ctn-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
+
+      - name: Build and Extract Files from Docker Container
+        run: |
+          # Stop and remove any existing container with the same name
+          docker rm -f ${CONTAINER_NAME} || true
+
           # Build the Docker image from the Dockerfile in the repository
           docker buildx build \
             --no-cache \
@@ -65,7 +91,7 @@ jobs:
             --build-arg NAME=Kyanite \
             --build-arg BASE_NAME=kyanite \
             --build-arg TARGET=$SHORT_REF \
-            -t linux-arm64-build-img \
+            -t ${IMAGE_NAME} \
             -f contrib/docker/Dockerfile.dsw-linux-arm64-wallet .
 
           # Start the container (if it's not already running)
@@ -95,6 +121,19 @@ jobs:
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
           # Get the short name of the ref (strip 'refs/heads/', 'refs/tags/', etc.)
           SHORT_REF=${GITHUB_REF##*/}
+          # Get the short commit hash
+          SHORT_COMMIT_HASH=$(git rev-parse --short HEAD)
+          # Set environment variables
+          echo "REPO_NAME=${REPO_NAME}" >> $GITHUB_ENV
+          echo "SHORT_REF=${SHORT_REF}" >> $GITHUB_ENV
+          echo "IMAGE_NAME=windows-x64-build-img-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
+          echo "CONTAINER_NAME=windows-x64-build-ctn-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
+
+      - name: Build and Extract Files from Docker Container
+        run: |
+          # Stop and remove any existing container with the same name
+          docker rm -f ${CONTAINER_NAME} || true
+
           # Build the Docker image from the Dockerfile in the repository
           docker buildx build \
             --no-cache \
@@ -103,7 +142,7 @@ jobs:
             --build-arg NAME=Kyanite \
             --build-arg BASE_NAME=kyanite \
             --build-arg TARGET=$SHORT_REF \
-            -t windows-x64-build-img \
+            -t ${IMAGE_NAME} \
             -f contrib/docker/Dockerfile.dsw-windows-x64-wallet .
 
           # Start the container (if it's not already running)
@@ -133,6 +172,19 @@ jobs:
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
           # Get the short name of the ref (strip 'refs/heads/', 'refs/tags/', etc.)
           SHORT_REF=${GITHUB_REF##*/}
+          # Get the short commit hash
+          SHORT_COMMIT_HASH=$(git rev-parse --short HEAD)
+          # Set environment variables
+          echo "REPO_NAME=${REPO_NAME}" >> $GITHUB_ENV
+          echo "SHORT_REF=${SHORT_REF}" >> $GITHUB_ENV
+          echo "IMAGE_NAME=macos-x64-build-img-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
+          echo "CONTAINER_NAME=macos-x64-build-ctn-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
+
+      - name: Build and Extract Files from Docker Container
+        run: |
+          # Stop and remove any existing container with the same name
+          docker rm -f ${CONTAINER_NAME} || true
+
           # Build the Docker image from the Dockerfile in the repository
           docker buildx build \
             --no-cache \
@@ -141,7 +193,7 @@ jobs:
             --build-arg NAME=Kyanite \
             --build-arg BASE_NAME=kyanite \
             --build-arg TARGET=$SHORT_REF \
-            -t macos-x64-build-img \
+            -t ${IMAGE_NAME} \
             -f contrib/docker/Dockerfile.dsw-macos-x64-wallet .
 
           # Start the container (if it's not already running)

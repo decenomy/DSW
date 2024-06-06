@@ -1158,10 +1158,6 @@ bool AppInit2()
 
     fReindex = GetBoolArg("-reindex", false);
 
-    // Initialize dynamic rewards
-    if(!CRewards::Init(fReindex)) 
-        return false;
-
     // Initialize elliptic curve code
     RandomInit();
     ECC_Start();
@@ -1384,6 +1380,10 @@ bool AppInit2()
 
     }  // (!fDisableWallet)
 #endif // ENABLE_WALLET
+
+    // Initialize dynamic rewards
+    if(!CRewards::Init(fReindex)) 
+        return false;
 
     // ********************************************************* Step 6: network initialization
 
