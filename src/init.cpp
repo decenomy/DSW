@@ -47,6 +47,7 @@
 #include "torcontrol.h"
 #include "guiinterface.h"
 #include "guiinterfaceutil.h"
+#include "update.h"
 #include "util.h"
 #include "utilmoneystr.h"
 #include "util/threadnames.h"
@@ -67,6 +68,13 @@
 
 #ifndef WIN32
 #include <signal.h>
+#endif
+
+#ifdef MAC_OSX
+#include <iostream>
+#include <unistd.h>
+#include <mach-o/dyld.h>
+#include <vector>
 #endif
 
 #include <boost/algorithm/string.hpp>
@@ -311,6 +319,85 @@ void Shutdown()
     LogPrintf("%s: done\n", __func__);
 }
 
+std::string getExePath(){
+
+    std::string path = "";
+#ifdef _WIN32
+    char exePath[MAX_PATH];
+    if (GetModuleFileName(NULL, exePath, MAX_PATH) == 0) {
+        LogPrintf("%s: Could not obtain the path for the executable: %s\n", __func__, strerror(GetLastError()));
+        return "";
+    }
+    path = std::string(exePath);
+    
+#else // Unix-like systems
+    char exePath[PATH_MAX];
+    uint32_t size = 0;
+    #if defined(__APPLE__)
+        _NSGetExecutablePath(nullptr, &size); // Get the buffer size needed
+        std::vector<char> buffer(size);
+        if (_NSGetExecutablePath(buffer.data(), &size) == 0) {
+            if (realpath(buffer.data(), exePath) == nullptr) {
+                LogPrintf("%s: Error getting path for executable \n");
+                return "";
+            }
+        } else {
+            LogPrintf("%s: Could not obtain the link for the executable: %s\n", __func__, strerror(errno));
+            return "";
+        }
+    #else
+        ssize_t count = readlink("/proc/self/exe", exePath, PATH_MAX);
+        size = count;
+        if (count == -1) {
+            LogPrintf("%s: Could not obtain the link for the executable: %s\n", __func__, strerror(errno));
+            return "";
+        }
+    #endif
+
+    // Ensure the path is null-terminated
+    if (size < PATH_MAX) {
+        exePath[size] = '\0';
+    } else {
+        LogPrintf("%s: Path exceeded buffer size.\n", __func__);
+        return "";
+    }
+
+    LogPrintf("%s: restarting with executable path: %s\n", __func__, exePath);
+    path = std::string(exePath);
+#endif
+
+    return path;
+}
+
+void Restart(const char* exePath)
+{
+    LogPrintf("%s: In progress..\n", __func__);
+    LogPrintf("%s: restarting with executable path: %s\n", __func__, exePath);
+
+#ifdef _WIN32
+        STARTUPINFO si = { sizeof(si) };
+        PROCESS_INFORMATION pi;
+        if (!CreateProcess(exePath, NULL, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi)) {
+            LogPrintf("%s: CreateProcess failed: %s\n", __func__, strerror(GetLastError()));
+            return;
+        }
+
+        // Close handles of the created process
+        CloseHandle(pi.hProcess);
+        CloseHandle(pi.hThread);
+
+        // Exit current process
+        exit(0);
+#else // Unix-like systems
+
+    execl(exePath, exePath, (char *)NULL);
+
+    // If execl returns, it must have failed
+    LogPrintf("%s: execl failed: %s\n", __func__, strerror(errno));
+
+#endif
+}
+
 /**
  * Signal handlers are very limited in what they are allowed to do, so:
  */
@@ -381,6 +468,7 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-alertnotify=<cmd>", _("Execute command when a relevant alert is received or we see a really long fork (%s in cmd is replaced by message)"));
     strUsage += HelpMessageOpt("-blocknotify=<cmd>", _("Execute command when the best block changes (%s in cmd is replaced by block hash)"));
     strUsage += HelpMessageOpt("-blocksizenotify=<cmd>", _("Execute command when the best block changes and its size is over (%s in cmd is replaced by block hash, %d with the block size)"));
+    strUsage += HelpMessageOpt("-bootstrap", _("Download most recent blockchain and initialize it"));
     strUsage += HelpMessageOpt("-checkblocks=<n>", strprintf(_("How many blocks to check at startup (default: %u, 0 = all)"), DEFAULT_CHECKBLOCKS));
     strUsage += HelpMessageOpt("-conf=<file>", strprintf(_("Specify configuration file (default: %s)"), PIVX_CONF_FILENAME));
     if (mode == HMM_BITCOIND) {
@@ -408,6 +496,7 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-sysperms", _("Create new files with system default permissions, instead of umask 077 (only effective with disabled wallet functionality)"));
 #endif
     strUsage += HelpMessageOpt("-txindex", strprintf(_("Maintain a full transaction index, used by the getrawtransaction rpc call (default: %u)"), DEFAULT_TXINDEX));
+    strUsage += HelpMessageOpt("-update", _("Update wallet for the latest release"));
 
     strUsage += HelpMessageGroup(_("Connection options:"));
     strUsage += HelpMessageOpt("-addnode=<ip>", _("Add a node to connect to and attempt to keep the connection open"));
@@ -1252,6 +1341,35 @@ bool AppInit2()
             } catch (const std::exception& e) {
                 uiInterface.ThreadSafeMessageBox(_("Error downloading and applying the bootstrap file, shutting down."), "", CClientUIInterface::MSG_ERROR);
                 LogPrintf("Error downloading and applying the bootstrap file: %s\n", e.what());
+                return false;
+            }
+        }
+#endif
+
+#ifdef ENABLE_UPDATE
+        if (GetBoolArg("-update", false) ) {
+
+            uiInterface.InitMessage(_("Preparing for update..."));
+
+            try {
+                std::string exePath = getExePath();
+                if(exePath == ""){
+                    return UIError(_("Unable to obtain executable path. Update will be canceled !!"));
+                }
+                std::string program = GetArg("program","");
+                if (!CUpdate::Start(program)) {
+                    return UIError(_("Unable to update app. See debug log for details."));
+                }else{
+                    Interrupt();
+                    PrepareShutdown();
+                    Restart(exePath.c_str());
+                    LogPrintf("Error restarting program..");
+                    exit(0);
+                }
+
+            } catch (const std::exception& e) {
+                uiInterface.ThreadSafeMessageBox(_("Error updating app, shutting down."), "", CClientUIInterface::MSG_ERROR);
+                LogPrintf("Error updating app: %s\n", e.what());
                 return false;
             }
         }

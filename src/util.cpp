@@ -184,6 +184,9 @@ void ParseParameters(int argc, const char* const argv[])
     mapArgs.clear();
     mapMultiArgs.clear();
 
+    std::string program(argv[0]);
+    mapArgs["program"] = program;
+    
     for (int i = 1; i < argc; i++) {
         std::string str(argv[i]);
         std::string strValue;
@@ -701,4 +704,53 @@ std::string GetReadableHashRate(uint64_t hashrate)
     // Return formatted number with suffix
     ss << std::setprecision(3) << std::fixed << readable << suffix;
     return ss.str();
+}
+
+std::string RemoveQuotes(const std::string& str) {
+    std::string result = str;
+    
+    // Check if the string starts with a double quote
+    if (!result.empty() && result.front() == '"') {
+        result.erase(0, 1); // Erase the first character
+    }
+    
+    // Check if the string ends with a double quote
+    if (!result.empty() && result.back() == '"') {
+        result.pop_back(); // Remove the last character
+    }
+
+    return result;
+}
+
+bool EndsWith(const std::string& fullString, const std::string& ending) {
+    if (fullString.length() >= ending.length()) {
+        return (fullString.compare(fullString.length() - ending.length(), ending.length(), ending) == 0);
+    } else {
+        return false;
+    }
+}
+
+std::string StringToHex(const std::string& input) {
+    std::string hex;
+    for (char c : input) {
+        hex += "0123456789ABCDEF"[((unsigned char)c) >> 4];
+        hex += "0123456789ABCDEF"[((unsigned char)c) & 0xf];
+    }
+    return hex;
+}
+
+bool IsValidSHA256(const char *hash) {
+    // SHA-256 hashes are 64 characters long
+    if (strlen(hash) != 64) {
+        return false;
+    }
+
+    // Check if all characters are valid hexadecimal characters
+    for (int i = 0; i < 64; i++) {
+        if (!isxdigit(hash[i])) {
+            return false;
+        }
+    }
+
+    return true;
 }

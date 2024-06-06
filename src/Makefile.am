@@ -193,6 +193,7 @@ BITCOIN_CORE_H = \
   uint512.h \
   blob_uint256.h \
   undo.h \
+  update.h \
   util/memory.h \
   util.h \
   util/macros.h \
@@ -266,6 +267,7 @@ libbitcoin_server_a_SOURCES = \
   minizip/ioapi.c \
   minizip/unzip.c \
   sqlite3/sqlite3.c \
+  update.cpp \
   $(BITCOIN_CORE_H)
 
 if ENABLE_ZMQ
