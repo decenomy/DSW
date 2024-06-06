@@ -178,10 +178,10 @@ bool CCurlWrapper::DownloadFile(
             fs::remove(filename);
 
         // Try to set permissions
-        if(!GrantWritePermissions(fs:current_path())){
+        if(!GrantWritePermissions(fs::current_path())){
             LogPrintf(
             "CCurlWrapper::%s: Couldn't grant permissions for folder: %s\n", 
-            __func__,destPath.string());
+            __func__,fs::current_path().string());
             return false;
         }
 
