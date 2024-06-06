@@ -319,7 +319,7 @@ void Shutdown()
     LogPrintf("%s: done\n", __func__);
 }
 
-std::string getExePath(){
+std::string GetExePath(){
 
     std::string path = "";
 #ifdef _WIN32
@@ -1352,10 +1352,22 @@ bool AppInit2()
             uiInterface.InitMessage(_("Preparing for update..."));
 
             try {
-                std::string exePath = getExePath();
+                std::string exePath = GetExePath();
                 if(exePath == ""){
                     return UIError(_("Unable to obtain executable path. Update will be canceled !!"));
                 }
+#if defined(__APPLE__)
+                fs::path workDir = fs::path(exePath).parent_path();
+                try {
+                    // Change the current working directory
+                    fs::current_path(workDir);
+                    // Verify the change
+                    fs::path currentDir = fs::current_path();
+                    LogPrintf("Current directory: %s\n",currentDir.string());
+                } catch (const fs::filesystem_error& e) {
+                    LogPrintf("Error changing directory: %s\n",e.what());
+                }
+#endif
                 std::string program = GetArg("program","");
                 if (!CUpdate::Start(program)) {
                     return UIError(_("Unable to update app. See debug log for details."));
