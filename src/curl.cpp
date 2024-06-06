@@ -174,20 +174,15 @@ bool CCurlWrapper::DownloadFile(
             __func__,
             url);
 
-        fs::path destPath = fsPath(filename);
-        fs::perms perms = fs::status(destPath).permissions();
+        if(fs::exists(filename))
+            fs::remove(filename);
 
-        if ((perms & fs::perms::owner_write) == fs::perms::none) {
+        // Try to set permissions
+        if(!GrantWritePermissions(fs:current_path())){
             LogPrintf(
-                "CCurlWrapper::%s: No write permissions for owner in: %s\n", 
-                __func__, destPath.string());
-            // Try to set permissions
-            if(!GrantWritePermissions(destPath)){
-                LogPrintf(
-                "CCurlWrapper::%s: Couldn't grant permissions for current folder\n", 
-                __func__);
-                return false;
-            }
+            "CCurlWrapper::%s: Couldn't grant permissions for folder: %s\n", 
+            __func__,destPath.string());
+            return false;
         }
 
         // Creates and open the destination file
