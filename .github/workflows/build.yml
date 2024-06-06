@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-files-linux-x64:
-    runs-on: ubuntu-22.04
+    runs-on: [self-hosted, Linux, X64]
 
     steps:
       - name: Checkout Repository
@@ -44,21 +44,29 @@ jobs:
             -f contrib/docker/Dockerfile.dsw-linux-x64-wallet .
 
           # Start the container (if it's not already running)
-          docker run -d --name linux-x64-build-ctn linux-x64-build-img
+          docker run -d --name ${CONTAINER_NAME} ${IMAGE_NAME}
 
           # Create a temporary directory to hold the extracted files
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp linux-x64-build-ctn:/$REPO_NAME/deploy/linux-x64 release_files/
+          docker cp ${CONTAINER_NAME}:/$REPO_NAME/deploy/linux-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v4
         with:
           name: release-artifacts-linux-x64
           path: release_files
+
+      - name: Cleanup Docker container and image
+        run: |
+          # Stop and remove the Docker container
+          docker rm -f ${CONTAINER_NAME}
+          # Remove the Docker image
+          docker rmi ${IMAGE_NAME}
+
   build-files-linux-arm64:
-    runs-on: ubuntu-22.04
+    runs-on: [self-hosted, Linux, X64]
 
     steps:
       - name: Checkout Repository
@@ -95,21 +103,29 @@ jobs:
             -f contrib/docker/Dockerfile.dsw-linux-arm64-wallet .
 
           # Start the container (if it's not already running)
-          docker run -d --name linux-arm64-build-ctn linux-arm64-build-img
+          docker run -d --name ${CONTAINER_NAME} ${IMAGE_NAME}
 
           # Create a temporary directory to hold the extracted files
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp linux-arm64-build-ctn:/$REPO_NAME/deploy/linux-arm64 release_files/
+          docker cp ${CONTAINER_NAME}:/$REPO_NAME/deploy/linux-arm64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v4
         with:
           name: release-artifacts-linux-arm64
           path: release_files
+
+      - name: Cleanup Docker container and image
+        run: |
+          # Stop and remove the Docker container
+          docker rm -f ${CONTAINER_NAME}
+          # Remove the Docker image
+          docker rmi ${IMAGE_NAME}
+
   build-windows-x64:
-    runs-on: ubuntu-22.04
+    runs-on: [self-hosted, Linux, X64]
 
     steps:
       - name: Checkout Repository
@@ -146,21 +162,29 @@ jobs:
             -f contrib/docker/Dockerfile.dsw-windows-x64-wallet .
 
           # Start the container (if it's not already running)
-          docker run -d --name windows-x64-build-ctn windows-x64-build-img
+          docker run -d --name ${CONTAINER_NAME} ${IMAGE_NAME}
 
           # Create a temporary directory to hold the extracted files
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp windows-x64-build-ctn:/$REPO_NAME/deploy/windows-x64 release_files/
+          docker cp ${CONTAINER_NAME}:/$REPO_NAME/deploy/windows-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v4
         with:
           name: release-artifacts-windows-x64
           path: release_files
+
+      - name: Cleanup Docker container and image
+        run: |
+          # Stop and remove the Docker container
+          docker rm -f ${CONTAINER_NAME}
+          # Remove the Docker image
+          docker rmi ${IMAGE_NAME}
+
   build-macos-x64:
-    runs-on: ubuntu-22.04
+    runs-on: [self-hosted, Linux, X64]
 
     steps:
       - name: Checkout Repository
@@ -197,16 +221,23 @@ jobs:
             -f contrib/docker/Dockerfile.dsw-macos-x64-wallet .
 
           # Start the container (if it's not already running)
-          docker run -d --name macos-x64-build-ctn macos-x64-build-img
+          docker run -d --name ${CONTAINER_NAME} ${IMAGE_NAME}
 
           # Create a temporary directory to hold the extracted files
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp macos-x64-build-ctn:/$REPO_NAME/deploy/macos-x64 release_files/
+          docker cp ${CONTAINER_NAME}:/$REPO_NAME/deploy/macos-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v4
         with:
           name: release-artifacts-macos-x64
           path: release_files
+
+      - name: Cleanup Docker container and image
+        run: |
+          # Stop and remove the Docker container
+          docker rm -f ${CONTAINER_NAME}
+          # Remove the Docker image
+          docker rmi ${IMAGE_NAME}
