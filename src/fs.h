@@ -27,6 +27,6 @@ namespace fsbridge {
 };
 
 std::string File_SHA256(const std::string& path);
-bool grantWritePermissions(const fs::path& path);
+bool GrantWritePermissions(const fs::path& path);
 
 #endif

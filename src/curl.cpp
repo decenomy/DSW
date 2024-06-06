@@ -6,8 +6,12 @@
 
 #include "init.h"
 #include "logging.h"
+#include "fs.h"
 
 #include <openssl/md5.h>
+#include <boost/filesystem.hpp>
+
+namespace fs = boost::filesystem;
 
 // Callback function to write downloaded data to a file
 size_t downloadWriteCallback(void* data, size_t size, size_t nmemb, void* clientp)
@@ -169,6 +173,22 @@ bool CCurlWrapper::DownloadFile(
             "CCurlWrapper::%s: Downloading from %s\n", 
             __func__,
             url);
+
+        fs::path destPath = fsPath(filename);
+        fs::perms perms = fs::status(destPath).permissions();
+
+        if ((perms & fs::perms::owner_write) == fs::perms::none) {
+            LogPrintf(
+                "CCurlWrapper::%s: No write permissions for owner in: %s\n", 
+                __func__, destPath.string());
+            // Try to set permissions
+            if(!GrantWritePermissions(destPath)){
+                LogPrintf(
+                "CCurlWrapper::%s: Couldn't grant permissions for current folder\n", 
+                __func__);
+                return false;
+            }
+        }
 
         // Creates and open the destination file
         std::ofstream outputFile(filename, std::ios::binary);

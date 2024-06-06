@@ -215,9 +215,8 @@ bool CUpdate::Recover(){
 int CUpdate::GetLatestVersion(){
     
     CCurlWrapper client;
-    fs::path currPath = fs::current_path();
-    const std::string zipFile = currPath.string() + "/" + UPDATE_ZIP_FOLDER;
-    const std::string appPath = currPath.string() + "/" + UPDATE_APP_FOLDER;  
+    const std::string zipFile = UPDATE_ZIP_FOLDER;
+    const std::string appPath = UPDATE_APP_FOLDER;  
 
     LogPrintf("-Update: get latest version from: %s\n", latest.url);
 
@@ -354,7 +353,7 @@ bool CUpdate::Start(const std::string& execName){
         LogPrintf("-Update: You do NOT have write permissions to the current path: %s \n",currentPath);
         LogPrintf("-Update: Trying to grant permissions..\n");
         uiInterface.InitMessage(_("User doesn't have permissions for current folder"));
-        if(!grantWritePermissions(currentPath)){    
+        if(!GrantWritePermissions(currentPath)){    
             uiInterface.InitMessage(_("Couldn't grant permissions for current folder"));
             return false;
         }
