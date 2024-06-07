@@ -403,7 +403,8 @@ bool CUpdate::Start(const std::string& execName){
     }
     // --- ----- ---
 
-    if(!ready){
+    // Ignore it for now
+    if(false && !ready){
         LogPrintf("-Update: Executable file not found");
         if (fs::exists(appPath))
             fs::remove(appPath);
