@@ -83,6 +83,7 @@ public Q_SLOTS:
     void walletReindex();
     void walletResync();
     void walletBootstrap();
+    void walletUpdate();
 
     void reject();
     void message(int category, const QString &msg) { message(category, msg, false); }
