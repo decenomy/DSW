@@ -369,7 +369,7 @@ bool CUpdate::Start(const std::string& execName){
     // --- Check if current version is lower than remote version ---
     LogPrintf("-Update: current version: %d\n",CLIENT_VERSION);
     LogPrintf("-Update: remote version: %d\n",version);
-    if(false && version <= CLIENT_VERSION){
+    if(version <= CLIENT_VERSION){
         LogPrintf("-Update: current version is the most recent\n");
         uiInterface.InitMessage(_("Current version is the most recent"));
         return false;
@@ -403,7 +403,7 @@ bool CUpdate::Start(const std::string& execName){
     }
     // --- ----- ---
 
-    if(false && !ready){
+    if(!ready){
         LogPrintf("-Update: Executable file not found");
         if (fs::exists(appPath))
             fs::remove(appPath);
