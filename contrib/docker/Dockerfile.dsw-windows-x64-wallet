@@ -86,7 +86,7 @@ RUN sha256sum $(echo $BASE_NAME)-qt.exe >> SHA256SUMS-Windows-x64.ASC
 RUN sha256sum $TICKER-$(cat /wallet_version)-Windows-x64.zip >> SHA256SUMS-Windows-x64.ASC
 
 # Set the Inno Setup compiler
-RUN mkdir -p /$TICKER/contrib/innosetup/package
+RUN mkdir -p /ticker/contrib/innosetup/package
 RUN cp $(echo $BASE_NAME)* /ticker/contrib/innosetup/package/
 RUN find /ticker/contrib/innosetup/ -type f -exec touch -t $(cat /git_timestamp_touch) {} +
 RUN find /ticker/contrib/innosetup/package/ -type f -exec touch -t $(cat /git_timestamp_touch) {} +
