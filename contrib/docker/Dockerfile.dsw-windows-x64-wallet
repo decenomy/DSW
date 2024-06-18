@@ -6,6 +6,7 @@ ARG CPU_CORES=1
 
 # ARG for specifying the coin parameters
 ARG TICKER=__DSW__
+ARG ACCOUNT_NAME=decenomy
 ARG NAME=__Decenomy__
 ARG BASE_NAME=__decenomy__
 ARG TARGET=master
@@ -13,12 +14,10 @@ ARG TARGET=master
 RUN sleep 30
 
 # Clone the repository
-RUN if [ ! -d $TICKER ]; then \
-  git clone https://github.com/decenomy/$TICKER; \
-fi
+RUN git clone https://github.com/$ACCOUNT_NAME/$TICKER ticker;
 
 # Switch to the repository directory
-WORKDIR /$TICKER
+WORKDIR ticker
 
 # Check out the $TARGET
 RUN git stash --include-untracked && \
