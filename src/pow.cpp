@@ -139,7 +139,7 @@ unsigned int GetNextWorkRequiredPOSV2(const CBlockIndex* pIndexLast)
     auto nMaximumAdjustmentFactor = consensus.nMaximumAdjustmentFactor;
 
     // Perform a long adjustment if the current height is a multiple of the target timespan
-    if (nHeight % nTargetTimespan == 0) {
+    if (nHeight % (nTargetTimespan / nTargetSpacing) == 0) {
         nTargetTimespan = consensus.nTargetLongTimespan;
         nMaximumAdjustmentFactor = consensus.nMaximumLongAdjustmentFactor;
     }
