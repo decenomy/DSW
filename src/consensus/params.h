@@ -35,6 +35,7 @@ enum UpgradeIndex : uint32_t {
     UPGRADE_MASTERNODE_RANK_V2,
     UPGRADE_DYNAMIC_REWARDS,
     UPGRADE_DYNAMIC_COLLATERALS,
+    UPGRADE_POS_V3,
     // NOTE: Also add new upgrades to NetworkUpgradeInfo in upgrades.cpp
     UPGRADE_TESTDUMMY,
     MAX_NETWORK_UPGRADES,
@@ -89,8 +90,7 @@ struct Params {
     uint256 hashGenesisBlock;
     bool fPowAllowMinDifficultyBlocks;
     uint256 powLimit;
-    uint256 posLimitV1;
-    uint256 posLimitV2;
+    uint256 posLimit;
     int nCoinbaseMaturity;
     int nFutureTimeDriftPoW;
     int nFutureTimeDriftPoS;
@@ -101,6 +101,10 @@ struct Params {
     int nStakeMinDepthV2;
     int64_t nTargetTimespan;
     int64_t nTargetTimespanV2;
+    int64_t nTargetTimespanV3;
+    int64_t nTargetLongTimespan;
+    int nMaximumAdjustmentFactor;
+    int nMaximumLongAdjustmentFactor;
     int64_t nTargetSpacing;
     int nTimeSlotLength;
 
@@ -118,11 +122,17 @@ struct Params {
     // Map with network updates
     NetworkUpgrade vUpgrades[MAX_NETWORK_UPGRADES];
 
-    int64_t TargetTimespan(const int nHeight) const { return IsTimeProtocolV2(nHeight) ? nTargetTimespanV2 : nTargetTimespan; }
-    int64_t TargetTimespan(const bool fV2 = true) const { return fV2 ? nTargetTimespanV2 : nTargetTimespan; }
-    uint256 ProofOfStakeLimit(const bool fV2) const { return fV2 ? posLimitV2 : posLimitV1; }
+    int64_t TargetTimespan(const int nHeight) const { 
+        return
+            IsPOSv3(nHeight) ?
+                nTargetTimespanV3 :
+                IsTimeProtocolV2(nHeight) ? 
+                    nTargetTimespanV2 : 
+                    nTargetTimespan; 
+    } 
     bool MoneyRange(const CAmount& nValue) const { return (nValue >= 0 && nValue <= nMaxMoneyOut); }
     bool IsTimeProtocolV2(const int nHeight) const { return NetworkUpgradeActive(nHeight, UPGRADE_TIME_PROTOCOL_V2); }
+    bool IsPOSv3(const int nHeight) const { return NetworkUpgradeActive(nHeight, UPGRADE_POS_V3); }
     int TimeSlotLength(const int nHeight) const { return IsTimeProtocolV2(nHeight) ? nTimeSlotLength : 1; }
 
     int FutureBlockTimeDrift(const int nHeight) const
