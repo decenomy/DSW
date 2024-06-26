@@ -13,6 +13,7 @@ ARCHITECTURE=${ARCHITECTURE:-""}
 
 # Sets variables needed for the build
 TICKER=${TICKER:-"DSW"}
+ACCOUNT_NAME=${ACCOUNT_NAME:-"decenomy"}
 UI_NAME=${UI_NAME:-"Kyanite"}
 BASE_NAME=${BASE_NAME:-"kyanite"}
 
@@ -224,6 +225,7 @@ docker buildx build \
 	--no-cache \
 	--build-arg CPU_CORES=$CPU_CORES \
 	--build-arg TICKER=$TICKER \
+	--build-arg ACCOUNT_NAME=$ACCOUNT_NAME \
 	--build-arg NAME=$UI_NAME \
 	--build-arg BASE_NAME=$BASE_NAME \
 	--build-arg TARGET=$TARGET \
@@ -246,7 +248,7 @@ trace "Container ID: $container_id"
 # Copy files from the container to the current directory
 mkdir -p deploy
 rm -rf deploy/$ARCHITECTURE
-docker cp "$container_id":/${TICKER}/deploy/. ./deploy/
+docker cp "$container_id":/ticker/deploy/. ./deploy/
 
 # Main verification process
 if [ "$VERIFY" -ge 1 ]; then

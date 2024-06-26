@@ -13,16 +13,18 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Build and Extract Files from Docker Container
+      - name: Set up environment variables
         run: |
           # Extract the name of the repository and use it as the ticker value
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
+          ACCOUNT_NAME="${GITHUB_REPOSITORY%/*}"
           # Get the short name of the ref (strip 'refs/heads/', 'refs/tags/', etc.)
           SHORT_REF=${GITHUB_REF##*/}
           # Get the short commit hash
           SHORT_COMMIT_HASH=$(git rev-parse --short HEAD)
           # Set environment variables
           echo "REPO_NAME=${REPO_NAME}" >> $GITHUB_ENV
+          echo "ACCOUNT_NAME=${ACCOUNT_NAME}" >> $GITHUB_ENV
           echo "SHORT_REF=${SHORT_REF}" >> $GITHUB_ENV
           echo "IMAGE_NAME=linux-x64-build-img-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
           echo "CONTAINER_NAME=linux-x64-build-ctn-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
@@ -37,6 +39,7 @@ jobs:
             --no-cache \
             --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=$REPO_NAME \
+            --build-arg ACCOUNT_NAME=$ACCOUNT_NAME \
             --build-arg NAME=Kyanite \
             --build-arg BASE_NAME=kyanite \
             --build-arg TARGET=$SHORT_REF \
@@ -50,7 +53,7 @@ jobs:
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp ${CONTAINER_NAME}:/$REPO_NAME/deploy/linux-x64 release_files/
+          docker cp ${CONTAINER_NAME}:/ticker/deploy/linux-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v4
@@ -72,16 +75,18 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Build and Extract Files from Docker Container
+      - name: Set up environment variables
         run: |
           # Extract the name of the repository and use it as the ticker value
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
+          ACCOUNT_NAME="${GITHUB_REPOSITORY%/*}"
           # Get the short name of the ref (strip 'refs/heads/', 'refs/tags/', etc.)
           SHORT_REF=${GITHUB_REF##*/}
           # Get the short commit hash
           SHORT_COMMIT_HASH=$(git rev-parse --short HEAD)
           # Set environment variables
           echo "REPO_NAME=${REPO_NAME}" >> $GITHUB_ENV
+          echo "ACCOUNT_NAME=${ACCOUNT_NAME}" >> $GITHUB_ENV
           echo "SHORT_REF=${SHORT_REF}" >> $GITHUB_ENV
           echo "IMAGE_NAME=linux-arm64-build-img-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
           echo "CONTAINER_NAME=linux-arm64-build-ctn-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
@@ -96,6 +101,7 @@ jobs:
             --no-cache \
             --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=$REPO_NAME \
+            --build-arg ACCOUNT_NAME=$ACCOUNT_NAME \
             --build-arg NAME=Kyanite \
             --build-arg BASE_NAME=kyanite \
             --build-arg TARGET=$SHORT_REF \
@@ -109,7 +115,7 @@ jobs:
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp ${CONTAINER_NAME}:/$REPO_NAME/deploy/linux-arm64 release_files/
+          docker cp ${CONTAINER_NAME}:/ticker/deploy/linux-arm64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v4
@@ -131,16 +137,18 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Build and Extract Files from Docker Container
+      - name: Set up environment variables
         run: |
           # Extract the name of the repository and use it as the ticker value
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
+          ACCOUNT_NAME="${GITHUB_REPOSITORY%/*}"
           # Get the short name of the ref (strip 'refs/heads/', 'refs/tags/', etc.)
           SHORT_REF=${GITHUB_REF##*/}
           # Get the short commit hash
           SHORT_COMMIT_HASH=$(git rev-parse --short HEAD)
           # Set environment variables
           echo "REPO_NAME=${REPO_NAME}" >> $GITHUB_ENV
+          echo "ACCOUNT_NAME=${ACCOUNT_NAME}" >> $GITHUB_ENV
           echo "SHORT_REF=${SHORT_REF}" >> $GITHUB_ENV
           echo "IMAGE_NAME=windows-x64-build-img-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
           echo "CONTAINER_NAME=windows-x64-build-ctn-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
@@ -155,6 +163,7 @@ jobs:
             --no-cache \
             --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=$REPO_NAME \
+            --build-arg ACCOUNT_NAME=$ACCOUNT_NAME \
             --build-arg NAME=Kyanite \
             --build-arg BASE_NAME=kyanite \
             --build-arg TARGET=$SHORT_REF \
@@ -168,7 +177,7 @@ jobs:
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp ${CONTAINER_NAME}:/$REPO_NAME/deploy/windows-x64 release_files/
+          docker cp ${CONTAINER_NAME}:/ticker/deploy/windows-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v4
@@ -190,16 +199,18 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Build and Extract Files from Docker Container
+      - name: Set up environment variables
         run: |
           # Extract the name of the repository and use it as the ticker value
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
+          ACCOUNT_NAME="${GITHUB_REPOSITORY%/*}"
           # Get the short name of the ref (strip 'refs/heads/', 'refs/tags/', etc.)
           SHORT_REF=${GITHUB_REF##*/}
           # Get the short commit hash
           SHORT_COMMIT_HASH=$(git rev-parse --short HEAD)
           # Set environment variables
           echo "REPO_NAME=${REPO_NAME}" >> $GITHUB_ENV
+          echo "ACCOUNT_NAME=${ACCOUNT_NAME}" >> $GITHUB_ENV
           echo "SHORT_REF=${SHORT_REF}" >> $GITHUB_ENV
           echo "IMAGE_NAME=macos-x64-build-img-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
           echo "CONTAINER_NAME=macos-x64-build-ctn-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
@@ -214,6 +225,7 @@ jobs:
             --no-cache \
             --build-arg CPU_CORES=$(nproc) \
             --build-arg TICKER=$REPO_NAME \
+            --build-arg ACCOUNT_NAME=$ACCOUNT_NAME \
             --build-arg NAME=Kyanite \
             --build-arg BASE_NAME=kyanite \
             --build-arg TARGET=$SHORT_REF \
@@ -227,7 +239,7 @@ jobs:
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp ${CONTAINER_NAME}:/$REPO_NAME/deploy/macos-x64 release_files/
+          docker cp ${CONTAINER_NAME}:/ticker/deploy/macos-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v4
