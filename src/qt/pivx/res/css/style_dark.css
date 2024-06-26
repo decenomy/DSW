@@ -597,6 +597,14 @@ QPushButton[cssClass="btn-check-status-unlock"] {
   border-radius: 2px;
 }
 
+QPushButton[cssClass="btn-check-status-update"] {
+  background-color: #4b1452;
+  qproperty-icon: url("://ic-package-sync") off, url("://ic-package-sync") on;
+  qproperty-iconSize: 24px 24px;
+  color: #ffffff;
+  border-radius: 2px;
+}
+
 QPushButton[cssClass="btn-check-status-staking"] {
   background-color: #150016;
   qproperty-icon: url("://ic-wallet-status-staking") off, url("://ic-wallet-status-staking") on;

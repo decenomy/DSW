@@ -43,6 +43,7 @@ public:
     void onError(QString error, int type) override;
     void unlockWallet();
     void onStakingBtnClicked();
+    void onUpdateBtnClicked();
 
 public Q_SLOTS:
     void updateBalances(const interfaces::WalletBalances& newBalance);

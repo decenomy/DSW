@@ -58,7 +58,6 @@
 #include "wallet/wallet.h"
 #include "wallet/walletdb.h"
 #include "wallet/rpcwallet.h"
-
 #endif
 
 #include <fstream>
@@ -1004,6 +1003,19 @@ void InitLogging()
     LogPrintf("Kyanite version %s (%s)\n", version_string, CLIENT_DATE);
 }
 
+void DailyRoutine(){
+    while(true){
+
+        if(CUpdate::CheckLatestVersion()){
+            LogPrintf("!! Please update for new app using the arg: -update\n");
+            CWalletUpdate wallet;
+            wallet.NewVersionAvailable(true);
+        }
+
+        std::this_thread::sleep_for(std::chrono::hours(24));
+    }
+}
+
 /** Initialize kyanite.
  *  @pre Parameters should be parsed and config file should be read.
  */
@@ -1347,6 +1359,7 @@ bool AppInit2()
 #endif
 
 #ifdef ENABLE_UPDATE
+    
         if (GetBoolArg("-update", false) ) {
 
             uiInterface.InitMessage(_("Preparing for update..."));
@@ -1936,6 +1949,8 @@ bool AppInit2()
     }
 #endif
 
+    std::thread t(DailyRoutine);
+    t.detach();
 
     return !fRequestShutdown;
 }

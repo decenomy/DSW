@@ -100,7 +100,7 @@ bool fStakingActive = false;
 bool fStakingStatus = false;
 bool fPrivacyMode = false;
 bool fLiteMode = false;
-
+bool newVersion = false;
 /** Spork enforcement enabled time */
 int64_t enforceMasternodePaymentsTime = 4085657524;
 bool fSucessfullyLoaded = false;

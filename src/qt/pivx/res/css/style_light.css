@@ -600,6 +600,14 @@ QPushButton[cssClass="btn-check-status-unlock"] {
   border-radius: 2px;
 }
 
+QPushButton[cssClass="btn-check-status-update"] {
+  background-color: #d1d3d4;
+  qproperty-icon: url("://ic-package-sync") off, url("://ic-package-sync") on;
+  qproperty-iconSize: 24px 24px;
+  color: #262626;
+  border-radius: 2px;
+}
+
 QPushButton[cssClass="btn-check-status-staking"] {
   background-color: #d1d3d4;
   color: #262626;

@@ -874,3 +874,10 @@ bool WalletModel::isUsed(CTxDestination address)
 {
     return wallet->IsUsed(address);
 }
+
+void WalletModel::emitNewVersionAvailable()
+{
+    LogPrintf("WalletModel: checking wallet if is updatable..: %d\n",newVersion);
+    if(newVersion)
+        Q_EMIT newVersionAvailable();
+}

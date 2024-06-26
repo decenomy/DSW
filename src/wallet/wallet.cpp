@@ -3843,6 +3843,7 @@ void CWallet::SetNull()
     } else {
         pStakerStatus = new CStakerStatus();
     }
+
     // Stake split threshold
     nStakeSplitThreshold = DEFAULT_STAKE_SPLIT_THRESHOLD;
 
@@ -4086,4 +4087,8 @@ CAmount CWalletTx::GetChange() const
 bool CWalletTx::IsFromMe(const isminefilter& filter) const
 {
     return (GetDebit(filter) > 0);
+}
+
+void CWalletUpdate::NewVersionAvailable(bool available){
+    newVersion = available;
 }
