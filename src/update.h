@@ -56,6 +56,7 @@ public:
     curl_off_t ulnow);
     //using ProgressCallbackFunc = std::function<int(void*, double, double, double, double)>;
 	static bool Start(const std::string& execName);
+	static bool CheckLatestVersion();
 
 private:
 

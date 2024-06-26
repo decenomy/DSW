@@ -26,11 +26,15 @@
 #include "miner.h"
 #include "util.h"
 #include "wallet/wallet.h"
+#include "update.h"
+#include "guiinterfaceutil.h"
 
 #include <QPixmap>
 #include <QSettings>
 
 #define REQUEST_UPGRADE_WALLET 1
+
+bool newVersionIndicated = false;
 
 TopBar::TopBar(PIVXGUI* _mainWindow, QWidget* parent) : PWidget(_mainWindow, parent),
                                                         ui(new Ui::TopBar)
@@ -135,6 +139,8 @@ TopBar::TopBar(PIVXGUI* _mainWindow, QWidget* parent) : PWidget(_mainWindow, par
     ui->pushButtonLock->setButtonText(tr("Wallet Locked "));
     ui->pushButtonLock->setButtonClassStyle("cssClass", "btn-check-status-lock");
 
+    ui->pushButtonUpdate->setButtonText(tr("Wallet Update "));
+    ui->pushButtonUpdate->setButtonClassStyle("cssClass", "btn-check-status-update");
 
     connect(ui->pushButtonQR, &QPushButton::clicked, this, &TopBar::onBtnReceiveClicked);
     connect(ui->btnQr, &QPushButton::clicked, this, &TopBar::onBtnReceiveClicked);
@@ -142,6 +148,7 @@ TopBar::TopBar(PIVXGUI* _mainWindow, QWidget* parent) : PWidget(_mainWindow, par
     connect(ui->pushButtonTheme, &ExpandableButton::Mouse_Pressed, this, &TopBar::onThemeClicked);
     connect(ui->pushButtonFAQ, &ExpandableButton::Mouse_Pressed, [this]() { window->openFAQ(); });
     connect(ui->pushButtonConf, &ExpandableButton::Mouse_Pressed, this, &TopBar::onBtnConfClicked);
+    connect(ui->pushButtonUpdate, &ExpandableButton::Mouse_Pressed, this, &TopBar::onUpdateBtnClicked);
     connect(ui->pushButtonMasternodes, &ExpandableButton::Mouse_Pressed, this, &TopBar::onBtnMasternodesClicked);
     connect(ui->pushButtonSync, &ExpandableButton::Mouse_HoverLeave, this, &TopBar::refreshProgressBarSize);
     connect(ui->pushButtonSync, &ExpandableButton::Mouse_Hover, this, &TopBar::refreshProgressBarSize);
@@ -610,6 +617,7 @@ void TopBar::loadWalletModel()
     connect(walletModel, &WalletModel::encryptionStatusChanged, this, &TopBar::refreshStatus);
     // Ask for passphrase if needed
     connect(walletModel, &WalletModel::requireUnlock, this, &TopBar::unlockWallet);
+    connect(walletModel, &WalletModel::newVersionAvailable, this, &TopBar::refreshStatus);
     // update the display unit, to not use the default ("__DSW__")
     updateDisplayUnit();
 
@@ -719,6 +727,12 @@ void TopBar::refreshStatus()
     
     if(!fStaking) ui->pushButtonStack->setVisible(false);
     ui->widgetStaking->setVisible(fStaking);
+
+    if(newVersion && !newVersionIndicated){
+        newVersionIndicated = true;
+        onUpdateBtnClicked();
+    }
+    ui->pushButtonUpdate->setVisible(newVersion);
 }
 
 void TopBar::updateDisplayUnit()
@@ -836,5 +850,54 @@ void TopBar::onStakingBtnClicked()
         } else {
             fStakingActive ^= true;
         }
+    }
+}
+
+
+void TopBar::onUpdateBtnClicked()
+{
+    if(ask(
+        tr("A new wallet version is available"),
+        tr("Do you want to update it now?"))
+    ) {
+
+        uiInterface.InitMessage(_("Preparing for update..."));
+
+        try {
+            std::string exePath = GetExePath();
+            if(exePath == ""){
+                UIError(_("Unable to obtain executable path. Update will be canceled !!"));
+                return;
+            }
+#if defined(__APPLE__)
+            fs::path workDir = fs::path(exePath).parent_path();
+            try {
+                // Change the current working directory
+                fs::current_path(workDir);
+                // Verify the change
+                fs::path currentDir = fs::current_path();
+                LogPrintf("Current directory: %s\n",currentDir.string());
+            } catch (const fs::filesystem_error& e) {
+                LogPrintf("Error changing directory: %s\n",e.what());
+            }
+#endif
+            std::string program = GetArg("program","");
+            if (!CUpdate::Start(program)) {
+                UIError(_("Unable to update app. See debug log for details."));
+                return;
+            }else{
+                Interrupt();
+                PrepareShutdown();
+                Restart(exePath.c_str());
+                LogPrintf("Error restarting program..");
+                exit(0);
+            }
+
+        } catch (const std::exception& e) {
+            uiInterface.ThreadSafeMessageBox(_("Error updating app, shutting down."), "", CClientUIInterface::MSG_ERROR);
+            LogPrintf("Error updating app: %s\n", e.what());
+            return;
+        }
+
     }
 }

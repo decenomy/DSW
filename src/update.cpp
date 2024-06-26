@@ -365,7 +365,6 @@ bool CUpdate::Start(const std::string& execName){
     ParseVersionRequest(jv);
     int version = GetRemoteVersion();
 
-    // !! get version from correct file
     // --- Check if current version is lower than remote version ---
     LogPrintf("-Update: current version: %d\n",CLIENT_VERSION);
     LogPrintf("-Update: remote version: %d\n",version);
@@ -454,5 +453,28 @@ bool CUpdate::Start(const std::string& execName){
         Recover();
     }
 
+    return true;
+}
+
+ // return if new version is available
+bool CUpdate::CheckLatestVersion(){
+
+    const std::string url = std::string(UPDATE_URL)+std::string(TICKER)+"/releases/latest";
+    CCurlWrapper client;
+
+    std::string response = client.Request(url);
+
+    json::value jv = json::parse(response);
+    ParseVersionRequest(jv);
+    int version = GetRemoteVersion();
+
+    // --- Check if current version is lower than remote version ---
+    LogPrintf("-Update: current version: %d\n",CLIENT_VERSION);
+    LogPrintf("-Update: remote version: %d\n",version);
+    if(version <= CLIENT_VERSION){
+        LogPrintf("-Update: current version is the most recent\n");
+        uiInterface.InitMessage(_("Current version is the most recent"));
+        return false;
+    }
     return true;
 }
