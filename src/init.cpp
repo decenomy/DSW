@@ -1006,7 +1006,7 @@ void InitLogging()
 void DailyRoutine(){
     while(true){
 
-        if(!CUpdate::CheckLatestVersion()){
+        if(CUpdate::CheckLatestVersion()){
             LogPrintf("!! Please update for new app using the arg: -update\n");
             CWalletUpdate wallet;
             wallet.NewVersionAvailable(true);
