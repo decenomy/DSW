@@ -601,7 +601,7 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
             // only a few connections to other peers then
             // sleep a time slot and try again
             if (!g_connman ||(g_connman && 
-                g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) < 5 && 
+                g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) < 2 && 
                 Params().MiningRequiresPeers())) 
             {      
                 SleepUntilNexSlot();                   
