@@ -188,7 +188,7 @@ bool CUpdate::MoveListOfFilesFromToFolder(const std::vector<std::string>& files,
             if (!fs::exists(source_path))
                 continue;
             fs::rename(source_path, destination_path);
-            std::cout << "Moved: " << source_path << " to " << destination_path << std::endl;
+            LogPrintf("-Update: Moved %s to %s \n",source_path,destination_path);
         } catch (const fs::filesystem_error& e) {
             LogPrintf("-Update: Filesystem error: %s\n",e.what());
             return false;
