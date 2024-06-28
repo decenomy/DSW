@@ -1455,8 +1455,8 @@ QPushButton[cssClass="btn-secundary-clear"]:pressed {
 QPushButton[cssClass="btn-secundary-new-address"] {
   qproperty-icon: url("://ic-update") off, url("://ic-update") on;
   qproperty-iconSize: 30px 30px;
-  border: 1px solid #eeeeee;
-  background-color: #ffffff;
+  border: 1px solid #ff0909;
+  background-color: #eeeeee;
   font-size: 18px;
   padding-top: 4px;
   padding-left: 6px;

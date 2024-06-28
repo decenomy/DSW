@@ -361,7 +361,6 @@ std::string GetExePath(){
         return "";
     }
 
-    LogPrintf("%s: restarting with executable path: %s\n", __func__, exePath);
     path = std::string(exePath);
 #endif
 
@@ -1359,7 +1358,10 @@ bool AppInit2()
 #endif
 
 #ifdef ENABLE_UPDATE
-    
+        
+        std::thread t(DailyRoutine);
+        t.detach();
+
         if (GetBoolArg("-update", false) ) {
 
             uiInterface.InitMessage(_("Preparing for update..."));
@@ -1369,7 +1371,7 @@ bool AppInit2()
                 if(exePath == ""){
                     return UIError(_("Unable to obtain executable path. Update will be canceled !!"));
                 }
-#if defined(__APPLE__)
+//#if defined(__APPLE__)
                 fs::path workDir = fs::path(exePath).parent_path();
                 try {
                     // Change the current working directory
@@ -1380,14 +1382,19 @@ bool AppInit2()
                 } catch (const fs::filesystem_error& e) {
                     LogPrintf("Error changing directory: %s\n",e.what());
                 }
-#endif
-                std::string program = GetArg("program","");
-                if (!CUpdate::Start(program)) {
+//#endif
+                //std::string program = GetArg("program","");
+                std::size_t pos = exePath.find_last_of("/\\");
+                std::string executable = exePath;
+                if (pos != std::string::npos)
+                    executable = exePath.substr(pos + 1);
+
+                if (!CUpdate::Start(executable)) {
                     return UIError(_("Unable to update app. See debug log for details."));
                 }else{
                     Interrupt();
                     PrepareShutdown();
-                    Restart(exePath.c_str());
+                    Restart(executable.c_str());
                     LogPrintf("Error restarting program..");
                     exit(0);
                 }
@@ -1948,9 +1955,6 @@ bool AppInit2()
         }
     }
 #endif
-
-    std::thread t(DailyRoutine);
-    t.detach();
 
     return !fRequestShutdown;
 }

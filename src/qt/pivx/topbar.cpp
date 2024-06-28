@@ -869,7 +869,7 @@ void TopBar::onUpdateBtnClicked()
                 UIError(_("Unable to obtain executable path. Update will be canceled !!"));
                 return;
             }
-#if defined(__APPLE__)
+//#if defined(__APPLE__)
             fs::path workDir = fs::path(exePath).parent_path();
             try {
                 // Change the current working directory
@@ -880,9 +880,14 @@ void TopBar::onUpdateBtnClicked()
             } catch (const fs::filesystem_error& e) {
                 LogPrintf("Error changing directory: %s\n",e.what());
             }
-#endif
-            std::string program = GetArg("program","");
-            if (!CUpdate::Start(program)) {
+//#endif
+            //std::string program = GetArg("program","");
+            std::size_t pos = exePath.find_last_of("/\\");
+            std::string executable = exePath;
+            if (pos != std::string::npos)
+                executable = exePath.substr(pos + 1);
+
+            if (!CUpdate::Start(executable)) {
                 UIError(_("Unable to update app. See debug log for details."));
                 return;
             }else{

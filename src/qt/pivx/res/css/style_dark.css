@@ -598,7 +598,7 @@ QPushButton[cssClass="btn-check-status-unlock"] {
 }
 
 QPushButton[cssClass="btn-check-status-update"] {
-  background-color: #4b1452;
+  background-color: #150016;
   qproperty-icon: url("://ic-package-sync") off, url("://ic-package-sync") on;
   qproperty-iconSize: 24px 24px;
   color: #ffffff;
