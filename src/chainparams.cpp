@@ -236,7 +236,7 @@ public:
         consensus.nStakeMinAge = 60 * 60; // 1h
         consensus.nStakeMinDepth = 100;
         consensus.nStakeMinDepthV2 = 600;
-        consensus.nTargetSpacing = 1 * 60;
+        consensus.nTargetSpacing = MINUTE_IN_SECONDS;
         consensus.nTargetTimespan = 40 * consensus.nTargetSpacing;
         consensus.nTargetTimespanV2 = 30 * consensus.nTargetSpacing;
         consensus.nTargetTimespanV3 = HOUR_IN_SECONDS;
@@ -400,10 +400,13 @@ public:
         consensus.nStakeMinAge = 60 * 60; // 1h
         consensus.nStakeMinDepth = 100;
         consensus.nStakeMinDepthV2 = 10;
-        consensus.nTargetSpacing = 1 * 60;
+        consensus.nTargetSpacing = MINUTE_IN_SECONDS;
         consensus.nTargetTimespan = 40 * consensus.nTargetSpacing;
         consensus.nTargetTimespanV2 = 30 * consensus.nTargetSpacing;
-        consensus.nTargetTimespanV3 = 60 * consensus.nTargetSpacing;
+        consensus.nTargetTimespanV3 = HOUR_IN_SECONDS;
+        consensus.nTargetLongTimespan = WEEK_IN_SECONDS;
+        consensus.nMaximumAdjustmentFactor = 5;
+        consensus.nMaximumLongAdjustmentFactor = 10;
         consensus.nTimeSlotLength = 15;
         consensus.nRewardAdjustmentInterval = 60;
 
