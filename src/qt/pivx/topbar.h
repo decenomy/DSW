@@ -44,6 +44,8 @@ public:
     void unlockWallet();
     void onStakingBtnClicked();
     void onUpdateBtnClicked();
+    void walletUpdate();
+    void buildParameterlist(QString arg);
 
 public Q_SLOTS:
     void updateBalances(const interfaces::WalletBalances& newBalance);
@@ -58,6 +60,7 @@ public Q_SLOTS:
 Q_SIGNALS:
     void themeChanged(bool isLight);
     void walletSynced(bool isSync);
+    void handleRestart(QStringList args);
 
 protected:
     void resizeEvent(QResizeEvent *event) override;

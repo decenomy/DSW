@@ -630,6 +630,7 @@ void RPCConsole::buildParameterlist(QString arg)
     args.removeAll(RESYNC);
     args.removeAll(REWIND);
     args.removeAll(BOOTSTRAP);
+    args.removeAll(UPDATE);
 
     // Append repair parameter to command line.
     args.append(arg);

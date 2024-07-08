@@ -256,6 +256,7 @@ void PIVXGUI::setClientModel(ClientModel* clientModel)
         
         // Get restart command-line parameters and handle restart
         connect(settingsWidget, &SettingsWidget::handleRestart, [this](QStringList arg){handleRestart(arg);});
+        connect(topBar, &TopBar::handleRestart, dashboard, [this](QStringList arg){handleRestart(arg);});
 
         if (rpcConsole) {
             rpcConsole->setClientModel(clientModel);

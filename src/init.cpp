@@ -367,7 +367,7 @@ std::string GetExePath(){
     return path;
 }
 
-void Restart(const char* exePath)
+void Restart(const char* exePath = NULL)
 {
     LogPrintf("%s: In progress..\n", __func__);
     LogPrintf("%s: restarting with executable path: %s\n", __func__, exePath);
@@ -389,6 +389,7 @@ void Restart(const char* exePath)
 #else // Unix-like systems
 
     execl(exePath, exePath, (char *)NULL);
+    //execl(exePath, exePath, "-update", (char *)NULL);
 
     // If execl returns, it must have failed
     LogPrintf("%s: execl failed: %s\n", __func__, strerror(errno));
@@ -844,6 +845,11 @@ bool AppInitBasicSetup()
     typedef BOOL(WINAPI * PSETPROCDEPPOL)(DWORD);
     PSETPROCDEPPOL setProcDEPPol = (PSETPROCDEPPOL)GetProcAddress(GetModuleHandleA("Kernel32.dll"), "SetProcessDEPPolicy");
     if (setProcDEPPol != NULL) setProcDEPPol(PROCESS_DEP_ENABLE);
+#endif
+
+#ifdef ENABLE_UPDATE    
+    std::thread t(DailyRoutine);
+    t.detach();
 #endif
 
     if (!SetupNetworking())
@@ -1358,9 +1364,6 @@ bool AppInit2()
 #endif
 
 #ifdef ENABLE_UPDATE
-        
-        std::thread t(DailyRoutine);
-        t.detach();
 
         if (GetBoolArg("-update", false) ) {
 

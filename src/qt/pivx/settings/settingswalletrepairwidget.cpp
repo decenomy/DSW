@@ -165,11 +165,11 @@ void SettingsWalletRepairWidget::walletBootstrap()
                                                                QMessageBox::Cancel);
 
     if (retval != QMessageBox::Yes) {
-        // Resync canceled
+        // Bootstrap canceled
         return;
     }
 
-    // Restart and resync
+    // Restart and bootstrap
     buildParameterlist(BOOTSTRAP);
 }
 
@@ -186,11 +186,11 @@ void SettingsWalletRepairWidget::walletUpdate()
         QMessageBox::Cancel);
 
     if (retval != QMessageBox::Yes) {
-        // Resync canceled
+        // Update canceled
         return;
     }
 
-    // Restart and bootstrap
+    // Restart and update
     buildParameterlist(UPDATE);
 }
 
@@ -210,6 +210,8 @@ void SettingsWalletRepairWidget::buildParameterlist(QString arg)
     args.removeAll(REINDEX);
     args.removeAll(RESYNC);
     args.removeAll(REWIND);
+    args.removeAll(BOOTSTRAP);
+    args.removeAll(UPDATE);
 
     // Append repair parameter to command line.
     args.append(arg);

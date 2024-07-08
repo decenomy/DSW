@@ -19,6 +19,7 @@
 #include "qt/guiconstants.h"
 #include "qt/guiutil.h"
 #include "qt/platformstyle.h"
+#include "qt/rpcconsole.h"
 #include "walletmodel.h"
 
 #include "masternode-sync.h"
@@ -857,52 +858,63 @@ void TopBar::onStakingBtnClicked()
 void TopBar::onUpdateBtnClicked()
 {
     if(ask(
-        tr("A new wallet version is available"),
+        tr("A new wallet version is available.."),
         tr("Do you want to update it now?"))
     ) {
+        // This restart only works if wallet is synched
+        LogPrintf("restart required \n");
+        buildParameterlist(UPDATE);
+        return; 
 
-        uiInterface.InitMessage(_("Preparing for update..."));
-
+        // Otherwise this call should be used
         try {
             std::string exePath = GetExePath();
             if(exePath == ""){
                 UIError(_("Unable to obtain executable path. Update will be canceled !!"));
                 return;
             }
-//#if defined(__APPLE__)
-            fs::path workDir = fs::path(exePath).parent_path();
-            try {
-                // Change the current working directory
-                fs::current_path(workDir);
-                // Verify the change
-                fs::path currentDir = fs::current_path();
-                LogPrintf("Current directory: %s\n",currentDir.string());
-            } catch (const fs::filesystem_error& e) {
-                LogPrintf("Error changing directory: %s\n",e.what());
-            }
-//#endif
-            //std::string program = GetArg("program","");
-            std::size_t pos = exePath.find_last_of("/\\");
-            std::string executable = exePath;
-            if (pos != std::string::npos)
-                executable = exePath.substr(pos + 1);
 
-            if (!CUpdate::Start(executable)) {
-                UIError(_("Unable to update app. See debug log for details."));
-                return;
-            }else{
-                Interrupt();
-                PrepareShutdown();
-                Restart(exePath.c_str());
-                LogPrintf("Error restarting program..");
-                exit(0);
-            }
+            Interrupt();
+            PrepareShutdown();
+            Restart(exePath.c_str());
+            LogPrintf("Error restarting program..");
+            exit(0);
 
         } catch (const std::exception& e) {
             uiInterface.ThreadSafeMessageBox(_("Error updating app, shutting down."), "", CClientUIInterface::MSG_ERROR);
             LogPrintf("Error updating app: %s\n", e.what());
             return;
         }
-
+        
     }
+}
+
+/** Build command-line parameter list for restart */
+void TopBar::buildParameterlist(QString arg)
+{
+    
+    // Get command-line arguments and remove the application name
+    QStringList args = QApplication::arguments();
+    args.removeFirst();
+
+    // Remove existing repair-options
+    args.removeAll(SALVAGEWALLET);
+    args.removeAll(RESCAN);
+    args.removeAll(ZAPTXES1);
+    args.removeAll(ZAPTXES2);
+    args.removeAll(UPGRADEWALLET);
+    args.removeAll(REINDEX);
+    args.removeAll(RESYNC);
+    args.removeAll(REWIND);
+    args.removeAll(BOOTSTRAP);
+    args.removeAll(UPDATE);
+
+    // Append repair parameter to command line.
+    args.append(arg);
+
+    QString joinedString = args.join(" ");
+    std::cout << "args: " << joinedString.toStdString() << std::endl;
+    // Send command-line arguments to PIVXGUI::handleRestart()
+    Q_EMIT handleRestart(args);
+    return;
 }
