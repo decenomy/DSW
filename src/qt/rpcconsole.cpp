@@ -605,11 +605,11 @@ void RPCConsole::walletUpdate()
         QMessageBox::Cancel);
 
     if (retval != QMessageBox::Yes) {
-        // Resync canceled
+        // Update canceled
         return;
     }
 
-    // Restart and bootstrap
+    // Restart and update
     buildParameterlist(UPDATE);
 }
 

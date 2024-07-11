@@ -731,7 +731,7 @@ void TopBar::refreshStatus()
 
     if(newVersion && !newVersionIndicated){
         newVersionIndicated = true;
-        onUpdateBtnClicked();
+        walletUpdate();
     }
     ui->pushButtonUpdate->setVisible(newVersion);
 }
@@ -887,6 +887,26 @@ void TopBar::onUpdateBtnClicked()
         }
         
     }
+}
+
+void TopBar::walletUpdate()
+{
+    QString updateWarning = tr("This will replace your current release for the latest release.<br /><br />");
+        updateWarning +=   tr("This needs a few seconds to update .<br /><br />");
+        updateWarning +=   tr("Your old version will be saved in a backup folder on current dir.<br /><br />");
+        updateWarning +=   tr("Do you want to continue?.<br />");
+    QMessageBox::StandardButton retval = QMessageBox::question(this, tr("Confirm update RELEASE"),
+        updateWarning,
+        QMessageBox::Yes | QMessageBox::Cancel,
+        QMessageBox::Cancel);
+
+    if (retval != QMessageBox::Yes) {
+        // Update cancelled
+        return;
+    }
+
+    // Restart and update
+    buildParameterlist(UPDATE);
 }
 
 /** Build command-line parameter list for restart */

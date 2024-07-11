@@ -389,7 +389,6 @@ void Restart(const char* exePath = NULL)
 #else // Unix-like systems
 
     execl(exePath, exePath, (char *)NULL);
-    //execl(exePath, exePath, "-update", (char *)NULL);
 
     // If execl returns, it must have failed
     LogPrintf("%s: execl failed: %s\n", __func__, strerror(errno));
