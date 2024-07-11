@@ -16,6 +16,7 @@
 #include <boost/assign/list_of.hpp>
 
 #include <assert.h>
+#include "timedata.h"
 
 #define DISABLED 0x7FFFFFFE;
 
@@ -225,9 +226,8 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x17c6d46ee4758572534f6dec116f61268fe883caa99062c1efd764bbbc975d71"));
 
         consensus.fPowAllowMinDifficultyBlocks = false;
-        consensus.powLimit   = ~UINT256_ZERO >> 20;   
-        consensus.posLimitV1 = ~UINT256_ZERO >> 24;
-        consensus.posLimitV2 = ~UINT256_ZERO >> 20;
+        consensus.powLimit = ~UINT256_ZERO >> 20;
+        consensus.posLimit = ~UINT256_ZERO >> 20;
         consensus.nCoinbaseMaturity = 100;
         consensus.nFutureTimeDriftPoW = 7200;
         consensus.nFutureTimeDriftPoS = 180;
@@ -236,11 +236,15 @@ public:
         consensus.nStakeMinAge = 60 * 60; // 1h
         consensus.nStakeMinDepth = 100;
         consensus.nStakeMinDepthV2 = 600;
-        consensus.nTargetTimespan = 40 * 60;
-        consensus.nTargetTimespanV2 = 30 * 60;
-        consensus.nTargetSpacing = 1 * 60;
+        consensus.nTargetSpacing = MINUTE_IN_SECONDS;
+        consensus.nTargetTimespan = 40 * consensus.nTargetSpacing;
+        consensus.nTargetTimespanV2 = 30 * consensus.nTargetSpacing;
+        consensus.nTargetTimespanV3 = HOUR_IN_SECONDS;
+        consensus.nTargetLongTimespan = WEEK_IN_SECONDS;
+        consensus.nMaximumAdjustmentFactor = 5;
+        consensus.nMaximumLongAdjustmentFactor = 10;
         consensus.nTimeSlotLength = 15;
-        consensus.nRewardAdjustmentInterval = 7 * 1440;
+        consensus.nRewardAdjustmentInterval = 10000;
 
         // spork keys
         consensus.strSporkPubKey = "035d8e6fdf6e463bc59d4efe4339de96b8274a911526348de46963511f5e6d6170";
@@ -266,6 +270,7 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_MASTERNODE_RANK_V2].nActivationHeight     = 3001;
         consensus.vUpgrades[Consensus::UPGRADE_DYNAMIC_REWARDS].nActivationHeight        = 1411000;
         consensus.vUpgrades[Consensus::UPGRADE_DYNAMIC_COLLATERALS].nActivationHeight    = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_POS_V3].nActivationHeight                 = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
 
         consensus.vUpgrades[Consensus::UPGRADE_POS].hashActivationBlock                    = uint256S("a68286b8dd2d7730ab2025201b38020fa68592010ac3e4bcbeaf066b40533802");
         consensus.vUpgrades[Consensus::UPGRADE_POS_V2].hashActivationBlock                 = uint256S("09daf9665ae60b0dbcef4d60ac4af43bf83837e3d8a89198d82e53fac00010fc");
@@ -277,6 +282,7 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_MASTERNODE_RANK_V2].hashActivationBlock     = uint256S("8f7c1d65300983dbf2d99c70051d20470f0088275d6bca9a69fbb2b8597585b7");
         consensus.vUpgrades[Consensus::UPGRADE_DYNAMIC_REWARDS].hashActivationBlock        = uint256S("0x0");
         consensus.vUpgrades[Consensus::UPGRADE_DYNAMIC_COLLATERALS].hashActivationBlock    = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_POS_V3].hashActivationBlock                 = uint256S("0x0");
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -384,9 +390,8 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x17c6d46ee4758572534f6dec116f61268fe883caa99062c1efd764bbbc975d71"));
 
         consensus.fPowAllowMinDifficultyBlocks = false;
-        consensus.powLimit   = ~UINT256_ZERO >> 20;   
-        consensus.posLimitV1 = ~UINT256_ZERO >> 24;
-        consensus.posLimitV2 = ~UINT256_ZERO >> 20;
+        consensus.powLimit = ~UINT256_ZERO >> 20;   
+        consensus.posLimit = ~UINT256_ZERO >> 20;
         consensus.nCoinbaseMaturity = 100;
         consensus.nFutureTimeDriftPoW = 7200;
         consensus.nFutureTimeDriftPoS = 180;
@@ -395,9 +400,13 @@ public:
         consensus.nStakeMinAge = 60 * 60; // 1h
         consensus.nStakeMinDepth = 100;
         consensus.nStakeMinDepthV2 = 10;
-        consensus.nTargetTimespan = 40 * 60;
-        consensus.nTargetTimespanV2 = 30 * 60;
-        consensus.nTargetSpacing = 1 * 60;
+        consensus.nTargetSpacing = MINUTE_IN_SECONDS;
+        consensus.nTargetTimespan = 40 * consensus.nTargetSpacing;
+        consensus.nTargetTimespanV2 = 30 * consensus.nTargetSpacing;
+        consensus.nTargetTimespanV3 = HOUR_IN_SECONDS;
+        consensus.nTargetLongTimespan = WEEK_IN_SECONDS;
+        consensus.nMaximumAdjustmentFactor = 5;
+        consensus.nMaximumLongAdjustmentFactor = 10;
         consensus.nTimeSlotLength = 15;
         consensus.nRewardAdjustmentInterval = 60;
 
@@ -425,6 +434,7 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_MASTERNODE_RANK_V2].nActivationHeight     = 3001;
         consensus.vUpgrades[Consensus::UPGRADE_DYNAMIC_REWARDS].nActivationHeight        = 1234440;
         consensus.vUpgrades[Consensus::UPGRADE_DYNAMIC_COLLATERALS].nActivationHeight    = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_POS_V3].nActivationHeight                 = 1370000;
 
         consensus.vUpgrades[Consensus::UPGRADE_POS].hashActivationBlock                    = uint256S("0x0");
         consensus.vUpgrades[Consensus::UPGRADE_POS_V2].hashActivationBlock                 = uint256S("0x0");
@@ -436,6 +446,7 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_MASTERNODE_RANK_V2].hashActivationBlock     = uint256S("0x0");
         consensus.vUpgrades[Consensus::UPGRADE_DYNAMIC_REWARDS].hashActivationBlock        = uint256S("0x0");
         consensus.vUpgrades[Consensus::UPGRADE_DYNAMIC_COLLATERALS].hashActivationBlock    = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_POS_V3].hashActivationBlock                 = uint256S("0x0");
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -537,9 +548,8 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0xa50c4f55f3df2d2ecf33f0248f631ca20935c49dccad9bf2107911d94c5ab0fe"));
 
         consensus.fPowAllowMinDifficultyBlocks = true;
-        consensus.powLimit   = ~UINT256_ZERO >> 20;   // kyanite starting difficulty is 1 / 2^12
-        consensus.posLimitV1 = ~UINT256_ZERO >> 24;
-        consensus.posLimitV2 = ~UINT256_ZERO >> 20;
+        consensus.powLimit = ~UINT256_ZERO >> 20;   // kyanite starting difficulty is 1 / 2^12
+        consensus.posLimit = ~UINT256_ZERO >> 20;
         consensus.nCoinbaseMaturity = 100;
         consensus.nFutureTimeDriftPoW = 7200;
         consensus.nFutureTimeDriftPoS = 180;       // num of MN we allow the see-saw payments to be off by

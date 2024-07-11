@@ -2217,6 +2217,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     // Recalculate the money supply taking in account the existent burn addresses
     if(nHeight == nLastCheckpointHeight)
     {
+        FlushStateToDisk();
         std::unique_ptr<CCoinsViewCursor> pcursor(pcoinsTip->Cursor());
 
         while (pcursor->Valid()) {
@@ -4112,6 +4113,7 @@ void ResyncSupply()
     CAmount nMoneySupply = 0;
     auto& consensus = Params().GetConsensus();
 
+    FlushStateToDisk();
     std::unique_ptr<CCoinsViewCursor> pcursor(pcoinsTip->Cursor());
 
     while (pcursor->Valid()) {

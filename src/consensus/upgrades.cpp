@@ -26,12 +26,10 @@ const struct NUInfo NetworkUpgradeInfo[Consensus::MAX_NETWORK_UPGRADES] = {
                 /*.strName =*/ "PoS_v2",
                 /*.strInfo =*/ "New selection for stake modifier",
         },
-
         {
                 /*.strName =*/ "BIP65",
                 /*.strInfo =*/ "CLTV (BIP65) activation - start block v5",
         },
-
         {
                 /*.strName =*/ "stake_modifier_v2",
                 /*.strInfo =*/ "new 256-bit stake modifier - start block v6",
@@ -59,6 +57,10 @@ const struct NUInfo NetworkUpgradeInfo[Consensus::MAX_NETWORK_UPGRADES] = {
         {
                 /*.strName =*/ "dynamic_collaterals",
                 /*.strInfo =*/ "dynamic collateral system",
+        },
+        {
+                /*.strName =*/ "PoS_v3",
+                /*.strInfo =*/ "New PoS difficulty adjustment algorithm",
         },
         {
                 /*.strName =*/ "Test_dummy",

@@ -216,6 +216,7 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
 
             // calculate the current circulating supply
             CAmount nCirculatingSupply = 0;
+            FlushStateToDisk();
             std::unique_ptr<CCoinsViewCursor> pcursor(coins.Cursor());
 
             while (pcursor->Valid()) {
@@ -279,8 +280,10 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
             oss << "nStakedCoins: " << FormatMoney(nStakedCoins) << std::endl;
 
             // Remove the staked supply from circulating supply
-            nCirculatingSupply = std::max(nCirculatingSupply - nStakedCoins, CAmount(0));
-            oss << "nCirculatingSupply without staked coins: " << FormatMoney(nCirculatingSupply) << std::endl;
+            if(params.IsTestNet() && nHeight >= 1350000) {
+                nCirculatingSupply = std::max(nCirculatingSupply - nStakedCoins, CAmount(0));
+                oss << "nCirculatingSupply without staked coins: " << FormatMoney(nCirculatingSupply) << std::endl;
+            }
 
             // calculate target emissions
             const auto nTotalEmissionRate = sporkManager.GetSporkValue(SPORK_116_TOT_SPLY_TRGT_EMISSION);
@@ -294,7 +297,7 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
             const auto nCirculatingTargetEmission = ((nCirculatingSupply / (365LL * nBlocksPerDay)) / 1000000) * nCirculatingEmissionRate * nRewardAdjustmentInterval;
             oss << "nCirculatingTargetEmission: " << FormatMoney(nCirculatingTargetEmission) << std::endl;
             const auto nTargetEmission = 
-                params.IsTestNet() && nHeight >= 1330000 ?
+                params.IsTestNet() && nHeight >= 1350000 ?
                 (nSupplyTargetEmission + nCirculatingTargetEmission) / 2LL :
                 std::max(nSupplyTargetEmission, nCirculatingTargetEmission);
             oss << "nTargetEmission: " << FormatMoney(nTargetEmission) << std::endl;

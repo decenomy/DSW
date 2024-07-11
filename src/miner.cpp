@@ -519,19 +519,22 @@ void SleepUntilNexSlot()
 
 uint64_t GetNetworkHashPS()
 {
+    const auto& params = Params();
+    const auto& consensus = params.GetConsensus();
     CBlockIndex *pb = chainActive.Tip();
 
     if (!pb || !pb->nHeight) return 0; 
 
-    uint64_t n_blocks = Params().GetConsensus().TargetTimespan(pb->nHeight) / Params().GetConsensus().nTargetSpacing;
-
-    if (pb->nHeight < n_blocks)
-        n_blocks = pb->nHeight;
+    const auto nBlocks = 
+        std::min(
+            consensus.TargetTimespan(pb->nHeight) / consensus.nTargetSpacing,
+            (int64_t)pb->nHeight
+        );
 
     CBlockIndex* pb0 = pb;
     int64_t minTime = pb0->GetBlockTime();
     int64_t maxTime = minTime;
-    for (int i = 0; i < n_blocks; i++) {
+    for (int i = 0; i < nBlocks; i++) {
         pb0 = pb0->pprev;
         int64_t time = pb0->GetBlockTime();
         minTime = std::min(time, minTime);
@@ -594,10 +597,14 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
                 continue;
             }
 
-            if (g_connman && 
-                g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && 
-                Params().MiningRequiresPeers()) {      // if there is no connections to other peers then
-                SleepUntilNexSlot();                   // sleep a time slot and try again
+            // if there is no connections or 
+            // only a few connections to other peers then
+            // sleep a time slot and try again
+            if (!g_connman ||(g_connman && 
+                g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) < 5 && 
+                Params().MiningRequiresPeers())) 
+            {      
+                SleepUntilNexSlot();                   
                 fStakingStatus = false;
                 continue;
             }
