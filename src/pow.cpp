@@ -258,21 +258,27 @@ unsigned int GetNextWorkRequiredPOSV3(const CBlockIndex* pIndexLast)
     const int64_t nN = 20; // EMA period
 
     uint256 bnNew(0);
-    const CBlockIndex* pIndexReading = pIndexLast;
+    
+    if(pIndexLast->nHeight > nN) {
+        
+        const CBlockIndex* pIndexReading = pIndexLast;
 
-    for (unsigned int i = 0;
-        pIndexReading && pIndexReading->nHeight && i < nN;
-        i++
-    ) {
-        uint256 currentValue;
-        currentValue.SetCompact(pIndexReading->nBits);
+        for (unsigned int i = 0;
+            pIndexReading && pIndexReading->nHeight && i < nN;
+            i++
+        ) {
+            uint256 currentValue;
+            currentValue.SetCompact(pIndexReading->nBits);
 
-        bnNew = ((currentValue * nAlpha) / (nN + 1)) + ((bnNew * (nN + 1 - nAlpha)) / (nN + 1));
+            bnNew = ((currentValue * nAlpha) / (nN + 1)) + ((bnNew * (nN + 1 - nAlpha)) / (nN + 1));
 
-        pIndexReading = pIndexReading->pprev;
+            pIndexReading = pIndexReading->pprev;
+        }
+
+        std::cout << "GetNextWorkRequiredPOSV3 nBits EMA: " << GetDifficulty(bnNew.GetCompact()) << std::endl;
+    } else {
+        bnNew.SetCompact(pIndexLast->nBits);
     }
-
-    std::cout << "GetNextWorkRequiredPOSV3 nBits ema: " << GetDifficulty(bnNew.GetCompact()) << std::endl;
 
     // Retarget the difficulty based on a PID controller based function
     int64_t nActualSpacing = nHeight > 1 ? pIndexLast->GetBlockTime() - pIndexLast->pprev->GetBlockTime() : nTargetSpacing;
