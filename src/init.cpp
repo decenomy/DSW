@@ -846,11 +846,6 @@ bool AppInitBasicSetup()
     if (setProcDEPPol != NULL) setProcDEPPol(PROCESS_DEP_ENABLE);
 #endif
 
-#ifdef ENABLE_UPDATE    
-    std::thread t(DailyRoutine);
-    t.detach();
-#endif
-
     if (!SetupNetworking())
         return UIError("Error: Initializing networking failed");
 
@@ -1005,19 +1000,6 @@ void InitLogging()
     version_string += " (release build)";
 #endif
     LogPrintf("Kyanite version %s (%s)\n", version_string, CLIENT_DATE);
-}
-
-void DailyRoutine(){
-    while(true){
-
-        if(CUpdate::CheckLatestVersion()){
-            LogPrintf("!! Please update for new app using the arg: -update\n");
-            CWalletUpdate wallet;
-            wallet.NewVersionAvailable(true);
-        }
-
-        std::this_thread::sleep_for(std::chrono::hours(24));
-    }
 }
 
 /** Initialize kyanite.

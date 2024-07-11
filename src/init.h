@@ -35,7 +35,6 @@ void Restart(const char* exePath);
 void PrepareShutdown();
 //!Initialize the logging infrastructure
 void InitLogging();
-void DailyRoutine();
 //!Parameter interaction: change current parameters depending on various rules
 void InitParameterInteraction();
 bool AppInit2();
