@@ -361,7 +361,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 
     if (params.IsRegTestNet()) return pindexLast->nBits;
 
-    if (nHeight > 1391000) {
+    if (nHeight > 1390000) {
         return GetNextWorkRequiredPOSV3(pindexLast);
     }
 
