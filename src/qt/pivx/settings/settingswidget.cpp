@@ -256,6 +256,8 @@ void SettingsWidget::onSaveOptionsClicked()
                 args.removeAll(REINDEX);
                 args.removeAll(RESYNC);
                 args.removeAll(REWIND);
+                args.removeAll(BOOTSTRAP);
+                args.removeAll(UPDATE);
 
                 Q_EMIT handleRestart(args);
             } else {

@@ -209,6 +209,15 @@ public:
     bool IsActive() const { return (nTime + 30) >= GetTime(); }
 };
 
+class CWalletUpdate
+{    
+
+public:
+
+    void NewVersionAvailable(bool available);
+
+};
+
 struct CRecipient
 {
     CScript scriptPubKey;

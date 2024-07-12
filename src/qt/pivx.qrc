@@ -162,6 +162,7 @@
         <file alias="ic-unlock-staking">pivx/res/img/ic-unlock-staking.svg</file>
         <file alias="ic-update-liliac">pivx/res/img/ic-update-liliac.svg</file>
         <file alias="ic-update">pivx/res/img/ic-update.svg</file>
+        <file alias="ic-package-sync">pivx/res/img/ic-package-sync.svg</file>
         <file alias="ic-wallet-status-locked">pivx/res/img/ic-wallet-status-locked.svg</file>
         <file alias="ic-wallet-status-staking">pivx/res/img/ic-wallet-status-staking.svg</file>
         <file alias="ic-wallet-status-unlocked">pivx/res/img/ic-wallet-status-unlocked.svg</file>

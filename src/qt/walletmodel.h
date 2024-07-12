@@ -137,6 +137,7 @@ public:
     bool isRegTestNetwork() const;
     /* current staking status from the miner thread **/
     bool isStakingStatusActive() const;
+    void emitNewVersionAvailable();
 
     bool isHDEnabled() const;
     bool upgradeWallet(std::string& upgradeError);
@@ -306,6 +307,9 @@ Q_SIGNALS:
     // Receive tab address may have changed
     void notifyReceiveAddressChanged();
 
+    // Signal that a new version is available
+    void newVersionAvailable();
+    
 public Q_SLOTS:
     /* Wallet status might have changed */
     void updateStatus();

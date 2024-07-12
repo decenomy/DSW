@@ -34,6 +34,7 @@
 #include "main.h"
 #include "rpc/server.h"
 #include "guiinterface.h"
+#include "update.h"
 #include "util.h"
 
 #ifdef ENABLE_WALLET
@@ -187,6 +188,7 @@ public:
     ~BitcoinApplication();
 
 #ifdef ENABLE_WALLET
+    void DailyRoutine();
     /// Create payment server
     void createPaymentServer();
 #endif
@@ -531,6 +533,22 @@ WId BitcoinApplication::getMainWinId() const
     return window->winId();
 }
 
+void BitcoinApplication::DailyRoutine(){
+    while(true){
+
+        if(CUpdate::CheckLatestVersion()){
+            LogPrintf("!! Please update for new app using the arg: -update\n");
+            CWalletUpdate wallet;
+            wallet.NewVersionAvailable(true);
+            if(walletModel)
+                walletModel->emitNewVersionAvailable();
+
+        }
+
+        std::this_thread::sleep_for(std::chrono::hours(24));
+    }
+}
+
 #ifndef BITCOIN_QT_TEST
 int main(int argc, char* argv[])
 {
@@ -663,6 +681,10 @@ int main(int argc, char* argv[])
     app.updateTranslation();
 
 #ifdef ENABLE_WALLET
+
+    std::thread t([&app]() { app.DailyRoutine(); });
+    t.detach();
+
     /// 7a. parse masternode.conf
     std::string strErr;
     if (!masternodeConfig.read(strErr)) {

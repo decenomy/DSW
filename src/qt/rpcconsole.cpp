@@ -56,6 +56,7 @@ const QString REINDEX("-reindex");
 const QString RESYNC("-resync");
 const QString REWIND("-rewindblockindex");
 const QString BOOTSTRAP("-bootstrap");
+const QString UPDATE("-update");
 
 const struct {
     const char* url;
@@ -285,6 +286,7 @@ RPCConsole::RPCConsole(QWidget* parent) : QDialog(parent, Qt::WindowSystemMenuHi
     connect(ui->btn_reindex, &QPushButton::clicked, this, &RPCConsole::walletReindex);
     connect(ui->btn_resync, &QPushButton::clicked, this, &RPCConsole::walletResync);
     connect(ui->btn_bootstrap, &QPushButton::clicked, this, &RPCConsole::walletBootstrap);
+    connect(ui->btn_update, &QPushButton::clicked, this, &RPCConsole::walletUpdate);
 
     // set library version labels
 #ifdef ENABLE_WALLET
@@ -590,6 +592,27 @@ void RPCConsole::walletBootstrap()
     buildParameterlist(BOOTSTRAP);
 }
 
+/** Restart wallet with "-update" */
+void RPCConsole::walletUpdate()
+{
+    QString updateWarning = tr("This will replace your current release for the latest release.<br /><br />");
+        updateWarning +=   tr("This needs a few seconds to update .<br /><br />");
+        updateWarning +=   tr("Your old version will be saved in a backup folder on current dir.<br /><br />");
+        updateWarning +=   tr("Do you want to continue?.<br />");
+    QMessageBox::StandardButton retval = QMessageBox::question(this, tr("Confirm update RELEASE"),
+        updateWarning,
+        QMessageBox::Yes | QMessageBox::Cancel,
+        QMessageBox::Cancel);
+
+    if (retval != QMessageBox::Yes) {
+        // Update canceled
+        return;
+    }
+
+    // Restart and update
+    buildParameterlist(UPDATE);
+}
+
 /** Build command-line parameter list for restart */
 void RPCConsole::buildParameterlist(QString arg)
 {
@@ -607,6 +630,7 @@ void RPCConsole::buildParameterlist(QString arg)
     args.removeAll(RESYNC);
     args.removeAll(REWIND);
     args.removeAll(BOOTSTRAP);
+    args.removeAll(UPDATE);
 
     // Append repair parameter to command line.
     args.append(arg);

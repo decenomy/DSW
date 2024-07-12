@@ -28,13 +28,13 @@ SettingsWalletRepairWidget::SettingsWalletRepairWidget(PIVXGUI* _window, QWidget
     setCssProperty({ui->labelMessageSalvage, ui->labelMessageRescan, ui->labelMessageRecover1,
                     ui->labelMessageRecover2, ui->labelMessageUpgrade, ui->labelMessageRebuild,
                     ui->labelMessageDelete, ui->labelMessageRewind, ui->labelMessageWeekRewind,
-                    ui->labelMessageBootstrap}, "text-main-settings");
+                    ui->labelMessageBootstrap, ui->labelMessageUpdate}, "text-main-settings");
 
     // Buttons
     setCssProperty({ui->pushButtonSalvage, ui->pushButtonRescan, ui->pushButtonRecover1,
                     ui->pushButtonRecover2, ui->pushButtonUpgrade, ui->pushButtonRebuild,
                     ui->pushButtonDelete, ui->pushButtonRewind, ui->pushButtonWeekRewind,
-                  ui->pushButtonBootstrap}, "btn-primary");
+                    ui->pushButtonBootstrap, ui->pushButtonUpdate}, "btn-primary");
 
     // Wallet Repair Buttons
     connect(ui->pushButtonSalvage, &QPushButton::clicked, this, &SettingsWalletRepairWidget::walletSalvage);
@@ -47,6 +47,7 @@ SettingsWalletRepairWidget::SettingsWalletRepairWidget(PIVXGUI* _window, QWidget
     connect(ui->pushButtonRewind, &QPushButton::clicked, this, &SettingsWalletRepairWidget::walletRewind);
     connect(ui->pushButtonWeekRewind, &QPushButton::clicked, this, &SettingsWalletRepairWidget::walletWeekRewind);
     connect(ui->pushButtonBootstrap, &QPushButton::clicked, this, &SettingsWalletRepairWidget::walletBootstrap);
+    connect(ui->pushButtonUpdate, &QPushButton::clicked, this, &SettingsWalletRepairWidget::walletUpdate);
 }
 
 /** Restart wallet with "-salvagewallet" */
@@ -151,7 +152,7 @@ void SettingsWalletRepairWidget::walletWeekRewind()
     buildParameterlist(tr((REWIND.toStdString() + param).c_str()));
 }
 
-/** Restart wallet with "-resync" */
+/** Restart wallet with "-bootstrap" */
 void SettingsWalletRepairWidget::walletBootstrap()
 {
     QString bootstrapWarning = tr("This will delete your local blockchain folders and the wallet will load all blockchain from source.<br /><br />");
@@ -164,12 +165,33 @@ void SettingsWalletRepairWidget::walletBootstrap()
                                                                QMessageBox::Cancel);
 
     if (retval != QMessageBox::Yes) {
-        // Resync canceled
+        // Bootstrap canceled
         return;
     }
 
-    // Restart and resync
+    // Restart and bootstrap
     buildParameterlist(BOOTSTRAP);
+}
+
+/** Restart wallet with "-update" */
+void SettingsWalletRepairWidget::walletUpdate()
+{
+    QString updateWarning = tr("This will replace your current release for the latest release.<br /><br />");
+        updateWarning +=   tr("This needs a few seconds to update .<br /><br />");
+        updateWarning +=   tr("Your old version will be saved in a backup folder on current dir.<br /><br />");
+        updateWarning +=   tr("Do you want to continue?.<br />");
+    QMessageBox::StandardButton retval = QMessageBox::question(this, tr("Confirm update RELEASE"),
+        updateWarning,
+        QMessageBox::Yes | QMessageBox::Cancel,
+        QMessageBox::Cancel);
+
+    if (retval != QMessageBox::Yes) {
+        // Update canceled
+        return;
+    }
+
+    // Restart and update
+    buildParameterlist(UPDATE);
 }
 
 /** Build command-line parameter list for restart */
@@ -188,6 +210,8 @@ void SettingsWalletRepairWidget::buildParameterlist(QString arg)
     args.removeAll(REINDEX);
     args.removeAll(RESYNC);
     args.removeAll(REWIND);
+    args.removeAll(BOOTSTRAP);
+    args.removeAll(UPDATE);
 
     // Append repair parameter to command line.
     args.append(arg);

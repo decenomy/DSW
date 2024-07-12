@@ -19,6 +19,7 @@
 #include "qt/guiconstants.h"
 #include "qt/guiutil.h"
 #include "qt/platformstyle.h"
+#include "qt/rpcconsole.h"
 #include "walletmodel.h"
 
 #include "masternode-sync.h"
@@ -26,11 +27,15 @@
 #include "miner.h"
 #include "util.h"
 #include "wallet/wallet.h"
+#include "update.h"
+#include "guiinterfaceutil.h"
 
 #include <QPixmap>
 #include <QSettings>
 
 #define REQUEST_UPGRADE_WALLET 1
+
+bool newVersionIndicated = false;
 
 TopBar::TopBar(PIVXGUI* _mainWindow, QWidget* parent) : PWidget(_mainWindow, parent),
                                                         ui(new Ui::TopBar)
@@ -135,6 +140,8 @@ TopBar::TopBar(PIVXGUI* _mainWindow, QWidget* parent) : PWidget(_mainWindow, par
     ui->pushButtonLock->setButtonText(tr("Wallet Locked "));
     ui->pushButtonLock->setButtonClassStyle("cssClass", "btn-check-status-lock");
 
+    ui->pushButtonUpdate->setButtonText(tr("Wallet Update "));
+    ui->pushButtonUpdate->setButtonClassStyle("cssClass", "btn-check-status-update");
 
     connect(ui->pushButtonQR, &QPushButton::clicked, this, &TopBar::onBtnReceiveClicked);
     connect(ui->btnQr, &QPushButton::clicked, this, &TopBar::onBtnReceiveClicked);
@@ -610,6 +617,7 @@ void TopBar::loadWalletModel()
     connect(walletModel, &WalletModel::encryptionStatusChanged, this, &TopBar::refreshStatus);
     // Ask for passphrase if needed
     connect(walletModel, &WalletModel::requireUnlock, this, &TopBar::unlockWallet);
+    connect(walletModel, &WalletModel::newVersionAvailable, this, &TopBar::refreshStatus);
     // update the display unit, to not use the default ("__DSW__")
     updateDisplayUnit();
 
@@ -719,6 +727,12 @@ void TopBar::refreshStatus()
     
     if(!fStaking) ui->pushButtonStack->setVisible(false);
     ui->widgetStaking->setVisible(fStaking);
+
+    if(newVersion && !newVersionIndicated){
+        newVersionIndicated = true;
+        walletUpdate();
+    }
+    ui->pushButtonUpdate->setVisible(newVersion);
 }
 
 void TopBar::updateDisplayUnit()
@@ -837,4 +851,88 @@ void TopBar::onStakingBtnClicked()
             fStakingActive ^= true;
         }
     }
+}
+
+void TopBar::onUpdateBtnClicked()
+{
+    if(ask(
+        tr("A new wallet version is available.."),
+        tr("Do you want to update it now?"))
+    ) {
+        // This restart only works if wallet is synched
+        LogPrintf("restart required \n");
+        buildParameterlist(UPDATE);
+        return; 
+
+        // Otherwise this call should be used
+        try {
+            std::string exePath = GetExePath();
+            if(exePath == ""){
+                UIError(_("Unable to obtain executable path. Update will be canceled !!"));
+                return;
+            }
+
+            Interrupt();
+            PrepareShutdown();
+            Restart(exePath.c_str());
+            LogPrintf("Error restarting program..");
+            exit(0);
+
+        } catch (const std::exception& e) {
+            uiInterface.ThreadSafeMessageBox(_("Error updating app, shutting down."), "", CClientUIInterface::MSG_ERROR);
+            LogPrintf("Error updating app: %s\n", e.what());
+            return;
+        }
+
+    }
+}
+
+void TopBar::walletUpdate()
+{
+    QString updateWarning = tr("This will replace your current release for the latest release.<br /><br />");
+        updateWarning +=   tr("This needs a few seconds to update .<br /><br />");
+        updateWarning +=   tr("Your old version will be saved in a backup folder on current dir.<br /><br />");
+        updateWarning +=   tr("Do you want to continue?.<br />");
+    QMessageBox::StandardButton retval = QMessageBox::question(this, tr("Confirm update RELEASE"),
+        updateWarning,
+        QMessageBox::Yes | QMessageBox::Cancel,
+        QMessageBox::Cancel);
+
+    if (retval != QMessageBox::Yes) {
+        // Update cancelled
+        return;
+    }
+
+    // Restart and update
+    buildParameterlist(UPDATE);
+}
+
+/** Build command-line parameter list for restart */
+void TopBar::buildParameterlist(QString arg)
+{
+
+    // Get command-line arguments and remove the application name
+    QStringList args = QApplication::arguments();
+    args.removeFirst();
+
+    // Remove existing repair-options
+    args.removeAll(SALVAGEWALLET);
+    args.removeAll(RESCAN);
+    args.removeAll(ZAPTXES1);
+    args.removeAll(ZAPTXES2);
+    args.removeAll(UPGRADEWALLET);
+    args.removeAll(REINDEX);
+    args.removeAll(RESYNC);
+    args.removeAll(REWIND);
+    args.removeAll(BOOTSTRAP);
+    args.removeAll(UPDATE);
+
+    // Append repair parameter to command line.
+    args.append(arg);
+
+    QString joinedString = args.join(" ");
+    std::cout << "args: " << joinedString.toStdString() << std::endl;
+    // Send command-line arguments to PIVXGUI::handleRestart()
+    Q_EMIT handleRestart(args);
+    return;
 }

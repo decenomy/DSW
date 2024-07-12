@@ -67,7 +67,8 @@ bool CBootstrap::DownloadAndApply()
 
     try {
         // Step 1: Download the bootstrap file
-        if (!CCurlWrapper::DownloadFile(url, fileName.string(), progressCallback)) {
+        CCurlWrapper client;
+        if (!client.DownloadFile(url, fileName.string(), progressCallback)) {
             LogPrintf(
                 "CBootstrap::%s: Failed to download the bootstrap file: %s\n",
                 __func__,

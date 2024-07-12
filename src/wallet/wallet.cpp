@@ -4087,3 +4087,7 @@ bool CWalletTx::IsFromMe(const isminefilter& filter) const
 {
     return (GetDebit(filter) > 0);
 }
+
+void CWalletUpdate::NewVersionAvailable(bool available){
+    newVersion = available;
+}

@@ -193,6 +193,7 @@ BITCOIN_CORE_H = \
   uint512.h \
   blob_uint256.h \
   undo.h \
+  update.h \
   util/memory.h \
   util.h \
   util/macros.h \
@@ -260,6 +261,7 @@ libbitcoin_server_a_SOURCES = \
   torcontrol.cpp \
   txdb.cpp \
   txmempool.cpp \
+  update.cpp \
   validationinterface.cpp \
   zip.cpp \
   bootstrap.cpp \
