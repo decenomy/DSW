@@ -222,7 +222,7 @@ bool CRewards::ConnectBlock(CBlockIndex* pindex, CAmount nSubsidy, CCoinsViewCac
             while (pcursor->Valid()) {
                 COutPoint key;
                 Coin coin;
-                if (pcursor->GetKey(key) && pcursor->GetValue(coin)) {
+                if (pcursor->GetKey(key) && pcursor->GetValue(coin) && !coin.IsSpent()) {
                     // ----------- burn address scanning -----------
                     CTxDestination source;
                     if (ExtractDestination(coin.out.scriptPubKey, source)) {
