@@ -401,8 +401,6 @@ unsigned int GetNextWorkRequiredPOSV4(const CBlockIndex* pIndexLast)
 
     std::cout << "GetNextWorkRequiredPOSV4 nBits Smoothing: " << GetDifficulty(bnNew.GetCompact()) << std::endl;
 
-    // =========================================================================
-
     // Retarget the difficulty based on a PID controller based function
     int64_t nActualSpacing = nHeight > 1 ? pIndexLast->GetBlockTime() - pIndexLast->pprev->GetBlockTime() : nTargetSpacing;
     int64_t nActualSpacingError = nActualSpacing - nTargetSpacing;
@@ -481,6 +479,112 @@ unsigned int GetNextWorkRequiredPOSV4(const CBlockIndex* pIndexLast)
     return bnNew.GetCompact();
 }
 
+unsigned int GetNextWorkRequiredPOSV5(const CBlockIndex* pIndexLast)
+{
+    // Retrieve the parameters and consensus rules
+    const auto& params = Params();
+    const auto& consensus = params.GetConsensus();
+
+    std::cout << "============================================================" << std::endl;
+    
+    // Get the current block height
+    const auto nPrevHeight = pIndexLast->nHeight;
+    const auto nHeight = nPrevHeight + 1;
+
+    std::cout << "GetNextWorkRequiredPOSV5 nHeight: " << nHeight << std::endl;
+    
+    // Fetch the target block spacing time and timespan
+    const auto& nTargetSpacing = consensus.nTargetSpacing;
+
+    std::cout << "GetNextWorkRequiredPOSV5 consensus.nTargetSpacing: " << nTargetSpacing << std::endl;
+    
+    // Retarget the difficulty based on a PID controller based function
+    int64_t nActualSpacing = nHeight > 1 ? pIndexLast->GetBlockTime() - pIndexLast->pprev->GetBlockTime() : nTargetSpacing;
+    int64_t nActualSpacingError = nActualSpacing - nTargetSpacing;
+
+    std::cout << "GetNextWorkRequiredPOSV5 nActualSpacing: " << nActualSpacing << std::endl;
+    std::cout << "GetNextWorkRequiredPOSV5 nActualSpacingError: " << nActualSpacingError << std::endl;
+    
+    int64_t nActualPreviousSpacing = nHeight > 2 ? pIndexLast->pprev->GetBlockTime() - pIndexLast->pprev->pprev->GetBlockTime() : nTargetSpacing;
+    int64_t nActualPreviousSpacingError = nActualPreviousSpacing - nTargetSpacing;
+    
+    std::cout << "GetNextWorkRequiredPOSV5 nActualPreviousSpacing: " << nActualPreviousSpacing << std::endl;
+    std::cout << "GetNextWorkRequiredPOSV5 nActualPreviousSpacingError: " << nActualPreviousSpacingError << std::endl;
+    
+    int64_t nDiffErrorSpacing = nActualSpacingError - nActualPreviousSpacingError;
+    std::cout << "GetNextWorkRequiredPOSV5 nDiffErrorSpacing: " << nDiffErrorSpacing << std::endl;
+
+    const int nBlocksPerWeek = WEEK_IN_SECONDS / nTargetSpacing;
+
+    int64_t nAccumulatedTargetSpacing = WEEK_IN_SECONDS;
+    int64_t nAccumulatedSpacing = nHeight > nBlocksPerWeek ?
+        pIndexLast->GetBlockTime() - chainActive[nPrevHeight - nBlocksPerWeek]->GetBlockTime() :
+        nAccumulatedTargetSpacing;
+    int64_t nAccumulatedTargetSpacingError = nAccumulatedSpacing - nAccumulatedTargetSpacing;
+
+    std::cout << "GetNextWorkRequiredPOSV5 nAccumulatedSpacing: " << nAccumulatedSpacing << std::endl;
+    std::cout << "GetNextWorkRequiredPOSV5 nAccumulatedTargetSpacingError: " << nAccumulatedTargetSpacingError << std::endl;
+
+    const int nBlocksPerHour = HOUR_IN_SECONDS / nTargetSpacing;
+
+    int64_t nKp = nBlocksPerHour / 2;   // 30 min
+    int64_t nKd = nKp * 8;              // 240 min = 4h
+    int64_t nKi = nKd * 8;              // 1920 min = 32h
+
+    std::cout << "GetNextWorkRequiredPOSV5 Kp factor: " << nKp << std::endl;
+    std::cout << "GetNextWorkRequiredPOSV5 Kd factor: " << nKd << std::endl;
+    std::cout << "GetNextWorkRequiredPOSV5 Ki factor: " << nKi << std::endl;
+
+    uint256 bnNew;
+    bnNew.SetCompact(pIndexLast->nBits);
+
+    std::cout << "GetNextWorkRequiredPOSV5 nBits start: " << GetDifficulty(bnNew.GetCompact()) << std::endl;
+
+    if (nActualSpacingError > 0) {
+        bnNew += (bnNew * nActualSpacingError) / (nKd * nTargetSpacing);     
+    } else {
+        bnNew -= (bnNew * -nActualSpacingError) / (nKd * nTargetSpacing);
+    }
+
+    std::cout << "GetNextWorkRequiredPOSV5 nBits Kp: " << GetDifficulty(bnNew.GetCompact()) << std::endl;
+
+    if (nDiffErrorSpacing > 0) {
+        bnNew += (bnNew * nDiffErrorSpacing) / (nKd * nTargetSpacing);
+    } else {
+        bnNew -= (bnNew * -nDiffErrorSpacing) / (nKd * nTargetSpacing);
+    }
+
+    std::cout << "GetNextWorkRequiredPOSV5 nBits Kd: " << GetDifficulty(bnNew.GetCompact()) << std::endl;
+
+    if (nAccumulatedTargetSpacingError > 0) {
+        bnNew += (bnNew * nAccumulatedTargetSpacingError) / (nKd * nAccumulatedTargetSpacing);     
+    } else {
+        bnNew -= (bnNew * -nAccumulatedTargetSpacingError) / (nKd * nAccumulatedTargetSpacing);
+    }
+
+    std::cout << "GetNextWorkRequiredPOSV5 nBits Ki: " << GetDifficulty(bnNew.GetCompact()) << std::endl;
+
+    // Ensure the new difficulty does not exceed the minimum allowed by consensus
+    if (bnNew > consensus.posLimit)
+        bnNew = consensus.posLimit;
+
+    const CBlockIndex* BlockReading = pIndexLast;
+
+    for (unsigned int i = 0; BlockReading && BlockReading->nHeight > 0; i++) {
+        if(BlockReading->nTime < (pIndexLast->nTime - DAY_IN_SECONDS)) {
+            std::cout << "GetNextWorkRequiredPOSV5 24h nBlocks: " << i << std::endl;
+            break;
+        }
+
+        BlockReading = BlockReading->pprev;
+    }
+
+    std::cout << "GetNextWorkRequiredPOSV5 nBits return: " << GetDifficulty(bnNew.GetCompact()) << std::endl;
+
+    // Return the new difficulty in compact format
+    return bnNew.GetCompact();
+}
+
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader* pblock)
 {
     const auto& params = Params();
@@ -489,7 +593,12 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 
     if (params.IsRegTestNet()) return pindexLast->nBits;
 
+    if (nHeight > 1397500) {
+        return GetNextWorkRequiredPOSV5(pindexLast);
+    }
+
     if (nHeight > 1391100) {
+        GetNextWorkRequiredPOSV5(pindexLast);
         return GetNextWorkRequiredPOSV4(pindexLast);
     }
 
