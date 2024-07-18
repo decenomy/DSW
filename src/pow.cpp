@@ -636,8 +636,8 @@ unsigned int GetNextWorkRequiredPOSV6(const CBlockIndex* pIndexLast)
     std::cout << "GetNextWorkRequiredPOSV6 nActualPreviousSpacing: " << nActualPreviousSpacing << std::endl;
     std::cout << "GetNextWorkRequiredPOSV6 nActualPreviousSpacingError: " << nActualPreviousSpacingError << std::endl;
     
-    int64_t nDiffErrorSpacing = nActualSpacingError - nActualPreviousSpacingError;
-    std::cout << "GetNextWorkRequiredPOSV6 nDiffErrorSpacing: " << nDiffErrorSpacing << std::endl;
+    int64_t nDiffSpacingError = nActualSpacingError - nActualPreviousSpacingError;
+    std::cout << "GetNextWorkRequiredPOSV6 nDiffSpacingError: " << nDiffSpacingError << std::endl;
 
     const int nBlocksPerWeek = WEEK_IN_SECONDS / nTargetSpacing;
 
@@ -678,10 +678,10 @@ unsigned int GetNextWorkRequiredPOSV6(const CBlockIndex* pIndexLast)
 
     std::cout << "GetNextWorkRequiredPOSV6 nBits Kp: " << GetDifficulty(bnNew.GetCompact()) << std::endl;
 
-    if (nDiffErrorSpacing > 0) {
-        bnNew += (bnNew * nDiffErrorSpacing) / (nKd * nTargetSpacing);
+    if (nDiffSpacingError > 0) {
+        bnNew += (bnNew * nDiffSpacingError) / (nKd * nTargetSpacing);
     } else {
-        bnNew -= (bnNew * -nDiffErrorSpacing) / (nKd * nTargetSpacing);
+        bnNew -= (bnNew * -nDiffSpacingError) / (nKd * nTargetSpacing);
     }
 
     std::cout << "GetNextWorkRequiredPOSV6 nBits Kd: " << GetDifficulty(bnNew.GetCompact()) << std::endl;
