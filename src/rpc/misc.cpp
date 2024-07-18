@@ -852,8 +852,8 @@ UniValue getrewardsinfo(const JSONRPCRequest& request)
         const auto& params = Params();
         const auto& consensus = params.GetConsensus();
 
-        const auto tip = chainActive.Tip();
-        const auto nHeight = tip->nHeight;
+        const auto pTip = chainActive.Tip();
+        const auto nHeight = pTip->nHeight;
 
         // Fetch consensus parameters
         const auto nTargetSpacing = consensus.nTargetSpacing;
@@ -865,15 +865,28 @@ UniValue getrewardsinfo(const JSONRPCRequest& request)
         const auto nMNReward = CMasternode::GetMasternodePayment(nHeight);
         const auto nStakeReward = nBlockValue - nMNReward;
 
-        const auto nBlocksPerDay = DAY_IN_SECONDS / nTargetSpacing;
-        const auto nBlocksPerWeek = WEEK_IN_SECONDS / nTargetSpacing;
-        const auto nBlocksPerMonth = MONTH_IN_SECONDS / nTargetSpacing;
-        const auto nBlocksPerYear = YEAR_IN_SECONDS / nTargetSpacing;
+        int64_t nBlocksPerDay = DAY_IN_SECONDS / nTargetSpacing;
+        CBlockIndex* BlockReading = pTip;
+
+        if(nHeight > nBlocksPerDay) {
+            for (unsigned int i = 0; BlockReading && BlockReading->nHeight > 0; i++) {
+                if(BlockReading->nTime < (pTip->nTime - DAY_IN_SECONDS)) {
+                    nBlocksPerDay = i;
+                    break;
+                }
+
+                BlockReading = BlockReading->pprev;
+            }
+        }
+
+        int64_t nBlocksPerWeek = nBlocksPerDay * 7;
+        int64_t nBlocksPerMonth = nBlocksPerDay * 30;
+        int64_t nBlocksPerYear = nBlocksPerDay * 365;
 
         // Fetch the network generated hashes per second
         const auto nBlocks = static_cast<int>(nTargetTimespan / nTargetSpacing);
         const auto startBlock = chainActive[nHeight - std::min(nBlocks, nHeight)];
-        const auto endBlock = tip;
+        const auto endBlock = pTip;
         const auto nTimeDiff = endBlock->GetBlockTime() - startBlock->GetBlockTime();
         const auto nWorkDiff = endBlock->nChainWork - startBlock->nChainWork;
         const auto nNetworkHashPS = static_cast<int64_t>(nWorkDiff.getdouble() / nTimeDiff);
@@ -887,7 +900,7 @@ UniValue getrewardsinfo(const JSONRPCRequest& request)
         // Calculate how many coins are allocated in the entire staking algorithm
         const auto nStakedCoins = static_cast<double>(nNetworkHashPS * nTimeSlotLength * 100);
         const auto nSmoothStakedCoins = static_cast<double>(nSmoothNetworkHashPS * nTimeSlotLength * 100);
-        const auto nStakingAllocation = static_cast<double>(nSmoothStakedCoins) / tip->nMoneySupply.get();
+        const auto nStakingAllocation = static_cast<double>(nSmoothStakedCoins) / pTip->nMoneySupply.get();
         const auto nYearlyStakingRewards = nStakeReward * nBlocksPerYear;
         auto nStakingROI = nYearlyStakingRewards / nStakedCoins;
         auto nSmoothStakingROI = nYearlyStakingRewards / nSmoothStakedCoins;
@@ -897,7 +910,7 @@ UniValue getrewardsinfo(const JSONRPCRequest& request)
         const auto nMNNextWeekCollateral = CMasternode::GetNextWeekMasternodeCollateral();
         const auto nMNEnabled = mnodeman.CountEnabled();
         const auto nMNCoins = nMNCollateral * nMNEnabled;
-        const auto nMNAllocation = static_cast<double>(nMNCoins) / tip->nMoneySupply.get();
+        const auto nMNAllocation = static_cast<double>(nMNCoins) / pTip->nMoneySupply.get();
 
         const auto nTotalAllocationCoins = nSmoothStakedCoins + nMNCoins;
         const auto nTotalAllocation = nStakingAllocation + nMNAllocation;
