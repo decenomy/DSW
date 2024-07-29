@@ -726,6 +726,152 @@ unsigned int GetNextWorkRequiredPOSV6(const CBlockIndex* pIndexLast)
     return bnNew.GetCompact();
 }
 
+unsigned int GetNextWorkRequiredPOSV7(const CBlockIndex* pIndexLast)
+{
+    // Retrieve the parameters and consensus rules
+    const auto& params = Params();
+    const auto& consensus = params.GetConsensus();
+
+    std::cout << "============================================================" << std::endl;
+    
+    // Get the current block height
+    const auto nPrevHeight = pIndexLast->nHeight;
+    const auto nHeight = nPrevHeight + 1;
+
+    std::cout << "GetNextWorkRequiredPOSV7 nHeight: " << nHeight << std::endl;
+    
+    // Fetch the target block spacing time and timespan
+    const auto& nTargetSpacing = consensus.nTargetSpacing;
+    const auto& nTimeSlotLength = consensus.nTimeSlotLength;
+
+    std::cout << "GetNextWorkRequiredPOSV7 consensus.nTargetSpacing: " << nTargetSpacing << std::endl;
+    
+    // Retarget the difficulty based on a PID controller based function
+    int64_t nActualSpacing = nHeight > 1 ? pIndexLast->GetBlockTime() - pIndexLast->pprev->GetBlockTime() : nTargetSpacing;
+    int64_t nActualSpacingError = nActualSpacing - nTargetSpacing;
+    
+    std::cout << "GetNextWorkRequiredPOSV7 nActualSpacing: " << nActualSpacing << std::endl;
+    std::cout << "GetNextWorkRequiredPOSV7 nActualSpacingError: " << nActualSpacingError << std::endl;
+    
+    int64_t nActualPreviousSpacing = nHeight > 2 ? pIndexLast->pprev->GetBlockTime() - pIndexLast->pprev->pprev->GetBlockTime() : nTargetSpacing;
+    int64_t nActualPreviousSpacingError = nActualPreviousSpacing - nTargetSpacing;
+    
+    std::cout << "GetNextWorkRequiredPOSV7 nActualPreviousSpacing: " << nActualPreviousSpacing << std::endl;
+    std::cout << "GetNextWorkRequiredPOSV7 nActualPreviousSpacingError: " << nActualPreviousSpacingError << std::endl;
+    
+    int64_t nDiffSpacingError = nActualSpacingError - nActualPreviousSpacingError;
+    std::cout << "GetNextWorkRequiredPOSV7 nDiffSpacingError: " << nDiffSpacingError << std::endl;
+
+    const int nBlocksPerWeek = WEEK_IN_SECONDS / nTargetSpacing;
+
+    int64_t nAccumulatedTargetSpacing = WEEK_IN_SECONDS;
+    int64_t nAccumulatedSpacing = nHeight > nBlocksPerWeek ?
+        pIndexLast->GetBlockTime() - chainActive[nPrevHeight - nBlocksPerWeek]->GetBlockTime() :
+        nAccumulatedTargetSpacing;
+    int64_t nAccumulatedTargetSpacingError = nAccumulatedSpacing - nAccumulatedTargetSpacing;
+
+    std::cout << "GetNextWorkRequiredPOSV7 nAccumulatedSpacing: " << nAccumulatedSpacing << std::endl;
+    std::cout << "GetNextWorkRequiredPOSV7 nAccumulatedTargetSpacingError: " << nAccumulatedTargetSpacingError << std::endl;
+
+    // non-linear errors functions
+    if(nActualSpacingError > 0) {
+        nActualSpacingError = std::min(nActualSpacingError, nTargetSpacing * 10);
+        nActualSpacingError = (nActualSpacingError * nActualSpacingError) / nTimeSlotLength;
+    } else {
+        nActualSpacingError = std::max(nActualSpacingError, -nTargetSpacing * 10);
+        nActualSpacingError = -(nActualSpacingError * nActualSpacingError) / nTimeSlotLength;
+    }
+    std::cout << "GetNextWorkRequiredPOSV7 nActualSpacingError non-linear: " << nActualSpacingError << std::endl;
+
+    if(nDiffSpacingError > 0) {
+        nDiffSpacingError = std::min(nDiffSpacingError, nTargetSpacing * 10);
+        nDiffSpacingError = (nDiffSpacingError * nDiffSpacingError) / nTimeSlotLength;
+    } else {
+        nDiffSpacingError = std::max(nDiffSpacingError, -nTargetSpacing * 10);
+        nDiffSpacingError = -(nDiffSpacingError * nDiffSpacingError) / nTimeSlotLength;
+    }
+    std::cout << "GetNextWorkRequiredPOSV7 nDiffSpacingError non-linear: " << nDiffSpacingError << std::endl;
+
+    if(nAccumulatedTargetSpacingError > 0) {
+        nAccumulatedTargetSpacingError = std::min(nAccumulatedTargetSpacingError, nTargetSpacing * 100);
+        nAccumulatedTargetSpacingError = (nAccumulatedTargetSpacingError * nAccumulatedTargetSpacingError) / nTimeSlotLength;
+    } else {
+        nAccumulatedTargetSpacingError = std::max(nAccumulatedTargetSpacingError, -nTargetSpacing * 100);
+        nAccumulatedTargetSpacingError = -(nAccumulatedTargetSpacingError * nAccumulatedTargetSpacingError) / nTimeSlotLength;
+    }
+    std::cout << "GetNextWorkRequiredPOSV7 nAccumulatedTargetSpacingError non-linear: " << nAccumulatedTargetSpacingError << std::endl;
+
+    const int nBlocksPerHour = HOUR_IN_SECONDS / nTargetSpacing;
+
+    int64_t nKp = 2 * nBlocksPerHour; // 120 = 2h
+    int64_t nKd = nKp * 4;            // 480 = 8h
+    int64_t nKi = nKd * 4;            // 1920 = 32h
+
+    std::cout << "GetNextWorkRequiredPOSV7 Kp factor: " << nKp << std::endl;
+    std::cout << "GetNextWorkRequiredPOSV7 Kd factor: " << nKd << std::endl;
+    std::cout << "GetNextWorkRequiredPOSV7 Ki factor: " << nKi << std::endl;
+
+    uint256 bnNew;
+    bnNew.SetCompact(pIndexLast->nBits);
+
+    std::cout << "GetNextWorkRequiredPOSV7 nBits start: " << GetDifficulty(bnNew.GetCompact()) << std::endl;
+
+    if (nActualSpacingError > 0) {
+        bnNew += (bnNew * nActualSpacingError) / (nKp * nTargetSpacing);     
+    } else {
+        bnNew -= (bnNew * -nActualSpacingError) / (nKp * nTargetSpacing);
+    }
+
+    std::cout << "GetNextWorkRequiredPOSV7 nBits Kp: " << GetDifficulty(bnNew.GetCompact()) << std::endl;
+
+    if (nDiffSpacingError > 0) {
+        bnNew += (bnNew * nDiffSpacingError) / (nKd * nTargetSpacing);
+    } else {
+        bnNew -= (bnNew * -nDiffSpacingError) / (nKd * nTargetSpacing);
+    }
+
+    std::cout << "GetNextWorkRequiredPOSV7 nBits Kd: " << GetDifficulty(bnNew.GetCompact()) << std::endl;
+
+    if (nAccumulatedTargetSpacingError > 0) {
+        bnNew += (bnNew * nAccumulatedTargetSpacingError) / (nKi * nAccumulatedTargetSpacing);     
+    } else {
+        bnNew -= (bnNew * -nAccumulatedTargetSpacingError) / (nKi * nAccumulatedTargetSpacing);
+    }
+
+    std::cout << "GetNextWorkRequiredPOSV7 nBits Ki: " << GetDifficulty(bnNew.GetCompact()) << std::endl;
+
+    // Ensure the new difficulty does not exceed the minimum allowed by consensus
+    if (bnNew > consensus.posLimit)
+        bnNew = consensus.posLimit;
+
+    const CBlockIndex* BlockReading = pIndexLast;
+
+    for (unsigned int i = 0; BlockReading && BlockReading->nHeight > 0; i++) {
+        if(BlockReading->nTime < (pIndexLast->nTime - DAY_IN_SECONDS)) {
+            std::cout << "GetNextWorkRequiredPOSV7 24h nBlocks: " << i << std::endl;
+            break;
+        }
+
+        BlockReading = BlockReading->pprev;
+    }
+
+    BlockReading = pIndexLast;
+
+    for (unsigned int i = 0; BlockReading && BlockReading->nHeight > 0; i++) {
+        if(BlockReading->nTime < (pIndexLast->nTime - HOUR_IN_SECONDS)) {
+            std::cout << "GetNextWorkRequiredPOSV7 1h nBlocks: " << i << std::endl;
+            break;
+        }
+
+        BlockReading = BlockReading->pprev;
+    }
+
+    std::cout << "GetNextWorkRequiredPOSV7 nBits return: " << GetDifficulty(bnNew.GetCompact()) << std::endl;
+
+    // Return the new difficulty in compact format
+    return bnNew.GetCompact();
+}
+
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader* pblock)
 {
     const auto& params = Params();
@@ -734,7 +880,12 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 
     if (params.IsRegTestNet()) return pindexLast->nBits;
 
+    if (nHeight > 1418000) {
+        return GetNextWorkRequiredPOSV7(pindexLast);
+    }
+
     if (nHeight > 1402100) {
+        GetNextWorkRequiredPOSV7(pindexLast);
         return GetNextWorkRequiredPOSV6(pindexLast);
     }
 
