@@ -54,7 +54,7 @@ jobs:
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp ${CONTAINER_NAME}:/$REPO_NAME/deploy/linux-x64 release_files/
+          docker cp ${CONTAINER_NAME}:/$ACCOUNT_NAME/$REPO_NAME/deploy/linux-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v4
@@ -117,7 +117,7 @@ jobs:
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp ${CONTAINER_NAME}:/$REPO_NAME/deploy/linux-arm64 release_files/
+          docker cp ${CONTAINER_NAME}:/$ACCOUNT_NAME/$REPO_NAME/deploy/linux-arm64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v4
@@ -180,7 +180,7 @@ jobs:
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp ${CONTAINER_NAME}:/$REPO_NAME/deploy/windows-x64 release_files/
+          docker cp ${CONTAINER_NAME}:/$ACCOUNT_NAME/$REPO_NAME/deploy/windows-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v4
@@ -243,7 +243,7 @@ jobs:
           mkdir release_files
 
           # Copy files from the Docker container to the local filesystem
-          docker cp ${CONTAINER_NAME}:/$REPO_NAME/deploy/macos-x64 release_files/
+          docker cp ${CONTAINER_NAME}:/$ACCOUNT_NAME/$REPO_NAME/deploy/macos-x64 release_files/
 
       - name: Archive and Upload Extracted Files
         uses: actions/upload-artifact@v4
