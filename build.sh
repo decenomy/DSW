@@ -238,6 +238,7 @@ docker buildx build \
 	--build-arg NAME=$UI_NAME \
 	--build-arg BASE_NAME=$BASE_NAME \
 	--build-arg TARGET=$TARGET \
+	--build-arg GITHUB_USER=$GITHUB_USER \
 	-f $WALLET_DOCKER_FILE.tmp \
 	-t $image_tag \
 	 .
@@ -257,7 +258,7 @@ trace "Container ID: $container_id"
 # Copy files from the container to the current directory
 mkdir -p deploy
 rm -rf deploy/$ARCHITECTURE
-docker cp "$container_id":/${TICKER}/deploy/. ./deploy/
+docker cp "$container_id":/${GITHUB_USER}/${TICKER}/deploy/. ./deploy/
 
 # Main verification process
 if [ "$VERIFY" -ge 1 ]; then

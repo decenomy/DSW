@@ -20,7 +20,7 @@ WORKDIR /$GITHUB_USER
 
 # Clone the repository
 RUN if [ ! -d $TICKER ]; then \
-  git clone https://github.com/${GITHUB_USER}/${TICKER}; \
+  git clone https://github.com/${GITHUB_USER}/${TICKER}.git; \
 fi
 
 # Switch to the repository directory
