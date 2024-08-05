@@ -11,14 +11,25 @@ CPU_CORES=${CPU_CORES:-""}
 # windows-x64
 ARCHITECTURE=${ARCHITECTURE:-""}
 
+# Get the origin URL
+ORIGIN_URL=$(git config --get remote.origin.url)
+
+# Extract the github username and repository name
+if [[ $ORIGIN_URL =~ ^https://github.com/(.+)/(.+)\.git$ ]]; then
+    GITHUB_USER="${BASH_REMATCH[1]}"
+    GITHUB_REPO="${BASH_REMATCH[2]}"
+elif [[ $ORIGIN_URL =~ ^git@github.com:(.+)/(.+)\.git$ ]]; then
+    GITHUB_USER="${BASH_REMATCH[1]}"
+    GITHUB_REPO="${BASH_REMATCH[2]}"
+else
+    echo "Unable to parse origin URL: $ORIGIN_URL"
+    exit 1
+fi
+
 # Sets variables needed for the build
-TICKER=${TICKER:-"__DSW__"}
+TICKER=${TICKER:-"${GITHUB_REPO}"}
 UI_NAME=${UI_NAME:-"__Decenomy__"}
 BASE_NAME=${BASE_NAME:-"__decenomy__"}
-
-# Sets the github environment variables
-GITHUB_USER="decenomy"
-GITHUB_REPO="__DSW__"
 
 # Sets the build environment variable
 #   0: The build will use the builder image available on docker hub

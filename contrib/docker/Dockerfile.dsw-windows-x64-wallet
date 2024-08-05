@@ -9,16 +9,21 @@ ARG TICKER=__DSW__
 ARG NAME=__Decenomy__
 ARG BASE_NAME=__decenomy__
 ARG TARGET=master
+ARG GITHUB_USER=decenomy
 
 RUN sleep 30
 
+RUN mkdir -p ${GITHUB_USER}
+# Switch to the github user directory
+WORKDIR /$GITHUB_USER
+
 # Clone the repository
 RUN if [ ! -d $TICKER ]; then \
-  git clone https://github.com/decenomy/$TICKER; \
+  git clone https://github.com/${GITHUB_USER}/${TICKER}; \
 fi
 
 # Switch to the repository directory
-WORKDIR /$TICKER
+WORKDIR /${GITHUB_USER}/${TICKER}
 
 # Check out the $TARGET
 RUN git stash --include-untracked && \
@@ -69,10 +74,10 @@ RUN cp \
     src/$(echo $BASE_NAME)-cli.exe \
     src/$(echo $BASE_NAME)-tx.exe \
     src/qt/$(echo $BASE_NAME)-qt.exe \
-    /$TICKER/deploy/windows-x64
-RUN find /$TICKER/deploy/windows-x64 -type f -exec touch -t $(cat /git_timestamp_touch) {} +
+    /${GITHUB_USER}/${TICKER}/deploy/windows-x64
+RUN find /${GITHUB_USER}/${TICKER}/deploy/windows-x64 -type f -exec touch -t $(cat /git_timestamp_touch) {} +
 
-WORKDIR /$TICKER/deploy/windows-x64
+WORKDIR /${GITHUB_USER}/${TICKER}/deploy/windows-x64
 RUN PATH=${WRAP_DIR}:${PATH} zip -X $TICKER-$(cat /wallet_version)-Windows-x64.zip \
     $(echo $BASE_NAME)d.exe \
     $(echo $BASE_NAME)-cli.exe \
@@ -87,17 +92,17 @@ RUN sha256sum $(echo $BASE_NAME)-qt.exe >> SHA256SUMS-Windows-x64.ASC
 RUN sha256sum $TICKER-$(cat /wallet_version)-Windows-x64.zip >> SHA256SUMS-Windows-x64.ASC
 
 # Set the Inno Setup compiler
-RUN mkdir -p /$TICKER/contrib/innosetup/package
-RUN cp $(echo $BASE_NAME)* /$TICKER/contrib/innosetup/package/
-RUN find /$TICKER/contrib/innosetup/ -type f -exec touch -t $(cat /git_timestamp_touch) {} +
-RUN find /$TICKER/contrib/innosetup/package/ -type f -exec touch -t $(cat /git_timestamp_touch) {} +
+RUN mkdir -p /${GITHUB_USER}/${TICKER}/contrib/innosetup/package
+RUN cp $(echo $BASE_NAME)* /${GITHUB_USER}/${TICKER}/contrib/innosetup/package/
+RUN find /${GITHUB_USER}/${TICKER}/contrib/innosetup/ -type f -exec touch -t $(cat /git_timestamp_touch) {} +
+RUN find /${GITHUB_USER}/${TICKER}/contrib/innosetup/package/ -type f -exec touch -t $(cat /git_timestamp_touch) {} +
 
-WORKDIR /$TICKER/contrib/innosetup
+WORKDIR /${GITHUB_USER}/${TICKER}/contrib/innosetup
 
 RUN PATH=${WRAP_DIR}:${PATH} wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Inno\ Setup\ 6/ISCC.exe setup.iss
-RUN mv output/$(echo $NAME)Setup.exe /$TICKER/deploy/windows-x64/$(echo $NAME)-$(cat /wallet_version)-Setup.exe
+RUN mv output/$(echo $NAME)Setup.exe /${GITHUB_USER}/${TICKER}/deploy/windows-x64/$(echo $NAME)-$(cat /wallet_version)-Setup.exe
 
-WORKDIR /$TICKER/deploy/windows-x64
+WORKDIR /${GITHUB_USER}/${TICKER}/deploy/windows-x64
 RUN touch -t $(cat /git_timestamp_touch) $(echo $NAME)-$(cat /wallet_version)-Setup.exe
 RUN PATH=${WRAP_DIR}:${PATH} zip -X $TICKER-$(cat /wallet_version)-WindowsSetup-x64.zip \
     $(echo $NAME)-$(cat /wallet_version)-Setup.exe

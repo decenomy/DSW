@@ -17,12 +17,15 @@ jobs:
         run: |
           # Extract the name of the repository and use it as the ticker value
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
+          # Extract the name of the repository owner and use it as the github user
+          ACCOUNT_NAME="${GITHUB_REPOSITORY%/*}"
           # Get the short name of the ref (strip 'refs/heads/', 'refs/tags/', etc.)
           SHORT_REF=${GITHUB_REF##*/}
           # Get the short commit hash
           SHORT_COMMIT_HASH=$(git rev-parse --short HEAD)
           # Set environment variables
           echo "REPO_NAME=${REPO_NAME}" >> $GITHUB_ENV
+          echo "ACCOUNT_NAME=${ACCOUNT_NAME}" >> $GITHUB_ENV
           echo "SHORT_REF=${SHORT_REF}" >> $GITHUB_ENV
           echo "IMAGE_NAME=linux-x64-build-img-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
           echo "CONTAINER_NAME=linux-x64-build-ctn-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
@@ -40,6 +43,7 @@ jobs:
             --build-arg NAME=__Decenomy__ \
             --build-arg BASE_NAME=__decenomy__ \
             --build-arg TARGET=$SHORT_REF \
+            --build-arg GITHUB_USER=$ACCOUNT_NAME \
             -t ${IMAGE_NAME} \
             -f contrib/docker/Dockerfile.dsw-linux-x64-wallet .
 
@@ -76,12 +80,15 @@ jobs:
         run: |
           # Extract the name of the repository and use it as the ticker value
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
+          # Extract the name of the repository owner and use it as the github user
+          ACCOUNT_NAME="${GITHUB_REPOSITORY%/*}"
           # Get the short name of the ref (strip 'refs/heads/', 'refs/tags/', etc.)
           SHORT_REF=${GITHUB_REF##*/}
           # Get the short commit hash
           SHORT_COMMIT_HASH=$(git rev-parse --short HEAD)
           # Set environment variables
           echo "REPO_NAME=${REPO_NAME}" >> $GITHUB_ENV
+          echo "ACCOUNT_NAME=${ACCOUNT_NAME}" >> $GITHUB_ENV
           echo "SHORT_REF=${SHORT_REF}" >> $GITHUB_ENV
           echo "IMAGE_NAME=linux-arm64-build-img-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
           echo "CONTAINER_NAME=linux-arm64-build-ctn-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
@@ -99,6 +106,7 @@ jobs:
             --build-arg NAME=__Decenomy__ \
             --build-arg BASE_NAME=__decenomy__ \
             --build-arg TARGET=$SHORT_REF \
+            --build-arg GITHUB_USER=$ACCOUNT_NAME \
             -t ${IMAGE_NAME} \
             -f contrib/docker/Dockerfile.dsw-linux-arm64-wallet .
 
@@ -135,12 +143,15 @@ jobs:
         run: |
           # Extract the name of the repository and use it as the ticker value
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
+          # Extract the name of the repository owner and use it as the github user
+          ACCOUNT_NAME="${GITHUB_REPOSITORY%/*}"
           # Get the short name of the ref (strip 'refs/heads/', 'refs/tags/', etc.)
           SHORT_REF=${GITHUB_REF##*/}
           # Get the short commit hash
           SHORT_COMMIT_HASH=$(git rev-parse --short HEAD)
           # Set environment variables
           echo "REPO_NAME=${REPO_NAME}" >> $GITHUB_ENV
+          echo "ACCOUNT_NAME=${ACCOUNT_NAME}" >> $GITHUB_ENV
           echo "SHORT_REF=${SHORT_REF}" >> $GITHUB_ENV
           echo "IMAGE_NAME=windows-x64-build-img-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
           echo "CONTAINER_NAME=windows-x64-build-ctn-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
@@ -158,6 +169,7 @@ jobs:
             --build-arg NAME=__Decenomy__ \
             --build-arg BASE_NAME=__decenomy__ \
             --build-arg TARGET=$SHORT_REF \
+            --build-arg GITHUB_USER=$ACCOUNT_NAME \
             -t ${IMAGE_NAME} \
             -f contrib/docker/Dockerfile.dsw-windows-x64-wallet .
 
@@ -194,12 +206,15 @@ jobs:
         run: |
           # Extract the name of the repository and use it as the ticker value
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
+          # Extract the name of the repository owner and use it as the github user
+          ACCOUNT_NAME="${GITHUB_REPOSITORY%/*}"
           # Get the short name of the ref (strip 'refs/heads/', 'refs/tags/', etc.)
           SHORT_REF=${GITHUB_REF##*/}
           # Get the short commit hash
           SHORT_COMMIT_HASH=$(git rev-parse --short HEAD)
           # Set environment variables
           echo "REPO_NAME=${REPO_NAME}" >> $GITHUB_ENV
+          echo "ACCOUNT_NAME=${ACCOUNT_NAME}" >> $GITHUB_ENV
           echo "SHORT_REF=${SHORT_REF}" >> $GITHUB_ENV
           echo "IMAGE_NAME=macos-x64-build-img-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
           echo "CONTAINER_NAME=macos-x64-build-ctn-${SHORT_COMMIT_HASH}" >> $GITHUB_ENV
@@ -217,6 +232,7 @@ jobs:
             --build-arg NAME=__Decenomy__ \
             --build-arg BASE_NAME=__decenomy__ \
             --build-arg TARGET=$SHORT_REF \
+            --build-arg GITHUB_USER=$ACCOUNT_NAME \
             -t ${IMAGE_NAME} \
             -f contrib/docker/Dockerfile.dsw-macos-x64-wallet .
 
