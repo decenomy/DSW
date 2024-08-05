@@ -203,4 +203,6 @@ fs::path AbsPathForConfigVal(const fs::path& path, bool net_specific = true);
 
 std::string GetReadableHashRate(uint64_t hashrate);
 
+std::string RemoveQuotes(const std::string& str);
+
 #endif // BITCOIN_UTIL_H

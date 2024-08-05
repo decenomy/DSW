@@ -10,6 +10,7 @@
 #include "checkpoints.h"
 #include "clientversion.h"
 #include "consensus/upgrades.h"
+#include "curl.h"
 #include "kernel.h"
 #include "main.h"
 #include "masternode-sync.h"
@@ -30,9 +31,14 @@
 #include <mutex>
 #include <numeric>
 #include <condition_variable>
+#include <boost/json.hpp>
+#include <unordered_map>
 
 #include <boost/thread/thread.hpp> // boost::thread::interrupt
 
+#ifndef TICKER
+#define TICKER "__DSW__"
+#endif
 
 struct CUpdatedBlock
 {
@@ -42,9 +48,76 @@ struct CUpdatedBlock
 static std::mutex cs_blockchange;
 static std::condition_variable cond_blockchange;
 static CUpdatedBlock latestblock;
+namespace json = boost::json;
+
+// Hash map to store keys and values
+std::unordered_map<std::string, boost::json::value> json_map;
 
 extern void TxToJSON(const CTransaction& tx, const uint256 hashBlock, UniValue& entry);
 void ScriptPubKeyToJSON(const CScript& scriptPubKey, UniValue& out, bool fIncludeHex);
+void ParseAPIRequest(boost::json::value const& jv, std::string* indent = nullptr);
+boost::json::value GetValue(std::unordered_map<std::string, boost::json::value> map, std::string key_to_check);
+
+boost::json::value GetValue(std::unordered_map<std::string, boost::json::value> map, std::string key_to_check){
+    auto it = map.find(key_to_check);
+    if (it != map.end()) {
+        return it->second;
+    }
+    return boost::json::value();
+}
+
+void ParseAPIRequest(json::value const& jv, std::string* indent){
+    std::string indent_;
+    if(! indent)
+        indent = &indent_;
+    switch(jv.kind())
+    {
+        case json::kind::object:
+        {
+            indent->append(4, ' ');
+            auto const& obj = jv.get_object();
+            if(! obj.empty())
+            {
+                auto it = obj.begin();
+                for(;;)
+                {
+                    if (it->value().is_string() || it->value().is_int64() || it->value().is_bool()) {
+                        std::string key = boost::json::serialize(it->key());
+                        if(it->value().is_string()){
+                            std::string str = it->value().as_string().c_str();
+                            json_map[RemoveQuotes(key)] = boost::json::value{RemoveQuotes(str)};
+                        }
+                        else
+                            json_map[RemoveQuotes(key)] = it->value();
+                    } else {
+                        ParseAPIRequest(it->value(), indent);
+                    }
+                    if(++it == obj.end())
+                        break;
+                }
+            }
+            indent->resize(indent->size() - 4);
+            break;
+        }
+        case json::kind::array:
+        {
+            indent->append(4, ' ');
+            auto const& arr = jv.get_array();
+            if(! arr.empty())
+            {
+                auto it = arr.begin();
+                for(;;)
+                {
+                    ParseAPIRequest(*it, indent);
+                    if(++it == arr.end())
+                        break;
+                }
+            }
+            indent->resize(indent->size() - 4);
+            break;
+        }   
+    }  
+}
 
 double GetDifficulty(const CBlockIndex* blockindex)
 {
@@ -1463,4 +1536,81 @@ UniValue rewindblockindex(const JSONRPCRequest& request)
     }
 
     return NullUniValue;
+}
+
+UniValue detectfork(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() != 1)
+        throw std::runtime_error(
+            "detectfork index\n"
+            "\nDetects chain fork.\n"
+
+            "\nArguments:\n"
+            "1. index         (numeric, required) The block index to be decremented to chain height\n"
+
+            "\nResult:\n"
+            "\"nHeight\"         (string) The block height\n"
+            "\"remoteBlockhash\"         (string) The remote block hash\n"
+            "\"localBlockhash\"         (string) The local block hash\n"
+            "\"fForkDetected\"         (string) The block hash\n"
+
+            "\nExamples:\n" +
+            HelpExampleCli("detectfork", "6") + HelpExampleRpc("detectfork", "6"));
+
+    int64_t nHeight = -1;
+    std::string remoteBlockhash = "";
+    std::string localBlockhash = "";
+    bool fSuccess = false;
+    bool fForkDetected = true;
+
+    {
+        LOCK(cs_main);
+        nHeight = chainActive.Height() - request.params[0].get_int();
+        if (nHeight < 0 || nHeight > chainActive.Height())
+            throw JSONRPCError(RPC_INVALID_PARAMETER, "Block height out of range");
+
+        CBlockIndex* pblockindex = chainActive[nHeight];
+        localBlockhash = pblockindex->GetBlockHash().GetHex();
+    }
+
+
+    const std::string url = "https://explorer.decenomy.net/api/v2/" + std::string(TICKER) + "/blockhash/" + std::to_string(nHeight);
+
+    CCurlWrapper client;
+    std::string response = client.Request(url);
+
+    json::value jv = json::parse(response);
+
+    // Serialize the JSON value to a string
+    std::string json_str = boost::json::serialize(jv);
+
+    ParseAPIRequest(jv);
+
+    // check response status
+    boost::json::value value = GetValue(json_map,"success");
+    if(!value.is_null() && value.is_bool()){
+        fSuccess = value.get_bool() ? true : false;
+    }
+
+    // get remote blockhash
+    value = GetValue(json_map,"blockhash");
+    if(!value.is_null() && value.is_string()){
+        remoteBlockhash = RemoveQuotes(json::serialize(value.get_string()));
+    }
+
+    value = GetValue(json_map,"height");
+    if (!value.is_null() && value.is_int64()) {
+        nHeight = value.get_int64();
+    }
+
+    if( fSuccess && remoteBlockhash == localBlockhash)
+        fForkDetected = false;
+
+    UniValue ret(UniValue::VOBJ);
+    ret.push_back(Pair("nHeight", nHeight));
+    ret.push_back(Pair("remoteBlockhash", remoteBlockhash));
+    ret.push_back(Pair("localBlockhash", localBlockhash));
+    ret.push_back(Pair("fForkDetected", fForkDetected ? "true" : "false"));
+
+    return ret;
 }

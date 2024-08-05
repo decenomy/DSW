@@ -702,3 +702,19 @@ std::string GetReadableHashRate(uint64_t hashrate)
     ss << std::setprecision(3) << std::fixed << readable << suffix;
     return ss.str();
 }
+
+std::string RemoveQuotes(const std::string& str) {
+    std::string result = str;
+
+    // Check if the string starts with a double quote
+    if (!result.empty() && result.front() == '"') {
+        result.erase(0, 1); // Erase the first character
+    }
+
+    // Check if the string ends with a double quote
+    if (!result.empty() && result.back() == '"') {
+        result.pop_back(); // Remove the last character
+    }
+
+    return result;
+}
