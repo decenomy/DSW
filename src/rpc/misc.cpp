@@ -735,7 +735,7 @@ UniValue getstakingstatus(const JSONRPCRequest& request)
 
 UniValue getrewardsinfo(const JSONRPCRequest& request)
 {
-    std::string info_type = "both"; // Default value
+    std::string info_type = "all"; // Default value
 
     if (request.fHelp || (request.params.size() > 1 || (request.params.size() == 1 && !request.params[0].isStr()))) {
         throw std::runtime_error(
@@ -743,7 +743,7 @@ UniValue getrewardsinfo(const JSONRPCRequest& request)
             "\nReturns an object containing ROI information.\n"
 
             "\nArguments:\n"
-            "1. \"info_type\"   (string, optional, default=\"both\") The type of info to display (\"network\", \"wallet\", or \"both\")\n"
+            "1. \"info_type\"   (string, optional, default=\"all\") The type of info to display (\"network\", \"wallet\", \"simple\", or \"all\")\n"
 
             "\nResult:\n"
             "{\n"
@@ -839,8 +839,8 @@ UniValue getrewardsinfo(const JSONRPCRequest& request)
 
     if (request.params.size() == 1) {
         info_type = request.params[0].get_str();
-        if (info_type != "network" && info_type != "wallet" && info_type != "both") {
-            throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid info_type parameter, must be \"network\", \"wallet\", or \"both\"");
+        if (info_type != "network" && info_type != "wallet" && info_type != "simple" && info_type != "all") {
+            throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid info_type parameter, must be \"network\", \"wallet\", \"simple\", or \"all\"");
         }
     }
 
@@ -852,8 +852,8 @@ UniValue getrewardsinfo(const JSONRPCRequest& request)
         const auto& params = Params();
         const auto& consensus = params.GetConsensus();
 
-        const auto tip = chainActive.Tip();
-        const auto nHeight = tip->nHeight;
+        const auto pTip = chainActive.Tip();
+        const auto nHeight = pTip->nHeight;
 
         // Fetch consensus parameters
         const auto nTargetSpacing = consensus.nTargetSpacing;
@@ -865,15 +865,28 @@ UniValue getrewardsinfo(const JSONRPCRequest& request)
         const auto nMNReward = CMasternode::GetMasternodePayment(nHeight);
         const auto nStakeReward = nBlockValue - nMNReward;
 
-        const auto nBlocksPerDay = DAY_IN_SECONDS / nTargetSpacing;
-        const auto nBlocksPerWeek = WEEK_IN_SECONDS / nTargetSpacing;
-        const auto nBlocksPerMonth = MONTH_IN_SECONDS / nTargetSpacing;
-        const auto nBlocksPerYear = YEAR_IN_SECONDS / nTargetSpacing;
+        int64_t nBlocksPerDay = DAY_IN_SECONDS / nTargetSpacing;
+        CBlockIndex* BlockReading = pTip;
+
+        if(nHeight > nBlocksPerDay) {
+            for (unsigned int i = 0; BlockReading && BlockReading->nHeight > 0; i++) {
+                if(BlockReading->nTime < (pTip->nTime - DAY_IN_SECONDS)) {
+                    nBlocksPerDay = i;
+                    break;
+                }
+
+                BlockReading = BlockReading->pprev;
+            }
+        }
+
+        int64_t nBlocksPerWeek = nBlocksPerDay * 7;
+        int64_t nBlocksPerMonth = nBlocksPerDay * 30;
+        int64_t nBlocksPerYear = nBlocksPerDay * 365;
 
         // Fetch the network generated hashes per second
         const auto nBlocks = static_cast<int>(nTargetTimespan / nTargetSpacing);
         const auto startBlock = chainActive[nHeight - std::min(nBlocks, nHeight)];
-        const auto endBlock = tip;
+        const auto endBlock = pTip;
         const auto nTimeDiff = endBlock->GetBlockTime() - startBlock->GetBlockTime();
         const auto nWorkDiff = endBlock->nChainWork - startBlock->nChainWork;
         const auto nNetworkHashPS = static_cast<int64_t>(nWorkDiff.getdouble() / nTimeDiff);
@@ -887,7 +900,7 @@ UniValue getrewardsinfo(const JSONRPCRequest& request)
         // Calculate how many coins are allocated in the entire staking algorithm
         const auto nStakedCoins = static_cast<double>(nNetworkHashPS * nTimeSlotLength * 100);
         const auto nSmoothStakedCoins = static_cast<double>(nSmoothNetworkHashPS * nTimeSlotLength * 100);
-        const auto nStakingAllocation = static_cast<double>(nSmoothStakedCoins) / tip->nMoneySupply.get();
+        const auto nStakingAllocation = static_cast<double>(nSmoothStakedCoins) / pTip->nMoneySupply.get();
         const auto nYearlyStakingRewards = nStakeReward * nBlocksPerYear;
         auto nStakingROI = nYearlyStakingRewards / nStakedCoins;
         auto nSmoothStakingROI = nYearlyStakingRewards / nSmoothStakedCoins;
@@ -897,7 +910,7 @@ UniValue getrewardsinfo(const JSONRPCRequest& request)
         const auto nMNNextWeekCollateral = CMasternode::GetNextWeekMasternodeCollateral();
         const auto nMNEnabled = mnodeman.CountEnabled();
         const auto nMNCoins = nMNCollateral * nMNEnabled;
-        const auto nMNAllocation = static_cast<double>(nMNCoins) / tip->nMoneySupply.get();
+        const auto nMNAllocation = static_cast<double>(nMNCoins) / pTip->nMoneySupply.get();
 
         const auto nTotalAllocationCoins = nSmoothStakedCoins + nMNCoins;
         const auto nTotalAllocation = nStakingAllocation + nMNAllocation;
@@ -917,7 +930,20 @@ UniValue getrewardsinfo(const JSONRPCRequest& request)
 
         UniValue obj(UniValue::VOBJ);
 
-        if (info_type == "network" || info_type == "both") {
+        if (info_type == "simple") {
+
+            const auto nMasternodingYearlyRewardsROI = (nMNReward * nBlocksPerYear) / nMNCoins;
+
+            obj.push_back(Pair("staking_roi", strprintf("%4.2f%%", nStakingROI * 100)));
+            obj.push_back(Pair("smooth_staking_roi", strprintf("%4.2f%%", nSmoothStakingROI * 100)));
+            obj.push_back(Pair("staked_coins", ValueFromAmount(nSmoothStakedCoins)));
+            obj.push_back(Pair("masternoding_roi", strprintf("%4.2f%%", nMasternodingYearlyRewardsROI * 100)));
+            obj.push_back(Pair("masternoded_coins", ValueFromAmount(nMNCoins)));
+            obj.push_back(Pair("enabled_masternodes", nMNEnabled));
+            obj.push_back(Pair("blocks_per_day", nBlocksPerDay));
+
+        } else if (info_type == "network" || info_type == "all") {
+            
             UniValue networkObj(UniValue::VOBJ);
 
             networkObj.push_back(Pair("reward", ValueFromAmount(nBlockValue)));
@@ -1058,7 +1084,7 @@ UniValue getrewardsinfo(const JSONRPCRequest& request)
             obj.push_back(Pair("network", networkObj));
         }
 
-        if (info_type == "wallet" || info_type == "both") {
+        if (info_type == "wallet" || info_type == "all") {
             UniValue walletObj(UniValue::VOBJ);
 
             UniValue walletStakingObj(UniValue::VOBJ);
