@@ -20,6 +20,7 @@
 #include "utilmoneystr.h"
 #include "wallet.h"
 #include "walletdb.h"
+#include "rpcwallet.h"
 
 #include <stdint.h>
 
@@ -2593,6 +2594,82 @@ UniValue listunspent(const JSONRPCRequest& request)
     return results;
 }
 
+UniValue highutxos(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() > 4)
+        throw std::runtime_error(
+                "highutxos\n"
+                "\nReturns object with unspent transaction outputs\n"
+                "with between minconf and maxconf (inclusive) confirmations.\n"
+
+                "\nResult\n"
+                "  {\n"
+                "    \"fHighUtxos\" : n,          (boolean) High utxos detected\n"
+                "    \"nUTxos\" : n,             (numeric) The number of detected utxos\n"
+                "    \"nSpendable\" : n,         (numeric) The number of utxos with private keys that can be spent \n"
+                "    \"nSolvable\" : n,          (numeric) The number of utxos that can be spend ignoring private keys \n"
+                "  }\n"
+
+                "\nExamples\n" +
+                HelpExampleCli("highutxos", "") );
+
+    RPCTypeCheck(request.params, boost::assign::list_of(UniValue::VNUM)(UniValue::VNUM)(UniValue::VARR)(UniValue::VNUM));
+
+    int nMinDepth = 1;
+    int nMaxDepth = 9999999;
+    std::set<CTxDestination> destinations;
+    // List watch only utxo
+    int nWatchonlyConfig = 1;
+    
+    CCoinControl coinControl;
+    coinControl.fAllowWatchOnly = nWatchonlyConfig == 2;
+
+    //UniValue results(UniValue::VARR);
+    UniValue results(UniValue::VOBJ);
+    UniValue utxos(UniValue::VARR);
+    int64_t nUTxos = 0;
+    int64_t nSpendable = 0;
+    int64_t nSolvable = 0;
+    bool fHighUtxos = false;
+    std::vector<COutput> vecOutputs;
+    assert(pwalletMain != NULL);
+    LOCK2(cs_main, pwalletMain->cs_wallet);
+    pwalletMain->AvailableCoins(&vecOutputs,
+                                &coinControl,    // coin control
+                                ALL_COINS,  // coin type
+                                false      // only confirmed
+                                );
+    for (const COutput& out : vecOutputs) {
+        if (out.nDepth < nMinDepth || out.nDepth > nMaxDepth)
+            continue;
+
+        if (destinations.size()) {
+            CTxDestination address;
+            if (!ExtractDestination(out.tx->vout[out.i].scriptPubKey, address))
+                continue;
+
+            if (!destinations.count(address))
+                continue;
+        }
+        
+        nUTxos++;
+
+        if(out.fSpendable)
+            nSpendable++;
+        if(out.fSolvable)
+            nSolvable++;
+    }
+
+    if(nUTxos > HIGHUTXOS)
+        fHighUtxos = true;
+    
+    results.push_back(Pair("fHighUtxos", fHighUtxos));
+    results.push_back(Pair("nUTxos", nUTxos));
+    results.push_back(Pair("nSpendable", nSpendable));
+    results.push_back(Pair("nSolvable", nSolvable));
+    return results;
+}
+
 UniValue lockunspent(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
@@ -3273,6 +3350,7 @@ const CRPCCommand vWalletRPCCommands[] =
         { "wallet",             "dumpwallet",               &dumpwallet,               true  },
         { "wallet",             "encryptwallet",            &encryptwallet,            true  },
         { "wallet",             "getbalance",               &getbalance,               false },
+        { "wallet",             "highutxos",                &highutxos,                false },
         { "wallet",             "upgradewallet",            &upgradewallet,            true  },
         { "wallet",             "sethdseed",                &sethdseed,                true  },
         { "wallet",             "getnewaddress",            &getnewaddress,            true  },

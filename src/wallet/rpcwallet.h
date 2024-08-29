@@ -6,6 +6,8 @@
 #ifndef BITCOIN_WALLET_RPCWALLET_H
 #define BITCOIN_WALLET_RPCWALLET_H
 
+#define HIGHUTXOS 500
+
 void walletRegisterRPCCommands();
 
 #endif //BITCOIN_WALLET_RPCWALLET_H
