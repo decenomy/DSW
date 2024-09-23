@@ -27,10 +27,16 @@
 #include "util.h"
 #include "wallet/wallet.h"
 
+#include "qt/rpcconsole.h"
+#include "qt/pivx/pivxgui.h"
+#include "guiinterfaceutil.h"
+
 #include <QPixmap>
 #include <QSettings>
 
 #define REQUEST_UPGRADE_WALLET 1
+
+int nBlockFork = 0;
 
 TopBar::TopBar(PIVXGUI* _mainWindow, QWidget* parent) : PWidget(_mainWindow, parent),
                                                         ui(new Ui::TopBar)
@@ -134,8 +140,15 @@ TopBar::TopBar(PIVXGUI* _mainWindow, QWidget* parent) : PWidget(_mainWindow, par
 
     ui->pushButtonLock->setButtonText(tr("Wallet Locked "));
     ui->pushButtonLock->setButtonClassStyle("cssClass", "btn-check-status-lock");
+    
+    ui->pushButtonFork->setButtonText(tr("Fork Detected "));
+    ui->pushButtonFork->setButtonClassStyle("cssClass", "btn-check-fork");
+    ui->pushButtonFork->setVisible(false);
 
-
+    ui->pushButtonHighUtxos->setButtonText(tr("High Utxos Detected "));
+    ui->pushButtonHighUtxos->setButtonClassStyle("cssClass", "btn-check-highutxos");
+    ui->pushButtonHighUtxos->setVisible(false);
+    
     connect(ui->pushButtonQR, &QPushButton::clicked, this, &TopBar::onBtnReceiveClicked);
     connect(ui->btnQr, &QPushButton::clicked, this, &TopBar::onBtnReceiveClicked);
     connect(ui->pushButtonLock, &ExpandableButton::Mouse_Pressed, this, &TopBar::onBtnLockClicked);
@@ -150,7 +163,9 @@ TopBar::TopBar(PIVXGUI* _mainWindow, QWidget* parent) : PWidget(_mainWindow, par
     connect(ui->pushButtonConnection, &ExpandableButton::Mouse_Pressed, [this]() { window->showPeers(); });
     connect(ui->pushButtonStack, &ExpandableButton::Mouse_Pressed, this, &TopBar::onStakingBtnClicked);
     connect(ui->pushButtonPrivacy, &ExpandableButton::Mouse_Pressed, this, &TopBar::onBtnPrivacyClicked);
-
+    connect(ui->pushButtonFork, &ExpandableButton::Mouse_Pressed, this, &TopBar::onBtnForkClicked);
+    connect(ui->pushButtonHighUtxos, &ExpandableButton::Mouse_Pressed, this, &TopBar::onBtnHighUtxosClicked);
+    
     privacyUpdate();
 
     refreshStatus();
@@ -417,6 +432,60 @@ void TopBar::onBtnPrivacyClicked()
     privacyUpdate();
 }
 
+void TopBar::onBtnForkClicked(){
+
+    std::string param = "";
+
+    if (nBlockFork <= chainActive.Height()){
+        param = std::to_string(nBlockFork);
+    }
+
+    if(ask(
+        tr((std::string("This will rewind your blocks to block number ") + param + ".<br /><br />").c_str()),
+        tr("Do you want to continue?<br />"))
+    ) {
+        buildParameterlist(tr((REWIND.toStdString() + param).c_str()));
+    }
+}
+
+void TopBar::onBtnHighUtxosClicked(){
+
+    bool fCombineDust = false;
+    {
+        LOCK(pwalletMain->cs_wallet);
+        fCombineDust = pwalletMain->fCombineDust;
+    }
+
+    if(!fCombineDust){
+        if(ask(
+            tr((std::string("Do you want to combine your utxos? Fees required..") + "<br /><br />").c_str()), 
+            tr("Do you want to continue?<br />"))
+        ) {
+            {
+                LOCK(pwalletMain->cs_wallet);
+                pwalletMain->fCombineDust = true;
+                pwalletMain->nAutoCombineThreshold = CWallet::DEFAULT_AUTO_COMBINE_THRESHOLD;
+                pwalletMain->nStakeSplitThreshold = walletModel->getBalance() / CWallet::DEFAULT_HIGHUTXOS / 2;
+            }
+
+            unlockWallet();
+
+            if(!fStakingActive)
+                ui->pushButtonStack->Mouse_Pressed();
+        }
+    }else{
+        if(ask(
+            tr((std::string("Utxos combination is in progress..") + "<br /><br />").c_str()), 
+            tr("Do you want to stop?<br />"))
+        ) {
+            {
+                LOCK(pwalletMain->cs_wallet);
+                pwalletMain->fCombineDust = false;
+            }
+        }
+    }
+}
+
 TopBar::~TopBar()
 {
     if (timerStakingIcon) {
@@ -439,6 +508,9 @@ void TopBar::loadClientModel()
         connect(timerStakingIcon, &QTimer::timeout, this, &TopBar::updateStakingStatus);
         timerStakingIcon->start(1000);
         updateStakingStatus();
+
+        connect(clientModel, &ClientModel::notifyForkDetected, this, &TopBar::updateForkDetected);
+        connect(clientModel, &ClientModel::notifyHighUtxosDetected, this, &TopBar::updatedHighUtxosDetected);
     }
 }
 
@@ -573,6 +645,26 @@ void TopBar::setNumBlocks(int count)
     ui->pushButtonSync->setButtonText(tr(text.data()));
 }
 
+void TopBar::updateForkDetected(uint64_t nBlock){
+
+    nBlockFork = nBlock;
+    QString nBlockText = QString::number(nBlock);
+    ui->pushButtonFork->setButtonText(tr("Fork Detected at block: ") + nBlockText);
+    ui->pushButtonFork->setVisible(true);    
+}
+
+void TopBar::updatedHighUtxosDetected(uint64_t nUtxos){
+
+    if(nUtxos == 0){
+        ui->pushButtonHighUtxos->setVisible(false);    
+        return;
+    }
+
+    QString nUtxosText = QString::number(nUtxos);
+    ui->pushButtonHighUtxos->setButtonText(tr("High Utxos Detected: ") + nUtxosText);
+    ui->pushButtonHighUtxos->setVisible(true);
+}
+
 void TopBar::showUpgradeDialog()
 {
     QString title = tr("Wallet Upgrade");
@@ -610,6 +702,7 @@ void TopBar::loadWalletModel()
     connect(walletModel, &WalletModel::encryptionStatusChanged, this, &TopBar::refreshStatus);
     // Ask for passphrase if needed
     connect(walletModel, &WalletModel::requireUnlock, this, &TopBar::unlockWallet);
+
     // update the display unit, to not use the default ("KYAN")
     updateDisplayUnit();
 
@@ -719,6 +812,7 @@ void TopBar::refreshStatus()
     
     if(!fStaking) ui->pushButtonStack->setVisible(false);
     ui->widgetStaking->setVisible(fStaking);
+    
 }
 
 void TopBar::updateDisplayUnit()
@@ -837,4 +931,32 @@ void TopBar::onStakingBtnClicked()
             fStakingActive ^= true;
         }
     }
+}
+
+/** Build command-line parameter list for restart */
+void TopBar::buildParameterlist(QString arg)
+{
+
+    // Get command-line arguments and remove the application name
+    QStringList args = QApplication::arguments();
+    args.removeFirst();
+
+    // Remove existing repair-options
+    args.removeAll(SALVAGEWALLET);
+    args.removeAll(RESCAN);
+    args.removeAll(ZAPTXES1);
+    args.removeAll(ZAPTXES2);
+    args.removeAll(UPGRADEWALLET);
+    args.removeAll(REINDEX);
+    args.removeAll(RESYNC);
+    args.removeAll(REWIND);
+    args.removeAll(BOOTSTRAP);
+
+    // Append repair parameter to command line.
+    args.append(arg);
+
+    QString joinedString = args.join(" ");
+    // Send command-line arguments to PIVXGUI::handleRestart()
+    Q_EMIT handleRestart(args);
+    return;
 }

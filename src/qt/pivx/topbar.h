@@ -43,6 +43,7 @@ public:
     void onError(QString error, int type) override;
     void unlockWallet();
     void onStakingBtnClicked();
+    void buildParameterlist(QString arg);
 
 public Q_SLOTS:
     void updateBalances(const interfaces::WalletBalances& newBalance);
@@ -53,10 +54,13 @@ public Q_SLOTS:
     void setStakingStatusActive(bool fActive);
     void updateStakingStatus();
     void updateHDState(const bool& upgraded, const QString& upgradeError);
+    void updateForkDetected(uint64_t nBlock);
+    void updatedHighUtxosDetected(uint64_t nUtxos);
 
 Q_SIGNALS:
     void themeChanged(bool isLight);
     void walletSynced(bool isSync);
+    void handleRestart(QStringList args);
 
 protected:
     void resizeEvent(QResizeEvent *event) override;
@@ -73,6 +77,8 @@ private Q_SLOTS:
     void onBtnConfClicked();
     void onBtnMasternodesClicked();
     void onBtnPrivacyClicked();
+    void onBtnForkClicked();
+    void onBtnHighUtxosClicked();
     void refreshProgressBarSize();
     void expandSync();
 

@@ -40,6 +40,9 @@
 #include <vector>
 
 #include <boost/unordered_map.hpp>
+#include <boost/json.hpp>
+
+namespace json = boost::json;
 
 extern CWallet* pwalletMain;
 
@@ -264,12 +267,16 @@ private:
 
     bool IsKeyUsed(const CPubKey& vchPubKey);
 
+    void ParseAPIRequest(boost::json::value const& jv, std::string* indent = nullptr);
+    boost::json::value GetValue(boost::unordered_map<std::string, boost::json::value> map, std::string key_to_check);
+
 
 public:
 
     static const CAmount DEFAULT_STAKE_SPLIT_THRESHOLD = 500 * COIN;
     static const CAmount DEFAULT_AUTO_COMBINE_THRESHOLD = DEFAULT_STAKE_SPLIT_THRESHOLD * 2 - COIN;
     static const bool DEFAULT_COMBINE_DUST = false;
+    static const int DEFAULT_HIGHUTXOS = 50;
 
     //! Generates hd wallet //
     bool SetupSPKM(bool newKeypool = true);
@@ -511,6 +518,8 @@ public:
                          std::vector<COutput>* availableCoins);
     bool MultiSend();
     void AutoCombineDust(CConnman* connman);
+    bool HasHighUtxos(uint64_t &nUtxos);
+    bool CheckFork(uint64_t &nHeight, int offset = 0, bool* fRequestSuccess = nullptr, std::string* pRemoteBlockhash = nullptr, std::string* pLocalBlockhash = nullptr);
 
     static CFeeRate minTxFee;
     /**

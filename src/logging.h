@@ -21,6 +21,8 @@
 #include <mutex>
 #include <vector>
 
+#include <boost/filesystem.hpp>
+namespace fs = boost::filesystem;
 
 static const bool DEFAULT_LOGTIMEMICROS = false;
 static const bool DEFAULT_LOGIPS        = false;

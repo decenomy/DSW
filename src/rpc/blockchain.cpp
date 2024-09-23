@@ -1464,3 +1464,43 @@ UniValue rewindblockindex(const JSONRPCRequest& request)
 
     return NullUniValue;
 }
+
+UniValue detectfork(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() != 1)
+        throw std::runtime_error(
+            "detectfork index\n"
+            "\nDetects chain fork.\n"
+
+            "\nArguments:\n"
+            "1. index         (numeric, required) The block index to be decremented to chain height\n"
+
+            "\nResult:\n"
+            "\"nHeight\"                (int) The block height\n"
+            "\"remoteBlockhash\"        (string) The remote block hash\n"
+            "\"localBlockhash\"         (string) The local block hash\n"
+            "\"fRequestSucceed\"        (bool) Flag indicating if fork routine was succeed\n"
+            "\"fForkDetected\"          (bool) Flag indicating if fork was detected\n"
+
+            "\nExamples:\n" +
+            HelpExampleCli("detectfork", "6") + HelpExampleRpc("detectfork", "6"));
+
+    std::string remoteBlockhash = "";
+    std::string localBlockhash = "";
+    bool fSuccess = false;
+    bool fForkDetected = true;
+
+    uint64_t nBlock = 0;
+    CWallet* pWallet;
+
+    fForkDetected = pWallet->CheckFork(nBlock, request.params[0].get_int(), &fSuccess, &localBlockhash, &remoteBlockhash);
+
+    UniValue ret(UniValue::VOBJ);
+    ret.push_back(Pair("nHeight", nBlock));
+    ret.push_back(Pair("remoteBlockhash", remoteBlockhash));
+    ret.push_back(Pair("localBlockhash", localBlockhash));
+    ret.push_back(Pair("requestSucceed", fSuccess));
+    ret.push_back(Pair("fForkDetected", fForkDetected ? "true" : "false"));
+    
+    return ret;
+}

@@ -597,6 +597,22 @@ QPushButton[cssClass="btn-check-status-unlock"] {
   border-radius: 2px;
 }
 
+QPushButton[cssClass="btn-check-fork"] {
+  background-color: #150016;
+  qproperty-icon: url("://ic-package-fork") off, url("://ic-package-fork") on;
+  qproperty-iconSize: 24px 24px;
+  color: #ffffff;
+  border-radius: 2px;
+}
+
+QPushButton[cssClass="btn-check-highutxos"] {
+  background-color: #150016;
+  qproperty-icon: url("://ic-package-highutxos") off, url("://ic-package-highutxos") on;
+  qproperty-iconSize: 24px 24px;
+  color: #ffffff;
+  border-radius: 2px;
+}
+
 QPushButton[cssClass="btn-check-status-staking"] {
   background-color: #150016;
   qproperty-icon: url("://ic-wallet-status-staking") off, url("://ic-wallet-status-staking") on;

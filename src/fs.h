@@ -10,6 +10,8 @@
 #include <stdio.h>
 #include <string>
 
+#include "logging.h"
+
 #define BOOST_FILESYSTEM_NO_DEPRECATED
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
@@ -23,5 +25,8 @@ namespace fsbridge {
     FILE *fopen(const fs::path& p, const char *mode);
     FILE *freopen(const fs::path& p, const char *mode, FILE *stream);
 };
+
+std::string File_SHA256(const std::string& path);
+bool GrantWritePermissions(const fs::path& path);
 
 #endif

@@ -301,6 +301,9 @@ RES_ICONS = \
   qt/pivx/res/img/ic-check-peers-off.svg \
   qt/pivx/res/img/ic-nav-dashboard.svg \
   qt/pivx/res/img/ic-wallet-status-unlocked.svg \
+  qt/pivx/res/img/ic-package-fork.svg \
+  qt/pivx/res/img/ic-package-highutxos.svg \
+  qt/pivx/res/img/ic-wallet-status-unlocked.svg \
   qt/pivx/res/img/ic-check-peers.svg \
   qt/pivx/res/img/ic-nav-master-active.svg \
   qt/pivx/res/img/ic-watch-password-white.svg \

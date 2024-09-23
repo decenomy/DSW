@@ -254,6 +254,16 @@ void ClientModel::updateBanlist()
     banTableModel->refresh();
 }
 
+void ClientModel::forkDetected(int nBlock)
+{
+    Q_EMIT notifyForkDetected(nBlock);
+}
+
+void ClientModel::highUtxosDetected(int nUtxos)
+{
+    Q_EMIT notifyHighUtxosDetected(nUtxos);
+}
+
 static void BlockTipChanged(ClientModel *clientmodel, bool initialSync, const CBlockIndex *pIndex)
 {
     // lock free async UI updates in case we have a new block tip
@@ -303,6 +313,20 @@ static void BannedListChanged(ClientModel *clientmodel)
     QMetaObject::invokeMethod(clientmodel, "updateBanlist", Qt::QueuedConnection);
 }
 
+static void NotifyForkDetected(ClientModel *clientmodel, uint64_t nBlock)
+{
+    qDebug() << "NotifyForkDetected";
+    QMetaObject::invokeMethod(clientmodel, "forkDetected", Qt::QueuedConnection, 
+        Q_ARG(int, nBlock));
+}
+
+static void NotifyHighUtxosDectected(ClientModel *clientmodel, uint64_t nUtxos)
+{
+    qDebug() << "NotifyHighUtxosDectected";
+    QMetaObject::invokeMethod(clientmodel, "highUtxosDetected", Qt::QueuedConnection,
+        Q_ARG(int, (int)nUtxos));
+}
+
 void ClientModel::subscribeToCoreSignals()
 {
     // Connect signals to client
@@ -311,6 +335,8 @@ void ClientModel::subscribeToCoreSignals()
     uiInterface.NotifyAlertChanged.connect(boost::bind(NotifyAlertChanged, this));
     uiInterface.BannedListChanged.connect(boost::bind(BannedListChanged, this));
     uiInterface.NotifyBlockTip.connect(boost::bind(BlockTipChanged, this, _1, _2));
+    uiInterface.NotifyForkDetected.connect(boost::bind(NotifyForkDetected, this, _1));
+    uiInterface.NotifyHighUtxosDectected.connect(boost::bind(NotifyHighUtxosDectected, this, _1));
 }
 
 void ClientModel::unsubscribeFromCoreSignals()
@@ -321,6 +347,8 @@ void ClientModel::unsubscribeFromCoreSignals()
     uiInterface.NotifyAlertChanged.disconnect(boost::bind(NotifyAlertChanged, this));
     uiInterface.BannedListChanged.disconnect(boost::bind(BannedListChanged, this));
     uiInterface.NotifyBlockTip.disconnect(boost::bind(BlockTipChanged, this, _1, _2));
+    uiInterface.NotifyForkDetected.disconnect(boost::bind(NotifyForkDetected, this, _1));
+    uiInterface.NotifyHighUtxosDectected.disconnect(boost::bind(NotifyHighUtxosDectected, this, _1));
 }
 
 bool ClientModel::getTorInfo(std::string& ip_port) const

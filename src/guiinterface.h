@@ -108,6 +108,12 @@ public:
 
     /** Banlist did change. */
     boost::signals2::signal<void (void)> BannedListChanged;
+
+    /** Fork detected */
+    boost::signals2::signal<void(uint64_t nBlock)> NotifyForkDetected;
+
+    /** High Utxos detected */
+    boost::signals2::signal<void(uint64_t nUtxos)> NotifyHighUtxosDectected;
 };
 
 extern CClientUIInterface uiInterface;

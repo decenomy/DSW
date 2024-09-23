@@ -124,12 +124,17 @@ Q_SIGNALS:
     // Show progress dialog e.g. for verifychain
     void showProgress(const QString& title, int nProgress);
 
+    void notifyForkDetected(uint64_t nBlock);
+    void notifyHighUtxosDetected(uint64_t nUtxos);
+
 public Q_SLOTS:
     void updateTimer();
     void updateMnTimer();
     void updateNumConnections(int numConnections);
     void updateAlert();
     void updateBanlist();
+    void forkDetected(int nBlock);
+    void highUtxosDetected(int nUtxos);
 };
 
 #endif // BITCOIN_QT_CLIENTMODEL_H
