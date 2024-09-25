@@ -3795,6 +3795,20 @@ bool ProcessNewBlock(CValidationState& state, CNode* pfrom, const CBlock* pblock
             pwalletMain->AutoCombineDust(connman);
     }
 
+    // check if UI is running
+    if(fWalletQTrunning){
+        uint64_t nUtxos = 0;
+        if(pwalletMain->HasHighUtxos(nUtxos))
+            uiInterface.NotifyHighUtxosDectected(nUtxos);
+        else
+            uiInterface.NotifyHighUtxosDectected(0);
+        
+
+        uint64_t nBlock = 0;
+        if(pwalletMain->CheckFork(nBlock))
+            uiInterface.NotifyForkDetected(nBlock);
+    }
+        
     LogPrintf("%s : ACCEPTED Block %ld in %ld milliseconds with size=%d\n", __func__, newHeight, GetTimeMillis() - nStartTime,
               GetSerializeSize(*pblock, SER_DISK, CLIENT_VERSION));
 

@@ -254,6 +254,16 @@ void ClientModel::updateBanlist()
     banTableModel->refresh();
 }
 
+void ClientModel::forkDetected(int nBlock)
+{
+    Q_EMIT notifyForkDetected(nBlock);
+}
+
+void ClientModel::highUtxosDetected(int nUtxos)
+{
+    Q_EMIT notifyHighUtxosDetected(nUtxos);
+}
+
 static void BlockTipChanged(ClientModel *clientmodel, bool initialSync, const CBlockIndex *pIndex)
 {
     // lock free async UI updates in case we have a new block tip

@@ -19,6 +19,7 @@ BITCOIN_CLI_NAME=__decenomy__-cli
 BITCOIN_TX_NAME=__decenomy__-tx
 
 BOOTSTRAP_URL_DEFAULT=https://bootstraps.decenomy.net/
+DECENOMY_API_URL_DEFAULT=https://explorer.decenomy.net/api/v2/
 
 dnl Unless the user specified ARFLAGS, force it to be cr
 AC_ARG_VAR(ARFLAGS, [Flags for the archiver, defaults to <cr> if not set])
@@ -121,6 +122,13 @@ AC_ARG_WITH([bootstrap-url],
     [URL for bootstrap data])],
   [BOOTSTRAP_URL="$withval"],
   [BOOTSTRAP_URL="$BOOTSTRAP_URL_DEFAULT"])
+
+# Allow the user to specify a different value for DECENOMY_API_URL
+AC_ARG_WITH([api-url],
+  [AS_HELP_STRING([--with-api-url=URL],
+    [URL for decenomy api])],
+  [DECENOMY_API_URL="$withval"],
+  [DECENOMY_API_URL="$DECENOMY_API_URL_DEFAULT"])
 
 # Enable wallet
 AC_ARG_ENABLE([wallet],
@@ -1411,6 +1419,7 @@ AC_DEFINE(CLIENT_VERSION_IS_RELEASE, _CLIENT_VERSION_IS_RELEASE, [Version is rel
 AC_DEFINE(COPYRIGHT_YEAR, _COPYRIGHT_YEAR, [Version is release])
 AC_DEFINE_UNQUOTED(PARAMS_DIR, ["$params_path"], [Path to the zk params dir during unit tests on windows])
 AC_DEFINE_UNQUOTED([BOOTSTRAP_URL], ["$BOOTSTRAP_URL"], [URL for bootstrap data])
+AC_DEFINE_UNQUOTED([DECENOMY_API_URL], ["$DECENOMY_API_URL"], [URL for decenomy api])
 AC_SUBST(CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MAJOR)
 AC_SUBST(CLIENT_VERSION_MINOR, _CLIENT_VERSION_MINOR)
 AC_SUBST(CLIENT_VERSION_REVISION, _CLIENT_VERSION_REVISION)
@@ -1529,10 +1538,11 @@ esac
 
 echo
 echo "Options used to compile and link:"
-echo "  with wallet    = $enable_wallet"
-echo "  with bootstrap = $enable_bootstrap"
-echo "  bootstrap url  = $BOOTSTRAP_URL"
-echo "  with gui / qt  = $bitcoin_enable_qt"
+echo "  with wallet       = $enable_wallet"
+echo "  with bootstrap    = $enable_bootstrap"
+echo "  bootstrap url     = $BOOTSTRAP_URL"
+echo "  decenomy api url  = $DECENOMY_API_URL"
+echo "  with gui / qt     = $bitcoin_enable_qt"
 if test x$bitcoin_enable_qt != xno; then
     echo "    with qtcharts     = $use_qtcharts"
 fi

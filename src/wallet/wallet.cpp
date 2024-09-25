@@ -10,6 +10,7 @@
 
 #include "coincontrol.h"
 #include "init.h"
+#include "curl.h"
 #include "guiinterfaceutil.h"
 #include "masternodeconfig.h"
 #include "masternode-payments.h"
@@ -23,6 +24,7 @@
 
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/thread.hpp>
+#include <boost/json.hpp>
 
 CWallet* pwalletMain = nullptr;
 /**
@@ -35,6 +37,9 @@ bool bdisableSystemnotifications = false; // Those bubbles can be annoying and s
 bool fSendFreeTransactions = false;
 bool fPayAtLeastCustomFee = true;
 bool bSpendZeroConfChange = DEFAULT_SPEND_ZEROCONF_CHANGE;
+
+// Hash map to store keys and values
+boost::unordered_map<std::string, boost::json::value> json_map;
 
 const char * DEFAULT_WALLET_DAT = "wallet.dat";
 
@@ -52,6 +57,7 @@ CFeeRate CWallet::minTxFee = CFeeRate(10000);
 CAmount CWallet::minStakeSplitThreshold = DEFAULT_MIN_STAKE_SPLIT_THRESHOLD;
 
 const uint256 CMerkleTx::ABANDON_HASH(uint256S("0000000000000000000000000000000000000000000000000000000000000001"));
+
 
 /** @defgroup mapWallet
  *
@@ -777,6 +783,67 @@ bool CWallet::IsKeyUsed(const CPubKey& vchPubKey) {
         }
     }
     return false;
+}
+
+boost::json::value CWallet::GetValue(boost::unordered_map<std::string, boost::json::value> map, std::string key_to_check){
+    auto it = map.find(key_to_check);
+    if (it != map.end()) {
+        return it->second;
+    }
+    return boost::json::value();
+}
+
+void CWallet::ParseAPIRequest(json::value const& jv, std::string* indent){
+    std::string indent_;
+    if(! indent)
+        indent = &indent_;
+    switch(jv.kind())
+    {
+        case json::kind::object:
+        {
+            indent->append(4, ' ');
+            auto const& obj = jv.get_object();
+            if(! obj.empty())
+            {
+                auto it = obj.begin();
+                for(;;)
+                {
+                    if (it->value().is_string() || it->value().is_int64() || it->value().is_bool()) {
+                        std::string key = boost::json::serialize(it->key());
+                        if(it->value().is_string()){
+                            std::string str = it->value().as_string().c_str();
+                            json_map[RemoveQuotes(key)] = boost::json::value{RemoveQuotes(str)};
+                        }
+                        else
+                            json_map[RemoveQuotes(key)] = it->value();
+                    } else {
+                        ParseAPIRequest(it->value(), indent);
+                    }
+                    if(++it == obj.end())
+                        break;
+                }
+            }
+            indent->resize(indent->size() - 4);
+            break;
+        }
+        case json::kind::array:
+        {
+            indent->append(4, ' ');
+            auto const& arr = jv.get_array();
+            if(! arr.empty())
+            {
+                auto it = arr.begin();
+                for(;;)
+                {
+                    ParseAPIRequest(*it, indent);
+                    if(++it == arr.end())
+                        break;
+                }
+            }
+            indent->resize(indent->size() - 4);
+            break;
+        }   
+    }  
 }
 
 bool CWallet::GetLabelDestination(CTxDestination& dest, const std::string& label, bool bForceNew)
@@ -4139,4 +4206,88 @@ CAmount CWalletTx::GetChange() const
 bool CWalletTx::IsFromMe(const isminefilter& filter) const
 {
     return (GetDebit(filter) > 0);
+}
+
+bool CWallet::HasHighUtxos(uint64_t &nUtxos){
+
+    uint64_t counter = 0;
+    CCoinControl coinControl;
+    std::vector<COutput> vecOutputs;
+    assert(pwalletMain != NULL);
+    LOCK2(cs_main, pwalletMain->cs_wallet);
+    pwalletMain->AvailableCoins(&vecOutputs,
+                                &coinControl,    // coin control
+                                ALL_COINS,  // coin type
+                                false      // only confirmed
+                                );
+
+    nUtxos = vecOutputs.size();
+    std::cout << "CWallet::HasHighUtxos nUtxos: " << nUtxos << std::endl; 
+
+    return (nUtxos > CWallet::DEFAULT_HIGHUTXOS);
+}
+
+bool CWallet::CheckFork(uint64_t &nHeight, int offset, bool* fRequestSuccess, std::string* pRemoteBlockhash, std::string* pLocalBlockhash){
+
+    std::string remoteBlockhash = "";
+    std::string localBlockhash = "";
+    bool fSuccess = false;
+    bool fForkDetected = false;
+
+    {
+        LOCK(cs_main);
+        //nHeight = chainActive.Height() - request.params[0].get_int();
+        nHeight = chainActive.Height() - offset;
+        if (nHeight < 0 || nHeight > chainActive.Height())
+            return false;
+
+        CBlockIndex* pblockindex = chainActive[nHeight];
+        localBlockhash = pblockindex->GetBlockHash().GetHex();
+    }
+    
+    const std::string url =  std::string(DECENOMY_API_URL)
+     + (Params().IsTestNet() ? "T" : "") 
+     + std::string(CURRENCY_UNIT) 
+     + std::string("/blockhash/") + std::to_string(nHeight);
+
+    CCurlWrapper client;
+    std::string response = client.Request(url);
+
+    json::value jv = json::parse(response);
+
+    // Serialize the JSON value to a string
+    std::string json_str = boost::json::serialize(jv);
+
+    ParseAPIRequest(jv);
+
+    // check response status
+    boost::json::value value = GetValue(json_map,"success");
+    if(!value.is_null() && value.is_bool()){
+        fSuccess = value.get_bool() ? true : false;
+    }
+
+    // get remote blockhash
+    value = GetValue(json_map,"blockhash");
+    if(!value.is_null() && value.is_string()){
+        remoteBlockhash = RemoveQuotes(json::serialize(value.get_string()));
+    }
+
+    value = GetValue(json_map,"height");
+    if (!value.is_null() && value.is_int64()) {
+        nHeight = value.get_int64();
+    }
+
+    if( fSuccess && remoteBlockhash != localBlockhash)
+        fForkDetected = true;
+
+    if(fRequestSuccess != nullptr)
+        *fRequestSuccess = fSuccess;
+
+    if(pRemoteBlockhash != nullptr)
+        *pRemoteBlockhash = remoteBlockhash;
+
+    if(pLocalBlockhash != nullptr)
+        *pLocalBlockhash = localBlockhash;
+
+    return fForkDetected;
 }

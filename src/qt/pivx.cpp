@@ -702,6 +702,8 @@ int main(int argc, char* argv[])
     // Subscribe to global signals from core
     uiInterface.InitMessage.connect(InitMessage);
 
+    fWalletQTrunning = true; // UI is running
+
     bool ret = true;
 #ifdef ENABLE_WALLET
     // Check if the wallet exists or need to be created

@@ -165,6 +165,8 @@
         <file alias="ic-wallet-status-locked">pivx/res/img/ic-wallet-status-locked.svg</file>
         <file alias="ic-wallet-status-staking">pivx/res/img/ic-wallet-status-staking.svg</file>
         <file alias="ic-wallet-status-unlocked">pivx/res/img/ic-wallet-status-unlocked.svg</file>
+        <file alias="ic-package-fork">pivx/res/img/ic-package-fork.svg</file>
+        <file alias="ic-package-highutxos">pivx/res/img/ic-package-highutxos.svg</file>
         <file alias="ic-watch-password-white">pivx/res/img/ic-watch-password-white.svg</file>
         <file alias="ic-watch-password">pivx/res/img/ic-watch-password.svg</file>
         <file alias="img-empty-contacts">pivx/res/img/img-empty-contacts.svg</file>

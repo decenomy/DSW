@@ -253,6 +253,7 @@ void PIVXGUI::setClientModel(ClientModel* clientModel)
         // Receive and report messages from client model
         connect(clientModel, &ClientModel::message, this, &PIVXGUI::message);
         connect(topBar, &TopBar::walletSynced, dashboard, &DashboardWidget::walletSynced);
+        connect(topBar, &TopBar::handleRestart, dashboard,  [this](QStringList arg){handleRestart(arg);});
         
         // Get restart command-line parameters and handle restart
         connect(settingsWidget, &SettingsWidget::handleRestart, [this](QStringList arg){handleRestart(arg);});

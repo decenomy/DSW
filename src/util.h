@@ -50,6 +50,7 @@ extern bool fPrivacyMode;
 extern int64_t enforceMasternodePaymentsTime;
 extern int keysLoaded;
 extern bool fSucessfullyLoaded;
+extern bool fWalletQTrunning; // flag indicating UI is running
 
 extern std::map<std::string, std::string> mapArgs;
 extern std::map<std::string, std::vector<std::string> > mapMultiArgs;
@@ -202,5 +203,7 @@ void TraceThread(const char* name, Callable func)
 fs::path AbsPathForConfigVal(const fs::path& path, bool net_specific = true);
 
 std::string GetReadableHashRate(uint64_t hashrate);
+
+std::string RemoveQuotes(const std::string& str);
 
 #endif // BITCOIN_UTIL_H

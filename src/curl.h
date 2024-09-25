@@ -13,10 +13,15 @@
 class CCurlWrapper
 {
 public:
-    static bool DownloadFile(
+    CCurlWrapper();
+    ~CCurlWrapper();
+    bool DownloadFile(
         const std::string& url,
         const std::string& filename,
         curl_xferinfo_callback xferinfoCallback = nullptr);
+    std::string Request(const std::string& url);
+private:
+    CURL* curl;
 };
 
 #endif // CURL_H
