@@ -3903,7 +3903,7 @@ void CWallet::SetNull()
     fUseCustomFee = false;
     nCustomFee = CWallet::minTxFee.GetFeePerK();
 
-    //MultiSend
+    // MultiSend
     vMultiSend.clear();
     fMultiSendStake = false;
     fMultiSendMasternodeReward = false;
@@ -3912,9 +3912,12 @@ void CWallet::SetNull()
     nLastMultiSendHeight = 0;
     vDisabledAddresses.clear();
 
-    //Auto Combine Dust
+    // Auto Combine Dust
     fCombineDust = false;
     nAutoCombineThreshold = 0;
+
+    // Max record in the UI
+    nLoadedRecordsMaxCount = MAX_AMOUNT_LOADED_RECORDS;
 }
 
 bool CWallet::isMultiSendEnabled()
