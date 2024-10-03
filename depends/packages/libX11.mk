@@ -3,7 +3,7 @@ $(package)_version=1.6.2
 # $(package)_download_path=https://xorg.freedesktop.org/releases/individual/lib/
 # https://ipfs.io/ipfs/QmSax8vonHyZhgXpiMPGqKBqg149S8RcKF8kETtu79pnsd?filename=libX11-1.6.2.tar.bz2
 $(package)_download_path=https://ipfs.io/ipfs/
-$(package)_download_file=QmSax8vonHyZhgXpiMPGqKBqg149S8RcKF8kETtu79pnsd?filename=$(package)-$($(package)_version).tar.bz2
+$(package)_download_file=QmSax8vonHyZhgXpiMPGqKBqg149S8RcKF8kETtu79pnsd
 $(package)_file_name=$(package)-$($(package)_version).tar.bz2
 $(package)_sha256_hash=2aa027e837231d2eeea90f3a4afe19948a6eb4c8b2bec0241eba7dbc8106bd16
 $(package)_dependencies=libxcb xtrans xextproto xproto

@@ -3,7 +3,7 @@ $(package)_version=1.2.11
 # $(package)_download_path=https://www.zlib.net
 # https://ipfs.io/ipfs/QmVUxkKQnLaiWK7nSwMFQ97LYSeGuwtRFjhw9ooMpJd5Gr?filename=zlib-1.2.11.tar.gz
 $(package)_download_path=https://ipfs.io/ipfs/
-$(package)_download_file=QmVUxkKQnLaiWK7nSwMFQ97LYSeGuwtRFjhw9ooMpJd5Gr?filename=$(package)-$($(package)_version).tar.gz
+$(package)_download_file=QmVUxkKQnLaiWK7nSwMFQ97LYSeGuwtRFjhw9ooMpJd5Gr
 $(package)_file_name=$(package)-$($(package)_version).tar.gz
 $(package)_sha256_hash=c3e5e9fdd5004dcb542feda5ee4f0ff0744628baf8ed2dd5d66f8ca1197cb1a1
 
