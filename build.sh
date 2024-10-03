@@ -11,14 +11,25 @@ CPU_CORES=${CPU_CORES:-""}
 # windows-x64
 ARCHITECTURE=${ARCHITECTURE:-""}
 
+# Get the origin URL
+ORIGIN_URL=$(git config --get remote.origin.url)
+
+# Extract the github username and repository name
+if [[ $ORIGIN_URL =~ ^https://github.com/(.+)/(.+)\.git$ ]]; then
+    GITHUB_USER="${BASH_REMATCH[1]}"
+    GITHUB_REPO="${BASH_REMATCH[2]}"
+elif [[ $ORIGIN_URL =~ ^git@github.com:(.+)/(.+)\.git$ ]]; then
+    GITHUB_USER="${BASH_REMATCH[1]}"
+    GITHUB_REPO="${BASH_REMATCH[2]}"
+else
+    echo "Unable to parse origin URL: $ORIGIN_URL"
+    exit 1
+fi
+
 # Sets variables needed for the build
-TICKER=${TICKER:-"__DSW__"}
+TICKER=${TICKER:-"${GITHUB_REPO}"}
 UI_NAME=${UI_NAME:-"__Decenomy__"}
 BASE_NAME=${BASE_NAME:-"__decenomy__"}
-
-# Sets the github environment variables
-GITHUB_USER="decenomy"
-GITHUB_REPO="__DSW__"
 
 # Sets the build environment variable
 #   0: The build will use the builder image available on docker hub
@@ -227,6 +238,7 @@ docker buildx build \
 	--build-arg NAME=$UI_NAME \
 	--build-arg BASE_NAME=$BASE_NAME \
 	--build-arg TARGET=$TARGET \
+	--build-arg GITHUB_USER=$GITHUB_USER \
 	-f $WALLET_DOCKER_FILE.tmp \
 	-t $image_tag \
 	 .
@@ -246,7 +258,7 @@ trace "Container ID: $container_id"
 # Copy files from the container to the current directory
 mkdir -p deploy
 rm -rf deploy/$ARCHITECTURE
-docker cp "$container_id":/${TICKER}/deploy/. ./deploy/
+docker cp "$container_id":/${GITHUB_USER}/${TICKER}/deploy/. ./deploy/
 
 # Main verification process
 if [ "$VERIFY" -ge 1 ]; then

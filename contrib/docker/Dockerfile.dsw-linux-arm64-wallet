@@ -9,16 +9,21 @@ ARG TICKER=__DSW__
 ARG NAME=__Decenomy__
 ARG BASE_NAME=__decenomy__
 ARG TARGET=master
+ARG GITHUB_USER=decenomy
 
 RUN sleep 30
 
+RUN mkdir -p ${GITHUB_USER}
+# Switch to the github user directory
+WORKDIR /$GITHUB_USER
+
 # Clone the repository
 RUN if [ ! -d $TICKER ]; then \
-  git clone https://github.com/decenomy/$TICKER; \
+  git clone https://github.com/${GITHUB_USER}/${TICKER}.git; \
 fi
 
 # Switch to the repository directory
-WORKDIR /$TICKER
+WORKDIR /${GITHUB_USER}/${TICKER}
 
 # Check out the $TARGET
 RUN git stash --include-untracked && \
@@ -63,9 +68,9 @@ RUN PATH=${WRAP_DIR}:${PATH} aarch64-linux-gnu-objcopy --strip-all src/$(echo $B
 RUN PATH=${WRAP_DIR}:${PATH} aarch64-linux-gnu-objcopy --strip-all src/$(echo $BASE_NAME)-cli
 RUN PATH=${WRAP_DIR}:${PATH} aarch64-linux-gnu-objcopy --strip-all src/$(echo $BASE_NAME)-tx
 RUN PATH=${WRAP_DIR}:${PATH} aarch64-linux-gnu-objcopy --strip-all src/qt/$(echo $BASE_NAME)-qt
-RUN cp src/$(echo $BASE_NAME)d src/$(echo $BASE_NAME)-cli src/$(echo $BASE_NAME)-tx src/qt/$(echo $BASE_NAME)-qt /$TICKER/deploy/linux-arm64
-RUN find /$TICKER/deploy/linux-arm64 -type f -exec touch -t $(cat /git_timestamp_touch) {} +
-WORKDIR /$TICKER/deploy/linux-arm64
+RUN cp src/$(echo $BASE_NAME)d src/$(echo $BASE_NAME)-cli src/$(echo $BASE_NAME)-tx src/qt/$(echo $BASE_NAME)-qt /${GITHUB_USER}/${TICKER}/deploy/linux-arm64
+RUN find /${GITHUB_USER}/${TICKER}/deploy/linux-arm64 -type f -exec touch -t $(cat /git_timestamp_touch) {} +
+WORKDIR /${GITHUB_USER}/${TICKER}/deploy/linux-arm64
 RUN PATH=${WRAP_DIR}:${PATH} zip -X $TICKER-$(cat /wallet_version)-Linux-arm64.zip $(echo $BASE_NAME)d $(echo $BASE_NAME)-cli $(echo $BASE_NAME)-tx $(echo $BASE_NAME)-qt
 RUN echo "$(git rev-parse HEAD)                          commit" >> SHA256SUMS-Linux-arm64.ASC
 RUN sha256sum $(echo $BASE_NAME)d >> SHA256SUMS-Linux-arm64.ASC
