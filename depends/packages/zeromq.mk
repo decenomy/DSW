@@ -1,8 +1,8 @@
 package=zeromq
 $(package)_version=4.3.1
 # $(package)_download_path=https://github.com/zeromq/libzmq/releases/download/v$($(package)_version)/
-# https://ipfs.io/ipfs/QmW9vK8jQqdEjC4Xesu1ZhZwRDEmv8odG2BrbGFrWBuiL4?filename=zeromq-4.3.1.tar.gz
-$(package)_download_path=https://ipfs.io/ipfs
+# https://ipfs.decenomy.net/QmW9vK8jQqdEjC4Xesu1ZhZwRDEmv8odG2BrbGFrWBuiL4?filename=zeromq-4.3.1.tar.gz
+$(package)_download_path=https://ipfs.decenomy.net
 $(package)_download_file=QmW9vK8jQqdEjC4Xesu1ZhZwRDEmv8odG2BrbGFrWBuiL4
 $(package)_file_name=$(package)-$($(package)_version).tar.gz
 $(package)_sha256_hash=bcbabe1e2c7d0eec4ed612e10b94b112dd5f06fcefa994a0c79a45d835cd21eb

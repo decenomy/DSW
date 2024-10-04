@@ -1,8 +1,8 @@
 package=native_cdrkit
 $(package)_version=1.1.11
 # $(package)_download_path=https://distro.ibiblio.org/fatdog/source/600/c
-# https://ipfs.io/ipfs/QmPR9mf48Hd68q5xGrYiYk89dpVhzPoAbeiohCimu4GBHk?filename=cdrkit-1.1.11.tar.bz2
-$(package)_download_path=https://ipfs.io/ipfs
+# https://ipfs.decenomy.net/QmPR9mf48Hd68q5xGrYiYk89dpVhzPoAbeiohCimu4GBHk?filename=cdrkit-1.1.11.tar.bz2
+$(package)_download_path=https://ipfs.decenomy.net
 $(package)_download_file=QmPR9mf48Hd68q5xGrYiYk89dpVhzPoAbeiohCimu4GBHk
 $(package)_file_name=cdrkit-$($(package)_version).tar.bz2
 $(package)_sha256_hash=b50d64c214a65b1a79afe3a964c691931a4233e2ba605d793eb85d0ac3652564

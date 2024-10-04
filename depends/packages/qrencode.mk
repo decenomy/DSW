@@ -1,8 +1,8 @@
 package=qrencode
 $(package)_version=3.4.4
 # $(package)_download_path=https://fukuchi.org/works/qrencode/
-# https://ipfs.io/ipfs/Qma2igUXcx1UPLW2qhsxqx3Xjbi4F6ZaiGRxhb3Ef913cF?filename=qrencode-3.4.4.tar.bz2
-$(package)_download_path=https://ipfs.io/ipfs
+# https://ipfs.decenomy.net/Qma2igUXcx1UPLW2qhsxqx3Xjbi4F6ZaiGRxhb3Ef913cF?filename=qrencode-3.4.4.tar.bz2
+$(package)_download_path=https://ipfs.decenomy.net
 $(package)_download_file=Qma2igUXcx1UPLW2qhsxqx3Xjbi4F6ZaiGRxhb3Ef913cF
 $(package)_file_name=$(package)-$($(package)_version).tar.bz2
 $(package)_sha256_hash=efe5188b1ddbcbf98763b819b146be6a90481aac30cfc8d858ab78a19cde1fa5

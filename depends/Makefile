@@ -8,7 +8,7 @@ NO_QT ?=
 NO_WALLET ?=
 NO_ZMQ ?=
 NO_UPNP ?=
-FALLBACK_DOWNLOAD_PATH ?= 
+FALLBACK_DOWNLOAD_PATH ?= https://ipfs.io/ipfs
 
 BUILD = $(shell ./config.guess)
 HOST ?= $(BUILD)
