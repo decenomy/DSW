@@ -23,6 +23,8 @@ size_t writeCallback(void* data, size_t size, size_t nmemb, void* clientp)
     return total_size;
 }
 
+#ifndef WIN32
+
 bool fileExists(const std::string &path) {
     std::ifstream file(path);
     return file.good();
@@ -56,6 +58,10 @@ std::string findCAPath() {
         __func__);
     return "";
 }
+
+std::string caPath = "";
+
+#endif
 
 bool CCurlWrapper::DownloadFile(
     const std::string& url,
@@ -110,9 +116,11 @@ bool CCurlWrapper::DownloadFile(
         // Sets HTTPS parameters
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 1L);
         curl_easy_setopt(curl, CURLOPT_SSL_OPTIONS, CURLSSLOPT_NATIVE_CA);
-        
+
 #ifndef WIN32
-        std::string caPath = findCAPath();
+        if (caPath.empty()) {
+            caPath = findCAPath();
+        }
         if (!caPath.empty()) {
             // Set the path to the CA bundle if found
             LogPrintf("CCurlWrapper::%s: ca path: %s\n", __func__, caPath);
