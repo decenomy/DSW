@@ -78,8 +78,8 @@ TopBar::TopBar(PIVXGUI* _mainWindow, QWidget* parent) : PWidget(_mainWindow, par
     progressBar->raise();
     progressBar->move(0, 34);
 
-    ui->pushButtonFAQ->setButtonClassStyle("cssClass", "btn-check-faq");
-    ui->pushButtonFAQ->setButtonText(tr("FAQ"));
+    // ui->pushButtonFAQ->setButtonClassStyle("cssClass", "btn-check-faq");
+    // ui->pushButtonFAQ->setButtonText(tr("FAQ"));
 
     ui->pushButtonHDUpgrade->setButtonClassStyle("cssClass", "btn-check-hd-upgrade");
     ui->pushButtonHDUpgrade->setButtonText(tr("Upgrade to HD Wallet"));
@@ -140,7 +140,7 @@ TopBar::TopBar(PIVXGUI* _mainWindow, QWidget* parent) : PWidget(_mainWindow, par
     connect(ui->btnQr, &QPushButton::clicked, this, &TopBar::onBtnReceiveClicked);
     connect(ui->pushButtonLock, &ExpandableButton::Mouse_Pressed, this, &TopBar::onBtnLockClicked);
     connect(ui->pushButtonTheme, &ExpandableButton::Mouse_Pressed, this, &TopBar::onThemeClicked);
-    connect(ui->pushButtonFAQ, &ExpandableButton::Mouse_Pressed, [this]() { window->openFAQ(); });
+    // connect(ui->pushButtonFAQ, &ExpandableButton::Mouse_Pressed, [this]() { window->openFAQ(); });
     connect(ui->pushButtonConf, &ExpandableButton::Mouse_Pressed, this, &TopBar::onBtnConfClicked);
     connect(ui->pushButtonMasternodes, &ExpandableButton::Mouse_Pressed, this, &TopBar::onBtnMasternodesClicked);
     connect(ui->pushButtonSync, &ExpandableButton::Mouse_HoverLeave, this, &TopBar::refreshProgressBarSize);
