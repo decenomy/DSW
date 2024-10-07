@@ -8,8 +8,6 @@
 #include <curl/curl.h>
 #include <string>
 
-#define APPLE_CA_PATH "/etc/ssl/cert.pem"
-
 class CCurlWrapper
 {
 public:

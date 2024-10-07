@@ -5,8 +5,6 @@
 #ifndef BOOTSTRAP_H
 #define BOOTSTRAP_H
 
-#define APPLE_CA_PATH "/etc/ssl/cert.pem"
-
 class CBootstrap
 {
 public:

@@ -1971,8 +1971,11 @@ bool CWallet::AvailableCoins(std::vector<COutput>* pCoins,      // --> populates
         }
     }
 
-    for (auto it = vErase.begin(); it != vErase.end(); ++it) {
-        setWallet.erase(*it);
+    if(vErase.size() > 0) {
+        for (auto& h : vErase) {
+            setWallet.erase(h);
+        }
+        setWallet.rehash(0);
     }
 
     return (pCoins && pCoins->size() > 0);
@@ -3903,7 +3906,7 @@ void CWallet::SetNull()
     fUseCustomFee = false;
     nCustomFee = CWallet::minTxFee.GetFeePerK();
 
-    //MultiSend
+    // MultiSend
     vMultiSend.clear();
     fMultiSendStake = false;
     fMultiSendMasternodeReward = false;
@@ -3912,9 +3915,12 @@ void CWallet::SetNull()
     nLastMultiSendHeight = 0;
     vDisabledAddresses.clear();
 
-    //Auto Combine Dust
+    // Auto Combine Dust
     fCombineDust = false;
     nAutoCombineThreshold = 0;
+
+    // Max record in the UI
+    nLoadedRecordsMaxCount = MAX_AMOUNT_LOADED_RECORDS;
 }
 
 bool CWallet::isMultiSendEnabled()

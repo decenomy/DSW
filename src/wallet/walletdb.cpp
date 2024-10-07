@@ -268,6 +268,12 @@ bool CWalletDB::WriteAutoCombineSettings(bool fEnable, CAmount nCombineThreshold
     return Write(std::string("autocombinesettings"), pSettings, true);
 }
 
+bool CWalletDB::WriteLoadedRecordsMaxCount(int nLoadedRecordsMaxCount)
+{
+    nWalletDBUpdateCounter++;
+    return Write(std::string("loadedrecordsmaxcount"), nLoadedRecordsMaxCount, true);
+}
+
 bool CWalletDB::ReadPool(int64_t nPool, CKeyPool& keypool)
 {
     return Read(std::make_pair(std::string("pool"), nPool), keypool);
@@ -689,6 +695,8 @@ bool ReadKeyValue(CWallet* pwallet, CDataStream& ssKey, CDataStream& ssValue, CW
             // originally saved as integer
             if (pwallet->nAutoCombineThreshold < COIN)
                 pwallet->nAutoCombineThreshold *= COIN;
+        } else if (strType == "loadedrecordsmaxcount") {
+            ssValue >> pwallet->nLoadedRecordsMaxCount;
         } else if (strType == "destdata") {
             std::string strAddress, strKey, strValue;
             ssKey >> strAddress;

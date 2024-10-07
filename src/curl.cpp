@@ -23,6 +23,46 @@ size_t writeCallback(void* data, size_t size, size_t nmemb, void* clientp)
     return total_size;
 }
 
+#ifndef WIN32
+
+bool fileExists(const std::string &path) {
+    std::ifstream file(path);
+    return file.good();
+}
+
+std::string findCAPath() {
+    std::vector<std::string> commonPaths = {
+        // Linux common locations
+        "/etc/ssl/certs/ca-certificates.crt",
+        "/etc/pki/tls/certs/ca-bundle.crt",
+        "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem",
+        "/etc/pki/tls/cert.pem",
+        // macOS common locations
+        "/etc/ssl/cert.pem",
+        "/usr/local/etc/openssl/cert.pem"
+    };
+
+    // Search through the common paths
+    for (const auto &path : commonPaths) {
+        if (fileExists(path)) {
+            LogPrintf(
+                "CCurlWrapper::%s: CA certificate found: %s\n", 
+                __func__, path);
+            return path;
+        }
+    }
+
+    // If no file is found, return an empty string
+    LogPrintf(
+        "CCurlWrapper::%s: No CA certificate found!\n", 
+        __func__);
+    return "";
+}
+
+std::string caPath = "";
+
+#endif
+
 bool CCurlWrapper::DownloadFile(
     const std::string& url,
     const std::string& filename,
@@ -76,9 +116,16 @@ bool CCurlWrapper::DownloadFile(
         // Sets HTTPS parameters
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 1L);
         curl_easy_setopt(curl, CURLOPT_SSL_OPTIONS, CURLSSLOPT_NATIVE_CA);
-#if defined(__APPLE__)
-        LogPrintf("CCurlWrapper::%s: apple ca path: %s\n", __func__, (const char*)APPLE_CA_PATH);
-        curl_easy_setopt(curl, CURLOPT_CAINFO, (const char*)APPLE_CA_PATH);
+
+#ifndef WIN32
+        if (caPath.empty()) {
+            caPath = findCAPath();
+        }
+        if (!caPath.empty()) {
+            // Set the path to the CA bundle if found
+            LogPrintf("CCurlWrapper::%s: ca path: %s\n", __func__, caPath);
+            curl_easy_setopt(curl, CURLOPT_CAINFO, caPath.c_str());
+        }
 #endif
 
         // Sets file releated parameters

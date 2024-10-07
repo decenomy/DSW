@@ -1,7 +1,9 @@
 package=boost
 $(package)_version=1_85_0
 # $(package)_download_path=https://boostorg.jfrog.io/artifactory/main/release/$(subst _,.,$($(package)_version))/source/
-$(package)_download_path=https://github.com/decenomy/depends/raw/main/
+# https://ipfs.decenomy.net/QmUwpqzdrYQadMzL5PT6kkdrZM2HwUNgHGKR7uQgwNPpSG?filename=boost_1_85_0.tar.bz2
+$(package)_download_path=https://ipfs.decenomy.net
+$(package)_download_file=QmUwpqzdrYQadMzL5PT6kkdrZM2HwUNgHGKR7uQgwNPpSG
 $(package)_file_name=boost_$($(package)_version).tar.bz2
 $(package)_sha256_hash=7009fe1faa1697476bdc7027703a2badb84e849b7b0baad5086b087b971f8617
 
