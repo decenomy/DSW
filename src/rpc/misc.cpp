@@ -735,7 +735,7 @@ UniValue getstakingstatus(const JSONRPCRequest& request)
 
 UniValue getrewardsinfo(const JSONRPCRequest& request)
 {
-    std::string info_type = "both"; // Default value
+    std::string info_type = "all"; // Default value
 
     if (request.fHelp || (request.params.size() > 1 || (request.params.size() == 1 && !request.params[0].isStr()))) {
         throw std::runtime_error(
@@ -743,7 +743,7 @@ UniValue getrewardsinfo(const JSONRPCRequest& request)
             "\nReturns an object containing ROI information.\n"
 
             "\nArguments:\n"
-            "1. \"info_type\"   (string, optional, default=\"both\") The type of info to display (\"network\", \"wallet\", or \"both\")\n"
+            "1. \"info_type\"   (string, optional, default=\"all\") The type of info to display (\"network\", \"wallet\", \"simple\", or \"all\")\n"
 
             "\nResult:\n"
             "{\n"
@@ -839,352 +839,321 @@ UniValue getrewardsinfo(const JSONRPCRequest& request)
 
     if (request.params.size() == 1) {
         info_type = request.params[0].get_str();
-        if (info_type != "network" && info_type != "wallet" && info_type != "both") {
-            throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid info_type parameter, must be \"network\", \"wallet\", or \"both\"");
+        if (info_type != "network" && info_type != "wallet" && info_type != "simple" && info_type != "all") {
+            throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid info_type parameter, must be \"network\", \"wallet\", \"simple\", or \"all\"");
         }
     }
 
-    if (pwalletMain) {
-        if (!masternodeSync.IsSynced()) {
-            throw JSONRPCError(RPC_IN_WARMUP, "Try again after the chain is fully synced");
-        }
-
-        const auto& params = Params();
-        const auto& consensus = params.GetConsensus();
-
-        const auto tip = chainActive.Tip();
-        const auto nHeight = tip->nHeight;
-
-        // Fetch consensus parameters
-        const auto nTargetSpacing = consensus.nTargetSpacing;
-        const auto nTargetTimespan = consensus.TargetTimespan(nHeight);
-        const auto nTimeSlotLength = consensus.TimeSlotLength(nHeight);
-
-        // Fetch reward details
-        const auto nBlockValue = CRewards::GetBlockValue(nHeight);
-        const auto nMNReward = CMasternode::GetMasternodePayment(nHeight);
-        const auto nStakeReward = nBlockValue - nMNReward;
-
-        const auto nBlocksPerDay = DAY_IN_SECONDS / nTargetSpacing;
-        const auto nBlocksPerWeek = WEEK_IN_SECONDS / nTargetSpacing;
-        const auto nBlocksPerMonth = MONTH_IN_SECONDS / nTargetSpacing;
-        const auto nBlocksPerYear = YEAR_IN_SECONDS / nTargetSpacing;
-
-        // Fetch the network generated hashes per second
-        const auto nBlocks = static_cast<int>(nTargetTimespan / nTargetSpacing);
-        const auto startBlock = chainActive[nHeight - std::min(nBlocks, nHeight)];
-        const auto endBlock = tip;
-        const auto nTimeDiff = endBlock->GetBlockTime() - startBlock->GetBlockTime();
-        const auto nWorkDiff = endBlock->nChainWork - startBlock->nChainWork;
-        const auto nNetworkHashPS = static_cast<int64_t>(nWorkDiff.getdouble() / nTimeDiff);
-
-        const auto nSmoothBlocks = static_cast<int>((3 * HOUR_IN_SECONDS) / nTargetSpacing);
-        const auto startSmoothBlock = chainActive[nHeight - std::min(nSmoothBlocks, nHeight)];
-        const auto nSmoothTimeDiff = endBlock->GetBlockTime() - startSmoothBlock->GetBlockTime();
-        const auto nSmoothWorkDiff = endBlock->nChainWork - startSmoothBlock->nChainWork;
-        const auto nSmoothNetworkHashPS = static_cast<int64_t>(nSmoothWorkDiff.getdouble() / nSmoothTimeDiff);
-
-        // Calculate how many coins are allocated in the entire staking algorithm
-        const auto nStakedCoins = static_cast<double>(nNetworkHashPS * nTimeSlotLength * 100);
-        const auto nSmoothStakedCoins = static_cast<double>(nSmoothNetworkHashPS * nTimeSlotLength * 100);
-        const auto nStakingAllocation = static_cast<double>(nSmoothStakedCoins) / tip->nMoneySupply.get();
-        const auto nYearlyStakingRewards = nStakeReward * nBlocksPerYear;
-        auto nStakingROI = nYearlyStakingRewards / nStakedCoins;
-        auto nSmoothStakingROI = nYearlyStakingRewards / nSmoothStakedCoins;
-
-        // Fetch the masternode related data
-        const auto nMNCollateral = CMasternode::GetMasternodeNodeCollateral(nHeight);
-        const auto nMNNextWeekCollateral = CMasternode::GetNextWeekMasternodeCollateral();
-        const auto nMNEnabled = mnodeman.CountEnabled();
-        const auto nMNCoins = nMNCollateral * nMNEnabled;
-        const auto nMNAllocation = static_cast<double>(nMNCoins) / tip->nMoneySupply.get();
-
-        const auto nTotalAllocationCoins = nSmoothStakedCoins + nMNCoins;
-        const auto nTotalAllocation = nStakingAllocation + nMNAllocation;
-
-        const auto nYearlyMNRewards = nMNReward * nBlocksPerYear;
-        const auto nMasternodingRewards = static_cast<double>((nMNReward * nBlocksPerYear) / nMNEnabled);
-        const auto nDailyMasternodingRewards = nMasternodingRewards / 365;
-
-        const auto fStakingActive = pwalletMain->pStakerStatus->IsActive();
-        const auto nStakedBalance =
-            pwalletMain->mapWallet.empty() ? 
-                0 :
-                fStakingActive ?
-                    pwalletMain->pStakerStatus->GetLastValue() :
-                    pwalletMain->GetStakingBalance();
-        const auto nStakeShare = static_cast<double>(nStakedBalance) / nSmoothStakedCoins;
-
-        UniValue obj(UniValue::VOBJ);
-
-        if (info_type == "network" || info_type == "both") {
-            UniValue networkObj(UniValue::VOBJ);
-
-            networkObj.push_back(Pair("reward", ValueFromAmount(nBlockValue)));
-            networkObj.push_back(Pair("allocated_coins", ValueFromAmount(nTotalAllocationCoins)));
-            networkObj.push_back(Pair("allocation", strprintf("%4.2f%%", nTotalAllocation * 100)));
-
-            UniValue blocksObj(UniValue::VOBJ);
-            blocksObj.push_back(Pair("day", nBlocksPerDay));
-            blocksObj.push_back(Pair("week", nBlocksPerWeek));
-            blocksObj.push_back(Pair("month", nBlocksPerMonth));
-            blocksObj.push_back(Pair("year", nBlocksPerYear));
-            networkObj.push_back(Pair("blocks", blocksObj));
-
-            UniValue stakingObj(UniValue::VOBJ);
-
-            stakingObj.push_back(Pair("reward", ValueFromAmount(nStakeReward)));
-
-            UniValue hashRateObj(UniValue::VOBJ);
-            hashRateObj.push_back(Pair("networkhashps", GetReadableHashRate(nNetworkHashPS)));
-            hashRateObj.push_back(Pair("allocated_coins", ValueFromAmount(nStakedCoins)));
-            hashRateObj.push_back(Pair("roi", strprintf("%4.2f%%", nStakingROI * 100)));
-            stakingObj.push_back(Pair("hashrate", hashRateObj));
-
-            UniValue smoothHashRateObj(UniValue::VOBJ);
-            smoothHashRateObj.push_back(Pair("networkhashps", GetReadableHashRate(nSmoothNetworkHashPS)));
-            smoothHashRateObj.push_back(Pair("allocated_coins", ValueFromAmount(nSmoothStakedCoins)));
-            smoothHashRateObj.push_back(Pair("roi", strprintf("%4.2f%%", nSmoothStakingROI * 100)));
-            stakingObj.push_back(Pair("smooth_hashrate", smoothHashRateObj));
-
-            stakingObj.push_back(Pair("allocation", strprintf("%4.2f%%", nStakingAllocation * 100)));
-
-            {
-                // Calculate all data for the wallet's staking ROI
-                UniValue stakingRegularObj(UniValue::VOBJ);
-
-                const auto nStakingRewards = nYearlyStakingRewards;
-                const auto nStakingDailyRewards = nStakingRewards / 365;
-                const auto nStakingWeeklyRewards = nStakingDailyRewards * 7;
-                const auto nStakingMonthlyRewards = nStakingDailyRewards * 30;
-                const auto nStakingYearlyRewards = nStakingRewards;
-
-                const auto nStakingDailyRewardsROI = nSmoothStakedCoins == 0 ? 0 : nStakingDailyRewards / nSmoothStakedCoins;
-                const auto nStakingWeeklyRewardsROI = nSmoothStakedCoins == 0 ? 0 : nStakingWeeklyRewards / nSmoothStakedCoins;
-                const auto nStakingMonthlyRewardsROI = nSmoothStakedCoins == 0 ? 0 : nStakingMonthlyRewards / nSmoothStakedCoins;
-                const auto nStakingYearlyRewardsROI = nSmoothStakedCoins == 0 ? 0 : nStakingYearlyRewards / nSmoothStakedCoins;
-
-                stakingRegularObj.push_back(Pair("daily", ValueFromAmount(nStakingDailyRewards)));
-                stakingRegularObj.push_back(Pair("daily_roi", strprintf("%4.2f%%", nStakingDailyRewardsROI * 100)));
-                stakingRegularObj.push_back(Pair("weekly", ValueFromAmount(nStakingWeeklyRewards)));
-                stakingRegularObj.push_back(Pair("weekly_roi", strprintf("%4.2f%%", nStakingWeeklyRewardsROI * 100)));
-                stakingRegularObj.push_back(Pair("monthly", ValueFromAmount(nStakingMonthlyRewards)));
-                stakingRegularObj.push_back(Pair("monthly_roi", strprintf("%4.2f%%", nStakingMonthlyRewardsROI * 100)));
-                stakingRegularObj.push_back(Pair("yearly", ValueFromAmount(nStakingYearlyRewards)));
-                stakingRegularObj.push_back(Pair("yearly_roi", strprintf("%4.2f%%", nStakingYearlyRewardsROI * 100)));
-
-                stakingObj.push_back(Pair("regular", stakingRegularObj));
-
-                {
-                    // Compounding calculations
-                    UniValue stakingCompoundObj(UniValue::VOBJ);
-
-                    auto nStakingBalanceAccumulator = static_cast<double>(nSmoothStakedCoins);
-
-                    for (int i = 1; i <= 365; i++) {
-                        nStakingBalanceAccumulator += ((nStakingBalanceAccumulator * nSmoothStakingROI) / 365);
-
-                        if (i == 1) { // After a day
-                            const auto nCompoundStakingDailyRewards = nStakingBalanceAccumulator - nSmoothStakedCoins;
-                            const auto nCompoundStakingDailyRewardsROI = nSmoothStakedCoins == 0 ? 0 : nCompoundStakingDailyRewards / nSmoothStakedCoins;
-
-                            stakingCompoundObj.push_back(Pair("daily", ValueFromAmount(nCompoundStakingDailyRewards)));
-                            stakingCompoundObj.push_back(Pair("daily_roi", strprintf("%4.2f%%", nCompoundStakingDailyRewardsROI * 100)));
-                        }
-
-                        if (i == 7) { // After a week
-                            const auto nCompoundStakingWeeklyRewards = nStakingBalanceAccumulator - nSmoothStakedCoins;
-                            const auto nCompoundStakingWeeklyRewardsROI = nSmoothStakedCoins == 0 ? 0 : nCompoundStakingWeeklyRewards / nSmoothStakedCoins;
-
-                            stakingCompoundObj.push_back(Pair("weekly", ValueFromAmount(nCompoundStakingWeeklyRewards)));
-                            stakingCompoundObj.push_back(Pair("weekly_roi", strprintf("%4.2f%%", nCompoundStakingWeeklyRewardsROI * 100)));
-                        }
-
-                        if (i == 30) { // After a month
-                            const auto nCompoundStakingMonthlyRewards = nStakingBalanceAccumulator - nSmoothStakedCoins;
-                            const auto nCompoundStakingMonthlyRewardsROI = nSmoothStakedCoins == 0 ? 0 : nCompoundStakingMonthlyRewards / nSmoothStakedCoins;
-
-                            stakingCompoundObj.push_back(Pair("monthly", ValueFromAmount(nCompoundStakingMonthlyRewards)));
-                            stakingCompoundObj.push_back(Pair("monthly_roi", strprintf("%4.2f%%", nCompoundStakingMonthlyRewardsROI * 100)));
-                        }
-
-                        if (i == 365) { // After a year
-                            const auto nCompoundStakingYearlyRewards = nStakingBalanceAccumulator - nSmoothStakedCoins;
-                            const auto nCompoundStakingYearlyRewardsROI = nSmoothStakedCoins == 0 ? 0 : nCompoundStakingYearlyRewards / nSmoothStakedCoins;
-
-                            stakingCompoundObj.push_back(Pair("yearly", ValueFromAmount(nCompoundStakingYearlyRewards)));
-                            stakingCompoundObj.push_back(Pair("yearly_roi", strprintf("%4.2f%%", nCompoundStakingYearlyRewardsROI * 100)));
-                        }
-                    }
-
-                    stakingObj.push_back(Pair("compound", stakingCompoundObj));
-                }
-            }
-
-            networkObj.push_back(Pair("staking", stakingObj));
-
-            {
-                UniValue masternodingObj(UniValue::VOBJ);
-
-                masternodingObj.push_back(Pair("reward", ValueFromAmount(nMNReward)));
-                masternodingObj.push_back(Pair("collateral", ValueFromAmount(nMNCollateral)));
-                masternodingObj.push_back(Pair("nextweek_collateral", ValueFromAmount(nMNNextWeekCollateral)));
-                masternodingObj.push_back(Pair("enabled_masternodes", nMNEnabled));
-                masternodingObj.push_back(Pair("allocated_coins", ValueFromAmount(nMNCoins)));
-                masternodingObj.push_back(Pair("allocation", strprintf("%4.2f%%", nMNAllocation * 100)));
-
-                const auto nMasternodingDailyRewards = nDailyMasternodingRewards * nMNEnabled;
-                const auto nMasternodingWeeklyRewards = nMasternodingDailyRewards * 7;
-                const auto nMasternodingMonthlyRewards = nMasternodingDailyRewards * 30;
-                const auto nMasternodingYearlyRewards = nMasternodingRewards * nMNEnabled;
-
-                const auto nMasternodingDailyRewardsROI = nMasternodingDailyRewards / nMNCoins;
-                const auto nMasternodingWeeklyRewardsROI = nMasternodingWeeklyRewards / nMNCoins;
-                const auto nMasternodingMonthlyRewardsROI = nMasternodingMonthlyRewards / nMNCoins;
-                const auto nMasternodingYearlyRewardsROI = nMasternodingYearlyRewards / nMNCoins;
-
-                masternodingObj.push_back(Pair("daily", ValueFromAmount(nMasternodingDailyRewards)));
-                masternodingObj.push_back(Pair("daily_roi", strprintf("%4.2f%%", nMasternodingDailyRewardsROI * 100)));
-                masternodingObj.push_back(Pair("weekly", ValueFromAmount(nMasternodingWeeklyRewards)));
-                masternodingObj.push_back(Pair("weekly_roi", strprintf("%4.2f%%", nMasternodingWeeklyRewardsROI * 100)));
-                masternodingObj.push_back(Pair("monthly", ValueFromAmount(nMasternodingMonthlyRewards)));
-                masternodingObj.push_back(Pair("monthly_roi", strprintf("%4.2f%%", nMasternodingMonthlyRewardsROI * 100)));
-                masternodingObj.push_back(Pair("yearly", ValueFromAmount(nMasternodingYearlyRewards)));
-                masternodingObj.push_back(Pair("yearly_roi", strprintf("%4.2f%%", nMasternodingYearlyRewardsROI * 100)));
-
-                networkObj.push_back(Pair("masternoding", masternodingObj));
-            }
-
-            obj.push_back(Pair("network", networkObj));
-        }
-
-        if (info_type == "wallet" || info_type == "both") {
-            UniValue walletObj(UniValue::VOBJ);
-
-            UniValue walletStakingObj(UniValue::VOBJ);
-
-            walletStakingObj.push_back(Pair("status", fStakingActive));
-            walletStakingObj.push_back(Pair("tries", pwalletMain->pStakerStatus->GetLastTries()));
-            walletStakingObj.push_back(Pair("allocated_coins", ValueFromAmount(nStakedBalance)));
-            walletStakingObj.push_back(Pair("share", strprintf("%4.2f%%", nStakeShare * 100)));
-            walletStakingObj.push_back(Pair("stakesplitthreshold", ValueFromAmount(pwalletMain->nStakeSplitThreshold)));
-            walletStakingObj.push_back(Pair("autocombinethreshold", ValueFromAmount(pwalletMain->fCombineDust ? pwalletMain->nAutoCombineThreshold : 0)));
-
-            {
-                // Calculate all data for the wallet's staking ROI
-                UniValue stakingRegularObj(UniValue::VOBJ);
-
-                const auto nStakingRewards = nStakedBalance * nSmoothStakingROI;
-                const auto nStakingDailyRewards = nStakingRewards / 365;
-                const auto nStakingWeeklyRewards = nStakingDailyRewards * 7;
-                const auto nStakingMonthlyRewards = nStakingDailyRewards * 30;
-                const auto nStakingYearlyRewards = nStakingRewards;
-
-                const auto nStakingDailyRewardsROI = nStakedBalance == 0 ? 0 : nStakingDailyRewards / nStakedBalance;
-                const auto nStakingWeeklyRewardsROI = nStakedBalance == 0 ? 0 : nStakingWeeklyRewards / nStakedBalance;
-                const auto nStakingMonthlyRewardsROI = nStakedBalance == 0 ? 0 : nStakingMonthlyRewards / nStakedBalance;
-                const auto nStakingYearlyRewardsROI = nStakedBalance == 0 ? 0 : nStakingYearlyRewards / nStakedBalance;
-
-                stakingRegularObj.push_back(Pair("daily", ValueFromAmount(nStakingDailyRewards)));
-                stakingRegularObj.push_back(Pair("daily_roi", strprintf("%4.2f%%", nStakingDailyRewardsROI * 100)));
-                stakingRegularObj.push_back(Pair("weekly", ValueFromAmount(nStakingWeeklyRewards)));
-                stakingRegularObj.push_back(Pair("weekly_roi", strprintf("%4.2f%%", nStakingWeeklyRewardsROI * 100)));
-                stakingRegularObj.push_back(Pair("monthly", ValueFromAmount(nStakingMonthlyRewards)));
-                stakingRegularObj.push_back(Pair("monthly_roi", strprintf("%4.2f%%", nStakingMonthlyRewardsROI * 100)));
-                stakingRegularObj.push_back(Pair("yearly", ValueFromAmount(nStakingYearlyRewards)));
-                stakingRegularObj.push_back(Pair("yearly_roi", strprintf("%4.2f%%", nStakingYearlyRewardsROI * 100)));
-
-                walletStakingObj.push_back(Pair("regular", stakingRegularObj));
-
-                {
-                    // Compounding calculations
-                    UniValue stakingCompoundObj(UniValue::VOBJ);
-
-                    auto nStakingBalanceAccumulator = static_cast<double>(nStakedBalance);
-
-                    for (int i = 1; i <= 365; i++) {
-                        nStakingBalanceAccumulator += ((nStakingBalanceAccumulator * nSmoothStakingROI) / 365);
-
-                        if (i == 1) { // After a day
-                            const auto nCompoundStakingDailyRewards = nStakingBalanceAccumulator - nStakedBalance;
-                            const auto nCompoundStakingDailyRewardsROI = nStakedBalance == 0 ? 0 : nCompoundStakingDailyRewards / nStakedBalance;
-
-                            stakingCompoundObj.push_back(Pair("daily", ValueFromAmount(nCompoundStakingDailyRewards)));
-                            stakingCompoundObj.push_back(Pair("daily_roi", strprintf("%4.2f%%", nCompoundStakingDailyRewardsROI * 100)));
-                        }
-
-                        if (i == 7) { // After a week
-                            const auto nCompoundStakingWeeklyRewards = nStakingBalanceAccumulator - nStakedBalance;
-                            const auto nCompoundStakingWeeklyRewardsROI = nStakedBalance == 0 ? 0 : nCompoundStakingWeeklyRewards / nStakedBalance;
-
-                            stakingCompoundObj.push_back(Pair("weekly", ValueFromAmount(nCompoundStakingWeeklyRewards)));
-                            stakingCompoundObj.push_back(Pair("weekly_roi", strprintf("%4.2f%%", nCompoundStakingWeeklyRewardsROI * 100)));
-                        }
-
-                        if (i == 30) { // After a month
-                            const auto nCompoundStakingMonthlyRewards = nStakingBalanceAccumulator - nStakedBalance;
-                            const auto nCompoundStakingMonthlyRewardsROI = nStakedBalance == 0 ? 0 : nCompoundStakingMonthlyRewards / nStakedBalance;
-
-                            stakingCompoundObj.push_back(Pair("monthly", ValueFromAmount(nCompoundStakingMonthlyRewards)));
-                            stakingCompoundObj.push_back(Pair("monthly_roi", strprintf("%4.2f%%", nCompoundStakingMonthlyRewardsROI * 100)));
-                        }
-
-                        if (i == 365) { // After a year
-                            const auto nCompoundStakingYearlyRewards = nStakingBalanceAccumulator - nStakedBalance;
-                            const auto nCompoundStakingYearlyRewardsROI = nStakedBalance == 0 ? 0 : nCompoundStakingYearlyRewards / nStakedBalance;
-
-                            stakingCompoundObj.push_back(Pair("yearly", ValueFromAmount(nCompoundStakingYearlyRewards)));
-                            stakingCompoundObj.push_back(Pair("yearly_roi", strprintf("%4.2f%%", nCompoundStakingYearlyRewardsROI * 100)));
-                        }
-                    }
-
-                    walletStakingObj.push_back(Pair("compound", stakingCompoundObj));
-                }
-            }
-
-            walletObj.push_back(Pair("staking", walletStakingObj));
-
-            {
-                // Calculate all data for the wallet's masternoding ROI
-                UniValue walletMasternodingObj(UniValue::VOBJ);
-
-                const auto nMNs = masternodeConfig.getCount() + 1; // legacy preservation without showing a strange counting
-                const auto nMNBalance = nMNs * nMNCollateral;
-                const auto nMNShare = static_cast<double>(nMNBalance) / nMNCoins;
-
-                walletMasternodingObj.push_back(Pair("masternodes", nMNs));
-                walletMasternodingObj.push_back(Pair("allocated_coins", ValueFromAmount(nMNBalance)));
-                walletMasternodingObj.push_back(Pair("share", strprintf("%4.2f%%", nMNShare * 100)));
-        
-                const auto nMasternodingDailyRewards = nDailyMasternodingRewards * nMNs;
-                const auto nMasternodingWeeklyRewards = nMasternodingDailyRewards * 7;
-                const auto nMasternodingMonthlyRewards = nMasternodingDailyRewards * 30;
-                const auto nMasternodingYearlyRewards = nMasternodingRewards * nMNs;
-
-                const auto nMasternodingDailyRewardsROI = nMNBalance == 0 ? 0 : nMasternodingDailyRewards / nMNBalance;
-                const auto nMasternodingWeeklyRewardsROI = nMNBalance == 0 ? 0 : nMasternodingWeeklyRewards / nMNBalance;
-                const auto nMasternodingMonthlyRewardsROI = nMNBalance == 0 ? 0 : nMasternodingMonthlyRewards / nMNBalance;
-                const auto nMasternodingYearlyRewardsROI = nMNBalance == 0 ? 0 : nMasternodingYearlyRewards / nMNBalance;
-
-                walletMasternodingObj.push_back(Pair("daily", ValueFromAmount(nMasternodingDailyRewards)));
-                walletMasternodingObj.push_back(Pair("daily_roi", strprintf("%4.2f%%", nMasternodingDailyRewardsROI * 100)));
-                walletMasternodingObj.push_back(Pair("weekly", ValueFromAmount(nMasternodingWeeklyRewards)));
-                walletMasternodingObj.push_back(Pair("weekly_roi", strprintf("%4.2f%%", nMasternodingWeeklyRewardsROI * 100)));
-                walletMasternodingObj.push_back(Pair("monthly", ValueFromAmount(nMasternodingMonthlyRewards)));
-                walletMasternodingObj.push_back(Pair("monthly_roi", strprintf("%4.2f%%", nMasternodingMonthlyRewardsROI * 100)));
-                walletMasternodingObj.push_back(Pair("yearly", ValueFromAmount(nMasternodingYearlyRewards)));
-                walletMasternodingObj.push_back(Pair("yearly_roi", strprintf("%4.2f%%", nMasternodingYearlyRewardsROI * 100)));
-
-                walletObj.push_back(Pair("masternoding", walletMasternodingObj));
-            }
-
-            obj.push_back(Pair("wallet", walletObj));
-        }
-
-        return obj;
-    } else {
+    CBlockchainStatus cbs;
+    int cbserror = cbs.getblockchainstatus();
+    if (cbserror > 0) {
         throw JSONRPCError(RPC_IN_WARMUP, "Try again after the active chain is loaded");
+    } else
+    if (cbserror < 0) {
+        throw JSONRPCError(RPC_IN_WARMUP, "Try again after the chain is fully synced");
     }
+    int64_t nBlocksPerWeek = cbs.nBlocksPerDay * 7;
+    int64_t nBlocksPerMonth = cbs.nBlocksPerDay * 30;
+    int64_t nBlocksPerYear = cbs.nBlocksPerDay * 365;
+
+    const auto nStakingAllocation = static_cast<double>(cbs.nSmoothStakedCoins) / cbs.nMoneySupplyThisBlock;
+    const auto nYearlyStakingRewards = cbs.nStakeReward * nBlocksPerYear;
+    const auto nMNAllocation = static_cast<double>(cbs.nMNCoins) / cbs.nMoneySupplyThisBlock;
+
+    const auto nTotalAllocationCoins = cbs.nSmoothStakedCoins + cbs.nMNCoins;
+    const auto nTotalAllocation = nStakingAllocation + nMNAllocation;
+
+    const auto nYearlyMNRewards = cbs.nMNReward * nBlocksPerYear;
+    const auto nMasternodingRewards = static_cast<double>((cbs.nMNReward * nBlocksPerYear) / cbs.nMNEnabled);
+    const auto nDailyMasternodingRewards = nMasternodingRewards / 365;
+
+    const auto fStakingActive = pwalletMain->pStakerStatus->IsActive();
+    const auto nStakedBalance =
+        pwalletMain->mapWallet.empty() ? 
+            0 :
+            fStakingActive ?
+                pwalletMain->pStakerStatus->GetLastValue() :
+                pwalletMain->GetStakingBalance();
+    const auto nStakeShare = static_cast<double>(nStakedBalance) / cbs.nSmoothStakedCoins;
+
+    UniValue obj(UniValue::VOBJ);
+
+    if (info_type == "simple") {
+
+        const auto nMasternodingYearlyRewardsROI = (cbs.nMNReward * nBlocksPerYear) / cbs.nMNCoins;
+
+        obj.push_back(Pair("staking_roi", strprintf("%4.2f%%", cbs.nStakingROI * 100)));
+        obj.push_back(Pair("smooth_staking_roi", strprintf("%4.2f%%", cbs.nSmoothStakingROI * 100)));
+        obj.push_back(Pair("staked_coins", ValueFromAmount(cbs.nSmoothStakedCoins)));
+        obj.push_back(Pair("masternoding_roi", strprintf("%4.2f%%", nMasternodingYearlyRewardsROI * 100)));
+        obj.push_back(Pair("masternoded_coins", ValueFromAmount(cbs.nMNCoins)));
+        obj.push_back(Pair("enabled_masternodes", cbs.nMNEnabled));
+        obj.push_back(Pair("blocks_per_day", cbs.nBlocksPerDay));
+
+    } else if (info_type == "network" || info_type == "all") {
+            
+        UniValue networkObj(UniValue::VOBJ);
+
+        networkObj.push_back(Pair("reward", ValueFromAmount(cbs.nBlockValue)));
+        networkObj.push_back(Pair("allocated_coins", ValueFromAmount(nTotalAllocationCoins)));
+        networkObj.push_back(Pair("allocation", strprintf("%4.2f%%", nTotalAllocation * 100)));
+
+        UniValue blocksObj(UniValue::VOBJ);
+        blocksObj.push_back(Pair("day", cbs.nBlocksPerDay));
+        blocksObj.push_back(Pair("week", nBlocksPerWeek));
+        blocksObj.push_back(Pair("month", nBlocksPerMonth));
+        blocksObj.push_back(Pair("year", nBlocksPerYear));
+        networkObj.push_back(Pair("blocks", blocksObj));
+
+        UniValue stakingObj(UniValue::VOBJ);
+
+        stakingObj.push_back(Pair("reward", ValueFromAmount(cbs.nStakeReward)));
+
+        UniValue hashRateObj(UniValue::VOBJ);
+        hashRateObj.push_back(Pair("networkhashps", GetReadableHashRate(cbs.nNetworkHashPS)));
+        hashRateObj.push_back(Pair("allocated_coins", ValueFromAmount(cbs.nStakedCoins)));
+        hashRateObj.push_back(Pair("roi", strprintf("%4.2f%%", cbs.nStakingROI * 100)));
+        stakingObj.push_back(Pair("hashrate", hashRateObj));
+
+        UniValue smoothHashRateObj(UniValue::VOBJ);
+        smoothHashRateObj.push_back(Pair("networkhashps", GetReadableHashRate(cbs.nSmoothNetworkHashPS)));
+        smoothHashRateObj.push_back(Pair("allocated_coins", ValueFromAmount(cbs.nSmoothStakedCoins)));
+        smoothHashRateObj.push_back(Pair("roi", strprintf("%4.2f%%", cbs.nSmoothStakingROI * 100)));
+        stakingObj.push_back(Pair("smooth_hashrate", smoothHashRateObj));
+
+        stakingObj.push_back(Pair("allocation", strprintf("%4.2f%%", nStakingAllocation * 100)));
+
+        {
+            // Calculate all data for the wallet's staking ROI
+            UniValue stakingRegularObj(UniValue::VOBJ);
+
+            const auto nStakingRewards = nYearlyStakingRewards;
+            const auto nStakingDailyRewards = nStakingRewards / 365;
+            const auto nStakingWeeklyRewards = nStakingDailyRewards * 7;
+            const auto nStakingMonthlyRewards = nStakingDailyRewards * 30;
+            const auto nStakingYearlyRewards = nStakingRewards;
+
+            const auto nStakingDailyRewardsROI = cbs.nSmoothStakedCoins == 0 ? 0 : nStakingDailyRewards / cbs.nSmoothStakedCoins;
+            const auto nStakingWeeklyRewardsROI = cbs.nSmoothStakedCoins == 0 ? 0 : nStakingWeeklyRewards / cbs.nSmoothStakedCoins;
+            const auto nStakingMonthlyRewardsROI = cbs.nSmoothStakedCoins == 0 ? 0 : nStakingMonthlyRewards / cbs.nSmoothStakedCoins;
+            const auto nStakingYearlyRewardsROI = cbs.nSmoothStakedCoins == 0 ? 0 : nStakingYearlyRewards / cbs.nSmoothStakedCoins;
+
+            stakingRegularObj.push_back(Pair("daily", ValueFromAmount(nStakingDailyRewards)));
+            stakingRegularObj.push_back(Pair("daily_roi", strprintf("%4.2f%%", nStakingDailyRewardsROI * 100)));
+            stakingRegularObj.push_back(Pair("weekly", ValueFromAmount(nStakingWeeklyRewards)));
+            stakingRegularObj.push_back(Pair("weekly_roi", strprintf("%4.2f%%", nStakingWeeklyRewardsROI * 100)));
+            stakingRegularObj.push_back(Pair("monthly", ValueFromAmount(nStakingMonthlyRewards)));
+            stakingRegularObj.push_back(Pair("monthly_roi", strprintf("%4.2f%%", nStakingMonthlyRewardsROI * 100)));
+            stakingRegularObj.push_back(Pair("yearly", ValueFromAmount(nStakingYearlyRewards)));
+            stakingRegularObj.push_back(Pair("yearly_roi", strprintf("%4.2f%%", nStakingYearlyRewardsROI * 100)));
+
+            stakingObj.push_back(Pair("regular", stakingRegularObj));
+
+            {
+                // Compounding calculations
+                UniValue stakingCompoundObj(UniValue::VOBJ);
+
+                auto nStakingBalanceAccumulator = static_cast<double>(cbs.nSmoothStakedCoins);
+
+                for (int i = 1; i <= 365; i++) {
+                    nStakingBalanceAccumulator += ((nStakingBalanceAccumulator * cbs.nSmoothStakingROI) / 365);
+
+                    if (i == 1) { // After a day
+                        const auto nCompoundStakingDailyRewards = nStakingBalanceAccumulator - cbs.nSmoothStakedCoins;
+                        const auto nCompoundStakingDailyRewardsROI = cbs.nSmoothStakedCoins == 0 ? 0 : nCompoundStakingDailyRewards / cbs.nSmoothStakedCoins;
+
+                        stakingCompoundObj.push_back(Pair("daily", ValueFromAmount(nCompoundStakingDailyRewards)));
+                        stakingCompoundObj.push_back(Pair("daily_roi", strprintf("%4.2f%%", nCompoundStakingDailyRewardsROI * 100)));
+                    }
+
+                    if (i == 7) { // After a week
+                        const auto nCompoundStakingWeeklyRewards = nStakingBalanceAccumulator - cbs.nSmoothStakedCoins;
+                        const auto nCompoundStakingWeeklyRewardsROI = cbs.nSmoothStakedCoins == 0 ? 0 : nCompoundStakingWeeklyRewards / cbs.nSmoothStakedCoins;
+
+                        stakingCompoundObj.push_back(Pair("weekly", ValueFromAmount(nCompoundStakingWeeklyRewards)));
+                        stakingCompoundObj.push_back(Pair("weekly_roi", strprintf("%4.2f%%", nCompoundStakingWeeklyRewardsROI * 100)));
+                    }
+
+                    if (i == 30) { // After a month
+                        const auto nCompoundStakingMonthlyRewards = nStakingBalanceAccumulator - cbs.nSmoothStakedCoins;
+                        const auto nCompoundStakingMonthlyRewardsROI = cbs.nSmoothStakedCoins == 0 ? 0 : nCompoundStakingMonthlyRewards / cbs.nSmoothStakedCoins;
+
+                        stakingCompoundObj.push_back(Pair("monthly", ValueFromAmount(nCompoundStakingMonthlyRewards)));
+                        stakingCompoundObj.push_back(Pair("monthly_roi", strprintf("%4.2f%%", nCompoundStakingMonthlyRewardsROI * 100)));
+                    }
+
+                    if (i == 365) { // After a year
+                        const auto nCompoundStakingYearlyRewards = nStakingBalanceAccumulator - cbs.nSmoothStakedCoins;
+                        const auto nCompoundStakingYearlyRewardsROI = cbs.nSmoothStakedCoins == 0 ? 0 : nCompoundStakingYearlyRewards / cbs.nSmoothStakedCoins;
+
+                        stakingCompoundObj.push_back(Pair("yearly", ValueFromAmount(nCompoundStakingYearlyRewards)));
+                        stakingCompoundObj.push_back(Pair("yearly_roi", strprintf("%4.2f%%", nCompoundStakingYearlyRewardsROI * 100)));
+                    }
+                }
+
+                stakingObj.push_back(Pair("compound", stakingCompoundObj));
+            }
+        }
+
+        networkObj.push_back(Pair("staking", stakingObj));
+
+        {
+            UniValue masternodingObj(UniValue::VOBJ);
+
+            masternodingObj.push_back(Pair("reward", ValueFromAmount(cbs.nMNReward)));
+            masternodingObj.push_back(Pair("collateral", ValueFromAmount(cbs.nMNCollateral)));
+            masternodingObj.push_back(Pair("nextweek_collateral", ValueFromAmount(cbs.nMNNextWeekCollateral)));
+            masternodingObj.push_back(Pair("enabled_masternodes", cbs.nMNEnabled));
+            masternodingObj.push_back(Pair("allocated_coins", ValueFromAmount(cbs.nMNCoins)));
+            masternodingObj.push_back(Pair("allocation", strprintf("%4.2f%%", nMNAllocation * 100)));
+
+            const auto nMasternodingDailyRewards = nDailyMasternodingRewards * cbs.nMNEnabled;
+            const auto nMasternodingWeeklyRewards = nMasternodingDailyRewards * 7;
+            const auto nMasternodingMonthlyRewards = nMasternodingDailyRewards * 30;
+            const auto nMasternodingYearlyRewards = nMasternodingRewards * cbs.nMNEnabled;
+
+            const auto nMasternodingDailyRewardsROI = nMasternodingDailyRewards / cbs.nMNCoins;
+            const auto nMasternodingWeeklyRewardsROI = nMasternodingWeeklyRewards / cbs.nMNCoins;
+            const auto nMasternodingMonthlyRewardsROI = nMasternodingMonthlyRewards / cbs.nMNCoins;
+            const auto nMasternodingYearlyRewardsROI = nMasternodingYearlyRewards / cbs.nMNCoins;
+
+            masternodingObj.push_back(Pair("daily", ValueFromAmount(nMasternodingDailyRewards)));
+            masternodingObj.push_back(Pair("daily_roi", strprintf("%4.2f%%", nMasternodingDailyRewardsROI * 100)));
+            masternodingObj.push_back(Pair("weekly", ValueFromAmount(nMasternodingWeeklyRewards)));
+            masternodingObj.push_back(Pair("weekly_roi", strprintf("%4.2f%%", nMasternodingWeeklyRewardsROI * 100)));
+            masternodingObj.push_back(Pair("monthly", ValueFromAmount(nMasternodingMonthlyRewards)));
+            masternodingObj.push_back(Pair("monthly_roi", strprintf("%4.2f%%", nMasternodingMonthlyRewardsROI * 100)));
+            masternodingObj.push_back(Pair("yearly", ValueFromAmount(nMasternodingYearlyRewards)));
+            masternodingObj.push_back(Pair("yearly_roi", strprintf("%4.2f%%", nMasternodingYearlyRewardsROI * 100)));
+
+            networkObj.push_back(Pair("masternoding", masternodingObj));
+        }
+
+        obj.push_back(Pair("network", networkObj));
+    }
+
+    if (info_type == "wallet" || info_type == "all") {
+        UniValue walletObj(UniValue::VOBJ);
+
+        UniValue walletStakingObj(UniValue::VOBJ);
+
+        walletStakingObj.push_back(Pair("status", fStakingActive));
+        walletStakingObj.push_back(Pair("tries", pwalletMain->pStakerStatus->GetLastTries()));
+        walletStakingObj.push_back(Pair("allocated_coins", ValueFromAmount(nStakedBalance)));
+        walletStakingObj.push_back(Pair("share", strprintf("%4.2f%%", nStakeShare * 100)));
+        walletStakingObj.push_back(Pair("stakesplitthreshold", ValueFromAmount(pwalletMain->nStakeSplitThreshold)));
+        walletStakingObj.push_back(Pair("autocombinethreshold", ValueFromAmount(pwalletMain->fCombineDust ? pwalletMain->nAutoCombineThreshold : 0)));
+
+        {
+            // Calculate all data for the wallet's staking ROI
+            UniValue stakingRegularObj(UniValue::VOBJ);
+            const auto nStakingRewards = nStakedBalance * cbs.nSmoothStakingROI;
+            const auto nStakingDailyRewards = nStakingRewards / 365;
+            const auto nStakingWeeklyRewards = nStakingDailyRewards * 7;
+            const auto nStakingMonthlyRewards = nStakingDailyRewards * 30;
+            const auto nStakingYearlyRewards = nStakingRewards;
+
+            const auto nStakingDailyRewardsROI = nStakedBalance == 0 ? 0 : nStakingDailyRewards / nStakedBalance;
+            const auto nStakingWeeklyRewardsROI = nStakedBalance == 0 ? 0 : nStakingWeeklyRewards / nStakedBalance;
+            const auto nStakingMonthlyRewardsROI = nStakedBalance == 0 ? 0 : nStakingMonthlyRewards / nStakedBalance;
+            const auto nStakingYearlyRewardsROI = nStakedBalance == 0 ? 0 : nStakingYearlyRewards / nStakedBalance;
+
+            stakingRegularObj.push_back(Pair("daily", ValueFromAmount(nStakingDailyRewards)));
+            stakingRegularObj.push_back(Pair("daily_roi", strprintf("%4.2f%%", nStakingDailyRewardsROI * 100)));
+            stakingRegularObj.push_back(Pair("weekly", ValueFromAmount(nStakingWeeklyRewards)));
+            stakingRegularObj.push_back(Pair("weekly_roi", strprintf("%4.2f%%", nStakingWeeklyRewardsROI * 100)));
+            stakingRegularObj.push_back(Pair("monthly", ValueFromAmount(nStakingMonthlyRewards)));
+            stakingRegularObj.push_back(Pair("monthly_roi", strprintf("%4.2f%%", nStakingMonthlyRewardsROI * 100)));
+            stakingRegularObj.push_back(Pair("yearly", ValueFromAmount(nStakingYearlyRewards)));
+            stakingRegularObj.push_back(Pair("yearly_roi", strprintf("%4.2f%%", nStakingYearlyRewardsROI * 100)));
+
+            walletStakingObj.push_back(Pair("regular", stakingRegularObj));
+
+            {
+                // Compounding calculations
+                UniValue stakingCompoundObj(UniValue::VOBJ);
+
+                auto nStakingBalanceAccumulator = static_cast<double>(nStakedBalance);
+
+                for (int i = 1; i <= 365; i++) {
+                    nStakingBalanceAccumulator += ((nStakingBalanceAccumulator * cbs.nSmoothStakingROI) / 365);
+
+                    if (i == 1) { // After a day
+                        const auto nCompoundStakingDailyRewards = nStakingBalanceAccumulator - nStakedBalance;
+                        const auto nCompoundStakingDailyRewardsROI = nStakedBalance == 0 ? 0 : nCompoundStakingDailyRewards / nStakedBalance;
+
+                        stakingCompoundObj.push_back(Pair("daily", ValueFromAmount(nCompoundStakingDailyRewards)));
+                        stakingCompoundObj.push_back(Pair("daily_roi", strprintf("%4.2f%%", nCompoundStakingDailyRewardsROI * 100)));
+                    }
+
+                    if (i == 7) { // After a week
+                        const auto nCompoundStakingWeeklyRewards = nStakingBalanceAccumulator - nStakedBalance;
+                        const auto nCompoundStakingWeeklyRewardsROI = nStakedBalance == 0 ? 0 : nCompoundStakingWeeklyRewards / nStakedBalance;
+
+                        stakingCompoundObj.push_back(Pair("weekly", ValueFromAmount(nCompoundStakingWeeklyRewards)));
+                        stakingCompoundObj.push_back(Pair("weekly_roi", strprintf("%4.2f%%", nCompoundStakingWeeklyRewardsROI * 100)));
+                    }
+
+                    if (i == 30) { // After a month
+                        const auto nCompoundStakingMonthlyRewards = nStakingBalanceAccumulator - nStakedBalance;
+                        const auto nCompoundStakingMonthlyRewardsROI = nStakedBalance == 0 ? 0 : nCompoundStakingMonthlyRewards / nStakedBalance;
+
+                        stakingCompoundObj.push_back(Pair("monthly", ValueFromAmount(nCompoundStakingMonthlyRewards)));
+                        stakingCompoundObj.push_back(Pair("monthly_roi", strprintf("%4.2f%%", nCompoundStakingMonthlyRewardsROI * 100)));
+                    }
+
+                    if (i == 365) { // After a year
+                        const auto nCompoundStakingYearlyRewards = nStakingBalanceAccumulator - nStakedBalance;
+                        const auto nCompoundStakingYearlyRewardsROI = nStakedBalance == 0 ? 0 : nCompoundStakingYearlyRewards / nStakedBalance;
+
+                        stakingCompoundObj.push_back(Pair("yearly", ValueFromAmount(nCompoundStakingYearlyRewards)));
+                        stakingCompoundObj.push_back(Pair("yearly_roi", strprintf("%4.2f%%", nCompoundStakingYearlyRewardsROI * 100)));
+                    }
+                }
+
+                walletStakingObj.push_back(Pair("compound", stakingCompoundObj));
+            }
+        }
+
+        walletObj.push_back(Pair("staking", walletStakingObj));
+
+        {
+            // Calculate all data for the wallet's masternoding ROI
+            UniValue walletMasternodingObj(UniValue::VOBJ);
+
+            const auto nMNs = masternodeConfig.getCount() + 1; // legacy preservation without showing a strange counting
+            const auto nMNBalance = nMNs * cbs.nMNCollateral;
+            const auto nMNShare = static_cast<double>(nMNBalance) / cbs.nMNCoins;
+
+            walletMasternodingObj.push_back(Pair("masternodes", nMNs));
+            walletMasternodingObj.push_back(Pair("allocated_coins", ValueFromAmount(nMNBalance)));
+            walletMasternodingObj.push_back(Pair("share", strprintf("%4.2f%%", nMNShare * 100)));
+        
+            const auto nMasternodingDailyRewards = nDailyMasternodingRewards * nMNs;
+            const auto nMasternodingWeeklyRewards = nMasternodingDailyRewards * 7;
+            const auto nMasternodingMonthlyRewards = nMasternodingDailyRewards * 30;
+            const auto nMasternodingYearlyRewards = nMasternodingRewards * nMNs;
+
+            const auto nMasternodingDailyRewardsROI = nMNBalance == 0 ? 0 : nMasternodingDailyRewards / nMNBalance;
+            const auto nMasternodingWeeklyRewardsROI = nMNBalance == 0 ? 0 : nMasternodingWeeklyRewards / nMNBalance;
+            const auto nMasternodingMonthlyRewardsROI = nMNBalance == 0 ? 0 : nMasternodingMonthlyRewards / nMNBalance;
+            const auto nMasternodingYearlyRewardsROI = nMNBalance == 0 ? 0 : nMasternodingYearlyRewards / nMNBalance;
+
+            walletMasternodingObj.push_back(Pair("daily", ValueFromAmount(nMasternodingDailyRewards)));
+            walletMasternodingObj.push_back(Pair("daily_roi", strprintf("%4.2f%%", nMasternodingDailyRewardsROI * 100)));
+            walletMasternodingObj.push_back(Pair("weekly", ValueFromAmount(nMasternodingWeeklyRewards)));
+            walletMasternodingObj.push_back(Pair("weekly_roi", strprintf("%4.2f%%", nMasternodingWeeklyRewardsROI * 100)));
+            walletMasternodingObj.push_back(Pair("monthly", ValueFromAmount(nMasternodingMonthlyRewards)));
+            walletMasternodingObj.push_back(Pair("monthly_roi", strprintf("%4.2f%%", nMasternodingMonthlyRewardsROI * 100)));
+            walletMasternodingObj.push_back(Pair("yearly", ValueFromAmount(nMasternodingYearlyRewards)));
+            walletMasternodingObj.push_back(Pair("yearly_roi", strprintf("%4.2f%%", nMasternodingYearlyRewardsROI * 100)));
+
+            walletObj.push_back(Pair("masternoding", walletMasternodingObj));
+        }
+
+        obj.push_back(Pair("wallet", walletObj));
+    }
+    return obj;
 }
 
 #endif // ENABLE_WALLET

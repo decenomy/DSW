@@ -6,7 +6,9 @@
 
 #include "fs.h"
 #include "logging.h"
+#include "main.h"
 #include "masternode.h"
+#include "masternodeman.h"
 #include "masternode-sync.h"
 #include "rewards.h"
 #include "sqlite3/sqlite3.h"
@@ -440,3 +442,92 @@ CAmount CRewards::GetBlockValue(int nHeight)
     // fallback non-dynamic reward return
     return nSubsidy;
 }
+
+// returns = 1 if !pwalletMain, -1 if RPC_IN_WARMUP, 0 if all is good
+int 
+CBlockchainStatus::getblockchainstatus()
+{
+    if (!pwalletMain) {
+        return 1;
+    } else
+    if (!masternodeSync.IsSynced()) {
+        return -1;
+    }
+
+    const auto& params = Params();
+    const auto& consensus = params.GetConsensus();
+
+    const auto pTip = chainActive.Tip();
+    nHeight = pTip->nHeight;
+
+    // Fetch consensus parameters
+    const auto nTargetSpacing = consensus.nTargetSpacing;
+    const auto nTargetTimespan = consensus.TargetTimespan(nHeight);
+    const auto nTimeSlotLength = consensus.TimeSlotLength(nHeight);
+
+    // Fetch reward details
+    nMoneySupplyThisBlock = pTip->nMoneySupply.get();
+    nBlockValue = CRewards::GetBlockValue(nHeight);
+    nMNReward = CMasternode::GetMasternodePayment(nHeight);
+    nStakeReward = nBlockValue - nMNReward;
+
+    nBlocksPerDay = DAY_IN_SECONDS / nTargetSpacing;
+    CBlockIndex* BlockReading = pTip;
+
+    if(nHeight > nBlocksPerDay) {
+        for (unsigned int i = 0; BlockReading && BlockReading->nHeight > 0; i++) {
+            if(BlockReading->nTime < (pTip->nTime - DAY_IN_SECONDS)) {
+                nBlocksPerDay = i;
+                break;
+            }
+
+            BlockReading = BlockReading->pprev;
+        }
+    }
+
+    // Fetch the network generated hashes per second
+    const auto nBlocks = static_cast<int>(nTargetTimespan / nTargetSpacing);
+    const auto startBlock = chainActive[nHeight - std::min(nBlocks, nHeight)];
+    const auto endBlock = pTip;
+    const auto nTimeDiff = endBlock->GetBlockTime() - startBlock->GetBlockTime();
+    const auto nWorkDiff = endBlock->nChainWork - startBlock->nChainWork;
+    nNetworkHashPS = static_cast<int64_t>(nWorkDiff.getdouble() / nTimeDiff);
+    
+    const auto nSmoothBlocks = static_cast<int>((3 * HOUR_IN_SECONDS) / nTargetSpacing);
+    const auto startSmoothBlock = chainActive[nHeight - std::min(nSmoothBlocks, nHeight)];
+    const auto nSmoothTimeDiff = endBlock->GetBlockTime() - startSmoothBlock->GetBlockTime();
+    const auto nSmoothWorkDiff = endBlock->nChainWork - startSmoothBlock->nChainWork;
+    nSmoothNetworkHashPS = static_cast<int64_t>(nSmoothWorkDiff.getdouble() / nSmoothTimeDiff);
+
+    // Calculate how many coins are allocated in the entire staking algorithm
+    nStakedCoins = static_cast<double>(nNetworkHashPS * nTimeSlotLength * 100);
+    nSmoothStakedCoins = static_cast<double>(nSmoothNetworkHashPS * nTimeSlotLength * 100);
+    const auto nYearlyStakingRewards = nStakeReward * nBlocksPerDay * 365;
+    nStakingROI = nYearlyStakingRewards / nStakedCoins;
+    nSmoothStakingROI = nYearlyStakingRewards / nSmoothStakedCoins;
+
+    // Fetch the masternode related data
+    nMNCollateral = CMasternode::GetMasternodeNodeCollateral(nHeight);
+    nMNNextWeekCollateral = CMasternode::GetNextWeekMasternodeCollateral();
+    nMNEnabled = mnodeman.CountEnabled();
+    nMNCoins = nMNCollateral * nMNEnabled;
+
+    return 0;
+}
+
+std::string
+CBlockchainStatus::coin2prettyText(CAmount koin)
+{
+    std::string s = strprintf("%" PRId64, (int64_t)koin);
+    int j = 0;
+    std::string k;
+
+    for (int i = s.size() - 1; i >= 0;) {
+        k.push_back(s[i]);
+        j++;
+        i--;
+        if (j % 3 == 0 && i >= 0) k.push_back(',');
+    }
+    reverse(k.begin(), k.end());
+    return k;
+};
