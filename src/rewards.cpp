@@ -440,7 +440,7 @@ CAmount CRewards::GetBlockValue(int nHeight)
 }
 
 // returns = 1 if !pwalletMain, -1 if RPC_IN_WARMUP, 0 if all is good
-int
+int 
 CBlockchainStatus::getblockchainstatus()
 {
     if (!pwalletMain) {

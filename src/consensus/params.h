@@ -90,7 +90,8 @@ struct Params {
     uint256 hashGenesisBlock;
     bool fPowAllowMinDifficultyBlocks;
     uint256 powLimit;
-    uint256 posLimit;
+    uint256 posLimitV1;
+    uint256 posLimitV2;
     int nCoinbaseMaturity;
     int nFutureTimeDriftPoW;
     int nFutureTimeDriftPoS;
@@ -101,7 +102,6 @@ struct Params {
     int nStakeMinDepthV2;
     int64_t nTargetTimespan;
     int64_t nTargetTimespanV2;
-    int64_t nTargetTimespanV3;
     int64_t nTargetLongTimespan;
     int nMaximumAdjustmentFactor;
     int nMaximumLongAdjustmentFactor;
@@ -122,14 +122,9 @@ struct Params {
     // Map with network updates
     NetworkUpgrade vUpgrades[MAX_NETWORK_UPGRADES];
 
-    int64_t TargetTimespan(const int nHeight) const { 
-        return
-            IsPOSv3(nHeight) ?
-                nTargetTimespanV3 :
-                IsTimeProtocolV2(nHeight) ? 
-                    nTargetTimespanV2 : 
-                    nTargetTimespan; 
-    } 
+    int64_t TargetTimespan(const int nHeight) const { return IsTimeProtocolV2(nHeight) ? nTargetTimespanV2 : nTargetTimespan; }
+    int64_t TargetTimespan(const bool fV2 = true) const { return fV2 ? nTargetTimespanV2 : nTargetTimespan; }
+    uint256 ProofOfStakeLimit(const bool fV2) const { return fV2 ? posLimitV2 : posLimitV1; }
     bool MoneyRange(const CAmount& nValue) const { return (nValue >= 0 && nValue <= nMaxMoneyOut); }
     bool IsTimeProtocolV2(const int nHeight) const { return NetworkUpgradeActive(nHeight, UPGRADE_TIME_PROTOCOL_V2); }
     bool IsPOSv3(const int nHeight) const { return NetworkUpgradeActive(nHeight, UPGRADE_POS_V3); }

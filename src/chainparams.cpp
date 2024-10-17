@@ -227,7 +227,8 @@ public:
 
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.powLimit = ~UINT256_ZERO >> 20;
-        consensus.posLimit = ~UINT256_ZERO >> 20;
+        consensus.posLimitV1 = ~UINT256_ZERO >> 24;
+        consensus.posLimitV2 = ~UINT256_ZERO >> 20;
         consensus.nCoinbaseMaturity = 100;
         consensus.nFutureTimeDriftPoW = 7200;
         consensus.nFutureTimeDriftPoS = 180;
@@ -239,7 +240,6 @@ public:
         consensus.nTargetSpacing = MINUTE_IN_SECONDS;
         consensus.nTargetTimespan = 40 * consensus.nTargetSpacing;
         consensus.nTargetTimespanV2 = 30 * consensus.nTargetSpacing;
-        consensus.nTargetTimespanV3 = HOUR_IN_SECONDS;
         consensus.nTargetLongTimespan = WEEK_IN_SECONDS;
         consensus.nMaximumAdjustmentFactor = 5;
         consensus.nMaximumLongAdjustmentFactor = 10;
@@ -391,7 +391,8 @@ public:
 
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.powLimit = ~UINT256_ZERO >> 20;   
-        consensus.posLimit = ~UINT256_ZERO >> 20;
+        consensus.posLimitV1 = ~UINT256_ZERO >> 24;
+        consensus.posLimitV2 = ~UINT256_ZERO >> 20;
         consensus.nCoinbaseMaturity = 100;
         consensus.nFutureTimeDriftPoW = 7200;
         consensus.nFutureTimeDriftPoS = 180;
@@ -403,7 +404,6 @@ public:
         consensus.nTargetSpacing = MINUTE_IN_SECONDS;
         consensus.nTargetTimespan = 40 * consensus.nTargetSpacing;
         consensus.nTargetTimespanV2 = 30 * consensus.nTargetSpacing;
-        consensus.nTargetTimespanV3 = HOUR_IN_SECONDS;
         consensus.nTargetLongTimespan = WEEK_IN_SECONDS;
         consensus.nMaximumAdjustmentFactor = 5;
         consensus.nMaximumLongAdjustmentFactor = 10;
@@ -549,7 +549,8 @@ public:
 
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.powLimit = ~UINT256_ZERO >> 20;   // kyanite starting difficulty is 1 / 2^12
-        consensus.posLimit = ~UINT256_ZERO >> 20;
+        consensus.posLimitV1 = ~UINT256_ZERO >> 24;
+        consensus.posLimitV2 = ~UINT256_ZERO >> 20;
         consensus.nCoinbaseMaturity = 100;
         consensus.nFutureTimeDriftPoW = 7200;
         consensus.nFutureTimeDriftPoS = 180;       // num of MN we allow the see-saw payments to be off by

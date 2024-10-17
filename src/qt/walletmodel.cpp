@@ -28,6 +28,7 @@
 #include <QDebug>
 #include <QSet>
 #include <QTimer>
+#include <masternode.h>
 
 using namespace boost::placeholders;
 
@@ -757,11 +758,12 @@ void WalletModel::getOutputs(const std::vector<COutPoint>& vOutpoints, std::vect
 // returns a COutPoint of collateral amount if found
 bool WalletModel::getMNCollateralCandidate(COutPoint& outPoint)
 {
+    const auto nCollateralValue = CMasternode::GetNextWeekMasternodeCollateral();
     std::vector<COutput> vCoins;
     wallet->AvailableCoins(&vCoins, nullptr, ONLY_10000);
     for (const COutput& out : vCoins) {
         // skip locked collaterals
-        if (!isLockedCoin(out.tx->GetHash(), out.i)) {
+        if (!isLockedCoin(out.tx->GetHash(), out.i) && out.Value() == nCollateralValue) {
             outPoint = COutPoint(out.tx->GetHash(), out.i);
             return true;
         }
