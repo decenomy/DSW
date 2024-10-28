@@ -1,23 +1,23 @@
 services:
-  __decenomy__:
+  kyanite_testnet:
     image: ubuntu:24.04
-    container_name: __decenomy__-ctn
+    container_name: kyanite_testnet-ctn
     restart: always
     ports:
-      - "__PORT_MAINNET__:__PORT_MAINNET__"  # TCP mainnet port
-      - "__RPCPORT_MAINNET__:__RPCPORT_MAINNET__"  # RPC mainnet port
+      - "8757:8757"  # TCP mainnet port
+      - "8758:8758"  # RPC mainnet port
     volumes:
-      - ${HOME}/.__decenomy__:/root/.__decenomy__:shared
+      - ${HOME}/.kyanite:/root/.kyanite:shared
     command:
       - bash
       - -c
       - |
-        if [ ! -f /usr/local/bin/__decenomy__d ]; then
-          echo "__Decenomy__ binary not found, setting up environment..."
+        if [ ! -f /usr/local/bin/kyanited ]; then
+          echo "Kyanite Testnet binary not found, setting up environment..."
           apt-get update && \
           apt-get install -y wget curl unzip && \
           rm -rf /var/lib/apt/lists/* && \
-          echo $(curl -s https://api.github.com/repos/decenomy/__DSW__/releases/latest | grep "browser_download_url" | grep -E "Linux(-x64)?\.zip" | cut -d '"' -f 4) > latest_release_url && \
+          echo $(curl -s https://api.github.com/repos/decenomy/DSW/releases/latest | grep "browser_download_url" | grep -E "Linux(-x64)?\.zip" | cut -d '"' -f 4) > latest_release_url && \
           echo "Latest release URL: $(cat latest_release_url)" && \
           echo $(basename "$(cat latest_release_url)") > latest_filename && \
           echo "Latest filename: $(cat latest_filename)" && \
@@ -26,8 +26,8 @@ services:
           rm "$(cat latest_filename)" && \
           rm latest_filename && \
           rm latest_release_url && \
-          mv __decenomy__* /usr/local/bin;
+          mv kyanite* /usr/local/bin;
         else
-          echo "__Decenomy__ binary already installed, skipping setup."
+          echo "Kyanite Testnet binary already installed, skipping setup."
         fi
-        __decenomy__d
+        kyanited -testnet=1
